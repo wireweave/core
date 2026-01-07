@@ -1,6 +1,10 @@
-# @wireweave/core
+<p align="center">
+  <img src="logo.svg" width="128" height="128" alt="Wireweave Core">
+</p>
 
-Core parser and renderers for wireweave DSL.
+<h1 align="center">@wireweave/core</h1>
+
+<p align="center">Core parser and renderers for Wireweave DSL</p>
 
 ## Installation
 
