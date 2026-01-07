@@ -13,7 +13,8 @@
   },
   "npm": {
     "publish": true,
-    "access": "public"
+    "access": "public",
+    "publishArgs": ["--provenance"]
   },
   "plugins": {
     "@release-it/conventional-changelog": {

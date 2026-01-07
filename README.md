@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="logo.svg" width="128" height="128" alt="Wireweave Core">
+  <img src="https://raw.githubusercontent.com/wireweave/core/main/logo.svg" width="128" height="128" alt="Wireweave Core">
 </p>
 
 <h1 align="center">@wireweave/core</h1>
