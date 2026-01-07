@@ -1,0 +1,56 @@
+{
+  "name": "@wireweave/core",
+  "version": "1.0.0",
+  "description": "Core parser and renderer for wireweave",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./parser": {
+      "types": "./dist/parser.d.ts",
+      "import": "./dist/parser.js",
+      "require": "./dist/parser.cjs"
+    },
+    "./renderer": {
+      "types": "./dist/renderer.d.ts",
+      "import": "./dist/renderer.js",
+      "require": "./dist/renderer.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build:grammar": "peggy --format es -o src/parser/generated-parser.js src/grammar/wireframe.peggy",
+    "build:ts": "tsup",
+    "build": "pnpm build:grammar && pnpm build:ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^3.2.4",
+    "lucide": "^0.562.0",
+    "peggy": "^5.0.0",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2",
+    "vitest": "^3.1.1"
+  },
+  "keywords": [
+    "wireframe",
+    "dsl",
+    "parser",
+    "ui",
+    "prototyping",
+    "design"
+  ],
+  "author": "",
+  "license": "MIT"
+}
