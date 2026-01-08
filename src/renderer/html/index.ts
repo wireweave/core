@@ -1371,6 +1371,13 @@ ${children}
     const styles = this.buildCommonStyles(node);
     const styleAttr = styles ? ` style="${styles}"` : '';
 
+    // If block syntax (children), render children
+    if (node.children && node.children.length > 0) {
+      const content = this.renderNavChildren(node.children);
+      return `<nav class="${classes}"${styleAttr}>\n${content}\n</nav>`;
+    }
+
+    // Array syntax (items)
     const items = node.items
       .map((item) => {
         if (typeof item === 'string') {
@@ -1381,11 +1388,54 @@ ${children}
           item.active ? `${this.prefix}-nav-link-active` : undefined,
           item.disabled ? `${this.prefix}-nav-link-disabled` : undefined,
         ]);
-        return `<a class="${linkClasses}" href="${item.href || '#'}">${this.escapeHtml(item.label)}</a>`;
+        const iconHtml = item.icon ? this.renderIconHtml(item.icon) + ' ' : '';
+        return `<a class="${linkClasses}" href="${item.href || '#'}">${iconHtml}${this.escapeHtml(item.label)}</a>`;
       })
       .join('\n');
 
     return `<nav class="${classes}"${styleAttr}>\n${items}\n</nav>`;
+  }
+
+  private renderNavChildren(children: import('../../ast/types').NavChild[]): string {
+    return children
+      .map((child) => {
+        if (child.type === 'divider') {
+          return `<hr class="${this.prefix}-nav-divider" />`;
+        }
+        if (child.type === 'group') {
+          const groupItems = child.items
+            .map((item) => {
+              if (item.type === 'divider') {
+                return `<hr class="${this.prefix}-nav-divider" />`;
+              }
+              return this.renderNavItem(item);
+            })
+            .join('\n');
+          return `<div class="${this.prefix}-nav-group">
+  <div class="${this.prefix}-nav-group-label">${this.escapeHtml(child.label)}</div>
+${groupItems}
+</div>`;
+        }
+        if (child.type === 'item') {
+          return this.renderNavItem(child);
+        }
+        return '';
+      })
+      .join('\n');
+  }
+
+  private renderNavItem(item: import('../../ast/types').NavBlockItem): string {
+    const linkClasses = this.buildClassString([
+      `${this.prefix}-nav-link`,
+      item.active ? `${this.prefix}-nav-link-active` : undefined,
+      item.disabled ? `${this.prefix}-nav-link-disabled` : undefined,
+    ]);
+    const iconHtml = item.icon ? this.renderIconHtml(item.icon) + ' ' : '';
+    return `<a class="${linkClasses}" href="${item.href || '#'}">${iconHtml}${this.escapeHtml(item.label)}</a>`;
+  }
+
+  private renderIconHtml(iconName: string): string {
+    return `<span class="${this.prefix}-icon" data-icon="${iconName}"></span>`;
   }
 
   private renderTabs(node: TabsNode): string {

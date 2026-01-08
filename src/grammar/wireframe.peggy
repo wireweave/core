@@ -477,11 +477,47 @@ DropdownItem
 
 // Navigation Components
 Nav
-  = "nav" _ items:Array? _ attrs:Attributes? {
+  = "nav" _ items:Array? _ attrs:Attributes? _ block:NavBlock? {
       return createNode('Nav', {
         items: items || [],
-        ...attrsToObject(attrs)
+        ...attrsToObject(attrs),
+        children: block || []
       });
+    }
+
+NavBlock
+  = "{" _ content:(NavBlockItem _)* "}" {
+      return content.map(c => c[0]).filter(c => c !== null);
+    }
+
+NavBlockItem
+  = NavGroup
+  / NavItem
+  / "divider" _ { return { type: 'divider' }; }
+  / Comment { return null; }
+
+NavGroup
+  = "group" _ label:StringLiteral _ attrs:Attributes? _ "{" _ items:(NavGroupItem _)* "}" {
+      return {
+        type: 'group',
+        label,
+        ...attrsToObject(attrs),
+        items: items.map(i => i[0]).filter(i => i !== null)
+      };
+    }
+
+NavGroupItem
+  = NavItem
+  / "divider" _ { return { type: 'divider' }; }
+  / Comment { return null; }
+
+NavItem
+  = "item" _ label:StringLiteral _ attrs:Attributes? {
+      return {
+        type: 'item',
+        label,
+        ...attrsToObject(attrs)
+      };
     }
 
 Tabs
@@ -554,7 +590,7 @@ ChildKeyword
     / "table" / "columns" / "list" / "item"
     / "alert" / "toast" / "progress" / "spinner"
     / "tooltip" / "popover" / "dropdown" / "divider"
-    / "nav" / "tabs" / "tab" / "breadcrumb") !IdentifierChar
+    / "nav" / "tabs" / "tab" / "breadcrumb" / "group") !IdentifierChar
 
 IdentifierChar
   = [a-zA-Z0-9_-]

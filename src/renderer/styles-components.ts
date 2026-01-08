@@ -726,12 +726,12 @@ svg.${prefix}-icon {
   display: block;
 }
 
-/* Icon size tokens */
+/* Icon size tokens - matches SVG renderer */
 svg.${prefix}-icon-xs { width: 12px; height: 12px; }
-svg.${prefix}-icon-sm { width: 14px; height: 14px; }
-svg.${prefix}-icon-md { width: 16px; height: 16px; }
-svg.${prefix}-icon-lg { width: 20px; height: 20px; }
-svg.${prefix}-icon-xl { width: 24px; height: 24px; }
+svg.${prefix}-icon-sm { width: 16px; height: 16px; }
+svg.${prefix}-icon-md { width: 20px; height: 20px; }
+svg.${prefix}-icon-lg { width: 24px; height: 24px; }
+svg.${prefix}-icon-xl { width: 32px; height: 32px; }
 
 .${prefix}-icon svg {
   display: block;
@@ -1041,6 +1041,27 @@ function generateNavigationStyles(_theme: ThemeConfig, prefix: string): string {
 .${prefix}-nav-link-disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.${prefix}-nav-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.${prefix}-nav-group-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--${prefix}-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 8px 16px 4px;
+}
+
+.${prefix}-nav-divider {
+  margin: 8px 0;
+  border: none;
+  border-top: 1px solid var(--${prefix}-border);
 }
 
 .${prefix}-tabs {

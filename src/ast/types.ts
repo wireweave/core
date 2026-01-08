@@ -500,6 +500,7 @@ export interface DropdownNode extends BaseNode, CommonProps {
 // Navigation Nodes
 // ===========================================
 
+/** Nav item for array syntax: nav ["a", "b"] */
 export interface NavItem {
   label: string;
   icon?: string;
@@ -508,9 +509,38 @@ export interface NavItem {
   disabled?: boolean;
 }
 
+/** Nav item for block syntax: item "label" icon="x" active */
+export interface NavBlockItem {
+  type: 'item';
+  label: string;
+  icon?: string;
+  href?: string;
+  active?: boolean;
+  disabled?: boolean;
+}
+
+/** Nav group for block syntax: group "label" { ... } */
+export interface NavGroupNode {
+  type: 'group';
+  label: string;
+  collapsed?: boolean;
+  items: (NavBlockItem | NavDivider)[];
+}
+
+/** Divider inside nav block */
+export interface NavDivider {
+  type: 'divider';
+}
+
+/** Nav child can be group, item, or divider */
+export type NavChild = NavGroupNode | NavBlockItem | NavDivider;
+
 export interface NavNode extends BaseNode, CommonProps {
   type: 'Nav';
+  /** Items for array syntax */
   items: (string | NavItem)[];
+  /** Children for block syntax */
+  children: NavChild[];
   vertical?: boolean;
 }
 
