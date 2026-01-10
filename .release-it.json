@@ -4,7 +4,7 @@
     "tagName": "v${version}",
     "tagAnnotation": "Release v${version}",
     "push": true,
-    "requireBranch": "main"
+    "requireBranch": ["main", "develop"]
   },
   "github": {
     "release": true,

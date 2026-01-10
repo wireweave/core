@@ -42,10 +42,15 @@ function generateContainerStyles(prefix: string): string {
   padding: 16px;
 }
 
-/* Cards in flex rows should expand equally */
+/* Cards in flex rows: respect explicit width, shrink if needed */
 .${prefix}-row > .${prefix}-card {
-  flex: 1 1 0%;
+  flex: 0 1 auto;
   min-width: 0;
+}
+
+/* Cards without explicit width should expand to fill space */
+.${prefix}-row > .${prefix}-card-flex {
+  flex: 1 1 0%;
 }
 
 .${prefix}-card-title {
@@ -203,6 +208,11 @@ function generateTextStyles(prefix: string): string {
   margin: 0 0 8px 0;
   font-weight: 600;
   line-height: 1.25;
+}
+
+/* Remove bottom margin when title is in a row (inline with other elements) */
+.${prefix}-row .${prefix}-title {
+  margin-bottom: 0;
 }
 
 h1.${prefix}-title { font-size: 36px; }
@@ -611,6 +621,30 @@ img.${prefix}-image {
   font-size: 14px;
 }
 
+.${prefix}-placeholder-with-children {
+  position: relative;
+}
+
+.${prefix}-placeholder-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.${prefix}-placeholder-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 .${prefix}-avatar {
   display: inline-flex;
   align-items: center;
@@ -726,12 +760,12 @@ svg.${prefix}-icon {
   display: block;
 }
 
-/* Icon size tokens */
+/* Icon size tokens - matches SVG renderer */
 svg.${prefix}-icon-xs { width: 12px; height: 12px; }
-svg.${prefix}-icon-sm { width: 14px; height: 14px; }
-svg.${prefix}-icon-md { width: 16px; height: 16px; }
-svg.${prefix}-icon-lg { width: 20px; height: 20px; }
-svg.${prefix}-icon-xl { width: 24px; height: 24px; }
+svg.${prefix}-icon-sm { width: 16px; height: 16px; }
+svg.${prefix}-icon-md { width: 20px; height: 20px; }
+svg.${prefix}-icon-lg { width: 24px; height: 24px; }
+svg.${prefix}-icon-xl { width: 32px; height: 32px; }
 
 .${prefix}-icon svg {
   display: block;
@@ -1041,6 +1075,27 @@ function generateNavigationStyles(_theme: ThemeConfig, prefix: string): string {
 .${prefix}-nav-link-disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.${prefix}-nav-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.${prefix}-nav-group-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--${prefix}-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 8px 16px 4px;
+}
+
+.${prefix}-nav-divider {
+  margin: 8px 0;
+  border: none;
+  border-top: 1px solid var(--${prefix}-border);
 }
 
 .${prefix}-tabs {

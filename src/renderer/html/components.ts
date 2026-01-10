@@ -685,14 +685,29 @@ export function renderImage(node: ImageNode, context: RenderContext): string {
   return `<img${buildAttrsString(attrs)} />`;
 }
 
-export function renderPlaceholder(node: PlaceholderNode, context: RenderContext): string {
+export function renderPlaceholder(
+  node: PlaceholderNode,
+  context: RenderContext,
+  renderChildren?: ChildrenRenderer
+): string {
   const prefix = context.options.classPrefix;
   const classes = buildClassString([
     `${prefix}-placeholder`,
+    node.children && node.children.length > 0 ? `${prefix}-placeholder-with-children` : undefined,
     ...getCommonClasses(node, prefix),
   ]);
 
   const label = node.label ? escapeHtml(node.label) : 'Placeholder';
+
+  // If there are children, render them as overlay
+  if (node.children && node.children.length > 0 && renderChildren) {
+    const childrenHtml = renderChildren(node.children);
+    return `<div class="${classes}" role="img" aria-label="${label}">
+  <span class="${prefix}-placeholder-label">${label}</span>
+  <div class="${prefix}-placeholder-overlay">${childrenHtml}</div>
+</div>`;
+  }
+
   return `<div class="${classes}" role="img" aria-label="${label}">${label}</div>`;
 }
 

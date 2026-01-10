@@ -46,17 +46,12 @@ jobs:
 
       - name: Publish Beta (develop branch)
         if: github.ref == 'refs/heads/develop'
-        run: |
-          TIMESTAMP=$(date +%Y%m%d%H%M%S)
-          CURRENT_VERSION=$(node -p "require('./package.json').version")
-          BASE_VERSION=$(echo $CURRENT_VERSION | sed 's/-.*//')
-          BETA_VERSION="${BASE_VERSION}-beta.${TIMESTAMP}"
-          npm version $BETA_VERSION --no-git-tag-version
-          npm publish --tag beta --access public --provenance
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx release-it --preRelease=beta --ci
 
       - name: Publish Release (main branch)
         if: github.ref == 'refs/heads/main'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          npx release-it --ci
+        run: npx release-it --ci

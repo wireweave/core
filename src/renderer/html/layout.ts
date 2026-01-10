@@ -19,8 +19,52 @@ import type {
   CommonProps,
   WidthValue,
   HeightValue,
+  ValueWithUnit,
 } from '../../ast/types';
 import type { RenderContext, ThemeConfig } from '../types';
+
+// ===========================================
+// Position Utilities (Absolute Positioning Support)
+// ===========================================
+
+/**
+ * Check if a node has absolute position (x or y specified)
+ */
+function hasAbsolutePosition(node: CommonProps): boolean {
+  return node.x !== undefined || node.y !== undefined;
+}
+
+/**
+ * Resolve position value to CSS pixels
+ */
+function resolvePositionValue(value: number | ValueWithUnit | undefined): string | undefined {
+  if (value === undefined) return undefined;
+  if (typeof value === 'number') return `${value}px`;
+  if (typeof value === 'object' && 'value' in value && 'unit' in value) {
+    return `${value.value}${value.unit}`;
+  }
+  return undefined;
+}
+
+/**
+ * Build absolute position styles
+ * Returns styles for position: absolute with left/top when x/y are specified
+ */
+function buildPositionStyles(node: CommonProps): string[] {
+  const styles: string[] = [];
+
+  if (hasAbsolutePosition(node)) {
+    styles.push('position: absolute');
+
+    const left = resolvePositionValue(node.x);
+    const top = resolvePositionValue(node.y);
+
+    if (left !== undefined) styles.push(`left: ${left}`);
+    if (top !== undefined) styles.push(`top: ${top}`);
+  }
+
+  return styles;
+}
 
 /**
  * Type for node renderer callback
@@ -113,11 +157,29 @@ function buildRowClasses(node: RowNode, prefix: string): string {
   return classes.join(' ');
 }
 
-function buildRowStyles(_node: RowNode, _theme: ThemeConfig): string {
+function buildRowStyles(node: RowNode, _theme: ThemeConfig): string {
   const styles: string[] = [];
 
-  // Custom gap as inline style (for non-standard values)
-  // Standard gap values are handled by classes
+  // Position styles (absolute positioning)
+  styles.push(...buildPositionStyles(node));
+
+  // Width/Height when using absolute positioning
+  if (typeof node.w === 'number') {
+    styles.push(`width: ${node.w}px`);
+  } else if (node.w && typeof node.w === 'object' && 'value' in node.w) {
+    styles.push(`width: ${node.w.value}${node.w.unit}`);
+  }
+
+  if (typeof node.h === 'number') {
+    styles.push(`height: ${node.h}px`);
+  } else if (node.h && typeof node.h === 'object' && 'value' in node.h) {
+    styles.push(`height: ${node.h.value}${node.h.unit}`);
+  }
+
+  // Gap as inline style for ValueWithUnit
+  if (node.gap && typeof node.gap === 'object' && 'value' in node.gap) {
+    styles.push(`gap: ${node.gap.value}${node.gap.unit}`);
+  }
 
   return styles.join('; ');
 }
@@ -177,9 +239,14 @@ function buildColClasses(node: ColNode, prefix: string): string {
 function buildColStyles(node: ColNode, _theme: ThemeConfig): string {
   const styles: string[] = [];
 
+  // Position styles (absolute positioning)
+  styles.push(...buildPositionStyles(node));
+
   // Width (numeric values as inline style)
   if (typeof node.w === 'number') {
     styles.push(`width: ${node.w}px`);
+  } else if (node.w && typeof node.w === 'object' && 'value' in node.w) {
+    styles.push(`width: ${node.w.value}${node.w.unit}`);
   } else if (typeof node.w === 'string' && !['full', 'auto', 'fit', 'screen'].includes(node.w)) {
     styles.push(`width: ${resolveSizeValue(node.w)}`);
   }
@@ -187,8 +254,15 @@ function buildColStyles(node: ColNode, _theme: ThemeConfig): string {
   // Height (numeric values as inline style)
   if (typeof node.h === 'number') {
     styles.push(`height: ${node.h}px`);
+  } else if (node.h && typeof node.h === 'object' && 'value' in node.h) {
+    styles.push(`height: ${node.h.value}${node.h.unit}`);
   } else if (typeof node.h === 'string' && !['full', 'auto', 'screen'].includes(node.h)) {
     styles.push(`height: ${resolveSizeValue(node.h)}`);
+  }
+
+  // Gap as inline style for ValueWithUnit
+  if (node.gap && typeof node.gap === 'object' && 'value' in node.gap) {
+    styles.push(`gap: ${node.gap.value}${node.gap.unit}`);
   }
 
   // Order
@@ -330,14 +404,26 @@ function buildSemanticClasses(tag: string, node: CommonProps, prefix: string): s
 function buildSemanticStyles(node: CommonProps, _theme: ThemeConfig): string {
   const styles: string[] = [];
 
+  // Position styles (absolute positioning)
+  styles.push(...buildPositionStyles(node));
+
   // Width
   if (typeof node.w === 'number') {
     styles.push(`width: ${node.w}px`);
+  } else if (node.w && typeof node.w === 'object' && 'value' in node.w) {
+    styles.push(`width: ${node.w.value}${node.w.unit}`);
   }
 
   // Height
   if (typeof node.h === 'number') {
     styles.push(`height: ${node.h}px`);
+  } else if (node.h && typeof node.h === 'object' && 'value' in node.h) {
+    styles.push(`height: ${node.h.value}${node.h.unit}`);
+  }
+
+  // Gap as inline style for ValueWithUnit
+  if (node.gap && typeof node.gap === 'object' && 'value' in node.gap) {
+    styles.push(`gap: ${node.gap.value}${node.gap.unit}`);
   }
 
   return styles.join('; ');

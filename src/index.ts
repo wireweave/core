@@ -18,3 +18,9 @@ export * from './viewport';
 
 // Icons (Lucide)
 export * from './icons/lucide-icons';
+
+// DSL Specification (components, attributes)
+export * from './spec';
+
+// Validation
+export * from './validation';

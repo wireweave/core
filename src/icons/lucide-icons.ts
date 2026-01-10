@@ -46381,16 +46381,47 @@ export const lucideIcons: Record<string, IconData> = {
 /**
  * Get icon data by name
  */
+// Common icon name aliases (old name -> new lucide name)
+const iconAliases: Record<string, string> = {
+  'home': 'house',
+  'plus-square': 'square-plus',
+  'minus-square': 'square-minus',
+  'x-square': 'square-x',
+  'check-square': 'square-check',
+  'edit': 'pencil',
+  'edit-2': 'pencil',
+  'edit-3': 'pencil-line',
+  'trash': 'trash-2',
+  'delete': 'trash-2',
+  'close': 'x',
+  'menu': 'menu',
+  'hamburger': 'menu',
+  'dots': 'more-horizontal',
+  'dots-vertical': 'more-vertical',
+  'cog': 'settings',
+  'gear': 'settings',
+};
+
 export function getIconData(name: string): IconData | undefined {
   // Try exact match first
   if (lucideIcons[name]) {
     return lucideIcons[name];
   }
 
+  // Try alias lookup
+  if (iconAliases[name] && lucideIcons[iconAliases[name]]) {
+    return lucideIcons[iconAliases[name]];
+  }
+
   // Try converting camelCase to kebab-case
   const kebabName = name.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
   if (lucideIcons[kebabName]) {
     return lucideIcons[kebabName];
+  }
+
+  // Try alias with kebab-case
+  if (iconAliases[kebabName] && lucideIcons[iconAliases[kebabName]]) {
+    return lucideIcons[iconAliases[kebabName]];
   }
 
   // Try converting kebab-case to exact icon name format

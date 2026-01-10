@@ -177,8 +177,9 @@ export class HtmlRenderer extends BaseRenderer {
     const title = node.title ? `<title>${this.escapeHtml(node.title)}</title>\n` : '';
 
     // Build common styles (padding, margin, etc.) and combine with viewport dimensions
+    // Add position: relative to serve as containing block for absolute positioned children
     const commonStyles = this.buildCommonStyles(node);
-    const viewportStyle = `width: ${viewport.width}px; height: ${viewport.height}px`;
+    const viewportStyle = `position: relative; width: ${viewport.width}px; height: ${viewport.height}px; overflow: hidden`;
     const combinedStyle = commonStyles ? `${viewportStyle}; ${commonStyles}` : viewportStyle;
 
     // Add data attributes for viewport info
@@ -373,6 +374,7 @@ export class HtmlRenderer extends BaseRenderer {
   private renderMain(node: MainNode): string {
     const classes = this.buildClassString([
       `${this.prefix}-main`,
+      node.scroll ? `${this.prefix}-scroll` : undefined,
       ...this.getCommonClasses(node),
     ]);
 
@@ -467,6 +469,10 @@ export class HtmlRenderer extends BaseRenderer {
   /**
    * Build common inline styles for all values
    *
+   * Position values (x, y) for absolute positioning:
+   * - When x or y is specified, element gets position: absolute
+   * - x → left, y → top
+   *
    * Spacing values (p, m, gap) use token system:
    * - number: spacing token (e.g., p=4 → padding: 16px from token table)
    * - ValueWithUnit: direct CSS value (e.g., p=16px → padding: 16px)
@@ -481,6 +487,21 @@ export class HtmlRenderer extends BaseRenderer {
    */
   private buildCommonStyles(props: Omit<Partial<CommonProps>, 'align'> & { align?: string }): string {
     const styles: string[] = [];
+
+    // Position styles (absolute positioning when x or y is specified)
+    if (props.x !== undefined || props.y !== undefined) {
+      styles.push('position: absolute');
+
+      if (props.x !== undefined) {
+        const xValue = resolveSizeValueToCss(props.x as number | ValueWithUnit);
+        if (xValue) styles.push(`left: ${xValue}`);
+      }
+
+      if (props.y !== undefined) {
+        const yValue = resolveSizeValueToCss(props.y as number | ValueWithUnit);
+        if (yValue) styles.push(`top: ${yValue}`);
+      }
+    }
 
     // Width (direct px or ValueWithUnit)
     const wValue = resolveSizeValueToCss(props.w as number | ValueWithUnit | undefined);
@@ -614,8 +635,11 @@ export class HtmlRenderer extends BaseRenderer {
   // ===========================================
 
   private renderCard(node: CardNode): string {
+    // Add -flex class only if card has no explicit width (so it expands in flex container)
+    const hasExplicitWidth = node.w !== undefined;
     const classes = this.buildClassString([
       `${this.prefix}-card`,
+      !hasExplicitWidth ? `${this.prefix}-card-flex` : undefined,
       node.shadow ? `${this.prefix}-card-shadow-${node.shadow}` : undefined,
       ...this.getCommonClasses(node),
     ]);
@@ -1032,6 +1056,7 @@ ${title}${children}
   private renderPlaceholder(node: PlaceholderNode): string {
     const classes = this.buildClassString([
       `${this.prefix}-placeholder`,
+      node.children && node.children.length > 0 ? `${this.prefix}-placeholder-with-children` : undefined,
       ...this.getCommonClasses(node),
     ]);
 
@@ -1039,6 +1064,16 @@ ${title}${children}
     const styleAttr = styles ? ` style="${styles}"` : '';
 
     const label = node.label ? this.escapeHtml(node.label) : 'Placeholder';
+
+    // If there are children, render them as overlay
+    if (node.children && node.children.length > 0) {
+      const childrenHtml = this.renderChildren(node.children);
+      return `<div class="${classes}"${styleAttr}>
+  <span class="${this.prefix}-placeholder-label">${label}</span>
+  <div class="${this.prefix}-placeholder-overlay">${childrenHtml}</div>
+</div>`;
+    }
+
     return `<div class="${classes}"${styleAttr}>${label}</div>`;
   }
 
@@ -1371,6 +1406,13 @@ ${children}
     const styles = this.buildCommonStyles(node);
     const styleAttr = styles ? ` style="${styles}"` : '';
 
+    // If block syntax (children), render children
+    if (node.children && node.children.length > 0) {
+      const content = this.renderNavChildren(node.children);
+      return `<nav class="${classes}"${styleAttr}>\n${content}\n</nav>`;
+    }
+
+    // Array syntax (items)
     const items = node.items
       .map((item) => {
         if (typeof item === 'string') {
@@ -1381,11 +1423,54 @@ ${children}
           item.active ? `${this.prefix}-nav-link-active` : undefined,
           item.disabled ? `${this.prefix}-nav-link-disabled` : undefined,
         ]);
-        return `<a class="${linkClasses}" href="${item.href || '#'}">${this.escapeHtml(item.label)}</a>`;
+        const iconHtml = item.icon ? this.renderIconHtml(item.icon) + ' ' : '';
+        return `<a class="${linkClasses}" href="${item.href || '#'}">${iconHtml}${this.escapeHtml(item.label)}</a>`;
       })
       .join('\n');
 
     return `<nav class="${classes}"${styleAttr}>\n${items}\n</nav>`;
+  }
+
+  private renderNavChildren(children: import('../../ast/types').NavChild[]): string {
+    return children
+      .map((child) => {
+        if (child.type === 'divider') {
+          return `<hr class="${this.prefix}-nav-divider" />`;
+        }
+        if (child.type === 'group') {
+          const groupItems = child.items
+            .map((item) => {
+              if (item.type === 'divider') {
+                return `<hr class="${this.prefix}-nav-divider" />`;
+              }
+              return this.renderNavItem(item);
+            })
+            .join('\n');
+          return `<div class="${this.prefix}-nav-group">
+  <div class="${this.prefix}-nav-group-label">${this.escapeHtml(child.label)}</div>
+${groupItems}
+</div>`;
+        }
+        if (child.type === 'item') {
+          return this.renderNavItem(child);
+        }
+        return '';
+      })
+      .join('\n');
+  }
+
+  private renderNavItem(item: import('../../ast/types').NavBlockItem): string {
+    const linkClasses = this.buildClassString([
+      `${this.prefix}-nav-link`,
+      item.active ? `${this.prefix}-nav-link-active` : undefined,
+      item.disabled ? `${this.prefix}-nav-link-disabled` : undefined,
+    ]);
+    const iconHtml = item.icon ? this.renderIconHtml(item.icon) + ' ' : '';
+    return `<a class="${linkClasses}" href="${item.href || '#'}">${iconHtml}${this.escapeHtml(item.label)}</a>`;
+  }
+
+  private renderIconHtml(iconName: string): string {
+    return `<span class="${this.prefix}-icon" data-icon="${iconName}"></span>`;
   }
 
   private renderTabs(node: TabsNode): string {

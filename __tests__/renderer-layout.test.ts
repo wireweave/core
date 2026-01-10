@@ -147,7 +147,7 @@ describe('Grid Layout Rendering', () => {
     it('should render row with gap', () => {
       const doc = parse(`
         page {
-          row gap=4 {
+          row gap=1 {
             col { text "1" }
             col { text "2" }
           }
@@ -155,7 +155,7 @@ describe('Grid Layout Rendering', () => {
       `);
       const result = render(doc);
 
-      // Gap is now rendered as inline style (px-accurate)
+      // Gap is now rendered as inline style (spacing token 1 = 4px)
       expect(result.html).toContain('gap: 4px');
     });
 
@@ -182,6 +182,7 @@ describe('Grid Layout Rendering', () => {
 
   describe('Spacing Styles (px-accurate)', () => {
     it('should render card with p=4 m=2 as inline styles', () => {
+      // Spacing tokens: 2=8px, 4=16px
       const doc = parse(`
         page {
           card p=4 m=2 {
@@ -191,12 +192,13 @@ describe('Grid Layout Rendering', () => {
       `);
       const result = render(doc);
 
-      // All numeric values are now rendered as inline px styles
-      expect(result.html).toContain('padding: 4px');
-      expect(result.html).toContain('margin: 2px');
+      // Spacing tokens: 4=16px, 2=8px
+      expect(result.html).toContain('padding: 16px');
+      expect(result.html).toContain('margin: 8px');
     });
 
     it('should render all padding as inline styles', () => {
+      // Spacing tokens: 1=4px, 2=8px, 3=12px, 4=16px, 5=20px, 6=24px
       const doc = parse(`
         page {
           card p=4 pt=1 pr=2 pb=3 pl=4 px=5 py=6 {
@@ -206,19 +208,20 @@ describe('Grid Layout Rendering', () => {
       `);
       const result = render(doc);
 
-      expect(result.html).toContain('padding: 4px');
-      expect(result.html).toContain('padding-top: 1px');
-      expect(result.html).toContain('padding-right: 2px');
-      expect(result.html).toContain('padding-bottom: 3px');
-      expect(result.html).toContain('padding-left: 4px');
+      expect(result.html).toContain('padding: 16px');
+      expect(result.html).toContain('padding-top: 4px');
+      expect(result.html).toContain('padding-right: 8px');
+      expect(result.html).toContain('padding-bottom: 12px');
+      expect(result.html).toContain('padding-left: 16px');
       // px and py set both sides
-      expect(result.html).toContain('padding-left: 5px');
-      expect(result.html).toContain('padding-right: 5px');
-      expect(result.html).toContain('padding-top: 6px');
-      expect(result.html).toContain('padding-bottom: 6px');
+      expect(result.html).toContain('padding-left: 20px');
+      expect(result.html).toContain('padding-right: 20px');
+      expect(result.html).toContain('padding-top: 24px');
+      expect(result.html).toContain('padding-bottom: 24px');
     });
 
     it('should render all margin as inline styles', () => {
+      // Spacing tokens: 1=4px, 2=8px, 3=12px, 4=16px, 5=20px, 6=24px
       const doc = parse(`
         page {
           card m=4 mt=1 mr=2 mb=3 ml=4 mx=5 my=6 {
@@ -228,16 +231,16 @@ describe('Grid Layout Rendering', () => {
       `);
       const result = render(doc);
 
-      expect(result.html).toContain('margin: 4px');
-      expect(result.html).toContain('margin-top: 1px');
-      expect(result.html).toContain('margin-right: 2px');
-      expect(result.html).toContain('margin-bottom: 3px');
-      expect(result.html).toContain('margin-left: 4px');
+      expect(result.html).toContain('margin: 16px');
+      expect(result.html).toContain('margin-top: 4px');
+      expect(result.html).toContain('margin-right: 8px');
+      expect(result.html).toContain('margin-bottom: 12px');
+      expect(result.html).toContain('margin-left: 16px');
       // mx and my set both sides
-      expect(result.html).toContain('margin-left: 5px');
-      expect(result.html).toContain('margin-right: 5px');
-      expect(result.html).toContain('margin-top: 6px');
-      expect(result.html).toContain('margin-bottom: 6px');
+      expect(result.html).toContain('margin-left: 20px');
+      expect(result.html).toContain('margin-right: 20px');
+      expect(result.html).toContain('margin-top: 24px');
+      expect(result.html).toContain('margin-bottom: 24px');
     });
   });
 
@@ -393,7 +396,7 @@ describe('Grid Layout Rendering', () => {
       `);
       const result = render(doc);
 
-      expect(result.html.match(/wf-card/g)).toHaveLength(3);
+      expect(result.html.match(/class="wf-card/g)).toHaveLength(3);
       expect(result.html.match(/wf-col-4/g)).toHaveLength(3);
     });
   });

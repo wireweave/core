@@ -300,7 +300,8 @@ describe('Component Rendering', () => {
 
       expect(result.html).toContain('wf-icon');
       expect(result.html).toContain('aria-hidden="true"');
-      expect(result.html).toContain('[home]');
+      // Icon is rendered as SVG when available
+      expect(result.html).toContain('<svg');
     });
   });
 
