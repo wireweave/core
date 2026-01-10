@@ -48,9 +48,11 @@ jobs:
         if: github.ref == 'refs/heads/develop'
         run: |
           TIMESTAMP=$(date +%Y%m%d%H%M%S)
-          CURRENT_VERSION=$(node -p "require('./package.json').version")
-          BASE_VERSION=$(echo $CURRENT_VERSION | sed 's/-.*//')
-          BETA_VERSION="${BASE_VERSION}-beta.${TIMESTAMP}"
+          # npm에서 최신 버전 조회
+          LATEST_VERSION=$(npm view @wireweave/core version 2>/dev/null || echo "0.0.0")
+          # 다음 minor 버전으로 베타 생성
+          NEXT_VERSION=$(npx semver $LATEST_VERSION -i minor)
+          BETA_VERSION="${NEXT_VERSION}-beta.${TIMESTAMP}"
           npm version $BETA_VERSION --no-git-tag-version
           npm publish --tag beta --access public --provenance
 
