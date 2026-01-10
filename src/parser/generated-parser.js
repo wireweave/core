@@ -487,10 +487,11 @@ function peg$parse(input, options) {
       ...attrsToObject(attrs)
     });
   }
-  function peg$f28(label, attrs) {
+  function peg$f28(label, attrs, block) {
     return createNode('Placeholder', {
       label: label || null,
-      ...attrsToObject(attrs)
+      ...attrsToObject(attrs),
+      children: block ? block[2] : []
     });
   }
   function peg$f29(label, attrs) {
@@ -2251,7 +2252,7 @@ function peg$parse(input, options) {
   }
 
   function peg$parsePlaceholder() {
-    let s0, s1, s2, s3, s4, s5;
+    let s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12;
 
     s0 = peg$currPos;
     if (input.substr(peg$currPos, 11) === peg$c26) {
@@ -2272,8 +2273,47 @@ function peg$parse(input, options) {
       if (s5 === peg$FAILED) {
         s5 = null;
       }
+      s6 = peg$parse_();
+      s7 = peg$currPos;
+      if (input.charCodeAt(peg$currPos) === 123) {
+        s8 = peg$c1;
+        peg$currPos++;
+      } else {
+        s8 = peg$FAILED;
+        if (peg$silentFails === 0) { peg$fail(peg$e1); }
+      }
+      if (s8 !== peg$FAILED) {
+        s9 = peg$parse_();
+        s10 = peg$parseChildren();
+        if (s10 !== peg$FAILED) {
+          s11 = peg$parse_();
+          if (input.charCodeAt(peg$currPos) === 125) {
+            s12 = peg$c2;
+            peg$currPos++;
+          } else {
+            s12 = peg$FAILED;
+            if (peg$silentFails === 0) { peg$fail(peg$e2); }
+          }
+          if (s12 !== peg$FAILED) {
+            s8 = [s8, s9, s10, s11, s12];
+            s7 = s8;
+          } else {
+            peg$currPos = s7;
+            s7 = peg$FAILED;
+          }
+        } else {
+          peg$currPos = s7;
+          s7 = peg$FAILED;
+        }
+      } else {
+        peg$currPos = s7;
+        s7 = peg$FAILED;
+      }
+      if (s7 === peg$FAILED) {
+        s7 = null;
+      }
       peg$savedPos = s0;
-      s0 = peg$f28(s3, s5);
+      s0 = peg$f28(s3, s5, s7);
     } else {
       peg$currPos = s0;
       s0 = peg$FAILED;

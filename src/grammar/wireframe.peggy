@@ -325,10 +325,11 @@ Image
     }
 
 Placeholder
-  = "placeholder" _ label:StringLiteral? _ attrs:Attributes? {
+  = "placeholder" _ label:StringLiteral? _ attrs:Attributes? _ block:("{" _ Children _ "}")? {
       return createNode('Placeholder', {
         label: label || null,
-        ...attrsToObject(attrs)
+        ...attrsToObject(attrs),
+        children: block ? block[2] : []
       });
     }
 

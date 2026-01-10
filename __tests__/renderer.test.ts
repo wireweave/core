@@ -665,25 +665,28 @@ describe('Navigation Rendering', () => {
 
 describe('Spacing Styles (px-accurate)', () => {
   it('should apply padding as inline style', () => {
+    // Spacing token 4 = 16px
     const doc = parse('page { text "Padded" p=4 }');
     const result = render(doc);
 
-    // All numeric values are now rendered as inline px styles
-    expect(result.html).toContain('padding: 4px');
+    // Spacing tokens: 4=16px
+    expect(result.html).toContain('padding: 16px');
   });
 
   it('should apply margin as inline style', () => {
+    // Spacing tokens: 2=8px, 4=16px
     const doc = parse('page { text "Margin" mt=2 mb=4 }');
     const result = render(doc);
 
-    expect(result.html).toContain('margin-top: 2px');
-    expect(result.html).toContain('margin-bottom: 4px');
+    expect(result.html).toContain('margin-top: 8px');
+    expect(result.html).toContain('margin-bottom: 16px');
   });
 
   it('should apply gap as inline style', () => {
-    const doc = parse('page { row gap=4 { col { } } }');
+    const doc = parse('page { row gap=1 { col { } } }');
     const result = render(doc);
 
+    // Spacing token 1 = 4px
     expect(result.html).toContain('gap: 4px');
   });
 });

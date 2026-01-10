@@ -42,10 +42,15 @@ function generateContainerStyles(prefix: string): string {
   padding: 16px;
 }
 
-/* Cards in flex rows should expand equally */
+/* Cards in flex rows: respect explicit width, shrink if needed */
 .${prefix}-row > .${prefix}-card {
-  flex: 1 1 0%;
+  flex: 0 1 auto;
   min-width: 0;
+}
+
+/* Cards without explicit width should expand to fill space */
+.${prefix}-row > .${prefix}-card-flex {
+  flex: 1 1 0%;
 }
 
 .${prefix}-card-title {
@@ -203,6 +208,11 @@ function generateTextStyles(prefix: string): string {
   margin: 0 0 8px 0;
   font-weight: 600;
   line-height: 1.25;
+}
+
+/* Remove bottom margin when title is in a row (inline with other elements) */
+.${prefix}-row .${prefix}-title {
+  margin-bottom: 0;
 }
 
 h1.${prefix}-title { font-size: 36px; }
@@ -609,6 +619,30 @@ img.${prefix}-image {
   border-radius: var(--${prefix}-radius);
   color: var(--${prefix}-muted);
   font-size: 14px;
+}
+
+.${prefix}-placeholder-with-children {
+  position: relative;
+}
+
+.${prefix}-placeholder-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.${prefix}-placeholder-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .${prefix}-avatar {

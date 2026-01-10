@@ -132,6 +132,12 @@ function generateGridClasses(_theme: ThemeConfig, prefix: string): string {
   box-sizing: border-box;
 }
 
+/* When explicit width is set, don't flex-grow */
+.${prefix}-row[style*="width:"],
+.${prefix}-col[style*="width:"] {
+  flex: 0 0 auto;
+}
+
 `;
 
   // Generate column span classes (1-12)
@@ -329,6 +335,18 @@ function generateLayoutClasses(prefix: string): string {
   padding: 16px;
   display: flex;
   flex-direction: column;
+}
+
+/* Scrollable main content */
+.${prefix}-main.${prefix}-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Main content should align to top, not stretch to fill */
+/* But allow explicit flex=1 to override */
+.${prefix}-main > .${prefix}-col:not(.${prefix}-flex-1) {
+  flex: 0 0 auto;
 }
 
 .${prefix}-footer {

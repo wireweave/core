@@ -46,6 +46,15 @@ import type { SvgRenderOptions, SvgRenderResult, ThemeConfig } from '../types';
 import { defaultTheme } from '../types';
 import { resolveViewport } from '../../viewport';
 import { getIconData, type IconData } from '../../icons/lucide-icons';
+import {
+  computeFlexLayout,
+  createFlexItemProps,
+  createFlexGrowItemProps,
+  toJustifyContent,
+  toAlignItems,
+  type FlexItemProps,
+  type FlexContainerConfig,
+} from './flex-layout';
 
 // ===========================================
 // Layout Types
@@ -538,6 +547,12 @@ export class SvgRenderer {
       cardWidth = Math.min(cardWidth, constraints.maxWidth);
     }
 
+    // Check for explicit height
+    const explicitHeight = this.resolveSize(node.h);
+    if (explicitHeight) {
+      return { width: cardWidth, height: explicitHeight };
+    }
+
     const padding = this.getPadding(node);
     const gap = this.getGap(node) ?? this.DEFAULT_GAP;
     const innerWidth = cardWidth - padding.left - padding.right;
@@ -690,10 +705,12 @@ export class SvgRenderer {
 
   private measurePlaceholder(node: PlaceholderNode, constraints: Constraints): Size {
     let width: number;
-    if (this.isFullWidth(node)) {
-      width = constraints.maxWidth;
+    // In column/card context, placeholder should fill available width by default (like CSS width: 100%)
+    if (node.w !== undefined) {
+      width = this.isFullWidth(node) ? constraints.maxWidth : (this.resolveSize(node.w) || 200);
     } else {
-      width = this.resolveSize(node.w) || 200;
+      // Default: fill parent width (CSS-like behavior)
+      width = constraints.maxWidth || 200;
     }
     const height = this.resolveSize(node.h) || 100;
     return { width, height };
@@ -839,132 +856,96 @@ export class SvgRenderer {
     // In header context, default to center alignment to match CSS behavior
     const align = node.align || (constraints.inHeader ? 'center' : 'start');
 
-    // First pass: identify fixed-width vs flexible children
-    // A child is "flex" if it's a layout container type OR an Input in header context (CSS flex: 1 1 auto)
-    // In header context, a Row containing Input is also flex (it expands to fill remaining space)
-    const childWidths: (number | 'flex' | 'natural')[] = node.children.map(child => {
-      // Check if child has explicit width
-      if ('w' in child && child.w !== undefined && child.w !== 'full') {
-        const resolved = this.resolveSize(child.w);
-        if (resolved !== undefined) return resolved;
-      }
-      // Check if this is a flex-expanding container
-      if (this.isFlexContainer(child)) {
-        return 'flex';
-      }
-      // In header context, Input nodes are flex (CSS: flex: 1 1 auto)
-      if (constraints.inHeader && child.type === 'Input') {
-        return 'flex';
-      }
-      // Note: Row containing Input should NOT be flex in justify=between context
-      // The row itself uses content width; Input inside it stays at min-width
-      // Otherwise use natural width
-      return 'natural';
-    });
-
-    // Calculate total fixed width and count flexible/natural children
-    let totalFixedWidth = 0;
-    let flexCount = 0;
-    let naturalCount = 0;
-    const naturalWidths: number[] = [];
-
-    // First, count fixed-width children and their total width
-    for (let i = 0; i < childWidths.length; i++) {
-      const w = childWidths[i];
-      if (w === 'flex') {
-        flexCount++;
-        naturalWidths.push(0);
-      } else if (w === 'natural') {
-        naturalCount++;
-        naturalWidths.push(0); // will be calculated later
-      } else {
-        naturalWidths.push(w);
-        totalFixedWidth += w;
-      }
-    }
-
-    // Calculate available space for natural/flex children
-    const totalGapWidth = Math.max(0, (node.children.length - 1) * gap);
-    const availableForDynamic = innerWidth - totalFixedWidth - totalGapWidth;
-
-    // For justify=between, natural children use their content width (measure with full width)
-    // For other justify modes, natural children share available space equally
-    const useContentWidth = justify === 'between' || justify === 'around' || justify === 'evenly';
-    const naturalShare = naturalCount > 0
-      ? Math.max(0, availableForDynamic / (naturalCount + flexCount))
-      : 0;
-
-    // Measure natural-width children
-    for (let i = 0; i < childWidths.length; i++) {
-      if (childWidths[i] === 'natural') {
-        // For space-distribution layouts, measure with full width to get content width
-        // For other layouts, use equal share
-        const measureWidth = useContentWidth ? innerWidth : naturalShare;
-        const measured = this.measureNode(node.children[i], { ...constraints, maxWidth: measureWidth });
-        naturalWidths[i] = measured.width;
-        totalFixedWidth += measured.width;
-      }
-    }
-
-    // Recalculate remaining width for flex children
-    const remainingWidth = innerWidth - totalFixedWidth - totalGapWidth;
-    const flexWidth = flexCount > 0 ? Math.max(0, remainingWidth / flexCount) : 0;
-
-    // Final child widths
-    const finalWidths = childWidths.map((w, i) => {
-      if (w === 'flex') return flexWidth;
-      if (w === 'natural') return naturalWidths[i];
-      return w;
-    });
-
-    // Measure children with their allocated widths
-    const childMeasurements = node.children.map((child, i) =>
-      this.measureNode(child, { ...constraints, maxWidth: finalWidths[i] })
+    // Step 1: Measure all children to get their content sizes
+    const childMeasurements = node.children.map(child =>
+      this.measureNode(child, { ...constraints, maxWidth: innerWidth })
     );
 
-    // Calculate row height - use constraints.maxHeight if provided (for flex rows)
+    // Step 2: Create flex item props for each child
+    const flexItems: FlexItemProps[] = node.children.map((child, i) => {
+      const measurement = childMeasurements[i];
+
+      // Check for explicit width
+      if ('w' in child && child.w !== undefined && child.w !== 'full') {
+        const resolved = this.resolveSize(child.w);
+        if (resolved !== undefined) {
+          // Fixed width item: flex: 0 0 <width>
+          return createFlexItemProps(measurement.height, {
+            basis: resolved,
+            grow: 0,
+            shrink: 0,
+            minSize: resolved,
+            maxSize: resolved,
+            contentSize: measurement.width,
+          });
+        }
+      }
+
+      // Check if this is a flex-growing container
+      if (this.isFlexContainer(child)) {
+        // Flex item: flex: 1 1 0
+        return createFlexGrowItemProps(measurement.height, {
+          basis: 0,
+          grow: 1,
+          shrink: 1,
+          minSize: 0,
+          maxSize: Infinity,
+          contentSize: measurement.width,
+        });
+      }
+
+      // In header context, Input nodes are flex (CSS: flex: 1 1 auto)
+      if (constraints.inHeader && child.type === 'Input') {
+        return createFlexGrowItemProps(measurement.height, {
+          basis: measurement.width, // auto = content size
+          grow: 1,
+          shrink: 1,
+          minSize: 120, // min-width: 120px
+          maxSize: Infinity,
+          contentSize: measurement.width,
+        });
+      }
+
+      // Natural width item: flex: 0 1 auto
+      return createFlexItemProps(measurement.height, {
+        basis: measurement.width, // auto = content size
+        grow: 0,
+        shrink: 1,
+        minSize: 0,
+        maxSize: Infinity,
+        contentSize: measurement.width,
+      });
+    });
+
+    // Step 3: Compute flex layout
+    const flexConfig: FlexContainerConfig = {
+      mainSize: innerWidth,
+      crossSize: undefined, // Will use max child height
+      direction: 'row',
+      justifyContent: toJustifyContent(justify),
+      alignItems: toAlignItems(align),
+      gap,
+    };
+
+    const flexResult = computeFlexLayout(flexItems, flexConfig);
+
+    // Step 4: Calculate row height
     const maxChildHeight = Math.max(...childMeasurements.map(m => m.height), 0);
     const innerMaxHeight = constraints.maxHeight ? constraints.maxHeight - padding.top - padding.bottom : undefined;
     const effectiveHeight = innerMaxHeight || maxChildHeight;
     const rowHeight = effectiveHeight + padding.top + padding.bottom;
 
-    // Calculate total content width
-    const totalChildWidth = finalWidths.reduce((sum, w) => sum + w, 0);
-    const totalContentWidth = totalChildWidth + totalGapWidth;
-
-    // Calculate starting X based on justify
-    let currentX = x + padding.left;
-    let actualGap = gap;
-
-    switch (justify) {
-      case 'center':
-        currentX = x + padding.left + (innerWidth - totalContentWidth) / 2;
-        break;
-      case 'end':
-        currentX = x + padding.left + (innerWidth - totalContentWidth);
-        break;
-      case 'between':
-        if (node.children.length > 1) {
-          actualGap = (innerWidth - totalChildWidth) / (node.children.length - 1);
-        }
-        break;
-      case 'around':
-        if (node.children.length > 0) {
-          const space = (innerWidth - totalChildWidth) / (node.children.length * 2);
-          currentX = x + padding.left + space;
-          actualGap = space * 2;
-        }
-        break;
-    }
-
-    // Layout children
+    // Step 5: Layout children using flex results
     const children: LayoutBox[] = [];
     for (let i = 0; i < node.children.length; i++) {
       const child = node.children[i];
-      const childWidth = finalWidths[i];
+      const flexItem = flexResult.items[i];
       const measurement = childMeasurements[i];
 
-      // Calculate Y based on align
+      // Get positions from flex layout
+      const childX = x + padding.left + flexItem.mainPosition;
+
+      // Calculate Y based on align (use cross position from flex layout)
       let childY = y + padding.top;
       switch (align) {
         case 'center':
@@ -975,14 +956,12 @@ export class SvgRenderer {
           break;
       }
 
-      const childBox = this.layoutNode(child, currentX, childY, {
+      const childBox = this.layoutNode(child, childX, childY, {
         ...constraints,
-        maxWidth: childWidth,
-        maxHeight: effectiveHeight, // Pass height to children (for sidebar/main)
+        maxWidth: flexItem.mainSize,
+        maxHeight: effectiveHeight,
       });
       children.push(childBox);
-
-      currentX += childWidth + actualGap;
     }
 
     return {
@@ -1002,49 +981,74 @@ export class SvgRenderer {
     const innerHeight = constraints.maxHeight ? constraints.maxHeight - padding.top - padding.bottom : undefined;
     const align = node.align || 'stretch';
 
-    // First pass: identify fixed-height vs flexible children
-    // A child is "flex" if it's a Row containing Sidebar/Main (should fill remaining space)
-    const childTypes: ('fixed' | 'flex')[] = node.children.map(child => {
-      if (child.type === 'Row' && this.rowContainsSidebarOrMain(child as RowNode)) {
-        return 'flex';
-      }
-      return 'fixed';
-    });
-
-    // Measure fixed children first
-    const childMeasurements = node.children.map((child, i) => {
-      if (childTypes[i] === 'fixed') {
-        return this.measureNode(child, { ...constraints, maxWidth: innerWidth });
-      }
-      return { width: innerWidth, height: 0 }; // placeholder for flex children
-    });
-
-    // Calculate total fixed height
-    const totalGapHeight = Math.max(0, (node.children.length - 1) * gap);
-    const totalFixedHeight = childMeasurements.reduce((sum, m, i) =>
-      childTypes[i] === 'fixed' ? sum + m.height : sum, 0
+    // Step 1: Measure all children to get their content sizes
+    const childMeasurements = node.children.map(child =>
+      this.measureNode(child, { ...constraints, maxWidth: innerWidth })
     );
 
-    // Calculate available height for flex children
-    const flexCount = childTypes.filter(t => t === 'flex').length;
-    let flexHeight = 0;
-    if (innerHeight && flexCount > 0) {
-      flexHeight = Math.max(0, (innerHeight - totalFixedHeight - totalGapHeight) / flexCount);
-    }
+    // Step 2: Create flex item props for each child (for vertical layout)
+    const flexItems: FlexItemProps[] = node.children.map((child, i) => {
+      const measurement = childMeasurements[i];
 
-    // Update measurements for flex children
-    for (let i = 0; i < node.children.length; i++) {
-      if (childTypes[i] === 'flex') {
-        childMeasurements[i] = { width: innerWidth, height: flexHeight };
+      // Check for explicit height
+      if ('h' in child && child.h !== undefined) {
+        const resolved = this.resolveSize(child.h);
+        if (resolved !== undefined) {
+          // Fixed height item: flex: 0 0 <height>
+          return createFlexItemProps(measurement.width, {
+            basis: resolved,
+            grow: 0,
+            shrink: 0,
+            minSize: resolved,
+            maxSize: resolved,
+            contentSize: measurement.height,
+          });
+        }
       }
-    }
 
-    // Layout children
+      // Check if this is a flex-growing row (contains Sidebar/Main)
+      if (child.type === 'Row' && this.rowContainsSidebarOrMain(child as RowNode)) {
+        // Flex item: flex: 1 1 0
+        return createFlexGrowItemProps(measurement.width, {
+          basis: 0,
+          grow: 1,
+          shrink: 1,
+          minSize: 0,
+          maxSize: Infinity,
+          contentSize: measurement.height,
+        });
+      }
+
+      // Natural height item: flex: 0 1 auto
+      return createFlexItemProps(measurement.width, {
+        basis: measurement.height, // auto = content size
+        grow: 0,
+        shrink: 1,
+        minSize: 0,
+        maxSize: Infinity,
+        contentSize: measurement.height,
+      });
+    });
+
+    // Step 3: Compute flex layout (vertical)
+    const flexConfig: FlexContainerConfig = {
+      mainSize: innerHeight ?? childMeasurements.reduce((sum, m, i) =>
+        sum + m.height + (i > 0 ? gap : 0), 0
+      ),
+      crossSize: innerWidth,
+      direction: 'column',
+      justifyContent: 'flex-start',
+      alignItems: toAlignItems(align),
+      gap,
+    };
+
+    const flexResult = computeFlexLayout(flexItems, flexConfig);
+
+    // Step 4: Layout children using flex results
     const children: LayoutBox[] = [];
-    let currentY = y + padding.top;
-
     for (let i = 0; i < node.children.length; i++) {
       const child = node.children[i];
+      const flexItem = flexResult.items[i];
       const measurement = childMeasurements[i];
 
       // Calculate X based on align
@@ -1060,23 +1064,19 @@ export class SvgRenderer {
           break;
       }
 
-      // Pass maxHeight for flex children
-      const childConstraints = {
+      // Get Y position from flex layout
+      const childY = y + padding.top + flexItem.mainPosition;
+
+      const childBox = this.layoutNode(child, childX, childY, {
         ...constraints,
         maxWidth: childWidth,
-        maxHeight: childTypes[i] === 'flex' ? flexHeight : undefined,
-      };
-
-      const childBox = this.layoutNode(child, childX, currentY, childConstraints);
+        maxHeight: flexItem.mainSize,
+      });
       children.push(childBox);
-
-      currentY += childBox.height + gap;
     }
 
     // Calculate total height
-    const totalHeight = children.reduce((sum, c, i) =>
-      sum + c.height + (i > 0 ? gap : 0), 0
-    );
+    const totalHeight = flexResult.mainSizeUsed;
 
     return {
       x, y,
@@ -1105,9 +1105,12 @@ export class SvgRenderer {
     let currentY = y + padding.top;
 
     for (const child of node.children) {
+      // Don't pass maxHeight to header children - they should use natural height
+      // This prevents rows from stretching to fill page height
       const childBox = this.layoutNode(child, x + padding.left, currentY, {
         ...constraints,
         maxWidth: innerWidth,
+        maxHeight: undefined,  // Children use natural height
         inHeader: true,  // Pass header context for child sizing (e.g., smaller avatars)
       });
 
@@ -1161,9 +1164,11 @@ export class SvgRenderer {
     let currentY = y + padding.top;
 
     for (const child of node.children) {
+      // Don't pass maxHeight to footer children - they should use natural height
       const childBox = this.layoutNode(child, x + padding.left, currentY, {
         ...constraints,
         maxWidth: innerWidth,
+        maxHeight: undefined,  // Children use natural height
       });
 
       // Vertically center the child within footer height
@@ -1705,10 +1710,20 @@ export class SvgRenderer {
 
   private renderPlaceholderBox(box: LayoutBox): string {
     const node = box.node as PlaceholderNode;
+    const patternId = `placeholder-pattern-${this.clipPathCounter++}`;
+
+    // Create diagonal stripe pattern similar to HTML's repeating-linear-gradient
+    const patternDef = `<pattern id="${patternId}" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="14" height="14" fill="#f9f9f9"/>
+      <rect width="7" height="14" fill="rgba(0,0,0,0.03)"/>
+    </pattern>`;
+
+    // Add pattern to defs (we'll need to inject this)
+    this.clipPathDefs.push(patternDef);
 
     return `<g>
-      <rect x="${box.x}" y="${box.y}" width="${box.width}" height="${box.height}" fill="${this.theme.colors.muted}" stroke="${this.theme.colors.border}" stroke-width="1" stroke-dasharray="4,4"/>
-      <text x="${box.x + box.width / 2}" y="${box.y + box.height / 2 + 5}" font-size="14" fill="${this.theme.colors.foreground}" text-anchor="middle">${this.escapeXml(node.label || 'Placeholder')}</text>
+      <rect x="${box.x}" y="${box.y}" width="${box.width}" height="${box.height}" rx="4" fill="url(#${patternId})" stroke="${this.theme.colors.muted}" stroke-width="1" stroke-dasharray="4,2"/>
+      <text x="${box.x + box.width / 2}" y="${box.y + box.height / 2 + 5}" font-size="14" fill="${this.theme.colors.muted}" text-anchor="middle">${this.escapeXml(node.label || 'Placeholder')}</text>
     </g>`;
   }
 

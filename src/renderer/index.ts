@@ -101,19 +101,27 @@ export function renderToSvg(
     }
   }
 
-  const padding = options.padding ?? 20;
   const background = options.background ?? '#ffffff';
 
   // Use HTML renderer to generate content
   const { html, css } = render(document, { theme: 'light' });
 
   // Build SVG with foreignObject containing HTML+CSS
+  // Use same wrapper styles as renderToHtml for consistency
   const svg = `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
      viewBox="0 0 ${width} ${height}" width="${width}" height="${height}">
   <rect width="100%" height="100%" fill="${background}"/>
-  <foreignObject x="${padding}" y="${padding}" width="${width - padding * 2}" height="${height - padding * 2}">
-    <div xmlns="http://www.w3.org/1999/xhtml" style="width: 100%; height: 100%; overflow: hidden;">
+  <foreignObject x="0" y="0" width="${width}" height="${height}">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="
+      width: ${width}px;
+      height: ${height}px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+    ">
       <style type="text/css">
 ${css}
       </style>

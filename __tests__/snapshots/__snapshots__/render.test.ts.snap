@@ -25,17 +25,29 @@ exports[`Render Snapshots > CSS Snapshots > should generate dark theme CSS 1`] =
   font-family: var(--wf-font);
   color: var(--wf-fg);
   background: var(--wf-bg);
-  min-height: 100vh;
   box-sizing: border-box;
   position: relative;
   display: flex;
   flex-direction: column;
+  /* Wireframe boundary visualization */
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Col direct child of page should fill page height */
+.wf-page > .wf-col {
+  flex: 1;
+  min-height: 0;
 }
 
 /* Row containing sidebar should fill remaining space */
 .wf-page > .wf-row:has(.wf-sidebar),
-.wf-page > .wf-row:has(.wf-main) {
+.wf-page > .wf-row:has(.wf-main),
+.wf-page > .wf-col > .wf-row:has(.wf-sidebar),
+.wf-page > .wf-col > .wf-row:has(.wf-main) {
   flex: 1;
+  min-height: 0;
   align-items: stretch;
 }
 
@@ -52,66 +64,49 @@ exports[`Render Snapshots > CSS Snapshots > should generate dark theme CSS 1`] =
 }
 
 /* Page centered content (both horizontal and vertical) */
-.wf-page-centered {
+.wf-page.wf-page-centered {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-/* Grid System */
+/* Prevent direct children from stretching in centered pages */
+.wf-page.wf-page-centered > * {
+  flex: 0 0 auto;
+}
+
+/* Grid System - Explicit Gap Only */
 .wf-row {
   display: flex;
   flex-wrap: nowrap;
-  margin-left: -8px;
-  margin-right: -8px;
-}
-
-/* When gap is used, disable gutter system */
-.wf-row[class*="gap-"] {
-  margin-left: 0;
-  margin-right: 0;
 }
 
 .wf-col {
+  display: flex;
+  flex-direction: column;
   flex: 1 0 0%;
-  padding-left: 8px;
-  padding-right: 8px;
   box-sizing: border-box;
 }
 
-/* When parent row has gap, disable column padding */
-.wf-row[class*="gap-"] > .wf-col {
-  padding-left: 0;
-  padding-right: 0;
+/* When explicit width is set, don't flex-grow */
+.wf-row[style*="width:"],
+.wf-col[style*="width:"] {
+  flex: 0 0 auto;
 }
 
-.wf-col-1 { flex: 0 0 auto; width: 8.3333%; }
-.wf-col-2 { flex: 0 0 auto; width: 16.6667%; }
-.wf-col-3 { flex: 0 0 auto; width: 25.0000%; }
-.wf-col-4 { flex: 0 0 auto; width: 33.3333%; }
-.wf-col-5 { flex: 0 0 auto; width: 41.6667%; }
-.wf-col-6 { flex: 0 0 auto; width: 50.0000%; }
-.wf-col-7 { flex: 0 0 auto; width: 58.3333%; }
-.wf-col-8 { flex: 0 0 auto; width: 66.6667%; }
-.wf-col-9 { flex: 0 0 auto; width: 75.0000%; }
-.wf-col-10 { flex: 0 0 auto; width: 83.3333%; }
-.wf-col-11 { flex: 0 0 auto; width: 91.6667%; }
-.wf-col-12 { flex: 0 0 auto; width: 100.0000%; }
-
-/* Gap-aware column sizing */
-.wf-row[class*="gap-"] > .wf-col-1 { flex: 1 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-2 { flex: 2 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-3 { flex: 3 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-4 { flex: 4 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-5 { flex: 5 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-6 { flex: 6 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-7 { flex: 7 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-8 { flex: 8 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-9 { flex: 9 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-10 { flex: 10 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-11 { flex: 11 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-12 { flex: 12 0 0; width: auto; }
+.wf-col-1 { flex: 1 0 0%; min-width: 0; }
+.wf-col-2 { flex: 2 0 0%; min-width: 0; }
+.wf-col-3 { flex: 3 0 0%; min-width: 0; }
+.wf-col-4 { flex: 4 0 0%; min-width: 0; }
+.wf-col-5 { flex: 5 0 0%; min-width: 0; }
+.wf-col-6 { flex: 6 0 0%; min-width: 0; }
+.wf-col-7 { flex: 7 0 0%; min-width: 0; }
+.wf-col-8 { flex: 8 0 0%; min-width: 0; }
+.wf-col-9 { flex: 9 0 0%; min-width: 0; }
+.wf-col-10 { flex: 10 0 0%; min-width: 0; }
+.wf-col-11 { flex: 11 0 0%; min-width: 0; }
+.wf-col-12 { flex: 12 0 0%; min-width: 0; }
 
 
 /* Spacing Utilities */
@@ -319,7 +314,7 @@ exports[`Render Snapshots > CSS Snapshots > should generate dark theme CSS 1`] =
 .wf-gap-8 { gap: 32px; }
 
 /* Size Utilities */
-.wf-w-full { width: 100%; display: block; }
+.wf-w-full { width: 100%; }
 .wf-w-auto { width: auto; }
 .wf-w-fit { width: fit-content; }
 .wf-w-screen { width: 100vw; }
@@ -372,16 +367,54 @@ exports[`Render Snapshots > CSS Snapshots > should generate dark theme CSS 1`] =
 /* Layout Components */
 .wf-header {
   border-bottom: 1px solid var(--wf-border);
-  padding: 16px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+}
+
+.wf-header > .wf-row {
+  flex: 1;
 }
 
 .wf-header.wf-no-border {
   border-bottom: none;
 }
 
+/* Header avatar - smaller size */
+.wf-header .wf-avatar {
+  width: 32px;
+  height: 32px;
+  font-size: 12px;
+}
+
+/* Header icon buttons - smaller size */
+.wf-header .wf-button-icon-only {
+  padding: 6px;
+}
+
+.wf-header .wf-button-icon-only svg.wf-icon {
+  width: 18px;
+  height: 18px;
+}
+
 .wf-main {
   flex: 1;
   padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Scrollable main content */
+.wf-main.wf-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Main content should align to top, not stretch to fill */
+/* But allow explicit flex=1 to override */
+.wf-main > .wf-col:not(.wf-flex-1) {
+  flex: 0 0 auto;
 }
 
 .wf-footer {
@@ -396,8 +429,9 @@ exports[`Render Snapshots > CSS Snapshots > should generate dark theme CSS 1`] =
 .wf-sidebar {
   width: 256px;
   border-right: 1px solid var(--wf-border);
-  padding: 16px;
+  padding: 16px 16px 16px 20px;
   flex-shrink: 0;
+  align-self: stretch;
 }
 
 .wf-sidebar-right {
@@ -405,8 +439,40 @@ exports[`Render Snapshots > CSS Snapshots > should generate dark theme CSS 1`] =
   border-left: 1px solid var(--wf-border);
 }
 
+/* Sidebar logo area - first row with logo */
+.wf-sidebar > .wf-row:first-child {
+  margin-bottom: 24px;
+}
+
+/* Sidebar navigation links */
+.wf-sidebar .wf-nav-link {
+  font-size: 14px;
+  padding: 8px 12px;
+}
+
+/* Sidebar nav link icons */
+.wf-sidebar .wf-nav-link svg.wf-icon {
+  width: 18px;
+  height: 18px;
+}
+
 .wf-section {
   margin-bottom: 24px;
+}
+
+/* Section title in sidebar - smaller muted style */
+.wf-sidebar .wf-section .wf-title {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--wf-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+/* Sidebar header text - prevent wrapping for logo text */
+.wf-sidebar .wf-header .wf-text {
+  white-space: nowrap;
 }
 
 /* Container Components */
@@ -415,6 +481,17 @@ exports[`Render Snapshots > CSS Snapshots > should generate dark theme CSS 1`] =
   border-radius: var(--wf-radius);
   background: var(--wf-bg);
   padding: 16px;
+}
+
+/* Cards in flex rows: respect explicit width, shrink if needed */
+.wf-row > .wf-card {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+/* Cards without explicit width should expand to fill space */
+.wf-row > .wf-card-flex {
+  flex: 1 1 0%;
 }
 
 .wf-card-title {
@@ -569,6 +646,11 @@ exports[`Render Snapshots > CSS Snapshots > should generate dark theme CSS 1`] =
   line-height: 1.25;
 }
 
+/* Remove bottom margin when title is in a row (inline with other elements) */
+.wf-row .wf-title {
+  margin-bottom: 0;
+}
+
 h1.wf-title { font-size: 36px; }
 h2.wf-title { font-size: 30px; }
 h3.wf-title { font-size: 24px; }
@@ -646,6 +728,40 @@ h6.wf-title { font-size: 16px; }
   border-color: var(--wf-danger);
 }
 
+/* Input with icon */
+.wf-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.wf-input-wrapper .wf-input {
+  padding-left: 36px;
+}
+
+.wf-input-icon {
+  position: absolute;
+  left: 12px;
+  color: var(--wf-muted);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+}
+
+.wf-input-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Input wrapper in flex rows */
+.wf-row > .wf-input-wrapper {
+  flex: 1 1 auto;
+  min-width: 120px;
+}
+
 .wf-textarea {
   min-height: 80px;
   resize: vertical;
@@ -661,7 +777,7 @@ h6.wf-title { font-size: 16px; }
 
 .wf-checkbox,
 .wf-radio {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
@@ -691,7 +807,7 @@ h6.wf-title { font-size: 16px; }
   appearance: none;
   width: 40px;
   height: 22px;
-  background: var(--wf-border);
+  background: var(--wf-muted);
   border-radius: 11px;
   position: relative;
   cursor: pointer;
@@ -833,6 +949,22 @@ h6.wf-title { font-size: 16px; }
 .wf-button-lg { padding: 10px 20px; font-size: 16px; }
 .wf-button-xl { padding: 12px 24px; font-size: 18px; }
 
+/* Icon-only button (square padding) */
+.wf-button-icon-only { padding: 8px; }
+.wf-button-icon-only.wf-button-xs { padding: 4px; }
+.wf-button-icon-only.wf-button-sm { padding: 6px; }
+.wf-button-icon-only.wf-button-md { padding: 8px; }
+.wf-button-icon-only.wf-button-lg { padding: 10px; }
+.wf-button-icon-only.wf-button-xl { padding: 12px; }
+
+/* Button icon sizes - scale icon based on button size */
+.wf-button svg.wf-icon { width: 16px; height: 16px; }
+.wf-button-xs svg.wf-icon { width: 12px; height: 12px; }
+.wf-button-sm svg.wf-icon { width: 14px; height: 14px; }
+.wf-button-md svg.wf-icon { width: 16px; height: 16px; }
+.wf-button-lg svg.wf-icon { width: 20px; height: 20px; }
+.wf-button-xl svg.wf-icon { width: 24px; height: 24px; }
+
 .wf-button-disabled,
 .wf-button:disabled {
   opacity: 0.5;
@@ -854,6 +986,11 @@ h6.wf-title { font-size: 16px; }
   border-radius: 50%;
   animation: wf-spin 0.6s linear infinite;
 }
+
+/* Button justify overrides - higher specificity to override default center */
+.wf-button.wf-justify-start { justify-content: flex-start; }
+.wf-button.wf-justify-end { justify-content: flex-end; }
+.wf-button.wf-justify-between { justify-content: space-between; }
 
 /* Display Components */
 .wf-image {
@@ -905,17 +1042,41 @@ img.wf-image {
   font-size: 14px;
 }
 
+.wf-placeholder-with-children {
+  position: relative;
+}
+
+.wf-placeholder-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.wf-placeholder-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 .wf-avatar {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 40px;
   height: 40px;
-  background: var(--wf-border);
+  background: var(--wf-fg);
   border-radius: 50%;
   font-size: 14px;
   font-weight: 600;
-  color: var(--wf-fg);
+  color: var(--wf-bg);
   overflow: hidden;
 }
 
@@ -946,6 +1107,19 @@ img.wf-image {
   border-radius: 9999px;
 }
 
+/* Dot badge - circular status indicator (for empty badges) */
+.wf-badge-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border-radius: 50%;
+  background: var(--wf-border);
+}
+.wf-badge-dot.wf-badge-success { background: var(--wf-success); border-color: var(--wf-success); }
+.wf-badge-dot.wf-badge-warning { background: var(--wf-warning); border-color: var(--wf-warning); }
+.wf-badge-dot.wf-badge-danger { background: var(--wf-danger); border-color: var(--wf-danger); }
+.wf-badge-dot.wf-badge-primary { background: var(--wf-primary); border-color: var(--wf-primary); }
+
 .wf-badge-default { }
 .wf-badge-primary { background: var(--wf-primary); color: white; border-color: var(--wf-primary); }
 .wf-badge-secondary { background: var(--wf-muted); color: white; border-color: var(--wf-muted); }
@@ -953,6 +1127,43 @@ img.wf-image {
 .wf-badge-warning { border-color: var(--wf-warning); }
 .wf-badge-danger { border-color: var(--wf-danger); }
 .wf-badge-info { border-color: var(--wf-primary); }
+
+/* Icon badge - circular background with icon */
+.wf-badge-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--wf-fg);
+}
+
+.wf-badge-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Icon badge sizes - use higher specificity to override svg.wf-icon */
+.wf-badge-icon-xs { width: 24px; height: 24px; }
+.wf-badge-icon-xs svg.wf-icon { width: 12px; height: 12px; }
+.wf-badge-icon-sm { width: 32px; height: 32px; }
+.wf-badge-icon-sm svg.wf-icon { width: 16px; height: 16px; }
+.wf-badge-icon-md { width: 40px; height: 40px; }
+.wf-badge-icon-md svg.wf-icon { width: 20px; height: 20px; }
+.wf-badge-icon-lg { width: 48px; height: 48px; }
+.wf-badge-icon-lg svg.wf-icon { width: 24px; height: 24px; }
+.wf-badge-icon-xl { width: 64px; height: 64px; }
+.wf-badge-icon-xl svg.wf-icon { width: 32px; height: 32px; }
+
+.wf-badge-icon-primary,
+.wf-badge-icon-success,
+.wf-badge-icon-warning,
+.wf-badge-icon-danger {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--wf-fg);
+}
 
 .wf-icon {
   display: inline-flex;
@@ -962,6 +1173,20 @@ img.wf-image {
   vertical-align: middle;
   flex-shrink: 0;
 }
+
+/* SVG icons - size is controlled by CSS, not HTML attributes */
+svg.wf-icon {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+/* Icon size tokens - matches SVG renderer */
+svg.wf-icon-xs { width: 12px; height: 12px; }
+svg.wf-icon-sm { width: 16px; height: 16px; }
+svg.wf-icon-md { width: 20px; height: 20px; }
+svg.wf-icon-lg { width: 24px; height: 24px; }
+svg.wf-icon-xl { width: 32px; height: 32px; }
 
 .wf-icon svg {
   display: block;
@@ -1110,9 +1335,11 @@ img.wf-image {
   animation: wf-spin 0.6s linear infinite;
 }
 
+.wf-spinner-xs { width: 12px; height: 12px; border-width: 2px; }
 .wf-spinner-sm { width: 16px; height: 16px; border-width: 2px; }
-.wf-spinner-md { width: 20px; height: 20px; border-width: 2px; }
+.wf-spinner-md { width: 24px; height: 24px; border-width: 2px; }
 .wf-spinner-lg { width: 32px; height: 32px; border-width: 3px; }
+.wf-spinner-xl { width: 48px; height: 48px; border-width: 4px; }
 
 @keyframes wf-spin {
   to { transform: rotate(360deg); }
@@ -1251,6 +1478,27 @@ img.wf-image {
   cursor: not-allowed;
 }
 
+.wf-nav-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wf-nav-group-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--wf-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 8px 16px 4px;
+}
+
+.wf-nav-divider {
+  margin: 8px 0;
+  border: none;
+  border-top: 1px solid var(--wf-border);
+}
+
 .wf-tabs {
   border-bottom: 1px solid var(--wf-border);
 }
@@ -1302,6 +1550,91 @@ img.wf-image {
 
 .wf-breadcrumb-separator {
   margin: 0 8px;
+  color: var(--wf-muted);
+}
+
+/* Semantic Markers */
+
+/* Avatar marker - small circle placeholder */
+.wf-semantic-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--wf-muted);
+  color: var(--wf-bg);
+  font-size: 10px;
+  font-weight: 600;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.wf-semantic-avatar-xs { width: 16px; height: 16px; }
+.wf-semantic-avatar-sm { width: 24px; height: 24px; }
+.wf-semantic-avatar-md { width: 32px; height: 32px; }
+.wf-semantic-avatar-lg { width: 40px; height: 40px; }
+
+/* Badge marker - inline status indicator (wireframe style: black/white only) */
+.wf-semantic-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: 9999px;
+  vertical-align: middle;
+  background: var(--wf-fg);
+  color: var(--wf-bg);
+}
+
+/* Dot marker - status dot (wireframe style: black/gray only) */
+.wf-semantic-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 6px;
+  background: var(--wf-fg);
+}
+
+/* Inactive/default state uses gray */
+.wf-semantic-dot-default { background: var(--wf-muted); }
+
+/* Icon marker placeholder */
+.wf-semantic-icon {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--wf-muted);
+  vertical-align: middle;
+}
+
+/* Unknown marker - fallback */
+.wf-semantic-unknown {
+  display: inline-block;
+  font-size: 11px;
+  color: var(--wf-muted);
+  font-style: italic;
+}
+
+/* Avatar + text layout in table cells */
+.wf-cell-avatar-layout {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.wf-cell-avatar-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.4;
+}
+
+.wf-cell-avatar-text span:first-child {
+  font-weight: 500;
+}
+
+.wf-cell-avatar-text span:last-child:not(:first-child) {
+  font-size: 12px;
   color: var(--wf-muted);
 }
 
@@ -1366,17 +1699,29 @@ exports[`Render Snapshots > CSS Snapshots > should generate light theme CSS 1`] 
   font-family: var(--wf-font);
   color: var(--wf-fg);
   background: var(--wf-bg);
-  min-height: 100vh;
   box-sizing: border-box;
   position: relative;
   display: flex;
   flex-direction: column;
+  /* Wireframe boundary visualization */
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Col direct child of page should fill page height */
+.wf-page > .wf-col {
+  flex: 1;
+  min-height: 0;
 }
 
 /* Row containing sidebar should fill remaining space */
 .wf-page > .wf-row:has(.wf-sidebar),
-.wf-page > .wf-row:has(.wf-main) {
+.wf-page > .wf-row:has(.wf-main),
+.wf-page > .wf-col > .wf-row:has(.wf-sidebar),
+.wf-page > .wf-col > .wf-row:has(.wf-main) {
   flex: 1;
+  min-height: 0;
   align-items: stretch;
 }
 
@@ -1393,66 +1738,49 @@ exports[`Render Snapshots > CSS Snapshots > should generate light theme CSS 1`] 
 }
 
 /* Page centered content (both horizontal and vertical) */
-.wf-page-centered {
+.wf-page.wf-page-centered {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-/* Grid System */
+/* Prevent direct children from stretching in centered pages */
+.wf-page.wf-page-centered > * {
+  flex: 0 0 auto;
+}
+
+/* Grid System - Explicit Gap Only */
 .wf-row {
   display: flex;
   flex-wrap: nowrap;
-  margin-left: -8px;
-  margin-right: -8px;
-}
-
-/* When gap is used, disable gutter system */
-.wf-row[class*="gap-"] {
-  margin-left: 0;
-  margin-right: 0;
 }
 
 .wf-col {
+  display: flex;
+  flex-direction: column;
   flex: 1 0 0%;
-  padding-left: 8px;
-  padding-right: 8px;
   box-sizing: border-box;
 }
 
-/* When parent row has gap, disable column padding */
-.wf-row[class*="gap-"] > .wf-col {
-  padding-left: 0;
-  padding-right: 0;
+/* When explicit width is set, don't flex-grow */
+.wf-row[style*="width:"],
+.wf-col[style*="width:"] {
+  flex: 0 0 auto;
 }
 
-.wf-col-1 { flex: 0 0 auto; width: 8.3333%; }
-.wf-col-2 { flex: 0 0 auto; width: 16.6667%; }
-.wf-col-3 { flex: 0 0 auto; width: 25.0000%; }
-.wf-col-4 { flex: 0 0 auto; width: 33.3333%; }
-.wf-col-5 { flex: 0 0 auto; width: 41.6667%; }
-.wf-col-6 { flex: 0 0 auto; width: 50.0000%; }
-.wf-col-7 { flex: 0 0 auto; width: 58.3333%; }
-.wf-col-8 { flex: 0 0 auto; width: 66.6667%; }
-.wf-col-9 { flex: 0 0 auto; width: 75.0000%; }
-.wf-col-10 { flex: 0 0 auto; width: 83.3333%; }
-.wf-col-11 { flex: 0 0 auto; width: 91.6667%; }
-.wf-col-12 { flex: 0 0 auto; width: 100.0000%; }
-
-/* Gap-aware column sizing */
-.wf-row[class*="gap-"] > .wf-col-1 { flex: 1 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-2 { flex: 2 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-3 { flex: 3 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-4 { flex: 4 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-5 { flex: 5 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-6 { flex: 6 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-7 { flex: 7 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-8 { flex: 8 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-9 { flex: 9 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-10 { flex: 10 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-11 { flex: 11 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-12 { flex: 12 0 0; width: auto; }
+.wf-col-1 { flex: 1 0 0%; min-width: 0; }
+.wf-col-2 { flex: 2 0 0%; min-width: 0; }
+.wf-col-3 { flex: 3 0 0%; min-width: 0; }
+.wf-col-4 { flex: 4 0 0%; min-width: 0; }
+.wf-col-5 { flex: 5 0 0%; min-width: 0; }
+.wf-col-6 { flex: 6 0 0%; min-width: 0; }
+.wf-col-7 { flex: 7 0 0%; min-width: 0; }
+.wf-col-8 { flex: 8 0 0%; min-width: 0; }
+.wf-col-9 { flex: 9 0 0%; min-width: 0; }
+.wf-col-10 { flex: 10 0 0%; min-width: 0; }
+.wf-col-11 { flex: 11 0 0%; min-width: 0; }
+.wf-col-12 { flex: 12 0 0%; min-width: 0; }
 
 
 /* Spacing Utilities */
@@ -1660,7 +1988,7 @@ exports[`Render Snapshots > CSS Snapshots > should generate light theme CSS 1`] 
 .wf-gap-8 { gap: 32px; }
 
 /* Size Utilities */
-.wf-w-full { width: 100%; display: block; }
+.wf-w-full { width: 100%; }
 .wf-w-auto { width: auto; }
 .wf-w-fit { width: fit-content; }
 .wf-w-screen { width: 100vw; }
@@ -1713,16 +2041,54 @@ exports[`Render Snapshots > CSS Snapshots > should generate light theme CSS 1`] 
 /* Layout Components */
 .wf-header {
   border-bottom: 1px solid var(--wf-border);
-  padding: 16px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+}
+
+.wf-header > .wf-row {
+  flex: 1;
 }
 
 .wf-header.wf-no-border {
   border-bottom: none;
 }
 
+/* Header avatar - smaller size */
+.wf-header .wf-avatar {
+  width: 32px;
+  height: 32px;
+  font-size: 12px;
+}
+
+/* Header icon buttons - smaller size */
+.wf-header .wf-button-icon-only {
+  padding: 6px;
+}
+
+.wf-header .wf-button-icon-only svg.wf-icon {
+  width: 18px;
+  height: 18px;
+}
+
 .wf-main {
   flex: 1;
   padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Scrollable main content */
+.wf-main.wf-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Main content should align to top, not stretch to fill */
+/* But allow explicit flex=1 to override */
+.wf-main > .wf-col:not(.wf-flex-1) {
+  flex: 0 0 auto;
 }
 
 .wf-footer {
@@ -1737,8 +2103,9 @@ exports[`Render Snapshots > CSS Snapshots > should generate light theme CSS 1`] 
 .wf-sidebar {
   width: 256px;
   border-right: 1px solid var(--wf-border);
-  padding: 16px;
+  padding: 16px 16px 16px 20px;
   flex-shrink: 0;
+  align-self: stretch;
 }
 
 .wf-sidebar-right {
@@ -1746,8 +2113,40 @@ exports[`Render Snapshots > CSS Snapshots > should generate light theme CSS 1`] 
   border-left: 1px solid var(--wf-border);
 }
 
+/* Sidebar logo area - first row with logo */
+.wf-sidebar > .wf-row:first-child {
+  margin-bottom: 24px;
+}
+
+/* Sidebar navigation links */
+.wf-sidebar .wf-nav-link {
+  font-size: 14px;
+  padding: 8px 12px;
+}
+
+/* Sidebar nav link icons */
+.wf-sidebar .wf-nav-link svg.wf-icon {
+  width: 18px;
+  height: 18px;
+}
+
 .wf-section {
   margin-bottom: 24px;
+}
+
+/* Section title in sidebar - smaller muted style */
+.wf-sidebar .wf-section .wf-title {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--wf-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+/* Sidebar header text - prevent wrapping for logo text */
+.wf-sidebar .wf-header .wf-text {
+  white-space: nowrap;
 }
 
 /* Container Components */
@@ -1756,6 +2155,17 @@ exports[`Render Snapshots > CSS Snapshots > should generate light theme CSS 1`] 
   border-radius: var(--wf-radius);
   background: var(--wf-bg);
   padding: 16px;
+}
+
+/* Cards in flex rows: respect explicit width, shrink if needed */
+.wf-row > .wf-card {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+/* Cards without explicit width should expand to fill space */
+.wf-row > .wf-card-flex {
+  flex: 1 1 0%;
 }
 
 .wf-card-title {
@@ -1910,6 +2320,11 @@ exports[`Render Snapshots > CSS Snapshots > should generate light theme CSS 1`] 
   line-height: 1.25;
 }
 
+/* Remove bottom margin when title is in a row (inline with other elements) */
+.wf-row .wf-title {
+  margin-bottom: 0;
+}
+
 h1.wf-title { font-size: 36px; }
 h2.wf-title { font-size: 30px; }
 h3.wf-title { font-size: 24px; }
@@ -1987,6 +2402,40 @@ h6.wf-title { font-size: 16px; }
   border-color: var(--wf-danger);
 }
 
+/* Input with icon */
+.wf-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.wf-input-wrapper .wf-input {
+  padding-left: 36px;
+}
+
+.wf-input-icon {
+  position: absolute;
+  left: 12px;
+  color: var(--wf-muted);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+}
+
+.wf-input-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Input wrapper in flex rows */
+.wf-row > .wf-input-wrapper {
+  flex: 1 1 auto;
+  min-width: 120px;
+}
+
 .wf-textarea {
   min-height: 80px;
   resize: vertical;
@@ -2002,7 +2451,7 @@ h6.wf-title { font-size: 16px; }
 
 .wf-checkbox,
 .wf-radio {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
@@ -2032,7 +2481,7 @@ h6.wf-title { font-size: 16px; }
   appearance: none;
   width: 40px;
   height: 22px;
-  background: var(--wf-border);
+  background: var(--wf-muted);
   border-radius: 11px;
   position: relative;
   cursor: pointer;
@@ -2174,6 +2623,22 @@ h6.wf-title { font-size: 16px; }
 .wf-button-lg { padding: 10px 20px; font-size: 16px; }
 .wf-button-xl { padding: 12px 24px; font-size: 18px; }
 
+/* Icon-only button (square padding) */
+.wf-button-icon-only { padding: 8px; }
+.wf-button-icon-only.wf-button-xs { padding: 4px; }
+.wf-button-icon-only.wf-button-sm { padding: 6px; }
+.wf-button-icon-only.wf-button-md { padding: 8px; }
+.wf-button-icon-only.wf-button-lg { padding: 10px; }
+.wf-button-icon-only.wf-button-xl { padding: 12px; }
+
+/* Button icon sizes - scale icon based on button size */
+.wf-button svg.wf-icon { width: 16px; height: 16px; }
+.wf-button-xs svg.wf-icon { width: 12px; height: 12px; }
+.wf-button-sm svg.wf-icon { width: 14px; height: 14px; }
+.wf-button-md svg.wf-icon { width: 16px; height: 16px; }
+.wf-button-lg svg.wf-icon { width: 20px; height: 20px; }
+.wf-button-xl svg.wf-icon { width: 24px; height: 24px; }
+
 .wf-button-disabled,
 .wf-button:disabled {
   opacity: 0.5;
@@ -2195,6 +2660,11 @@ h6.wf-title { font-size: 16px; }
   border-radius: 50%;
   animation: wf-spin 0.6s linear infinite;
 }
+
+/* Button justify overrides - higher specificity to override default center */
+.wf-button.wf-justify-start { justify-content: flex-start; }
+.wf-button.wf-justify-end { justify-content: flex-end; }
+.wf-button.wf-justify-between { justify-content: space-between; }
 
 /* Display Components */
 .wf-image {
@@ -2246,17 +2716,41 @@ img.wf-image {
   font-size: 14px;
 }
 
+.wf-placeholder-with-children {
+  position: relative;
+}
+
+.wf-placeholder-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.wf-placeholder-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 .wf-avatar {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 40px;
   height: 40px;
-  background: var(--wf-border);
+  background: var(--wf-fg);
   border-radius: 50%;
   font-size: 14px;
   font-weight: 600;
-  color: var(--wf-fg);
+  color: var(--wf-bg);
   overflow: hidden;
 }
 
@@ -2287,6 +2781,19 @@ img.wf-image {
   border-radius: 9999px;
 }
 
+/* Dot badge - circular status indicator (for empty badges) */
+.wf-badge-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border-radius: 50%;
+  background: var(--wf-border);
+}
+.wf-badge-dot.wf-badge-success { background: var(--wf-success); border-color: var(--wf-success); }
+.wf-badge-dot.wf-badge-warning { background: var(--wf-warning); border-color: var(--wf-warning); }
+.wf-badge-dot.wf-badge-danger { background: var(--wf-danger); border-color: var(--wf-danger); }
+.wf-badge-dot.wf-badge-primary { background: var(--wf-primary); border-color: var(--wf-primary); }
+
 .wf-badge-default { }
 .wf-badge-primary { background: var(--wf-primary); color: white; border-color: var(--wf-primary); }
 .wf-badge-secondary { background: var(--wf-muted); color: white; border-color: var(--wf-muted); }
@@ -2294,6 +2801,43 @@ img.wf-image {
 .wf-badge-warning { border-color: var(--wf-warning); }
 .wf-badge-danger { border-color: var(--wf-danger); }
 .wf-badge-info { border-color: var(--wf-primary); }
+
+/* Icon badge - circular background with icon */
+.wf-badge-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--wf-fg);
+}
+
+.wf-badge-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Icon badge sizes - use higher specificity to override svg.wf-icon */
+.wf-badge-icon-xs { width: 24px; height: 24px; }
+.wf-badge-icon-xs svg.wf-icon { width: 12px; height: 12px; }
+.wf-badge-icon-sm { width: 32px; height: 32px; }
+.wf-badge-icon-sm svg.wf-icon { width: 16px; height: 16px; }
+.wf-badge-icon-md { width: 40px; height: 40px; }
+.wf-badge-icon-md svg.wf-icon { width: 20px; height: 20px; }
+.wf-badge-icon-lg { width: 48px; height: 48px; }
+.wf-badge-icon-lg svg.wf-icon { width: 24px; height: 24px; }
+.wf-badge-icon-xl { width: 64px; height: 64px; }
+.wf-badge-icon-xl svg.wf-icon { width: 32px; height: 32px; }
+
+.wf-badge-icon-primary,
+.wf-badge-icon-success,
+.wf-badge-icon-warning,
+.wf-badge-icon-danger {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--wf-fg);
+}
 
 .wf-icon {
   display: inline-flex;
@@ -2303,6 +2847,20 @@ img.wf-image {
   vertical-align: middle;
   flex-shrink: 0;
 }
+
+/* SVG icons - size is controlled by CSS, not HTML attributes */
+svg.wf-icon {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+/* Icon size tokens - matches SVG renderer */
+svg.wf-icon-xs { width: 12px; height: 12px; }
+svg.wf-icon-sm { width: 16px; height: 16px; }
+svg.wf-icon-md { width: 20px; height: 20px; }
+svg.wf-icon-lg { width: 24px; height: 24px; }
+svg.wf-icon-xl { width: 32px; height: 32px; }
 
 .wf-icon svg {
   display: block;
@@ -2451,9 +3009,11 @@ img.wf-image {
   animation: wf-spin 0.6s linear infinite;
 }
 
+.wf-spinner-xs { width: 12px; height: 12px; border-width: 2px; }
 .wf-spinner-sm { width: 16px; height: 16px; border-width: 2px; }
-.wf-spinner-md { width: 20px; height: 20px; border-width: 2px; }
+.wf-spinner-md { width: 24px; height: 24px; border-width: 2px; }
 .wf-spinner-lg { width: 32px; height: 32px; border-width: 3px; }
+.wf-spinner-xl { width: 48px; height: 48px; border-width: 4px; }
 
 @keyframes wf-spin {
   to { transform: rotate(360deg); }
@@ -2592,6 +3152,27 @@ img.wf-image {
   cursor: not-allowed;
 }
 
+.wf-nav-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wf-nav-group-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--wf-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 8px 16px 4px;
+}
+
+.wf-nav-divider {
+  margin: 8px 0;
+  border: none;
+  border-top: 1px solid var(--wf-border);
+}
+
 .wf-tabs {
   border-bottom: 1px solid var(--wf-border);
 }
@@ -2643,6 +3224,91 @@ img.wf-image {
 
 .wf-breadcrumb-separator {
   margin: 0 8px;
+  color: var(--wf-muted);
+}
+
+/* Semantic Markers */
+
+/* Avatar marker - small circle placeholder */
+.wf-semantic-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--wf-muted);
+  color: var(--wf-bg);
+  font-size: 10px;
+  font-weight: 600;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.wf-semantic-avatar-xs { width: 16px; height: 16px; }
+.wf-semantic-avatar-sm { width: 24px; height: 24px; }
+.wf-semantic-avatar-md { width: 32px; height: 32px; }
+.wf-semantic-avatar-lg { width: 40px; height: 40px; }
+
+/* Badge marker - inline status indicator (wireframe style: black/white only) */
+.wf-semantic-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: 9999px;
+  vertical-align: middle;
+  background: var(--wf-fg);
+  color: var(--wf-bg);
+}
+
+/* Dot marker - status dot (wireframe style: black/gray only) */
+.wf-semantic-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 6px;
+  background: var(--wf-fg);
+}
+
+/* Inactive/default state uses gray */
+.wf-semantic-dot-default { background: var(--wf-muted); }
+
+/* Icon marker placeholder */
+.wf-semantic-icon {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--wf-muted);
+  vertical-align: middle;
+}
+
+/* Unknown marker - fallback */
+.wf-semantic-unknown {
+  display: inline-block;
+  font-size: 11px;
+  color: var(--wf-muted);
+  font-style: italic;
+}
+
+/* Avatar + text layout in table cells */
+.wf-cell-avatar-layout {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.wf-cell-avatar-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.4;
+}
+
+.wf-cell-avatar-text span:first-child {
+  font-weight: 500;
+}
+
+.wf-cell-avatar-text span:last-child:not(:first-child) {
+  font-size: 12px;
   color: var(--wf-muted);
 }
 
@@ -2683,31 +3349,31 @@ img.wf-image {
 `;
 
 exports[`Render Snapshots > Complex Page Snapshots > should render dashboard page 1`] = `
-"<div class="wf-page" style="width: 1440px; height: 900px;" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
+"<div class="wf-page" style="position: relative; width: 1440px; height: 900px; overflow: hidden" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
 <title>Dashboard</title>
-  <header class="wf-header" style="padding: 4px">
+  <header class="wf-header" style="padding: 16px">
       <div class="wf-row wf-justify-between wf-align-center">
             <h1 class="wf-title">Dashboard</h1>
             <div class="wf-avatar" role="img" aria-label="JD">J</div>
       </div>
   </header>
   <div class="wf-row">
-      <aside class="wf-sidebar" style="padding: 4px">
+      <aside class="wf-sidebar" style="padding: 16px">
             <nav class="wf-nav wf-nav-vertical">
             <a class="wf-nav-link" href="#">Overview</a>
             <a class="wf-nav-link" href="#">Analytics</a>
             </nav>
       </aside>
-      <main class="wf-main" style="padding: 4px">
-            <div class="wf-row" style="gap: 4px">
+      <main class="wf-main" style="padding: 16px">
+            <div class="wf-row" style="gap: 16px">
                     <div class="wf-col wf-col-6">
-                              <div class="wf-card">
+                              <div class="wf-card wf-card-flex">
                                           <h1 class="wf-title">Users</h1>
                                           <p class="wf-text">1,234</p>
                               </div>
                     </div>
                     <div class="wf-col wf-col-6">
-                              <div class="wf-card">
+                              <div class="wf-card wf-card-flex">
                                           <h1 class="wf-title">Revenue</h1>
                                           <p class="wf-text">$5,678</p>
                               </div>
@@ -2719,17 +3385,17 @@ exports[`Render Snapshots > Complex Page Snapshots > should render dashboard pag
 `;
 
 exports[`Render Snapshots > Complex Page Snapshots > should render login page 1`] = `
-"<div class="wf-page" style="width: 1440px; height: 900px;" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
+"<div class="wf-page" style="position: relative; width: 1440px; height: 900px; overflow: hidden" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
 <title>Login</title>
-  <main class="wf-main" style="padding: 8px">
+  <main class="wf-main" style="padding: 32px">
       <div class="wf-row wf-justify-center">
             <div class="wf-col wf-col-4">
-                    <div class="wf-card" style="padding: 6px">
-                              <h2 class="wf-title" style="margin-bottom: 6px">Sign In</h2>
+                    <div class="wf-card wf-card-flex" style="padding: 24px">
+                              <h2 class="wf-title" style="margin-bottom: 24px">Sign In</h2>
                               <label class="wf-input-label">Email</label>
-                              <input class="wf-input" type="email" required style="margin-bottom: 4px" />
+                              <input class="wf-input" type="email" required style="margin-bottom: 16px" />
                               <label class="wf-input-label">Password</label>
-                              <input class="wf-input" type="password" required style="margin-bottom: 4px" />
+                              <input class="wf-input" type="password" required style="margin-bottom: 16px" />
                               <button class="wf-button wf-button-primary">Sign In</button>
                     </div>
             </div>
@@ -2746,6 +3412,20 @@ exports[`Render Snapshots > Full HTML Document Snapshots > should render complet
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wireframe</title>
   <style>
+/* Browser centering styles */
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: #f4f4f5;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  box-sizing: border-box;
+}
 /* wireweave CSS Variables */
 :root {
   --wf-primary: #000000;
@@ -2770,17 +3450,29 @@ exports[`Render Snapshots > Full HTML Document Snapshots > should render complet
   font-family: var(--wf-font);
   color: var(--wf-fg);
   background: var(--wf-bg);
-  min-height: 100vh;
   box-sizing: border-box;
   position: relative;
   display: flex;
   flex-direction: column;
+  /* Wireframe boundary visualization */
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Col direct child of page should fill page height */
+.wf-page > .wf-col {
+  flex: 1;
+  min-height: 0;
 }
 
 /* Row containing sidebar should fill remaining space */
 .wf-page > .wf-row:has(.wf-sidebar),
-.wf-page > .wf-row:has(.wf-main) {
+.wf-page > .wf-row:has(.wf-main),
+.wf-page > .wf-col > .wf-row:has(.wf-sidebar),
+.wf-page > .wf-col > .wf-row:has(.wf-main) {
   flex: 1;
+  min-height: 0;
   align-items: stretch;
 }
 
@@ -2797,66 +3489,49 @@ exports[`Render Snapshots > Full HTML Document Snapshots > should render complet
 }
 
 /* Page centered content (both horizontal and vertical) */
-.wf-page-centered {
+.wf-page.wf-page-centered {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-/* Grid System */
+/* Prevent direct children from stretching in centered pages */
+.wf-page.wf-page-centered > * {
+  flex: 0 0 auto;
+}
+
+/* Grid System - Explicit Gap Only */
 .wf-row {
   display: flex;
   flex-wrap: nowrap;
-  margin-left: -8px;
-  margin-right: -8px;
-}
-
-/* When gap is used, disable gutter system */
-.wf-row[class*="gap-"] {
-  margin-left: 0;
-  margin-right: 0;
 }
 
 .wf-col {
+  display: flex;
+  flex-direction: column;
   flex: 1 0 0%;
-  padding-left: 8px;
-  padding-right: 8px;
   box-sizing: border-box;
 }
 
-/* When parent row has gap, disable column padding */
-.wf-row[class*="gap-"] > .wf-col {
-  padding-left: 0;
-  padding-right: 0;
+/* When explicit width is set, don't flex-grow */
+.wf-row[style*="width:"],
+.wf-col[style*="width:"] {
+  flex: 0 0 auto;
 }
 
-.wf-col-1 { flex: 0 0 auto; width: 8.3333%; }
-.wf-col-2 { flex: 0 0 auto; width: 16.6667%; }
-.wf-col-3 { flex: 0 0 auto; width: 25.0000%; }
-.wf-col-4 { flex: 0 0 auto; width: 33.3333%; }
-.wf-col-5 { flex: 0 0 auto; width: 41.6667%; }
-.wf-col-6 { flex: 0 0 auto; width: 50.0000%; }
-.wf-col-7 { flex: 0 0 auto; width: 58.3333%; }
-.wf-col-8 { flex: 0 0 auto; width: 66.6667%; }
-.wf-col-9 { flex: 0 0 auto; width: 75.0000%; }
-.wf-col-10 { flex: 0 0 auto; width: 83.3333%; }
-.wf-col-11 { flex: 0 0 auto; width: 91.6667%; }
-.wf-col-12 { flex: 0 0 auto; width: 100.0000%; }
-
-/* Gap-aware column sizing */
-.wf-row[class*="gap-"] > .wf-col-1 { flex: 1 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-2 { flex: 2 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-3 { flex: 3 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-4 { flex: 4 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-5 { flex: 5 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-6 { flex: 6 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-7 { flex: 7 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-8 { flex: 8 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-9 { flex: 9 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-10 { flex: 10 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-11 { flex: 11 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-12 { flex: 12 0 0; width: auto; }
+.wf-col-1 { flex: 1 0 0%; min-width: 0; }
+.wf-col-2 { flex: 2 0 0%; min-width: 0; }
+.wf-col-3 { flex: 3 0 0%; min-width: 0; }
+.wf-col-4 { flex: 4 0 0%; min-width: 0; }
+.wf-col-5 { flex: 5 0 0%; min-width: 0; }
+.wf-col-6 { flex: 6 0 0%; min-width: 0; }
+.wf-col-7 { flex: 7 0 0%; min-width: 0; }
+.wf-col-8 { flex: 8 0 0%; min-width: 0; }
+.wf-col-9 { flex: 9 0 0%; min-width: 0; }
+.wf-col-10 { flex: 10 0 0%; min-width: 0; }
+.wf-col-11 { flex: 11 0 0%; min-width: 0; }
+.wf-col-12 { flex: 12 0 0%; min-width: 0; }
 
 
 /* Spacing Utilities */
@@ -3064,7 +3739,7 @@ exports[`Render Snapshots > Full HTML Document Snapshots > should render complet
 .wf-gap-8 { gap: 32px; }
 
 /* Size Utilities */
-.wf-w-full { width: 100%; display: block; }
+.wf-w-full { width: 100%; }
 .wf-w-auto { width: auto; }
 .wf-w-fit { width: fit-content; }
 .wf-w-screen { width: 100vw; }
@@ -3117,16 +3792,54 @@ exports[`Render Snapshots > Full HTML Document Snapshots > should render complet
 /* Layout Components */
 .wf-header {
   border-bottom: 1px solid var(--wf-border);
-  padding: 16px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+}
+
+.wf-header > .wf-row {
+  flex: 1;
 }
 
 .wf-header.wf-no-border {
   border-bottom: none;
 }
 
+/* Header avatar - smaller size */
+.wf-header .wf-avatar {
+  width: 32px;
+  height: 32px;
+  font-size: 12px;
+}
+
+/* Header icon buttons - smaller size */
+.wf-header .wf-button-icon-only {
+  padding: 6px;
+}
+
+.wf-header .wf-button-icon-only svg.wf-icon {
+  width: 18px;
+  height: 18px;
+}
+
 .wf-main {
   flex: 1;
   padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Scrollable main content */
+.wf-main.wf-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Main content should align to top, not stretch to fill */
+/* But allow explicit flex=1 to override */
+.wf-main > .wf-col:not(.wf-flex-1) {
+  flex: 0 0 auto;
 }
 
 .wf-footer {
@@ -3141,8 +3854,9 @@ exports[`Render Snapshots > Full HTML Document Snapshots > should render complet
 .wf-sidebar {
   width: 256px;
   border-right: 1px solid var(--wf-border);
-  padding: 16px;
+  padding: 16px 16px 16px 20px;
   flex-shrink: 0;
+  align-self: stretch;
 }
 
 .wf-sidebar-right {
@@ -3150,8 +3864,40 @@ exports[`Render Snapshots > Full HTML Document Snapshots > should render complet
   border-left: 1px solid var(--wf-border);
 }
 
+/* Sidebar logo area - first row with logo */
+.wf-sidebar > .wf-row:first-child {
+  margin-bottom: 24px;
+}
+
+/* Sidebar navigation links */
+.wf-sidebar .wf-nav-link {
+  font-size: 14px;
+  padding: 8px 12px;
+}
+
+/* Sidebar nav link icons */
+.wf-sidebar .wf-nav-link svg.wf-icon {
+  width: 18px;
+  height: 18px;
+}
+
 .wf-section {
   margin-bottom: 24px;
+}
+
+/* Section title in sidebar - smaller muted style */
+.wf-sidebar .wf-section .wf-title {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--wf-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+/* Sidebar header text - prevent wrapping for logo text */
+.wf-sidebar .wf-header .wf-text {
+  white-space: nowrap;
 }
 
 /* Container Components */
@@ -3160,6 +3906,17 @@ exports[`Render Snapshots > Full HTML Document Snapshots > should render complet
   border-radius: var(--wf-radius);
   background: var(--wf-bg);
   padding: 16px;
+}
+
+/* Cards in flex rows: respect explicit width, shrink if needed */
+.wf-row > .wf-card {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+/* Cards without explicit width should expand to fill space */
+.wf-row > .wf-card-flex {
+  flex: 1 1 0%;
 }
 
 .wf-card-title {
@@ -3314,6 +4071,11 @@ exports[`Render Snapshots > Full HTML Document Snapshots > should render complet
   line-height: 1.25;
 }
 
+/* Remove bottom margin when title is in a row (inline with other elements) */
+.wf-row .wf-title {
+  margin-bottom: 0;
+}
+
 h1.wf-title { font-size: 36px; }
 h2.wf-title { font-size: 30px; }
 h3.wf-title { font-size: 24px; }
@@ -3391,6 +4153,40 @@ h6.wf-title { font-size: 16px; }
   border-color: var(--wf-danger);
 }
 
+/* Input with icon */
+.wf-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.wf-input-wrapper .wf-input {
+  padding-left: 36px;
+}
+
+.wf-input-icon {
+  position: absolute;
+  left: 12px;
+  color: var(--wf-muted);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+}
+
+.wf-input-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Input wrapper in flex rows */
+.wf-row > .wf-input-wrapper {
+  flex: 1 1 auto;
+  min-width: 120px;
+}
+
 .wf-textarea {
   min-height: 80px;
   resize: vertical;
@@ -3406,7 +4202,7 @@ h6.wf-title { font-size: 16px; }
 
 .wf-checkbox,
 .wf-radio {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
@@ -3436,7 +4232,7 @@ h6.wf-title { font-size: 16px; }
   appearance: none;
   width: 40px;
   height: 22px;
-  background: var(--wf-border);
+  background: var(--wf-muted);
   border-radius: 11px;
   position: relative;
   cursor: pointer;
@@ -3578,6 +4374,22 @@ h6.wf-title { font-size: 16px; }
 .wf-button-lg { padding: 10px 20px; font-size: 16px; }
 .wf-button-xl { padding: 12px 24px; font-size: 18px; }
 
+/* Icon-only button (square padding) */
+.wf-button-icon-only { padding: 8px; }
+.wf-button-icon-only.wf-button-xs { padding: 4px; }
+.wf-button-icon-only.wf-button-sm { padding: 6px; }
+.wf-button-icon-only.wf-button-md { padding: 8px; }
+.wf-button-icon-only.wf-button-lg { padding: 10px; }
+.wf-button-icon-only.wf-button-xl { padding: 12px; }
+
+/* Button icon sizes - scale icon based on button size */
+.wf-button svg.wf-icon { width: 16px; height: 16px; }
+.wf-button-xs svg.wf-icon { width: 12px; height: 12px; }
+.wf-button-sm svg.wf-icon { width: 14px; height: 14px; }
+.wf-button-md svg.wf-icon { width: 16px; height: 16px; }
+.wf-button-lg svg.wf-icon { width: 20px; height: 20px; }
+.wf-button-xl svg.wf-icon { width: 24px; height: 24px; }
+
 .wf-button-disabled,
 .wf-button:disabled {
   opacity: 0.5;
@@ -3599,6 +4411,11 @@ h6.wf-title { font-size: 16px; }
   border-radius: 50%;
   animation: wf-spin 0.6s linear infinite;
 }
+
+/* Button justify overrides - higher specificity to override default center */
+.wf-button.wf-justify-start { justify-content: flex-start; }
+.wf-button.wf-justify-end { justify-content: flex-end; }
+.wf-button.wf-justify-between { justify-content: space-between; }
 
 /* Display Components */
 .wf-image {
@@ -3650,17 +4467,41 @@ img.wf-image {
   font-size: 14px;
 }
 
+.wf-placeholder-with-children {
+  position: relative;
+}
+
+.wf-placeholder-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.wf-placeholder-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 .wf-avatar {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 40px;
   height: 40px;
-  background: var(--wf-border);
+  background: var(--wf-fg);
   border-radius: 50%;
   font-size: 14px;
   font-weight: 600;
-  color: var(--wf-fg);
+  color: var(--wf-bg);
   overflow: hidden;
 }
 
@@ -3691,6 +4532,19 @@ img.wf-image {
   border-radius: 9999px;
 }
 
+/* Dot badge - circular status indicator (for empty badges) */
+.wf-badge-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border-radius: 50%;
+  background: var(--wf-border);
+}
+.wf-badge-dot.wf-badge-success { background: var(--wf-success); border-color: var(--wf-success); }
+.wf-badge-dot.wf-badge-warning { background: var(--wf-warning); border-color: var(--wf-warning); }
+.wf-badge-dot.wf-badge-danger { background: var(--wf-danger); border-color: var(--wf-danger); }
+.wf-badge-dot.wf-badge-primary { background: var(--wf-primary); border-color: var(--wf-primary); }
+
 .wf-badge-default { }
 .wf-badge-primary { background: var(--wf-primary); color: white; border-color: var(--wf-primary); }
 .wf-badge-secondary { background: var(--wf-muted); color: white; border-color: var(--wf-muted); }
@@ -3698,6 +4552,43 @@ img.wf-image {
 .wf-badge-warning { border-color: var(--wf-warning); }
 .wf-badge-danger { border-color: var(--wf-danger); }
 .wf-badge-info { border-color: var(--wf-primary); }
+
+/* Icon badge - circular background with icon */
+.wf-badge-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--wf-fg);
+}
+
+.wf-badge-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Icon badge sizes - use higher specificity to override svg.wf-icon */
+.wf-badge-icon-xs { width: 24px; height: 24px; }
+.wf-badge-icon-xs svg.wf-icon { width: 12px; height: 12px; }
+.wf-badge-icon-sm { width: 32px; height: 32px; }
+.wf-badge-icon-sm svg.wf-icon { width: 16px; height: 16px; }
+.wf-badge-icon-md { width: 40px; height: 40px; }
+.wf-badge-icon-md svg.wf-icon { width: 20px; height: 20px; }
+.wf-badge-icon-lg { width: 48px; height: 48px; }
+.wf-badge-icon-lg svg.wf-icon { width: 24px; height: 24px; }
+.wf-badge-icon-xl { width: 64px; height: 64px; }
+.wf-badge-icon-xl svg.wf-icon { width: 32px; height: 32px; }
+
+.wf-badge-icon-primary,
+.wf-badge-icon-success,
+.wf-badge-icon-warning,
+.wf-badge-icon-danger {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--wf-fg);
+}
 
 .wf-icon {
   display: inline-flex;
@@ -3707,6 +4598,20 @@ img.wf-image {
   vertical-align: middle;
   flex-shrink: 0;
 }
+
+/* SVG icons - size is controlled by CSS, not HTML attributes */
+svg.wf-icon {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+/* Icon size tokens - matches SVG renderer */
+svg.wf-icon-xs { width: 12px; height: 12px; }
+svg.wf-icon-sm { width: 16px; height: 16px; }
+svg.wf-icon-md { width: 20px; height: 20px; }
+svg.wf-icon-lg { width: 24px; height: 24px; }
+svg.wf-icon-xl { width: 32px; height: 32px; }
 
 .wf-icon svg {
   display: block;
@@ -3855,9 +4760,11 @@ img.wf-image {
   animation: wf-spin 0.6s linear infinite;
 }
 
+.wf-spinner-xs { width: 12px; height: 12px; border-width: 2px; }
 .wf-spinner-sm { width: 16px; height: 16px; border-width: 2px; }
-.wf-spinner-md { width: 20px; height: 20px; border-width: 2px; }
+.wf-spinner-md { width: 24px; height: 24px; border-width: 2px; }
 .wf-spinner-lg { width: 32px; height: 32px; border-width: 3px; }
+.wf-spinner-xl { width: 48px; height: 48px; border-width: 4px; }
 
 @keyframes wf-spin {
   to { transform: rotate(360deg); }
@@ -3996,6 +4903,27 @@ img.wf-image {
   cursor: not-allowed;
 }
 
+.wf-nav-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wf-nav-group-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--wf-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 8px 16px 4px;
+}
+
+.wf-nav-divider {
+  margin: 8px 0;
+  border: none;
+  border-top: 1px solid var(--wf-border);
+}
+
 .wf-tabs {
   border-bottom: 1px solid var(--wf-border);
 }
@@ -4050,6 +4978,91 @@ img.wf-image {
   color: var(--wf-muted);
 }
 
+/* Semantic Markers */
+
+/* Avatar marker - small circle placeholder */
+.wf-semantic-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--wf-muted);
+  color: var(--wf-bg);
+  font-size: 10px;
+  font-weight: 600;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.wf-semantic-avatar-xs { width: 16px; height: 16px; }
+.wf-semantic-avatar-sm { width: 24px; height: 24px; }
+.wf-semantic-avatar-md { width: 32px; height: 32px; }
+.wf-semantic-avatar-lg { width: 40px; height: 40px; }
+
+/* Badge marker - inline status indicator (wireframe style: black/white only) */
+.wf-semantic-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: 9999px;
+  vertical-align: middle;
+  background: var(--wf-fg);
+  color: var(--wf-bg);
+}
+
+/* Dot marker - status dot (wireframe style: black/gray only) */
+.wf-semantic-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 6px;
+  background: var(--wf-fg);
+}
+
+/* Inactive/default state uses gray */
+.wf-semantic-dot-default { background: var(--wf-muted); }
+
+/* Icon marker placeholder */
+.wf-semantic-icon {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--wf-muted);
+  vertical-align: middle;
+}
+
+/* Unknown marker - fallback */
+.wf-semantic-unknown {
+  display: inline-block;
+  font-size: 11px;
+  color: var(--wf-muted);
+  font-style: italic;
+}
+
+/* Avatar + text layout in table cells */
+.wf-cell-avatar-layout {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.wf-cell-avatar-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.4;
+}
+
+.wf-cell-avatar-text span:first-child {
+  font-weight: 500;
+}
+
+.wf-cell-avatar-text span:last-child:not(:first-child) {
+  font-size: 12px;
+  color: var(--wf-muted);
+}
+
 /* Accessibility Utilities */
 .sr-only {
   position: absolute;
@@ -4087,7 +5100,7 @@ img.wf-image {
   </style>
 </head>
 <body>
-<div class="wf-page" style="width: 1440px; height: 900px;" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
+<div class="wf-page" style="position: relative; width: 1440px; height: 900px; overflow: hidden" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
 <title>Test</title>
   <p class="wf-text">Hello</p>
 </div>
@@ -4103,6 +5116,20 @@ exports[`Render Snapshots > Full HTML Document Snapshots > should render complet
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wireframe</title>
   <style>
+/* Browser centering styles */
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: #f4f4f5;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  box-sizing: border-box;
+}
 /* wireweave CSS Variables */
 :root {
   --wf-primary: #FFFFFF;
@@ -4127,17 +5154,29 @@ exports[`Render Snapshots > Full HTML Document Snapshots > should render complet
   font-family: var(--wf-font);
   color: var(--wf-fg);
   background: var(--wf-bg);
-  min-height: 100vh;
   box-sizing: border-box;
   position: relative;
   display: flex;
   flex-direction: column;
+  /* Wireframe boundary visualization */
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Col direct child of page should fill page height */
+.wf-page > .wf-col {
+  flex: 1;
+  min-height: 0;
 }
 
 /* Row containing sidebar should fill remaining space */
 .wf-page > .wf-row:has(.wf-sidebar),
-.wf-page > .wf-row:has(.wf-main) {
+.wf-page > .wf-row:has(.wf-main),
+.wf-page > .wf-col > .wf-row:has(.wf-sidebar),
+.wf-page > .wf-col > .wf-row:has(.wf-main) {
   flex: 1;
+  min-height: 0;
   align-items: stretch;
 }
 
@@ -4154,66 +5193,49 @@ exports[`Render Snapshots > Full HTML Document Snapshots > should render complet
 }
 
 /* Page centered content (both horizontal and vertical) */
-.wf-page-centered {
+.wf-page.wf-page-centered {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-/* Grid System */
+/* Prevent direct children from stretching in centered pages */
+.wf-page.wf-page-centered > * {
+  flex: 0 0 auto;
+}
+
+/* Grid System - Explicit Gap Only */
 .wf-row {
   display: flex;
   flex-wrap: nowrap;
-  margin-left: -8px;
-  margin-right: -8px;
-}
-
-/* When gap is used, disable gutter system */
-.wf-row[class*="gap-"] {
-  margin-left: 0;
-  margin-right: 0;
 }
 
 .wf-col {
+  display: flex;
+  flex-direction: column;
   flex: 1 0 0%;
-  padding-left: 8px;
-  padding-right: 8px;
   box-sizing: border-box;
 }
 
-/* When parent row has gap, disable column padding */
-.wf-row[class*="gap-"] > .wf-col {
-  padding-left: 0;
-  padding-right: 0;
+/* When explicit width is set, don't flex-grow */
+.wf-row[style*="width:"],
+.wf-col[style*="width:"] {
+  flex: 0 0 auto;
 }
 
-.wf-col-1 { flex: 0 0 auto; width: 8.3333%; }
-.wf-col-2 { flex: 0 0 auto; width: 16.6667%; }
-.wf-col-3 { flex: 0 0 auto; width: 25.0000%; }
-.wf-col-4 { flex: 0 0 auto; width: 33.3333%; }
-.wf-col-5 { flex: 0 0 auto; width: 41.6667%; }
-.wf-col-6 { flex: 0 0 auto; width: 50.0000%; }
-.wf-col-7 { flex: 0 0 auto; width: 58.3333%; }
-.wf-col-8 { flex: 0 0 auto; width: 66.6667%; }
-.wf-col-9 { flex: 0 0 auto; width: 75.0000%; }
-.wf-col-10 { flex: 0 0 auto; width: 83.3333%; }
-.wf-col-11 { flex: 0 0 auto; width: 91.6667%; }
-.wf-col-12 { flex: 0 0 auto; width: 100.0000%; }
-
-/* Gap-aware column sizing */
-.wf-row[class*="gap-"] > .wf-col-1 { flex: 1 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-2 { flex: 2 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-3 { flex: 3 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-4 { flex: 4 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-5 { flex: 5 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-6 { flex: 6 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-7 { flex: 7 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-8 { flex: 8 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-9 { flex: 9 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-10 { flex: 10 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-11 { flex: 11 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-12 { flex: 12 0 0; width: auto; }
+.wf-col-1 { flex: 1 0 0%; min-width: 0; }
+.wf-col-2 { flex: 2 0 0%; min-width: 0; }
+.wf-col-3 { flex: 3 0 0%; min-width: 0; }
+.wf-col-4 { flex: 4 0 0%; min-width: 0; }
+.wf-col-5 { flex: 5 0 0%; min-width: 0; }
+.wf-col-6 { flex: 6 0 0%; min-width: 0; }
+.wf-col-7 { flex: 7 0 0%; min-width: 0; }
+.wf-col-8 { flex: 8 0 0%; min-width: 0; }
+.wf-col-9 { flex: 9 0 0%; min-width: 0; }
+.wf-col-10 { flex: 10 0 0%; min-width: 0; }
+.wf-col-11 { flex: 11 0 0%; min-width: 0; }
+.wf-col-12 { flex: 12 0 0%; min-width: 0; }
 
 
 /* Spacing Utilities */
@@ -4421,7 +5443,7 @@ exports[`Render Snapshots > Full HTML Document Snapshots > should render complet
 .wf-gap-8 { gap: 32px; }
 
 /* Size Utilities */
-.wf-w-full { width: 100%; display: block; }
+.wf-w-full { width: 100%; }
 .wf-w-auto { width: auto; }
 .wf-w-fit { width: fit-content; }
 .wf-w-screen { width: 100vw; }
@@ -4474,16 +5496,54 @@ exports[`Render Snapshots > Full HTML Document Snapshots > should render complet
 /* Layout Components */
 .wf-header {
   border-bottom: 1px solid var(--wf-border);
-  padding: 16px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+}
+
+.wf-header > .wf-row {
+  flex: 1;
 }
 
 .wf-header.wf-no-border {
   border-bottom: none;
 }
 
+/* Header avatar - smaller size */
+.wf-header .wf-avatar {
+  width: 32px;
+  height: 32px;
+  font-size: 12px;
+}
+
+/* Header icon buttons - smaller size */
+.wf-header .wf-button-icon-only {
+  padding: 6px;
+}
+
+.wf-header .wf-button-icon-only svg.wf-icon {
+  width: 18px;
+  height: 18px;
+}
+
 .wf-main {
   flex: 1;
   padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Scrollable main content */
+.wf-main.wf-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Main content should align to top, not stretch to fill */
+/* But allow explicit flex=1 to override */
+.wf-main > .wf-col:not(.wf-flex-1) {
+  flex: 0 0 auto;
 }
 
 .wf-footer {
@@ -4498,8 +5558,9 @@ exports[`Render Snapshots > Full HTML Document Snapshots > should render complet
 .wf-sidebar {
   width: 256px;
   border-right: 1px solid var(--wf-border);
-  padding: 16px;
+  padding: 16px 16px 16px 20px;
   flex-shrink: 0;
+  align-self: stretch;
 }
 
 .wf-sidebar-right {
@@ -4507,8 +5568,40 @@ exports[`Render Snapshots > Full HTML Document Snapshots > should render complet
   border-left: 1px solid var(--wf-border);
 }
 
+/* Sidebar logo area - first row with logo */
+.wf-sidebar > .wf-row:first-child {
+  margin-bottom: 24px;
+}
+
+/* Sidebar navigation links */
+.wf-sidebar .wf-nav-link {
+  font-size: 14px;
+  padding: 8px 12px;
+}
+
+/* Sidebar nav link icons */
+.wf-sidebar .wf-nav-link svg.wf-icon {
+  width: 18px;
+  height: 18px;
+}
+
 .wf-section {
   margin-bottom: 24px;
+}
+
+/* Section title in sidebar - smaller muted style */
+.wf-sidebar .wf-section .wf-title {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--wf-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+/* Sidebar header text - prevent wrapping for logo text */
+.wf-sidebar .wf-header .wf-text {
+  white-space: nowrap;
 }
 
 /* Container Components */
@@ -4517,6 +5610,17 @@ exports[`Render Snapshots > Full HTML Document Snapshots > should render complet
   border-radius: var(--wf-radius);
   background: var(--wf-bg);
   padding: 16px;
+}
+
+/* Cards in flex rows: respect explicit width, shrink if needed */
+.wf-row > .wf-card {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+/* Cards without explicit width should expand to fill space */
+.wf-row > .wf-card-flex {
+  flex: 1 1 0%;
 }
 
 .wf-card-title {
@@ -4671,6 +5775,11 @@ exports[`Render Snapshots > Full HTML Document Snapshots > should render complet
   line-height: 1.25;
 }
 
+/* Remove bottom margin when title is in a row (inline with other elements) */
+.wf-row .wf-title {
+  margin-bottom: 0;
+}
+
 h1.wf-title { font-size: 36px; }
 h2.wf-title { font-size: 30px; }
 h3.wf-title { font-size: 24px; }
@@ -4748,6 +5857,40 @@ h6.wf-title { font-size: 16px; }
   border-color: var(--wf-danger);
 }
 
+/* Input with icon */
+.wf-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.wf-input-wrapper .wf-input {
+  padding-left: 36px;
+}
+
+.wf-input-icon {
+  position: absolute;
+  left: 12px;
+  color: var(--wf-muted);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+}
+
+.wf-input-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Input wrapper in flex rows */
+.wf-row > .wf-input-wrapper {
+  flex: 1 1 auto;
+  min-width: 120px;
+}
+
 .wf-textarea {
   min-height: 80px;
   resize: vertical;
@@ -4763,7 +5906,7 @@ h6.wf-title { font-size: 16px; }
 
 .wf-checkbox,
 .wf-radio {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
@@ -4793,7 +5936,7 @@ h6.wf-title { font-size: 16px; }
   appearance: none;
   width: 40px;
   height: 22px;
-  background: var(--wf-border);
+  background: var(--wf-muted);
   border-radius: 11px;
   position: relative;
   cursor: pointer;
@@ -4935,6 +6078,22 @@ h6.wf-title { font-size: 16px; }
 .wf-button-lg { padding: 10px 20px; font-size: 16px; }
 .wf-button-xl { padding: 12px 24px; font-size: 18px; }
 
+/* Icon-only button (square padding) */
+.wf-button-icon-only { padding: 8px; }
+.wf-button-icon-only.wf-button-xs { padding: 4px; }
+.wf-button-icon-only.wf-button-sm { padding: 6px; }
+.wf-button-icon-only.wf-button-md { padding: 8px; }
+.wf-button-icon-only.wf-button-lg { padding: 10px; }
+.wf-button-icon-only.wf-button-xl { padding: 12px; }
+
+/* Button icon sizes - scale icon based on button size */
+.wf-button svg.wf-icon { width: 16px; height: 16px; }
+.wf-button-xs svg.wf-icon { width: 12px; height: 12px; }
+.wf-button-sm svg.wf-icon { width: 14px; height: 14px; }
+.wf-button-md svg.wf-icon { width: 16px; height: 16px; }
+.wf-button-lg svg.wf-icon { width: 20px; height: 20px; }
+.wf-button-xl svg.wf-icon { width: 24px; height: 24px; }
+
 .wf-button-disabled,
 .wf-button:disabled {
   opacity: 0.5;
@@ -4956,6 +6115,11 @@ h6.wf-title { font-size: 16px; }
   border-radius: 50%;
   animation: wf-spin 0.6s linear infinite;
 }
+
+/* Button justify overrides - higher specificity to override default center */
+.wf-button.wf-justify-start { justify-content: flex-start; }
+.wf-button.wf-justify-end { justify-content: flex-end; }
+.wf-button.wf-justify-between { justify-content: space-between; }
 
 /* Display Components */
 .wf-image {
@@ -5007,17 +6171,41 @@ img.wf-image {
   font-size: 14px;
 }
 
+.wf-placeholder-with-children {
+  position: relative;
+}
+
+.wf-placeholder-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.wf-placeholder-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 .wf-avatar {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 40px;
   height: 40px;
-  background: var(--wf-border);
+  background: var(--wf-fg);
   border-radius: 50%;
   font-size: 14px;
   font-weight: 600;
-  color: var(--wf-fg);
+  color: var(--wf-bg);
   overflow: hidden;
 }
 
@@ -5048,6 +6236,19 @@ img.wf-image {
   border-radius: 9999px;
 }
 
+/* Dot badge - circular status indicator (for empty badges) */
+.wf-badge-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border-radius: 50%;
+  background: var(--wf-border);
+}
+.wf-badge-dot.wf-badge-success { background: var(--wf-success); border-color: var(--wf-success); }
+.wf-badge-dot.wf-badge-warning { background: var(--wf-warning); border-color: var(--wf-warning); }
+.wf-badge-dot.wf-badge-danger { background: var(--wf-danger); border-color: var(--wf-danger); }
+.wf-badge-dot.wf-badge-primary { background: var(--wf-primary); border-color: var(--wf-primary); }
+
 .wf-badge-default { }
 .wf-badge-primary { background: var(--wf-primary); color: white; border-color: var(--wf-primary); }
 .wf-badge-secondary { background: var(--wf-muted); color: white; border-color: var(--wf-muted); }
@@ -5055,6 +6256,43 @@ img.wf-image {
 .wf-badge-warning { border-color: var(--wf-warning); }
 .wf-badge-danger { border-color: var(--wf-danger); }
 .wf-badge-info { border-color: var(--wf-primary); }
+
+/* Icon badge - circular background with icon */
+.wf-badge-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--wf-fg);
+}
+
+.wf-badge-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Icon badge sizes - use higher specificity to override svg.wf-icon */
+.wf-badge-icon-xs { width: 24px; height: 24px; }
+.wf-badge-icon-xs svg.wf-icon { width: 12px; height: 12px; }
+.wf-badge-icon-sm { width: 32px; height: 32px; }
+.wf-badge-icon-sm svg.wf-icon { width: 16px; height: 16px; }
+.wf-badge-icon-md { width: 40px; height: 40px; }
+.wf-badge-icon-md svg.wf-icon { width: 20px; height: 20px; }
+.wf-badge-icon-lg { width: 48px; height: 48px; }
+.wf-badge-icon-lg svg.wf-icon { width: 24px; height: 24px; }
+.wf-badge-icon-xl { width: 64px; height: 64px; }
+.wf-badge-icon-xl svg.wf-icon { width: 32px; height: 32px; }
+
+.wf-badge-icon-primary,
+.wf-badge-icon-success,
+.wf-badge-icon-warning,
+.wf-badge-icon-danger {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--wf-fg);
+}
 
 .wf-icon {
   display: inline-flex;
@@ -5064,6 +6302,20 @@ img.wf-image {
   vertical-align: middle;
   flex-shrink: 0;
 }
+
+/* SVG icons - size is controlled by CSS, not HTML attributes */
+svg.wf-icon {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+/* Icon size tokens - matches SVG renderer */
+svg.wf-icon-xs { width: 12px; height: 12px; }
+svg.wf-icon-sm { width: 16px; height: 16px; }
+svg.wf-icon-md { width: 20px; height: 20px; }
+svg.wf-icon-lg { width: 24px; height: 24px; }
+svg.wf-icon-xl { width: 32px; height: 32px; }
 
 .wf-icon svg {
   display: block;
@@ -5212,9 +6464,11 @@ img.wf-image {
   animation: wf-spin 0.6s linear infinite;
 }
 
+.wf-spinner-xs { width: 12px; height: 12px; border-width: 2px; }
 .wf-spinner-sm { width: 16px; height: 16px; border-width: 2px; }
-.wf-spinner-md { width: 20px; height: 20px; border-width: 2px; }
+.wf-spinner-md { width: 24px; height: 24px; border-width: 2px; }
 .wf-spinner-lg { width: 32px; height: 32px; border-width: 3px; }
+.wf-spinner-xl { width: 48px; height: 48px; border-width: 4px; }
 
 @keyframes wf-spin {
   to { transform: rotate(360deg); }
@@ -5353,6 +6607,27 @@ img.wf-image {
   cursor: not-allowed;
 }
 
+.wf-nav-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wf-nav-group-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--wf-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 8px 16px 4px;
+}
+
+.wf-nav-divider {
+  margin: 8px 0;
+  border: none;
+  border-top: 1px solid var(--wf-border);
+}
+
 .wf-tabs {
   border-bottom: 1px solid var(--wf-border);
 }
@@ -5404,6 +6679,91 @@ img.wf-image {
 
 .wf-breadcrumb-separator {
   margin: 0 8px;
+  color: var(--wf-muted);
+}
+
+/* Semantic Markers */
+
+/* Avatar marker - small circle placeholder */
+.wf-semantic-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--wf-muted);
+  color: var(--wf-bg);
+  font-size: 10px;
+  font-weight: 600;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.wf-semantic-avatar-xs { width: 16px; height: 16px; }
+.wf-semantic-avatar-sm { width: 24px; height: 24px; }
+.wf-semantic-avatar-md { width: 32px; height: 32px; }
+.wf-semantic-avatar-lg { width: 40px; height: 40px; }
+
+/* Badge marker - inline status indicator (wireframe style: black/white only) */
+.wf-semantic-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: 9999px;
+  vertical-align: middle;
+  background: var(--wf-fg);
+  color: var(--wf-bg);
+}
+
+/* Dot marker - status dot (wireframe style: black/gray only) */
+.wf-semantic-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 6px;
+  background: var(--wf-fg);
+}
+
+/* Inactive/default state uses gray */
+.wf-semantic-dot-default { background: var(--wf-muted); }
+
+/* Icon marker placeholder */
+.wf-semantic-icon {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--wf-muted);
+  vertical-align: middle;
+}
+
+/* Unknown marker - fallback */
+.wf-semantic-unknown {
+  display: inline-block;
+  font-size: 11px;
+  color: var(--wf-muted);
+  font-style: italic;
+}
+
+/* Avatar + text layout in table cells */
+.wf-cell-avatar-layout {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.wf-cell-avatar-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.4;
+}
+
+.wf-cell-avatar-text span:first-child {
+  font-weight: 500;
+}
+
+.wf-cell-avatar-text span:last-child:not(:first-child) {
+  font-size: 12px;
   color: var(--wf-muted);
 }
 
@@ -5444,9 +6804,9 @@ img.wf-image {
   </style>
 </head>
 <body>
-<div class="wf-page" style="width: 1440px; height: 900px;" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
+<div class="wf-page" style="position: relative; width: 1440px; height: 900px; overflow: hidden" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
 <title>Dark</title>
-  <div class="wf-card">
+  <div class="wf-card wf-card-flex">
       <p class="wf-text">Dark mode</p>
   </div>
 </div>
@@ -5455,7 +6815,7 @@ img.wf-image {
 `;
 
 exports[`Render Snapshots > HTML Snapshots > should render basic layout 1`] = `
-"<div class="wf-page" style="width: 1440px; height: 900px;" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
+"<div class="wf-page" style="position: relative; width: 1440px; height: 900px; overflow: hidden" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
   <header class="wf-header">
       <h1 class="wf-title">Header</h1>
   </header>
@@ -5469,8 +6829,8 @@ exports[`Render Snapshots > HTML Snapshots > should render basic layout 1`] = `
 `;
 
 exports[`Render Snapshots > HTML Snapshots > should render card with content 1`] = `
-"<div class="wf-page" style="width: 1440px; height: 900px;" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
-  <div class="wf-card" style="padding: 4px">
+"<div class="wf-page" style="position: relative; width: 1440px; height: 900px; overflow: hidden" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
+  <div class="wf-card wf-card-flex" style="padding: 16px">
       <h2 class="wf-title">Card Title</h2>
       <p class="wf-text">Card content goes here</p>
       <button class="wf-button wf-button-primary">Action</button>
@@ -5479,13 +6839,13 @@ exports[`Render Snapshots > HTML Snapshots > should render card with content 1`]
 `;
 
 exports[`Render Snapshots > HTML Snapshots > should render empty page 1`] = `
-"<div class="wf-page" style="width: 1440px; height: 900px;" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
+"<div class="wf-page" style="position: relative; width: 1440px; height: 900px; overflow: hidden" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
 
 </div>"
 `;
 
 exports[`Render Snapshots > HTML Snapshots > should render feedback components 1`] = `
-"<div class="wf-page" style="width: 1440px; height: 900px;" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
+"<div class="wf-page" style="position: relative; width: 1440px; height: 900px; overflow: hidden" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
   <div class="wf-alert wf-alert-success" role="alert">Success message</div>
   <div class="wf-progress" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
   
@@ -5496,10 +6856,10 @@ exports[`Render Snapshots > HTML Snapshots > should render feedback components 1
 `;
 
 exports[`Render Snapshots > HTML Snapshots > should render fixed layout (no responsive classes) 1`] = `
-"<div class="wf-page" style="width: 1440px; height: 900px;" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
+"<div class="wf-page" style="position: relative; width: 1440px; height: 900px; overflow: hidden" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
   <div class="wf-row">
       <div class="wf-col wf-col-6">
-            <div class="wf-card">
+            <div class="wf-card wf-card-flex">
                     <p class="wf-text">Item</p>
             </div>
       </div>
@@ -5508,8 +6868,8 @@ exports[`Render Snapshots > HTML Snapshots > should render fixed layout (no resp
 `;
 
 exports[`Render Snapshots > HTML Snapshots > should render form elements 1`] = `
-"<div class="wf-page" style="width: 1440px; height: 900px;" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
-  <div class="wf-card" style="padding: 4px">
+"<div class="wf-page" style="position: relative; width: 1440px; height: 900px; overflow: hidden" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
+  <div class="wf-card wf-card-flex" style="padding: 16px">
       <div class="wf-row">
             <label class="wf-input-label">Email</label>
             <input class="wf-input" type="email" placeholder="Enter email" required />
@@ -5527,7 +6887,7 @@ exports[`Render Snapshots > HTML Snapshots > should render form elements 1`] = `
 `;
 
 exports[`Render Snapshots > HTML Snapshots > should render grid layout 1`] = `
-"<div class="wf-page" style="width: 1440px; height: 900px;" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
+"<div class="wf-page" style="position: relative; width: 1440px; height: 900px; overflow: hidden" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
   <div class="wf-row">
       <div class="wf-col wf-col-4">
             <p class="wf-text">Column 1</p>
@@ -5543,12 +6903,12 @@ exports[`Render Snapshots > HTML Snapshots > should render grid layout 1`] = `
 `;
 
 exports[`Render Snapshots > HTML Snapshots > should render modal 1`] = `
-"<div class="wf-page" style="width: 1440px; height: 900px;" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
+"<div class="wf-page" style="position: relative; width: 1440px; height: 900px; overflow: hidden" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
   <div class="wf-modal-backdrop">
     <div class="wf-modal" role="dialog" aria-modal="true">
   <h2 class="wf-title">Confirm Action</h2>
       <p class="wf-text">Are you sure you want to proceed?</p>
-      <div class="wf-row wf-justify-end" style="gap: 2px">
+      <div class="wf-row wf-justify-end" style="gap: 8px">
             <button class="wf-button">Cancel</button>
             <button class="wf-button wf-button-primary">Confirm</button>
       </div>
@@ -5558,7 +6918,7 @@ exports[`Render Snapshots > HTML Snapshots > should render modal 1`] = `
 `;
 
 exports[`Render Snapshots > HTML Snapshots > should render navigation 1`] = `
-"<div class="wf-page" style="width: 1440px; height: 900px;" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
+"<div class="wf-page" style="position: relative; width: 1440px; height: 900px; overflow: hidden" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
   <nav class="wf-nav wf-nav-vertical">
   <a class="wf-nav-link" href="#">Home</a>
   <a class="wf-nav-link" href="#">About</a>
@@ -5568,14 +6928,14 @@ exports[`Render Snapshots > HTML Snapshots > should render navigation 1`] = `
 `;
 
 exports[`Render Snapshots > HTML Snapshots > should render page with title 1`] = `
-"<div class="wf-page" style="width: 1440px; height: 900px;" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
+"<div class="wf-page" style="position: relative; width: 1440px; height: 900px; overflow: hidden" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
 <title>Home</title>
 
 </div>"
 `;
 
 exports[`Render Snapshots > HTML Snapshots > should render table 1`] = `
-"<div class="wf-page" style="width: 1440px; height: 900px;" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
+"<div class="wf-page" style="position: relative; width: 1440px; height: 900px; overflow: hidden" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
   <table class="wf-table">
   <thead><tr><th>Name</th><th>Email</th><th>Role</th></tr></thead>
   <tbody><tr><td>Alice</td><td>alice@example.com</td><td>Admin</td></tr><tr><td>Bob</td><td>bob@example.com</td><td>User</td></tr></tbody>
@@ -5588,8 +6948,16 @@ exports[`Render Snapshots > SVG Snapshots > should render buttons to SVG 1`] = `
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
      viewBox="0 0 800 600" width="800" height="600">
   <rect width="100%" height="100%" fill="#ffffff"/>
-  <foreignObject x="20" y="20" width="760" height="560">
-    <div xmlns="http://www.w3.org/1999/xhtml" style="width: 100%; height: 100%; overflow: hidden;">
+  <foreignObject x="0" y="0" width="800" height="600">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="
+      width: 800px;
+      height: 600px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+    ">
       <style type="text/css">
 /* wireweave CSS Variables */
 :root {
@@ -5615,17 +6983,29 @@ exports[`Render Snapshots > SVG Snapshots > should render buttons to SVG 1`] = `
   font-family: var(--wf-font);
   color: var(--wf-fg);
   background: var(--wf-bg);
-  min-height: 100vh;
   box-sizing: border-box;
   position: relative;
   display: flex;
   flex-direction: column;
+  /* Wireframe boundary visualization */
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Col direct child of page should fill page height */
+.wf-page > .wf-col {
+  flex: 1;
+  min-height: 0;
 }
 
 /* Row containing sidebar should fill remaining space */
 .wf-page > .wf-row:has(.wf-sidebar),
-.wf-page > .wf-row:has(.wf-main) {
+.wf-page > .wf-row:has(.wf-main),
+.wf-page > .wf-col > .wf-row:has(.wf-sidebar),
+.wf-page > .wf-col > .wf-row:has(.wf-main) {
   flex: 1;
+  min-height: 0;
   align-items: stretch;
 }
 
@@ -5642,66 +7022,49 @@ exports[`Render Snapshots > SVG Snapshots > should render buttons to SVG 1`] = `
 }
 
 /* Page centered content (both horizontal and vertical) */
-.wf-page-centered {
+.wf-page.wf-page-centered {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-/* Grid System */
+/* Prevent direct children from stretching in centered pages */
+.wf-page.wf-page-centered > * {
+  flex: 0 0 auto;
+}
+
+/* Grid System - Explicit Gap Only */
 .wf-row {
   display: flex;
   flex-wrap: nowrap;
-  margin-left: -8px;
-  margin-right: -8px;
-}
-
-/* When gap is used, disable gutter system */
-.wf-row[class*="gap-"] {
-  margin-left: 0;
-  margin-right: 0;
 }
 
 .wf-col {
+  display: flex;
+  flex-direction: column;
   flex: 1 0 0%;
-  padding-left: 8px;
-  padding-right: 8px;
   box-sizing: border-box;
 }
 
-/* When parent row has gap, disable column padding */
-.wf-row[class*="gap-"] > .wf-col {
-  padding-left: 0;
-  padding-right: 0;
+/* When explicit width is set, don't flex-grow */
+.wf-row[style*="width:"],
+.wf-col[style*="width:"] {
+  flex: 0 0 auto;
 }
 
-.wf-col-1 { flex: 0 0 auto; width: 8.3333%; }
-.wf-col-2 { flex: 0 0 auto; width: 16.6667%; }
-.wf-col-3 { flex: 0 0 auto; width: 25.0000%; }
-.wf-col-4 { flex: 0 0 auto; width: 33.3333%; }
-.wf-col-5 { flex: 0 0 auto; width: 41.6667%; }
-.wf-col-6 { flex: 0 0 auto; width: 50.0000%; }
-.wf-col-7 { flex: 0 0 auto; width: 58.3333%; }
-.wf-col-8 { flex: 0 0 auto; width: 66.6667%; }
-.wf-col-9 { flex: 0 0 auto; width: 75.0000%; }
-.wf-col-10 { flex: 0 0 auto; width: 83.3333%; }
-.wf-col-11 { flex: 0 0 auto; width: 91.6667%; }
-.wf-col-12 { flex: 0 0 auto; width: 100.0000%; }
-
-/* Gap-aware column sizing */
-.wf-row[class*="gap-"] > .wf-col-1 { flex: 1 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-2 { flex: 2 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-3 { flex: 3 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-4 { flex: 4 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-5 { flex: 5 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-6 { flex: 6 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-7 { flex: 7 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-8 { flex: 8 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-9 { flex: 9 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-10 { flex: 10 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-11 { flex: 11 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-12 { flex: 12 0 0; width: auto; }
+.wf-col-1 { flex: 1 0 0%; min-width: 0; }
+.wf-col-2 { flex: 2 0 0%; min-width: 0; }
+.wf-col-3 { flex: 3 0 0%; min-width: 0; }
+.wf-col-4 { flex: 4 0 0%; min-width: 0; }
+.wf-col-5 { flex: 5 0 0%; min-width: 0; }
+.wf-col-6 { flex: 6 0 0%; min-width: 0; }
+.wf-col-7 { flex: 7 0 0%; min-width: 0; }
+.wf-col-8 { flex: 8 0 0%; min-width: 0; }
+.wf-col-9 { flex: 9 0 0%; min-width: 0; }
+.wf-col-10 { flex: 10 0 0%; min-width: 0; }
+.wf-col-11 { flex: 11 0 0%; min-width: 0; }
+.wf-col-12 { flex: 12 0 0%; min-width: 0; }
 
 
 /* Spacing Utilities */
@@ -5909,7 +7272,7 @@ exports[`Render Snapshots > SVG Snapshots > should render buttons to SVG 1`] = `
 .wf-gap-8 { gap: 32px; }
 
 /* Size Utilities */
-.wf-w-full { width: 100%; display: block; }
+.wf-w-full { width: 100%; }
 .wf-w-auto { width: auto; }
 .wf-w-fit { width: fit-content; }
 .wf-w-screen { width: 100vw; }
@@ -5962,16 +7325,54 @@ exports[`Render Snapshots > SVG Snapshots > should render buttons to SVG 1`] = `
 /* Layout Components */
 .wf-header {
   border-bottom: 1px solid var(--wf-border);
-  padding: 16px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+}
+
+.wf-header > .wf-row {
+  flex: 1;
 }
 
 .wf-header.wf-no-border {
   border-bottom: none;
 }
 
+/* Header avatar - smaller size */
+.wf-header .wf-avatar {
+  width: 32px;
+  height: 32px;
+  font-size: 12px;
+}
+
+/* Header icon buttons - smaller size */
+.wf-header .wf-button-icon-only {
+  padding: 6px;
+}
+
+.wf-header .wf-button-icon-only svg.wf-icon {
+  width: 18px;
+  height: 18px;
+}
+
 .wf-main {
   flex: 1;
   padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Scrollable main content */
+.wf-main.wf-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Main content should align to top, not stretch to fill */
+/* But allow explicit flex=1 to override */
+.wf-main > .wf-col:not(.wf-flex-1) {
+  flex: 0 0 auto;
 }
 
 .wf-footer {
@@ -5986,8 +7387,9 @@ exports[`Render Snapshots > SVG Snapshots > should render buttons to SVG 1`] = `
 .wf-sidebar {
   width: 256px;
   border-right: 1px solid var(--wf-border);
-  padding: 16px;
+  padding: 16px 16px 16px 20px;
   flex-shrink: 0;
+  align-self: stretch;
 }
 
 .wf-sidebar-right {
@@ -5995,8 +7397,40 @@ exports[`Render Snapshots > SVG Snapshots > should render buttons to SVG 1`] = `
   border-left: 1px solid var(--wf-border);
 }
 
+/* Sidebar logo area - first row with logo */
+.wf-sidebar > .wf-row:first-child {
+  margin-bottom: 24px;
+}
+
+/* Sidebar navigation links */
+.wf-sidebar .wf-nav-link {
+  font-size: 14px;
+  padding: 8px 12px;
+}
+
+/* Sidebar nav link icons */
+.wf-sidebar .wf-nav-link svg.wf-icon {
+  width: 18px;
+  height: 18px;
+}
+
 .wf-section {
   margin-bottom: 24px;
+}
+
+/* Section title in sidebar - smaller muted style */
+.wf-sidebar .wf-section .wf-title {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--wf-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+/* Sidebar header text - prevent wrapping for logo text */
+.wf-sidebar .wf-header .wf-text {
+  white-space: nowrap;
 }
 
 /* Container Components */
@@ -6005,6 +7439,17 @@ exports[`Render Snapshots > SVG Snapshots > should render buttons to SVG 1`] = `
   border-radius: var(--wf-radius);
   background: var(--wf-bg);
   padding: 16px;
+}
+
+/* Cards in flex rows: respect explicit width, shrink if needed */
+.wf-row > .wf-card {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+/* Cards without explicit width should expand to fill space */
+.wf-row > .wf-card-flex {
+  flex: 1 1 0%;
 }
 
 .wf-card-title {
@@ -6159,6 +7604,11 @@ exports[`Render Snapshots > SVG Snapshots > should render buttons to SVG 1`] = `
   line-height: 1.25;
 }
 
+/* Remove bottom margin when title is in a row (inline with other elements) */
+.wf-row .wf-title {
+  margin-bottom: 0;
+}
+
 h1.wf-title { font-size: 36px; }
 h2.wf-title { font-size: 30px; }
 h3.wf-title { font-size: 24px; }
@@ -6236,6 +7686,40 @@ h6.wf-title { font-size: 16px; }
   border-color: var(--wf-danger);
 }
 
+/* Input with icon */
+.wf-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.wf-input-wrapper .wf-input {
+  padding-left: 36px;
+}
+
+.wf-input-icon {
+  position: absolute;
+  left: 12px;
+  color: var(--wf-muted);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+}
+
+.wf-input-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Input wrapper in flex rows */
+.wf-row > .wf-input-wrapper {
+  flex: 1 1 auto;
+  min-width: 120px;
+}
+
 .wf-textarea {
   min-height: 80px;
   resize: vertical;
@@ -6251,7 +7735,7 @@ h6.wf-title { font-size: 16px; }
 
 .wf-checkbox,
 .wf-radio {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
@@ -6281,7 +7765,7 @@ h6.wf-title { font-size: 16px; }
   appearance: none;
   width: 40px;
   height: 22px;
-  background: var(--wf-border);
+  background: var(--wf-muted);
   border-radius: 11px;
   position: relative;
   cursor: pointer;
@@ -6423,6 +7907,22 @@ h6.wf-title { font-size: 16px; }
 .wf-button-lg { padding: 10px 20px; font-size: 16px; }
 .wf-button-xl { padding: 12px 24px; font-size: 18px; }
 
+/* Icon-only button (square padding) */
+.wf-button-icon-only { padding: 8px; }
+.wf-button-icon-only.wf-button-xs { padding: 4px; }
+.wf-button-icon-only.wf-button-sm { padding: 6px; }
+.wf-button-icon-only.wf-button-md { padding: 8px; }
+.wf-button-icon-only.wf-button-lg { padding: 10px; }
+.wf-button-icon-only.wf-button-xl { padding: 12px; }
+
+/* Button icon sizes - scale icon based on button size */
+.wf-button svg.wf-icon { width: 16px; height: 16px; }
+.wf-button-xs svg.wf-icon { width: 12px; height: 12px; }
+.wf-button-sm svg.wf-icon { width: 14px; height: 14px; }
+.wf-button-md svg.wf-icon { width: 16px; height: 16px; }
+.wf-button-lg svg.wf-icon { width: 20px; height: 20px; }
+.wf-button-xl svg.wf-icon { width: 24px; height: 24px; }
+
 .wf-button-disabled,
 .wf-button:disabled {
   opacity: 0.5;
@@ -6444,6 +7944,11 @@ h6.wf-title { font-size: 16px; }
   border-radius: 50%;
   animation: wf-spin 0.6s linear infinite;
 }
+
+/* Button justify overrides - higher specificity to override default center */
+.wf-button.wf-justify-start { justify-content: flex-start; }
+.wf-button.wf-justify-end { justify-content: flex-end; }
+.wf-button.wf-justify-between { justify-content: space-between; }
 
 /* Display Components */
 .wf-image {
@@ -6495,17 +8000,41 @@ img.wf-image {
   font-size: 14px;
 }
 
+.wf-placeholder-with-children {
+  position: relative;
+}
+
+.wf-placeholder-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.wf-placeholder-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 .wf-avatar {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 40px;
   height: 40px;
-  background: var(--wf-border);
+  background: var(--wf-fg);
   border-radius: 50%;
   font-size: 14px;
   font-weight: 600;
-  color: var(--wf-fg);
+  color: var(--wf-bg);
   overflow: hidden;
 }
 
@@ -6536,6 +8065,19 @@ img.wf-image {
   border-radius: 9999px;
 }
 
+/* Dot badge - circular status indicator (for empty badges) */
+.wf-badge-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border-radius: 50%;
+  background: var(--wf-border);
+}
+.wf-badge-dot.wf-badge-success { background: var(--wf-success); border-color: var(--wf-success); }
+.wf-badge-dot.wf-badge-warning { background: var(--wf-warning); border-color: var(--wf-warning); }
+.wf-badge-dot.wf-badge-danger { background: var(--wf-danger); border-color: var(--wf-danger); }
+.wf-badge-dot.wf-badge-primary { background: var(--wf-primary); border-color: var(--wf-primary); }
+
 .wf-badge-default { }
 .wf-badge-primary { background: var(--wf-primary); color: white; border-color: var(--wf-primary); }
 .wf-badge-secondary { background: var(--wf-muted); color: white; border-color: var(--wf-muted); }
@@ -6543,6 +8085,43 @@ img.wf-image {
 .wf-badge-warning { border-color: var(--wf-warning); }
 .wf-badge-danger { border-color: var(--wf-danger); }
 .wf-badge-info { border-color: var(--wf-primary); }
+
+/* Icon badge - circular background with icon */
+.wf-badge-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--wf-fg);
+}
+
+.wf-badge-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Icon badge sizes - use higher specificity to override svg.wf-icon */
+.wf-badge-icon-xs { width: 24px; height: 24px; }
+.wf-badge-icon-xs svg.wf-icon { width: 12px; height: 12px; }
+.wf-badge-icon-sm { width: 32px; height: 32px; }
+.wf-badge-icon-sm svg.wf-icon { width: 16px; height: 16px; }
+.wf-badge-icon-md { width: 40px; height: 40px; }
+.wf-badge-icon-md svg.wf-icon { width: 20px; height: 20px; }
+.wf-badge-icon-lg { width: 48px; height: 48px; }
+.wf-badge-icon-lg svg.wf-icon { width: 24px; height: 24px; }
+.wf-badge-icon-xl { width: 64px; height: 64px; }
+.wf-badge-icon-xl svg.wf-icon { width: 32px; height: 32px; }
+
+.wf-badge-icon-primary,
+.wf-badge-icon-success,
+.wf-badge-icon-warning,
+.wf-badge-icon-danger {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--wf-fg);
+}
 
 .wf-icon {
   display: inline-flex;
@@ -6552,6 +8131,20 @@ img.wf-image {
   vertical-align: middle;
   flex-shrink: 0;
 }
+
+/* SVG icons - size is controlled by CSS, not HTML attributes */
+svg.wf-icon {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+/* Icon size tokens - matches SVG renderer */
+svg.wf-icon-xs { width: 12px; height: 12px; }
+svg.wf-icon-sm { width: 16px; height: 16px; }
+svg.wf-icon-md { width: 20px; height: 20px; }
+svg.wf-icon-lg { width: 24px; height: 24px; }
+svg.wf-icon-xl { width: 32px; height: 32px; }
 
 .wf-icon svg {
   display: block;
@@ -6700,9 +8293,11 @@ img.wf-image {
   animation: wf-spin 0.6s linear infinite;
 }
 
+.wf-spinner-xs { width: 12px; height: 12px; border-width: 2px; }
 .wf-spinner-sm { width: 16px; height: 16px; border-width: 2px; }
-.wf-spinner-md { width: 20px; height: 20px; border-width: 2px; }
+.wf-spinner-md { width: 24px; height: 24px; border-width: 2px; }
 .wf-spinner-lg { width: 32px; height: 32px; border-width: 3px; }
+.wf-spinner-xl { width: 48px; height: 48px; border-width: 4px; }
 
 @keyframes wf-spin {
   to { transform: rotate(360deg); }
@@ -6841,6 +8436,27 @@ img.wf-image {
   cursor: not-allowed;
 }
 
+.wf-nav-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wf-nav-group-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--wf-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 8px 16px 4px;
+}
+
+.wf-nav-divider {
+  margin: 8px 0;
+  border: none;
+  border-top: 1px solid var(--wf-border);
+}
+
 .wf-tabs {
   border-bottom: 1px solid var(--wf-border);
 }
@@ -6895,6 +8511,91 @@ img.wf-image {
   color: var(--wf-muted);
 }
 
+/* Semantic Markers */
+
+/* Avatar marker - small circle placeholder */
+.wf-semantic-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--wf-muted);
+  color: var(--wf-bg);
+  font-size: 10px;
+  font-weight: 600;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.wf-semantic-avatar-xs { width: 16px; height: 16px; }
+.wf-semantic-avatar-sm { width: 24px; height: 24px; }
+.wf-semantic-avatar-md { width: 32px; height: 32px; }
+.wf-semantic-avatar-lg { width: 40px; height: 40px; }
+
+/* Badge marker - inline status indicator (wireframe style: black/white only) */
+.wf-semantic-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: 9999px;
+  vertical-align: middle;
+  background: var(--wf-fg);
+  color: var(--wf-bg);
+}
+
+/* Dot marker - status dot (wireframe style: black/gray only) */
+.wf-semantic-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 6px;
+  background: var(--wf-fg);
+}
+
+/* Inactive/default state uses gray */
+.wf-semantic-dot-default { background: var(--wf-muted); }
+
+/* Icon marker placeholder */
+.wf-semantic-icon {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--wf-muted);
+  vertical-align: middle;
+}
+
+/* Unknown marker - fallback */
+.wf-semantic-unknown {
+  display: inline-block;
+  font-size: 11px;
+  color: var(--wf-muted);
+  font-style: italic;
+}
+
+/* Avatar + text layout in table cells */
+.wf-cell-avatar-layout {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.wf-cell-avatar-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.4;
+}
+
+.wf-cell-avatar-text span:first-child {
+  font-weight: 500;
+}
+
+.wf-cell-avatar-text span:last-child:not(:first-child) {
+  font-size: 12px;
+  color: var(--wf-muted);
+}
+
 /* Accessibility Utilities */
 .sr-only {
   position: absolute;
@@ -6930,7 +8631,7 @@ img.wf-image {
   }
 }
       </style>
-      <div class="wf-page" style="width: 1440px; height: 900px;" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
+      <div class="wf-page" style="position: relative; width: 1440px; height: 900px; overflow: hidden" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
   <div class="wf-row">
       <button class="wf-button wf-button-primary">Primary</button>
   </div>
@@ -6945,8 +8646,16 @@ exports[`Render Snapshots > SVG Snapshots > should render card to SVG 1`] = `
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
      viewBox="0 0 800 600" width="800" height="600">
   <rect width="100%" height="100%" fill="#ffffff"/>
-  <foreignObject x="20" y="20" width="760" height="560">
-    <div xmlns="http://www.w3.org/1999/xhtml" style="width: 100%; height: 100%; overflow: hidden;">
+  <foreignObject x="0" y="0" width="800" height="600">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="
+      width: 800px;
+      height: 600px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+    ">
       <style type="text/css">
 /* wireweave CSS Variables */
 :root {
@@ -6972,17 +8681,29 @@ exports[`Render Snapshots > SVG Snapshots > should render card to SVG 1`] = `
   font-family: var(--wf-font);
   color: var(--wf-fg);
   background: var(--wf-bg);
-  min-height: 100vh;
   box-sizing: border-box;
   position: relative;
   display: flex;
   flex-direction: column;
+  /* Wireframe boundary visualization */
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Col direct child of page should fill page height */
+.wf-page > .wf-col {
+  flex: 1;
+  min-height: 0;
 }
 
 /* Row containing sidebar should fill remaining space */
 .wf-page > .wf-row:has(.wf-sidebar),
-.wf-page > .wf-row:has(.wf-main) {
+.wf-page > .wf-row:has(.wf-main),
+.wf-page > .wf-col > .wf-row:has(.wf-sidebar),
+.wf-page > .wf-col > .wf-row:has(.wf-main) {
   flex: 1;
+  min-height: 0;
   align-items: stretch;
 }
 
@@ -6999,66 +8720,49 @@ exports[`Render Snapshots > SVG Snapshots > should render card to SVG 1`] = `
 }
 
 /* Page centered content (both horizontal and vertical) */
-.wf-page-centered {
+.wf-page.wf-page-centered {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-/* Grid System */
+/* Prevent direct children from stretching in centered pages */
+.wf-page.wf-page-centered > * {
+  flex: 0 0 auto;
+}
+
+/* Grid System - Explicit Gap Only */
 .wf-row {
   display: flex;
   flex-wrap: nowrap;
-  margin-left: -8px;
-  margin-right: -8px;
-}
-
-/* When gap is used, disable gutter system */
-.wf-row[class*="gap-"] {
-  margin-left: 0;
-  margin-right: 0;
 }
 
 .wf-col {
+  display: flex;
+  flex-direction: column;
   flex: 1 0 0%;
-  padding-left: 8px;
-  padding-right: 8px;
   box-sizing: border-box;
 }
 
-/* When parent row has gap, disable column padding */
-.wf-row[class*="gap-"] > .wf-col {
-  padding-left: 0;
-  padding-right: 0;
+/* When explicit width is set, don't flex-grow */
+.wf-row[style*="width:"],
+.wf-col[style*="width:"] {
+  flex: 0 0 auto;
 }
 
-.wf-col-1 { flex: 0 0 auto; width: 8.3333%; }
-.wf-col-2 { flex: 0 0 auto; width: 16.6667%; }
-.wf-col-3 { flex: 0 0 auto; width: 25.0000%; }
-.wf-col-4 { flex: 0 0 auto; width: 33.3333%; }
-.wf-col-5 { flex: 0 0 auto; width: 41.6667%; }
-.wf-col-6 { flex: 0 0 auto; width: 50.0000%; }
-.wf-col-7 { flex: 0 0 auto; width: 58.3333%; }
-.wf-col-8 { flex: 0 0 auto; width: 66.6667%; }
-.wf-col-9 { flex: 0 0 auto; width: 75.0000%; }
-.wf-col-10 { flex: 0 0 auto; width: 83.3333%; }
-.wf-col-11 { flex: 0 0 auto; width: 91.6667%; }
-.wf-col-12 { flex: 0 0 auto; width: 100.0000%; }
-
-/* Gap-aware column sizing */
-.wf-row[class*="gap-"] > .wf-col-1 { flex: 1 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-2 { flex: 2 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-3 { flex: 3 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-4 { flex: 4 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-5 { flex: 5 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-6 { flex: 6 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-7 { flex: 7 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-8 { flex: 8 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-9 { flex: 9 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-10 { flex: 10 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-11 { flex: 11 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-12 { flex: 12 0 0; width: auto; }
+.wf-col-1 { flex: 1 0 0%; min-width: 0; }
+.wf-col-2 { flex: 2 0 0%; min-width: 0; }
+.wf-col-3 { flex: 3 0 0%; min-width: 0; }
+.wf-col-4 { flex: 4 0 0%; min-width: 0; }
+.wf-col-5 { flex: 5 0 0%; min-width: 0; }
+.wf-col-6 { flex: 6 0 0%; min-width: 0; }
+.wf-col-7 { flex: 7 0 0%; min-width: 0; }
+.wf-col-8 { flex: 8 0 0%; min-width: 0; }
+.wf-col-9 { flex: 9 0 0%; min-width: 0; }
+.wf-col-10 { flex: 10 0 0%; min-width: 0; }
+.wf-col-11 { flex: 11 0 0%; min-width: 0; }
+.wf-col-12 { flex: 12 0 0%; min-width: 0; }
 
 
 /* Spacing Utilities */
@@ -7266,7 +8970,7 @@ exports[`Render Snapshots > SVG Snapshots > should render card to SVG 1`] = `
 .wf-gap-8 { gap: 32px; }
 
 /* Size Utilities */
-.wf-w-full { width: 100%; display: block; }
+.wf-w-full { width: 100%; }
 .wf-w-auto { width: auto; }
 .wf-w-fit { width: fit-content; }
 .wf-w-screen { width: 100vw; }
@@ -7319,16 +9023,54 @@ exports[`Render Snapshots > SVG Snapshots > should render card to SVG 1`] = `
 /* Layout Components */
 .wf-header {
   border-bottom: 1px solid var(--wf-border);
-  padding: 16px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+}
+
+.wf-header > .wf-row {
+  flex: 1;
 }
 
 .wf-header.wf-no-border {
   border-bottom: none;
 }
 
+/* Header avatar - smaller size */
+.wf-header .wf-avatar {
+  width: 32px;
+  height: 32px;
+  font-size: 12px;
+}
+
+/* Header icon buttons - smaller size */
+.wf-header .wf-button-icon-only {
+  padding: 6px;
+}
+
+.wf-header .wf-button-icon-only svg.wf-icon {
+  width: 18px;
+  height: 18px;
+}
+
 .wf-main {
   flex: 1;
   padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Scrollable main content */
+.wf-main.wf-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Main content should align to top, not stretch to fill */
+/* But allow explicit flex=1 to override */
+.wf-main > .wf-col:not(.wf-flex-1) {
+  flex: 0 0 auto;
 }
 
 .wf-footer {
@@ -7343,8 +9085,9 @@ exports[`Render Snapshots > SVG Snapshots > should render card to SVG 1`] = `
 .wf-sidebar {
   width: 256px;
   border-right: 1px solid var(--wf-border);
-  padding: 16px;
+  padding: 16px 16px 16px 20px;
   flex-shrink: 0;
+  align-self: stretch;
 }
 
 .wf-sidebar-right {
@@ -7352,8 +9095,40 @@ exports[`Render Snapshots > SVG Snapshots > should render card to SVG 1`] = `
   border-left: 1px solid var(--wf-border);
 }
 
+/* Sidebar logo area - first row with logo */
+.wf-sidebar > .wf-row:first-child {
+  margin-bottom: 24px;
+}
+
+/* Sidebar navigation links */
+.wf-sidebar .wf-nav-link {
+  font-size: 14px;
+  padding: 8px 12px;
+}
+
+/* Sidebar nav link icons */
+.wf-sidebar .wf-nav-link svg.wf-icon {
+  width: 18px;
+  height: 18px;
+}
+
 .wf-section {
   margin-bottom: 24px;
+}
+
+/* Section title in sidebar - smaller muted style */
+.wf-sidebar .wf-section .wf-title {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--wf-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+/* Sidebar header text - prevent wrapping for logo text */
+.wf-sidebar .wf-header .wf-text {
+  white-space: nowrap;
 }
 
 /* Container Components */
@@ -7362,6 +9137,17 @@ exports[`Render Snapshots > SVG Snapshots > should render card to SVG 1`] = `
   border-radius: var(--wf-radius);
   background: var(--wf-bg);
   padding: 16px;
+}
+
+/* Cards in flex rows: respect explicit width, shrink if needed */
+.wf-row > .wf-card {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+/* Cards without explicit width should expand to fill space */
+.wf-row > .wf-card-flex {
+  flex: 1 1 0%;
 }
 
 .wf-card-title {
@@ -7516,6 +9302,11 @@ exports[`Render Snapshots > SVG Snapshots > should render card to SVG 1`] = `
   line-height: 1.25;
 }
 
+/* Remove bottom margin when title is in a row (inline with other elements) */
+.wf-row .wf-title {
+  margin-bottom: 0;
+}
+
 h1.wf-title { font-size: 36px; }
 h2.wf-title { font-size: 30px; }
 h3.wf-title { font-size: 24px; }
@@ -7593,6 +9384,40 @@ h6.wf-title { font-size: 16px; }
   border-color: var(--wf-danger);
 }
 
+/* Input with icon */
+.wf-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.wf-input-wrapper .wf-input {
+  padding-left: 36px;
+}
+
+.wf-input-icon {
+  position: absolute;
+  left: 12px;
+  color: var(--wf-muted);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+}
+
+.wf-input-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Input wrapper in flex rows */
+.wf-row > .wf-input-wrapper {
+  flex: 1 1 auto;
+  min-width: 120px;
+}
+
 .wf-textarea {
   min-height: 80px;
   resize: vertical;
@@ -7608,7 +9433,7 @@ h6.wf-title { font-size: 16px; }
 
 .wf-checkbox,
 .wf-radio {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
@@ -7638,7 +9463,7 @@ h6.wf-title { font-size: 16px; }
   appearance: none;
   width: 40px;
   height: 22px;
-  background: var(--wf-border);
+  background: var(--wf-muted);
   border-radius: 11px;
   position: relative;
   cursor: pointer;
@@ -7780,6 +9605,22 @@ h6.wf-title { font-size: 16px; }
 .wf-button-lg { padding: 10px 20px; font-size: 16px; }
 .wf-button-xl { padding: 12px 24px; font-size: 18px; }
 
+/* Icon-only button (square padding) */
+.wf-button-icon-only { padding: 8px; }
+.wf-button-icon-only.wf-button-xs { padding: 4px; }
+.wf-button-icon-only.wf-button-sm { padding: 6px; }
+.wf-button-icon-only.wf-button-md { padding: 8px; }
+.wf-button-icon-only.wf-button-lg { padding: 10px; }
+.wf-button-icon-only.wf-button-xl { padding: 12px; }
+
+/* Button icon sizes - scale icon based on button size */
+.wf-button svg.wf-icon { width: 16px; height: 16px; }
+.wf-button-xs svg.wf-icon { width: 12px; height: 12px; }
+.wf-button-sm svg.wf-icon { width: 14px; height: 14px; }
+.wf-button-md svg.wf-icon { width: 16px; height: 16px; }
+.wf-button-lg svg.wf-icon { width: 20px; height: 20px; }
+.wf-button-xl svg.wf-icon { width: 24px; height: 24px; }
+
 .wf-button-disabled,
 .wf-button:disabled {
   opacity: 0.5;
@@ -7801,6 +9642,11 @@ h6.wf-title { font-size: 16px; }
   border-radius: 50%;
   animation: wf-spin 0.6s linear infinite;
 }
+
+/* Button justify overrides - higher specificity to override default center */
+.wf-button.wf-justify-start { justify-content: flex-start; }
+.wf-button.wf-justify-end { justify-content: flex-end; }
+.wf-button.wf-justify-between { justify-content: space-between; }
 
 /* Display Components */
 .wf-image {
@@ -7852,17 +9698,41 @@ img.wf-image {
   font-size: 14px;
 }
 
+.wf-placeholder-with-children {
+  position: relative;
+}
+
+.wf-placeholder-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.wf-placeholder-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 .wf-avatar {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 40px;
   height: 40px;
-  background: var(--wf-border);
+  background: var(--wf-fg);
   border-radius: 50%;
   font-size: 14px;
   font-weight: 600;
-  color: var(--wf-fg);
+  color: var(--wf-bg);
   overflow: hidden;
 }
 
@@ -7893,6 +9763,19 @@ img.wf-image {
   border-radius: 9999px;
 }
 
+/* Dot badge - circular status indicator (for empty badges) */
+.wf-badge-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border-radius: 50%;
+  background: var(--wf-border);
+}
+.wf-badge-dot.wf-badge-success { background: var(--wf-success); border-color: var(--wf-success); }
+.wf-badge-dot.wf-badge-warning { background: var(--wf-warning); border-color: var(--wf-warning); }
+.wf-badge-dot.wf-badge-danger { background: var(--wf-danger); border-color: var(--wf-danger); }
+.wf-badge-dot.wf-badge-primary { background: var(--wf-primary); border-color: var(--wf-primary); }
+
 .wf-badge-default { }
 .wf-badge-primary { background: var(--wf-primary); color: white; border-color: var(--wf-primary); }
 .wf-badge-secondary { background: var(--wf-muted); color: white; border-color: var(--wf-muted); }
@@ -7900,6 +9783,43 @@ img.wf-image {
 .wf-badge-warning { border-color: var(--wf-warning); }
 .wf-badge-danger { border-color: var(--wf-danger); }
 .wf-badge-info { border-color: var(--wf-primary); }
+
+/* Icon badge - circular background with icon */
+.wf-badge-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--wf-fg);
+}
+
+.wf-badge-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Icon badge sizes - use higher specificity to override svg.wf-icon */
+.wf-badge-icon-xs { width: 24px; height: 24px; }
+.wf-badge-icon-xs svg.wf-icon { width: 12px; height: 12px; }
+.wf-badge-icon-sm { width: 32px; height: 32px; }
+.wf-badge-icon-sm svg.wf-icon { width: 16px; height: 16px; }
+.wf-badge-icon-md { width: 40px; height: 40px; }
+.wf-badge-icon-md svg.wf-icon { width: 20px; height: 20px; }
+.wf-badge-icon-lg { width: 48px; height: 48px; }
+.wf-badge-icon-lg svg.wf-icon { width: 24px; height: 24px; }
+.wf-badge-icon-xl { width: 64px; height: 64px; }
+.wf-badge-icon-xl svg.wf-icon { width: 32px; height: 32px; }
+
+.wf-badge-icon-primary,
+.wf-badge-icon-success,
+.wf-badge-icon-warning,
+.wf-badge-icon-danger {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--wf-fg);
+}
 
 .wf-icon {
   display: inline-flex;
@@ -7909,6 +9829,20 @@ img.wf-image {
   vertical-align: middle;
   flex-shrink: 0;
 }
+
+/* SVG icons - size is controlled by CSS, not HTML attributes */
+svg.wf-icon {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+/* Icon size tokens - matches SVG renderer */
+svg.wf-icon-xs { width: 12px; height: 12px; }
+svg.wf-icon-sm { width: 16px; height: 16px; }
+svg.wf-icon-md { width: 20px; height: 20px; }
+svg.wf-icon-lg { width: 24px; height: 24px; }
+svg.wf-icon-xl { width: 32px; height: 32px; }
 
 .wf-icon svg {
   display: block;
@@ -8057,9 +9991,11 @@ img.wf-image {
   animation: wf-spin 0.6s linear infinite;
 }
 
+.wf-spinner-xs { width: 12px; height: 12px; border-width: 2px; }
 .wf-spinner-sm { width: 16px; height: 16px; border-width: 2px; }
-.wf-spinner-md { width: 20px; height: 20px; border-width: 2px; }
+.wf-spinner-md { width: 24px; height: 24px; border-width: 2px; }
 .wf-spinner-lg { width: 32px; height: 32px; border-width: 3px; }
+.wf-spinner-xl { width: 48px; height: 48px; border-width: 4px; }
 
 @keyframes wf-spin {
   to { transform: rotate(360deg); }
@@ -8198,6 +10134,27 @@ img.wf-image {
   cursor: not-allowed;
 }
 
+.wf-nav-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wf-nav-group-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--wf-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 8px 16px 4px;
+}
+
+.wf-nav-divider {
+  margin: 8px 0;
+  border: none;
+  border-top: 1px solid var(--wf-border);
+}
+
 .wf-tabs {
   border-bottom: 1px solid var(--wf-border);
 }
@@ -8252,6 +10209,91 @@ img.wf-image {
   color: var(--wf-muted);
 }
 
+/* Semantic Markers */
+
+/* Avatar marker - small circle placeholder */
+.wf-semantic-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--wf-muted);
+  color: var(--wf-bg);
+  font-size: 10px;
+  font-weight: 600;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.wf-semantic-avatar-xs { width: 16px; height: 16px; }
+.wf-semantic-avatar-sm { width: 24px; height: 24px; }
+.wf-semantic-avatar-md { width: 32px; height: 32px; }
+.wf-semantic-avatar-lg { width: 40px; height: 40px; }
+
+/* Badge marker - inline status indicator (wireframe style: black/white only) */
+.wf-semantic-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: 9999px;
+  vertical-align: middle;
+  background: var(--wf-fg);
+  color: var(--wf-bg);
+}
+
+/* Dot marker - status dot (wireframe style: black/gray only) */
+.wf-semantic-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 6px;
+  background: var(--wf-fg);
+}
+
+/* Inactive/default state uses gray */
+.wf-semantic-dot-default { background: var(--wf-muted); }
+
+/* Icon marker placeholder */
+.wf-semantic-icon {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--wf-muted);
+  vertical-align: middle;
+}
+
+/* Unknown marker - fallback */
+.wf-semantic-unknown {
+  display: inline-block;
+  font-size: 11px;
+  color: var(--wf-muted);
+  font-style: italic;
+}
+
+/* Avatar + text layout in table cells */
+.wf-cell-avatar-layout {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.wf-cell-avatar-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.4;
+}
+
+.wf-cell-avatar-text span:first-child {
+  font-weight: 500;
+}
+
+.wf-cell-avatar-text span:last-child:not(:first-child) {
+  font-size: 12px;
+  color: var(--wf-muted);
+}
+
 /* Accessibility Utilities */
 .sr-only {
   position: absolute;
@@ -8287,8 +10329,8 @@ img.wf-image {
   }
 }
       </style>
-      <div class="wf-page" style="width: 1440px; height: 900px;" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
-  <div class="wf-card">
+      <div class="wf-page" style="position: relative; width: 1440px; height: 900px; overflow: hidden" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
+  <div class="wf-card wf-card-flex">
       <h1 class="wf-title">Card Title</h1>
       <p class="wf-text">Card content</p>
   </div>
@@ -8303,8 +10345,16 @@ exports[`Render Snapshots > SVG Snapshots > should render form to SVG 1`] = `
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
      viewBox="0 0 800 600" width="800" height="600">
   <rect width="100%" height="100%" fill="#ffffff"/>
-  <foreignObject x="20" y="20" width="760" height="560">
-    <div xmlns="http://www.w3.org/1999/xhtml" style="width: 100%; height: 100%; overflow: hidden;">
+  <foreignObject x="0" y="0" width="800" height="600">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="
+      width: 800px;
+      height: 600px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+    ">
       <style type="text/css">
 /* wireweave CSS Variables */
 :root {
@@ -8330,17 +10380,29 @@ exports[`Render Snapshots > SVG Snapshots > should render form to SVG 1`] = `
   font-family: var(--wf-font);
   color: var(--wf-fg);
   background: var(--wf-bg);
-  min-height: 100vh;
   box-sizing: border-box;
   position: relative;
   display: flex;
   flex-direction: column;
+  /* Wireframe boundary visualization */
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Col direct child of page should fill page height */
+.wf-page > .wf-col {
+  flex: 1;
+  min-height: 0;
 }
 
 /* Row containing sidebar should fill remaining space */
 .wf-page > .wf-row:has(.wf-sidebar),
-.wf-page > .wf-row:has(.wf-main) {
+.wf-page > .wf-row:has(.wf-main),
+.wf-page > .wf-col > .wf-row:has(.wf-sidebar),
+.wf-page > .wf-col > .wf-row:has(.wf-main) {
   flex: 1;
+  min-height: 0;
   align-items: stretch;
 }
 
@@ -8357,66 +10419,49 @@ exports[`Render Snapshots > SVG Snapshots > should render form to SVG 1`] = `
 }
 
 /* Page centered content (both horizontal and vertical) */
-.wf-page-centered {
+.wf-page.wf-page-centered {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-/* Grid System */
+/* Prevent direct children from stretching in centered pages */
+.wf-page.wf-page-centered > * {
+  flex: 0 0 auto;
+}
+
+/* Grid System - Explicit Gap Only */
 .wf-row {
   display: flex;
   flex-wrap: nowrap;
-  margin-left: -8px;
-  margin-right: -8px;
-}
-
-/* When gap is used, disable gutter system */
-.wf-row[class*="gap-"] {
-  margin-left: 0;
-  margin-right: 0;
 }
 
 .wf-col {
+  display: flex;
+  flex-direction: column;
   flex: 1 0 0%;
-  padding-left: 8px;
-  padding-right: 8px;
   box-sizing: border-box;
 }
 
-/* When parent row has gap, disable column padding */
-.wf-row[class*="gap-"] > .wf-col {
-  padding-left: 0;
-  padding-right: 0;
+/* When explicit width is set, don't flex-grow */
+.wf-row[style*="width:"],
+.wf-col[style*="width:"] {
+  flex: 0 0 auto;
 }
 
-.wf-col-1 { flex: 0 0 auto; width: 8.3333%; }
-.wf-col-2 { flex: 0 0 auto; width: 16.6667%; }
-.wf-col-3 { flex: 0 0 auto; width: 25.0000%; }
-.wf-col-4 { flex: 0 0 auto; width: 33.3333%; }
-.wf-col-5 { flex: 0 0 auto; width: 41.6667%; }
-.wf-col-6 { flex: 0 0 auto; width: 50.0000%; }
-.wf-col-7 { flex: 0 0 auto; width: 58.3333%; }
-.wf-col-8 { flex: 0 0 auto; width: 66.6667%; }
-.wf-col-9 { flex: 0 0 auto; width: 75.0000%; }
-.wf-col-10 { flex: 0 0 auto; width: 83.3333%; }
-.wf-col-11 { flex: 0 0 auto; width: 91.6667%; }
-.wf-col-12 { flex: 0 0 auto; width: 100.0000%; }
-
-/* Gap-aware column sizing */
-.wf-row[class*="gap-"] > .wf-col-1 { flex: 1 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-2 { flex: 2 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-3 { flex: 3 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-4 { flex: 4 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-5 { flex: 5 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-6 { flex: 6 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-7 { flex: 7 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-8 { flex: 8 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-9 { flex: 9 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-10 { flex: 10 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-11 { flex: 11 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-12 { flex: 12 0 0; width: auto; }
+.wf-col-1 { flex: 1 0 0%; min-width: 0; }
+.wf-col-2 { flex: 2 0 0%; min-width: 0; }
+.wf-col-3 { flex: 3 0 0%; min-width: 0; }
+.wf-col-4 { flex: 4 0 0%; min-width: 0; }
+.wf-col-5 { flex: 5 0 0%; min-width: 0; }
+.wf-col-6 { flex: 6 0 0%; min-width: 0; }
+.wf-col-7 { flex: 7 0 0%; min-width: 0; }
+.wf-col-8 { flex: 8 0 0%; min-width: 0; }
+.wf-col-9 { flex: 9 0 0%; min-width: 0; }
+.wf-col-10 { flex: 10 0 0%; min-width: 0; }
+.wf-col-11 { flex: 11 0 0%; min-width: 0; }
+.wf-col-12 { flex: 12 0 0%; min-width: 0; }
 
 
 /* Spacing Utilities */
@@ -8624,7 +10669,7 @@ exports[`Render Snapshots > SVG Snapshots > should render form to SVG 1`] = `
 .wf-gap-8 { gap: 32px; }
 
 /* Size Utilities */
-.wf-w-full { width: 100%; display: block; }
+.wf-w-full { width: 100%; }
 .wf-w-auto { width: auto; }
 .wf-w-fit { width: fit-content; }
 .wf-w-screen { width: 100vw; }
@@ -8677,16 +10722,54 @@ exports[`Render Snapshots > SVG Snapshots > should render form to SVG 1`] = `
 /* Layout Components */
 .wf-header {
   border-bottom: 1px solid var(--wf-border);
-  padding: 16px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+}
+
+.wf-header > .wf-row {
+  flex: 1;
 }
 
 .wf-header.wf-no-border {
   border-bottom: none;
 }
 
+/* Header avatar - smaller size */
+.wf-header .wf-avatar {
+  width: 32px;
+  height: 32px;
+  font-size: 12px;
+}
+
+/* Header icon buttons - smaller size */
+.wf-header .wf-button-icon-only {
+  padding: 6px;
+}
+
+.wf-header .wf-button-icon-only svg.wf-icon {
+  width: 18px;
+  height: 18px;
+}
+
 .wf-main {
   flex: 1;
   padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Scrollable main content */
+.wf-main.wf-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Main content should align to top, not stretch to fill */
+/* But allow explicit flex=1 to override */
+.wf-main > .wf-col:not(.wf-flex-1) {
+  flex: 0 0 auto;
 }
 
 .wf-footer {
@@ -8701,8 +10784,9 @@ exports[`Render Snapshots > SVG Snapshots > should render form to SVG 1`] = `
 .wf-sidebar {
   width: 256px;
   border-right: 1px solid var(--wf-border);
-  padding: 16px;
+  padding: 16px 16px 16px 20px;
   flex-shrink: 0;
+  align-self: stretch;
 }
 
 .wf-sidebar-right {
@@ -8710,8 +10794,40 @@ exports[`Render Snapshots > SVG Snapshots > should render form to SVG 1`] = `
   border-left: 1px solid var(--wf-border);
 }
 
+/* Sidebar logo area - first row with logo */
+.wf-sidebar > .wf-row:first-child {
+  margin-bottom: 24px;
+}
+
+/* Sidebar navigation links */
+.wf-sidebar .wf-nav-link {
+  font-size: 14px;
+  padding: 8px 12px;
+}
+
+/* Sidebar nav link icons */
+.wf-sidebar .wf-nav-link svg.wf-icon {
+  width: 18px;
+  height: 18px;
+}
+
 .wf-section {
   margin-bottom: 24px;
+}
+
+/* Section title in sidebar - smaller muted style */
+.wf-sidebar .wf-section .wf-title {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--wf-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+/* Sidebar header text - prevent wrapping for logo text */
+.wf-sidebar .wf-header .wf-text {
+  white-space: nowrap;
 }
 
 /* Container Components */
@@ -8720,6 +10836,17 @@ exports[`Render Snapshots > SVG Snapshots > should render form to SVG 1`] = `
   border-radius: var(--wf-radius);
   background: var(--wf-bg);
   padding: 16px;
+}
+
+/* Cards in flex rows: respect explicit width, shrink if needed */
+.wf-row > .wf-card {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+/* Cards without explicit width should expand to fill space */
+.wf-row > .wf-card-flex {
+  flex: 1 1 0%;
 }
 
 .wf-card-title {
@@ -8874,6 +11001,11 @@ exports[`Render Snapshots > SVG Snapshots > should render form to SVG 1`] = `
   line-height: 1.25;
 }
 
+/* Remove bottom margin when title is in a row (inline with other elements) */
+.wf-row .wf-title {
+  margin-bottom: 0;
+}
+
 h1.wf-title { font-size: 36px; }
 h2.wf-title { font-size: 30px; }
 h3.wf-title { font-size: 24px; }
@@ -8951,6 +11083,40 @@ h6.wf-title { font-size: 16px; }
   border-color: var(--wf-danger);
 }
 
+/* Input with icon */
+.wf-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.wf-input-wrapper .wf-input {
+  padding-left: 36px;
+}
+
+.wf-input-icon {
+  position: absolute;
+  left: 12px;
+  color: var(--wf-muted);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+}
+
+.wf-input-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Input wrapper in flex rows */
+.wf-row > .wf-input-wrapper {
+  flex: 1 1 auto;
+  min-width: 120px;
+}
+
 .wf-textarea {
   min-height: 80px;
   resize: vertical;
@@ -8966,7 +11132,7 @@ h6.wf-title { font-size: 16px; }
 
 .wf-checkbox,
 .wf-radio {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
@@ -8996,7 +11162,7 @@ h6.wf-title { font-size: 16px; }
   appearance: none;
   width: 40px;
   height: 22px;
-  background: var(--wf-border);
+  background: var(--wf-muted);
   border-radius: 11px;
   position: relative;
   cursor: pointer;
@@ -9138,6 +11304,22 @@ h6.wf-title { font-size: 16px; }
 .wf-button-lg { padding: 10px 20px; font-size: 16px; }
 .wf-button-xl { padding: 12px 24px; font-size: 18px; }
 
+/* Icon-only button (square padding) */
+.wf-button-icon-only { padding: 8px; }
+.wf-button-icon-only.wf-button-xs { padding: 4px; }
+.wf-button-icon-only.wf-button-sm { padding: 6px; }
+.wf-button-icon-only.wf-button-md { padding: 8px; }
+.wf-button-icon-only.wf-button-lg { padding: 10px; }
+.wf-button-icon-only.wf-button-xl { padding: 12px; }
+
+/* Button icon sizes - scale icon based on button size */
+.wf-button svg.wf-icon { width: 16px; height: 16px; }
+.wf-button-xs svg.wf-icon { width: 12px; height: 12px; }
+.wf-button-sm svg.wf-icon { width: 14px; height: 14px; }
+.wf-button-md svg.wf-icon { width: 16px; height: 16px; }
+.wf-button-lg svg.wf-icon { width: 20px; height: 20px; }
+.wf-button-xl svg.wf-icon { width: 24px; height: 24px; }
+
 .wf-button-disabled,
 .wf-button:disabled {
   opacity: 0.5;
@@ -9159,6 +11341,11 @@ h6.wf-title { font-size: 16px; }
   border-radius: 50%;
   animation: wf-spin 0.6s linear infinite;
 }
+
+/* Button justify overrides - higher specificity to override default center */
+.wf-button.wf-justify-start { justify-content: flex-start; }
+.wf-button.wf-justify-end { justify-content: flex-end; }
+.wf-button.wf-justify-between { justify-content: space-between; }
 
 /* Display Components */
 .wf-image {
@@ -9210,17 +11397,41 @@ img.wf-image {
   font-size: 14px;
 }
 
+.wf-placeholder-with-children {
+  position: relative;
+}
+
+.wf-placeholder-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.wf-placeholder-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 .wf-avatar {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 40px;
   height: 40px;
-  background: var(--wf-border);
+  background: var(--wf-fg);
   border-radius: 50%;
   font-size: 14px;
   font-weight: 600;
-  color: var(--wf-fg);
+  color: var(--wf-bg);
   overflow: hidden;
 }
 
@@ -9251,6 +11462,19 @@ img.wf-image {
   border-radius: 9999px;
 }
 
+/* Dot badge - circular status indicator (for empty badges) */
+.wf-badge-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border-radius: 50%;
+  background: var(--wf-border);
+}
+.wf-badge-dot.wf-badge-success { background: var(--wf-success); border-color: var(--wf-success); }
+.wf-badge-dot.wf-badge-warning { background: var(--wf-warning); border-color: var(--wf-warning); }
+.wf-badge-dot.wf-badge-danger { background: var(--wf-danger); border-color: var(--wf-danger); }
+.wf-badge-dot.wf-badge-primary { background: var(--wf-primary); border-color: var(--wf-primary); }
+
 .wf-badge-default { }
 .wf-badge-primary { background: var(--wf-primary); color: white; border-color: var(--wf-primary); }
 .wf-badge-secondary { background: var(--wf-muted); color: white; border-color: var(--wf-muted); }
@@ -9258,6 +11482,43 @@ img.wf-image {
 .wf-badge-warning { border-color: var(--wf-warning); }
 .wf-badge-danger { border-color: var(--wf-danger); }
 .wf-badge-info { border-color: var(--wf-primary); }
+
+/* Icon badge - circular background with icon */
+.wf-badge-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--wf-fg);
+}
+
+.wf-badge-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Icon badge sizes - use higher specificity to override svg.wf-icon */
+.wf-badge-icon-xs { width: 24px; height: 24px; }
+.wf-badge-icon-xs svg.wf-icon { width: 12px; height: 12px; }
+.wf-badge-icon-sm { width: 32px; height: 32px; }
+.wf-badge-icon-sm svg.wf-icon { width: 16px; height: 16px; }
+.wf-badge-icon-md { width: 40px; height: 40px; }
+.wf-badge-icon-md svg.wf-icon { width: 20px; height: 20px; }
+.wf-badge-icon-lg { width: 48px; height: 48px; }
+.wf-badge-icon-lg svg.wf-icon { width: 24px; height: 24px; }
+.wf-badge-icon-xl { width: 64px; height: 64px; }
+.wf-badge-icon-xl svg.wf-icon { width: 32px; height: 32px; }
+
+.wf-badge-icon-primary,
+.wf-badge-icon-success,
+.wf-badge-icon-warning,
+.wf-badge-icon-danger {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--wf-fg);
+}
 
 .wf-icon {
   display: inline-flex;
@@ -9267,6 +11528,20 @@ img.wf-image {
   vertical-align: middle;
   flex-shrink: 0;
 }
+
+/* SVG icons - size is controlled by CSS, not HTML attributes */
+svg.wf-icon {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+/* Icon size tokens - matches SVG renderer */
+svg.wf-icon-xs { width: 12px; height: 12px; }
+svg.wf-icon-sm { width: 16px; height: 16px; }
+svg.wf-icon-md { width: 20px; height: 20px; }
+svg.wf-icon-lg { width: 24px; height: 24px; }
+svg.wf-icon-xl { width: 32px; height: 32px; }
 
 .wf-icon svg {
   display: block;
@@ -9415,9 +11690,11 @@ img.wf-image {
   animation: wf-spin 0.6s linear infinite;
 }
 
+.wf-spinner-xs { width: 12px; height: 12px; border-width: 2px; }
 .wf-spinner-sm { width: 16px; height: 16px; border-width: 2px; }
-.wf-spinner-md { width: 20px; height: 20px; border-width: 2px; }
+.wf-spinner-md { width: 24px; height: 24px; border-width: 2px; }
 .wf-spinner-lg { width: 32px; height: 32px; border-width: 3px; }
+.wf-spinner-xl { width: 48px; height: 48px; border-width: 4px; }
 
 @keyframes wf-spin {
   to { transform: rotate(360deg); }
@@ -9556,6 +11833,27 @@ img.wf-image {
   cursor: not-allowed;
 }
 
+.wf-nav-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wf-nav-group-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--wf-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 8px 16px 4px;
+}
+
+.wf-nav-divider {
+  margin: 8px 0;
+  border: none;
+  border-top: 1px solid var(--wf-border);
+}
+
 .wf-tabs {
   border-bottom: 1px solid var(--wf-border);
 }
@@ -9610,6 +11908,91 @@ img.wf-image {
   color: var(--wf-muted);
 }
 
+/* Semantic Markers */
+
+/* Avatar marker - small circle placeholder */
+.wf-semantic-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--wf-muted);
+  color: var(--wf-bg);
+  font-size: 10px;
+  font-weight: 600;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.wf-semantic-avatar-xs { width: 16px; height: 16px; }
+.wf-semantic-avatar-sm { width: 24px; height: 24px; }
+.wf-semantic-avatar-md { width: 32px; height: 32px; }
+.wf-semantic-avatar-lg { width: 40px; height: 40px; }
+
+/* Badge marker - inline status indicator (wireframe style: black/white only) */
+.wf-semantic-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: 9999px;
+  vertical-align: middle;
+  background: var(--wf-fg);
+  color: var(--wf-bg);
+}
+
+/* Dot marker - status dot (wireframe style: black/gray only) */
+.wf-semantic-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 6px;
+  background: var(--wf-fg);
+}
+
+/* Inactive/default state uses gray */
+.wf-semantic-dot-default { background: var(--wf-muted); }
+
+/* Icon marker placeholder */
+.wf-semantic-icon {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--wf-muted);
+  vertical-align: middle;
+}
+
+/* Unknown marker - fallback */
+.wf-semantic-unknown {
+  display: inline-block;
+  font-size: 11px;
+  color: var(--wf-muted);
+  font-style: italic;
+}
+
+/* Avatar + text layout in table cells */
+.wf-cell-avatar-layout {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.wf-cell-avatar-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.4;
+}
+
+.wf-cell-avatar-text span:first-child {
+  font-weight: 500;
+}
+
+.wf-cell-avatar-text span:last-child:not(:first-child) {
+  font-size: 12px;
+  color: var(--wf-muted);
+}
+
 /* Accessibility Utilities */
 .sr-only {
   position: absolute;
@@ -9645,8 +12028,8 @@ img.wf-image {
   }
 }
       </style>
-      <div class="wf-page" style="width: 1440px; height: 900px;" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
-  <div class="wf-card">
+      <div class="wf-page" style="position: relative; width: 1440px; height: 900px; overflow: hidden" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
+  <div class="wf-card wf-card-flex">
       <label class="wf-input-label">Name</label>
       <input class="wf-input" type="text" placeholder="Enter name" />
       <button class="wf-button wf-button-primary">Submit</button>
@@ -9662,8 +12045,16 @@ exports[`Render Snapshots > SVG Snapshots > should render layout to SVG 1`] = `
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
      viewBox="0 0 800 600" width="800" height="600">
   <rect width="100%" height="100%" fill="#ffffff"/>
-  <foreignObject x="20" y="20" width="760" height="560">
-    <div xmlns="http://www.w3.org/1999/xhtml" style="width: 100%; height: 100%; overflow: hidden;">
+  <foreignObject x="0" y="0" width="800" height="600">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="
+      width: 800px;
+      height: 600px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+    ">
       <style type="text/css">
 /* wireweave CSS Variables */
 :root {
@@ -9689,17 +12080,29 @@ exports[`Render Snapshots > SVG Snapshots > should render layout to SVG 1`] = `
   font-family: var(--wf-font);
   color: var(--wf-fg);
   background: var(--wf-bg);
-  min-height: 100vh;
   box-sizing: border-box;
   position: relative;
   display: flex;
   flex-direction: column;
+  /* Wireframe boundary visualization */
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Col direct child of page should fill page height */
+.wf-page > .wf-col {
+  flex: 1;
+  min-height: 0;
 }
 
 /* Row containing sidebar should fill remaining space */
 .wf-page > .wf-row:has(.wf-sidebar),
-.wf-page > .wf-row:has(.wf-main) {
+.wf-page > .wf-row:has(.wf-main),
+.wf-page > .wf-col > .wf-row:has(.wf-sidebar),
+.wf-page > .wf-col > .wf-row:has(.wf-main) {
   flex: 1;
+  min-height: 0;
   align-items: stretch;
 }
 
@@ -9716,66 +12119,49 @@ exports[`Render Snapshots > SVG Snapshots > should render layout to SVG 1`] = `
 }
 
 /* Page centered content (both horizontal and vertical) */
-.wf-page-centered {
+.wf-page.wf-page-centered {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-/* Grid System */
+/* Prevent direct children from stretching in centered pages */
+.wf-page.wf-page-centered > * {
+  flex: 0 0 auto;
+}
+
+/* Grid System - Explicit Gap Only */
 .wf-row {
   display: flex;
   flex-wrap: nowrap;
-  margin-left: -8px;
-  margin-right: -8px;
-}
-
-/* When gap is used, disable gutter system */
-.wf-row[class*="gap-"] {
-  margin-left: 0;
-  margin-right: 0;
 }
 
 .wf-col {
+  display: flex;
+  flex-direction: column;
   flex: 1 0 0%;
-  padding-left: 8px;
-  padding-right: 8px;
   box-sizing: border-box;
 }
 
-/* When parent row has gap, disable column padding */
-.wf-row[class*="gap-"] > .wf-col {
-  padding-left: 0;
-  padding-right: 0;
+/* When explicit width is set, don't flex-grow */
+.wf-row[style*="width:"],
+.wf-col[style*="width:"] {
+  flex: 0 0 auto;
 }
 
-.wf-col-1 { flex: 0 0 auto; width: 8.3333%; }
-.wf-col-2 { flex: 0 0 auto; width: 16.6667%; }
-.wf-col-3 { flex: 0 0 auto; width: 25.0000%; }
-.wf-col-4 { flex: 0 0 auto; width: 33.3333%; }
-.wf-col-5 { flex: 0 0 auto; width: 41.6667%; }
-.wf-col-6 { flex: 0 0 auto; width: 50.0000%; }
-.wf-col-7 { flex: 0 0 auto; width: 58.3333%; }
-.wf-col-8 { flex: 0 0 auto; width: 66.6667%; }
-.wf-col-9 { flex: 0 0 auto; width: 75.0000%; }
-.wf-col-10 { flex: 0 0 auto; width: 83.3333%; }
-.wf-col-11 { flex: 0 0 auto; width: 91.6667%; }
-.wf-col-12 { flex: 0 0 auto; width: 100.0000%; }
-
-/* Gap-aware column sizing */
-.wf-row[class*="gap-"] > .wf-col-1 { flex: 1 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-2 { flex: 2 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-3 { flex: 3 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-4 { flex: 4 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-5 { flex: 5 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-6 { flex: 6 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-7 { flex: 7 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-8 { flex: 8 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-9 { flex: 9 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-10 { flex: 10 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-11 { flex: 11 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-12 { flex: 12 0 0; width: auto; }
+.wf-col-1 { flex: 1 0 0%; min-width: 0; }
+.wf-col-2 { flex: 2 0 0%; min-width: 0; }
+.wf-col-3 { flex: 3 0 0%; min-width: 0; }
+.wf-col-4 { flex: 4 0 0%; min-width: 0; }
+.wf-col-5 { flex: 5 0 0%; min-width: 0; }
+.wf-col-6 { flex: 6 0 0%; min-width: 0; }
+.wf-col-7 { flex: 7 0 0%; min-width: 0; }
+.wf-col-8 { flex: 8 0 0%; min-width: 0; }
+.wf-col-9 { flex: 9 0 0%; min-width: 0; }
+.wf-col-10 { flex: 10 0 0%; min-width: 0; }
+.wf-col-11 { flex: 11 0 0%; min-width: 0; }
+.wf-col-12 { flex: 12 0 0%; min-width: 0; }
 
 
 /* Spacing Utilities */
@@ -9983,7 +12369,7 @@ exports[`Render Snapshots > SVG Snapshots > should render layout to SVG 1`] = `
 .wf-gap-8 { gap: 32px; }
 
 /* Size Utilities */
-.wf-w-full { width: 100%; display: block; }
+.wf-w-full { width: 100%; }
 .wf-w-auto { width: auto; }
 .wf-w-fit { width: fit-content; }
 .wf-w-screen { width: 100vw; }
@@ -10036,16 +12422,54 @@ exports[`Render Snapshots > SVG Snapshots > should render layout to SVG 1`] = `
 /* Layout Components */
 .wf-header {
   border-bottom: 1px solid var(--wf-border);
-  padding: 16px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+}
+
+.wf-header > .wf-row {
+  flex: 1;
 }
 
 .wf-header.wf-no-border {
   border-bottom: none;
 }
 
+/* Header avatar - smaller size */
+.wf-header .wf-avatar {
+  width: 32px;
+  height: 32px;
+  font-size: 12px;
+}
+
+/* Header icon buttons - smaller size */
+.wf-header .wf-button-icon-only {
+  padding: 6px;
+}
+
+.wf-header .wf-button-icon-only svg.wf-icon {
+  width: 18px;
+  height: 18px;
+}
+
 .wf-main {
   flex: 1;
   padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Scrollable main content */
+.wf-main.wf-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Main content should align to top, not stretch to fill */
+/* But allow explicit flex=1 to override */
+.wf-main > .wf-col:not(.wf-flex-1) {
+  flex: 0 0 auto;
 }
 
 .wf-footer {
@@ -10060,8 +12484,9 @@ exports[`Render Snapshots > SVG Snapshots > should render layout to SVG 1`] = `
 .wf-sidebar {
   width: 256px;
   border-right: 1px solid var(--wf-border);
-  padding: 16px;
+  padding: 16px 16px 16px 20px;
   flex-shrink: 0;
+  align-self: stretch;
 }
 
 .wf-sidebar-right {
@@ -10069,8 +12494,40 @@ exports[`Render Snapshots > SVG Snapshots > should render layout to SVG 1`] = `
   border-left: 1px solid var(--wf-border);
 }
 
+/* Sidebar logo area - first row with logo */
+.wf-sidebar > .wf-row:first-child {
+  margin-bottom: 24px;
+}
+
+/* Sidebar navigation links */
+.wf-sidebar .wf-nav-link {
+  font-size: 14px;
+  padding: 8px 12px;
+}
+
+/* Sidebar nav link icons */
+.wf-sidebar .wf-nav-link svg.wf-icon {
+  width: 18px;
+  height: 18px;
+}
+
 .wf-section {
   margin-bottom: 24px;
+}
+
+/* Section title in sidebar - smaller muted style */
+.wf-sidebar .wf-section .wf-title {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--wf-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+/* Sidebar header text - prevent wrapping for logo text */
+.wf-sidebar .wf-header .wf-text {
+  white-space: nowrap;
 }
 
 /* Container Components */
@@ -10079,6 +12536,17 @@ exports[`Render Snapshots > SVG Snapshots > should render layout to SVG 1`] = `
   border-radius: var(--wf-radius);
   background: var(--wf-bg);
   padding: 16px;
+}
+
+/* Cards in flex rows: respect explicit width, shrink if needed */
+.wf-row > .wf-card {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+/* Cards without explicit width should expand to fill space */
+.wf-row > .wf-card-flex {
+  flex: 1 1 0%;
 }
 
 .wf-card-title {
@@ -10233,6 +12701,11 @@ exports[`Render Snapshots > SVG Snapshots > should render layout to SVG 1`] = `
   line-height: 1.25;
 }
 
+/* Remove bottom margin when title is in a row (inline with other elements) */
+.wf-row .wf-title {
+  margin-bottom: 0;
+}
+
 h1.wf-title { font-size: 36px; }
 h2.wf-title { font-size: 30px; }
 h3.wf-title { font-size: 24px; }
@@ -10310,6 +12783,40 @@ h6.wf-title { font-size: 16px; }
   border-color: var(--wf-danger);
 }
 
+/* Input with icon */
+.wf-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.wf-input-wrapper .wf-input {
+  padding-left: 36px;
+}
+
+.wf-input-icon {
+  position: absolute;
+  left: 12px;
+  color: var(--wf-muted);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+}
+
+.wf-input-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Input wrapper in flex rows */
+.wf-row > .wf-input-wrapper {
+  flex: 1 1 auto;
+  min-width: 120px;
+}
+
 .wf-textarea {
   min-height: 80px;
   resize: vertical;
@@ -10325,7 +12832,7 @@ h6.wf-title { font-size: 16px; }
 
 .wf-checkbox,
 .wf-radio {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
@@ -10355,7 +12862,7 @@ h6.wf-title { font-size: 16px; }
   appearance: none;
   width: 40px;
   height: 22px;
-  background: var(--wf-border);
+  background: var(--wf-muted);
   border-radius: 11px;
   position: relative;
   cursor: pointer;
@@ -10497,6 +13004,22 @@ h6.wf-title { font-size: 16px; }
 .wf-button-lg { padding: 10px 20px; font-size: 16px; }
 .wf-button-xl { padding: 12px 24px; font-size: 18px; }
 
+/* Icon-only button (square padding) */
+.wf-button-icon-only { padding: 8px; }
+.wf-button-icon-only.wf-button-xs { padding: 4px; }
+.wf-button-icon-only.wf-button-sm { padding: 6px; }
+.wf-button-icon-only.wf-button-md { padding: 8px; }
+.wf-button-icon-only.wf-button-lg { padding: 10px; }
+.wf-button-icon-only.wf-button-xl { padding: 12px; }
+
+/* Button icon sizes - scale icon based on button size */
+.wf-button svg.wf-icon { width: 16px; height: 16px; }
+.wf-button-xs svg.wf-icon { width: 12px; height: 12px; }
+.wf-button-sm svg.wf-icon { width: 14px; height: 14px; }
+.wf-button-md svg.wf-icon { width: 16px; height: 16px; }
+.wf-button-lg svg.wf-icon { width: 20px; height: 20px; }
+.wf-button-xl svg.wf-icon { width: 24px; height: 24px; }
+
 .wf-button-disabled,
 .wf-button:disabled {
   opacity: 0.5;
@@ -10518,6 +13041,11 @@ h6.wf-title { font-size: 16px; }
   border-radius: 50%;
   animation: wf-spin 0.6s linear infinite;
 }
+
+/* Button justify overrides - higher specificity to override default center */
+.wf-button.wf-justify-start { justify-content: flex-start; }
+.wf-button.wf-justify-end { justify-content: flex-end; }
+.wf-button.wf-justify-between { justify-content: space-between; }
 
 /* Display Components */
 .wf-image {
@@ -10569,17 +13097,41 @@ img.wf-image {
   font-size: 14px;
 }
 
+.wf-placeholder-with-children {
+  position: relative;
+}
+
+.wf-placeholder-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.wf-placeholder-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 .wf-avatar {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 40px;
   height: 40px;
-  background: var(--wf-border);
+  background: var(--wf-fg);
   border-radius: 50%;
   font-size: 14px;
   font-weight: 600;
-  color: var(--wf-fg);
+  color: var(--wf-bg);
   overflow: hidden;
 }
 
@@ -10610,6 +13162,19 @@ img.wf-image {
   border-radius: 9999px;
 }
 
+/* Dot badge - circular status indicator (for empty badges) */
+.wf-badge-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border-radius: 50%;
+  background: var(--wf-border);
+}
+.wf-badge-dot.wf-badge-success { background: var(--wf-success); border-color: var(--wf-success); }
+.wf-badge-dot.wf-badge-warning { background: var(--wf-warning); border-color: var(--wf-warning); }
+.wf-badge-dot.wf-badge-danger { background: var(--wf-danger); border-color: var(--wf-danger); }
+.wf-badge-dot.wf-badge-primary { background: var(--wf-primary); border-color: var(--wf-primary); }
+
 .wf-badge-default { }
 .wf-badge-primary { background: var(--wf-primary); color: white; border-color: var(--wf-primary); }
 .wf-badge-secondary { background: var(--wf-muted); color: white; border-color: var(--wf-muted); }
@@ -10617,6 +13182,43 @@ img.wf-image {
 .wf-badge-warning { border-color: var(--wf-warning); }
 .wf-badge-danger { border-color: var(--wf-danger); }
 .wf-badge-info { border-color: var(--wf-primary); }
+
+/* Icon badge - circular background with icon */
+.wf-badge-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--wf-fg);
+}
+
+.wf-badge-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Icon badge sizes - use higher specificity to override svg.wf-icon */
+.wf-badge-icon-xs { width: 24px; height: 24px; }
+.wf-badge-icon-xs svg.wf-icon { width: 12px; height: 12px; }
+.wf-badge-icon-sm { width: 32px; height: 32px; }
+.wf-badge-icon-sm svg.wf-icon { width: 16px; height: 16px; }
+.wf-badge-icon-md { width: 40px; height: 40px; }
+.wf-badge-icon-md svg.wf-icon { width: 20px; height: 20px; }
+.wf-badge-icon-lg { width: 48px; height: 48px; }
+.wf-badge-icon-lg svg.wf-icon { width: 24px; height: 24px; }
+.wf-badge-icon-xl { width: 64px; height: 64px; }
+.wf-badge-icon-xl svg.wf-icon { width: 32px; height: 32px; }
+
+.wf-badge-icon-primary,
+.wf-badge-icon-success,
+.wf-badge-icon-warning,
+.wf-badge-icon-danger {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--wf-fg);
+}
 
 .wf-icon {
   display: inline-flex;
@@ -10626,6 +13228,20 @@ img.wf-image {
   vertical-align: middle;
   flex-shrink: 0;
 }
+
+/* SVG icons - size is controlled by CSS, not HTML attributes */
+svg.wf-icon {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+/* Icon size tokens - matches SVG renderer */
+svg.wf-icon-xs { width: 12px; height: 12px; }
+svg.wf-icon-sm { width: 16px; height: 16px; }
+svg.wf-icon-md { width: 20px; height: 20px; }
+svg.wf-icon-lg { width: 24px; height: 24px; }
+svg.wf-icon-xl { width: 32px; height: 32px; }
 
 .wf-icon svg {
   display: block;
@@ -10774,9 +13390,11 @@ img.wf-image {
   animation: wf-spin 0.6s linear infinite;
 }
 
+.wf-spinner-xs { width: 12px; height: 12px; border-width: 2px; }
 .wf-spinner-sm { width: 16px; height: 16px; border-width: 2px; }
-.wf-spinner-md { width: 20px; height: 20px; border-width: 2px; }
+.wf-spinner-md { width: 24px; height: 24px; border-width: 2px; }
 .wf-spinner-lg { width: 32px; height: 32px; border-width: 3px; }
+.wf-spinner-xl { width: 48px; height: 48px; border-width: 4px; }
 
 @keyframes wf-spin {
   to { transform: rotate(360deg); }
@@ -10915,6 +13533,27 @@ img.wf-image {
   cursor: not-allowed;
 }
 
+.wf-nav-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wf-nav-group-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--wf-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 8px 16px 4px;
+}
+
+.wf-nav-divider {
+  margin: 8px 0;
+  border: none;
+  border-top: 1px solid var(--wf-border);
+}
+
 .wf-tabs {
   border-bottom: 1px solid var(--wf-border);
 }
@@ -10969,6 +13608,91 @@ img.wf-image {
   color: var(--wf-muted);
 }
 
+/* Semantic Markers */
+
+/* Avatar marker - small circle placeholder */
+.wf-semantic-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--wf-muted);
+  color: var(--wf-bg);
+  font-size: 10px;
+  font-weight: 600;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.wf-semantic-avatar-xs { width: 16px; height: 16px; }
+.wf-semantic-avatar-sm { width: 24px; height: 24px; }
+.wf-semantic-avatar-md { width: 32px; height: 32px; }
+.wf-semantic-avatar-lg { width: 40px; height: 40px; }
+
+/* Badge marker - inline status indicator (wireframe style: black/white only) */
+.wf-semantic-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: 9999px;
+  vertical-align: middle;
+  background: var(--wf-fg);
+  color: var(--wf-bg);
+}
+
+/* Dot marker - status dot (wireframe style: black/gray only) */
+.wf-semantic-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 6px;
+  background: var(--wf-fg);
+}
+
+/* Inactive/default state uses gray */
+.wf-semantic-dot-default { background: var(--wf-muted); }
+
+/* Icon marker placeholder */
+.wf-semantic-icon {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--wf-muted);
+  vertical-align: middle;
+}
+
+/* Unknown marker - fallback */
+.wf-semantic-unknown {
+  display: inline-block;
+  font-size: 11px;
+  color: var(--wf-muted);
+  font-style: italic;
+}
+
+/* Avatar + text layout in table cells */
+.wf-cell-avatar-layout {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.wf-cell-avatar-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.4;
+}
+
+.wf-cell-avatar-text span:first-child {
+  font-weight: 500;
+}
+
+.wf-cell-avatar-text span:last-child:not(:first-child) {
+  font-size: 12px;
+  color: var(--wf-muted);
+}
+
 /* Accessibility Utilities */
 .sr-only {
   position: absolute;
@@ -11004,7 +13728,7 @@ img.wf-image {
   }
 }
       </style>
-      <div class="wf-page" style="width: 1440px; height: 900px;" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
+      <div class="wf-page" style="position: relative; width: 1440px; height: 900px; overflow: hidden" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
   <header class="wf-header">
       <h1 class="wf-title">Header</h1>
   </header>
@@ -11025,8 +13749,16 @@ exports[`Render Snapshots > SVG Snapshots > should render simple text to SVG 1`]
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
      viewBox="0 0 800 600" width="800" height="600">
   <rect width="100%" height="100%" fill="#ffffff"/>
-  <foreignObject x="20" y="20" width="760" height="560">
-    <div xmlns="http://www.w3.org/1999/xhtml" style="width: 100%; height: 100%; overflow: hidden;">
+  <foreignObject x="0" y="0" width="800" height="600">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="
+      width: 800px;
+      height: 600px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+    ">
       <style type="text/css">
 /* wireweave CSS Variables */
 :root {
@@ -11052,17 +13784,29 @@ exports[`Render Snapshots > SVG Snapshots > should render simple text to SVG 1`]
   font-family: var(--wf-font);
   color: var(--wf-fg);
   background: var(--wf-bg);
-  min-height: 100vh;
   box-sizing: border-box;
   position: relative;
   display: flex;
   flex-direction: column;
+  /* Wireframe boundary visualization */
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Col direct child of page should fill page height */
+.wf-page > .wf-col {
+  flex: 1;
+  min-height: 0;
 }
 
 /* Row containing sidebar should fill remaining space */
 .wf-page > .wf-row:has(.wf-sidebar),
-.wf-page > .wf-row:has(.wf-main) {
+.wf-page > .wf-row:has(.wf-main),
+.wf-page > .wf-col > .wf-row:has(.wf-sidebar),
+.wf-page > .wf-col > .wf-row:has(.wf-main) {
   flex: 1;
+  min-height: 0;
   align-items: stretch;
 }
 
@@ -11079,66 +13823,49 @@ exports[`Render Snapshots > SVG Snapshots > should render simple text to SVG 1`]
 }
 
 /* Page centered content (both horizontal and vertical) */
-.wf-page-centered {
+.wf-page.wf-page-centered {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-/* Grid System */
+/* Prevent direct children from stretching in centered pages */
+.wf-page.wf-page-centered > * {
+  flex: 0 0 auto;
+}
+
+/* Grid System - Explicit Gap Only */
 .wf-row {
   display: flex;
   flex-wrap: nowrap;
-  margin-left: -8px;
-  margin-right: -8px;
-}
-
-/* When gap is used, disable gutter system */
-.wf-row[class*="gap-"] {
-  margin-left: 0;
-  margin-right: 0;
 }
 
 .wf-col {
+  display: flex;
+  flex-direction: column;
   flex: 1 0 0%;
-  padding-left: 8px;
-  padding-right: 8px;
   box-sizing: border-box;
 }
 
-/* When parent row has gap, disable column padding */
-.wf-row[class*="gap-"] > .wf-col {
-  padding-left: 0;
-  padding-right: 0;
+/* When explicit width is set, don't flex-grow */
+.wf-row[style*="width:"],
+.wf-col[style*="width:"] {
+  flex: 0 0 auto;
 }
 
-.wf-col-1 { flex: 0 0 auto; width: 8.3333%; }
-.wf-col-2 { flex: 0 0 auto; width: 16.6667%; }
-.wf-col-3 { flex: 0 0 auto; width: 25.0000%; }
-.wf-col-4 { flex: 0 0 auto; width: 33.3333%; }
-.wf-col-5 { flex: 0 0 auto; width: 41.6667%; }
-.wf-col-6 { flex: 0 0 auto; width: 50.0000%; }
-.wf-col-7 { flex: 0 0 auto; width: 58.3333%; }
-.wf-col-8 { flex: 0 0 auto; width: 66.6667%; }
-.wf-col-9 { flex: 0 0 auto; width: 75.0000%; }
-.wf-col-10 { flex: 0 0 auto; width: 83.3333%; }
-.wf-col-11 { flex: 0 0 auto; width: 91.6667%; }
-.wf-col-12 { flex: 0 0 auto; width: 100.0000%; }
-
-/* Gap-aware column sizing */
-.wf-row[class*="gap-"] > .wf-col-1 { flex: 1 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-2 { flex: 2 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-3 { flex: 3 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-4 { flex: 4 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-5 { flex: 5 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-6 { flex: 6 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-7 { flex: 7 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-8 { flex: 8 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-9 { flex: 9 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-10 { flex: 10 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-11 { flex: 11 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-12 { flex: 12 0 0; width: auto; }
+.wf-col-1 { flex: 1 0 0%; min-width: 0; }
+.wf-col-2 { flex: 2 0 0%; min-width: 0; }
+.wf-col-3 { flex: 3 0 0%; min-width: 0; }
+.wf-col-4 { flex: 4 0 0%; min-width: 0; }
+.wf-col-5 { flex: 5 0 0%; min-width: 0; }
+.wf-col-6 { flex: 6 0 0%; min-width: 0; }
+.wf-col-7 { flex: 7 0 0%; min-width: 0; }
+.wf-col-8 { flex: 8 0 0%; min-width: 0; }
+.wf-col-9 { flex: 9 0 0%; min-width: 0; }
+.wf-col-10 { flex: 10 0 0%; min-width: 0; }
+.wf-col-11 { flex: 11 0 0%; min-width: 0; }
+.wf-col-12 { flex: 12 0 0%; min-width: 0; }
 
 
 /* Spacing Utilities */
@@ -11346,7 +14073,7 @@ exports[`Render Snapshots > SVG Snapshots > should render simple text to SVG 1`]
 .wf-gap-8 { gap: 32px; }
 
 /* Size Utilities */
-.wf-w-full { width: 100%; display: block; }
+.wf-w-full { width: 100%; }
 .wf-w-auto { width: auto; }
 .wf-w-fit { width: fit-content; }
 .wf-w-screen { width: 100vw; }
@@ -11399,16 +14126,54 @@ exports[`Render Snapshots > SVG Snapshots > should render simple text to SVG 1`]
 /* Layout Components */
 .wf-header {
   border-bottom: 1px solid var(--wf-border);
-  padding: 16px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+}
+
+.wf-header > .wf-row {
+  flex: 1;
 }
 
 .wf-header.wf-no-border {
   border-bottom: none;
 }
 
+/* Header avatar - smaller size */
+.wf-header .wf-avatar {
+  width: 32px;
+  height: 32px;
+  font-size: 12px;
+}
+
+/* Header icon buttons - smaller size */
+.wf-header .wf-button-icon-only {
+  padding: 6px;
+}
+
+.wf-header .wf-button-icon-only svg.wf-icon {
+  width: 18px;
+  height: 18px;
+}
+
 .wf-main {
   flex: 1;
   padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Scrollable main content */
+.wf-main.wf-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Main content should align to top, not stretch to fill */
+/* But allow explicit flex=1 to override */
+.wf-main > .wf-col:not(.wf-flex-1) {
+  flex: 0 0 auto;
 }
 
 .wf-footer {
@@ -11423,8 +14188,9 @@ exports[`Render Snapshots > SVG Snapshots > should render simple text to SVG 1`]
 .wf-sidebar {
   width: 256px;
   border-right: 1px solid var(--wf-border);
-  padding: 16px;
+  padding: 16px 16px 16px 20px;
   flex-shrink: 0;
+  align-self: stretch;
 }
 
 .wf-sidebar-right {
@@ -11432,8 +14198,40 @@ exports[`Render Snapshots > SVG Snapshots > should render simple text to SVG 1`]
   border-left: 1px solid var(--wf-border);
 }
 
+/* Sidebar logo area - first row with logo */
+.wf-sidebar > .wf-row:first-child {
+  margin-bottom: 24px;
+}
+
+/* Sidebar navigation links */
+.wf-sidebar .wf-nav-link {
+  font-size: 14px;
+  padding: 8px 12px;
+}
+
+/* Sidebar nav link icons */
+.wf-sidebar .wf-nav-link svg.wf-icon {
+  width: 18px;
+  height: 18px;
+}
+
 .wf-section {
   margin-bottom: 24px;
+}
+
+/* Section title in sidebar - smaller muted style */
+.wf-sidebar .wf-section .wf-title {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--wf-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+/* Sidebar header text - prevent wrapping for logo text */
+.wf-sidebar .wf-header .wf-text {
+  white-space: nowrap;
 }
 
 /* Container Components */
@@ -11442,6 +14240,17 @@ exports[`Render Snapshots > SVG Snapshots > should render simple text to SVG 1`]
   border-radius: var(--wf-radius);
   background: var(--wf-bg);
   padding: 16px;
+}
+
+/* Cards in flex rows: respect explicit width, shrink if needed */
+.wf-row > .wf-card {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+/* Cards without explicit width should expand to fill space */
+.wf-row > .wf-card-flex {
+  flex: 1 1 0%;
 }
 
 .wf-card-title {
@@ -11596,6 +14405,11 @@ exports[`Render Snapshots > SVG Snapshots > should render simple text to SVG 1`]
   line-height: 1.25;
 }
 
+/* Remove bottom margin when title is in a row (inline with other elements) */
+.wf-row .wf-title {
+  margin-bottom: 0;
+}
+
 h1.wf-title { font-size: 36px; }
 h2.wf-title { font-size: 30px; }
 h3.wf-title { font-size: 24px; }
@@ -11673,6 +14487,40 @@ h6.wf-title { font-size: 16px; }
   border-color: var(--wf-danger);
 }
 
+/* Input with icon */
+.wf-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.wf-input-wrapper .wf-input {
+  padding-left: 36px;
+}
+
+.wf-input-icon {
+  position: absolute;
+  left: 12px;
+  color: var(--wf-muted);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+}
+
+.wf-input-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Input wrapper in flex rows */
+.wf-row > .wf-input-wrapper {
+  flex: 1 1 auto;
+  min-width: 120px;
+}
+
 .wf-textarea {
   min-height: 80px;
   resize: vertical;
@@ -11688,7 +14536,7 @@ h6.wf-title { font-size: 16px; }
 
 .wf-checkbox,
 .wf-radio {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
@@ -11718,7 +14566,7 @@ h6.wf-title { font-size: 16px; }
   appearance: none;
   width: 40px;
   height: 22px;
-  background: var(--wf-border);
+  background: var(--wf-muted);
   border-radius: 11px;
   position: relative;
   cursor: pointer;
@@ -11860,6 +14708,22 @@ h6.wf-title { font-size: 16px; }
 .wf-button-lg { padding: 10px 20px; font-size: 16px; }
 .wf-button-xl { padding: 12px 24px; font-size: 18px; }
 
+/* Icon-only button (square padding) */
+.wf-button-icon-only { padding: 8px; }
+.wf-button-icon-only.wf-button-xs { padding: 4px; }
+.wf-button-icon-only.wf-button-sm { padding: 6px; }
+.wf-button-icon-only.wf-button-md { padding: 8px; }
+.wf-button-icon-only.wf-button-lg { padding: 10px; }
+.wf-button-icon-only.wf-button-xl { padding: 12px; }
+
+/* Button icon sizes - scale icon based on button size */
+.wf-button svg.wf-icon { width: 16px; height: 16px; }
+.wf-button-xs svg.wf-icon { width: 12px; height: 12px; }
+.wf-button-sm svg.wf-icon { width: 14px; height: 14px; }
+.wf-button-md svg.wf-icon { width: 16px; height: 16px; }
+.wf-button-lg svg.wf-icon { width: 20px; height: 20px; }
+.wf-button-xl svg.wf-icon { width: 24px; height: 24px; }
+
 .wf-button-disabled,
 .wf-button:disabled {
   opacity: 0.5;
@@ -11881,6 +14745,11 @@ h6.wf-title { font-size: 16px; }
   border-radius: 50%;
   animation: wf-spin 0.6s linear infinite;
 }
+
+/* Button justify overrides - higher specificity to override default center */
+.wf-button.wf-justify-start { justify-content: flex-start; }
+.wf-button.wf-justify-end { justify-content: flex-end; }
+.wf-button.wf-justify-between { justify-content: space-between; }
 
 /* Display Components */
 .wf-image {
@@ -11932,17 +14801,41 @@ img.wf-image {
   font-size: 14px;
 }
 
+.wf-placeholder-with-children {
+  position: relative;
+}
+
+.wf-placeholder-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.wf-placeholder-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 .wf-avatar {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 40px;
   height: 40px;
-  background: var(--wf-border);
+  background: var(--wf-fg);
   border-radius: 50%;
   font-size: 14px;
   font-weight: 600;
-  color: var(--wf-fg);
+  color: var(--wf-bg);
   overflow: hidden;
 }
 
@@ -11973,6 +14866,19 @@ img.wf-image {
   border-radius: 9999px;
 }
 
+/* Dot badge - circular status indicator (for empty badges) */
+.wf-badge-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border-radius: 50%;
+  background: var(--wf-border);
+}
+.wf-badge-dot.wf-badge-success { background: var(--wf-success); border-color: var(--wf-success); }
+.wf-badge-dot.wf-badge-warning { background: var(--wf-warning); border-color: var(--wf-warning); }
+.wf-badge-dot.wf-badge-danger { background: var(--wf-danger); border-color: var(--wf-danger); }
+.wf-badge-dot.wf-badge-primary { background: var(--wf-primary); border-color: var(--wf-primary); }
+
 .wf-badge-default { }
 .wf-badge-primary { background: var(--wf-primary); color: white; border-color: var(--wf-primary); }
 .wf-badge-secondary { background: var(--wf-muted); color: white; border-color: var(--wf-muted); }
@@ -11980,6 +14886,43 @@ img.wf-image {
 .wf-badge-warning { border-color: var(--wf-warning); }
 .wf-badge-danger { border-color: var(--wf-danger); }
 .wf-badge-info { border-color: var(--wf-primary); }
+
+/* Icon badge - circular background with icon */
+.wf-badge-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--wf-fg);
+}
+
+.wf-badge-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Icon badge sizes - use higher specificity to override svg.wf-icon */
+.wf-badge-icon-xs { width: 24px; height: 24px; }
+.wf-badge-icon-xs svg.wf-icon { width: 12px; height: 12px; }
+.wf-badge-icon-sm { width: 32px; height: 32px; }
+.wf-badge-icon-sm svg.wf-icon { width: 16px; height: 16px; }
+.wf-badge-icon-md { width: 40px; height: 40px; }
+.wf-badge-icon-md svg.wf-icon { width: 20px; height: 20px; }
+.wf-badge-icon-lg { width: 48px; height: 48px; }
+.wf-badge-icon-lg svg.wf-icon { width: 24px; height: 24px; }
+.wf-badge-icon-xl { width: 64px; height: 64px; }
+.wf-badge-icon-xl svg.wf-icon { width: 32px; height: 32px; }
+
+.wf-badge-icon-primary,
+.wf-badge-icon-success,
+.wf-badge-icon-warning,
+.wf-badge-icon-danger {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--wf-fg);
+}
 
 .wf-icon {
   display: inline-flex;
@@ -11989,6 +14932,20 @@ img.wf-image {
   vertical-align: middle;
   flex-shrink: 0;
 }
+
+/* SVG icons - size is controlled by CSS, not HTML attributes */
+svg.wf-icon {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+/* Icon size tokens - matches SVG renderer */
+svg.wf-icon-xs { width: 12px; height: 12px; }
+svg.wf-icon-sm { width: 16px; height: 16px; }
+svg.wf-icon-md { width: 20px; height: 20px; }
+svg.wf-icon-lg { width: 24px; height: 24px; }
+svg.wf-icon-xl { width: 32px; height: 32px; }
 
 .wf-icon svg {
   display: block;
@@ -12137,9 +15094,11 @@ img.wf-image {
   animation: wf-spin 0.6s linear infinite;
 }
 
+.wf-spinner-xs { width: 12px; height: 12px; border-width: 2px; }
 .wf-spinner-sm { width: 16px; height: 16px; border-width: 2px; }
-.wf-spinner-md { width: 20px; height: 20px; border-width: 2px; }
+.wf-spinner-md { width: 24px; height: 24px; border-width: 2px; }
 .wf-spinner-lg { width: 32px; height: 32px; border-width: 3px; }
+.wf-spinner-xl { width: 48px; height: 48px; border-width: 4px; }
 
 @keyframes wf-spin {
   to { transform: rotate(360deg); }
@@ -12278,6 +15237,27 @@ img.wf-image {
   cursor: not-allowed;
 }
 
+.wf-nav-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wf-nav-group-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--wf-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 8px 16px 4px;
+}
+
+.wf-nav-divider {
+  margin: 8px 0;
+  border: none;
+  border-top: 1px solid var(--wf-border);
+}
+
 .wf-tabs {
   border-bottom: 1px solid var(--wf-border);
 }
@@ -12332,6 +15312,91 @@ img.wf-image {
   color: var(--wf-muted);
 }
 
+/* Semantic Markers */
+
+/* Avatar marker - small circle placeholder */
+.wf-semantic-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--wf-muted);
+  color: var(--wf-bg);
+  font-size: 10px;
+  font-weight: 600;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.wf-semantic-avatar-xs { width: 16px; height: 16px; }
+.wf-semantic-avatar-sm { width: 24px; height: 24px; }
+.wf-semantic-avatar-md { width: 32px; height: 32px; }
+.wf-semantic-avatar-lg { width: 40px; height: 40px; }
+
+/* Badge marker - inline status indicator (wireframe style: black/white only) */
+.wf-semantic-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: 9999px;
+  vertical-align: middle;
+  background: var(--wf-fg);
+  color: var(--wf-bg);
+}
+
+/* Dot marker - status dot (wireframe style: black/gray only) */
+.wf-semantic-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 6px;
+  background: var(--wf-fg);
+}
+
+/* Inactive/default state uses gray */
+.wf-semantic-dot-default { background: var(--wf-muted); }
+
+/* Icon marker placeholder */
+.wf-semantic-icon {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--wf-muted);
+  vertical-align: middle;
+}
+
+/* Unknown marker - fallback */
+.wf-semantic-unknown {
+  display: inline-block;
+  font-size: 11px;
+  color: var(--wf-muted);
+  font-style: italic;
+}
+
+/* Avatar + text layout in table cells */
+.wf-cell-avatar-layout {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.wf-cell-avatar-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.4;
+}
+
+.wf-cell-avatar-text span:first-child {
+  font-weight: 500;
+}
+
+.wf-cell-avatar-text span:last-child:not(:first-child) {
+  font-size: 12px;
+  color: var(--wf-muted);
+}
+
 /* Accessibility Utilities */
 .sr-only {
   position: absolute;
@@ -12367,7 +15432,7 @@ img.wf-image {
   }
 }
       </style>
-      <div class="wf-page" style="width: 1440px; height: 900px;" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
+      <div class="wf-page" style="position: relative; width: 1440px; height: 900px; overflow: hidden" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
   <p class="wf-text">Hello World</p>
 </div>
     </div>
@@ -12380,8 +15445,16 @@ exports[`Render Snapshots > SVG Snapshots > should respect padding option 1`] = 
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
      viewBox="0 0 800 600" width="800" height="600">
   <rect width="100%" height="100%" fill="#ffffff"/>
-  <foreignObject x="40" y="40" width="720" height="520">
-    <div xmlns="http://www.w3.org/1999/xhtml" style="width: 100%; height: 100%; overflow: hidden;">
+  <foreignObject x="0" y="0" width="800" height="600">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="
+      width: 800px;
+      height: 600px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+    ">
       <style type="text/css">
 /* wireweave CSS Variables */
 :root {
@@ -12407,17 +15480,29 @@ exports[`Render Snapshots > SVG Snapshots > should respect padding option 1`] = 
   font-family: var(--wf-font);
   color: var(--wf-fg);
   background: var(--wf-bg);
-  min-height: 100vh;
   box-sizing: border-box;
   position: relative;
   display: flex;
   flex-direction: column;
+  /* Wireframe boundary visualization */
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Col direct child of page should fill page height */
+.wf-page > .wf-col {
+  flex: 1;
+  min-height: 0;
 }
 
 /* Row containing sidebar should fill remaining space */
 .wf-page > .wf-row:has(.wf-sidebar),
-.wf-page > .wf-row:has(.wf-main) {
+.wf-page > .wf-row:has(.wf-main),
+.wf-page > .wf-col > .wf-row:has(.wf-sidebar),
+.wf-page > .wf-col > .wf-row:has(.wf-main) {
   flex: 1;
+  min-height: 0;
   align-items: stretch;
 }
 
@@ -12434,66 +15519,49 @@ exports[`Render Snapshots > SVG Snapshots > should respect padding option 1`] = 
 }
 
 /* Page centered content (both horizontal and vertical) */
-.wf-page-centered {
+.wf-page.wf-page-centered {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-/* Grid System */
+/* Prevent direct children from stretching in centered pages */
+.wf-page.wf-page-centered > * {
+  flex: 0 0 auto;
+}
+
+/* Grid System - Explicit Gap Only */
 .wf-row {
   display: flex;
   flex-wrap: nowrap;
-  margin-left: -8px;
-  margin-right: -8px;
-}
-
-/* When gap is used, disable gutter system */
-.wf-row[class*="gap-"] {
-  margin-left: 0;
-  margin-right: 0;
 }
 
 .wf-col {
+  display: flex;
+  flex-direction: column;
   flex: 1 0 0%;
-  padding-left: 8px;
-  padding-right: 8px;
   box-sizing: border-box;
 }
 
-/* When parent row has gap, disable column padding */
-.wf-row[class*="gap-"] > .wf-col {
-  padding-left: 0;
-  padding-right: 0;
+/* When explicit width is set, don't flex-grow */
+.wf-row[style*="width:"],
+.wf-col[style*="width:"] {
+  flex: 0 0 auto;
 }
 
-.wf-col-1 { flex: 0 0 auto; width: 8.3333%; }
-.wf-col-2 { flex: 0 0 auto; width: 16.6667%; }
-.wf-col-3 { flex: 0 0 auto; width: 25.0000%; }
-.wf-col-4 { flex: 0 0 auto; width: 33.3333%; }
-.wf-col-5 { flex: 0 0 auto; width: 41.6667%; }
-.wf-col-6 { flex: 0 0 auto; width: 50.0000%; }
-.wf-col-7 { flex: 0 0 auto; width: 58.3333%; }
-.wf-col-8 { flex: 0 0 auto; width: 66.6667%; }
-.wf-col-9 { flex: 0 0 auto; width: 75.0000%; }
-.wf-col-10 { flex: 0 0 auto; width: 83.3333%; }
-.wf-col-11 { flex: 0 0 auto; width: 91.6667%; }
-.wf-col-12 { flex: 0 0 auto; width: 100.0000%; }
-
-/* Gap-aware column sizing */
-.wf-row[class*="gap-"] > .wf-col-1 { flex: 1 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-2 { flex: 2 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-3 { flex: 3 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-4 { flex: 4 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-5 { flex: 5 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-6 { flex: 6 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-7 { flex: 7 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-8 { flex: 8 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-9 { flex: 9 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-10 { flex: 10 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-11 { flex: 11 0 0; width: auto; }
-.wf-row[class*="gap-"] > .wf-col-12 { flex: 12 0 0; width: auto; }
+.wf-col-1 { flex: 1 0 0%; min-width: 0; }
+.wf-col-2 { flex: 2 0 0%; min-width: 0; }
+.wf-col-3 { flex: 3 0 0%; min-width: 0; }
+.wf-col-4 { flex: 4 0 0%; min-width: 0; }
+.wf-col-5 { flex: 5 0 0%; min-width: 0; }
+.wf-col-6 { flex: 6 0 0%; min-width: 0; }
+.wf-col-7 { flex: 7 0 0%; min-width: 0; }
+.wf-col-8 { flex: 8 0 0%; min-width: 0; }
+.wf-col-9 { flex: 9 0 0%; min-width: 0; }
+.wf-col-10 { flex: 10 0 0%; min-width: 0; }
+.wf-col-11 { flex: 11 0 0%; min-width: 0; }
+.wf-col-12 { flex: 12 0 0%; min-width: 0; }
 
 
 /* Spacing Utilities */
@@ -12701,7 +15769,7 @@ exports[`Render Snapshots > SVG Snapshots > should respect padding option 1`] = 
 .wf-gap-8 { gap: 32px; }
 
 /* Size Utilities */
-.wf-w-full { width: 100%; display: block; }
+.wf-w-full { width: 100%; }
 .wf-w-auto { width: auto; }
 .wf-w-fit { width: fit-content; }
 .wf-w-screen { width: 100vw; }
@@ -12754,16 +15822,54 @@ exports[`Render Snapshots > SVG Snapshots > should respect padding option 1`] = 
 /* Layout Components */
 .wf-header {
   border-bottom: 1px solid var(--wf-border);
-  padding: 16px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+}
+
+.wf-header > .wf-row {
+  flex: 1;
 }
 
 .wf-header.wf-no-border {
   border-bottom: none;
 }
 
+/* Header avatar - smaller size */
+.wf-header .wf-avatar {
+  width: 32px;
+  height: 32px;
+  font-size: 12px;
+}
+
+/* Header icon buttons - smaller size */
+.wf-header .wf-button-icon-only {
+  padding: 6px;
+}
+
+.wf-header .wf-button-icon-only svg.wf-icon {
+  width: 18px;
+  height: 18px;
+}
+
 .wf-main {
   flex: 1;
   padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Scrollable main content */
+.wf-main.wf-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Main content should align to top, not stretch to fill */
+/* But allow explicit flex=1 to override */
+.wf-main > .wf-col:not(.wf-flex-1) {
+  flex: 0 0 auto;
 }
 
 .wf-footer {
@@ -12778,8 +15884,9 @@ exports[`Render Snapshots > SVG Snapshots > should respect padding option 1`] = 
 .wf-sidebar {
   width: 256px;
   border-right: 1px solid var(--wf-border);
-  padding: 16px;
+  padding: 16px 16px 16px 20px;
   flex-shrink: 0;
+  align-self: stretch;
 }
 
 .wf-sidebar-right {
@@ -12787,8 +15894,40 @@ exports[`Render Snapshots > SVG Snapshots > should respect padding option 1`] = 
   border-left: 1px solid var(--wf-border);
 }
 
+/* Sidebar logo area - first row with logo */
+.wf-sidebar > .wf-row:first-child {
+  margin-bottom: 24px;
+}
+
+/* Sidebar navigation links */
+.wf-sidebar .wf-nav-link {
+  font-size: 14px;
+  padding: 8px 12px;
+}
+
+/* Sidebar nav link icons */
+.wf-sidebar .wf-nav-link svg.wf-icon {
+  width: 18px;
+  height: 18px;
+}
+
 .wf-section {
   margin-bottom: 24px;
+}
+
+/* Section title in sidebar - smaller muted style */
+.wf-sidebar .wf-section .wf-title {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--wf-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+/* Sidebar header text - prevent wrapping for logo text */
+.wf-sidebar .wf-header .wf-text {
+  white-space: nowrap;
 }
 
 /* Container Components */
@@ -12797,6 +15936,17 @@ exports[`Render Snapshots > SVG Snapshots > should respect padding option 1`] = 
   border-radius: var(--wf-radius);
   background: var(--wf-bg);
   padding: 16px;
+}
+
+/* Cards in flex rows: respect explicit width, shrink if needed */
+.wf-row > .wf-card {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+/* Cards without explicit width should expand to fill space */
+.wf-row > .wf-card-flex {
+  flex: 1 1 0%;
 }
 
 .wf-card-title {
@@ -12951,6 +16101,11 @@ exports[`Render Snapshots > SVG Snapshots > should respect padding option 1`] = 
   line-height: 1.25;
 }
 
+/* Remove bottom margin when title is in a row (inline with other elements) */
+.wf-row .wf-title {
+  margin-bottom: 0;
+}
+
 h1.wf-title { font-size: 36px; }
 h2.wf-title { font-size: 30px; }
 h3.wf-title { font-size: 24px; }
@@ -13028,6 +16183,40 @@ h6.wf-title { font-size: 16px; }
   border-color: var(--wf-danger);
 }
 
+/* Input with icon */
+.wf-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.wf-input-wrapper .wf-input {
+  padding-left: 36px;
+}
+
+.wf-input-icon {
+  position: absolute;
+  left: 12px;
+  color: var(--wf-muted);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+}
+
+.wf-input-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Input wrapper in flex rows */
+.wf-row > .wf-input-wrapper {
+  flex: 1 1 auto;
+  min-width: 120px;
+}
+
 .wf-textarea {
   min-height: 80px;
   resize: vertical;
@@ -13043,7 +16232,7 @@ h6.wf-title { font-size: 16px; }
 
 .wf-checkbox,
 .wf-radio {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
@@ -13073,7 +16262,7 @@ h6.wf-title { font-size: 16px; }
   appearance: none;
   width: 40px;
   height: 22px;
-  background: var(--wf-border);
+  background: var(--wf-muted);
   border-radius: 11px;
   position: relative;
   cursor: pointer;
@@ -13215,6 +16404,22 @@ h6.wf-title { font-size: 16px; }
 .wf-button-lg { padding: 10px 20px; font-size: 16px; }
 .wf-button-xl { padding: 12px 24px; font-size: 18px; }
 
+/* Icon-only button (square padding) */
+.wf-button-icon-only { padding: 8px; }
+.wf-button-icon-only.wf-button-xs { padding: 4px; }
+.wf-button-icon-only.wf-button-sm { padding: 6px; }
+.wf-button-icon-only.wf-button-md { padding: 8px; }
+.wf-button-icon-only.wf-button-lg { padding: 10px; }
+.wf-button-icon-only.wf-button-xl { padding: 12px; }
+
+/* Button icon sizes - scale icon based on button size */
+.wf-button svg.wf-icon { width: 16px; height: 16px; }
+.wf-button-xs svg.wf-icon { width: 12px; height: 12px; }
+.wf-button-sm svg.wf-icon { width: 14px; height: 14px; }
+.wf-button-md svg.wf-icon { width: 16px; height: 16px; }
+.wf-button-lg svg.wf-icon { width: 20px; height: 20px; }
+.wf-button-xl svg.wf-icon { width: 24px; height: 24px; }
+
 .wf-button-disabled,
 .wf-button:disabled {
   opacity: 0.5;
@@ -13236,6 +16441,11 @@ h6.wf-title { font-size: 16px; }
   border-radius: 50%;
   animation: wf-spin 0.6s linear infinite;
 }
+
+/* Button justify overrides - higher specificity to override default center */
+.wf-button.wf-justify-start { justify-content: flex-start; }
+.wf-button.wf-justify-end { justify-content: flex-end; }
+.wf-button.wf-justify-between { justify-content: space-between; }
 
 /* Display Components */
 .wf-image {
@@ -13287,17 +16497,41 @@ img.wf-image {
   font-size: 14px;
 }
 
+.wf-placeholder-with-children {
+  position: relative;
+}
+
+.wf-placeholder-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.wf-placeholder-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 .wf-avatar {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 40px;
   height: 40px;
-  background: var(--wf-border);
+  background: var(--wf-fg);
   border-radius: 50%;
   font-size: 14px;
   font-weight: 600;
-  color: var(--wf-fg);
+  color: var(--wf-bg);
   overflow: hidden;
 }
 
@@ -13328,6 +16562,19 @@ img.wf-image {
   border-radius: 9999px;
 }
 
+/* Dot badge - circular status indicator (for empty badges) */
+.wf-badge-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border-radius: 50%;
+  background: var(--wf-border);
+}
+.wf-badge-dot.wf-badge-success { background: var(--wf-success); border-color: var(--wf-success); }
+.wf-badge-dot.wf-badge-warning { background: var(--wf-warning); border-color: var(--wf-warning); }
+.wf-badge-dot.wf-badge-danger { background: var(--wf-danger); border-color: var(--wf-danger); }
+.wf-badge-dot.wf-badge-primary { background: var(--wf-primary); border-color: var(--wf-primary); }
+
 .wf-badge-default { }
 .wf-badge-primary { background: var(--wf-primary); color: white; border-color: var(--wf-primary); }
 .wf-badge-secondary { background: var(--wf-muted); color: white; border-color: var(--wf-muted); }
@@ -13335,6 +16582,43 @@ img.wf-image {
 .wf-badge-warning { border-color: var(--wf-warning); }
 .wf-badge-danger { border-color: var(--wf-danger); }
 .wf-badge-info { border-color: var(--wf-primary); }
+
+/* Icon badge - circular background with icon */
+.wf-badge-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--wf-fg);
+}
+
+.wf-badge-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Icon badge sizes - use higher specificity to override svg.wf-icon */
+.wf-badge-icon-xs { width: 24px; height: 24px; }
+.wf-badge-icon-xs svg.wf-icon { width: 12px; height: 12px; }
+.wf-badge-icon-sm { width: 32px; height: 32px; }
+.wf-badge-icon-sm svg.wf-icon { width: 16px; height: 16px; }
+.wf-badge-icon-md { width: 40px; height: 40px; }
+.wf-badge-icon-md svg.wf-icon { width: 20px; height: 20px; }
+.wf-badge-icon-lg { width: 48px; height: 48px; }
+.wf-badge-icon-lg svg.wf-icon { width: 24px; height: 24px; }
+.wf-badge-icon-xl { width: 64px; height: 64px; }
+.wf-badge-icon-xl svg.wf-icon { width: 32px; height: 32px; }
+
+.wf-badge-icon-primary,
+.wf-badge-icon-success,
+.wf-badge-icon-warning,
+.wf-badge-icon-danger {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--wf-fg);
+}
 
 .wf-icon {
   display: inline-flex;
@@ -13344,6 +16628,20 @@ img.wf-image {
   vertical-align: middle;
   flex-shrink: 0;
 }
+
+/* SVG icons - size is controlled by CSS, not HTML attributes */
+svg.wf-icon {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+/* Icon size tokens - matches SVG renderer */
+svg.wf-icon-xs { width: 12px; height: 12px; }
+svg.wf-icon-sm { width: 16px; height: 16px; }
+svg.wf-icon-md { width: 20px; height: 20px; }
+svg.wf-icon-lg { width: 24px; height: 24px; }
+svg.wf-icon-xl { width: 32px; height: 32px; }
 
 .wf-icon svg {
   display: block;
@@ -13492,9 +16790,11 @@ img.wf-image {
   animation: wf-spin 0.6s linear infinite;
 }
 
+.wf-spinner-xs { width: 12px; height: 12px; border-width: 2px; }
 .wf-spinner-sm { width: 16px; height: 16px; border-width: 2px; }
-.wf-spinner-md { width: 20px; height: 20px; border-width: 2px; }
+.wf-spinner-md { width: 24px; height: 24px; border-width: 2px; }
 .wf-spinner-lg { width: 32px; height: 32px; border-width: 3px; }
+.wf-spinner-xl { width: 48px; height: 48px; border-width: 4px; }
 
 @keyframes wf-spin {
   to { transform: rotate(360deg); }
@@ -13633,6 +16933,27 @@ img.wf-image {
   cursor: not-allowed;
 }
 
+.wf-nav-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wf-nav-group-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--wf-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 8px 16px 4px;
+}
+
+.wf-nav-divider {
+  margin: 8px 0;
+  border: none;
+  border-top: 1px solid var(--wf-border);
+}
+
 .wf-tabs {
   border-bottom: 1px solid var(--wf-border);
 }
@@ -13687,6 +17008,91 @@ img.wf-image {
   color: var(--wf-muted);
 }
 
+/* Semantic Markers */
+
+/* Avatar marker - small circle placeholder */
+.wf-semantic-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--wf-muted);
+  color: var(--wf-bg);
+  font-size: 10px;
+  font-weight: 600;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.wf-semantic-avatar-xs { width: 16px; height: 16px; }
+.wf-semantic-avatar-sm { width: 24px; height: 24px; }
+.wf-semantic-avatar-md { width: 32px; height: 32px; }
+.wf-semantic-avatar-lg { width: 40px; height: 40px; }
+
+/* Badge marker - inline status indicator (wireframe style: black/white only) */
+.wf-semantic-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: 9999px;
+  vertical-align: middle;
+  background: var(--wf-fg);
+  color: var(--wf-bg);
+}
+
+/* Dot marker - status dot (wireframe style: black/gray only) */
+.wf-semantic-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 6px;
+  background: var(--wf-fg);
+}
+
+/* Inactive/default state uses gray */
+.wf-semantic-dot-default { background: var(--wf-muted); }
+
+/* Icon marker placeholder */
+.wf-semantic-icon {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--wf-muted);
+  vertical-align: middle;
+}
+
+/* Unknown marker - fallback */
+.wf-semantic-unknown {
+  display: inline-block;
+  font-size: 11px;
+  color: var(--wf-muted);
+  font-style: italic;
+}
+
+/* Avatar + text layout in table cells */
+.wf-cell-avatar-layout {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.wf-cell-avatar-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.4;
+}
+
+.wf-cell-avatar-text span:first-child {
+  font-weight: 500;
+}
+
+.wf-cell-avatar-text span:last-child:not(:first-child) {
+  font-size: 12px;
+  color: var(--wf-muted);
+}
+
 /* Accessibility Utilities */
 .sr-only {
   position: absolute;
@@ -13722,7 +17128,7 @@ img.wf-image {
   }
 }
       </style>
-      <div class="wf-page" style="width: 1440px; height: 900px;" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
+      <div class="wf-page" style="position: relative; width: 1440px; height: 900px; overflow: hidden" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
   <p class="wf-text">Test</p>
 </div>
     </div>

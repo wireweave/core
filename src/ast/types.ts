@@ -100,7 +100,17 @@ export interface GridProps {
   span?: number;
 }
 
-export interface CommonProps extends SpacingProps, SizeProps, FlexProps, GridProps {}
+/**
+ * Position props for absolute/relative positioning
+ * - x, y: position coordinates (relative to parent or absolute on page)
+ * - All values are in pixels
+ */
+export interface PositionProps {
+  x?: number | ValueWithUnit;
+  y?: number | ValueWithUnit;
+}
+
+export interface CommonProps extends SpacingProps, SizeProps, FlexProps, GridProps, PositionProps {}
 
 // ===========================================
 // Document Node
@@ -135,6 +145,8 @@ export interface HeaderNode extends BaseNode, CommonProps {
 
 export interface MainNode extends BaseNode, CommonProps {
   type: 'Main';
+  /** Enable vertical scrolling for overflow content */
+  scroll?: boolean;
   children: AnyNode[];
 }
 
@@ -357,6 +369,7 @@ export interface ImageNode extends BaseNode, CommonProps {
 export interface PlaceholderNode extends BaseNode, CommonProps {
   type: 'Placeholder';
   label?: string | null;
+  children?: AnyNode[];
 }
 
 export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
