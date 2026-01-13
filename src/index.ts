@@ -24,3 +24,15 @@ export * from './spec';
 
 // Validation
 export * from './validation';
+
+// UX Rules Validation
+export * from './ux-rules';
+
+// Diff (comparison between wireframes)
+export * from './diff';
+
+// Export (format conversion)
+export * from './export';
+
+// Analyze (statistics and metrics)
+export * from './analyze';
