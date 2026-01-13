@@ -805,16 +805,20 @@ ${title}${children}
       const wrapperClasses = this.buildClassString([`${this.prefix}-input-wrapper`]);
       const wrapper = `<div class="${wrapperClasses}"${styleAttr}>${iconHtml}${inputElement}</div>`;
 
-      if (node.label) {
-        return `<label class="${this.prefix}-input-label">${this.escapeHtml(node.label)}</label>\n${wrapper}`;
+      // Don't show label if it's the default "Label" and input has a placeholder
+      const shouldShowLabel = node.label && !(node.label === 'Label' && node.placeholder);
+      if (shouldShowLabel) {
+        return `<label class="${this.prefix}-input-label">${this.escapeHtml(node.label!)}</label>\n${wrapper}`;
       }
       return wrapper;
     }
 
     const input = `<input${this.buildAttrsString(attrs)}${styleAttr} />`;
 
-    if (node.label) {
-      return `<label class="${this.prefix}-input-label">${this.escapeHtml(node.label)}</label>\n${input}`;
+    // Don't show label if it's the default "Label" and input has a placeholder
+    const shouldShowLabel2 = node.label && !(node.label === 'Label' && node.placeholder);
+    if (shouldShowLabel2) {
+      return `<label class="${this.prefix}-input-label">${this.escapeHtml(node.label!)}</label>\n${input}`;
     }
 
     return input;
@@ -983,8 +987,8 @@ ${title}${children}
   // ===========================================
 
   private renderButton(node: ButtonNode): string {
-    // Icon-only button: has icon but no text content
-    const isIconOnly = node.icon && !node.content.trim();
+    // Icon-only button: has icon but no text content (or default "Button" text)
+    const isIconOnly = node.icon && (!node.content.trim() || node.content === 'Button');
     const classes = this.buildClassString([
       `${this.prefix}-button`,
       node.primary ? `${this.prefix}-button-primary` : undefined,
@@ -1017,7 +1021,8 @@ ${title}${children}
       }
     }
     const loading = node.loading ? `<span class="${this.prefix}-spinner ${this.prefix}-spinner-sm"></span>` : '';
-    const content = this.escapeHtml(node.content);
+    // Don't show text for icon-only buttons
+    const content = isIconOnly ? '' : this.escapeHtml(node.content);
 
     return `<button${this.buildAttrsString(attrs)}${styleAttr}>${loading}${icon}${content}</button>`;
   }

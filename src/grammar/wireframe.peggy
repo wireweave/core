@@ -359,11 +359,29 @@ Icon
 
 // Data Components
 Table
-  = "table" _ attrs:Attributes? _ "{" _ rows:TableContent _ "}" {
+  // Simplified syntax: table [["Name", "Email"], ["John", "j@x"], ["Jane", "n@x"]]
+  // First array = columns, rest = rows
+  = "table" _ data:NestedArray _ attrs:Attributes? {
+      const columns = data.length > 0 ? data[0] : [];
+      const rows = data.slice(1);
+      return createNode('Table', {
+        columns,
+        rows,
+        ...attrsToObject(attrs)
+      });
+    }
+  // Verbose syntax: table { columns [...] row [...] }
+  / "table" _ attrs:Attributes? _ "{" _ rows:TableContent _ "}" {
       return createNode('Table', {
         ...attrsToObject(attrs),
         ...rows
       });
+    }
+
+// Nested array for simplified table syntax: [[...], [...], ...]
+NestedArray
+  = "[" _ first:Array _ rest:("," _ Array _)* ","? _ "]" {
+      return [first, ...rest.map(r => r[2])];
     }
 
 TableContent
@@ -457,7 +475,26 @@ Popover
     }
 
 Dropdown
-  = "dropdown" _ attrs:Attributes? _ "{" _ items:DropdownContent _ "}" {
+  // Simplified syntax: dropdown ["Edit", "Delete", "---", "Cancel"]
+  // "---" represents a divider
+  = "dropdown" _ items:Array _ attrs:Attributes? {
+      const processedItems = items.map(item => {
+        if (typeof item === 'string') {
+          if (item === '---' || item === '-' || item === 'divider') {
+            return { type: 'divider' };
+          }
+          return { label: item };
+        }
+        // Object item with label, icon, etc.
+        return item;
+      });
+      return createNode('Dropdown', {
+        ...attrsToObject(attrs),
+        items: processedItems
+      });
+    }
+  // Verbose syntax: dropdown { item "..." divider ... }
+  / "dropdown" _ attrs:Attributes? _ "{" _ items:DropdownContent _ "}" {
       return createNode('Dropdown', {
         ...attrsToObject(attrs),
         items

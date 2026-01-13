@@ -616,7 +616,8 @@ export class SvgRenderer {
 
   private measureButton(node: ButtonNode, constraints: Constraints): Size {
     const hasIcon = !!node.icon;
-    const isIconOnly = hasIcon && !node.content.trim();
+    // Icon-only: has icon but no text content (or default "Button" text)
+    const isIconOnly = hasIcon && (!node.content.trim() || node.content === 'Button');
     const iconSize = 16;
     const padding = 16;
 
@@ -1525,7 +1526,8 @@ export class SvgRenderer {
   private renderButtonBox(box: LayoutBox): string {
     const node = box.node as ButtonNode;
     const hasIcon = !!node.icon;
-    const isIconOnly = hasIcon && !node.content.trim();
+    // Icon-only: has icon but no text content (or default "Button" text)
+    const isIconOnly = hasIcon && (!node.content.trim() || node.content === 'Button');
 
     let fill = this.theme.colors.primary;
     let textFill = '#ffffff';
@@ -1569,8 +1571,10 @@ export class SvgRenderer {
     let y = box.y;
     let svg = '<g>';
 
-    if (node.label) {
-      svg += `<text x="${box.x}" y="${y + 14}" font-size="14" fill="${this.theme.colors.foreground}">${this.escapeXml(node.label)}</text>`;
+    // Don't show label if it's the default "Label" and input has a placeholder
+    const shouldShowLabel = node.label && !(node.label === 'Label' && node.placeholder);
+    if (shouldShowLabel) {
+      svg += `<text x="${box.x}" y="${y + 14}" font-size="14" fill="${this.theme.colors.foreground}">${this.escapeXml(node.label!)}</text>`;
       y += 24;
     }
 

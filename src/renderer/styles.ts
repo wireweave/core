@@ -335,12 +335,18 @@ function generateLayoutClasses(prefix: string): string {
   padding: 16px;
   display: flex;
   flex-direction: column;
+  min-height: 0;
 }
 
 /* Scrollable main content */
 .${prefix}-main.${prefix}-scroll {
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+/* Col containing scrollable main needs min-height: 0 for scroll to work */
+.${prefix}-col:has(> .${prefix}-main.${prefix}-scroll) {
+  min-height: 0;
 }
 
 /* Main content should align to top, not stretch to fill */

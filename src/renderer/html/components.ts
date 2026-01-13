@@ -440,10 +440,12 @@ export function renderInput(node: InputNode, context: RenderContext): string {
 
   const input = `<input${buildAttrsString(attrs)} />`;
 
-  if (node.label) {
+  // Don't show label if it's the default "Label" and input has a placeholder
+  const shouldShowLabel = node.label && !(node.label === 'Label' && node.placeholder);
+  if (shouldShowLabel) {
     const labelId = `input-${Math.random().toString(36).substr(2, 9)}`;
     return `<div class="${prefix}-form-field">
-  <label class="${prefix}-input-label" for="${labelId}">${escapeHtml(node.label)}</label>
+  <label class="${prefix}-input-label" for="${labelId}">${escapeHtml(node.label!)}</label>
   <input${buildAttrsString({ ...attrs, id: labelId })} />
 </div>`;
   }
@@ -633,8 +635,8 @@ export function renderSlider(node: SliderNode, context: RenderContext): string {
 
 export function renderButton(node: ButtonNode, context: RenderContext): string {
   const prefix = context.options.classPrefix;
-  // Icon-only button: has icon but no text content
-  const isIconOnly = node.icon && !node.content.trim();
+  // Icon-only button: has icon but no text content (or default "Button" text)
+  const isIconOnly = node.icon && (!node.content.trim() || node.content === 'Button');
   const classes = buildClassString([
     `${prefix}-button`,
     node.primary ? `${prefix}-button-primary` : undefined,
@@ -659,7 +661,8 @@ export function renderButton(node: ButtonNode, context: RenderContext): string {
 
   const icon = node.icon ? `${renderIconPlaceholder(node.icon, prefix)} ` : '';
   const loading = node.loading ? `<span class="${prefix}-spinner ${prefix}-spinner-sm" aria-hidden="true"></span> ` : '';
-  const content = escapeHtml(node.content);
+  // Don't show text for icon-only buttons
+  const content = isIconOnly ? '' : escapeHtml(node.content);
 
   return `<button${buildAttrsString(attrs)}>${loading}${icon}${content}</button>`;
 }
