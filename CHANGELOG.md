@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.0-beta.2](https://github.com/wireweave/core/compare/v1.2.0-beta.1...v1.2.0-beta.2) (2026-01-14)
+
+### Documentation
+
+* update README with new API documentation ([1a11246](https://github.com/wireweave/core/commit/1a112460420f96d36b260c85c067828b0d6ae2db))
+
 ## [1.2.0-beta.1](https://github.com/wireweave/core/compare/v1.2.0-beta.0...v1.2.0-beta.1) (2026-01-14)
 
 ## [1.2.0-beta.0](https://github.com/wireweave/core/compare/v1.1.0-beta.0...v1.2.0-beta.0) (2026-01-14)
