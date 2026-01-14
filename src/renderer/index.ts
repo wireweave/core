@@ -6,14 +6,12 @@
 
 import type { WireframeDocument } from '../ast/types';
 import { createHtmlRenderer } from './html';
-import { renderToSvg as renderSvg } from './svg';
 import type { RenderOptions, RenderResult, SvgRenderOptions, SvgRenderResult } from './types';
 import { resolveViewport } from '../viewport';
 
 // Re-export types
 export * from './types';
 export { HtmlRenderer, createHtmlRenderer } from './html';
-export { SvgRenderer, createSvgRenderer } from './svg';
 export { generateStyles } from './styles';
 export { generateComponentStyles } from './styles-components';
 
@@ -131,21 +129,4 @@ ${css}
 </svg>`;
 
   return { svg, width, height };
-}
-
-/**
- * Render AST to pure SVG (without foreignObject)
- *
- * This uses the original SVG renderer with manual layout calculations.
- * Use this when foreignObject is not supported.
- *
- * @param document - Parsed wireframe document
- * @param options - SVG render options
- * @returns Object containing SVG string and dimensions
- */
-export function renderToPureSvg(
-  document: WireframeDocument,
-  options: SvgRenderOptions = {}
-): SvgRenderResult {
-  return renderSvg(document, options);
 }

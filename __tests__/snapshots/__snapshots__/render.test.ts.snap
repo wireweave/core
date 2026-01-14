@@ -403,12 +403,18 @@ exports[`Render Snapshots > CSS Snapshots > should generate dark theme CSS 1`] =
   padding: 16px;
   display: flex;
   flex-direction: column;
+  min-height: 0;
 }
 
 /* Scrollable main content */
 .wf-main.wf-scroll {
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+/* Col containing scrollable main needs min-height: 0 for scroll to work */
+.wf-col:has(> .wf-main.wf-scroll) {
+  min-height: 0;
 }
 
 /* Main content should align to top, not stretch to fill */
@@ -2077,12 +2083,18 @@ exports[`Render Snapshots > CSS Snapshots > should generate light theme CSS 1`] 
   padding: 16px;
   display: flex;
   flex-direction: column;
+  min-height: 0;
 }
 
 /* Scrollable main content */
 .wf-main.wf-scroll {
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+/* Col containing scrollable main needs min-height: 0 for scroll to work */
+.wf-col:has(> .wf-main.wf-scroll) {
+  min-height: 0;
 }
 
 /* Main content should align to top, not stretch to fill */
@@ -3828,12 +3840,18 @@ body {
   padding: 16px;
   display: flex;
   flex-direction: column;
+  min-height: 0;
 }
 
 /* Scrollable main content */
 .wf-main.wf-scroll {
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+/* Col containing scrollable main needs min-height: 0 for scroll to work */
+.wf-col:has(> .wf-main.wf-scroll) {
+  min-height: 0;
 }
 
 /* Main content should align to top, not stretch to fill */
@@ -5532,12 +5550,18 @@ body {
   padding: 16px;
   display: flex;
   flex-direction: column;
+  min-height: 0;
 }
 
 /* Scrollable main content */
 .wf-main.wf-scroll {
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+/* Col containing scrollable main needs min-height: 0 for scroll to work */
+.wf-col:has(> .wf-main.wf-scroll) {
+  min-height: 0;
 }
 
 /* Main content should align to top, not stretch to fill */
@@ -7361,12 +7385,18 @@ exports[`Render Snapshots > SVG Snapshots > should render buttons to SVG 1`] = `
   padding: 16px;
   display: flex;
   flex-direction: column;
+  min-height: 0;
 }
 
 /* Scrollable main content */
 .wf-main.wf-scroll {
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+/* Col containing scrollable main needs min-height: 0 for scroll to work */
+.wf-col:has(> .wf-main.wf-scroll) {
+  min-height: 0;
 }
 
 /* Main content should align to top, not stretch to fill */
@@ -9059,12 +9089,18 @@ exports[`Render Snapshots > SVG Snapshots > should render card to SVG 1`] = `
   padding: 16px;
   display: flex;
   flex-direction: column;
+  min-height: 0;
 }
 
 /* Scrollable main content */
 .wf-main.wf-scroll {
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+/* Col containing scrollable main needs min-height: 0 for scroll to work */
+.wf-col:has(> .wf-main.wf-scroll) {
+  min-height: 0;
 }
 
 /* Main content should align to top, not stretch to fill */
@@ -10758,12 +10794,18 @@ exports[`Render Snapshots > SVG Snapshots > should render form to SVG 1`] = `
   padding: 16px;
   display: flex;
   flex-direction: column;
+  min-height: 0;
 }
 
 /* Scrollable main content */
 .wf-main.wf-scroll {
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+/* Col containing scrollable main needs min-height: 0 for scroll to work */
+.wf-col:has(> .wf-main.wf-scroll) {
+  min-height: 0;
 }
 
 /* Main content should align to top, not stretch to fill */
@@ -12458,12 +12500,18 @@ exports[`Render Snapshots > SVG Snapshots > should render layout to SVG 1`] = `
   padding: 16px;
   display: flex;
   flex-direction: column;
+  min-height: 0;
 }
 
 /* Scrollable main content */
 .wf-main.wf-scroll {
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+/* Col containing scrollable main needs min-height: 0 for scroll to work */
+.wf-col:has(> .wf-main.wf-scroll) {
+  min-height: 0;
 }
 
 /* Main content should align to top, not stretch to fill */
@@ -14162,12 +14210,18 @@ exports[`Render Snapshots > SVG Snapshots > should render simple text to SVG 1`]
   padding: 16px;
   display: flex;
   flex-direction: column;
+  min-height: 0;
 }
 
 /* Scrollable main content */
 .wf-main.wf-scroll {
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+/* Col containing scrollable main needs min-height: 0 for scroll to work */
+.wf-col:has(> .wf-main.wf-scroll) {
+  min-height: 0;
 }
 
 /* Main content should align to top, not stretch to fill */
@@ -15858,12 +15912,18 @@ exports[`Render Snapshots > SVG Snapshots > should respect padding option 1`] = 
   padding: 16px;
   display: flex;
   flex-direction: column;
+  min-height: 0;
 }
 
 /* Scrollable main content */
 .wf-main.wf-scroll {
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+/* Col containing scrollable main needs min-height: 0 for scroll to work */
+.wf-col:has(> .wf-main.wf-scroll) {
+  min-height: 0;
 }
 
 /* Main content should align to top, not stretch to fill */
