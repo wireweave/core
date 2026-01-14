@@ -243,64 +243,6 @@ console.log(result.componentMappings);
 // { page: 'CANVAS', card: 'FRAME', text: 'TEXT' }
 ```
 
-### UX Validation
-
-#### `validateUX(doc: WireframeDocument, options?: UXValidationOptions): UXValidationResult`
-
-Validates wireframe against UX best practices.
-
-```typescript
-import { parse, validateUX } from '@wireweave/core';
-
-const doc = parse(`
-  page {
-    button "Click" // No primary action indicator
-    button "Cancel"
-  }
-`);
-
-const result = validateUX(doc);
-
-console.log(result.valid); // true/false
-console.log(result.score); // 0-100
-console.log(result.issues);
-// [{ ruleId: 'button-needs-primary', severity: 'warning', message: '...' }]
-```
-
-#### `isUXValid(doc: WireframeDocument): boolean`
-
-Quick check if wireframe passes all UX rules.
-
-```typescript
-import { parse, isUXValid } from '@wireweave/core';
-
-const doc = parse('page { button "Submit" primary }');
-console.log(isUXValid(doc)); // true
-```
-
-#### `getUXScore(doc: WireframeDocument): number`
-
-Returns UX score from 0-100.
-
-```typescript
-import { parse, getUXScore } from '@wireweave/core';
-
-const doc = parse('page { form { input label="Name" button "Submit" primary } }');
-console.log(getUXScore(doc)); // 95
-```
-
-#### `getUXIssues(doc: WireframeDocument): UXIssue[]`
-
-Returns list of UX issues found.
-
-```typescript
-import { parse, getUXIssues } from '@wireweave/core';
-
-const doc = parse('page { image src="photo.jpg" }'); // Missing alt
-const issues = getUXIssues(doc);
-// [{ ruleId: 'image-needs-alt', severity: 'error', message: '...' }]
-```
-
 ### AST Utilities
 
 #### `walk(node: ASTNode, callback: WalkCallback): void`

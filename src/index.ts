@@ -25,9 +25,6 @@ export * from './spec';
 // Validation
 export * from './validation';
 
-// UX Rules Validation
-export * from './ux-rules';
-
 // Diff (comparison between wireframes)
 export * from './diff';
 
