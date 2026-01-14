@@ -100,7 +100,17 @@ export interface GridProps {
   span?: number;
 }
 
-export interface CommonProps extends SpacingProps, SizeProps, FlexProps, GridProps {}
+/**
+ * Position props for absolute/relative positioning
+ * - x, y: position coordinates (relative to parent or absolute on page)
+ * - All values are in pixels
+ */
+export interface PositionProps {
+  x?: number | ValueWithUnit;
+  y?: number | ValueWithUnit;
+}
+
+export interface CommonProps extends SpacingProps, SizeProps, FlexProps, GridProps, PositionProps {}
 
 // ===========================================
 // Document Node
@@ -135,6 +145,8 @@ export interface HeaderNode extends BaseNode, CommonProps {
 
 export interface MainNode extends BaseNode, CommonProps {
   type: 'Main';
+  /** Enable vertical scrolling for overflow content */
+  scroll?: boolean;
   children: AnyNode[];
 }
 
@@ -357,6 +369,7 @@ export interface ImageNode extends BaseNode, CommonProps {
 export interface PlaceholderNode extends BaseNode, CommonProps {
   type: 'Placeholder';
   label?: string | null;
+  children?: AnyNode[];
 }
 
 export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
@@ -500,6 +513,7 @@ export interface DropdownNode extends BaseNode, CommonProps {
 // Navigation Nodes
 // ===========================================
 
+/** Nav item for array syntax: nav ["a", "b"] */
 export interface NavItem {
   label: string;
   icon?: string;
@@ -508,9 +522,38 @@ export interface NavItem {
   disabled?: boolean;
 }
 
+/** Nav item for block syntax: item "label" icon="x" active */
+export interface NavBlockItem {
+  type: 'item';
+  label: string;
+  icon?: string;
+  href?: string;
+  active?: boolean;
+  disabled?: boolean;
+}
+
+/** Nav group for block syntax: group "label" { ... } */
+export interface NavGroupNode {
+  type: 'group';
+  label: string;
+  collapsed?: boolean;
+  items: (NavBlockItem | NavDivider)[];
+}
+
+/** Divider inside nav block */
+export interface NavDivider {
+  type: 'divider';
+}
+
+/** Nav child can be group, item, or divider */
+export type NavChild = NavGroupNode | NavBlockItem | NavDivider;
+
 export interface NavNode extends BaseNode, CommonProps {
   type: 'Nav';
+  /** Items for array syntax */
   items: (string | NavItem)[];
+  /** Children for block syntax */
+  children: NavChild[];
   vertical?: boolean;
 }
 

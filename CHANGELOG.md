@@ -1,5 +1,47 @@
 # Changelog
 
+## [1.2.0-beta.2](https://github.com/wireweave/core/compare/v1.2.0-beta.1...v1.2.0-beta.2) (2026-01-14)
+
+### Documentation
+
+* update README with new API documentation ([1a11246](https://github.com/wireweave/core/commit/1a112460420f96d36b260c85c067828b0d6ae2db))
+
+## [1.2.0-beta.1](https://github.com/wireweave/core/compare/v1.2.0-beta.0...v1.2.0-beta.1) (2026-01-14)
+
+## [1.2.0-beta.0](https://github.com/wireweave/core/compare/v1.1.0-beta.0...v1.2.0-beta.0) (2026-01-14)
+
+### Features
+
+* **grammar:** add simplified syntax for table and dropdown components ([3186c06](https://github.com/wireweave/core/commit/3186c06a8ef185f0e7a208acbed746fed34c7eb5))
+* introduce analyze, diff, export, and ux-rules modules ([b704e2a](https://github.com/wireweave/core/commit/b704e2a3884b6bbbb9fe8568ee120efe049f1e04))
+
+### Bug Fixes
+
+* remove console.warn to fix DTS build error ([3152399](https://github.com/wireweave/core/commit/31523993552a37aada4bdd396889d4caca20bb6a))
+
+### Refactoring
+
+* **analyze:** restructure analysis module and metrics ([73ffabf](https://github.com/wireweave/core/commit/73ffabf4bbe10d48afb7387ee16f0f168e0c4acb))
+* **diff:** modularize document comparison logic ([10390d5](https://github.com/wireweave/core/commit/10390d5116fb6624094d96851d8552b388f7894e))
+* **export:** modularize Figma and JSON export functionality ([b7271f5](https://github.com/wireweave/core/commit/b7271f5c7aa8184bd5533644a09eda797756c633))
+* **renderer:** modularize HTML rendering and remove legacy SVG renderer ([5688d98](https://github.com/wireweave/core/commit/5688d981a99fc10949490239b1f819444fe2ae58))
+
+## 1.1.0-beta.0 (2026-01-10)
+
+### Features
+
+* add DSL spec and validation to core ([5bc446b](https://github.com/wireweave/core/commit/5bc446bbb9ee5c67b9230120c196ba36f1e3f29a))
+* improve SVG renderer layout calculations ([79f03f5](https://github.com/wireweave/core/commit/79f03f5761ac2f9546c362f10a2a5882f4457951))
+
+### Bug Fixes
+
+* allow release-it to run on develop branch ([00ef735](https://github.com/wireweave/core/commit/00ef73546b404f2d2d721b3340ffed7db923be41))
+* use npm latest version for beta versioning ([3467b78](https://github.com/wireweave/core/commit/3467b78b057fd78a76863c09a330bb4153fb4c67))
+
+### Refactoring
+
+* use release-it preRelease for beta versioning ([0c2ed10](https://github.com/wireweave/core/commit/0c2ed105fc6ee705a26b60eeaf895dfd3ae67ab7))
+
 ## 1.1.0 (2026-01-07)
 
 ### Features

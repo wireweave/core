@@ -325,10 +325,11 @@ Image
     }
 
 Placeholder
-  = "placeholder" _ label:StringLiteral? _ attrs:Attributes? {
+  = "placeholder" _ label:StringLiteral? _ attrs:Attributes? _ block:("{" _ Children _ "}")? {
       return createNode('Placeholder', {
         label: label || null,
-        ...attrsToObject(attrs)
+        ...attrsToObject(attrs),
+        children: block ? block[2] : []
       });
     }
 
@@ -358,11 +359,29 @@ Icon
 
 // Data Components
 Table
-  = "table" _ attrs:Attributes? _ "{" _ rows:TableContent _ "}" {
+  // Simplified syntax: table [["Name", "Email"], ["John", "j@x"], ["Jane", "n@x"]]
+  // First array = columns, rest = rows
+  = "table" _ data:NestedArray _ attrs:Attributes? {
+      const columns = data.length > 0 ? data[0] : [];
+      const rows = data.slice(1);
+      return createNode('Table', {
+        columns,
+        rows,
+        ...attrsToObject(attrs)
+      });
+    }
+  // Verbose syntax: table { columns [...] row [...] }
+  / "table" _ attrs:Attributes? _ "{" _ rows:TableContent _ "}" {
       return createNode('Table', {
         ...attrsToObject(attrs),
         ...rows
       });
+    }
+
+// Nested array for simplified table syntax: [[...], [...], ...]
+NestedArray
+  = "[" _ first:Array _ rest:("," _ Array _)* ","? _ "]" {
+      return [first, ...rest.map(r => r[2])];
     }
 
 TableContent
@@ -456,7 +475,26 @@ Popover
     }
 
 Dropdown
-  = "dropdown" _ attrs:Attributes? _ "{" _ items:DropdownContent _ "}" {
+  // Simplified syntax: dropdown ["Edit", "Delete", "---", "Cancel"]
+  // "---" represents a divider
+  = "dropdown" _ items:Array _ attrs:Attributes? {
+      const processedItems = items.map(item => {
+        if (typeof item === 'string') {
+          if (item === '---' || item === '-' || item === 'divider') {
+            return { type: 'divider' };
+          }
+          return { label: item };
+        }
+        // Object item with label, icon, etc.
+        return item;
+      });
+      return createNode('Dropdown', {
+        ...attrsToObject(attrs),
+        items: processedItems
+      });
+    }
+  // Verbose syntax: dropdown { item "..." divider ... }
+  / "dropdown" _ attrs:Attributes? _ "{" _ items:DropdownContent _ "}" {
       return createNode('Dropdown', {
         ...attrsToObject(attrs),
         items
@@ -477,11 +515,47 @@ DropdownItem
 
 // Navigation Components
 Nav
-  = "nav" _ items:Array? _ attrs:Attributes? {
+  = "nav" _ items:Array? _ attrs:Attributes? _ block:NavBlock? {
       return createNode('Nav', {
         items: items || [],
-        ...attrsToObject(attrs)
+        ...attrsToObject(attrs),
+        children: block || []
       });
+    }
+
+NavBlock
+  = "{" _ content:(NavBlockItem _)* "}" {
+      return content.map(c => c[0]).filter(c => c !== null);
+    }
+
+NavBlockItem
+  = NavGroup
+  / NavItem
+  / "divider" _ { return { type: 'divider' }; }
+  / Comment { return null; }
+
+NavGroup
+  = "group" _ label:StringLiteral _ attrs:Attributes? _ "{" _ items:(NavGroupItem _)* "}" {
+      return {
+        type: 'group',
+        label,
+        ...attrsToObject(attrs),
+        items: items.map(i => i[0]).filter(i => i !== null)
+      };
+    }
+
+NavGroupItem
+  = NavItem
+  / "divider" _ { return { type: 'divider' }; }
+  / Comment { return null; }
+
+NavItem
+  = "item" _ label:StringLiteral _ attrs:Attributes? {
+      return {
+        type: 'item',
+        label,
+        ...attrsToObject(attrs)
+      };
     }
 
 Tabs
@@ -554,7 +628,7 @@ ChildKeyword
     / "table" / "columns" / "list" / "item"
     / "alert" / "toast" / "progress" / "spinner"
     / "tooltip" / "popover" / "dropdown" / "divider"
-    / "nav" / "tabs" / "tab" / "breadcrumb") !IdentifierChar
+    / "nav" / "tabs" / "tab" / "breadcrumb" / "group") !IdentifierChar
 
 IdentifierChar
   = [a-zA-Z0-9_-]

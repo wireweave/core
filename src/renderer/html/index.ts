@@ -55,14 +55,54 @@ import type {
 import { BaseRenderer } from './base';
 import type { RenderOptions } from '../types';
 import { resolveViewport } from '../../viewport';
-import { getIconData, renderIconSvg } from '../../icons/lucide-icons';
 
-// Re-export layout and component utilities
-export * from './layout';
+// Re-export component utilities
 export * from './components';
 
-// Import size resolution helper for use in HTMLRenderer
-import { resolveSizeValue, buildClassString as _buildClassString } from './components';
+// Import separated renderer functions
+import type { RenderContext, GridRenderContext } from './renderers';
+import {
+  renderHeader as renderHeaderFn,
+  renderMain as renderMainFn,
+  renderFooter as renderFooterFn,
+  renderSidebar as renderSidebarFn,
+  renderSection as renderSectionFn,
+  renderRow as renderRowFn,
+  renderCol as renderColFn,
+  renderCard as renderCardFn,
+  renderModal as renderModalFn,
+  renderDrawer as renderDrawerFn,
+  renderAccordion as renderAccordionFn,
+  renderText as renderTextFn,
+  renderTitle as renderTitleFn,
+  renderLink as renderLinkFn,
+  renderButton as renderButtonFn,
+  renderAlert as renderAlertFn,
+  renderToast as renderToastFn,
+  renderProgress as renderProgressFn,
+  renderSpinner as renderSpinnerFn,
+  renderInput as renderInputFn,
+  renderTextarea as renderTextareaFn,
+  renderSelect as renderSelectFn,
+  renderCheckbox as renderCheckboxFn,
+  renderRadio as renderRadioFn,
+  renderSwitch as renderSwitchFn,
+  renderSlider as renderSliderFn,
+  renderImage as renderImageFn,
+  renderPlaceholder as renderPlaceholderFn,
+  renderAvatar as renderAvatarFn,
+  renderBadge as renderBadgeFn,
+  renderIcon as renderIconFn,
+  renderTooltip as renderTooltipFn,
+  renderPopover as renderPopoverFn,
+  renderDropdown as renderDropdownFn,
+  renderNav as renderNavFn,
+  renderTabs as renderTabsFn,
+  renderBreadcrumb as renderBreadcrumbFn,
+  renderTable as renderTableFn,
+  renderList as renderListFn,
+  renderDivider as renderDividerFn,
+} from './renderers';
 
 // Spacing token table: number -> CSS value
 // Token values (0-20) map to px values
@@ -137,8 +177,101 @@ function resolveSizeValueToCss(value: number | ValueWithUnit | undefined): strin
  * Renders wireframe AST to semantic HTML with utility classes
  */
 export class HtmlRenderer extends BaseRenderer {
+  /**
+   * Node type to renderer method mapping
+   */
+  private readonly nodeRenderers: Record<string, (node: AnyNode) => string>;
+
   constructor(options: RenderOptions = {}) {
     super(options);
+    this.nodeRenderers = this.createNodeRenderers();
+  }
+
+  /**
+   * Get render context for external renderer functions
+   */
+  private getRenderContext(): RenderContext {
+    return {
+      prefix: this.prefix,
+      escapeHtml: this.escapeHtml.bind(this),
+      buildClassString: this.buildClassString.bind(this),
+      buildAttrsString: this.buildAttrsString.bind(this),
+      buildCommonStyles: this.buildCommonStyles.bind(this),
+      getCommonClasses: this.getCommonClasses.bind(this),
+      renderChildren: this.renderChildren.bind(this),
+      renderNode: this.renderNode.bind(this),
+    };
+  }
+
+  /**
+   * Get grid render context (extends RenderContext with buildColStyles)
+   */
+  private getGridRenderContext(): GridRenderContext {
+    return {
+      ...this.getRenderContext(),
+      buildColStyles: this.buildColStyles.bind(this),
+    };
+  }
+
+  /**
+   * Create the node renderer mapping
+   */
+  private createNodeRenderers(): Record<string, (node: AnyNode) => string> {
+    return {
+      // Layout nodes
+      Page: (node) => this.renderPage(node as PageNode),
+      Header: (node) => this.renderHeader(node as HeaderNode),
+      Main: (node) => this.renderMain(node as MainNode),
+      Footer: (node) => this.renderFooter(node as FooterNode),
+      Sidebar: (node) => this.renderSidebar(node as SidebarNode),
+      Section: (node) => this.renderSection(node as SectionNode),
+      // Grid nodes
+      Row: (node) => this.renderRow(node as RowNode),
+      Col: (node) => this.renderCol(node as ColNode),
+      // Container nodes
+      Card: (node) => this.renderCard(node as CardNode),
+      Modal: (node) => this.renderModal(node as ModalNode),
+      Drawer: (node) => this.renderDrawer(node as DrawerNode),
+      Accordion: (node) => this.renderAccordion(node as AccordionNode),
+      // Text nodes
+      Text: (node) => this.renderText(node as TextNode),
+      Title: (node) => this.renderTitle(node as TitleNode),
+      Link: (node) => this.renderLink(node as LinkNode),
+      // Input nodes
+      Input: (node) => this.renderInput(node as InputNode),
+      Textarea: (node) => this.renderTextarea(node as TextareaNode),
+      Select: (node) => this.renderSelect(node as SelectNode),
+      Checkbox: (node) => this.renderCheckbox(node as CheckboxNode),
+      Radio: (node) => this.renderRadio(node as RadioNode),
+      Switch: (node) => this.renderSwitch(node as SwitchNode),
+      Slider: (node) => this.renderSlider(node as SliderNode),
+      // Button
+      Button: (node) => this.renderButton(node as ButtonNode),
+      // Display nodes
+      Image: (node) => this.renderImage(node as ImageNode),
+      Placeholder: (node) => this.renderPlaceholder(node as PlaceholderNode),
+      Avatar: (node) => this.renderAvatar(node as AvatarNode),
+      Badge: (node) => this.renderBadge(node as BadgeNode),
+      Icon: (node) => this.renderIcon(node as IconNode),
+      // Data nodes
+      Table: (node) => this.renderTable(node as TableNode),
+      List: (node) => this.renderList(node as ListNode),
+      // Feedback nodes
+      Alert: (node) => this.renderAlert(node as AlertNode),
+      Toast: (node) => this.renderToast(node as ToastNode),
+      Progress: (node) => this.renderProgress(node as ProgressNode),
+      Spinner: (node) => this.renderSpinner(node as SpinnerNode),
+      // Overlay nodes
+      Tooltip: (node) => this.renderTooltip(node as TooltipNode),
+      Popover: (node) => this.renderPopover(node as PopoverNode),
+      Dropdown: (node) => this.renderDropdown(node as DropdownNode),
+      // Navigation nodes
+      Nav: (node) => this.renderNav(node as NavNode),
+      Tabs: (node) => this.renderTabs(node as TabsNode),
+      Breadcrumb: (node) => this.renderBreadcrumb(node as BreadcrumbNode),
+      // Other
+      Divider: (node) => this.renderDivider(node as DividerComponentNode),
+    };
   }
 
   /**
@@ -177,8 +310,9 @@ export class HtmlRenderer extends BaseRenderer {
     const title = node.title ? `<title>${this.escapeHtml(node.title)}</title>\n` : '';
 
     // Build common styles (padding, margin, etc.) and combine with viewport dimensions
+    // Add position: relative to serve as containing block for absolute positioned children
     const commonStyles = this.buildCommonStyles(node);
-    const viewportStyle = `width: ${viewport.width}px; height: ${viewport.height}px`;
+    const viewportStyle = `position: relative; width: ${viewport.width}px; height: ${viewport.height}px; overflow: hidden`;
     const combinedStyle = commonStyles ? `${viewportStyle}; ${commonStyles}` : viewportStyle;
 
     // Add data attributes for viewport info
@@ -191,116 +325,11 @@ export class HtmlRenderer extends BaseRenderer {
    * Render any AST node
    */
   protected renderNode(node: AnyNode): string {
-    switch (node.type) {
-      // Layout nodes
-      case 'Page':
-        return this.renderPage(node as PageNode);
-      case 'Header':
-        return this.renderHeader(node as HeaderNode);
-      case 'Main':
-        return this.renderMain(node as MainNode);
-      case 'Footer':
-        return this.renderFooter(node as FooterNode);
-      case 'Sidebar':
-        return this.renderSidebar(node as SidebarNode);
-      case 'Section':
-        return this.renderSection(node as SectionNode);
-
-      // Grid nodes
-      case 'Row':
-        return this.renderRow(node as RowNode);
-      case 'Col':
-        return this.renderCol(node as ColNode);
-
-      // Container nodes
-      case 'Card':
-        return this.renderCard(node as CardNode);
-      case 'Modal':
-        return this.renderModal(node as ModalNode);
-      case 'Drawer':
-        return this.renderDrawer(node as DrawerNode);
-      case 'Accordion':
-        return this.renderAccordion(node as AccordionNode);
-
-      // Text nodes
-      case 'Text':
-        return this.renderText(node as TextNode);
-      case 'Title':
-        return this.renderTitle(node as TitleNode);
-      case 'Link':
-        return this.renderLink(node as LinkNode);
-
-      // Input nodes
-      case 'Input':
-        return this.renderInput(node as InputNode);
-      case 'Textarea':
-        return this.renderTextarea(node as TextareaNode);
-      case 'Select':
-        return this.renderSelect(node as SelectNode);
-      case 'Checkbox':
-        return this.renderCheckbox(node as CheckboxNode);
-      case 'Radio':
-        return this.renderRadio(node as RadioNode);
-      case 'Switch':
-        return this.renderSwitch(node as SwitchNode);
-      case 'Slider':
-        return this.renderSlider(node as SliderNode);
-
-      // Button
-      case 'Button':
-        return this.renderButton(node as ButtonNode);
-
-      // Display nodes
-      case 'Image':
-        return this.renderImage(node as ImageNode);
-      case 'Placeholder':
-        return this.renderPlaceholder(node as PlaceholderNode);
-      case 'Avatar':
-        return this.renderAvatar(node as AvatarNode);
-      case 'Badge':
-        return this.renderBadge(node as BadgeNode);
-      case 'Icon':
-        return this.renderIcon(node as IconNode);
-
-      // Data nodes
-      case 'Table':
-        return this.renderTable(node as TableNode);
-      case 'List':
-        return this.renderList(node as ListNode);
-
-      // Feedback nodes
-      case 'Alert':
-        return this.renderAlert(node as AlertNode);
-      case 'Toast':
-        return this.renderToast(node as ToastNode);
-      case 'Progress':
-        return this.renderProgress(node as ProgressNode);
-      case 'Spinner':
-        return this.renderSpinner(node as SpinnerNode);
-
-      // Overlay nodes
-      case 'Tooltip':
-        return this.renderTooltip(node as TooltipNode);
-      case 'Popover':
-        return this.renderPopover(node as PopoverNode);
-      case 'Dropdown':
-        return this.renderDropdown(node as DropdownNode);
-
-      // Navigation nodes
-      case 'Nav':
-        return this.renderNav(node as NavNode);
-      case 'Tabs':
-        return this.renderTabs(node as TabsNode);
-      case 'Breadcrumb':
-        return this.renderBreadcrumb(node as BreadcrumbNode);
-
-      // Other
-      case 'Divider':
-        return this.renderDivider(node as DividerComponentNode);
-
-      default:
-        return `<!-- Unknown node type: ${(node as AnyNode).type} -->`;
+    const renderer = this.nodeRenderers[node.type];
+    if (renderer) {
+      return renderer(node);
     }
+    return `<!-- Unknown node type: ${node.type} -->`;
   }
 
   /**
@@ -357,74 +386,23 @@ export class HtmlRenderer extends BaseRenderer {
   // ===========================================
 
   private renderHeader(node: HeaderNode): string {
-    const classes = this.buildClassString([
-      `${this.prefix}-header`,
-      node.border === false ? `${this.prefix}-no-border` : undefined,
-      ...this.getCommonClasses(node),
-    ]);
-
-    const styles = this.buildCommonStyles(node);
-    const styleAttr = styles ? ` style="${styles}"` : '';
-
-    const children = this.renderChildren(node.children);
-    return `<header class="${classes}"${styleAttr}>\n${children}\n</header>`;
+    return renderHeaderFn(node, this.getRenderContext());
   }
 
   private renderMain(node: MainNode): string {
-    const classes = this.buildClassString([
-      `${this.prefix}-main`,
-      ...this.getCommonClasses(node),
-    ]);
-
-    const styles = this.buildCommonStyles(node);
-    const styleAttr = styles ? ` style="${styles}"` : '';
-
-    const children = this.renderChildren(node.children);
-    return `<main class="${classes}"${styleAttr}>\n${children}\n</main>`;
+    return renderMainFn(node, this.getRenderContext());
   }
 
   private renderFooter(node: FooterNode): string {
-    const classes = this.buildClassString([
-      `${this.prefix}-footer`,
-      node.border === false ? `${this.prefix}-no-border` : undefined,
-      ...this.getCommonClasses(node),
-    ]);
-
-    const styles = this.buildCommonStyles(node);
-    const styleAttr = styles ? ` style="${styles}"` : '';
-
-    const children = this.renderChildren(node.children);
-    return `<footer class="${classes}"${styleAttr}>\n${children}\n</footer>`;
+    return renderFooterFn(node, this.getRenderContext());
   }
 
   private renderSidebar(node: SidebarNode): string {
-    const classes = this.buildClassString([
-      `${this.prefix}-sidebar`,
-      node.position === 'right' ? `${this.prefix}-sidebar-right` : undefined,
-      ...this.getCommonClasses(node),
-    ]);
-
-    const styles = this.buildCommonStyles(node);
-    const styleAttr = styles ? ` style="${styles}"` : '';
-
-    const children = this.renderChildren(node.children);
-    return `<aside class="${classes}"${styleAttr}>\n${children}\n</aside>`;
+    return renderSidebarFn(node, this.getRenderContext());
   }
 
   private renderSection(node: SectionNode): string {
-    const classes = this.buildClassString([
-      `${this.prefix}-section`,
-      ...this.getCommonClasses(node),
-    ]);
-
-    const styles = this.buildCommonStyles(node);
-    const styleAttr = styles ? ` style="${styles}"` : '';
-
-    const title = node.title
-      ? `<h2 class="${this.prefix}-title">${this.escapeHtml(node.title)}</h2>\n`
-      : '';
-    const children = this.renderChildren(node.children);
-    return `<section class="${classes}"${styleAttr}>\n${title}${children}\n</section>`;
+    return renderSectionFn(node, this.getRenderContext());
   }
 
   // ===========================================
@@ -432,40 +410,19 @@ export class HtmlRenderer extends BaseRenderer {
   // ===========================================
 
   private renderRow(node: RowNode): string {
-    const classes = this.buildClassString([
-      `${this.prefix}-row`,
-      ...this.getCommonClasses(node),
-    ]);
-
-    const styles = this.buildCommonStyles(node);
-    const styleAttr = styles ? ` style="${styles}"` : '';
-
-    const children = this.renderChildren(node.children);
-    return `<div class="${classes}"${styleAttr}>\n${children}\n</div>`;
+    return renderRowFn(node, this.getRenderContext());
   }
 
   private renderCol(node: ColNode): string {
-    const classes = this.buildClassString([
-      `${this.prefix}-col`,
-      node.span ? `${this.prefix}-col-${node.span}` : undefined,
-      // Responsive breakpoint classes
-      node.sm ? `${this.prefix}-col-sm-${node.sm}` : undefined,
-      node.md ? `${this.prefix}-col-md-${node.md}` : undefined,
-      node.lg ? `${this.prefix}-col-lg-${node.lg}` : undefined,
-      node.xl ? `${this.prefix}-col-xl-${node.xl}` : undefined,
-      ...this.getCommonClasses(node),
-    ]);
-
-    // Build inline styles for numeric width/height and order
-    const styles = this.buildColStyles(node);
-    const styleAttr = styles ? ` style="${styles}"` : '';
-
-    const children = this.renderChildren(node.children);
-    return `<div class="${classes}"${styleAttr}>\n${children}\n</div>`;
+    return renderColFn(node, this.getGridRenderContext());
   }
 
   /**
    * Build common inline styles for all values
+   *
+   * Position values (x, y) for absolute positioning:
+   * - When x or y is specified, element gets position: absolute
+   * - x → left, y → top
    *
    * Spacing values (p, m, gap) use token system:
    * - number: spacing token (e.g., p=4 → padding: 16px from token table)
@@ -482,21 +439,49 @@ export class HtmlRenderer extends BaseRenderer {
   private buildCommonStyles(props: Omit<Partial<CommonProps>, 'align'> & { align?: string }): string {
     const styles: string[] = [];
 
-    // Width (direct px or ValueWithUnit)
+    this.buildPositionStyles(props, styles);
+    this.buildSizeStyles(props, styles);
+    this.buildPaddingStyles(props, styles);
+    this.buildMarginStyles(props, styles);
+    this.buildGapStyles(props, styles);
+
+    return styles.join('; ');
+  }
+
+  /**
+   * Build position styles (absolute positioning)
+   */
+  private buildPositionStyles(props: Omit<Partial<CommonProps>, 'align'>, styles: string[]): void {
+    if (props.x !== undefined || props.y !== undefined) {
+      styles.push('position: absolute');
+
+      if (props.x !== undefined) {
+        const xValue = resolveSizeValueToCss(props.x as number | ValueWithUnit);
+        if (xValue) styles.push(`left: ${xValue}`);
+      }
+
+      if (props.y !== undefined) {
+        const yValue = resolveSizeValueToCss(props.y as number | ValueWithUnit);
+        if (yValue) styles.push(`top: ${yValue}`);
+      }
+    }
+  }
+
+  /**
+   * Build size styles (width, height, min/max)
+   */
+  private buildSizeStyles(props: Omit<Partial<CommonProps>, 'align'>, styles: string[]): void {
     const wValue = resolveSizeValueToCss(props.w as number | ValueWithUnit | undefined);
     if (wValue) {
       styles.push(`width: ${wValue}`);
     }
 
-    // Height (direct px or ValueWithUnit)
-    // Also set min-height to override CSS defaults (e.g., placeholder min-height: 100px)
     const hValue = resolveSizeValueToCss(props.h as number | ValueWithUnit | undefined);
     if (hValue) {
       styles.push(`height: ${hValue}`);
       styles.push(`min-height: ${hValue}`);
     }
 
-    // Min/Max Width
     const minWValue = resolveSizeValueToCss(props.minW);
     if (minWValue) {
       styles.push(`min-width: ${minWValue}`);
@@ -506,7 +491,6 @@ export class HtmlRenderer extends BaseRenderer {
       styles.push(`max-width: ${maxWValue}`);
     }
 
-    // Min/Max Height
     const minHValue = resolveSizeValueToCss(props.minH);
     if (minHValue) {
       styles.push(`min-height: ${minHValue}`);
@@ -515,8 +499,12 @@ export class HtmlRenderer extends BaseRenderer {
     if (maxHValue) {
       styles.push(`max-height: ${maxHValue}`);
     }
+  }
 
-    // Padding - uses spacing tokens
+  /**
+   * Build padding styles (p, px, py, pt, pr, pb, pl)
+   */
+  private buildPaddingStyles(props: Omit<Partial<CommonProps>, 'align'>, styles: string[]): void {
     const pValue = resolveSpacingValue(props.p);
     if (pValue) {
       styles.push(`padding: ${pValue}`);
@@ -547,8 +535,12 @@ export class HtmlRenderer extends BaseRenderer {
     if (plValue) {
       styles.push(`padding-left: ${plValue}`);
     }
+  }
 
-    // Margin - uses spacing tokens
+  /**
+   * Build margin styles (m, mx, my, mt, mr, mb, ml)
+   */
+  private buildMarginStyles(props: Omit<Partial<CommonProps>, 'align'>, styles: string[]): void {
     const mValue = resolveSpacingValue(props.m);
     if (mValue) {
       styles.push(`margin: ${mValue}`);
@@ -579,14 +571,16 @@ export class HtmlRenderer extends BaseRenderer {
     if (mlValue) {
       styles.push(`margin-left: ${mlValue}`);
     }
+  }
 
-    // Gap - uses spacing tokens
+  /**
+   * Build gap styles
+   */
+  private buildGapStyles(props: Omit<Partial<CommonProps>, 'align'>, styles: string[]): void {
     const gapValue = resolveSpacingValue(props.gap);
     if (gapValue) {
       styles.push(`gap: ${gapValue}`);
     }
-
-    return styles.join('; ');
   }
 
   /**
@@ -614,74 +608,19 @@ export class HtmlRenderer extends BaseRenderer {
   // ===========================================
 
   private renderCard(node: CardNode): string {
-    const classes = this.buildClassString([
-      `${this.prefix}-card`,
-      node.shadow ? `${this.prefix}-card-shadow-${node.shadow}` : undefined,
-      ...this.getCommonClasses(node),
-    ]);
-
-    const styles = this.buildCommonStyles(node);
-    const styleAttr = styles ? ` style="${styles}"` : '';
-
-    const title = node.title
-      ? `<h3 class="${this.prefix}-title">${this.escapeHtml(node.title)}</h3>\n`
-      : '';
-    const children = this.renderChildren(node.children);
-    return `<div class="${classes}"${styleAttr}>\n${title}${children}\n</div>`;
+    return renderCardFn(node, this.getRenderContext());
   }
 
   private renderModal(node: ModalNode): string {
-    const classes = this.buildClassString([
-      `${this.prefix}-modal`,
-      ...this.getCommonClasses(node),
-    ]);
-
-    const styles = this.buildCommonStyles(node);
-    const styleAttr = styles ? ` style="${styles}"` : '';
-
-    const title = node.title
-      ? `<h2 class="${this.prefix}-title">${this.escapeHtml(node.title)}</h2>\n`
-      : '';
-    const children = this.renderChildren(node.children);
-    return `<div class="${this.prefix}-modal-backdrop">
-  <div class="${classes}"${styleAttr} role="dialog" aria-modal="true">
-${title}${children}
-  </div>
-</div>`;
+    return renderModalFn(node, this.getRenderContext());
   }
 
   private renderDrawer(node: DrawerNode): string {
-    const position = node.position || 'left';
-    const classes = this.buildClassString([
-      `${this.prefix}-drawer`,
-      `${this.prefix}-drawer-${position}`,
-      ...this.getCommonClasses(node),
-    ]);
-
-    const styles = this.buildCommonStyles(node);
-    const styleAttr = styles ? ` style="${styles}"` : '';
-
-    const title = node.title
-      ? `<h2 class="${this.prefix}-title">${this.escapeHtml(node.title)}</h2>\n`
-      : '';
-    const children = this.renderChildren(node.children);
-    return `<aside class="${classes}"${styleAttr}>\n${title}${children}\n</aside>`;
+    return renderDrawerFn(node, this.getRenderContext());
   }
 
   private renderAccordion(node: AccordionNode): string {
-    const classes = this.buildClassString([
-      `${this.prefix}-accordion`,
-      ...this.getCommonClasses(node),
-    ]);
-
-    const styles = this.buildCommonStyles(node);
-    const styleAttr = styles ? ` style="${styles}"` : '';
-
-    const title = node.title
-      ? `<button class="${this.prefix}-accordion-header">${this.escapeHtml(node.title)}</button>\n`
-      : '';
-    const children = this.renderChildren(node.children);
-    return `<div class="${classes}"${styleAttr}>\n${title}<div class="${this.prefix}-accordion-content">\n${children}\n</div>\n</div>`;
+    return renderAccordionFn(node, this.getRenderContext());
   }
 
   // ===========================================
@@ -689,57 +628,15 @@ ${title}${children}
   // ===========================================
 
   private renderText(node: TextNode): string {
-    const classes = this.buildClassString([
-      `${this.prefix}-text`,
-      node.size ? `${this.prefix}-text-${node.size}` : undefined,
-      node.weight ? `${this.prefix}-text-${node.weight}` : undefined,
-      node.align ? `${this.prefix}-text-${node.align}` : undefined,
-      node.muted ? `${this.prefix}-text-muted` : undefined,
-      ...this.getCommonClasses(node),
-    ]);
-
-    const styles = this.buildCommonStyles(node);
-    const styleAttr = styles ? ` style="${styles}"` : '';
-
-    return `<p class="${classes}"${styleAttr}>${this.escapeHtml(node.content)}</p>`;
+    return renderTextFn(node, this.getRenderContext());
   }
 
   private renderTitle(node: TitleNode): string {
-    const level = node.level || 1;
-    const tag = `h${level}`;
-    const classes = this.buildClassString([
-      `${this.prefix}-title`,
-      node.size ? `${this.prefix}-text-${node.size}` : undefined,
-      node.align ? `${this.prefix}-text-${node.align}` : undefined,
-      ...this.getCommonClasses(node),
-    ]);
-
-    const styles = this.buildCommonStyles(node);
-    const styleAttr = styles ? ` style="${styles}"` : '';
-
-    return `<${tag} class="${classes}"${styleAttr}>${this.escapeHtml(node.content)}</${tag}>`;
+    return renderTitleFn(node, this.getRenderContext());
   }
 
   private renderLink(node: LinkNode): string {
-    const classes = this.buildClassString([
-      `${this.prefix}-link`,
-      ...this.getCommonClasses(node),
-    ]);
-
-    const styles = this.buildCommonStyles(node);
-    const styleAttr = styles ? ` style="${styles}"` : '';
-
-    const attrs: Record<string, string | boolean | undefined> = {
-      class: classes,
-      href: node.href || '#',
-    };
-
-    if (node.external) {
-      attrs.target = '_blank';
-      attrs.rel = 'noopener noreferrer';
-    }
-
-    return `<a${this.buildAttrsString(attrs)}${styleAttr}>${this.escapeHtml(node.content)}</a>`;
+    return renderLinkFn(node, this.getRenderContext());
   }
 
   // ===========================================
@@ -747,211 +644,31 @@ ${title}${children}
   // ===========================================
 
   private renderInput(node: InputNode): string {
-    const inputClasses = this.buildClassString([
-      `${this.prefix}-input`,
-      node.icon ? `${this.prefix}-input-with-icon` : undefined,
-      ...this.getCommonClasses(node),
-    ]);
-
-    const styles = this.buildCommonStyles(node);
-    const styleAttr = styles ? ` style="${styles}"` : '';
-
-    const attrs: Record<string, string | boolean | undefined> = {
-      class: inputClasses,
-      type: node.inputType || 'text',
-      placeholder: node.placeholder,
-      value: node.value,
-      disabled: node.disabled,
-      required: node.required,
-      readonly: node.readonly,
-    };
-
-    const inputElement = `<input${this.buildAttrsString(attrs)} />`;
-
-    // Wrap with icon if specified
-    if (node.icon) {
-      const iconData = getIconData(node.icon);
-      let iconHtml: string;
-      if (iconData) {
-        iconHtml = renderIconSvg(iconData, 16, 2, `${this.prefix}-input-icon`);
-      } else {
-        iconHtml = `<span class="${this.prefix}-input-icon">[${this.escapeHtml(node.icon)}]</span>`;
-      }
-
-      const wrapperClasses = this.buildClassString([`${this.prefix}-input-wrapper`]);
-      const wrapper = `<div class="${wrapperClasses}"${styleAttr}>${iconHtml}${inputElement}</div>`;
-
-      if (node.label) {
-        return `<label class="${this.prefix}-input-label">${this.escapeHtml(node.label)}</label>\n${wrapper}`;
-      }
-      return wrapper;
-    }
-
-    const input = `<input${this.buildAttrsString(attrs)}${styleAttr} />`;
-
-    if (node.label) {
-      return `<label class="${this.prefix}-input-label">${this.escapeHtml(node.label)}</label>\n${input}`;
-    }
-
-    return input;
+    return renderInputFn(node, this.getRenderContext());
   }
 
   private renderTextarea(node: TextareaNode): string {
-    const classes = this.buildClassString([
-      `${this.prefix}-input`,
-      ...this.getCommonClasses(node),
-    ]);
-
-    const styles = this.buildCommonStyles(node);
-    const styleAttr = styles ? ` style="${styles}"` : '';
-
-    const attrs: Record<string, string | boolean | undefined> = {
-      class: classes,
-      placeholder: node.placeholder,
-      disabled: node.disabled,
-      required: node.required,
-      rows: node.rows?.toString(),
-    };
-
-    const textarea = `<textarea${this.buildAttrsString(attrs)}${styleAttr}>${this.escapeHtml(node.value || '')}</textarea>`;
-
-    if (node.label) {
-      return `<label class="${this.prefix}-input-label">${this.escapeHtml(node.label)}</label>\n${textarea}`;
-    }
-
-    return textarea;
+    return renderTextareaFn(node, this.getRenderContext());
   }
 
   private renderSelect(node: SelectNode): string {
-    const classes = this.buildClassString([
-      `${this.prefix}-input`,
-      ...this.getCommonClasses(node),
-    ]);
-
-    const styles = this.buildCommonStyles(node);
-    const styleAttr = styles ? ` style="${styles}"` : '';
-
-    const attrs: Record<string, string | boolean | undefined> = {
-      class: classes,
-      disabled: node.disabled,
-      required: node.required,
-    };
-
-    const options = node.options
-      .map((opt) => {
-        if (typeof opt === 'string') {
-          const selected = opt === node.value ? ' selected' : '';
-          return `<option value="${this.escapeHtml(opt)}"${selected}>${this.escapeHtml(opt)}</option>`;
-        }
-        const selected = opt.value === node.value ? ' selected' : '';
-        return `<option value="${this.escapeHtml(opt.value)}"${selected}>${this.escapeHtml(opt.label)}</option>`;
-      })
-      .join('\n');
-
-    const placeholder = node.placeholder
-      ? `<option value="" disabled selected>${this.escapeHtml(node.placeholder)}</option>\n`
-      : '';
-
-    const select = `<select${this.buildAttrsString(attrs)}${styleAttr}>\n${placeholder}${options}\n</select>`;
-
-    if (node.label) {
-      return `<label class="${this.prefix}-input-label">${this.escapeHtml(node.label)}</label>\n${select}`;
-    }
-
-    return select;
+    return renderSelectFn(node, this.getRenderContext());
   }
 
   private renderCheckbox(node: CheckboxNode): string {
-    const styles = this.buildCommonStyles(node);
-    const styleAttr = styles ? ` style="${styles}"` : '';
-
-    const attrs: Record<string, string | boolean | undefined> = {
-      type: 'checkbox',
-      checked: node.checked,
-      disabled: node.disabled,
-    };
-
-    const checkbox = `<input${this.buildAttrsString(attrs)} />`;
-
-    if (node.label) {
-      return `<label class="${this.prefix}-checkbox"${styleAttr}>${checkbox}<span>${this.escapeHtml(node.label)}</span></label>`;
-    }
-
-    return checkbox;
+    return renderCheckboxFn(node, this.getRenderContext());
   }
 
   private renderRadio(node: RadioNode): string {
-    const styles = this.buildCommonStyles(node);
-    const styleAttr = styles ? ` style="${styles}"` : '';
-
-    const attrs: Record<string, string | boolean | undefined> = {
-      type: 'radio',
-      name: node.name,
-      checked: node.checked,
-      disabled: node.disabled,
-    };
-
-    const radio = `<input${this.buildAttrsString(attrs)} />`;
-
-    if (node.label) {
-      return `<label class="${this.prefix}-radio"${styleAttr}>${radio}<span>${this.escapeHtml(node.label)}</span></label>`;
-    }
-
-    return radio;
+    return renderRadioFn(node, this.getRenderContext());
   }
 
   private renderSwitch(node: SwitchNode): string {
-    const classes = this.buildClassString([
-      `${this.prefix}-switch`,
-      ...this.getCommonClasses(node),
-    ]);
-
-    const styles = this.buildCommonStyles(node);
-    const styleAttr = styles ? ` style="${styles}"` : '';
-
-    const attrs: Record<string, string | boolean | undefined> = {
-      type: 'checkbox',
-      role: 'switch',
-      checked: node.checked,
-      disabled: node.disabled,
-    };
-
-    const switchEl = `<input${this.buildAttrsString(attrs)} />`;
-
-    if (node.label) {
-      return `<label class="${classes}"${styleAttr}>${switchEl} ${this.escapeHtml(node.label)}</label>`;
-    }
-
-    // Always wrap in label with .wf-switch class for proper styling
-    return `<label class="${classes}"${styleAttr}>${switchEl}</label>`;
+    return renderSwitchFn(node, this.getRenderContext());
   }
 
   private renderSlider(node: SliderNode): string {
-    const classes = this.buildClassString([
-      `${this.prefix}-slider`,
-      ...this.getCommonClasses(node),
-    ]);
-
-    const styles = this.buildCommonStyles(node);
-    const styleAttr = styles ? ` style="${styles}"` : '';
-
-    const attrs: Record<string, string | boolean | undefined> = {
-      class: classes,
-      type: 'range',
-      min: node.min?.toString(),
-      max: node.max?.toString(),
-      step: node.step?.toString(),
-      value: node.value?.toString(),
-      disabled: node.disabled,
-    };
-
-    const slider = `<input${this.buildAttrsString(attrs)}${styleAttr} />`;
-
-    if (node.label) {
-      return `<label class="${this.prefix}-input-label">${this.escapeHtml(node.label)}</label>\n${slider}`;
-    }
-
-    return slider;
+    return renderSliderFn(node, this.getRenderContext());
   }
 
   // ===========================================
@@ -959,43 +676,7 @@ ${title}${children}
   // ===========================================
 
   private renderButton(node: ButtonNode): string {
-    // Icon-only button: has icon but no text content
-    const isIconOnly = node.icon && !node.content.trim();
-    const classes = this.buildClassString([
-      `${this.prefix}-button`,
-      node.primary ? `${this.prefix}-button-primary` : undefined,
-      node.secondary ? `${this.prefix}-button-secondary` : undefined,
-      node.outline ? `${this.prefix}-button-outline` : undefined,
-      node.ghost ? `${this.prefix}-button-ghost` : undefined,
-      node.danger ? `${this.prefix}-button-danger` : undefined,
-      node.size ? `${this.prefix}-button-${node.size}` : undefined,
-      node.disabled ? `${this.prefix}-button-disabled` : undefined,
-      node.loading ? `${this.prefix}-button-loading` : undefined,
-      isIconOnly ? `${this.prefix}-button-icon-only` : undefined,
-      ...this.getCommonClasses(node),
-    ]);
-
-    const styles = this.buildCommonStyles(node);
-    const styleAttr = styles ? ` style="${styles}"` : '';
-
-    const attrs: Record<string, string | boolean | undefined> = {
-      class: classes,
-      disabled: node.disabled,
-    };
-
-    let icon = '';
-    if (node.icon) {
-      const iconData = getIconData(node.icon);
-      if (iconData) {
-        icon = renderIconSvg(iconData, 16, 2, `${this.prefix}-icon`);
-      } else {
-        icon = `<span class="${this.prefix}-icon">[${this.escapeHtml(node.icon)}]</span>`;
-      }
-    }
-    const loading = node.loading ? `<span class="${this.prefix}-spinner ${this.prefix}-spinner-sm"></span>` : '';
-    const content = this.escapeHtml(node.content);
-
-    return `<button${this.buildAttrsString(attrs)}${styleAttr}>${loading}${icon}${content}</button>`;
+    return renderButtonFn(node, this.getRenderContext());
   }
 
   // ===========================================
@@ -1003,148 +684,23 @@ ${title}${children}
   // ===========================================
 
   private renderImage(node: ImageNode): string {
-    const classes = this.buildClassString([
-      `${this.prefix}-image`,
-      ...this.getCommonClasses(node),
-    ]);
-
-    const styles = this.buildCommonStyles(node);
-    const styleAttr = styles ? ` style="${styles}"` : '';
-
-    // If src is provided, render as actual img tag
-    if (node.src) {
-      const attrs: Record<string, string | boolean | undefined> = {
-        class: classes,
-        src: node.src,
-        alt: node.alt || 'Image',
-      };
-      // Add style attribute for img tag
-      const imgStyleAttr = styles ? `; ${styles}` : '';
-      return `<img${this.buildAttrsString(attrs)}${imgStyleAttr ? ` style="${imgStyleAttr.slice(2)}"` : ''} />`;
-    }
-
-    // Otherwise render as placeholder with image icon
-    const label = node.alt || 'Image';
-    const icon = `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>`;
-    return `<div class="${classes}"${styleAttr} role="img" aria-label="${this.escapeHtml(label)}">${icon}<span>${this.escapeHtml(label)}</span></div>`;
+    return renderImageFn(node, this.getRenderContext());
   }
 
   private renderPlaceholder(node: PlaceholderNode): string {
-    const classes = this.buildClassString([
-      `${this.prefix}-placeholder`,
-      ...this.getCommonClasses(node),
-    ]);
-
-    const styles = this.buildCommonStyles(node);
-    const styleAttr = styles ? ` style="${styles}"` : '';
-
-    const label = node.label ? this.escapeHtml(node.label) : 'Placeholder';
-    return `<div class="${classes}"${styleAttr}>${label}</div>`;
+    return renderPlaceholderFn(node, this.getRenderContext());
   }
 
   private renderAvatar(node: AvatarNode): string {
-    // Resolve size: token string (xs, sm, md, lg, xl) or custom px number
-    const sizeResolved = resolveSizeValue(node.size, 'avatar', this.prefix);
-
-    const classes = this.buildClassString([
-      `${this.prefix}-avatar`,
-      sizeResolved.className,
-      ...this.getCommonClasses(node),
-    ]);
-
-    const baseStyles = this.buildCommonStyles(node);
-    const sizeStyle = sizeResolved.style || '';
-    const combinedStyles = baseStyles && sizeStyle
-      ? `${baseStyles}; ${sizeStyle}`
-      : baseStyles || sizeStyle;
-    const styleAttr = combinedStyles ? ` style="${combinedStyles}"` : '';
-
-    const initials = node.name
-      ? node.name
-          .split(' ')
-          .map((n) => n[0])
-          .join('')
-          .toUpperCase()
-          .slice(0, 2)
-      : '?';
-
-    return `<div class="${classes}"${styleAttr} role="img" aria-label="${this.escapeHtml(node.name || 'Avatar')}">${initials}</div>`;
+    return renderAvatarFn(node, this.getRenderContext());
   }
 
   private renderBadge(node: BadgeNode): string {
-    // If icon is provided, render as icon badge (circular background with icon)
-    if (node.icon) {
-      const iconData = getIconData(node.icon);
-      const classes = this.buildClassString([
-        `${this.prefix}-badge-icon`,
-        node.size ? `${this.prefix}-badge-icon-${node.size}` : undefined,
-        node.variant ? `${this.prefix}-badge-icon-${node.variant}` : undefined,
-        ...this.getCommonClasses(node),
-      ]);
-
-      const styles = this.buildCommonStyles(node);
-      const styleAttr = styles ? ` style="${styles}"` : '';
-
-      if (iconData) {
-        const svg = renderIconSvg(iconData, 24, 2, `${this.prefix}-icon`);
-        return `<span class="${classes}"${styleAttr} aria-label="${this.escapeHtml(node.icon)}">${svg}</span>`;
-      }
-
-      // Fallback for unknown icon
-      return `<span class="${classes}"${styleAttr} aria-label="unknown icon">?</span>`;
-    }
-
-    // Default text badge (empty content = dot indicator)
-    const isDot = !node.content || node.content.trim() === '';
-    const classes = this.buildClassString([
-      `${this.prefix}-badge`,
-      isDot ? `${this.prefix}-badge-dot` : undefined,
-      node.variant ? `${this.prefix}-badge-${node.variant}` : undefined,
-      node.pill ? `${this.prefix}-badge-pill` : undefined,
-      ...this.getCommonClasses(node),
-    ]);
-
-    const styles = this.buildCommonStyles(node);
-    const styleAttr = styles ? ` style="${styles}"` : '';
-
-    return `<span class="${classes}"${styleAttr}>${this.escapeHtml(node.content)}</span>`;
+    return renderBadgeFn(node, this.getRenderContext());
   }
 
   private renderIcon(node: IconNode): string {
-    const iconData = getIconData(node.name);
-
-    // Resolve size: token string (xs, sm, md, lg, xl) or custom px number
-    const sizeResolved = resolveSizeValue(node.size, 'icon', this.prefix);
-
-    const wrapperClasses = this.buildClassString([
-      `${this.prefix}-icon-wrapper`,
-      node.muted ? `${this.prefix}-text-muted` : undefined,
-      ...this.getCommonClasses(node),
-    ]);
-
-    const baseStyles = this.buildCommonStyles(node);
-
-    if (iconData) {
-      // Build icon class with optional size class
-      const iconClasses = _buildClassString([
-        `${this.prefix}-icon`,
-        sizeResolved.className,
-      ]);
-      const svgStyleAttr = sizeResolved.style ? ` style="${sizeResolved.style}"` : '';
-      const svg = renderIconSvg(iconData, 24, 2, iconClasses, svgStyleAttr);
-      const wrapperStyleAttr = baseStyles ? ` style="${baseStyles}"` : '';
-      return `<span class="${wrapperClasses}"${wrapperStyleAttr} aria-hidden="true">${svg}</span>`;
-    }
-
-    // Fallback for unknown icons - render a placeholder circle
-    const size = sizeResolved.style?.match(/(\d+)px/)?.[1] || '24';
-    const sizeNum = parseInt(size, 10);
-    const placeholderSvg = `<svg class="${this.prefix}-icon ${sizeResolved.className || ''}" width="${sizeNum}" height="${sizeNum}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" stroke-dasharray="4 2" fill="none" opacity="0.5"/>
-      <text x="12" y="16" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.7">?</text>
-    </svg>`;
-    const wrapperStyleAttr = baseStyles ? ` style="${baseStyles}"` : '';
-    return `<span class="${wrapperClasses}"${wrapperStyleAttr} aria-hidden="true" title="Unknown icon: ${this.escapeHtml(node.name)}">${placeholderSvg}</span>`;
+    return renderIconFn(node, this.getRenderContext());
   }
 
   // ===========================================
@@ -1152,61 +708,11 @@ ${title}${children}
   // ===========================================
 
   private renderTable(node: TableNode): string {
-    const classes = this.buildClassString([
-      `${this.prefix}-table`,
-      node.striped ? `${this.prefix}-table-striped` : undefined,
-      node.bordered ? `${this.prefix}-table-bordered` : undefined,
-      node.hover ? `${this.prefix}-table-hover` : undefined,
-      ...this.getCommonClasses(node),
-    ]);
-
-    const styles = this.buildCommonStyles(node);
-    const styleAttr = styles ? ` style="${styles}"` : '';
-
-    const thead = `<thead><tr>${node.columns
-      .map((col) => `<th>${this.escapeHtml(col)}</th>`)
-      .join('')}</tr></thead>`;
-
-    const tbody = `<tbody>${node.rows
-      .map(
-        (row) =>
-          `<tr>${row
-            .map((cell) => {
-              if (typeof cell === 'string') {
-                // Support semantic markers and newlines in table cells
-                return `<td>${this.renderTableCellContent(cell)}</td>`;
-              }
-              return `<td>${this.renderNode(cell)}</td>`;
-            })
-            .join('')}</tr>`
-      )
-      .join('')}</tbody>`;
-
-    return `<table class="${classes}"${styleAttr}>\n${thead}\n${tbody}\n</table>`;
+    return renderTableFn(node, this.getRenderContext());
   }
 
   private renderList(node: ListNode): string {
-    const tag = node.ordered ? 'ol' : 'ul';
-    const classes = this.buildClassString([
-      `${this.prefix}-list`,
-      node.ordered ? `${this.prefix}-list-ordered` : undefined,
-      node.none ? `${this.prefix}-list-none` : undefined,
-      ...this.getCommonClasses(node),
-    ]);
-
-    const styles = this.buildCommonStyles(node);
-    const styleAttr = styles ? ` style="${styles}"` : '';
-
-    const items = node.items
-      .map((item) => {
-        if (typeof item === 'string') {
-          return `<li class="${this.prefix}-list-item">${this.escapeHtml(item)}</li>`;
-        }
-        return `<li class="${this.prefix}-list-item">${this.escapeHtml(item.content)}</li>`;
-      })
-      .join('\n');
-
-    return `<${tag} class="${classes}"${styleAttr}>\n${items}\n</${tag}>`;
+    return renderListFn(node, this.getRenderContext());
   }
 
   // ===========================================
@@ -1214,80 +720,19 @@ ${title}${children}
   // ===========================================
 
   private renderAlert(node: AlertNode): string {
-    const classes = this.buildClassString([
-      `${this.prefix}-alert`,
-      node.variant ? `${this.prefix}-alert-${node.variant}` : undefined,
-      ...this.getCommonClasses(node),
-    ]);
-
-    const styles = this.buildCommonStyles(node);
-    const styleAttr = styles ? ` style="${styles}"` : '';
-
-    const dismissBtn = node.dismissible
-      ? ` <button class="${this.prefix}-alert-close" aria-label="Close">&times;</button>`
-      : '';
-
-    return `<div class="${classes}"${styleAttr} role="alert">${this.escapeHtml(node.content)}${dismissBtn}</div>`;
+    return renderAlertFn(node, this.getRenderContext());
   }
 
   private renderToast(node: ToastNode): string {
-    const classes = this.buildClassString([
-      `${this.prefix}-toast`,
-      node.position ? `${this.prefix}-toast-${node.position}` : undefined,
-      node.variant ? `${this.prefix}-toast-${node.variant}` : undefined,
-      ...this.getCommonClasses(node),
-    ]);
-
-    const styles = this.buildCommonStyles(node);
-    const styleAttr = styles ? ` style="${styles}"` : '';
-
-    return `<div class="${classes}"${styleAttr} role="status">${this.escapeHtml(node.content)}</div>`;
+    return renderToastFn(node, this.getRenderContext());
   }
 
   private renderProgress(node: ProgressNode): string {
-    const classes = this.buildClassString([
-      `${this.prefix}-progress`,
-      ...this.getCommonClasses(node),
-    ]);
-
-    const styles = this.buildCommonStyles(node);
-    const styleAttr = styles ? ` style="${styles}"` : '';
-
-    const value = node.value || 0;
-    const max = node.max || 100;
-    const percentage = Math.round((value / max) * 100);
-
-    const label = node.label ? `<span class="${this.prefix}-progress-label">${this.escapeHtml(node.label)}</span>` : '';
-
-    if (node.indeterminate) {
-      return `<div class="${classes} ${this.prefix}-progress-indeterminate"${styleAttr} role="progressbar">${label}</div>`;
-    }
-
-    return `<div class="${classes}"${styleAttr} role="progressbar" aria-valuenow="${value}" aria-valuemin="0" aria-valuemax="${max}">
-  ${label}
-  <div class="${this.prefix}-progress-bar" style="width: ${percentage}%"></div>
-</div>`;
+    return renderProgressFn(node, this.getRenderContext());
   }
 
   private renderSpinner(node: SpinnerNode): string {
-    // Resolve size: token string (xs, sm, md, lg, xl) or custom px number
-    const sizeResolved = resolveSizeValue(node.size, 'spinner', this.prefix);
-
-    const classes = this.buildClassString([
-      `${this.prefix}-spinner`,
-      sizeResolved.className,
-      ...this.getCommonClasses(node),
-    ]);
-
-    const baseStyles = this.buildCommonStyles(node);
-    const sizeStyle = sizeResolved.style || '';
-    const combinedStyles = baseStyles && sizeStyle
-      ? `${baseStyles}; ${sizeStyle}`
-      : baseStyles || sizeStyle;
-    const styleAttr = combinedStyles ? ` style="${combinedStyles}"` : '';
-
-    const label = node.label || 'Loading...';
-    return `<span class="${classes}"${styleAttr} role="status" aria-label="${this.escapeHtml(label)}"></span>`;
+    return renderSpinnerFn(node, this.getRenderContext());
   }
 
   // ===========================================
@@ -1295,66 +740,15 @@ ${title}${children}
   // ===========================================
 
   private renderTooltip(node: TooltipNode): string {
-    const classes = this.buildClassString([
-      `${this.prefix}-tooltip-wrapper`,
-      ...this.getCommonClasses(node),
-    ]);
-
-    const styles = this.buildCommonStyles(node);
-    const styleAttr = styles ? ` style="${styles}"` : '';
-
-    const position = node.position || 'top';
-    const children = this.renderChildren(node.children);
-
-    return `<div class="${classes}"${styleAttr}>
-${children}
-<div class="${this.prefix}-tooltip ${this.prefix}-tooltip-${position}" role="tooltip">${this.escapeHtml(node.content)}</div>
-</div>`;
+    return renderTooltipFn(node, this.getRenderContext());
   }
 
   private renderPopover(node: PopoverNode): string {
-    const classes = this.buildClassString([
-      `${this.prefix}-popover`,
-      ...this.getCommonClasses(node),
-    ]);
-
-    const styles = this.buildCommonStyles(node);
-    const styleAttr = styles ? ` style="${styles}"` : '';
-
-    const title = node.title
-      ? `<div class="${this.prefix}-popover-header">${this.escapeHtml(node.title)}</div>\n`
-      : '';
-    const children = this.renderChildren(node.children);
-
-    return `<div class="${classes}"${styleAttr}>\n${title}<div class="${this.prefix}-popover-body">\n${children}\n</div>\n</div>`;
+    return renderPopoverFn(node, this.getRenderContext());
   }
 
   private renderDropdown(node: DropdownNode): string {
-    const classes = this.buildClassString([
-      `${this.prefix}-dropdown`,
-      ...this.getCommonClasses(node),
-    ]);
-
-    const styles = this.buildCommonStyles(node);
-    const styleAttr = styles ? ` style="${styles}"` : '';
-
-    const items = node.items
-      .map((item) => {
-        if ('type' in item && item.type === 'divider') {
-          return `<hr class="${this.prefix}-divider" />`;
-        }
-        // TypeScript narrowing: item is DropdownItemNode after the divider check
-        const dropdownItem = item as { label: string; danger?: boolean; disabled?: boolean };
-        const itemClasses = this.buildClassString([
-          `${this.prefix}-dropdown-item`,
-          dropdownItem.danger ? `${this.prefix}-dropdown-item-danger` : undefined,
-          dropdownItem.disabled ? `${this.prefix}-dropdown-item-disabled` : undefined,
-        ]);
-        return `<button class="${itemClasses}"${dropdownItem.disabled ? ' disabled' : ''}>${this.escapeHtml(dropdownItem.label)}</button>`;
-      })
-      .join('\n');
-
-    return `<div class="${classes}"${styleAttr}>\n${items}\n</div>`;
+    return renderDropdownFn(node, this.getRenderContext());
   }
 
   // ===========================================
@@ -1362,80 +756,15 @@ ${children}
   // ===========================================
 
   private renderNav(node: NavNode): string {
-    const classes = this.buildClassString([
-      `${this.prefix}-nav`,
-      node.vertical ? `${this.prefix}-nav-vertical` : undefined,
-      ...this.getCommonClasses(node),
-    ]);
-
-    const styles = this.buildCommonStyles(node);
-    const styleAttr = styles ? ` style="${styles}"` : '';
-
-    const items = node.items
-      .map((item) => {
-        if (typeof item === 'string') {
-          return `<a class="${this.prefix}-nav-link" href="#">${this.escapeHtml(item)}</a>`;
-        }
-        const linkClasses = this.buildClassString([
-          `${this.prefix}-nav-link`,
-          item.active ? `${this.prefix}-nav-link-active` : undefined,
-          item.disabled ? `${this.prefix}-nav-link-disabled` : undefined,
-        ]);
-        return `<a class="${linkClasses}" href="${item.href || '#'}">${this.escapeHtml(item.label)}</a>`;
-      })
-      .join('\n');
-
-    return `<nav class="${classes}"${styleAttr}>\n${items}\n</nav>`;
+    return renderNavFn(node, this.getRenderContext());
   }
 
   private renderTabs(node: TabsNode): string {
-    const classes = this.buildClassString([
-      `${this.prefix}-tabs`,
-      ...this.getCommonClasses(node),
-    ]);
-
-    const styles = this.buildCommonStyles(node);
-    const styleAttr = styles ? ` style="${styles}"` : '';
-
-    const tabList = node.items
-      .map((label, idx) => {
-        const isActive = idx === (node.active || 0);
-        const tabClasses = `${this.prefix}-tab${isActive ? ` ${this.prefix}-tab-active` : ''}`;
-        return `<button class="${tabClasses}" role="tab" aria-selected="${isActive}">${this.escapeHtml(label)}</button>`;
-      })
-      .join('\n');
-
-    return `<div class="${classes}"${styleAttr}>
-  <div class="${this.prefix}-tab-list" role="tablist">
-${tabList}
-  </div>
-</div>`;
+    return renderTabsFn(node, this.getRenderContext());
   }
 
   private renderBreadcrumb(node: BreadcrumbNode): string {
-    const classes = this.buildClassString([
-      `${this.prefix}-breadcrumb`,
-      ...this.getCommonClasses(node),
-    ]);
-
-    const styles = this.buildCommonStyles(node);
-    const styleAttr = styles ? ` style="${styles}"` : '';
-
-    const items = node.items
-      .map((item, idx) => {
-        const isLast = idx === node.items.length - 1;
-        if (typeof item === 'string') {
-          return isLast
-            ? `<span class="${this.prefix}-breadcrumb-item" aria-current="page">${this.escapeHtml(item)}</span>`
-            : `<a class="${this.prefix}-breadcrumb-item" href="#">${this.escapeHtml(item)}</a>`;
-        }
-        return isLast
-          ? `<span class="${this.prefix}-breadcrumb-item" aria-current="page">${this.escapeHtml(item.label)}</span>`
-          : `<a class="${this.prefix}-breadcrumb-item" href="${item.href || '#'}">${this.escapeHtml(item.label)}</a>`;
-      })
-      .join(' / ');
-
-    return `<nav class="${classes}"${styleAttr} aria-label="Breadcrumb">${items}</nav>`;
+    return renderBreadcrumbFn(node, this.getRenderContext());
   }
 
   // ===========================================
@@ -1443,160 +772,7 @@ ${tabList}
   // ===========================================
 
   private renderDivider(node: DividerComponentNode): string {
-    const styles = this.buildCommonStyles(node);
-    const styleAttr = styles ? ` style="${styles}"` : '';
-
-    return `<hr class="${this.prefix}-divider"${styleAttr} />`;
-  }
-
-  // ===========================================
-  // Semantic Marker Rendering
-  // ===========================================
-
-  /**
-   * Parse and render semantic markers in text content
-   *
-   * Semantic markers use the syntax [component:variant] to indicate
-   * what a visual element represents. This helps LLMs understand
-   * the meaning of placeholder content.
-   *
-   * Supported markers:
-   * - [avatar] or [avatar:size] - User avatar (renders as circle placeholder)
-   * - [badge:variant] TEXT - Status badge (TEXT is displayed inside the badge)
-   * - [dot:variant] - Status dot (renders as small circle before text)
-   * - [icon:name] - Icon placeholder
-   *
-   * Examples:
-   * - "[avatar] John Doe" → renders avatar circle + "John Doe"
-   * - "[badge:primary] PRO" → renders badge containing "PRO"
-   * - "[dot:success] Active" → renders green dot + "Active"
-   */
-  private renderSemanticMarkers(text: string): string {
-    // Pattern: [component] or [component:variant] with optional following text for badge
-    const markerPattern = /\[([a-z]+)(?::([a-z0-9-]+))?\](\s*)/gi;
-
-    let result = '';
-    let lastIndex = 0;
-    let match: RegExpExecArray | null;
-
-    while ((match = markerPattern.exec(text)) !== null) {
-      // Add text before the marker
-      if (match.index > lastIndex) {
-        result += this.escapeHtml(text.substring(lastIndex, match.index));
-      }
-
-      const [fullMatch, component, variant] = match;
-      const comp = component.toLowerCase();
-      const varnt = variant?.toLowerCase();
-
-      // For badge, consume the following word as the badge content
-      if (comp === 'badge') {
-        const afterMarker = text.substring(match.index + fullMatch.length);
-        // Match until newline, next marker, or end
-        const contentMatch = afterMarker.match(/^([^\n\[]+?)(?=\n|\[|$)/);
-        const badgeContent = contentMatch ? contentMatch[1].trim() : '';
-
-        result += this.renderSemanticMarkerWithContent(comp, varnt, badgeContent);
-        lastIndex = match.index + fullMatch.length + (contentMatch ? contentMatch[0].length : 0);
-        markerPattern.lastIndex = lastIndex; // Update regex position
-      } else {
-        result += this.renderSemanticMarker(comp, varnt);
-        lastIndex = match.index + fullMatch.length;
-      }
-    }
-
-    // Add remaining text after last marker
-    if (lastIndex < text.length) {
-      result += this.escapeHtml(text.substring(lastIndex));
-    }
-
-    // If no markers found, just escape and return
-    if (lastIndex === 0) {
-      return this.escapeHtml(text);
-    }
-
-    return result;
-  }
-
-  /**
-   * Render a single semantic marker to HTML (without content)
-   */
-  private renderSemanticMarker(component: string, variant?: string): string {
-    const prefix = this.prefix;
-
-    switch (component) {
-      case 'avatar':
-        // Render as small circle placeholder
-        const avatarSize = variant || 'sm';
-        return `<span class="${prefix}-semantic-avatar ${prefix}-semantic-avatar-${avatarSize}" data-semantic="avatar" data-variant="${avatarSize}" aria-hidden="true"></span>`;
-
-      case 'dot':
-        // Render as status dot
-        const dotVariant = variant || 'default';
-        return `<span class="${prefix}-semantic-dot ${prefix}-semantic-dot-${dotVariant}" data-semantic="dot" data-variant="${dotVariant}" aria-hidden="true"></span>`;
-
-      case 'icon':
-        // Render as icon placeholder
-        const iconName = variant || 'default';
-        return `<span class="${prefix}-semantic-icon" data-semantic="icon" data-variant="${iconName}" aria-hidden="true">[${iconName}]</span>`;
-
-      default:
-        // Unknown marker - render as data attribute only
-        return `<span class="${prefix}-semantic-unknown" data-semantic="${component}" data-variant="${variant || ''}">[${component}${variant ? ':' + variant : ''}]</span>`;
-    }
-  }
-
-  /**
-   * Render a semantic marker with text content (for badge)
-   */
-  private renderSemanticMarkerWithContent(component: string, variant: string | undefined, content: string): string {
-    const prefix = this.prefix;
-
-    switch (component) {
-      case 'badge':
-        // Render as inline badge with content inside
-        const badgeVariant = variant || 'default';
-        const escapedContent = this.escapeHtml(content);
-        return `<span class="${prefix}-semantic-badge ${prefix}-semantic-badge-${badgeVariant}" data-semantic="badge" data-variant="${badgeVariant}">${escapedContent}</span>`;
-
-      default:
-        // Fallback: render marker then content
-        return this.renderSemanticMarker(component, variant) + this.escapeHtml(content);
-    }
-  }
-
-  /**
-   * Process table cell content with semantic markers and newlines
-   *
-   * Special handling for avatar + text layout:
-   * When content starts with [avatar], wraps in flex container
-   * so avatar and text align horizontally, with text stacking vertically
-   */
-  private renderTableCellContent(content: string): string {
-    // Check if content starts with [avatar] marker
-    const avatarMatch = content.match(/^\[avatar(?::([a-z0-9-]+))?\]\s*/i);
-
-    if (avatarMatch) {
-      // Avatar + text layout: flex container with avatar and text block
-      const avatarVariant = avatarMatch[1]?.toLowerCase();
-      const avatarHtml = this.renderSemanticMarker('avatar', avatarVariant);
-      const restContent = content.slice(avatarMatch[0].length);
-
-      // Process remaining content for other markers
-      const restHtml = this.renderSemanticMarkers(restContent);
-      // Convert newlines to flex items for vertical stacking
-      const lines = restHtml.split('\n');
-      const textHtml =
-        lines.length > 1
-          ? lines.map((line) => `<span>${line}</span>`).join('')
-          : restHtml;
-
-      return `<div class="${this.prefix}-cell-avatar-layout">${avatarHtml}<div class="${this.prefix}-cell-avatar-text">${textHtml}</div></div>`;
-    }
-
-    // Normal rendering: semantic markers then newlines to <br>
-    const withMarkers = this.renderSemanticMarkers(content);
-    return withMarkers.replace(/\n/g, '<br>');
+    return renderDividerFn(node, this.getRenderContext());
   }
 }
 

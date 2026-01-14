@@ -6,14 +6,12 @@
 
 import type { WireframeDocument } from '../ast/types';
 import { createHtmlRenderer } from './html';
-import { renderToSvg as renderSvg } from './svg';
 import type { RenderOptions, RenderResult, SvgRenderOptions, SvgRenderResult } from './types';
 import { resolveViewport } from '../viewport';
 
 // Re-export types
 export * from './types';
 export { HtmlRenderer, createHtmlRenderer } from './html';
-export { SvgRenderer, createSvgRenderer } from './svg';
 export { generateStyles } from './styles';
 export { generateComponentStyles } from './styles-components';
 
@@ -101,19 +99,27 @@ export function renderToSvg(
     }
   }
 
-  const padding = options.padding ?? 20;
   const background = options.background ?? '#ffffff';
 
   // Use HTML renderer to generate content
   const { html, css } = render(document, { theme: 'light' });
 
   // Build SVG with foreignObject containing HTML+CSS
+  // Use same wrapper styles as renderToHtml for consistency
   const svg = `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
      viewBox="0 0 ${width} ${height}" width="${width}" height="${height}">
   <rect width="100%" height="100%" fill="${background}"/>
-  <foreignObject x="${padding}" y="${padding}" width="${width - padding * 2}" height="${height - padding * 2}">
-    <div xmlns="http://www.w3.org/1999/xhtml" style="width: 100%; height: 100%; overflow: hidden;">
+  <foreignObject x="0" y="0" width="${width}" height="${height}">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="
+      width: ${width}px;
+      height: ${height}px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+    ">
       <style type="text/css">
 ${css}
       </style>
@@ -123,21 +129,4 @@ ${css}
 </svg>`;
 
   return { svg, width, height };
-}
-
-/**
- * Render AST to pure SVG (without foreignObject)
- *
- * This uses the original SVG renderer with manual layout calculations.
- * Use this when foreignObject is not supported.
- *
- * @param document - Parsed wireframe document
- * @param options - SVG render options
- * @returns Object containing SVG string and dimensions
- */
-export function renderToPureSvg(
-  document: WireframeDocument,
-  options: SvgRenderOptions = {}
-): SvgRenderResult {
-  return renderSvg(document, options);
 }

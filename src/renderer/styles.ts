@@ -62,7 +62,6 @@ function generateBaseStyles(prefix: string): string {
   font-family: var(--${prefix}-font);
   color: var(--${prefix}-fg);
   background: var(--${prefix}-bg);
-  min-height: 100vh;
   box-sizing: border-box;
   position: relative;
   display: flex;
@@ -73,10 +72,19 @@ function generateBaseStyles(prefix: string): string {
   overflow: hidden;
 }
 
+/* Col direct child of page should fill page height */
+.${prefix}-page > .${prefix}-col {
+  flex: 1;
+  min-height: 0;
+}
+
 /* Row containing sidebar should fill remaining space */
 .${prefix}-page > .${prefix}-row:has(.${prefix}-sidebar),
-.${prefix}-page > .${prefix}-row:has(.${prefix}-main) {
+.${prefix}-page > .${prefix}-row:has(.${prefix}-main),
+.${prefix}-page > .${prefix}-col > .${prefix}-row:has(.${prefix}-sidebar),
+.${prefix}-page > .${prefix}-col > .${prefix}-row:has(.${prefix}-main) {
   flex: 1;
+  min-height: 0;
   align-items: stretch;
 }
 
@@ -124,12 +132,18 @@ function generateGridClasses(_theme: ThemeConfig, prefix: string): string {
   box-sizing: border-box;
 }
 
+/* When explicit width is set, don't flex-grow */
+.${prefix}-row[style*="width:"],
+.${prefix}-col[style*="width:"] {
+  flex: 0 0 auto;
+}
+
 `;
 
   // Generate column span classes (1-12)
+  // Use flex-grow instead of fixed width to properly handle gaps
   for (let i = 1; i <= 12; i++) {
-    const width = ((i / 12) * 100).toFixed(4);
-    css += `.${prefix}-col-${i} { flex: 0 0 auto; width: ${width}%; }\n`;
+    css += `.${prefix}-col-${i} { flex: ${i} 0 0%; min-width: 0; }\n`;
   }
 
   // Note: Responsive breakpoints intentionally not implemented
@@ -319,6 +333,26 @@ function generateLayoutClasses(prefix: string): string {
 .${prefix}-main {
   flex: 1;
   padding: 16px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* Scrollable main content */
+.${prefix}-main.${prefix}-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Col containing scrollable main needs min-height: 0 for scroll to work */
+.${prefix}-col:has(> .${prefix}-main.${prefix}-scroll) {
+  min-height: 0;
+}
+
+/* Main content should align to top, not stretch to fill */
+/* But allow explicit flex=1 to override */
+.${prefix}-main > .${prefix}-col:not(.${prefix}-flex-1) {
+  flex: 0 0 auto;
 }
 
 .${prefix}-footer {
@@ -335,6 +369,7 @@ function generateLayoutClasses(prefix: string): string {
   border-right: 1px solid var(--${prefix}-border);
   padding: 16px 16px 16px 20px;
   flex-shrink: 0;
+  align-self: stretch;
 }
 
 .${prefix}-sidebar-right {
