@@ -118,6 +118,189 @@ const { svg, width, height } = renderToSvg(doc, {
 
 **Returns**: `{ svg: string, width: number, height: number }`
 
+### Analysis
+
+#### `analyze(doc: WireframeDocument, options?: AnalysisOptions): AnalysisResult`
+
+Analyzes a wireframe document and returns comprehensive statistics.
+
+```typescript
+import { parse, analyze } from '@wireweave/core';
+
+const doc = parse('page { card { text "Hello" button "Click" } }');
+const result = analyze(doc);
+
+console.log(result.summary);
+// { totalComponents: 4, uniqueTypes: 4, mostUsedType: 'Page', ... }
+
+console.log(result.tree);
+// { totalNodes: 4, maxDepth: 3, avgDepth: 2, ... }
+
+console.log(result.accessibility);
+// { score: 100, imagesWithAlt: 0, inputsWithLabels: 0, ... }
+
+console.log(result.complexity);
+// { score: 2, level: 'simple', interactiveElements: 1, ... }
+```
+
+**Options**:
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `includeComponentBreakdown` | `boolean` | `true` | Include component statistics |
+| `includeAccessibility` | `boolean` | `true` | Include accessibility metrics |
+| `includeComplexity` | `boolean` | `true` | Include complexity analysis |
+| `includeLayout` | `boolean` | `true` | Include layout analysis |
+| `includeContent` | `boolean` | `true` | Include content analysis |
+
+### Diff (Document Comparison)
+
+#### `diff(oldDoc: WireframeDocument, newDoc: WireframeDocument, options?: DiffOptions): DiffResult`
+
+Compares two wireframe documents and returns detailed differences.
+
+```typescript
+import { parse, diff } from '@wireweave/core';
+
+const oldDoc = parse('page { text "Hello" }');
+const newDoc = parse('page { text "Hello" button "Click" }');
+
+const result = diff(oldDoc, newDoc);
+
+console.log(result.identical); // false
+console.log(result.description); // "Added 1 component(s): Button."
+console.log(result.summary);
+// { addedCount: 1, removedCount: 0, changedCount: 0, ... }
+```
+
+#### `areIdentical(oldDoc: WireframeDocument, newDoc: WireframeDocument): boolean`
+
+Quick check if two documents are identical.
+
+```typescript
+import { parse, areIdentical } from '@wireweave/core';
+
+const doc1 = parse('page { text "Hello" }');
+const doc2 = parse('page { text "Hello" }');
+
+console.log(areIdentical(doc1, doc2)); // true
+```
+
+#### `getChangeSummary(oldDoc: WireframeDocument, newDoc: WireframeDocument): string`
+
+Returns a human-readable summary of changes.
+
+```typescript
+import { parse, getChangeSummary } from '@wireweave/core';
+
+const oldDoc = parse('page { text "A" }');
+const newDoc = parse('page { text "B" }');
+
+console.log(getChangeSummary(oldDoc, newDoc));
+// "Modified 1 component(s)."
+```
+
+### Export
+
+#### `exportToJson(doc: WireframeDocument, options?: ExportOptions): JsonExportResult`
+
+Exports wireframe to JSON format.
+
+```typescript
+import { parse, exportToJson } from '@wireweave/core';
+
+const doc = parse('page { card { text "Hello" } }');
+const result = exportToJson(doc);
+
+console.log(result.version); // "1.0.0"
+console.log(result.pages); // [{ type: 'page', children: [...] }]
+console.log(result.metadata);
+// { exportedAt: '...', nodeCount: 3, componentTypes: ['card', 'page', 'text'] }
+```
+
+#### `exportToJsonString(doc: WireframeDocument, options?: ExportOptions): string`
+
+Exports wireframe to JSON string.
+
+```typescript
+import { parse, exportToJsonString } from '@wireweave/core';
+
+const doc = parse('page { text "Hello" }');
+const json = exportToJsonString(doc, { prettyPrint: true });
+```
+
+#### `exportToFigma(doc: WireframeDocument): FigmaExportResult`
+
+Exports wireframe to Figma-compatible format.
+
+```typescript
+import { parse, exportToFigma } from '@wireweave/core';
+
+const doc = parse('page { card { text "Hello" } }');
+const result = exportToFigma(doc);
+
+console.log(result.document); // Figma-compatible node tree
+console.log(result.componentMappings);
+// { page: 'CANVAS', card: 'FRAME', text: 'TEXT' }
+```
+
+### UX Validation
+
+#### `validateUX(doc: WireframeDocument, options?: UXValidationOptions): UXValidationResult`
+
+Validates wireframe against UX best practices.
+
+```typescript
+import { parse, validateUX } from '@wireweave/core';
+
+const doc = parse(`
+  page {
+    button "Click" // No primary action indicator
+    button "Cancel"
+  }
+`);
+
+const result = validateUX(doc);
+
+console.log(result.valid); // true/false
+console.log(result.score); // 0-100
+console.log(result.issues);
+// [{ ruleId: 'button-needs-primary', severity: 'warning', message: '...' }]
+```
+
+#### `isUXValid(doc: WireframeDocument): boolean`
+
+Quick check if wireframe passes all UX rules.
+
+```typescript
+import { parse, isUXValid } from '@wireweave/core';
+
+const doc = parse('page { button "Submit" primary }');
+console.log(isUXValid(doc)); // true
+```
+
+#### `getUXScore(doc: WireframeDocument): number`
+
+Returns UX score from 0-100.
+
+```typescript
+import { parse, getUXScore } from '@wireweave/core';
+
+const doc = parse('page { form { input label="Name" button "Submit" primary } }');
+console.log(getUXScore(doc)); // 95
+```
+
+#### `getUXIssues(doc: WireframeDocument): UXIssue[]`
+
+Returns list of UX issues found.
+
+```typescript
+import { parse, getUXIssues } from '@wireweave/core';
+
+const doc = parse('page { image src="photo.jpg" }'); // Missing alt
+const issues = getUXIssues(doc);
+// [{ ruleId: 'image-needs-alt', severity: 'error', message: '...' }]
+```
+
 ### AST Utilities
 
 #### `walk(node: ASTNode, callback: WalkCallback): void`
