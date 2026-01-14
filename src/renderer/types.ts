@@ -41,6 +41,8 @@ export interface SvgRenderOptions {
   background?: string;
   /** Font family */
   fontFamily?: string;
+  /** Theme variant */
+  theme?: 'light' | 'dark';
 }
 
 export interface SvgRenderResult {

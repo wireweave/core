@@ -102,7 +102,7 @@ export function renderToSvg(
   const background = options.background ?? '#ffffff';
 
   // Use HTML renderer to generate content
-  const { html, css } = render(document, { theme: 'light' });
+  const { html, css } = render(document, { theme: options.theme ?? 'light' });
 
   // Build SVG with foreignObject containing HTML+CSS
   // Use same wrapper styles as renderToHtml for consistency
