@@ -155,9 +155,8 @@ export function validateUX(
           recordCheck(rule, result);
           if (!addIssue(result)) return false;
         }
-      } catch (err) {
-        // Rule threw an error, log and continue
-        console.warn(`UX rule ${rule.id} threw error:`, err);
+      } catch {
+        // Rule threw an error, skip and continue
       }
     }
 
