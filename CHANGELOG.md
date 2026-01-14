@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.2.0-beta.0](https://github.com/wireweave/core/compare/v1.1.0-beta.0...v1.2.0-beta.0) (2026-01-14)
+
+### Features
+
+* **grammar:** add simplified syntax for table and dropdown components ([3186c06](https://github.com/wireweave/core/commit/3186c06a8ef185f0e7a208acbed746fed34c7eb5))
+* introduce analyze, diff, export, and ux-rules modules ([b704e2a](https://github.com/wireweave/core/commit/b704e2a3884b6bbbb9fe8568ee120efe049f1e04))
+
+### Bug Fixes
+
+* remove console.warn to fix DTS build error ([3152399](https://github.com/wireweave/core/commit/31523993552a37aada4bdd396889d4caca20bb6a))
+
+### Refactoring
+
+* **analyze:** restructure analysis module and metrics ([73ffabf](https://github.com/wireweave/core/commit/73ffabf4bbe10d48afb7387ee16f0f168e0c4acb))
+* **diff:** modularize document comparison logic ([10390d5](https://github.com/wireweave/core/commit/10390d5116fb6624094d96851d8552b388f7894e))
+* **export:** modularize Figma and JSON export functionality ([b7271f5](https://github.com/wireweave/core/commit/b7271f5c7aa8184bd5533644a09eda797756c633))
+* **renderer:** modularize HTML rendering and remove legacy SVG renderer ([5688d98](https://github.com/wireweave/core/commit/5688d981a99fc10949490239b1f819444fe2ae58))
+
 ## 1.1.0-beta.0 (2026-01-10)
 
 ### Features
