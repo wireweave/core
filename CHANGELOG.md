@@ -13,7 +13,7 @@
 ### ⚠ BREAKING CHANGES
 
 * **parser:** 'type=' attribute no longer auto-converts to 'inputType='
-- Use 'inputType=email' instead of 'type=email' for input fields
+- Use 'inputType=email' instead of 'inputType=email' for input fields
 - 'type=' now correctly fails validation as it conflicts with internal node type
 - Consistent behavior across all components and validation layers
 
