@@ -68,13 +68,39 @@ export function renderDropdown(node: DropdownNode, ctx: RenderContext): string {
         return `<hr class="${ctx.prefix}-divider" />`;
       }
       // TypeScript narrowing: item is DropdownItemNode after the divider check
-      const dropdownItem = item as { label: string; danger?: boolean; disabled?: boolean };
+      const dropdownItem = item as {
+        label: string;
+        href?: string;
+        danger?: boolean;
+        disabled?: boolean;
+        navigate?: string;
+        opens?: string;
+        toggles?: string;
+        action?: string;
+      };
       const itemClasses = ctx.buildClassString([
         `${ctx.prefix}-dropdown-item`,
         dropdownItem.danger ? `${ctx.prefix}-dropdown-item-danger` : undefined,
         dropdownItem.disabled ? `${ctx.prefix}-dropdown-item-disabled` : undefined,
       ]);
-      return `<button class="${itemClasses}"${dropdownItem.disabled ? ' disabled="disabled"' : ''}>${ctx.escapeHtml(dropdownItem.label)}</button>`;
+
+      // Build interactive data attributes
+      const interactiveAttrs: Record<string, string | undefined> = {
+        'data-navigate': dropdownItem.navigate,
+        'data-opens': dropdownItem.opens,
+        'data-toggles': dropdownItem.toggles,
+        'data-action': dropdownItem.action,
+      };
+      const interactiveAttrStr = ctx.buildAttrsString(interactiveAttrs);
+      const hrefAttr = dropdownItem.href ? ` href="${ctx.escapeHtml(dropdownItem.href)}"` : '';
+      const disabledAttr = dropdownItem.disabled ? ' disabled="disabled"' : '';
+
+      // Use <a> if href is provided, otherwise use <button>
+      if (dropdownItem.href || dropdownItem.navigate) {
+        const href = dropdownItem.href || dropdownItem.navigate || '#';
+        return `<a class="${itemClasses}" href="${ctx.escapeHtml(href)}"${interactiveAttrStr}>${ctx.escapeHtml(dropdownItem.label)}</a>`;
+      }
+      return `<button class="${itemClasses}"${disabledAttr}${interactiveAttrStr}>${ctx.escapeHtml(dropdownItem.label)}</button>`;
     })
     .join('\n');
 

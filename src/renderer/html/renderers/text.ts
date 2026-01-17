@@ -57,7 +57,12 @@ export function renderLink(node: LinkNode, ctx: RenderContext): string {
 
   const attrs: Record<string, string | boolean | undefined> = {
     class: classes,
-    href: node.href || '#',
+    href: node.href || node.navigate || '#',
+    // Interactive attributes
+    'data-navigate': node.navigate,
+    'data-opens': node.opens,
+    'data-toggles': node.toggles,
+    'data-action': node.action,
   };
 
   if (node.external) {

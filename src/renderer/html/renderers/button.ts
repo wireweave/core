@@ -32,6 +32,11 @@ export function renderButton(node: ButtonNode, ctx: RenderContext): string {
   const attrs: Record<string, string | boolean | undefined> = {
     class: classes,
     disabled: node.disabled,
+    // Interactive attributes
+    'data-navigate': node.navigate,
+    'data-opens': node.opens,
+    'data-toggles': node.toggles,
+    'data-action': node.action,
   };
 
   let icon = '';

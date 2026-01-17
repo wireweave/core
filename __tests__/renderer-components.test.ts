@@ -637,3 +637,103 @@ describe('Component Styles Generation', () => {
     expect(css).toContain('prefers-reduced-motion');
   });
 });
+
+describe('Interactive Attributes', () => {
+  describe('Button Interactive Props', () => {
+    it('should render button with navigate attribute', () => {
+      const doc = parse('page { button "Go" navigate="/dashboard" }');
+      const result = render(doc);
+
+      expect(result.html).toContain('data-navigate="/dashboard"');
+    });
+
+    it('should render button with opens attribute', () => {
+      const doc = parse('page { button "Open" opens="modal-1" }');
+      const result = render(doc);
+
+      expect(result.html).toContain('data-opens="modal-1"');
+    });
+
+    it('should render button with toggles attribute', () => {
+      const doc = parse('page { button "Toggle" toggles="sidebar" }');
+      const result = render(doc);
+
+      expect(result.html).toContain('data-toggles="sidebar"');
+    });
+
+    it('should render button with action attribute', () => {
+      const doc = parse('page { button "Submit" action="submit-form" }');
+      const result = render(doc);
+
+      expect(result.html).toContain('data-action="submit-form"');
+    });
+
+    it('should render button with multiple interactive attributes', () => {
+      const doc = parse('page { button "Logout" navigate="/login" action="logout" }');
+      const result = render(doc);
+
+      expect(result.html).toContain('data-navigate="/login"');
+      expect(result.html).toContain('data-action="logout"');
+    });
+  });
+
+  describe('Link Interactive Props', () => {
+    it('should render link with navigate attribute', () => {
+      const doc = parse('page { link "Dashboard" navigate="/dashboard" }');
+      const result = render(doc);
+
+      expect(result.html).toContain('href="/dashboard"');
+      expect(result.html).toContain('data-navigate="/dashboard"');
+    });
+
+    it('should render link with opens attribute', () => {
+      const doc = parse('page { link "Help" opens="help-modal" }');
+      const result = render(doc);
+
+      expect(result.html).toContain('data-opens="help-modal"');
+    });
+  });
+
+  describe('Avatar Interactive Props', () => {
+    it('should render avatar with opens attribute', () => {
+      const doc = parse('page { avatar "User" opens="user-menu" }');
+      const result = render(doc);
+
+      expect(result.html).toContain('data-opens="user-menu"');
+    });
+  });
+
+  describe('Icon Interactive Props', () => {
+    it('should render icon with navigate attribute', () => {
+      const doc = parse('page { icon "home" navigate="/" }');
+      const result = render(doc);
+
+      expect(result.html).toContain('data-navigate="/"');
+    });
+  });
+
+  describe('Card Interactive Props', () => {
+    it('should render card with navigate attribute', () => {
+      const doc = parse('page { card navigate="/details" { text "Click me" } }');
+      const result = render(doc);
+
+      expect(result.html).toContain('data-navigate="/details"');
+    });
+  });
+
+  describe('Modal/Drawer ID', () => {
+    it('should render modal with id attribute', () => {
+      const doc = parse('page { modal "Settings" id="settings-modal" { text "Content" } }');
+      const result = render(doc);
+
+      expect(result.html).toContain('id="settings-modal"');
+    });
+
+    it('should render drawer with id attribute', () => {
+      const doc = parse('page { drawer "Menu" id="main-drawer" { text "Content" } }');
+      const result = render(doc);
+
+      expect(result.html).toContain('id="main-drawer"');
+    });
+  });
+});
