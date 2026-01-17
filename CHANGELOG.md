@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.3.0-beta.0](https://github.com/wireweave/core/compare/v1.2.0-beta.3...v1.3.0-beta.0) (2026-01-17)
+
+## [1.2.0-beta.3](https://github.com/wireweave/core/compare/v1.2.0...v1.2.0-beta.3) (2026-01-17)
+
+### Features
+
+* **renderer:** add theme support to SVG rendering ([3e0967b](https://github.com/wireweave/core/commit/3e0967ba2b1e481412d7f2de6c56cddd967a2b47))
+
+### Refactoring
+
+* remove UX validation engine and rules ([8f33508](https://github.com/wireweave/core/commit/8f33508a2f0e2ca31cddd724f32a9414b9ec42bd))
+
+### Documentation
+
+* add core package documentation ([0b4d81f](https://github.com/wireweave/core/commit/0b4d81f4f07f263797fb894e2a56e11361b3d249))
+
 ## [1.2.0](https://github.com/wireweave/core/compare/v1.2.0-beta.2...v1.2.0) (2026-01-14)
 
 ## [1.2.0-beta.2](https://github.com/wireweave/core/compare/v1.2.0-beta.1...v1.2.0-beta.2) (2026-01-14)
