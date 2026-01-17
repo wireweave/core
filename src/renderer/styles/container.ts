@@ -5,6 +5,8 @@
 export function generateContainerStyles(prefix: string): string {
   return `/* Container Components */
 .${prefix}-card {
+  display: flex;
+  flex-direction: column;
   border: 1px solid var(--${prefix}-border);
   border-radius: var(--${prefix}-radius);
   background: var(--${prefix}-bg);
