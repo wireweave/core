@@ -10,9 +10,9 @@ import { defaultTheme, darkTheme } from '../types';
 import { generateStyles } from '../styles';
 
 /**
- * Default render options
+ * Default render options (background is intentionally omitted - uses theme default)
  */
-const DEFAULT_OPTIONS: Required<RenderOptions> = {
+const DEFAULT_OPTIONS: Omit<Required<RenderOptions>, 'background'> & { background?: string } = {
   theme: 'light',
   scale: 1,
   includeStyles: true,
@@ -32,13 +32,13 @@ export abstract class BaseRenderer {
   protected context: RenderContext;
 
   constructor(options: RenderOptions = {}) {
-    const resolvedOptions: Required<RenderOptions> = {
+    const resolvedOptions = {
       ...DEFAULT_OPTIONS,
       ...options,
     };
 
     this.context = {
-      options: resolvedOptions,
+      options: resolvedOptions as Required<RenderOptions>,
       theme: this.buildTheme(resolvedOptions),
       depth: 0,
     };
@@ -46,9 +46,22 @@ export abstract class BaseRenderer {
 
   /**
    * Build theme configuration based on options
+   * If background option is provided, it overrides the theme's default background
    */
-  protected buildTheme(options: Required<RenderOptions>): ThemeConfig {
-    return options.theme === 'dark' ? { ...darkTheme } : { ...defaultTheme };
+  protected buildTheme(options: RenderOptions): ThemeConfig {
+    const baseTheme = options.theme === 'dark' ? { ...darkTheme } : { ...defaultTheme };
+
+    if (options.background !== undefined) {
+      return {
+        ...baseTheme,
+        colors: {
+          ...baseTheme.colors,
+          background: options.background,
+        },
+      };
+    }
+
+    return baseTheme;
   }
 
   /**

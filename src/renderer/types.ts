@@ -19,6 +19,8 @@ export interface RenderOptions {
   minify?: boolean;
   /** CSS class prefix for scoping */
   classPrefix?: string;
+  /** Background color (e.g., '#ffffff', 'transparent') */
+  background?: string;
 }
 
 export interface RenderResult {
