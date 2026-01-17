@@ -46,22 +46,12 @@ export abstract class BaseRenderer {
 
   /**
    * Build theme configuration based on options
-   * If background option is provided, it overrides the theme's default background
+   * Note: background option is NOT applied to theme.colors.background
+   * It's only used for page background in renderPage() to avoid affecting
+   * component colors that use var(--wf-bg)
    */
   protected buildTheme(options: RenderOptions): ThemeConfig {
-    const baseTheme = options.theme === 'dark' ? { ...darkTheme } : { ...defaultTheme };
-
-    if (options.background !== undefined) {
-      return {
-        ...baseTheme,
-        colors: {
-          ...baseTheme.colors,
-          background: options.background,
-        },
-      };
-    }
-
-    return baseTheme;
+    return options.theme === 'dark' ? { ...darkTheme } : { ...defaultTheme };
   }
 
   /**
