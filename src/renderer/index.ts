@@ -90,9 +90,17 @@ export function renderToSvg(
   let width = options.width ?? 800;
   let height = options.height ?? 600;
 
-  // Use page viewport/device if set and no explicit options provided
+  // Use page dimensions if set and no explicit options provided
+  // Check direct width/height first, then viewport/device
   if (firstPage && options.width === undefined && options.height === undefined) {
-    if (firstPage.viewport !== undefined || firstPage.device !== undefined) {
+    const pageAny = firstPage as typeof firstPage & { width?: number; height?: number };
+    const explicitW = firstPage.w ?? pageAny.width;
+    const explicitH = firstPage.h ?? pageAny.height;
+
+    if (explicitW !== undefined && explicitH !== undefined) {
+      width = typeof explicitW === 'number' ? explicitW : 800;
+      height = typeof explicitH === 'number' ? explicitH : 600;
+    } else if (firstPage.viewport !== undefined || firstPage.device !== undefined) {
       const viewport = resolveViewport(firstPage.viewport, firstPage.device);
       width = viewport.width;
       height = viewport.height;
