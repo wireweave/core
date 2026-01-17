@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.0.1-beta.1](https://github.com/wireweave/core/compare/v2.0.1-beta.0...v2.0.1-beta.1) (2026-01-17)
+
+### Documentation
+
+* **changelog:** fix typo in breaking change description ([2c9158a](https://github.com/wireweave/core/commit/2c9158a0cecf318a43c5273a9afa440120b54573))
+
 ## [2.0.1-beta.0](https://github.com/wireweave/core/compare/v2.0.0...v2.0.1-beta.0) (2026-01-17)
 
 ### Bug Fixes
