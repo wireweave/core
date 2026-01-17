@@ -1,5 +1,7 @@
 # Changelog
 
+## [1.5.0](https://github.com/wireweave/core/compare/v1.5.0-beta.0...v1.5.0) (2026-01-17)
+
 ## [1.5.0-beta.0](https://github.com/wireweave/core/compare/v1.4.1...v1.5.0-beta.0) (2026-01-17)
 
 ### Features
