@@ -97,9 +97,9 @@ export function renderToSvg(
     const explicitW = firstPage.w ?? pageAny.width;
     const explicitH = firstPage.h ?? pageAny.height;
 
-    if (explicitW !== undefined && explicitH !== undefined) {
-      width = typeof explicitW === 'number' ? explicitW : 800;
-      height = typeof explicitH === 'number' ? explicitH : 600;
+    if (typeof explicitW === 'number' && typeof explicitH === 'number') {
+      width = explicitW;
+      height = explicitH;
     } else if (firstPage.viewport !== undefined || firstPage.device !== undefined) {
       const viewport = resolveViewport(firstPage.viewport, firstPage.device);
       width = viewport.width;
