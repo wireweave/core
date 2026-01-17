@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.4.1-beta.0](https://github.com/wireweave/core/compare/v1.4.0...v1.4.1-beta.0) (2026-01-17)
+
+### Bug Fixes
+
+* use XML-compatible boolean attribute format for SVG foreignObject ([7e11028](https://github.com/wireweave/core/commit/7e110286fa5c0dff211e4505ba11ee8246a4a70b))
+
 ## [1.4.0](https://github.com/wireweave/core/compare/v1.4.0-beta.2...v1.4.0) (2026-01-17)
 
 ## [1.4.0-beta.2](https://github.com/wireweave/core/compare/v1.4.0-beta.1...v1.4.0-beta.2) (2026-01-17)
