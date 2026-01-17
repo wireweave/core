@@ -441,7 +441,7 @@ function peg$parse(input, options) {
   function peg$f20(label, attrs) {
     return createNode('Input', {
       label: label || null,
-      ...attrsToObject(attrs, true)
+      ...attrsToObject(attrs)
     });
   }
   function peg$f21(label, attrs) {
@@ -5658,16 +5658,11 @@ function peg$parse(input, options) {
   }
 
   // Helper: Flatten array of attributes into object
-  // Renames 'type' to 'inputType' to avoid conflict with AST node type
-  function attrsToObject(attrs, renameType = false) {
+  function attrsToObject(attrs) {
     if (!attrs || attrs.length === 0) return {};
     const result = {};
     for (const attr of attrs) {
-      if (renameType && attr.name === 'type') {
-        result.inputType = attr.value;
-      } else {
-        result[attr.name] = attr.value;
-      }
+      result[attr.name] = attr.value;
     }
     return result;
   }

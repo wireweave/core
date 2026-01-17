@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.0.0-beta.0](https://github.com/wireweave/core/compare/v1.5.0...v2.0.0-beta.0) (2026-01-17)
+
+### ⚠ BREAKING CHANGES
+
+* **parser:** 'type=' attribute no longer auto-converts to 'inputType='
+- Use 'inputType=email' instead of 'type=email' for input fields
+- 'type=' now correctly fails validation as it conflicts with internal node type
+- Consistent behavior across all components and validation layers
+
+### Bug Fixes
+
+* **parser:** remove type to inputType conversion ([a8fd619](https://github.com/wireweave/core/commit/a8fd619236feff6c262757431a7dc606d22dfa49))
+
 ## [1.5.0](https://github.com/wireweave/core/compare/v1.5.0-beta.0...v1.5.0) (2026-01-17)
 
 ## [1.5.0-beta.0](https://github.com/wireweave/core/compare/v1.4.1...v1.5.0-beta.0) (2026-01-17)

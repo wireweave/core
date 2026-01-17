@@ -16,16 +16,11 @@
   }
 
   // Helper: Flatten array of attributes into object
-  // Renames 'type' to 'inputType' to avoid conflict with AST node type
-  function attrsToObject(attrs, renameType = false) {
+  function attrsToObject(attrs) {
     if (!attrs || attrs.length === 0) return {};
     const result = {};
     for (const attr of attrs) {
-      if (renameType && attr.name === 'type') {
-        result.inputType = attr.value;
-      } else {
-        result[attr.name] = attr.value;
-      }
+      result[attr.name] = attr.value;
     }
     return result;
   }
@@ -262,7 +257,7 @@ Input
   = "input" _ label:StringLiteral? _ attrs:Attributes? {
       return createNode('Input', {
         label: label || null,
-        ...attrsToObject(attrs, true)
+        ...attrsToObject(attrs)
       });
     }
 
