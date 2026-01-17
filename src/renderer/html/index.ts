@@ -312,7 +312,14 @@ export class HtmlRenderer extends BaseRenderer {
     // Build common styles (padding, margin, etc.) and combine with viewport dimensions
     // Add position: relative to serve as containing block for absolute positioned children
     const commonStyles = this.buildCommonStyles(node);
-    const viewportStyle = `position: relative; width: ${viewport.width}px; height: ${viewport.height}px; overflow: hidden`;
+    let viewportStyle = `position: relative; width: ${viewport.width}px; height: ${viewport.height}px; overflow: hidden`;
+
+    // Apply background option as inline style (not to theme.colors.background)
+    // This allows transparent/custom backgrounds without affecting component colors
+    if (this.context.options.background) {
+      viewportStyle += `; background: ${this.context.options.background}`;
+    }
+
     const combinedStyle = commonStyles ? `${viewportStyle}; ${commonStyles}` : viewportStyle;
 
     // Add data attributes for viewport info

@@ -134,8 +134,8 @@ img.${prefix}-image {
 .${prefix}-badge-dot.${prefix}-badge-primary { background: var(--${prefix}-primary); border-color: var(--${prefix}-primary); }
 
 .${prefix}-badge-default { }
-.${prefix}-badge-primary { background: var(--${prefix}-primary); color: white; border-color: var(--${prefix}-primary); }
-.${prefix}-badge-secondary { background: var(--${prefix}-muted); color: white; border-color: var(--${prefix}-muted); }
+.${prefix}-badge-primary { background: var(--${prefix}-primary); color: var(--${prefix}-bg); border-color: var(--${prefix}-primary); }
+.${prefix}-badge-secondary { background: var(--${prefix}-muted); color: var(--${prefix}-bg); border-color: var(--${prefix}-muted); }
 .${prefix}-badge-success { border-color: var(--${prefix}-success); }
 .${prefix}-badge-warning { border-color: var(--${prefix}-warning); }
 .${prefix}-badge-danger { border-color: var(--${prefix}-danger); }
