@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.4.1-beta.1](https://github.com/wireweave/core/compare/v1.4.1-beta.0...v1.4.1-beta.1) (2026-01-17)
+
+### Bug Fixes
+
+* support page width/height attributes in renderToSvg ([110c227](https://github.com/wireweave/core/commit/110c2275e9d6778c064a1816c8fa42eb722f32e0))
+
 ## [1.4.1-beta.0](https://github.com/wireweave/core/compare/v1.4.0...v1.4.1-beta.0) (2026-01-17)
 
 ### Bug Fixes
