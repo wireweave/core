@@ -74,7 +74,7 @@ export function renderDropdown(node: DropdownNode, ctx: RenderContext): string {
         dropdownItem.danger ? `${ctx.prefix}-dropdown-item-danger` : undefined,
         dropdownItem.disabled ? `${ctx.prefix}-dropdown-item-disabled` : undefined,
       ]);
-      return `<button class="${itemClasses}"${dropdownItem.disabled ? ' disabled' : ''}>${ctx.escapeHtml(dropdownItem.label)}</button>`;
+      return `<button class="${itemClasses}"${dropdownItem.disabled ? ' disabled="disabled"' : ''}>${ctx.escapeHtml(dropdownItem.label)}</button>`;
     })
     .join('\n');
 
