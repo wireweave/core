@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.2.0-beta.3](https://github.com/wireweave/core/compare/v1.2.0-beta.2...v1.2.0-beta.3) (2026-01-17)
+## [1.2.0-beta.3](https://github.com/wireweave/core/compare/v1.2.0...v1.2.0-beta.3) (2026-01-17)
 
 ### Features
 
@@ -13,6 +13,8 @@
 ### Documentation
 
 * add core package documentation ([0b4d81f](https://github.com/wireweave/core/commit/0b4d81f4f07f263797fb894e2a56e11361b3d249))
+
+## [1.2.0](https://github.com/wireweave/core/compare/v1.2.0-beta.2...v1.2.0) (2026-01-14)
 
 ## [1.2.0-beta.2](https://github.com/wireweave/core/compare/v1.2.0-beta.1...v1.2.0-beta.2) (2026-01-14)
 
