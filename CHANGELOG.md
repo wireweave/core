@@ -1,5 +1,7 @@
 # Changelog
 
+## [1.4.1](https://github.com/wireweave/core/compare/v1.4.1-beta.2...v1.4.1) (2026-01-17)
+
 ## [1.4.1-beta.2](https://github.com/wireweave/core/compare/v1.4.1-beta.1...v1.4.1-beta.2) (2026-01-17)
 
 ### Bug Fixes
