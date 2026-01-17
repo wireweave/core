@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.4.1-beta.2](https://github.com/wireweave/core/compare/v1.4.1-beta.1...v1.4.1-beta.2) (2026-01-17)
+
+### Bug Fixes
+
+* simplify width/height type check in renderToSvg ([0ab4910](https://github.com/wireweave/core/commit/0ab491058c38ee478bea284a1d489e8ad6dc355a))
+
+## [1.4.1-beta.1](https://github.com/wireweave/core/compare/v1.4.1-beta.0...v1.4.1-beta.1) (2026-01-17)
+
+### Bug Fixes
+
+* support page width/height attributes in renderToSvg ([110c227](https://github.com/wireweave/core/commit/110c2275e9d6778c064a1816c8fa42eb722f32e0))
+
+## [1.4.1-beta.0](https://github.com/wireweave/core/compare/v1.4.0...v1.4.1-beta.0) (2026-01-17)
+
+### Bug Fixes
+
+* use XML-compatible boolean attribute format for SVG foreignObject ([7e11028](https://github.com/wireweave/core/commit/7e110286fa5c0dff211e4505ba11ee8246a4a70b))
+
 ## [1.4.0](https://github.com/wireweave/core/compare/v1.4.0-beta.2...v1.4.0) (2026-01-17)
 
 ## [1.4.0-beta.2](https://github.com/wireweave/core/compare/v1.4.0-beta.1...v1.4.0-beta.2) (2026-01-17)

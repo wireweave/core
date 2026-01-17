@@ -121,16 +121,16 @@ export function renderSelect(node: SelectNode, ctx: RenderContext): string {
   const options = node.options
     .map((opt) => {
       if (typeof opt === 'string') {
-        const selected = opt === node.value ? ' selected' : '';
+        const selected = opt === node.value ? ' selected="selected"' : '';
         return `<option value="${ctx.escapeHtml(opt)}"${selected}>${ctx.escapeHtml(opt)}</option>`;
       }
-      const selected = opt.value === node.value ? ' selected' : '';
+      const selected = opt.value === node.value ? ' selected="selected"' : '';
       return `<option value="${ctx.escapeHtml(opt.value)}"${selected}>${ctx.escapeHtml(opt.label)}</option>`;
     })
     .join('\n');
 
   const placeholder = node.placeholder
-    ? `<option value="" disabled selected>${ctx.escapeHtml(node.placeholder)}</option>\n`
+    ? `<option value="" disabled="disabled" selected="selected">${ctx.escapeHtml(node.placeholder)}</option>\n`
     : '';
 
   const select = `<select${ctx.buildAttrsString(attrs)}${styleAttr}>\n${placeholder}${options}\n</select>`;

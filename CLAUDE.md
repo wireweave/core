@@ -69,10 +69,16 @@ import { parse, renderToHTML, renderToSVG, validate, analyze, diff } from '@wire
 
 ## 의존받는 패키지
 
-- `@wireweave/api-server` - 렌더링/분석 서비스
-- `@wireweave/vscode-extension` - 미리보기
-- `@wireweave/markdown-plugin` - 마크다운 렌더링
-- `mcp-dashboard` - 에디터 미리보기
+| 패키지 | 용도 | 의존 방식 |
+|--------|------|-----------|
+| `@wireweave/api-server` | 렌더링/분석 서비스 | npm (`^1.3.0`) |
+| `@wireweave/language-data` | 언어 메타데이터 제공 | npm (`^1.3.0`) |
+| `@wireweave/markdown-plugin` | 마크다운 렌더링 | npm (`^1.3.0`) |
+| `@wireweave/ux-rules` | UX 검증 규칙 | npm (`^1.3.0`) |
+| `@wireweave/playground` | 데모/체험 페이지 | npm (`^1.3.0`) |
+| `wireweave-vscode` | VSCode 미리보기 | npm (`^1.3.0`) |
+| `mcp-dashboard` | 에디터 미리보기 | npm (`^1.3.0`) |
+| `editor` | 드래그앤드롭 에디터 | workspace (`workspace:*`) |
 
 <!-- TODO: 주요 함수별 상세 설명 추가 -->
 <!-- TODO: 문법 변경 시 주의사항 문서화 -->

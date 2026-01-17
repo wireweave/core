@@ -156,7 +156,8 @@ export abstract class BaseRenderer {
       }
 
       if (value === true) {
-        parts.push(key);
+        // Use key="key" format for XML compatibility (SVG foreignObject)
+        parts.push(`${key}="${key}"`);
       } else {
         parts.push(`${key}="${this.escapeHtml(value)}"`);
       }
