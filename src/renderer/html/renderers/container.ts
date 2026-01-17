@@ -6,6 +6,18 @@ import type { CardNode, ModalNode, DrawerNode, AccordionNode } from '../../../as
 import type { RenderContext } from './types';
 
 /**
+ * Build interactive data attributes
+ */
+function buildInteractiveAttrs(node: { navigate?: string; opens?: string; toggles?: string; action?: string }): Record<string, string | undefined> {
+  return {
+    'data-navigate': node.navigate,
+    'data-opens': node.opens,
+    'data-toggles': node.toggles,
+    'data-action': node.action,
+  };
+}
+
+/**
  * Render Card node
  */
 export function renderCard(node: CardNode, ctx: RenderContext): string {
@@ -21,11 +33,14 @@ export function renderCard(node: CardNode, ctx: RenderContext): string {
   const styles = ctx.buildCommonStyles(node);
   const styleAttr = styles ? ` style="${styles}"` : '';
 
+  const interactiveAttrs = buildInteractiveAttrs(node);
+  const interactiveAttrStr = ctx.buildAttrsString(interactiveAttrs);
+
   const title = node.title
     ? `<h3 class="${ctx.prefix}-title">${ctx.escapeHtml(node.title)}</h3>\n`
     : '';
   const children = ctx.renderChildren(node.children);
-  return `<div class="${classes}"${styleAttr}>\n${title}${children}\n</div>`;
+  return `<div class="${classes}"${styleAttr}${interactiveAttrStr}>\n${title}${children}\n</div>`;
 }
 
 /**
@@ -39,12 +54,13 @@ export function renderModal(node: ModalNode, ctx: RenderContext): string {
 
   const styles = ctx.buildCommonStyles(node);
   const styleAttr = styles ? ` style="${styles}"` : '';
+  const idAttr = node.id ? ` id="${ctx.escapeHtml(node.id)}"` : '';
 
   const title = node.title
     ? `<h2 class="${ctx.prefix}-title">${ctx.escapeHtml(node.title)}</h2>\n`
     : '';
   const children = ctx.renderChildren(node.children);
-  return `<div class="${ctx.prefix}-modal-backdrop">
+  return `<div class="${ctx.prefix}-modal-backdrop"${idAttr}>
   <div class="${classes}"${styleAttr} role="dialog" aria-modal="true">
 ${title}${children}
   </div>
@@ -64,12 +80,13 @@ export function renderDrawer(node: DrawerNode, ctx: RenderContext): string {
 
   const styles = ctx.buildCommonStyles(node);
   const styleAttr = styles ? ` style="${styles}"` : '';
+  const idAttr = node.id ? ` id="${ctx.escapeHtml(node.id)}"` : '';
 
   const title = node.title
     ? `<h2 class="${ctx.prefix}-title">${ctx.escapeHtml(node.title)}</h2>\n`
     : '';
   const children = ctx.renderChildren(node.children);
-  return `<aside class="${classes}"${styleAttr}>\n${title}${children}\n</aside>`;
+  return `<aside class="${classes}"${styleAttr}${idAttr}>\n${title}${children}\n</aside>`;
 }
 
 /**

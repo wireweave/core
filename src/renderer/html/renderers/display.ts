@@ -14,6 +14,18 @@ import { resolveSizeValue, buildClassString as _buildClassString } from '../comp
 import { getIconData, renderIconSvg } from '../../../icons/lucide-icons';
 
 /**
+ * Build interactive data attributes string
+ */
+function buildInteractiveAttrs(node: { navigate?: string; opens?: string; toggles?: string; action?: string }): Record<string, string | undefined> {
+  return {
+    'data-navigate': node.navigate,
+    'data-opens': node.opens,
+    'data-toggles': node.toggles,
+    'data-action': node.action,
+  };
+}
+
+/**
  * Render Image node
  */
 export function renderImage(node: ImageNode, ctx: RenderContext): string {
@@ -31,6 +43,7 @@ export function renderImage(node: ImageNode, ctx: RenderContext): string {
       class: classes,
       src: node.src,
       alt: node.alt || 'Image',
+      ...buildInteractiveAttrs(node),
     };
     // Add style attribute for img tag
     const imgStyleAttr = styles ? `; ${styles}` : '';
@@ -40,7 +53,9 @@ export function renderImage(node: ImageNode, ctx: RenderContext): string {
   // Otherwise render as placeholder with image icon
   const label = node.alt || 'Image';
   const icon = `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>`;
-  return `<div class="${classes}"${styleAttr} role="img" aria-label="${ctx.escapeHtml(label)}">${icon}<span>${ctx.escapeHtml(label)}</span></div>`;
+  const interactiveAttrs = buildInteractiveAttrs(node);
+  const interactiveAttrStr = ctx.buildAttrsString(interactiveAttrs);
+  return `<div class="${classes}"${styleAttr}${interactiveAttrStr} role="img" aria-label="${ctx.escapeHtml(label)}">${icon}<span>${ctx.escapeHtml(label)}</span></div>`;
 }
 
 /**
@@ -99,13 +114,18 @@ export function renderAvatar(node: AvatarNode, ctx: RenderContext): string {
         .slice(0, 2)
     : '?';
 
-  return `<div class="${classes}"${styleAttr} role="img" aria-label="${ctx.escapeHtml(node.name || 'Avatar')}">${initials}</div>`;
+  const interactiveAttrs = buildInteractiveAttrs(node);
+  const interactiveAttrStr = ctx.buildAttrsString(interactiveAttrs);
+  return `<div class="${classes}"${styleAttr}${interactiveAttrStr} role="img" aria-label="${ctx.escapeHtml(node.name || 'Avatar')}">${initials}</div>`;
 }
 
 /**
  * Render Badge node
  */
 export function renderBadge(node: BadgeNode, ctx: RenderContext): string {
+  const interactiveAttrs = buildInteractiveAttrs(node);
+  const interactiveAttrStr = ctx.buildAttrsString(interactiveAttrs);
+
   // If icon is provided, render as icon badge (circular background with icon)
   if (node.icon) {
     const iconData = getIconData(node.icon);
@@ -121,11 +141,11 @@ export function renderBadge(node: BadgeNode, ctx: RenderContext): string {
 
     if (iconData) {
       const svg = renderIconSvg(iconData, 24, 2, `${ctx.prefix}-icon`);
-      return `<span class="${classes}"${styleAttr} aria-label="${ctx.escapeHtml(node.icon)}">${svg}</span>`;
+      return `<span class="${classes}"${styleAttr}${interactiveAttrStr} aria-label="${ctx.escapeHtml(node.icon)}">${svg}</span>`;
     }
 
     // Fallback for unknown icon
-    return `<span class="${classes}"${styleAttr} aria-label="unknown icon">?</span>`;
+    return `<span class="${classes}"${styleAttr}${interactiveAttrStr} aria-label="unknown icon">?</span>`;
   }
 
   // Default text badge (empty content = dot indicator)
@@ -141,7 +161,7 @@ export function renderBadge(node: BadgeNode, ctx: RenderContext): string {
   const styles = ctx.buildCommonStyles(node);
   const styleAttr = styles ? ` style="${styles}"` : '';
 
-  return `<span class="${classes}"${styleAttr}>${ctx.escapeHtml(node.content)}</span>`;
+  return `<span class="${classes}"${styleAttr}${interactiveAttrStr}>${ctx.escapeHtml(node.content)}</span>`;
 }
 
 /**
@@ -149,6 +169,8 @@ export function renderBadge(node: BadgeNode, ctx: RenderContext): string {
  */
 export function renderIcon(node: IconNode, ctx: RenderContext): string {
   const iconData = getIconData(node.name);
+  const interactiveAttrs = buildInteractiveAttrs(node);
+  const interactiveAttrStr = ctx.buildAttrsString(interactiveAttrs);
 
   // Resolve size: token string (xs, sm, md, lg, xl) or custom px number
   const sizeResolved = resolveSizeValue(node.size, 'icon', ctx.prefix);
@@ -170,7 +192,7 @@ export function renderIcon(node: IconNode, ctx: RenderContext): string {
     const svgStyleAttr = sizeResolved.style ? ` style="${sizeResolved.style}"` : '';
     const svg = renderIconSvg(iconData, 24, 2, iconClasses, svgStyleAttr);
     const wrapperStyleAttr = baseStyles ? ` style="${baseStyles}"` : '';
-    return `<span class="${wrapperClasses}"${wrapperStyleAttr} aria-hidden="true">${svg}</span>`;
+    return `<span class="${wrapperClasses}"${wrapperStyleAttr}${interactiveAttrStr} aria-hidden="true">${svg}</span>`;
   }
 
   // Fallback for unknown icons - render a placeholder circle
@@ -181,5 +203,5 @@ export function renderIcon(node: IconNode, ctx: RenderContext): string {
       <text x="12" y="16" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.7">?</text>
     </svg>`;
   const wrapperStyleAttr = baseStyles ? ` style="${baseStyles}"` : '';
-  return `<span class="${wrapperClasses}"${wrapperStyleAttr} aria-hidden="true" title="Unknown icon: ${ctx.escapeHtml(node.name)}">${placeholderSvg}</span>`;
+  return `<span class="${wrapperClasses}"${wrapperStyleAttr}${interactiveAttrStr} aria-hidden="true" title="Unknown icon: ${ctx.escapeHtml(node.name)}">${placeholderSvg}</span>`;
 }

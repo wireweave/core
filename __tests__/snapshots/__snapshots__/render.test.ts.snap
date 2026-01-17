@@ -1127,8 +1127,8 @@ img.wf-image {
 .wf-badge-dot.wf-badge-primary { background: var(--wf-primary); border-color: var(--wf-primary); }
 
 .wf-badge-default { }
-.wf-badge-primary { background: var(--wf-primary); color: white; border-color: var(--wf-primary); }
-.wf-badge-secondary { background: var(--wf-muted); color: white; border-color: var(--wf-muted); }
+.wf-badge-primary { background: var(--wf-primary); color: var(--wf-bg); border-color: var(--wf-primary); }
+.wf-badge-secondary { background: var(--wf-muted); color: var(--wf-bg); border-color: var(--wf-muted); }
 .wf-badge-success { border-color: var(--wf-success); }
 .wf-badge-warning { border-color: var(--wf-warning); }
 .wf-badge-danger { border-color: var(--wf-danger); }
@@ -2807,8 +2807,8 @@ img.wf-image {
 .wf-badge-dot.wf-badge-primary { background: var(--wf-primary); border-color: var(--wf-primary); }
 
 .wf-badge-default { }
-.wf-badge-primary { background: var(--wf-primary); color: white; border-color: var(--wf-primary); }
-.wf-badge-secondary { background: var(--wf-muted); color: white; border-color: var(--wf-muted); }
+.wf-badge-primary { background: var(--wf-primary); color: var(--wf-bg); border-color: var(--wf-primary); }
+.wf-badge-secondary { background: var(--wf-muted); color: var(--wf-bg); border-color: var(--wf-muted); }
 .wf-badge-success { border-color: var(--wf-success); }
 .wf-badge-warning { border-color: var(--wf-warning); }
 .wf-badge-danger { border-color: var(--wf-danger); }
@@ -3405,9 +3405,9 @@ exports[`Render Snapshots > Complex Page Snapshots > should render login page 1`
                     <div class="wf-card wf-card-flex" style="padding: 24px">
                               <h2 class="wf-title" style="margin-bottom: 24px">Sign In</h2>
                               <label class="wf-input-label">Email</label>
-                              <input class="wf-input" type="email" required style="margin-bottom: 16px" />
+                              <input class="wf-input" type="email" required="required" style="margin-bottom: 16px" />
                               <label class="wf-input-label">Password</label>
-                              <input class="wf-input" type="password" required style="margin-bottom: 16px" />
+                              <input class="wf-input" type="password" required="required" style="margin-bottom: 16px" />
                               <button class="wf-button wf-button-primary">Sign In</button>
                     </div>
             </div>
@@ -4564,8 +4564,8 @@ img.wf-image {
 .wf-badge-dot.wf-badge-primary { background: var(--wf-primary); border-color: var(--wf-primary); }
 
 .wf-badge-default { }
-.wf-badge-primary { background: var(--wf-primary); color: white; border-color: var(--wf-primary); }
-.wf-badge-secondary { background: var(--wf-muted); color: white; border-color: var(--wf-muted); }
+.wf-badge-primary { background: var(--wf-primary); color: var(--wf-bg); border-color: var(--wf-primary); }
+.wf-badge-secondary { background: var(--wf-muted); color: var(--wf-bg); border-color: var(--wf-muted); }
 .wf-badge-success { border-color: var(--wf-success); }
 .wf-badge-warning { border-color: var(--wf-warning); }
 .wf-badge-danger { border-color: var(--wf-danger); }
@@ -6274,8 +6274,8 @@ img.wf-image {
 .wf-badge-dot.wf-badge-primary { background: var(--wf-primary); border-color: var(--wf-primary); }
 
 .wf-badge-default { }
-.wf-badge-primary { background: var(--wf-primary); color: white; border-color: var(--wf-primary); }
-.wf-badge-secondary { background: var(--wf-muted); color: white; border-color: var(--wf-muted); }
+.wf-badge-primary { background: var(--wf-primary); color: var(--wf-bg); border-color: var(--wf-primary); }
+.wf-badge-secondary { background: var(--wf-muted); color: var(--wf-bg); border-color: var(--wf-muted); }
 .wf-badge-success { border-color: var(--wf-success); }
 .wf-badge-warning { border-color: var(--wf-warning); }
 .wf-badge-danger { border-color: var(--wf-danger); }
@@ -6896,11 +6896,11 @@ exports[`Render Snapshots > HTML Snapshots > should render form elements 1`] = `
   <div class="wf-card wf-card-flex" style="padding: 16px">
       <div class="wf-row">
             <label class="wf-input-label">Email</label>
-            <input class="wf-input" type="email" placeholder="Enter email" required />
+            <input class="wf-input" type="email" placeholder="Enter email" required="required" />
       </div>
       <div class="wf-row">
             <label class="wf-input-label">Password</label>
-            <input class="wf-input" type="password" required />
+            <input class="wf-input" type="password" required="required" />
       </div>
       <div class="wf-row">
             <label class="wf-checkbox"><input type="checkbox" /><span>Remember me</span></label>
@@ -8109,8 +8109,8 @@ img.wf-image {
 .wf-badge-dot.wf-badge-primary { background: var(--wf-primary); border-color: var(--wf-primary); }
 
 .wf-badge-default { }
-.wf-badge-primary { background: var(--wf-primary); color: white; border-color: var(--wf-primary); }
-.wf-badge-secondary { background: var(--wf-muted); color: white; border-color: var(--wf-muted); }
+.wf-badge-primary { background: var(--wf-primary); color: var(--wf-bg); border-color: var(--wf-primary); }
+.wf-badge-secondary { background: var(--wf-muted); color: var(--wf-bg); border-color: var(--wf-muted); }
 .wf-badge-success { border-color: var(--wf-success); }
 .wf-badge-warning { border-color: var(--wf-warning); }
 .wf-badge-danger { border-color: var(--wf-danger); }
@@ -9813,8 +9813,8 @@ img.wf-image {
 .wf-badge-dot.wf-badge-primary { background: var(--wf-primary); border-color: var(--wf-primary); }
 
 .wf-badge-default { }
-.wf-badge-primary { background: var(--wf-primary); color: white; border-color: var(--wf-primary); }
-.wf-badge-secondary { background: var(--wf-muted); color: white; border-color: var(--wf-muted); }
+.wf-badge-primary { background: var(--wf-primary); color: var(--wf-bg); border-color: var(--wf-primary); }
+.wf-badge-secondary { background: var(--wf-muted); color: var(--wf-bg); border-color: var(--wf-muted); }
 .wf-badge-success { border-color: var(--wf-success); }
 .wf-badge-warning { border-color: var(--wf-warning); }
 .wf-badge-danger { border-color: var(--wf-danger); }
@@ -11518,8 +11518,8 @@ img.wf-image {
 .wf-badge-dot.wf-badge-primary { background: var(--wf-primary); border-color: var(--wf-primary); }
 
 .wf-badge-default { }
-.wf-badge-primary { background: var(--wf-primary); color: white; border-color: var(--wf-primary); }
-.wf-badge-secondary { background: var(--wf-muted); color: white; border-color: var(--wf-muted); }
+.wf-badge-primary { background: var(--wf-primary); color: var(--wf-bg); border-color: var(--wf-primary); }
+.wf-badge-secondary { background: var(--wf-muted); color: var(--wf-bg); border-color: var(--wf-muted); }
 .wf-badge-success { border-color: var(--wf-success); }
 .wf-badge-warning { border-color: var(--wf-warning); }
 .wf-badge-danger { border-color: var(--wf-danger); }
@@ -13224,8 +13224,8 @@ img.wf-image {
 .wf-badge-dot.wf-badge-primary { background: var(--wf-primary); border-color: var(--wf-primary); }
 
 .wf-badge-default { }
-.wf-badge-primary { background: var(--wf-primary); color: white; border-color: var(--wf-primary); }
-.wf-badge-secondary { background: var(--wf-muted); color: white; border-color: var(--wf-muted); }
+.wf-badge-primary { background: var(--wf-primary); color: var(--wf-bg); border-color: var(--wf-primary); }
+.wf-badge-secondary { background: var(--wf-muted); color: var(--wf-bg); border-color: var(--wf-muted); }
 .wf-badge-success { border-color: var(--wf-success); }
 .wf-badge-warning { border-color: var(--wf-warning); }
 .wf-badge-danger { border-color: var(--wf-danger); }
@@ -14934,8 +14934,8 @@ img.wf-image {
 .wf-badge-dot.wf-badge-primary { background: var(--wf-primary); border-color: var(--wf-primary); }
 
 .wf-badge-default { }
-.wf-badge-primary { background: var(--wf-primary); color: white; border-color: var(--wf-primary); }
-.wf-badge-secondary { background: var(--wf-muted); color: white; border-color: var(--wf-muted); }
+.wf-badge-primary { background: var(--wf-primary); color: var(--wf-bg); border-color: var(--wf-primary); }
+.wf-badge-secondary { background: var(--wf-muted); color: var(--wf-bg); border-color: var(--wf-muted); }
 .wf-badge-success { border-color: var(--wf-success); }
 .wf-badge-warning { border-color: var(--wf-warning); }
 .wf-badge-danger { border-color: var(--wf-danger); }
@@ -16636,8 +16636,8 @@ img.wf-image {
 .wf-badge-dot.wf-badge-primary { background: var(--wf-primary); border-color: var(--wf-primary); }
 
 .wf-badge-default { }
-.wf-badge-primary { background: var(--wf-primary); color: white; border-color: var(--wf-primary); }
-.wf-badge-secondary { background: var(--wf-muted); color: white; border-color: var(--wf-muted); }
+.wf-badge-primary { background: var(--wf-primary); color: var(--wf-bg); border-color: var(--wf-primary); }
+.wf-badge-secondary { background: var(--wf-muted); color: var(--wf-bg); border-color: var(--wf-muted); }
 .wf-badge-success { border-color: var(--wf-success); }
 .wf-badge-warning { border-color: var(--wf-warning); }
 .wf-badge-danger { border-color: var(--wf-danger); }

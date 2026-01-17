@@ -113,6 +113,25 @@ export interface PositionProps {
 export interface CommonProps extends SpacingProps, SizeProps, FlexProps, GridProps, PositionProps {}
 
 // ===========================================
+// Interactive Props
+// ===========================================
+
+/**
+ * Interactive properties for components that can trigger actions.
+ * Used for buttons, links, avatars, icons, and other clickable elements.
+ */
+export interface InteractiveProps {
+  /** Navigate to another page or URL */
+  navigate?: string;
+  /** Opens a modal, drawer, or other overlay element by id */
+  opens?: string;
+  /** Toggles visibility or state of an element by id */
+  toggles?: string;
+  /** Custom action identifier (e.g., "submit", "logout", "delete") */
+  action?: string;
+}
+
+// ===========================================
 // Document Node
 // ===========================================
 
@@ -196,7 +215,7 @@ export interface ColNode extends BaseNode, CommonProps {
 
 export type ShadowValue = 'none' | 'sm' | 'md' | 'lg' | 'xl';
 
-export interface CardNode extends BaseNode, CommonProps {
+export interface CardNode extends BaseNode, CommonProps, InteractiveProps {
   type: 'Card';
   title?: string | null;
   shadow?: ShadowValue;
@@ -207,6 +226,8 @@ export interface CardNode extends BaseNode, CommonProps {
 export interface ModalNode extends BaseNode, CommonProps {
   type: 'Modal';
   title?: string | null;
+  /** Unique identifier for targeting with opens/toggles */
+  id?: string;
   children: AnyNode[];
 }
 
@@ -215,6 +236,8 @@ export type DrawerPosition = 'left' | 'right' | 'top' | 'bottom';
 export interface DrawerNode extends BaseNode, CommonProps {
   type: 'Drawer';
   title?: string | null;
+  /** Unique identifier for targeting with opens/toggles */
+  id?: string;
   position?: DrawerPosition;
   children: AnyNode[];
 }
@@ -253,7 +276,7 @@ export interface TitleNode extends BaseNode, Omit<CommonProps, 'align'> {
   align?: TextAlign;
 }
 
-export interface LinkNode extends BaseNode, CommonProps {
+export interface LinkNode extends BaseNode, CommonProps, InteractiveProps {
   type: 'Link';
   content: string;
   href?: string;
@@ -342,7 +365,7 @@ export interface SliderNode extends BaseNode, CommonProps {
 export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
 export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
-export interface ButtonNode extends BaseNode, CommonProps {
+export interface ButtonNode extends BaseNode, CommonProps, InteractiveProps {
   type: 'Button';
   content: string;
   primary?: boolean;
@@ -360,7 +383,7 @@ export interface ButtonNode extends BaseNode, CommonProps {
 // Display Nodes
 // ===========================================
 
-export interface ImageNode extends BaseNode, CommonProps {
+export interface ImageNode extends BaseNode, CommonProps, InteractiveProps {
   type: 'Image';
   src?: string | null;
   alt?: string;
@@ -374,7 +397,7 @@ export interface PlaceholderNode extends BaseNode, CommonProps {
 
 export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
-export interface AvatarNode extends BaseNode, CommonProps {
+export interface AvatarNode extends BaseNode, CommonProps, InteractiveProps {
   type: 'Avatar';
   name?: string | null;
   src?: boolean;
@@ -385,7 +408,7 @@ export type BadgeVariant = 'default' | 'primary' | 'secondary' | 'success' | 'wa
 
 export type BadgeSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
-export interface BadgeNode extends BaseNode, CommonProps {
+export interface BadgeNode extends BaseNode, CommonProps, InteractiveProps {
   type: 'Badge';
   content: string;
   variant?: BadgeVariant;
@@ -396,7 +419,7 @@ export interface BadgeNode extends BaseNode, CommonProps {
 
 export type IconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
-export interface IconNode extends BaseNode, CommonProps {
+export interface IconNode extends BaseNode, CommonProps, InteractiveProps {
   type: 'Icon';
   name: string;
   size?: IconSize | number;  // Token string or custom px number
@@ -493,9 +516,10 @@ export interface PopoverNode extends BaseNode, CommonProps {
   children: AnyNode[];
 }
 
-export interface DropdownItemNode {
+export interface DropdownItemNode extends InteractiveProps {
   label: string;
   icon?: string;
+  href?: string;
   danger?: boolean;
   disabled?: boolean;
 }
@@ -514,7 +538,7 @@ export interface DropdownNode extends BaseNode, CommonProps {
 // ===========================================
 
 /** Nav item for array syntax: nav ["a", "b"] */
-export interface NavItem {
+export interface NavItem extends InteractiveProps {
   label: string;
   icon?: string;
   href?: string;
@@ -523,7 +547,7 @@ export interface NavItem {
 }
 
 /** Nav item for block syntax: item "label" icon="x" active */
-export interface NavBlockItem {
+export interface NavBlockItem extends InteractiveProps {
   type: 'item';
   label: string;
   icon?: string;
@@ -571,7 +595,7 @@ export interface TabsNode extends BaseNode, CommonProps {
   children: TabNode[];
 }
 
-export interface BreadcrumbItem {
+export interface BreadcrumbItem extends InteractiveProps {
   label: string;
   href?: string;
 }
