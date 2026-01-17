@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.0.1-beta.0](https://github.com/wireweave/core/compare/v2.0.0...v2.0.1-beta.0) (2026-01-17)
+
+### Bug Fixes
+
+* **styles:** add flex display to card for gap support ([3483f2a](https://github.com/wireweave/core/commit/3483f2a5e07b6bae6549f2368309558cf4e7f7ab))
+
 ## [2.0.0](https://github.com/wireweave/core/compare/v2.0.0-beta.0...v2.0.0) (2026-01-17)
 
 ## [2.0.0-beta.0](https://github.com/wireweave/core/compare/v1.5.0...v2.0.0-beta.0) (2026-01-17)
