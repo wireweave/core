@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.4.0-beta.2](https://github.com/wireweave/core/compare/v1.4.0-beta.1...v1.4.0-beta.2) (2026-01-17)
+
+### Bug Fixes
+
+* use theme background color for badge text instead of hardcoded white ([f847845](https://github.com/wireweave/core/commit/f8478457496df8d4a9361f6a1cc8cbd5ff9d16ca))
+
 ## [1.4.0-beta.1](https://github.com/wireweave/core/compare/v1.4.0-beta.0...v1.4.0-beta.1) (2026-01-17)
 
 ### Bug Fixes
