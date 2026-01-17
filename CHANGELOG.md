@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.4.1-beta.2](https://github.com/wireweave/core/compare/v1.4.1-beta.1...v1.4.1-beta.2) (2026-01-17)
+
+### Bug Fixes
+
+* simplify width/height type check in renderToSvg ([0ab4910](https://github.com/wireweave/core/commit/0ab491058c38ee478bea284a1d489e8ad6dc355a))
+
 ## [1.4.1-beta.1](https://github.com/wireweave/core/compare/v1.4.1-beta.0...v1.4.1-beta.1) (2026-01-17)
 
 ### Bug Fixes
