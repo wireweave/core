@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.4.0-beta.1](https://github.com/wireweave/core/compare/v1.4.0-beta.0...v1.4.0-beta.1) (2026-01-17)
+
+### Bug Fixes
+
+* apply background option only to page element, not theme colors ([7312799](https://github.com/wireweave/core/commit/731279946e033a19d7c91f07f030160a91afce47))
+
 ## [1.4.0-beta.0](https://github.com/wireweave/core/compare/v1.3.0...v1.4.0-beta.0) (2026-01-17)
 
 ### Features
