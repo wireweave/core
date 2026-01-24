@@ -1,5 +1,23 @@
 # Changelog
 
+## [2.0.1-beta.2](https://github.com/wireweave/core/compare/v2.0.1-beta.1...v2.0.1-beta.2) (2026-01-24)
+
+### Documentation
+
+* **readme:** update logo path to docs site ([0396f21](https://github.com/wireweave/core/commit/0396f21889620d168635aa3251f3eddf6fad3b43))
+
+## [2.0.1-beta.1](https://github.com/wireweave/core/compare/v2.0.1-beta.0...v2.0.1-beta.1) (2026-01-17)
+
+### Documentation
+
+* **changelog:** fix typo in breaking change description ([2c9158a](https://github.com/wireweave/core/commit/2c9158a0cecf318a43c5273a9afa440120b54573))
+
+## [2.0.1-beta.0](https://github.com/wireweave/core/compare/v2.0.0...v2.0.1-beta.0) (2026-01-17)
+
+### Bug Fixes
+
+* **styles:** add flex display to card for gap support ([3483f2a](https://github.com/wireweave/core/commit/3483f2a5e07b6bae6549f2368309558cf4e7f7ab))
+
 ## [2.0.0](https://github.com/wireweave/core/compare/v2.0.0-beta.0...v2.0.0) (2026-01-17)
 
 ## [2.0.0-beta.0](https://github.com/wireweave/core/compare/v1.5.0...v2.0.0-beta.0) (2026-01-17)
@@ -7,7 +25,7 @@
 ### ⚠ BREAKING CHANGES
 
 * **parser:** 'type=' attribute no longer auto-converts to 'inputType='
-- Use 'inputType=email' instead of 'type=email' for input fields
+- Use 'inputType=email' instead of 'inputType=email' for input fields
 - 'type=' now correctly fails validation as it conflicts with internal node type
 - Consistent behavior across all components and validation layers
 
