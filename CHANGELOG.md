@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.0.1-beta.2](https://github.com/wireweave/core/compare/v2.0.1-beta.1...v2.0.1-beta.2) (2026-01-24)
+
+### Documentation
+
+* **readme:** update logo path to docs site ([0396f21](https://github.com/wireweave/core/commit/0396f21889620d168635aa3251f3eddf6fad3b43))
+
 ## [2.0.1-beta.1](https://github.com/wireweave/core/compare/v2.0.1-beta.0...v2.0.1-beta.1) (2026-01-17)
 
 ### Documentation
