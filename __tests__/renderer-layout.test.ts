@@ -473,6 +473,46 @@ describe('Grid Layout Rendering', () => {
   });
 });
 
+describe('Layout Overflow Prevention', () => {
+  it('should include flex-shrink: 0 for header to prevent shrinking', () => {
+    const doc = parse('page { header { text "Logo" } }');
+    const result = render(doc);
+
+    expect(result.css).toContain('.wf-header');
+    expect(result.css).toMatch(/\.wf-header\s*\{[^}]*flex-shrink:\s*0/);
+  });
+
+  it('should include background and z-index on header/footer to paint over overflow', () => {
+    const doc = parse('page { header { text "Logo" } main { text "Content" } footer { text "Footer" } }');
+    const result = render(doc);
+
+    // Header and footer should have background + position: relative + z-index to paint over main overflow
+    expect(result.css).toMatch(/\.wf-header\s*\{[^}]*background:\s*var\(--wf-bg\)/);
+    expect(result.css).toMatch(/\.wf-header\s*\{[^}]*z-index:\s*1/);
+    expect(result.css).toMatch(/\.wf-footer\s*\{[^}]*background:\s*var\(--wf-bg\)/);
+    expect(result.css).toMatch(/\.wf-footer\s*\{[^}]*z-index:\s*1/);
+    // Main should NOT have overflow: hidden (allows overlay components to render)
+    expect(result.css).not.toMatch(/\.wf-main\s*\{[^}]*overflow:\s*hidden/);
+  });
+
+  it('should include flex-shrink: 0 for footer to prevent shrinking', () => {
+    const doc = parse('page { footer { text "Footer" } }');
+    const result = render(doc);
+
+    expect(result.css).toContain('.wf-footer');
+    expect(result.css).toMatch(/\.wf-footer\s*\{[^}]*flex-shrink:\s*0/);
+  });
+
+  it('should override main overflow with scroll when scroll attribute is set', () => {
+    const doc = parse('page { main scroll { text "Scrollable" } }');
+    const result = render(doc);
+
+    // scroll class should add overflow-y: auto
+    expect(result.css).toMatch(/\.wf-main\.wf-scroll\s*\{[^}]*overflow-y:\s*auto/);
+    expect(result.html).toContain('wf-scroll');
+  });
+});
+
 describe('CSS Grid Classes Generation', () => {
   it('should generate all 12 column classes', () => {
     const doc = parse('page { }');

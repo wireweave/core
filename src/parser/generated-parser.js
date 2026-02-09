@@ -439,9 +439,13 @@ function peg$parse(input, options) {
     });
   }
   function peg$f20(label, attrs) {
+    const obj = attrsToObject(attrs);
+    const inputType = obj.type;
+    delete obj.type;
     return createNode('Input', {
       label: label || null,
-      ...attrsToObject(attrs)
+      ...(inputType !== undefined ? { inputType } : {}),
+      ...obj
     });
   }
   function peg$f21(label, attrs) {

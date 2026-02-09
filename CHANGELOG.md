@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.2-beta.0](https://github.com/wireweave/core/compare/v2.0.1...v2.0.2-beta.0) (2026-02-09)
+
+### Bug Fixes
+
+* **input:** handle input type attribute and select placeholder selection ([237e279](https://github.com/wireweave/core/commit/237e279fe645345b301680c10b0f1149963a80e3))
+* **layout:** prevent header/footer from shrinking in flex layout ([e764a70](https://github.com/wireweave/core/commit/e764a70778f4bf3c85ed6fd2289e9abb1ded697b))
+* **spec:** add missing name attribute to icon component ([632cfa2](https://github.com/wireweave/core/commit/632cfa22918334f7268b40b9c1ea94adefa6b093))
+
 ## [2.0.1](https://github.com/wireweave/core/compare/v2.0.1-beta.2...v2.0.1) (2026-01-24)
 
 ## [2.0.1-beta.2](https://github.com/wireweave/core/compare/v2.0.1-beta.1...v2.0.1-beta.2) (2026-01-24)

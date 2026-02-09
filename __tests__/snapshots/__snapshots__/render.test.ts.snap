@@ -371,6 +371,10 @@ exports[`Render Snapshots > CSS Snapshots > should generate dark theme CSS 1`] =
   display: flex;
   align-items: center;
   min-height: 56px;
+  flex-shrink: 0;
+  background: var(--wf-bg);
+  position: relative;
+  z-index: 1;
 }
 
 .wf-header > .wf-row {
@@ -426,6 +430,10 @@ exports[`Render Snapshots > CSS Snapshots > should generate dark theme CSS 1`] =
 .wf-footer {
   border-top: 1px solid var(--wf-border);
   padding: 16px;
+  flex-shrink: 0;
+  background: var(--wf-bg);
+  position: relative;
+  z-index: 1;
 }
 
 .wf-footer.wf-no-border {
@@ -483,6 +491,8 @@ exports[`Render Snapshots > CSS Snapshots > should generate dark theme CSS 1`] =
 
 /* Container Components */
 .wf-card {
+  display: flex;
+  flex-direction: column;
   border: 1px solid var(--wf-border);
   border-radius: var(--wf-radius);
   background: var(--wf-bg);
@@ -2051,6 +2061,10 @@ exports[`Render Snapshots > CSS Snapshots > should generate light theme CSS 1`] 
   display: flex;
   align-items: center;
   min-height: 56px;
+  flex-shrink: 0;
+  background: var(--wf-bg);
+  position: relative;
+  z-index: 1;
 }
 
 .wf-header > .wf-row {
@@ -2106,6 +2120,10 @@ exports[`Render Snapshots > CSS Snapshots > should generate light theme CSS 1`] 
 .wf-footer {
   border-top: 1px solid var(--wf-border);
   padding: 16px;
+  flex-shrink: 0;
+  background: var(--wf-bg);
+  position: relative;
+  z-index: 1;
 }
 
 .wf-footer.wf-no-border {
@@ -2163,6 +2181,8 @@ exports[`Render Snapshots > CSS Snapshots > should generate light theme CSS 1`] 
 
 /* Container Components */
 .wf-card {
+  display: flex;
+  flex-direction: column;
   border: 1px solid var(--wf-border);
   border-radius: var(--wf-radius);
   background: var(--wf-bg);
@@ -3808,6 +3828,10 @@ body {
   display: flex;
   align-items: center;
   min-height: 56px;
+  flex-shrink: 0;
+  background: var(--wf-bg);
+  position: relative;
+  z-index: 1;
 }
 
 .wf-header > .wf-row {
@@ -3863,6 +3887,10 @@ body {
 .wf-footer {
   border-top: 1px solid var(--wf-border);
   padding: 16px;
+  flex-shrink: 0;
+  background: var(--wf-bg);
+  position: relative;
+  z-index: 1;
 }
 
 .wf-footer.wf-no-border {
@@ -3920,6 +3948,8 @@ body {
 
 /* Container Components */
 .wf-card {
+  display: flex;
+  flex-direction: column;
   border: 1px solid var(--wf-border);
   border-radius: var(--wf-radius);
   background: var(--wf-bg);
@@ -5518,6 +5548,10 @@ body {
   display: flex;
   align-items: center;
   min-height: 56px;
+  flex-shrink: 0;
+  background: var(--wf-bg);
+  position: relative;
+  z-index: 1;
 }
 
 .wf-header > .wf-row {
@@ -5573,6 +5607,10 @@ body {
 .wf-footer {
   border-top: 1px solid var(--wf-border);
   padding: 16px;
+  flex-shrink: 0;
+  background: var(--wf-bg);
+  position: relative;
+  z-index: 1;
 }
 
 .wf-footer.wf-no-border {
@@ -5630,6 +5668,8 @@ body {
 
 /* Container Components */
 .wf-card {
+  display: flex;
+  flex-direction: column;
   border: 1px solid var(--wf-border);
   border-radius: var(--wf-radius);
   background: var(--wf-bg);
@@ -7353,6 +7393,10 @@ exports[`Render Snapshots > SVG Snapshots > should render buttons to SVG 1`] = `
   display: flex;
   align-items: center;
   min-height: 56px;
+  flex-shrink: 0;
+  background: var(--wf-bg);
+  position: relative;
+  z-index: 1;
 }
 
 .wf-header > .wf-row {
@@ -7408,6 +7452,10 @@ exports[`Render Snapshots > SVG Snapshots > should render buttons to SVG 1`] = `
 .wf-footer {
   border-top: 1px solid var(--wf-border);
   padding: 16px;
+  flex-shrink: 0;
+  background: var(--wf-bg);
+  position: relative;
+  z-index: 1;
 }
 
 .wf-footer.wf-no-border {
@@ -7465,6 +7513,8 @@ exports[`Render Snapshots > SVG Snapshots > should render buttons to SVG 1`] = `
 
 /* Container Components */
 .wf-card {
+  display: flex;
+  flex-direction: column;
   border: 1px solid var(--wf-border);
   border-radius: var(--wf-radius);
   background: var(--wf-bg);
@@ -9057,6 +9107,10 @@ exports[`Render Snapshots > SVG Snapshots > should render card to SVG 1`] = `
   display: flex;
   align-items: center;
   min-height: 56px;
+  flex-shrink: 0;
+  background: var(--wf-bg);
+  position: relative;
+  z-index: 1;
 }
 
 .wf-header > .wf-row {
@@ -9112,6 +9166,10 @@ exports[`Render Snapshots > SVG Snapshots > should render card to SVG 1`] = `
 .wf-footer {
   border-top: 1px solid var(--wf-border);
   padding: 16px;
+  flex-shrink: 0;
+  background: var(--wf-bg);
+  position: relative;
+  z-index: 1;
 }
 
 .wf-footer.wf-no-border {
@@ -9169,6 +9227,8 @@ exports[`Render Snapshots > SVG Snapshots > should render card to SVG 1`] = `
 
 /* Container Components */
 .wf-card {
+  display: flex;
+  flex-direction: column;
   border: 1px solid var(--wf-border);
   border-radius: var(--wf-radius);
   background: var(--wf-bg);
@@ -10762,6 +10822,10 @@ exports[`Render Snapshots > SVG Snapshots > should render form to SVG 1`] = `
   display: flex;
   align-items: center;
   min-height: 56px;
+  flex-shrink: 0;
+  background: var(--wf-bg);
+  position: relative;
+  z-index: 1;
 }
 
 .wf-header > .wf-row {
@@ -10817,6 +10881,10 @@ exports[`Render Snapshots > SVG Snapshots > should render form to SVG 1`] = `
 .wf-footer {
   border-top: 1px solid var(--wf-border);
   padding: 16px;
+  flex-shrink: 0;
+  background: var(--wf-bg);
+  position: relative;
+  z-index: 1;
 }
 
 .wf-footer.wf-no-border {
@@ -10874,6 +10942,8 @@ exports[`Render Snapshots > SVG Snapshots > should render form to SVG 1`] = `
 
 /* Container Components */
 .wf-card {
+  display: flex;
+  flex-direction: column;
   border: 1px solid var(--wf-border);
   border-radius: var(--wf-radius);
   background: var(--wf-bg);
@@ -12468,6 +12538,10 @@ exports[`Render Snapshots > SVG Snapshots > should render layout to SVG 1`] = `
   display: flex;
   align-items: center;
   min-height: 56px;
+  flex-shrink: 0;
+  background: var(--wf-bg);
+  position: relative;
+  z-index: 1;
 }
 
 .wf-header > .wf-row {
@@ -12523,6 +12597,10 @@ exports[`Render Snapshots > SVG Snapshots > should render layout to SVG 1`] = `
 .wf-footer {
   border-top: 1px solid var(--wf-border);
   padding: 16px;
+  flex-shrink: 0;
+  background: var(--wf-bg);
+  position: relative;
+  z-index: 1;
 }
 
 .wf-footer.wf-no-border {
@@ -12580,6 +12658,8 @@ exports[`Render Snapshots > SVG Snapshots > should render layout to SVG 1`] = `
 
 /* Container Components */
 .wf-card {
+  display: flex;
+  flex-direction: column;
   border: 1px solid var(--wf-border);
   border-radius: var(--wf-radius);
   background: var(--wf-bg);
@@ -14178,6 +14258,10 @@ exports[`Render Snapshots > SVG Snapshots > should render simple text to SVG 1`]
   display: flex;
   align-items: center;
   min-height: 56px;
+  flex-shrink: 0;
+  background: var(--wf-bg);
+  position: relative;
+  z-index: 1;
 }
 
 .wf-header > .wf-row {
@@ -14233,6 +14317,10 @@ exports[`Render Snapshots > SVG Snapshots > should render simple text to SVG 1`]
 .wf-footer {
   border-top: 1px solid var(--wf-border);
   padding: 16px;
+  flex-shrink: 0;
+  background: var(--wf-bg);
+  position: relative;
+  z-index: 1;
 }
 
 .wf-footer.wf-no-border {
@@ -14290,6 +14378,8 @@ exports[`Render Snapshots > SVG Snapshots > should render simple text to SVG 1`]
 
 /* Container Components */
 .wf-card {
+  display: flex;
+  flex-direction: column;
   border: 1px solid var(--wf-border);
   border-radius: var(--wf-radius);
   background: var(--wf-bg);
@@ -15880,6 +15970,10 @@ exports[`Render Snapshots > SVG Snapshots > should respect padding option 1`] = 
   display: flex;
   align-items: center;
   min-height: 56px;
+  flex-shrink: 0;
+  background: var(--wf-bg);
+  position: relative;
+  z-index: 1;
 }
 
 .wf-header > .wf-row {
@@ -15935,6 +16029,10 @@ exports[`Render Snapshots > SVG Snapshots > should respect padding option 1`] = 
 .wf-footer {
   border-top: 1px solid var(--wf-border);
   padding: 16px;
+  flex-shrink: 0;
+  background: var(--wf-bg);
+  position: relative;
+  z-index: 1;
 }
 
 .wf-footer.wf-no-border {
@@ -15992,6 +16090,8 @@ exports[`Render Snapshots > SVG Snapshots > should respect padding option 1`] = 
 
 /* Container Components */
 .wf-card {
+  display: flex;
+  flex-direction: column;
   border: 1px solid var(--wf-border);
   border-radius: var(--wf-radius);
   background: var(--wf-bg);
