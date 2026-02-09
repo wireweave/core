@@ -303,6 +303,10 @@ function generateLayoutClasses(prefix: string): string {
   display: flex;
   align-items: center;
   min-height: 56px;
+  flex-shrink: 0;
+  background: var(--${prefix}-bg);
+  position: relative;
+  z-index: 1;
 }
 
 .${prefix}-header > .${prefix}-row {
@@ -358,6 +362,10 @@ function generateLayoutClasses(prefix: string): string {
 .${prefix}-footer {
   border-top: 1px solid var(--${prefix}-border);
   padding: 16px;
+  flex-shrink: 0;
+  background: var(--${prefix}-bg);
+  position: relative;
+  z-index: 1;
 }
 
 .${prefix}-footer.${prefix}-no-border {
