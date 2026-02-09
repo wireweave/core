@@ -255,9 +255,13 @@ Button
 // Input Components
 Input
   = "input" _ label:StringLiteral? _ attrs:Attributes? {
+      const obj = attrsToObject(attrs);
+      const inputType = obj.type;
+      delete obj.type;
       return createNode('Input', {
         label: label || null,
-        ...attrsToObject(attrs)
+        ...(inputType !== undefined ? { inputType } : {}),
+        ...obj
       });
     }
 

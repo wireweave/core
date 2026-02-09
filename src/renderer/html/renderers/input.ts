@@ -118,6 +118,10 @@ export function renderSelect(node: SelectNode, ctx: RenderContext): string {
     required: node.required,
   };
 
+  const hasSelectedValue = node.value && node.options.some((opt) =>
+    (typeof opt === 'string' ? opt : opt.value) === node.value
+  );
+
   const options = node.options
     .map((opt) => {
       if (typeof opt === 'string') {
@@ -129,8 +133,9 @@ export function renderSelect(node: SelectNode, ctx: RenderContext): string {
     })
     .join('\n');
 
+  const placeholderSelected = hasSelectedValue ? '' : ' selected="selected"';
   const placeholder = node.placeholder
-    ? `<option value="" disabled="disabled" selected="selected">${ctx.escapeHtml(node.placeholder)}</option>\n`
+    ? `<option value="" disabled="disabled"${placeholderSelected}>${ctx.escapeHtml(node.placeholder)}</option>\n`
     : '';
 
   const select = `<select${ctx.buildAttrsString(attrs)}${styleAttr}>\n${placeholder}${options}\n</select>`;
