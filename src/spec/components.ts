@@ -255,7 +255,7 @@ export const COMPONENT_SPECS: readonly ComponentSpec[] = [
     name: 'icon',
     nodeType: 'Icon',
     category: 'display',
-    attributes: [...COMMON_ATTRIBUTES, 'size', 'muted'],
+    attributes: [...COMMON_ATTRIBUTES, 'name', 'size', 'muted'],
     hasChildren: false,
     description: 'Lucide icon',
   },
