@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.1.0-beta.0](https://github.com/wireweave/core/compare/v2.0.2...v2.1.0-beta.0) (2026-02-23)
+
+### Features
+
+* **grid:** add scroll support to col component ([d88db60](https://github.com/wireweave/core/commit/d88db609a873460834a7f9521112e292edb2724b))
+
 ## [2.0.2](https://github.com/wireweave/core/compare/v2.0.2-beta.0...v2.0.2) (2026-02-09)
 
 ## [2.0.2-beta.0](https://github.com/wireweave/core/compare/v2.0.1...v2.0.2-beta.0) (2026-02-09)

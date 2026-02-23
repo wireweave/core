@@ -206,6 +206,8 @@ export interface ColNode extends BaseNode, CommonProps {
   xl?: number;
   /** Column order in flex container */
   order?: number;
+  /** Enable vertical scrolling */
+  scroll?: boolean;
   children: AnyNode[];
 }
 
