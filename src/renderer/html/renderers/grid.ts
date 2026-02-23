@@ -40,6 +40,8 @@ export function renderCol(node: ColNode, ctx: GridRenderContext): string {
     node.md ? `${ctx.prefix}-col-md-${node.md}` : undefined,
     node.lg ? `${ctx.prefix}-col-lg-${node.lg}` : undefined,
     node.xl ? `${ctx.prefix}-col-xl-${node.xl}` : undefined,
+    // Scroll support
+    node.scroll ? `${ctx.prefix}-scroll` : undefined,
     ...ctx.getCommonClasses(node),
   ]);
 

@@ -348,6 +348,13 @@ function generateLayoutClasses(prefix: string): string {
   overflow-x: hidden;
 }
 
+/* Scrollable col content */
+.${prefix}-col.${prefix}-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
+}
+
 /* Col containing scrollable main needs min-height: 0 for scroll to work */
 .${prefix}-col:has(> .${prefix}-main.${prefix}-scroll) {
   min-height: 0;
