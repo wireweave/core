@@ -365,7 +365,8 @@ export interface SliderNode extends BaseNode, CommonProps {
 // ===========================================
 
 export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
-export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type ButtonSizeToken = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type ButtonSize = ButtonSizeToken | number | ValueWithUnit;
 
 export interface ButtonNode extends BaseNode, CommonProps, InteractiveProps {
   type: 'Button';
@@ -397,18 +398,20 @@ export interface PlaceholderNode extends BaseNode, CommonProps {
   children?: AnyNode[];
 }
 
-export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type AvatarSizeToken = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type AvatarSize = AvatarSizeToken | number | ValueWithUnit;
 
 export interface AvatarNode extends BaseNode, CommonProps, InteractiveProps {
   type: 'Avatar';
   name?: string | null;
   src?: boolean;
-  size?: AvatarSize | number;  // Token string or custom px number
+  size?: AvatarSize;
 }
 
 export type BadgeVariant = 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info';
 
-export type BadgeSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type BadgeSizeToken = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type BadgeSize = BadgeSizeToken | number | ValueWithUnit;
 
 export interface BadgeNode extends BaseNode, CommonProps, InteractiveProps {
   type: 'Badge';
@@ -419,12 +422,13 @@ export interface BadgeNode extends BaseNode, CommonProps, InteractiveProps {
   size?: BadgeSize;
 }
 
-export type IconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type IconSizeToken = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type IconSize = IconSizeToken | number | ValueWithUnit;
 
 export interface IconNode extends BaseNode, CommonProps, InteractiveProps {
   type: 'Icon';
   name: string;
-  size?: IconSize | number;  // Token string or custom px number
+  size?: IconSize;
   muted?: boolean;
 }
 
@@ -491,12 +495,13 @@ export interface ProgressNode extends BaseNode, CommonProps {
   indeterminate?: boolean;
 }
 
-export type SpinnerSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type SpinnerSizeToken = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type SpinnerSize = SpinnerSizeToken | number | ValueWithUnit;
 
 export interface SpinnerNode extends BaseNode, CommonProps {
   type: 'Spinner';
   label?: string | null;
-  size?: SpinnerSize | number;  // Token string or custom px number
+  size?: SpinnerSize;
 }
 
 // ===========================================

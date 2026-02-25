@@ -5,6 +5,7 @@
 import type { ButtonNode } from '../../../ast/types';
 import type { RenderContext } from './types';
 import { getIconData, renderIconSvg } from '../../../icons/lucide-icons';
+import { resolveSizeValue } from '../components';
 
 /**
  * Render Button node
@@ -12,6 +13,10 @@ import { getIconData, renderIconSvg } from '../../../icons/lucide-icons';
 export function renderButton(node: ButtonNode, ctx: RenderContext): string {
   // Icon-only button: has icon but no text content (or default "Button" text)
   const isIconOnly = node.icon && (!node.content.trim() || node.content === 'Button');
+
+  // Resolve size: token string (xs, sm, md, lg, xl) or custom px number/ValueWithUnit
+  const sizeResolved = resolveSizeValue(node.size, 'button', ctx.prefix);
+
   const classes = ctx.buildClassString([
     `${ctx.prefix}-button`,
     node.primary ? `${ctx.prefix}-button-primary` : undefined,
@@ -19,15 +24,19 @@ export function renderButton(node: ButtonNode, ctx: RenderContext): string {
     node.outline ? `${ctx.prefix}-button-outline` : undefined,
     node.ghost ? `${ctx.prefix}-button-ghost` : undefined,
     node.danger ? `${ctx.prefix}-button-danger` : undefined,
-    node.size ? `${ctx.prefix}-button-${node.size}` : undefined,
+    sizeResolved.className,
     node.disabled ? `${ctx.prefix}-button-disabled` : undefined,
     node.loading ? `${ctx.prefix}-button-loading` : undefined,
     isIconOnly ? `${ctx.prefix}-button-icon-only` : undefined,
     ...ctx.getCommonClasses(node),
   ]);
 
-  const styles = ctx.buildCommonStyles(node);
-  const styleAttr = styles ? ` style="${styles}"` : '';
+  const baseStyles = ctx.buildCommonStyles(node);
+  const sizeStyle = sizeResolved.style || '';
+  const combinedStyles = baseStyles && sizeStyle
+    ? `${baseStyles}; ${sizeStyle}`
+    : baseStyles || sizeStyle;
+  const styleAttr = combinedStyles ? ` style="${combinedStyles}"` : '';
 
   const attrs: Record<string, string | boolean | undefined> = {
     class: classes,

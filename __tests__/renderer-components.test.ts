@@ -73,6 +73,21 @@ describe('Component Rendering', () => {
       expect(result.html).toContain('wf-text-muted');
     });
 
+    it('should render text with custom px size', () => {
+      const doc = parse('page { text "Custom" size=24px }');
+      const result = render(doc);
+
+      expect(result.html).toContain('font-size: 24px');
+      expect(result.html).not.toContain('wf-text-24px');
+    });
+
+    it('should render text with custom em size', () => {
+      const doc = parse('page { text "Custom" size=1.5em }');
+      const result = render(doc);
+
+      expect(result.html).toContain('font-size: 1.5em');
+    });
+
     it('should render title with correct heading level', () => {
       const levels = [1, 2, 3, 4, 5, 6];
 
@@ -83,6 +98,20 @@ describe('Component Rendering', () => {
         expect(result.html).toContain(`<h${level}`);
         expect(result.html).toContain(`</h${level}>`);
       }
+    });
+
+    it('should render title with custom px size', () => {
+      const doc = parse('page { title "Custom" size=32px }');
+      const result = render(doc);
+
+      expect(result.html).toContain('font-size: 32px');
+    });
+
+    it('should render title with custom rem size', () => {
+      const doc = parse('page { title "Custom" size=2rem }');
+      const result = render(doc);
+
+      expect(result.html).toContain('font-size: 2rem');
     });
 
     it('should render link with href', () => {
@@ -214,7 +243,7 @@ describe('Component Rendering', () => {
       }
     });
 
-    it('should render button sizes', () => {
+    it('should render button sizes with token', () => {
       const sizes = ['xs', 'sm', 'md', 'lg', 'xl'];
 
       for (const size of sizes) {
@@ -223,6 +252,21 @@ describe('Component Rendering', () => {
 
         expect(result.html).toContain(`wf-button-${size}`);
       }
+    });
+
+    it('should render button with custom px size', () => {
+      const doc = parse('page { button "Click" size=20px }');
+      const result = render(doc);
+
+      expect(result.html).toContain('font-size: 20px');
+      expect(result.html).not.toContain('wf-button-20px');
+    });
+
+    it('should render button with custom rem size', () => {
+      const doc = parse('page { button "Click" size=1.25rem }');
+      const result = render(doc);
+
+      expect(result.html).toContain('font-size: 1.25rem');
     });
 
     it('should render disabled button with aria', () => {
@@ -268,7 +312,7 @@ describe('Component Rendering', () => {
       expect(result.html).toContain('role="img"');
     });
 
-    it('should render avatar sizes', () => {
+    it('should render avatar sizes with token', () => {
       const sizes = ['xs', 'sm', 'md', 'lg', 'xl'];
 
       for (const size of sizes) {
@@ -277,6 +321,14 @@ describe('Component Rendering', () => {
 
         expect(result.html).toContain(`wf-avatar-${size}`);
       }
+    });
+
+    it('should render avatar with custom px size', () => {
+      const doc = parse('page { avatar "User" size=64px }');
+      const result = render(doc);
+
+      expect(result.html).toContain('width: 64px');
+      expect(result.html).toContain('height: 64px');
     });
 
     it('should render badge', () => {
@@ -294,6 +346,20 @@ describe('Component Rendering', () => {
       expect(result.html).toContain('wf-badge-pill');
     });
 
+    it('should render badge with size token', () => {
+      const doc = parse('page { badge "New" size=lg }');
+      const result = render(doc);
+
+      expect(result.html).toContain('wf-badge-lg');
+    });
+
+    it('should render badge with custom px size', () => {
+      const doc = parse('page { badge "New" size=16px }');
+      const result = render(doc);
+
+      expect(result.html).toContain('font-size: 16px');
+    });
+
     it('should render icon with aria-hidden', () => {
       const doc = parse('page { icon "home" }');
       const result = render(doc);
@@ -302,6 +368,21 @@ describe('Component Rendering', () => {
       expect(result.html).toContain('aria-hidden="true"');
       // Icon is rendered as SVG when available
       expect(result.html).toContain('<svg');
+    });
+
+    it('should render icon with size token', () => {
+      const doc = parse('page { icon "home" size=xl }');
+      const result = render(doc);
+
+      expect(result.html).toContain('wf-icon-xl');
+    });
+
+    it('should render icon with custom px size', () => {
+      const doc = parse('page { icon "home" size=32px }');
+      const result = render(doc);
+
+      expect(result.html).toContain('width: 32px');
+      expect(result.html).toContain('height: 32px');
     });
   });
 
@@ -395,8 +476,8 @@ describe('Component Rendering', () => {
       expect(result.html).toContain('role="status"');
     });
 
-    it('should render spinner sizes', () => {
-      const sizes = ['sm', 'md', 'lg'];
+    it('should render spinner sizes with token', () => {
+      const sizes = ['xs', 'sm', 'md', 'lg', 'xl'];
 
       for (const size of sizes) {
         const doc = parse(`page { spinner size=${size} }`);
@@ -404,6 +485,14 @@ describe('Component Rendering', () => {
 
         expect(result.html).toContain(`wf-spinner-${size}`);
       }
+    });
+
+    it('should render spinner with custom px size', () => {
+      const doc = parse('page { spinner size=48px }');
+      const result = render(doc);
+
+      expect(result.html).toContain('width: 48px');
+      expect(result.html).toContain('height: 48px');
     });
   });
 
