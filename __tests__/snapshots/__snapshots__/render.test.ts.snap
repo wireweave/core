@@ -416,6 +416,13 @@ exports[`Render Snapshots > CSS Snapshots > should generate dark theme CSS 1`] =
   overflow-x: hidden;
 }
 
+/* Scrollable col content */
+.wf-col.wf-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
+}
+
 /* Col containing scrollable main needs min-height: 0 for scroll to work */
 .wf-col:has(> .wf-main.wf-scroll) {
   min-height: 0;
@@ -2104,6 +2111,13 @@ exports[`Render Snapshots > CSS Snapshots > should generate light theme CSS 1`] 
 .wf-main.wf-scroll {
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+/* Scrollable col content */
+.wf-col.wf-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
 }
 
 /* Col containing scrollable main needs min-height: 0 for scroll to work */
@@ -3873,6 +3887,13 @@ body {
   overflow-x: hidden;
 }
 
+/* Scrollable col content */
+.wf-col.wf-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
+}
+
 /* Col containing scrollable main needs min-height: 0 for scroll to work */
 .wf-col:has(> .wf-main.wf-scroll) {
   min-height: 0;
@@ -5591,6 +5612,13 @@ body {
 .wf-main.wf-scroll {
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+/* Scrollable col content */
+.wf-col.wf-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
 }
 
 /* Col containing scrollable main needs min-height: 0 for scroll to work */
@@ -7438,6 +7466,13 @@ exports[`Render Snapshots > SVG Snapshots > should render buttons to SVG 1`] = `
   overflow-x: hidden;
 }
 
+/* Scrollable col content */
+.wf-col.wf-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
+}
+
 /* Col containing scrollable main needs min-height: 0 for scroll to work */
 .wf-col:has(> .wf-main.wf-scroll) {
   min-height: 0;
@@ -9150,6 +9185,13 @@ exports[`Render Snapshots > SVG Snapshots > should render card to SVG 1`] = `
 .wf-main.wf-scroll {
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+/* Scrollable col content */
+.wf-col.wf-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
 }
 
 /* Col containing scrollable main needs min-height: 0 for scroll to work */
@@ -10867,6 +10909,13 @@ exports[`Render Snapshots > SVG Snapshots > should render form to SVG 1`] = `
   overflow-x: hidden;
 }
 
+/* Scrollable col content */
+.wf-col.wf-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
+}
+
 /* Col containing scrollable main needs min-height: 0 for scroll to work */
 .wf-col:has(> .wf-main.wf-scroll) {
   min-height: 0;
@@ -12581,6 +12630,13 @@ exports[`Render Snapshots > SVG Snapshots > should render layout to SVG 1`] = `
 .wf-main.wf-scroll {
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+/* Scrollable col content */
+.wf-col.wf-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
 }
 
 /* Col containing scrollable main needs min-height: 0 for scroll to work */
@@ -14303,6 +14359,13 @@ exports[`Render Snapshots > SVG Snapshots > should render simple text to SVG 1`]
   overflow-x: hidden;
 }
 
+/* Scrollable col content */
+.wf-col.wf-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
+}
+
 /* Col containing scrollable main needs min-height: 0 for scroll to work */
 .wf-col:has(> .wf-main.wf-scroll) {
   min-height: 0;
@@ -16013,6 +16076,13 @@ exports[`Render Snapshots > SVG Snapshots > should respect padding option 1`] = 
 .wf-main.wf-scroll {
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+/* Scrollable col content */
+.wf-col.wf-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
 }
 
 /* Col containing scrollable main needs min-height: 0 for scroll to work */

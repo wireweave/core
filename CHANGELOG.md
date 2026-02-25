@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.2.0-beta.0](https://github.com/wireweave/core/compare/v2.1.0...v2.2.0-beta.0) (2026-02-25)
+
+### Features
+
+* **renderer:** support custom size units for components ([93cd776](https://github.com/wireweave/core/commit/93cd776f54a3d95416ba65b1cc96fec5dfa47668))
+
 ## [2.1.0](https://github.com/wireweave/core/compare/v2.1.0-beta.0...v2.1.0) (2026-02-23)
 
 ## [2.1.0-beta.0](https://github.com/wireweave/core/compare/v2.0.2...v2.1.0-beta.0) (2026-02-23)

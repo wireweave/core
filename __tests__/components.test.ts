@@ -141,7 +141,7 @@ describe('Component Grammar', () => {
         expect(text.content).toBe('Hello World');
       });
 
-      it('should parse text with size attribute', () => {
+      it('should parse text with size token', () => {
         // Sizes starting with number must be quoted
         const unquotedSizes = ['xs', 'sm', 'base', 'lg', 'xl'];
         for (const size of unquotedSizes) {
@@ -154,6 +154,18 @@ describe('Component Grammar', () => {
           const result = parse(`page { text "Test" size="${size}" }`);
           expect(result.children[0].children[0].size).toBe(size);
         }
+      });
+
+      it('should parse text with size in px', () => {
+        const result = parse('page { text "Test" size=24px }');
+        const size = result.children[0].children[0].size;
+        expect(size).toEqual({ value: 24, unit: 'px' });
+      });
+
+      it('should parse text with size in other units', () => {
+        const result = parse('page { text "Test" size=1.5em }');
+        const size = result.children[0].children[0].size;
+        expect(size).toEqual({ value: 1.5, unit: 'em' });
       });
 
       it('should parse text with weight attribute', () => {
@@ -188,9 +200,21 @@ describe('Component Grammar', () => {
         }
       });
 
-      it('should parse title with size', () => {
+      it('should parse title with size token', () => {
         const result = parse('page { title "Big Title" size="2xl" }');
         expect(result.children[0].children[0].size).toBe('2xl');
+      });
+
+      it('should parse title with size in px', () => {
+        const result = parse('page { title "Custom" size=32px }');
+        const size = result.children[0].children[0].size;
+        expect(size).toEqual({ value: 32, unit: 'px' });
+      });
+
+      it('should parse title with size in rem', () => {
+        const result = parse('page { title "Custom" size=2rem }');
+        const size = result.children[0].children[0].size;
+        expect(size).toEqual({ value: 2, unit: 'rem' });
       });
     });
 
@@ -367,12 +391,29 @@ describe('Component Grammar', () => {
       }
     });
 
-    it('should parse button with size', () => {
-      const sizes = ['sm', 'md', 'lg'];
+    it('should parse button with size token', () => {
+      const sizes = ['xs', 'sm', 'md', 'lg', 'xl'];
       for (const size of sizes) {
         const result = parse(`page { button "Click" size=${size} }`);
         expect(result.children[0].children[0].size).toBe(size);
       }
+    });
+
+    it('should parse button with size in px', () => {
+      const result = parse('page { button "Click" size=20px }');
+      const size = result.children[0].children[0].size;
+      expect(size).toEqual({ value: 20, unit: 'px' });
+    });
+
+    it('should parse button with size as number', () => {
+      const result = parse('page { button "Click" size=24 }');
+      expect(result.children[0].children[0].size).toBe(24);
+    });
+
+    it('should parse button with size in other units', () => {
+      const result = parse('page { button "Click" size=1.5rem }');
+      const size = result.children[0].children[0].size;
+      expect(size).toEqual({ value: 1.5, unit: 'rem' });
     });
 
     it('should parse button with icon', () => {
@@ -444,12 +485,23 @@ describe('Component Grammar', () => {
         expect(avatar.name).toBe('JD');
       });
 
-      it('should parse avatar with size', () => {
+      it('should parse avatar with size token', () => {
         const sizes = ['xs', 'sm', 'md', 'lg', 'xl'];
         for (const size of sizes) {
           const result = parse(`page { avatar "AB" size=${size} }`);
           expect(result.children[0].children[0].size).toBe(size);
         }
+      });
+
+      it('should parse avatar with size in px', () => {
+        const result = parse('page { avatar "AB" size=64px }');
+        const size = result.children[0].children[0].size;
+        expect(size).toEqual({ value: 64, unit: 'px' });
+      });
+
+      it('should parse avatar with size as number', () => {
+        const result = parse('page { avatar "AB" size=48 }');
+        expect(result.children[0].children[0].size).toBe(48);
       });
 
       it('should parse avatar with src', () => {
@@ -478,6 +530,25 @@ describe('Component Grammar', () => {
         const result = parse('page { badge "3" pill }');
         expect(result.children[0].children[0].pill).toBe(true);
       });
+
+      it('should parse badge with size token', () => {
+        const sizes = ['xs', 'sm', 'md', 'lg', 'xl'];
+        for (const size of sizes) {
+          const result = parse(`page { badge "New" size=${size} }`);
+          expect(result.children[0].children[0].size).toBe(size);
+        }
+      });
+
+      it('should parse badge with size in px', () => {
+        const result = parse('page { badge "New" size=16px }');
+        const size = result.children[0].children[0].size;
+        expect(size).toEqual({ value: 16, unit: 'px' });
+      });
+
+      it('should parse badge with size as number', () => {
+        const result = parse('page { badge "New" size=14 }');
+        expect(result.children[0].children[0].size).toBe(14);
+      });
     });
 
     describe('Icon', () => {
@@ -488,9 +559,23 @@ describe('Component Grammar', () => {
         expect(icon.name).toBe('menu');
       });
 
-      it('should parse icon with size', () => {
+      it('should parse icon with size token', () => {
+        const sizes = ['xs', 'sm', 'md', 'lg', 'xl'];
+        for (const size of sizes) {
+          const result = parse(`page { icon "search" size=${size} }`);
+          expect(result.children[0].children[0].size).toBe(size);
+        }
+      });
+
+      it('should parse icon with size as number', () => {
         const result = parse('page { icon "search" size=24 }');
         expect(result.children[0].children[0].size).toBe(24);
+      });
+
+      it('should parse icon with size in px', () => {
+        const result = parse('page { icon "search" size=32px }');
+        const size = result.children[0].children[0].size;
+        expect(size).toEqual({ value: 32, unit: 'px' });
       });
     });
   });
@@ -644,9 +729,23 @@ describe('Component Grammar', () => {
         expect(result.children[0].children[0].type).toBe('Spinner');
       });
 
-      it('should parse spinner with size', () => {
-        const result = parse('page { spinner size=lg }');
-        expect(result.children[0].children[0].size).toBe('lg');
+      it('should parse spinner with size token', () => {
+        const sizes = ['xs', 'sm', 'md', 'lg', 'xl'];
+        for (const size of sizes) {
+          const result = parse(`page { spinner size=${size} }`);
+          expect(result.children[0].children[0].size).toBe(size);
+        }
+      });
+
+      it('should parse spinner with size as number', () => {
+        const result = parse('page { spinner size=48 }');
+        expect(result.children[0].children[0].size).toBe(48);
+      });
+
+      it('should parse spinner with size in px', () => {
+        const result = parse('page { spinner size=36px }');
+        const size = result.children[0].children[0].size;
+        expect(size).toEqual({ value: 36, unit: 'px' });
       });
 
       it('should parse spinner with label', () => {

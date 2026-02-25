@@ -126,18 +126,25 @@ export function renderBadge(node: BadgeNode, ctx: RenderContext): string {
   const interactiveAttrs = buildInteractiveAttrs(node);
   const interactiveAttrStr = ctx.buildAttrsString(interactiveAttrs);
 
+  // Resolve size: token string (xs, sm, md, lg, xl) or custom px number/ValueWithUnit
+  const sizeResolved = resolveSizeValue(node.size, 'badge', ctx.prefix);
+
   // If icon is provided, render as icon badge (circular background with icon)
   if (node.icon) {
     const iconData = getIconData(node.icon);
     const classes = ctx.buildClassString([
       `${ctx.prefix}-badge-icon`,
-      node.size ? `${ctx.prefix}-badge-icon-${node.size}` : undefined,
+      sizeResolved.className,
       node.variant ? `${ctx.prefix}-badge-icon-${node.variant}` : undefined,
       ...ctx.getCommonClasses(node),
     ]);
 
-    const styles = ctx.buildCommonStyles(node);
-    const styleAttr = styles ? ` style="${styles}"` : '';
+    const baseStyles = ctx.buildCommonStyles(node);
+    const sizeStyle = sizeResolved.style || '';
+    const combinedStyles = baseStyles && sizeStyle
+      ? `${baseStyles}; ${sizeStyle}`
+      : baseStyles || sizeStyle;
+    const styleAttr = combinedStyles ? ` style="${combinedStyles}"` : '';
 
     if (iconData) {
       const svg = renderIconSvg(iconData, 24, 2, `${ctx.prefix}-icon`);
@@ -153,13 +160,18 @@ export function renderBadge(node: BadgeNode, ctx: RenderContext): string {
   const classes = ctx.buildClassString([
     `${ctx.prefix}-badge`,
     isDot ? `${ctx.prefix}-badge-dot` : undefined,
+    sizeResolved.className,
     node.variant ? `${ctx.prefix}-badge-${node.variant}` : undefined,
     node.pill ? `${ctx.prefix}-badge-pill` : undefined,
     ...ctx.getCommonClasses(node),
   ]);
 
-  const styles = ctx.buildCommonStyles(node);
-  const styleAttr = styles ? ` style="${styles}"` : '';
+  const baseStyles = ctx.buildCommonStyles(node);
+  const sizeStyle = sizeResolved.style || '';
+  const combinedStyles = baseStyles && sizeStyle
+    ? `${baseStyles}; ${sizeStyle}`
+    : baseStyles || sizeStyle;
+  const styleAttr = combinedStyles ? ` style="${combinedStyles}"` : '';
 
   return `<span class="${classes}"${styleAttr}${interactiveAttrStr}>${ctx.escapeHtml(node.content)}</span>`;
 }
