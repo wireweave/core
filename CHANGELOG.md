@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.3.0-beta.0](https://github.com/wireweave/core/compare/v2.2.0...v2.3.0-beta.0) (2026-02-27)
+
+### Features
+
+* **renderer:** add background color appearance props ([d2cafc7](https://github.com/wireweave/core/commit/d2cafc7e4d2eab50d8d7314327bdb4e7b0c0d19e))
+
 ## [2.2.0](https://github.com/wireweave/core/compare/v2.2.0-beta.0...v2.2.0) (2026-02-25)
 
 ## [2.2.0-beta.0](https://github.com/wireweave/core/compare/v2.1.0...v2.2.0-beta.0) (2026-02-25)
