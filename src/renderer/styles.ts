@@ -289,7 +289,12 @@ function generateSizeClasses(prefix: string): string {
 
 .${prefix}-viewport-preview.dark::after {
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
-}`;
+}
+
+/* Background Utilities */
+.${prefix}-bg-muted { background-color: var(--${prefix}-muted); background: rgba(0, 0, 0, 0.05); }
+.${prefix}-bg-primary { background-color: var(--${prefix}-primary); }
+.${prefix}-bg-secondary { background-color: var(--${prefix}-secondary); }`;
 }
 
 /**

@@ -385,6 +385,11 @@ export class HtmlRenderer extends BaseRenderer {
     if (props.wrap === 'nowrap') classes.push(`${p}-flex-nowrap`);
     // gap is handled by inline styles for numeric values
 
+    // Background
+    if (props.bg === 'muted') classes.push(`${p}-bg-muted`);
+    if (props.bg === 'primary') classes.push(`${p}-bg-primary`);
+    if (props.bg === 'secondary') classes.push(`${p}-bg-secondary`);
+
     return classes;
   }
 

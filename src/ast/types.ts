@@ -110,7 +110,17 @@ export interface PositionProps {
   y?: number | ValueWithUnit;
 }
 
-export interface CommonProps extends SpacingProps, SizeProps, FlexProps, GridProps, PositionProps {}
+/**
+ * Appearance props for visual styling
+ * - bg: background color (muted, primary, secondary)
+ * - border: show border
+ */
+export interface AppearanceProps {
+  bg?: 'muted' | 'primary' | 'secondary';
+  border?: boolean;
+}
+
+export interface CommonProps extends SpacingProps, SizeProps, FlexProps, GridProps, PositionProps, AppearanceProps {}
 
 // ===========================================
 // Interactive Props
