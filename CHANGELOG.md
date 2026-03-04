@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.5.0](https://github.com/wireweave/core/compare/v2.4.0...v2.5.0) (2026-03-04)
+
+### Features
+
+* **annotation:** add marker and annotations panel components ([7493df8](https://github.com/wireweave/core/commit/7493df8469ba18348191d028a0d14b10e3b75868))
+
 ## [2.4.0](https://github.com/wireweave/core/compare/v2.3.1...v2.4.0) (2026-03-04)
 
 ### Features
