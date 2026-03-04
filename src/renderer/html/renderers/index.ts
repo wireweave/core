@@ -57,3 +57,6 @@ export { renderTable, renderList } from './data';
 
 // Divider renderer
 export { renderDivider } from './divider';
+
+// Annotation renderers
+export { renderMarker, renderAnnotations, renderAnnotationItem } from './annotation';

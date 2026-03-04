@@ -399,6 +399,34 @@ export const COMPONENT_SPECS: readonly ComponentSpec[] = [
     hasChildren: false,
     description: 'Horizontal separator',
   },
+
+  // ============================================
+  // Annotation Components
+  // ============================================
+  {
+    name: 'marker',
+    nodeType: 'Marker',
+    category: 'annotation',
+    attributes: [...COMMON_ATTRIBUTES, 'color', 'anchor'],
+    hasChildren: false,
+    description: 'Number marker for referencing in annotations',
+  },
+  {
+    name: 'annotations',
+    nodeType: 'Annotations',
+    category: 'annotation',
+    attributes: [...COMMON_ATTRIBUTES, 'title'],
+    hasChildren: true,
+    description: 'Documentation panel for screen specifications',
+  },
+  {
+    name: 'item',
+    nodeType: 'AnnotationItem',
+    category: 'annotation',
+    attributes: [],
+    hasChildren: true,
+    description: 'Individual annotation entry with marker number and title',
+  },
 ] as const;
 
 /**

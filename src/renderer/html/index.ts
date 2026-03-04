@@ -49,6 +49,9 @@ import type {
   TabsNode,
   BreadcrumbNode,
   DividerComponentNode,
+  MarkerNode,
+  AnnotationsNode,
+  AnnotationItemNode,
   CommonProps,
   ValueWithUnit,
   SpacingValue,
@@ -106,6 +109,9 @@ import {
   renderTable as renderTableFn,
   renderList as renderListFn,
   renderDivider as renderDividerFn,
+  renderMarker as renderMarkerFn,
+  renderAnnotations as renderAnnotationsFn,
+  renderAnnotationItem as renderAnnotationItemFn,
 } from './renderers';
 
 // Spacing token table: number -> CSS value
@@ -277,6 +283,10 @@ export class HtmlRenderer extends BaseRenderer {
       Breadcrumb: (node) => this.renderBreadcrumb(node as BreadcrumbNode),
       // Other
       Divider: (node) => this.renderDivider(node as DividerComponentNode),
+      // Annotation nodes
+      Marker: (node) => this.renderMarker(node as MarkerNode),
+      Annotations: (node) => this.renderAnnotations(node as AnnotationsNode),
+      AnnotationItem: (node) => this.renderAnnotationItem(node as AnnotationItemNode),
     };
   }
 
@@ -805,6 +815,22 @@ export class HtmlRenderer extends BaseRenderer {
 
   private renderDivider(node: DividerComponentNode): string {
     return renderDividerFn(node, this.getRenderContext());
+  }
+
+  // ===========================================
+  // Annotation Renderers
+  // ===========================================
+
+  private renderMarker(node: MarkerNode): string {
+    return renderMarkerFn(node, this.getRenderContext());
+  }
+
+  private renderAnnotations(node: AnnotationsNode): string {
+    return renderAnnotationsFn(node, this.getRenderContext());
+  }
+
+  private renderAnnotationItem(node: AnnotationItemNode): string {
+    return renderAnnotationItemFn(node, this.getRenderContext());
   }
 }
 
