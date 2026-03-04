@@ -105,18 +105,28 @@ export function renderAvatar(node: AvatarNode, ctx: RenderContext): string {
     : baseStyles || sizeStyle;
   const styleAttr = combinedStyles ? ` style="${combinedStyles}"` : '';
 
-  const initials = node.name
-    ? node.name
-        .split(' ')
-        .map((n) => n[0])
-        .join('')
-        .toUpperCase()
-        .slice(0, 2)
-    : '?';
+  let content: string;
+  if (node.name) {
+    // Show initials if name is provided
+    content = node.name
+      .split(' ')
+      .map((n) => n[0])
+      .join('')
+      .toUpperCase()
+      .slice(0, 2);
+  } else {
+    // Show user icon if no name provided
+    const iconData = getIconData('user');
+    if (iconData) {
+      content = renderIconSvg(iconData, 16, 2, `${ctx.prefix}-icon`);
+    } else {
+      content = '?';
+    }
+  }
 
   const interactiveAttrs = buildInteractiveAttrs(node);
   const interactiveAttrStr = ctx.buildAttrsString(interactiveAttrs);
-  return `<div class="${classes}"${styleAttr}${interactiveAttrStr} role="img" aria-label="${ctx.escapeHtml(node.name || 'Avatar')}">${initials}</div>`;
+  return `<div class="${classes}"${styleAttr}${interactiveAttrStr} role="img" aria-label="${ctx.escapeHtml(node.name || 'Avatar')}">${content}</div>`;
 }
 
 /**
@@ -136,6 +146,7 @@ export function renderBadge(node: BadgeNode, ctx: RenderContext): string {
       `${ctx.prefix}-badge-icon`,
       sizeResolved.className,
       node.variant ? `${ctx.prefix}-badge-icon-${node.variant}` : undefined,
+      node.anchor ? `${ctx.prefix}-anchor-${node.anchor}` : undefined,
       ...ctx.getCommonClasses(node),
     ]);
 
@@ -163,6 +174,7 @@ export function renderBadge(node: BadgeNode, ctx: RenderContext): string {
     sizeResolved.className,
     node.variant ? `${ctx.prefix}-badge-${node.variant}` : undefined,
     node.pill ? `${ctx.prefix}-badge-pill` : undefined,
+    node.anchor ? `${ctx.prefix}-anchor-${node.anchor}` : undefined,
     ...ctx.getCommonClasses(node),
   ]);
 
