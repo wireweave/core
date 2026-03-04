@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.0](https://github.com/wireweave/core/compare/v2.3.1...v2.4.0) (2026-03-04)
+
+### Features
+
+* **export:** support Stack and Relative in Figma export ([6f72101](https://github.com/wireweave/core/commit/6f721018c1a13a18bd1d2ad2839aff1afadb317b))
+* **layout:** add Stack and Relative layout components ([8de68a4](https://github.com/wireweave/core/commit/8de68a42026ba3be8dc78be730ada6126b3ff902))
+
 ## [2.3.1](https://github.com/wireweave/core/compare/v2.3.0...v2.3.1) (2026-02-27)
 ## [2.3.0-beta.0](https://github.com/wireweave/core/compare/v2.3.0...v2.3.1) (2026-02-27)
 

@@ -221,6 +221,42 @@ export interface ColNode extends BaseNode, CommonProps {
   children: AnyNode[];
 }
 
+/**
+ * Stack - Vertical content grouping container
+ *
+ * Unlike Col which fills available space (flex: 1),
+ * Stack only takes up the space needed by its content (flex: 0 0 auto).
+ *
+ * Use cases:
+ * - Grouping form fields vertically
+ * - Card content layout
+ * - Centering content with justify/align
+ */
+export interface StackNode extends BaseNode, CommonProps {
+  type: 'Stack';
+  children: AnyNode[];
+}
+
+/**
+ * Relative - Position children with absolute positioning
+ *
+ * Creates a position: relative container.
+ * First child is the base element, subsequent children are overlaid on top.
+ * Child elements can use `anchor` attribute to specify position:
+ * - top-left, top-center, top-right
+ * - center-left, center, center-right
+ * - bottom-left, bottom-center, bottom-right
+ */
+export interface RelativeNode extends BaseNode, CommonProps {
+  type: 'Relative';
+  children: AnyNode[];
+}
+
+export type AnchorPosition =
+  | 'top-left' | 'top-center' | 'top-right'
+  | 'center-left' | 'center' | 'center-right'
+  | 'bottom-left' | 'bottom-center' | 'bottom-right';
+
 // ===========================================
 // Container Nodes
 // ===========================================
@@ -430,6 +466,8 @@ export interface BadgeNode extends BaseNode, CommonProps, InteractiveProps {
   pill?: boolean;
   icon?: string;
   size?: BadgeSize;
+  /** Anchor position when inside an overlay container */
+  anchor?: AnchorPosition;
 }
 
 export type IconSizeToken = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
@@ -642,7 +680,7 @@ export type LayoutNode =
   | SidebarNode
   | SectionNode;
 
-export type GridNode = RowNode | ColNode;
+export type GridNode = RowNode | ColNode | StackNode | RelativeNode;
 
 export type ContainerComponentNode =
   | CardNode
@@ -710,6 +748,8 @@ export type NodeType =
   | 'Section'
   | 'Row'
   | 'Col'
+  | 'Stack'
+  | 'Relative'
   | 'Card'
   | 'Modal'
   | 'Drawer'

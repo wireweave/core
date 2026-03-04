@@ -83,6 +83,22 @@ export const COMPONENT_SPECS: readonly ComponentSpec[] = [
     hasChildren: true,
     description: 'Vertical flex container or grid column',
   },
+  {
+    name: 'stack',
+    nodeType: 'Stack',
+    category: 'grid',
+    attributes: [...COMMON_ATTRIBUTES, 'border', 'bg'],
+    hasChildren: true,
+    description: 'Vertical stack that only takes content height',
+  },
+  {
+    name: 'relative',
+    nodeType: 'Relative',
+    category: 'grid',
+    attributes: [...COMMON_ATTRIBUTES],
+    hasChildren: true,
+    description: 'Container for overlaying elements with absolute positioning',
+  },
 
   // ============================================
   // Container Components
@@ -247,7 +263,7 @@ export const COMPONENT_SPECS: readonly ComponentSpec[] = [
     name: 'badge',
     nodeType: 'Badge',
     category: 'display',
-    attributes: [...COMMON_ATTRIBUTES, 'variant', 'pill', 'icon', 'size'],
+    attributes: [...COMMON_ATTRIBUTES, 'variant', 'pill', 'icon', 'size', 'anchor'],
     hasChildren: false,
     description: 'Status badge',
   },

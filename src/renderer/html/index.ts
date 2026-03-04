@@ -14,6 +14,8 @@ import type {
   SectionNode,
   RowNode,
   ColNode,
+  StackNode,
+  RelativeNode,
   CardNode,
   ModalNode,
   DrawerNode,
@@ -69,6 +71,8 @@ import {
   renderSection as renderSectionFn,
   renderRow as renderRowFn,
   renderCol as renderColFn,
+  renderStack as renderStackFn,
+  renderRelative as renderRelativeFn,
   renderCard as renderCardFn,
   renderModal as renderModalFn,
   renderDrawer as renderDrawerFn,
@@ -228,6 +232,8 @@ export class HtmlRenderer extends BaseRenderer {
       // Grid nodes
       Row: (node) => this.renderRow(node as RowNode),
       Col: (node) => this.renderCol(node as ColNode),
+      Stack: (node) => this.renderStack(node as StackNode),
+      Relative: (node) => this.renderRelative(node as RelativeNode),
       // Container nodes
       Card: (node) => this.renderCard(node as CardNode),
       Modal: (node) => this.renderModal(node as ModalNode),
@@ -429,6 +435,14 @@ export class HtmlRenderer extends BaseRenderer {
     return renderColFn(node, this.getGridRenderContext());
   }
 
+  private renderStack(node: StackNode): string {
+    return renderStackFn(node, this.getRenderContext());
+  }
+
+  private renderRelative(node: RelativeNode): string {
+    return renderRelativeFn(node, this.getRenderContext());
+  }
+
   /**
    * Build common inline styles for all values
    *
@@ -605,6 +619,12 @@ export class HtmlRenderer extends BaseRenderer {
     const commonStyles = this.buildCommonStyles(node);
     if (commonStyles) {
       styles.push(commonStyles);
+    }
+
+    // If explicit width is set but no flex, add flex: none to respect the width
+    // This prevents the default flex: 1 from overriding the specified width
+    if (node.w !== undefined && node.flex === undefined) {
+      styles.push('flex: none');
     }
 
     // Order (Col-specific)

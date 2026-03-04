@@ -1,8 +1,8 @@
 /**
- * Grid Renderers (Row, Col)
+ * Grid Renderers (Row, Col, Stack, Relative)
  */
 
-import type { RowNode, ColNode } from '../../../ast/types';
+import type { RowNode, ColNode, StackNode, RelativeNode } from '../../../ast/types';
 import type { RenderContext } from './types';
 
 /**
@@ -47,6 +47,46 @@ export function renderCol(node: ColNode, ctx: GridRenderContext): string {
 
   // Build inline styles for numeric width/height and order
   const styles = ctx.buildColStyles(node);
+  const styleAttr = styles ? ` style="${styles}"` : '';
+
+  const children = ctx.renderChildren(node.children);
+  return `<div class="${classes}"${styleAttr}>\n${children}\n</div>`;
+}
+
+/**
+ * Render Stack node
+ *
+ * Stack is a vertical content grouping container that only takes up
+ * the space needed by its content (flex: 0 0 auto), unlike Col which
+ * fills available space (flex: 1).
+ */
+export function renderStack(node: StackNode, ctx: RenderContext): string {
+  const classes = ctx.buildClassString([
+    `${ctx.prefix}-stack`,
+    ...ctx.getCommonClasses(node),
+  ]);
+
+  const styles = ctx.buildCommonStyles(node);
+  const styleAttr = styles ? ` style="${styles}"` : '';
+
+  const children = ctx.renderChildren(node.children);
+  return `<div class="${classes}"${styleAttr}>\n${children}\n</div>`;
+}
+
+/**
+ * Render Relative node
+ *
+ * Relative is a container for positioning children with absolute positioning.
+ * First child is the base element, subsequent children are overlaid on top.
+ * Child elements can use `anchor` attribute to specify position.
+ */
+export function renderRelative(node: RelativeNode, ctx: RenderContext): string {
+  const classes = ctx.buildClassString([
+    `${ctx.prefix}-relative`,
+    ...ctx.getCommonClasses(node),
+  ]);
+
+  const styles = ctx.buildCommonStyles(node);
   const styleAttr = styles ? ` style="${styles}"` : '';
 
   const children = ctx.renderChildren(node.children);

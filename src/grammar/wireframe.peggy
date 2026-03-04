@@ -78,6 +78,8 @@ LayoutElement
   / Sidebar
   / Row
   / Col
+  / Stack
+  / Relative
 
 Header
   = "header" _ attrs:Attributes? _ "{" _ children:Children _ "}" {
@@ -122,6 +124,22 @@ Row
 Col
   = "col" _ attrs:Attributes? _ "{" _ children:Children _ "}" {
       return createNode('Col', {
+        ...attrsToObject(attrs),
+        children
+      });
+    }
+
+Stack
+  = "stack" _ attrs:Attributes? _ "{" _ children:Children _ "}" {
+      return createNode('Stack', {
+        ...attrsToObject(attrs),
+        children
+      });
+    }
+
+Relative
+  = "relative" _ attrs:Attributes? _ "{" _ children:Children _ "}" {
+      return createNode('Relative', {
         ...attrsToObject(attrs),
         children
       });
@@ -619,7 +637,7 @@ AttributeName
 // Keywords that start a child component (these cannot be attribute names)
 // Note: 'placeholder', 'icon', 'title' are valid as attribute names
 ChildKeyword
-  = ("page" / "header" / "main" / "footer" / "sidebar" / "row" / "col"
+  = ("page" / "header" / "main" / "footer" / "sidebar" / "row" / "col" / "stack" / "relative"
     / "card" / "modal" / "drawer" / "accordion" / "section"
     / "text" / "link" / "button"
     / "input" / "textarea" / "select" / "checkbox" / "radio" / "switch" / "slider"

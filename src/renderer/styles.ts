@@ -133,10 +133,35 @@ function generateGridClasses(_theme: ThemeConfig, prefix: string): string {
 }
 
 /* When explicit width is set, don't flex-grow */
-.${prefix}-row[style*="width:"],
-.${prefix}-col[style*="width:"] {
+.${prefix}-row[style*="width"],
+.${prefix}-col[style*="width"] {
   flex: 0 0 auto;
 }
+
+/* Stack - vertical content grouping (does not fill available space) */
+.${prefix}-stack {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+}
+
+/* Relative - container for absolute positioning children */
+.${prefix}-relative {
+  position: relative;
+  display: inline-flex;
+}
+
+/* Anchor positioning for relative container children */
+.${prefix}-anchor-top-left { position: absolute; top: -4px; left: -4px; }
+.${prefix}-anchor-top-center { position: absolute; top: -4px; left: 50%; transform: translateX(-50%); }
+.${prefix}-anchor-top-right { position: absolute; top: -4px; right: -4px; }
+.${prefix}-anchor-center-left { position: absolute; top: 50%; left: -4px; transform: translateY(-50%); }
+.${prefix}-anchor-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.${prefix}-anchor-center-right { position: absolute; top: 50%; right: -4px; transform: translateY(-50%); }
+.${prefix}-anchor-bottom-left { position: absolute; bottom: -4px; left: -4px; }
+.${prefix}-anchor-bottom-center { position: absolute; bottom: -4px; left: 50%; transform: translateX(-50%); }
+.${prefix}-anchor-bottom-right { position: absolute; bottom: -4px; right: -4px; }
 
 `;
 

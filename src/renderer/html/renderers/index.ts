@@ -12,7 +12,7 @@ export type { GridRenderContext } from './grid';
 export { renderHeader, renderMain, renderFooter, renderSidebar, renderSection } from './layout';
 
 // Grid renderers
-export { renderRow, renderCol } from './grid';
+export { renderRow, renderCol, renderStack, renderRelative } from './grid';
 
 // Container renderers
 export { renderCard, renderModal, renderDrawer, renderAccordion } from './container';
