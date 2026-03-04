@@ -36,3 +36,6 @@ export { generateSemanticMarkerStyles } from './semantic';
 
 // Accessibility styles
 export { generateAccessibilityStyles } from './accessibility';
+
+// Annotation styles (Marker, Annotations, AnnotationItem)
+export { generateAnnotationStyles } from './annotation';

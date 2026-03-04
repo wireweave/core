@@ -39,7 +39,8 @@ export type ComponentCategory =
   | 'data'
   | 'feedback'
   | 'overlay'
-  | 'navigation';
+  | 'navigation'
+  | 'annotation';
 
 /**
  * Component definition

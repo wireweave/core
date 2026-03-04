@@ -20,6 +20,7 @@ import {
   generateNavigationStyles,
   generateSemanticMarkerStyles,
   generateAccessibilityStyles,
+  generateAnnotationStyles,
 } from './styles/index';
 
 /**
@@ -38,6 +39,7 @@ export function generateComponentStyles(_theme: ThemeConfig, prefix: string = 'w
     generateNavigationStyles(_theme, prefix),
     generateSemanticMarkerStyles(_theme, prefix),
     generateAccessibilityStyles(prefix),
+    generateAnnotationStyles(_theme, prefix),
   ];
 
   return parts.join('\n\n');

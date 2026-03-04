@@ -669,6 +669,81 @@ export interface DividerComponentNode extends BaseNode, CommonProps {
 }
 
 // ===========================================
+// Annotation Nodes
+// ===========================================
+
+export type MarkerColor = 'blue' | 'red' | 'green' | 'yellow' | 'purple' | 'orange';
+
+/**
+ * Marker - Number marker for referencing in annotations
+ *
+ * Displays a numbered circle that can be placed on UI elements.
+ * Recommended to use inside `relative` with `anchor` for positioning outside the UI.
+ *
+ * Example:
+ * ```wireframe
+ * relative {
+ *   button "Submit"
+ *   marker 1 anchor=top-right
+ * }
+ * ```
+ */
+export interface MarkerNode extends BaseNode, CommonProps {
+  type: 'Marker';
+  /** The marker number (1, 2, 3, ...) */
+  number: number;
+  /** Marker color */
+  color?: MarkerColor;
+  /** Anchor position when inside a relative container */
+  anchor?: AnchorPosition;
+}
+
+/**
+ * Annotations - Documentation panel for screen specifications
+ *
+ * Container for annotation items that describe UI elements.
+ * Visually distinct from wireframe UI with dashed border and different background.
+ * Rendered with data-role="documentation" for LLM recognition.
+ *
+ * Example:
+ * ```wireframe
+ * annotations title="화면 설명" {
+ *   item 1 "이메일 입력" { text "유효성 검사 적용" }
+ *   item 2 "로그인 버튼" { text "OAuth 연동" }
+ * }
+ * ```
+ */
+export interface AnnotationsNode extends BaseNode, CommonProps {
+  type: 'Annotations';
+  /** Panel title (default: "화면 설명" or "Annotations") */
+  title?: string;
+  children: AnnotationItemNode[];
+}
+
+/**
+ * AnnotationItem - Individual annotation entry
+ *
+ * Represents a single annotation with a marker number, title, and description content.
+ *
+ * Example:
+ * ```wireframe
+ * item 1 "이메일 입력" {
+ *   text "- 유효성 검사 적용"
+ *   text "- 최대 255자"
+ * }
+ * ```
+ */
+export interface AnnotationItemNode extends BaseNode {
+  type: 'AnnotationItem';
+  /** The marker number this item references */
+  number: number;
+  /** Item title */
+  title: string;
+  /** Description content (Text nodes) */
+  children: AnyNode[];
+}
+
+// ===========================================
 // Node Type Unions
 // ===========================================
 
@@ -718,12 +793,16 @@ export type OverlayNode = TooltipNode | PopoverNode | DropdownNode;
 
 export type NavigationNode = NavNode | TabsNode | BreadcrumbNode;
 
+export type AnnotationNode = MarkerNode | AnnotationsNode | AnnotationItemNode;
+
 export type ContainerNode =
   | LayoutNode
   | GridNode
   | ContainerComponentNode
   | PopoverNode
-  | TooltipNode;
+  | TooltipNode
+  | AnnotationsNode
+  | AnnotationItemNode;
 
 export type LeafNode =
   | TextContentNode
@@ -734,7 +813,8 @@ export type LeafNode =
   | FeedbackNode
   | DropdownNode
   | NavigationNode
-  | DividerComponentNode;
+  | DividerComponentNode
+  | MarkerNode;
 
 export type AnyNode = ContainerNode | LeafNode;
 
@@ -782,4 +862,7 @@ export type NodeType =
   | 'Nav'
   | 'Tabs'
   | 'Breadcrumb'
-  | 'Divider';
+  | 'Divider'
+  | 'Marker'
+  | 'Annotations'
+  | 'AnnotationItem';

@@ -90,10 +90,35 @@ exports[`Render Snapshots > CSS Snapshots > should generate dark theme CSS 1`] =
 }
 
 /* When explicit width is set, don't flex-grow */
-.wf-row[style*="width:"],
-.wf-col[style*="width:"] {
+.wf-row[style*="width"],
+.wf-col[style*="width"] {
   flex: 0 0 auto;
 }
+
+/* Stack - vertical content grouping (does not fill available space) */
+.wf-stack {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+}
+
+/* Relative - container for absolute positioning children */
+.wf-relative {
+  position: relative;
+  display: inline-flex;
+}
+
+/* Anchor positioning for relative container children */
+.wf-anchor-top-left { position: absolute; top: -4px; left: -4px; }
+.wf-anchor-top-center { position: absolute; top: -4px; left: 50%; transform: translateX(-50%); }
+.wf-anchor-top-right { position: absolute; top: -4px; right: -4px; }
+.wf-anchor-center-left { position: absolute; top: 50%; left: -4px; transform: translateY(-50%); }
+.wf-anchor-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.wf-anchor-center-right { position: absolute; top: 50%; right: -4px; transform: translateY(-50%); }
+.wf-anchor-bottom-left { position: absolute; bottom: -4px; left: -4px; }
+.wf-anchor-bottom-center { position: absolute; bottom: -4px; left: 50%; transform: translateX(-50%); }
+.wf-anchor-bottom-right { position: absolute; bottom: -4px; right: -4px; }
 
 .wf-col-1 { flex: 1 0 0%; min-width: 0; }
 .wf-col-2 { flex: 2 0 0%; min-width: 0; }
@@ -363,6 +388,11 @@ exports[`Render Snapshots > CSS Snapshots > should generate dark theme CSS 1`] =
 .wf-viewport-preview.dark::after {
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 }
+
+/* Background Utilities */
+.wf-bg-muted { background-color: var(--wf-muted); background: rgba(0, 0, 0, 0.05); }
+.wf-bg-primary { background-color: var(--wf-primary); }
+.wf-bg-secondary { background-color: var(--wf-secondary); }
 
 /* Layout Components */
 .wf-header {
@@ -1694,6 +1724,103 @@ svg.wf-icon-xl { width: 32px; height: 32px; }
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Annotation Components */
+
+/* Marker - Number marker for referencing */
+.wf-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #3b82f6;
+  border: 2px solid #2563eb;
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  z-index: 10;
+}
+
+/* Annotations Panel - Documentation container */
+.wf-annotations {
+  background: #fafafa;
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
+  padding: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.wf-annotations-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.wf-annotations-icon {
+  font-size: 16px;
+}
+
+.wf-annotations-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Annotation Item - Individual entry */
+.wf-annotation-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wf-annotation-item-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wf-annotation-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #3b82f6;
+  color: white;
+  font-size: 10px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.wf-annotation-item-title {
+  font-weight: 500;
+  font-size: 13px;
+  color: #374151;
+}
+
+.wf-annotation-item-content {
+  padding-left: 26px;
+  font-size: 12px;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.wf-annotation-item-content p,
+.wf-annotation-item-content .wf-text {
+  margin: 0;
+  font-size: 12px;
+  color: #6b7280;
 }"
 `;
 
@@ -1787,10 +1914,35 @@ exports[`Render Snapshots > CSS Snapshots > should generate light theme CSS 1`] 
 }
 
 /* When explicit width is set, don't flex-grow */
-.wf-row[style*="width:"],
-.wf-col[style*="width:"] {
+.wf-row[style*="width"],
+.wf-col[style*="width"] {
   flex: 0 0 auto;
 }
+
+/* Stack - vertical content grouping (does not fill available space) */
+.wf-stack {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+}
+
+/* Relative - container for absolute positioning children */
+.wf-relative {
+  position: relative;
+  display: inline-flex;
+}
+
+/* Anchor positioning for relative container children */
+.wf-anchor-top-left { position: absolute; top: -4px; left: -4px; }
+.wf-anchor-top-center { position: absolute; top: -4px; left: 50%; transform: translateX(-50%); }
+.wf-anchor-top-right { position: absolute; top: -4px; right: -4px; }
+.wf-anchor-center-left { position: absolute; top: 50%; left: -4px; transform: translateY(-50%); }
+.wf-anchor-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.wf-anchor-center-right { position: absolute; top: 50%; right: -4px; transform: translateY(-50%); }
+.wf-anchor-bottom-left { position: absolute; bottom: -4px; left: -4px; }
+.wf-anchor-bottom-center { position: absolute; bottom: -4px; left: 50%; transform: translateX(-50%); }
+.wf-anchor-bottom-right { position: absolute; bottom: -4px; right: -4px; }
 
 .wf-col-1 { flex: 1 0 0%; min-width: 0; }
 .wf-col-2 { flex: 2 0 0%; min-width: 0; }
@@ -2060,6 +2212,11 @@ exports[`Render Snapshots > CSS Snapshots > should generate light theme CSS 1`] 
 .wf-viewport-preview.dark::after {
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 }
+
+/* Background Utilities */
+.wf-bg-muted { background-color: var(--wf-muted); background: rgba(0, 0, 0, 0.05); }
+.wf-bg-primary { background-color: var(--wf-primary); }
+.wf-bg-secondary { background-color: var(--wf-secondary); }
 
 /* Layout Components */
 .wf-header {
@@ -3391,6 +3548,103 @@ svg.wf-icon-xl { width: 32px; height: 32px; }
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Annotation Components */
+
+/* Marker - Number marker for referencing */
+.wf-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #3b82f6;
+  border: 2px solid #2563eb;
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  z-index: 10;
+}
+
+/* Annotations Panel - Documentation container */
+.wf-annotations {
+  background: #fafafa;
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
+  padding: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.wf-annotations-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.wf-annotations-icon {
+  font-size: 16px;
+}
+
+.wf-annotations-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Annotation Item - Individual entry */
+.wf-annotation-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wf-annotation-item-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wf-annotation-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #3b82f6;
+  color: white;
+  font-size: 10px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.wf-annotation-item-title {
+  font-weight: 500;
+  font-size: 13px;
+  color: #374151;
+}
+
+.wf-annotation-item-content {
+  padding-left: 26px;
+  font-size: 12px;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.wf-annotation-item-content p,
+.wf-annotation-item-content .wf-text {
+  margin: 0;
+  font-size: 12px;
+  color: #6b7280;
 }"
 `;
 
@@ -3561,10 +3815,35 @@ body {
 }
 
 /* When explicit width is set, don't flex-grow */
-.wf-row[style*="width:"],
-.wf-col[style*="width:"] {
+.wf-row[style*="width"],
+.wf-col[style*="width"] {
   flex: 0 0 auto;
 }
+
+/* Stack - vertical content grouping (does not fill available space) */
+.wf-stack {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+}
+
+/* Relative - container for absolute positioning children */
+.wf-relative {
+  position: relative;
+  display: inline-flex;
+}
+
+/* Anchor positioning for relative container children */
+.wf-anchor-top-left { position: absolute; top: -4px; left: -4px; }
+.wf-anchor-top-center { position: absolute; top: -4px; left: 50%; transform: translateX(-50%); }
+.wf-anchor-top-right { position: absolute; top: -4px; right: -4px; }
+.wf-anchor-center-left { position: absolute; top: 50%; left: -4px; transform: translateY(-50%); }
+.wf-anchor-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.wf-anchor-center-right { position: absolute; top: 50%; right: -4px; transform: translateY(-50%); }
+.wf-anchor-bottom-left { position: absolute; bottom: -4px; left: -4px; }
+.wf-anchor-bottom-center { position: absolute; bottom: -4px; left: 50%; transform: translateX(-50%); }
+.wf-anchor-bottom-right { position: absolute; bottom: -4px; right: -4px; }
 
 .wf-col-1 { flex: 1 0 0%; min-width: 0; }
 .wf-col-2 { flex: 2 0 0%; min-width: 0; }
@@ -3834,6 +4113,11 @@ body {
 .wf-viewport-preview.dark::after {
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 }
+
+/* Background Utilities */
+.wf-bg-muted { background-color: var(--wf-muted); background: rgba(0, 0, 0, 0.05); }
+.wf-bg-primary { background-color: var(--wf-primary); }
+.wf-bg-secondary { background-color: var(--wf-secondary); }
 
 /* Layout Components */
 .wf-header {
@@ -5165,6 +5449,103 @@ svg.wf-icon-xl { width: 32px; height: 32px; }
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Annotation Components */
+
+/* Marker - Number marker for referencing */
+.wf-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #3b82f6;
+  border: 2px solid #2563eb;
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  z-index: 10;
+}
+
+/* Annotations Panel - Documentation container */
+.wf-annotations {
+  background: #fafafa;
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
+  padding: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.wf-annotations-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.wf-annotations-icon {
+  font-size: 16px;
+}
+
+.wf-annotations-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Annotation Item - Individual entry */
+.wf-annotation-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wf-annotation-item-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wf-annotation-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #3b82f6;
+  color: white;
+  font-size: 10px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.wf-annotation-item-title {
+  font-weight: 500;
+  font-size: 13px;
+  color: #374151;
+}
+
+.wf-annotation-item-content {
+  padding-left: 26px;
+  font-size: 12px;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.wf-annotation-item-content p,
+.wf-annotation-item-content .wf-text {
+  margin: 0;
+  font-size: 12px;
+  color: #6b7280;
 }
   </style>
 </head>
@@ -5288,10 +5669,35 @@ body {
 }
 
 /* When explicit width is set, don't flex-grow */
-.wf-row[style*="width:"],
-.wf-col[style*="width:"] {
+.wf-row[style*="width"],
+.wf-col[style*="width"] {
   flex: 0 0 auto;
 }
+
+/* Stack - vertical content grouping (does not fill available space) */
+.wf-stack {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+}
+
+/* Relative - container for absolute positioning children */
+.wf-relative {
+  position: relative;
+  display: inline-flex;
+}
+
+/* Anchor positioning for relative container children */
+.wf-anchor-top-left { position: absolute; top: -4px; left: -4px; }
+.wf-anchor-top-center { position: absolute; top: -4px; left: 50%; transform: translateX(-50%); }
+.wf-anchor-top-right { position: absolute; top: -4px; right: -4px; }
+.wf-anchor-center-left { position: absolute; top: 50%; left: -4px; transform: translateY(-50%); }
+.wf-anchor-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.wf-anchor-center-right { position: absolute; top: 50%; right: -4px; transform: translateY(-50%); }
+.wf-anchor-bottom-left { position: absolute; bottom: -4px; left: -4px; }
+.wf-anchor-bottom-center { position: absolute; bottom: -4px; left: 50%; transform: translateX(-50%); }
+.wf-anchor-bottom-right { position: absolute; bottom: -4px; right: -4px; }
 
 .wf-col-1 { flex: 1 0 0%; min-width: 0; }
 .wf-col-2 { flex: 2 0 0%; min-width: 0; }
@@ -5561,6 +5967,11 @@ body {
 .wf-viewport-preview.dark::after {
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 }
+
+/* Background Utilities */
+.wf-bg-muted { background-color: var(--wf-muted); background: rgba(0, 0, 0, 0.05); }
+.wf-bg-primary { background-color: var(--wf-primary); }
+.wf-bg-secondary { background-color: var(--wf-secondary); }
 
 /* Layout Components */
 .wf-header {
@@ -6892,6 +7303,103 @@ svg.wf-icon-xl { width: 32px; height: 32px; }
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Annotation Components */
+
+/* Marker - Number marker for referencing */
+.wf-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #3b82f6;
+  border: 2px solid #2563eb;
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  z-index: 10;
+}
+
+/* Annotations Panel - Documentation container */
+.wf-annotations {
+  background: #fafafa;
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
+  padding: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.wf-annotations-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.wf-annotations-icon {
+  font-size: 16px;
+}
+
+.wf-annotations-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Annotation Item - Individual entry */
+.wf-annotation-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wf-annotation-item-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wf-annotation-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #3b82f6;
+  color: white;
+  font-size: 10px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.wf-annotation-item-title {
+  font-weight: 500;
+  font-size: 13px;
+  color: #374151;
+}
+
+.wf-annotation-item-content {
+  padding-left: 26px;
+  font-size: 12px;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.wf-annotation-item-content p,
+.wf-annotation-item-content .wf-text {
+  margin: 0;
+  font-size: 12px;
+  color: #6b7280;
 }
   </style>
 </head>
@@ -7140,10 +7648,35 @@ exports[`Render Snapshots > SVG Snapshots > should render buttons to SVG 1`] = `
 }
 
 /* When explicit width is set, don't flex-grow */
-.wf-row[style*="width:"],
-.wf-col[style*="width:"] {
+.wf-row[style*="width"],
+.wf-col[style*="width"] {
   flex: 0 0 auto;
 }
+
+/* Stack - vertical content grouping (does not fill available space) */
+.wf-stack {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+}
+
+/* Relative - container for absolute positioning children */
+.wf-relative {
+  position: relative;
+  display: inline-flex;
+}
+
+/* Anchor positioning for relative container children */
+.wf-anchor-top-left { position: absolute; top: -4px; left: -4px; }
+.wf-anchor-top-center { position: absolute; top: -4px; left: 50%; transform: translateX(-50%); }
+.wf-anchor-top-right { position: absolute; top: -4px; right: -4px; }
+.wf-anchor-center-left { position: absolute; top: 50%; left: -4px; transform: translateY(-50%); }
+.wf-anchor-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.wf-anchor-center-right { position: absolute; top: 50%; right: -4px; transform: translateY(-50%); }
+.wf-anchor-bottom-left { position: absolute; bottom: -4px; left: -4px; }
+.wf-anchor-bottom-center { position: absolute; bottom: -4px; left: 50%; transform: translateX(-50%); }
+.wf-anchor-bottom-right { position: absolute; bottom: -4px; right: -4px; }
 
 .wf-col-1 { flex: 1 0 0%; min-width: 0; }
 .wf-col-2 { flex: 2 0 0%; min-width: 0; }
@@ -7413,6 +7946,11 @@ exports[`Render Snapshots > SVG Snapshots > should render buttons to SVG 1`] = `
 .wf-viewport-preview.dark::after {
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 }
+
+/* Background Utilities */
+.wf-bg-muted { background-color: var(--wf-muted); background: rgba(0, 0, 0, 0.05); }
+.wf-bg-primary { background-color: var(--wf-primary); }
+.wf-bg-secondary { background-color: var(--wf-secondary); }
 
 /* Layout Components */
 .wf-header {
@@ -8744,6 +9282,103 @@ svg.wf-icon-xl { width: 32px; height: 32px; }
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Annotation Components */
+
+/* Marker - Number marker for referencing */
+.wf-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #3b82f6;
+  border: 2px solid #2563eb;
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  z-index: 10;
+}
+
+/* Annotations Panel - Documentation container */
+.wf-annotations {
+  background: #fafafa;
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
+  padding: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.wf-annotations-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.wf-annotations-icon {
+  font-size: 16px;
+}
+
+.wf-annotations-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Annotation Item - Individual entry */
+.wf-annotation-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wf-annotation-item-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wf-annotation-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #3b82f6;
+  color: white;
+  font-size: 10px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.wf-annotation-item-title {
+  font-weight: 500;
+  font-size: 13px;
+  color: #374151;
+}
+
+.wf-annotation-item-content {
+  padding-left: 26px;
+  font-size: 12px;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.wf-annotation-item-content p,
+.wf-annotation-item-content .wf-text {
+  margin: 0;
+  font-size: 12px;
+  color: #6b7280;
 }
       </style>
       <div class="wf-page" style="position: relative; width: 1440px; height: 900px; overflow: hidden" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
@@ -8861,10 +9496,35 @@ exports[`Render Snapshots > SVG Snapshots > should render card to SVG 1`] = `
 }
 
 /* When explicit width is set, don't flex-grow */
-.wf-row[style*="width:"],
-.wf-col[style*="width:"] {
+.wf-row[style*="width"],
+.wf-col[style*="width"] {
   flex: 0 0 auto;
 }
+
+/* Stack - vertical content grouping (does not fill available space) */
+.wf-stack {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+}
+
+/* Relative - container for absolute positioning children */
+.wf-relative {
+  position: relative;
+  display: inline-flex;
+}
+
+/* Anchor positioning for relative container children */
+.wf-anchor-top-left { position: absolute; top: -4px; left: -4px; }
+.wf-anchor-top-center { position: absolute; top: -4px; left: 50%; transform: translateX(-50%); }
+.wf-anchor-top-right { position: absolute; top: -4px; right: -4px; }
+.wf-anchor-center-left { position: absolute; top: 50%; left: -4px; transform: translateY(-50%); }
+.wf-anchor-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.wf-anchor-center-right { position: absolute; top: 50%; right: -4px; transform: translateY(-50%); }
+.wf-anchor-bottom-left { position: absolute; bottom: -4px; left: -4px; }
+.wf-anchor-bottom-center { position: absolute; bottom: -4px; left: 50%; transform: translateX(-50%); }
+.wf-anchor-bottom-right { position: absolute; bottom: -4px; right: -4px; }
 
 .wf-col-1 { flex: 1 0 0%; min-width: 0; }
 .wf-col-2 { flex: 2 0 0%; min-width: 0; }
@@ -9134,6 +9794,11 @@ exports[`Render Snapshots > SVG Snapshots > should render card to SVG 1`] = `
 .wf-viewport-preview.dark::after {
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 }
+
+/* Background Utilities */
+.wf-bg-muted { background-color: var(--wf-muted); background: rgba(0, 0, 0, 0.05); }
+.wf-bg-primary { background-color: var(--wf-primary); }
+.wf-bg-secondary { background-color: var(--wf-secondary); }
 
 /* Layout Components */
 .wf-header {
@@ -10465,6 +11130,103 @@ svg.wf-icon-xl { width: 32px; height: 32px; }
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Annotation Components */
+
+/* Marker - Number marker for referencing */
+.wf-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #3b82f6;
+  border: 2px solid #2563eb;
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  z-index: 10;
+}
+
+/* Annotations Panel - Documentation container */
+.wf-annotations {
+  background: #fafafa;
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
+  padding: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.wf-annotations-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.wf-annotations-icon {
+  font-size: 16px;
+}
+
+.wf-annotations-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Annotation Item - Individual entry */
+.wf-annotation-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wf-annotation-item-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wf-annotation-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #3b82f6;
+  color: white;
+  font-size: 10px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.wf-annotation-item-title {
+  font-weight: 500;
+  font-size: 13px;
+  color: #374151;
+}
+
+.wf-annotation-item-content {
+  padding-left: 26px;
+  font-size: 12px;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.wf-annotation-item-content p,
+.wf-annotation-item-content .wf-text {
+  margin: 0;
+  font-size: 12px;
+  color: #6b7280;
 }
       </style>
       <div class="wf-page" style="position: relative; width: 1440px; height: 900px; overflow: hidden" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
@@ -10583,10 +11345,35 @@ exports[`Render Snapshots > SVG Snapshots > should render form to SVG 1`] = `
 }
 
 /* When explicit width is set, don't flex-grow */
-.wf-row[style*="width:"],
-.wf-col[style*="width:"] {
+.wf-row[style*="width"],
+.wf-col[style*="width"] {
   flex: 0 0 auto;
 }
+
+/* Stack - vertical content grouping (does not fill available space) */
+.wf-stack {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+}
+
+/* Relative - container for absolute positioning children */
+.wf-relative {
+  position: relative;
+  display: inline-flex;
+}
+
+/* Anchor positioning for relative container children */
+.wf-anchor-top-left { position: absolute; top: -4px; left: -4px; }
+.wf-anchor-top-center { position: absolute; top: -4px; left: 50%; transform: translateX(-50%); }
+.wf-anchor-top-right { position: absolute; top: -4px; right: -4px; }
+.wf-anchor-center-left { position: absolute; top: 50%; left: -4px; transform: translateY(-50%); }
+.wf-anchor-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.wf-anchor-center-right { position: absolute; top: 50%; right: -4px; transform: translateY(-50%); }
+.wf-anchor-bottom-left { position: absolute; bottom: -4px; left: -4px; }
+.wf-anchor-bottom-center { position: absolute; bottom: -4px; left: 50%; transform: translateX(-50%); }
+.wf-anchor-bottom-right { position: absolute; bottom: -4px; right: -4px; }
 
 .wf-col-1 { flex: 1 0 0%; min-width: 0; }
 .wf-col-2 { flex: 2 0 0%; min-width: 0; }
@@ -10856,6 +11643,11 @@ exports[`Render Snapshots > SVG Snapshots > should render form to SVG 1`] = `
 .wf-viewport-preview.dark::after {
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 }
+
+/* Background Utilities */
+.wf-bg-muted { background-color: var(--wf-muted); background: rgba(0, 0, 0, 0.05); }
+.wf-bg-primary { background-color: var(--wf-primary); }
+.wf-bg-secondary { background-color: var(--wf-secondary); }
 
 /* Layout Components */
 .wf-header {
@@ -12187,6 +12979,103 @@ svg.wf-icon-xl { width: 32px; height: 32px; }
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Annotation Components */
+
+/* Marker - Number marker for referencing */
+.wf-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #3b82f6;
+  border: 2px solid #2563eb;
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  z-index: 10;
+}
+
+/* Annotations Panel - Documentation container */
+.wf-annotations {
+  background: #fafafa;
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
+  padding: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.wf-annotations-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.wf-annotations-icon {
+  font-size: 16px;
+}
+
+.wf-annotations-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Annotation Item - Individual entry */
+.wf-annotation-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wf-annotation-item-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wf-annotation-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #3b82f6;
+  color: white;
+  font-size: 10px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.wf-annotation-item-title {
+  font-weight: 500;
+  font-size: 13px;
+  color: #374151;
+}
+
+.wf-annotation-item-content {
+  padding-left: 26px;
+  font-size: 12px;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.wf-annotation-item-content p,
+.wf-annotation-item-content .wf-text {
+  margin: 0;
+  font-size: 12px;
+  color: #6b7280;
 }
       </style>
       <div class="wf-page" style="position: relative; width: 1440px; height: 900px; overflow: hidden" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
@@ -12306,10 +13195,35 @@ exports[`Render Snapshots > SVG Snapshots > should render layout to SVG 1`] = `
 }
 
 /* When explicit width is set, don't flex-grow */
-.wf-row[style*="width:"],
-.wf-col[style*="width:"] {
+.wf-row[style*="width"],
+.wf-col[style*="width"] {
   flex: 0 0 auto;
 }
+
+/* Stack - vertical content grouping (does not fill available space) */
+.wf-stack {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+}
+
+/* Relative - container for absolute positioning children */
+.wf-relative {
+  position: relative;
+  display: inline-flex;
+}
+
+/* Anchor positioning for relative container children */
+.wf-anchor-top-left { position: absolute; top: -4px; left: -4px; }
+.wf-anchor-top-center { position: absolute; top: -4px; left: 50%; transform: translateX(-50%); }
+.wf-anchor-top-right { position: absolute; top: -4px; right: -4px; }
+.wf-anchor-center-left { position: absolute; top: 50%; left: -4px; transform: translateY(-50%); }
+.wf-anchor-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.wf-anchor-center-right { position: absolute; top: 50%; right: -4px; transform: translateY(-50%); }
+.wf-anchor-bottom-left { position: absolute; bottom: -4px; left: -4px; }
+.wf-anchor-bottom-center { position: absolute; bottom: -4px; left: 50%; transform: translateX(-50%); }
+.wf-anchor-bottom-right { position: absolute; bottom: -4px; right: -4px; }
 
 .wf-col-1 { flex: 1 0 0%; min-width: 0; }
 .wf-col-2 { flex: 2 0 0%; min-width: 0; }
@@ -12579,6 +13493,11 @@ exports[`Render Snapshots > SVG Snapshots > should render layout to SVG 1`] = `
 .wf-viewport-preview.dark::after {
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 }
+
+/* Background Utilities */
+.wf-bg-muted { background-color: var(--wf-muted); background: rgba(0, 0, 0, 0.05); }
+.wf-bg-primary { background-color: var(--wf-primary); }
+.wf-bg-secondary { background-color: var(--wf-secondary); }
 
 /* Layout Components */
 .wf-header {
@@ -13910,6 +14829,103 @@ svg.wf-icon-xl { width: 32px; height: 32px; }
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Annotation Components */
+
+/* Marker - Number marker for referencing */
+.wf-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #3b82f6;
+  border: 2px solid #2563eb;
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  z-index: 10;
+}
+
+/* Annotations Panel - Documentation container */
+.wf-annotations {
+  background: #fafafa;
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
+  padding: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.wf-annotations-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.wf-annotations-icon {
+  font-size: 16px;
+}
+
+.wf-annotations-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Annotation Item - Individual entry */
+.wf-annotation-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wf-annotation-item-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wf-annotation-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #3b82f6;
+  color: white;
+  font-size: 10px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.wf-annotation-item-title {
+  font-weight: 500;
+  font-size: 13px;
+  color: #374151;
+}
+
+.wf-annotation-item-content {
+  padding-left: 26px;
+  font-size: 12px;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.wf-annotation-item-content p,
+.wf-annotation-item-content .wf-text {
+  margin: 0;
+  font-size: 12px;
+  color: #6b7280;
 }
       </style>
       <div class="wf-page" style="position: relative; width: 1440px; height: 900px; overflow: hidden" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
@@ -14033,10 +15049,35 @@ exports[`Render Snapshots > SVG Snapshots > should render simple text to SVG 1`]
 }
 
 /* When explicit width is set, don't flex-grow */
-.wf-row[style*="width:"],
-.wf-col[style*="width:"] {
+.wf-row[style*="width"],
+.wf-col[style*="width"] {
   flex: 0 0 auto;
 }
+
+/* Stack - vertical content grouping (does not fill available space) */
+.wf-stack {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+}
+
+/* Relative - container for absolute positioning children */
+.wf-relative {
+  position: relative;
+  display: inline-flex;
+}
+
+/* Anchor positioning for relative container children */
+.wf-anchor-top-left { position: absolute; top: -4px; left: -4px; }
+.wf-anchor-top-center { position: absolute; top: -4px; left: 50%; transform: translateX(-50%); }
+.wf-anchor-top-right { position: absolute; top: -4px; right: -4px; }
+.wf-anchor-center-left { position: absolute; top: 50%; left: -4px; transform: translateY(-50%); }
+.wf-anchor-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.wf-anchor-center-right { position: absolute; top: 50%; right: -4px; transform: translateY(-50%); }
+.wf-anchor-bottom-left { position: absolute; bottom: -4px; left: -4px; }
+.wf-anchor-bottom-center { position: absolute; bottom: -4px; left: 50%; transform: translateX(-50%); }
+.wf-anchor-bottom-right { position: absolute; bottom: -4px; right: -4px; }
 
 .wf-col-1 { flex: 1 0 0%; min-width: 0; }
 .wf-col-2 { flex: 2 0 0%; min-width: 0; }
@@ -14306,6 +15347,11 @@ exports[`Render Snapshots > SVG Snapshots > should render simple text to SVG 1`]
 .wf-viewport-preview.dark::after {
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 }
+
+/* Background Utilities */
+.wf-bg-muted { background-color: var(--wf-muted); background: rgba(0, 0, 0, 0.05); }
+.wf-bg-primary { background-color: var(--wf-primary); }
+.wf-bg-secondary { background-color: var(--wf-secondary); }
 
 /* Layout Components */
 .wf-header {
@@ -15637,6 +16683,103 @@ svg.wf-icon-xl { width: 32px; height: 32px; }
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Annotation Components */
+
+/* Marker - Number marker for referencing */
+.wf-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #3b82f6;
+  border: 2px solid #2563eb;
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  z-index: 10;
+}
+
+/* Annotations Panel - Documentation container */
+.wf-annotations {
+  background: #fafafa;
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
+  padding: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.wf-annotations-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.wf-annotations-icon {
+  font-size: 16px;
+}
+
+.wf-annotations-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Annotation Item - Individual entry */
+.wf-annotation-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wf-annotation-item-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wf-annotation-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #3b82f6;
+  color: white;
+  font-size: 10px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.wf-annotation-item-title {
+  font-weight: 500;
+  font-size: 13px;
+  color: #374151;
+}
+
+.wf-annotation-item-content {
+  padding-left: 26px;
+  font-size: 12px;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.wf-annotation-item-content p,
+.wf-annotation-item-content .wf-text {
+  margin: 0;
+  font-size: 12px;
+  color: #6b7280;
 }
       </style>
       <div class="wf-page" style="position: relative; width: 1440px; height: 900px; overflow: hidden" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
@@ -15752,10 +16895,35 @@ exports[`Render Snapshots > SVG Snapshots > should respect padding option 1`] = 
 }
 
 /* When explicit width is set, don't flex-grow */
-.wf-row[style*="width:"],
-.wf-col[style*="width:"] {
+.wf-row[style*="width"],
+.wf-col[style*="width"] {
   flex: 0 0 auto;
 }
+
+/* Stack - vertical content grouping (does not fill available space) */
+.wf-stack {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+}
+
+/* Relative - container for absolute positioning children */
+.wf-relative {
+  position: relative;
+  display: inline-flex;
+}
+
+/* Anchor positioning for relative container children */
+.wf-anchor-top-left { position: absolute; top: -4px; left: -4px; }
+.wf-anchor-top-center { position: absolute; top: -4px; left: 50%; transform: translateX(-50%); }
+.wf-anchor-top-right { position: absolute; top: -4px; right: -4px; }
+.wf-anchor-center-left { position: absolute; top: 50%; left: -4px; transform: translateY(-50%); }
+.wf-anchor-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.wf-anchor-center-right { position: absolute; top: 50%; right: -4px; transform: translateY(-50%); }
+.wf-anchor-bottom-left { position: absolute; bottom: -4px; left: -4px; }
+.wf-anchor-bottom-center { position: absolute; bottom: -4px; left: 50%; transform: translateX(-50%); }
+.wf-anchor-bottom-right { position: absolute; bottom: -4px; right: -4px; }
 
 .wf-col-1 { flex: 1 0 0%; min-width: 0; }
 .wf-col-2 { flex: 2 0 0%; min-width: 0; }
@@ -16025,6 +17193,11 @@ exports[`Render Snapshots > SVG Snapshots > should respect padding option 1`] = 
 .wf-viewport-preview.dark::after {
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 }
+
+/* Background Utilities */
+.wf-bg-muted { background-color: var(--wf-muted); background: rgba(0, 0, 0, 0.05); }
+.wf-bg-primary { background-color: var(--wf-primary); }
+.wf-bg-secondary { background-color: var(--wf-secondary); }
 
 /* Layout Components */
 .wf-header {
@@ -17356,6 +18529,103 @@ svg.wf-icon-xl { width: 32px; height: 32px; }
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Annotation Components */
+
+/* Marker - Number marker for referencing */
+.wf-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #3b82f6;
+  border: 2px solid #2563eb;
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  z-index: 10;
+}
+
+/* Annotations Panel - Documentation container */
+.wf-annotations {
+  background: #fafafa;
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
+  padding: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.wf-annotations-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.wf-annotations-icon {
+  font-size: 16px;
+}
+
+.wf-annotations-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Annotation Item - Individual entry */
+.wf-annotation-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wf-annotation-item-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wf-annotation-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #3b82f6;
+  color: white;
+  font-size: 10px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.wf-annotation-item-title {
+  font-weight: 500;
+  font-size: 13px;
+  color: #374151;
+}
+
+.wf-annotation-item-content {
+  padding-left: 26px;
+  font-size: 12px;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.wf-annotation-item-content p,
+.wf-annotation-item-content .wf-text {
+  margin: 0;
+  font-size: 12px;
+  color: #6b7280;
 }
       </style>
       <div class="wf-page" style="position: relative; width: 1440px; height: 900px; overflow: hidden" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">

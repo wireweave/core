@@ -235,6 +235,8 @@ UIElement
   / Tabs
   / Breadcrumb
   / Divider
+  / Marker
+  / Annotations
 
 // Text Components
 Text
@@ -616,6 +618,62 @@ Divider
     }
 
 // ============================================================
+// Annotation Components
+// ============================================================
+
+// Marker - Number marker for referencing in annotations
+// Usage: marker 1 anchor=top-right color=blue
+Marker
+  = "marker" _ num:Integer _ attrs:Attributes? {
+      return createNode('Marker', {
+        number: num,
+        ...attrsToObject(attrs)
+      });
+    }
+
+// Annotations - Documentation panel for screen specifications
+// Usage: annotations title="화면 설명" { item 1 "제목" { text "설명" } }
+Annotations
+  = "annotations" _ attrs:Attributes? _ "{" _ items:AnnotationContent _ "}" {
+      return createNode('Annotations', {
+        ...attrsToObject(attrs),
+        children: items
+      });
+    }
+
+AnnotationContent
+  = items:(AnnotationItem _)* {
+      return items.map(i => i[0]).filter(i => i !== null);
+    }
+
+// AnnotationItem - Individual annotation entry
+// Usage: item 1 "이메일 입력" { text "- 유효성 검사 적용" }
+AnnotationItem
+  = "item" _ num:Integer _ title:StringLiteral _ attrs:Attributes? _ "{" _ children:Children _ "}" {
+      return createNode('AnnotationItem', {
+        number: num,
+        title: title,
+        ...attrsToObject(attrs),
+        children
+      });
+    }
+  / "item" _ num:Integer _ title:StringLiteral _ attrs:Attributes? {
+      return createNode('AnnotationItem', {
+        number: num,
+        title: title,
+        ...attrsToObject(attrs),
+        children: []
+      });
+    }
+  / Comment { return null; }
+
+// Integer for marker numbers
+Integer "integer"
+  = digits:[0-9]+ {
+      return parseInt(digits.join(''), 10);
+    }
+
+// ============================================================
 // Attributes
 // ============================================================
 
@@ -645,7 +703,8 @@ ChildKeyword
     / "table" / "columns" / "list" / "item"
     / "alert" / "toast" / "progress" / "spinner"
     / "tooltip" / "popover" / "dropdown" / "divider"
-    / "nav" / "tabs" / "tab" / "breadcrumb" / "group") !IdentifierChar
+    / "nav" / "tabs" / "tab" / "breadcrumb" / "group"
+    / "marker" / "annotations") !IdentifierChar
 
 IdentifierChar
   = [a-zA-Z0-9_-]
