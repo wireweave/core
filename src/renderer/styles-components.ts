@@ -20,6 +20,7 @@ import {
   generateNavigationStyles,
   generateSemanticMarkerStyles,
   generateAccessibilityStyles,
+  generateDividerStyles,
   generateAnnotationStyles,
 } from './styles/index';
 
@@ -39,6 +40,7 @@ export function generateComponentStyles(_theme: ThemeConfig, prefix: string = 'w
     generateNavigationStyles(_theme, prefix),
     generateSemanticMarkerStyles(_theme, prefix),
     generateAccessibilityStyles(prefix),
+    generateDividerStyles(prefix),
     generateAnnotationStyles(_theme, prefix),
   ];
 

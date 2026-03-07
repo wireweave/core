@@ -37,5 +37,8 @@ export { generateSemanticMarkerStyles } from './semantic';
 // Accessibility styles
 export { generateAccessibilityStyles } from './accessibility';
 
+// Divider styles (Horizontal, Vertical)
+export { generateDividerStyles } from './divider';
+
 // Annotation styles (Marker, Annotations, AnnotationItem)
 export { generateAnnotationStyles } from './annotation';
