@@ -319,7 +319,10 @@ function generateSizeClasses(prefix: string): string {
 /* Background Utilities */
 .${prefix}-bg-muted { background-color: var(--${prefix}-muted); background: rgba(0, 0, 0, 0.05); }
 .${prefix}-bg-primary { background-color: var(--${prefix}-primary); }
-.${prefix}-bg-secondary { background-color: var(--${prefix}-secondary); }`;
+.${prefix}-bg-secondary { background-color: var(--${prefix}-secondary); }
+
+/* Border Utilities */
+.${prefix}-border { border: 1px solid var(--${prefix}-border); }`;
 }
 
 /**
