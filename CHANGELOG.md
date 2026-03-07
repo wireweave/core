@@ -1,5 +1,7 @@
 # Changelog
 
+## [2.6.0](https://github.com/wireweave/core/compare/v2.6.0-beta.0...v2.6.0) (2026-03-07)
+
 ## [2.6.0-beta.0](https://github.com/wireweave/core/compare/v2.5.1...v2.6.0-beta.0) (2026-03-07)
 
 ### Features
