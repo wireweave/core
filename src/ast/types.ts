@@ -666,6 +666,7 @@ export interface BreadcrumbNode extends BaseNode, CommonProps {
 
 export interface DividerComponentNode extends BaseNode, CommonProps {
   type: 'Divider';
+  vertical?: boolean;
 }
 
 // ===========================================

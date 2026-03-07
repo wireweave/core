@@ -406,6 +406,9 @@ export class HtmlRenderer extends BaseRenderer {
     if (props.bg === 'primary') classes.push(`${p}-bg-primary`);
     if (props.bg === 'secondary') classes.push(`${p}-bg-secondary`);
 
+    // Border
+    if ((props as Record<string, unknown>).border === true) classes.push(`${p}-border`);
+
     return classes;
   }
 

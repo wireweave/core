@@ -914,6 +914,11 @@ describe('Component Grammar', () => {
       const result = parse('page { divider my=4 }');
       expect(result.children[0].children[0].my).toBe(4);
     });
+
+    it('should parse divider with vertical flag', () => {
+      const result = parse('page { divider vertical }');
+      expect(result.children[0].children[0].vertical).toBe(true);
+    });
   });
 
   // ===========================================

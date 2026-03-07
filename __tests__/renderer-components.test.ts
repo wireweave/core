@@ -541,6 +541,30 @@ describe('Component Rendering', () => {
       expect(result.html).toContain('<hr');
       expect(result.html).toContain('wf-divider');
     });
+
+    it('should render vertical divider', () => {
+      const doc = parse('page { divider vertical }');
+      const result = render(doc);
+
+      expect(result.html).toContain('wf-divider');
+      expect(result.html).toContain('wf-divider-vertical');
+    });
+
+    it('should include divider styles in CSS', () => {
+      const doc = parse('page { divider }');
+      const result = render(doc);
+
+      expect(result.css).toContain('.wf-divider');
+    });
+  });
+
+  describe('Border utility', () => {
+    it('should render border class on card', () => {
+      const doc = parse('page { card border { text "Test" } }');
+      const result = render(doc);
+
+      expect(result.html).toContain('wf-border');
+    });
   });
 });
 

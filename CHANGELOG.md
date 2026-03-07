@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.6.0-beta.0](https://github.com/wireweave/core/compare/v2.5.1...v2.6.0-beta.0) (2026-03-07)
+
+### Features
+
+* **divider:** add vertical divider support ([6353e6e](https://github.com/wireweave/core/commit/6353e6e15e26e51b6d8b8020551df02d8131b921))
+* **styles:** add border utility class ([d13cc0e](https://github.com/wireweave/core/commit/d13cc0e600951ff5dbee3a0e01aee4b4b7ee5dc6))
+
+### Documentation
+
+* **deps:** remove obsolete package dependencies ([1f2808a](https://github.com/wireweave/core/commit/1f2808a3e0c7264810c8da35462e6527c503a98b))
+
 ## [2.5.1](https://github.com/wireweave/core/compare/v2.5.0...v2.5.1) (2026-03-04)
 
 ## [2.5.0](https://github.com/wireweave/core/compare/v2.4.0...v2.5.0) (2026-03-04)
