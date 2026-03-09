@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.6.2-beta.0](https://github.com/wireweave/core/compare/v2.6.1...v2.6.2-beta.0) (2026-03-09)
+
+### Bug Fixes
+
+* **renderer:** move annotations outside viewport overflow ([c593cfc](https://github.com/wireweave/core/commit/c593cfc1f7cadebb3a728d4465327623a21b60db))
+
 ## [2.6.1](https://github.com/wireweave/core/compare/v2.6.1-beta.2...v2.6.1) (2026-03-09)
 
 ## [2.6.1-beta.2](https://github.com/wireweave/core/compare/v2.6.1-beta.1...v2.6.1-beta.2) (2026-03-09)
