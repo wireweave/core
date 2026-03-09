@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.6.1-beta.2](https://github.com/wireweave/core/compare/v2.6.1-beta.1...v2.6.1-beta.2) (2026-03-09)
+
+## [2.6.1-beta.1](https://github.com/wireweave/core/compare/v2.6.1-beta.0...v2.6.1-beta.1) (2026-03-08)
+
+## [2.6.1-beta.0](https://github.com/wireweave/core/compare/v2.6.0...v2.6.1-beta.0) (2026-03-07)
+
+### Documentation
+
+* **core:** update dependency table with deployment info ([a44cc6f](https://github.com/wireweave/core/commit/a44cc6fd300d3fb3a38c8e3e1b03b4f0cf95fe0b))
+
 ## [2.6.0](https://github.com/wireweave/core/compare/v2.6.0-beta.0...v2.6.0) (2026-03-07)
 
 ## [2.6.0-beta.0](https://github.com/wireweave/core/compare/v2.5.1...v2.6.0-beta.0) (2026-03-07)
