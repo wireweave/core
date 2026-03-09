@@ -27,8 +27,15 @@ export function generateAnnotationStyles(_theme: ThemeConfig, prefix: string): s
   z-index: 10;
 }
 
+/* Page Wrapper - Contains page + annotations outside viewport overflow */
+.${prefix}-page-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 /* Annotations Panel - Documentation container */
 .${prefix}-annotations {
+  margin-top: 16px;
   background: #fafafa;
   border: 2px dashed #d1d5db;
   border-radius: 8px;

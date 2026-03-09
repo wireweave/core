@@ -322,7 +322,12 @@ export class HtmlRenderer extends BaseRenderer {
       ...this.getCommonClasses(node),
     ]);
 
-    const children = this.renderChildren(node.children);
+    // Separate UI children from annotation children
+    // Annotations render outside the viewport container to avoid overflow: hidden clipping
+    const uiChildren = node.children.filter(child => child.type !== 'Annotations');
+    const annotationChildren = node.children.filter(child => child.type === 'Annotations');
+
+    const uiContent = this.renderChildren(uiChildren);
     const title = node.title ? `<title>${this.escapeHtml(node.title)}</title>\n` : '';
 
     // Build common styles (padding, margin, etc.) and combine with viewport dimensions
@@ -341,7 +346,15 @@ export class HtmlRenderer extends BaseRenderer {
     // Add data attributes for viewport info
     const dataAttrs = `data-viewport-width="${viewport.width}" data-viewport-height="${viewport.height}" data-viewport-label="${viewport.label}"`;
 
-    return `<div class="${classes}" style="${combinedStyle}" ${dataAttrs}>\n${title}${children}\n</div>`;
+    const pageDiv = `<div class="${classes}" style="${combinedStyle}" ${dataAttrs}>\n${title}${uiContent}\n</div>`;
+
+    // If there are annotations, wrap page + annotations in a wrapper div
+    if (annotationChildren.length > 0) {
+      const annotationsContent = this.renderChildren(annotationChildren);
+      return `<div class="${this.prefix}-page-wrapper" style="width: ${viewport.width}px">\n${pageDiv}\n${annotationsContent}\n</div>`;
+    }
+
+    return pageDiv;
   }
 
   /**
