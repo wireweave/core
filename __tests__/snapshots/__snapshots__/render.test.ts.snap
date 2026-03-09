@@ -1776,8 +1776,15 @@ svg.wf-icon-xl { width: 32px; height: 32px; }
   z-index: 10;
 }
 
+/* Page Wrapper - Contains page + annotations outside viewport overflow */
+.wf-page-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 /* Annotations Panel - Documentation container */
 .wf-annotations {
+  margin-top: 16px;
   background: #fafafa;
   border: 2px dashed #d1d5db;
   border-radius: 8px;
@@ -3631,8 +3638,15 @@ svg.wf-icon-xl { width: 32px; height: 32px; }
   z-index: 10;
 }
 
+/* Page Wrapper - Contains page + annotations outside viewport overflow */
+.wf-page-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 /* Annotations Panel - Documentation container */
 .wf-annotations {
+  margin-top: 16px;
   background: #fafafa;
   border: 2px dashed #d1d5db;
   border-radius: 8px;
@@ -5563,8 +5577,15 @@ svg.wf-icon-xl { width: 32px; height: 32px; }
   z-index: 10;
 }
 
+/* Page Wrapper - Contains page + annotations outside viewport overflow */
+.wf-page-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 /* Annotations Panel - Documentation container */
 .wf-annotations {
+  margin-top: 16px;
   background: #fafafa;
   border: 2px dashed #d1d5db;
   border-radius: 8px;
@@ -7448,8 +7469,15 @@ svg.wf-icon-xl { width: 32px; height: 32px; }
   z-index: 10;
 }
 
+/* Page Wrapper - Contains page + annotations outside viewport overflow */
+.wf-page-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 /* Annotations Panel - Documentation container */
 .wf-annotations {
+  margin-top: 16px;
   background: #fafafa;
   border: 2px dashed #d1d5db;
   border-radius: 8px;
@@ -9458,8 +9486,15 @@ svg.wf-icon-xl { width: 32px; height: 32px; }
   z-index: 10;
 }
 
+/* Page Wrapper - Contains page + annotations outside viewport overflow */
+.wf-page-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 /* Annotations Panel - Documentation container */
 .wf-annotations {
+  margin-top: 16px;
   background: #fafafa;
   border: 2px dashed #d1d5db;
   border-radius: 8px;
@@ -11337,8 +11372,15 @@ svg.wf-icon-xl { width: 32px; height: 32px; }
   z-index: 10;
 }
 
+/* Page Wrapper - Contains page + annotations outside viewport overflow */
+.wf-page-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 /* Annotations Panel - Documentation container */
 .wf-annotations {
+  margin-top: 16px;
   background: #fafafa;
   border: 2px dashed #d1d5db;
   border-radius: 8px;
@@ -13217,8 +13259,15 @@ svg.wf-icon-xl { width: 32px; height: 32px; }
   z-index: 10;
 }
 
+/* Page Wrapper - Contains page + annotations outside viewport overflow */
+.wf-page-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 /* Annotations Panel - Documentation container */
 .wf-annotations {
+  margin-top: 16px;
   background: #fafafa;
   border: 2px dashed #d1d5db;
   border-radius: 8px;
@@ -15098,8 +15147,15 @@ svg.wf-icon-xl { width: 32px; height: 32px; }
   z-index: 10;
 }
 
+/* Page Wrapper - Contains page + annotations outside viewport overflow */
+.wf-page-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 /* Annotations Panel - Documentation container */
 .wf-annotations {
+  margin-top: 16px;
   background: #fafafa;
   border: 2px dashed #d1d5db;
   border-radius: 8px;
@@ -16983,8 +17039,15 @@ svg.wf-icon-xl { width: 32px; height: 32px; }
   z-index: 10;
 }
 
+/* Page Wrapper - Contains page + annotations outside viewport overflow */
+.wf-page-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 /* Annotations Panel - Documentation container */
 .wf-annotations {
+  margin-top: 16px;
   background: #fafafa;
   border: 2px dashed #d1d5db;
   border-radius: 8px;
@@ -18860,8 +18923,15 @@ svg.wf-icon-xl { width: 32px; height: 32px; }
   z-index: 10;
 }
 
+/* Page Wrapper - Contains page + annotations outside viewport overflow */
+.wf-page-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 /* Annotations Panel - Documentation container */
 .wf-annotations {
+  margin-top: 16px;
   background: #fafafa;
   border: 2px dashed #d1d5db;
   border-radius: 8px;
