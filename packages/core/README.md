@@ -78,6 +78,22 @@ const json = exportToJson(a) // serializable AST
 const figma = exportToFigma(a) // Figma-compatible node tree
 ```
 
+### Print back to canonical DSL
+
+```typescript
+import { parse, printWireframe, formatWireframeCode } from '@wireweave/core'
+
+const doc = parse(source)
+const canonical = printWireframe(doc) // deterministic canonical `.wf` text
+const formatted = formatWireframeCode(source) // parse + reprint in one step
+```
+
+The printer emits a single canonical form (fixed indentation, attribute
+ordering, quoting, blank-line policy) with round-trip guarantees:
+`parse(printWireframe(doc))` is structurally equivalent to `doc`, printing is
+idempotent, and already-canonical text reprints byte-identical. Comments are
+not preserved (the parser drops them before the AST).
+
 ### Walk the AST
 
 ```typescript
@@ -100,6 +116,7 @@ const buttons = findByType(doc.children[0], 'Button')
 | --------------------------------------------------------------- | --------------------------------------------------------------------------- |
 | `parse(source, options?)`                                       | Parse DSL into a `WireframeDocument`; throws `ParseError` on syntax errors. |
 | `tryParse` / `isValid` / `getErrors`                            | Error-recovering parse, boolean check, and error list.                      |
+| `printWireframe` / `formatWireframeCode`                        | Canonical `.wf` printer — AST → deterministic DSL text (round-trip safe).   |
 | `render(doc, options?)`                                         | Render to `{ html, css }`. Auto canvas mode for multi-page docs.            |
 | `renderToHtml(doc, options?)`                                   | Render to a complete standalone HTML document string.                       |
 | `renderToSvg(doc, options?)`                                    | Render to `{ svg, width, height }` using `foreignObject` (HTML+CSS in SVG). |

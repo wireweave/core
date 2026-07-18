@@ -10,6 +10,9 @@ export * from './ast'
 // Parser functions
 export * from './parser'
 
+// Printer (AST → canonical DSL text)
+export * from './printer'
+
 // Renderer
 export * from './renderer'
 
@@ -33,3 +36,6 @@ export * from './export'
 
 // Analyze (statistics and metrics)
 export * from './analyze'
+
+// Extract (deterministic SSOT-shaped derivations)
+export * from './extract'

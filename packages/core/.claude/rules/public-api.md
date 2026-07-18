@@ -27,6 +27,8 @@ paths:
 
 - `parse(source: string): WireframeDocument`
 - `parseToCanvas(source: string): CanvasDocument`
+- `printWireframe(doc: WireframeDocument): string` — canonical `.wf` 프린터 (AST → 결정적 DSL 텍스트)
+- `formatWireframeCode(source: string): string` — parse + canonical 재인쇄
 - `render(doc: WireframeDocument, options?: RenderOptions): { html, css }`
 - `renderToSvg(doc: WireframeDocument, options?: RenderOptions): string`
 - `renderCanvas(doc: CanvasDocument, options?: CanvasOptions): { html, css, pages: PlacedPage[] }`
