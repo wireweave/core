@@ -1,6 +1,6 @@
 {
   "name": "@wireweave/ux-rules",
-  "version": "1.4.0",
+  "version": "1.4.1-beta.0",
   "description": "UX validation rules for wireweave",
   "type": "module",
   "main": "dist/index.cjs",

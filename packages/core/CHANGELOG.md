@@ -1,5 +1,17 @@
 # Changelog
 
+## 3.1.0-beta.0
+
+### Minor Changes
+
+- [`2aebfc2`](https://github.com/wireweave/wireweave/commit/2aebfc22072764cb5bfc6d5579ef4e2855cf9918) Thanks [@Seungwoo321](https://github.com/Seungwoo321)! - feat: opt-in source anchors (`data-wf-path` / `data-wf-loc`) + DOM↔AST↔source mapping APIs
+
+  Add a `sourceAnchors` render option (default `false`, output byte-identical when off) that stamps each rendered component element with `data-wf-path` (page-relative index path) and `data-wf-loc` (source offset range). New extract APIs invert the mapping: `buildAnchorIndex` / `resolveAnchor` (path ↔ AST node), `getPageSource` / `getNodeSource` (path → DSL source slice), and `buildDomTree` (panel-ready DOM tree). Renderer injection and the index share a single path scheme, so the emitted anchors and the index can never diverge. Additive — existing class/`data-*` contracts are unchanged.
+
+- [`2aebfc2`](https://github.com/wireweave/wireweave/commit/2aebfc22072764cb5bfc6d5579ef4e2855cf9918) Thanks [@Seungwoo321](https://github.com/Seungwoo321)! - feat: deterministic extraction APIs — `extractScreenFields` (SSOT Screen field derivation) and `extractScreenTransitions` (multi-screen transition graph, including nav/dropdown/breadcrumb menu-item navigate/opens/toggles/action triggers)
+
+- [`13f22ee`](https://github.com/wireweave/wireweave/commit/13f22ee7239d72cd4e31cb7b22802b4457e3b8a0) Thanks [@Seungwoo321](https://github.com/Seungwoo321)! - feat: canonical `.wf` printer — `printWireframe` (AST → deterministic canonical DSL text) and `formatWireframeCode` (parse + reprint). Single canonical form (fixed indentation, attribute ordering, quoting, blank-line policy) with tested round-trip laws: `parse(print(ast))` is structurally lossless, printing is an idempotent fixpoint, and canonical text reprints byte-identical.
+
 ## [3.0.0](https://github.com/wireweave/core/compare/v3.0.0-beta.0...v3.0.0) (2026-05-08)
 
 ## [3.0.0-beta.0](https://github.com/wireweave/core/compare/v2.8.0...v3.0.0-beta.0) (2026-05-08)
