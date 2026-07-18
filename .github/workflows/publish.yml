@@ -60,8 +60,11 @@ jobs:
           cache: pnpm
 
       # Trusted Publishing requires npm >= 11.5.1; what Node bundles is older.
+      # Pinned to the npm 11 major: `latest` moved to npm 12, whose engine
+      # floor (node >= 22.22.2) exceeds the .nvmrc pin — an unpinned moving
+      # dependency has no place in a release pipeline.
       - name: Update npm for trusted publishing
-        run: npm install -g npm@latest
+        run: npm install -g npm@11
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
