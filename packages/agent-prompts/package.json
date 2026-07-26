@@ -1,6 +1,6 @@
 {
   "name": "@wireweave/agent-prompts",
-  "version": "0.1.1",
+  "version": "0.2.0-beta.0",
   "description": "Canonical grammar prompts for LLM agents generating Wireweave DSL (multi-page aware)",
   "type": "module",
   "sideEffects": false,

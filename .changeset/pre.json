@@ -14,6 +14,7 @@
     "wireweave-vscode": "2.0.0"
   },
   "changesets": [
+    "agent-prompts-interaction-wiring",
     "core-dom-anchors",
     "core-extract-apis",
     "core-wf-printer"
