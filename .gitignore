@@ -49,6 +49,9 @@ Thumbs.db
 coverage/
 .nyc_output/
 
+# local-only generated artifacts (screenshots, demos, logs)
+.local/
+
 # misc
 .cache/
 .eslintcache
