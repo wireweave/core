@@ -118,6 +118,36 @@ describe('Renderer', () => {
       expect(html).toContain(multiPageBody)
       expect(html).not.toContain(singlePageBody)
     })
+
+    // Fixed-layout invariant (no-responsive.md): the multi-page canvas is a
+    // flex item of the flex <body> wrapper. Without flex-shrink:0 it shrinks
+    // when the viewport is narrower than the canvas and the boards reflow —
+    // the same defect class as the past .wf-page case. Assert the wrapper adds
+    // the guard to the canvas element.
+    it('keeps the multi-page canvas from shrinking as a flex item', () => {
+      const doc = parse(`
+        page "Login" at(0, 0) viewport="1280x800" { text "hi" }
+        page "Dashboard" at(1344, 0) viewport="1280x800" { text "db" }
+      `)
+      const html = renderToHtml(doc)
+
+      expect(html).toContain(`.wf-canvas {
+  flex-shrink: 0;
+}`)
+    })
+
+    it('scopes the canvas flex-shrink guard to a custom class prefix', () => {
+      const doc = parse(`
+        page "Login" at(0, 0) viewport="1280x800" { text "hi" }
+        page "Dashboard" at(1344, 0) viewport="1280x800" { text "db" }
+      `)
+      const html = renderToHtml(doc, { classPrefix: 'ww' })
+
+      expect(html).toContain(`.ww-canvas {
+  flex-shrink: 0;
+}`)
+      expect(html).not.toContain('.wf-canvas {')
+    })
   })
 
   describe('Theme Support', () => {
@@ -237,6 +267,19 @@ describe('CSS Generation', () => {
       expect(css).toContain('--custom-primary')
       expect(css).toContain('.custom-page')
       expect(css).toContain('.custom-row')
+    })
+
+    // Board-scoping (no-responsive.md): the drawer must pin to its nearest
+    // positioned ancestor (.wf-page / .wf-canvas-board), not the viewport.
+    // position:fixed made a drawer in a multi-page canvas escape to the
+    // viewport top-left, overlapping other boards. It must be absolute, like
+    // the modal backdrop.
+    it('scopes the drawer to its board with position:absolute (not fixed)', () => {
+      const css = generateStyles(defaultTheme)
+
+      expect(css).toContain(`.wf-drawer {
+  position: absolute;`)
+      expect(css).not.toContain('position: fixed')
     })
   })
 })

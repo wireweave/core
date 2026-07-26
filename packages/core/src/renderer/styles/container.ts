@@ -65,8 +65,14 @@ export function generateContainerStyles(prefix: string): string {
   font-weight: 600;
 }
 
+/* Board-scoped: absolute (not fixed) so the drawer pins to its own page /
+   canvas board — the nearest positioned ancestor (.wf-page is position:relative,
+   .wf-canvas-board is position:absolute) — instead of the browser viewport.
+   Matches the modal backdrop's scoping and keeps the fixed-layout invariant:
+   with position:fixed a drawer in a multi-page canvas escapes to the viewport
+   top-left, overlapping other boards (see no-responsive.md). */
 .${prefix}-drawer {
-  position: fixed;
+  position: absolute;
   background: var(--${prefix}-bg);
   border: 1px solid var(--${prefix}-border);
   box-shadow: var(--${prefix}-shadow-xl);

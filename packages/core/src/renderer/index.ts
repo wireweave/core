@@ -70,6 +70,7 @@ export function render(
  */
 export function renderToHtml(document: WireframeDocument, options: RenderOptions = {}): string {
   const { html, css } = render(document, options)
+  const prefix = options.classPrefix ?? 'wf'
 
   // Viewport framing depends on page count:
   //   Single page → center in the viewport (looks nice for one small board).
@@ -102,6 +103,14 @@ body {
   ${bodyAlign}
   padding: 24px;
   box-sizing: border-box;
+}
+/* Fixed-layout invariant: the multi-page canvas is a flex item of <body> and
+   must keep its intrinsic size when the viewport is narrower than the canvas.
+   Without flex-shrink:0 the flex item shrinks and the boards reflow — the same
+   defect class as .wf-page (see no-responsive.md). Single pages already carry
+   flex-shrink:0 via generateStyles; the canvas wrapper needs it here. */
+.${prefix}-canvas {
+  flex-shrink: 0;
 }
 ${css}
   </style>

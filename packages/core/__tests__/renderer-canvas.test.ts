@@ -195,6 +195,27 @@ describe('renderCanvas(): bounded layout output', () => {
     expect(r.css).toBe('')
     expect(r.html).toContain('wf-canvas')
   })
+
+  // Board-scoping regression: a drawer inside page N must stay within its own
+  // board, not escape to the canvas/viewport top-left. The board is a
+  // positioned ancestor (position:absolute), so the drawer's position:absolute
+  // scopes it to the board — same mechanism the modal backdrop uses.
+  it('keeps a drawer scoped to its board (absolute, not viewport-fixed)', () => {
+    const withDrawer = sampleDoc(`
+      page "Login" at(0, 0) viewport="1280x800" { text "x" }
+      page "Dashboard" at(1344, 0) viewport="1280x800" {
+        drawer "Menu" position="left" { text "item" }
+      }
+    `)
+    const r = renderCanvas(withDrawer)
+    // Drawer is nested inside a board wrapper, not a sibling of the canvas root.
+    expect(r.html).toContain('wf-canvas-board')
+    expect(r.html).toContain('wf-drawer')
+    // CSS scopes the drawer to its nearest positioned ancestor (the board).
+    expect(r.css).toContain(`.wf-drawer {
+  position: absolute;`)
+    expect(r.css).not.toContain('position: fixed')
+  })
 })
 
 describe('render(): page-count routing', () => {

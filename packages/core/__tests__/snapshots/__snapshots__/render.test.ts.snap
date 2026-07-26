@@ -601,8 +601,14 @@ exports[`Render Snapshots > CSS Snapshots > should generate dark theme CSS 1`] =
   font-weight: 600;
 }
 
+/* Board-scoped: absolute (not fixed) so the drawer pins to its own page /
+   canvas board — the nearest positioned ancestor (.wf-page is position:relative,
+   .wf-canvas-board is position:absolute) — instead of the browser viewport.
+   Matches the modal backdrop's scoping and keeps the fixed-layout invariant:
+   with position:fixed a drawer in a multi-page canvas escapes to the viewport
+   top-left, overlapping other boards (see no-responsive.md). */
 .wf-drawer {
-  position: fixed;
+  position: absolute;
   background: var(--wf-bg);
   border: 1px solid var(--wf-border);
   box-shadow: var(--wf-shadow-xl);
@@ -2548,8 +2554,14 @@ exports[`Render Snapshots > CSS Snapshots > should generate light theme CSS 1`] 
   font-weight: 600;
 }
 
+/* Board-scoped: absolute (not fixed) so the drawer pins to its own page /
+   canvas board — the nearest positioned ancestor (.wf-page is position:relative,
+   .wf-canvas-board is position:absolute) — instead of the browser viewport.
+   Matches the modal backdrop's scoping and keeps the fixed-layout invariant:
+   with position:fixed a drawer in a multi-page canvas escapes to the viewport
+   top-left, overlapping other boards (see no-responsive.md). */
 .wf-drawer {
-  position: fixed;
+  position: absolute;
   background: var(--wf-bg);
   border: 1px solid var(--wf-border);
   box-shadow: var(--wf-shadow-xl);
@@ -3972,6 +3984,14 @@ body {
   padding: 24px;
   box-sizing: border-box;
 }
+/* Fixed-layout invariant: the multi-page canvas is a flex item of <body> and
+   must keep its intrinsic size when the viewport is narrower than the canvas.
+   Without flex-shrink:0 the flex item shrinks and the boards reflow — the same
+   defect class as .wf-page (see no-responsive.md). Single pages already carry
+   flex-shrink:0 via generateStyles; the canvas wrapper needs it here. */
+.wf-canvas {
+  flex-shrink: 0;
+}
 /* wireweave CSS Variables */
 :root {
   --wf-primary: #000000;
@@ -4572,8 +4592,14 @@ body {
   font-weight: 600;
 }
 
+/* Board-scoped: absolute (not fixed) so the drawer pins to its own page /
+   canvas board — the nearest positioned ancestor (.wf-page is position:relative,
+   .wf-canvas-board is position:absolute) — instead of the browser viewport.
+   Matches the modal backdrop's scoping and keeps the fixed-layout invariant:
+   with position:fixed a drawer in a multi-page canvas escapes to the viewport
+   top-left, overlapping other boards (see no-responsive.md). */
 .wf-drawer {
-  position: fixed;
+  position: absolute;
   background: var(--wf-bg);
   border: 1px solid var(--wf-border);
   box-shadow: var(--wf-shadow-xl);
@@ -5949,6 +5975,14 @@ body {
   padding: 24px;
   box-sizing: border-box;
 }
+/* Fixed-layout invariant: the multi-page canvas is a flex item of <body> and
+   must keep its intrinsic size when the viewport is narrower than the canvas.
+   Without flex-shrink:0 the flex item shrinks and the boards reflow — the same
+   defect class as .wf-page (see no-responsive.md). Single pages already carry
+   flex-shrink:0 via generateStyles; the canvas wrapper needs it here. */
+.wf-canvas {
+  flex-shrink: 0;
+}
 /* wireweave CSS Variables */
 :root {
   --wf-primary: #FFFFFF;
@@ -6549,8 +6583,14 @@ body {
   font-weight: 600;
 }
 
+/* Board-scoped: absolute (not fixed) so the drawer pins to its own page /
+   canvas board — the nearest positioned ancestor (.wf-page is position:relative,
+   .wf-canvas-board is position:absolute) — instead of the browser viewport.
+   Matches the modal backdrop's scoping and keeps the fixed-layout invariant:
+   with position:fixed a drawer in a multi-page canvas escapes to the viewport
+   top-left, overlapping other boards (see no-responsive.md). */
 .wf-drawer {
-  position: fixed;
+  position: absolute;
   background: var(--wf-bg);
   border: 1px solid var(--wf-border);
   box-shadow: var(--wf-shadow-xl);
@@ -8648,8 +8688,14 @@ exports[`Render Snapshots > SVG Snapshots > should render buttons to SVG 1`] = `
   font-weight: 600;
 }
 
+/* Board-scoped: absolute (not fixed) so the drawer pins to its own page /
+   canvas board — the nearest positioned ancestor (.wf-page is position:relative,
+   .wf-canvas-board is position:absolute) — instead of the browser viewport.
+   Matches the modal backdrop's scoping and keeps the fixed-layout invariant:
+   with position:fixed a drawer in a multi-page canvas escapes to the viewport
+   top-left, overlapping other boards (see no-responsive.md). */
 .wf-drawer {
-  position: fixed;
+  position: absolute;
   background: var(--wf-bg);
   border: 1px solid var(--wf-border);
   box-shadow: var(--wf-shadow-xl);
@@ -10619,8 +10665,14 @@ exports[`Render Snapshots > SVG Snapshots > should render card to SVG 1`] = `
   font-weight: 600;
 }
 
+/* Board-scoped: absolute (not fixed) so the drawer pins to its own page /
+   canvas board — the nearest positioned ancestor (.wf-page is position:relative,
+   .wf-canvas-board is position:absolute) — instead of the browser viewport.
+   Matches the modal backdrop's scoping and keeps the fixed-layout invariant:
+   with position:fixed a drawer in a multi-page canvas escapes to the viewport
+   top-left, overlapping other boards (see no-responsive.md). */
 .wf-drawer {
-  position: fixed;
+  position: absolute;
   background: var(--wf-bg);
   border: 1px solid var(--wf-border);
   box-shadow: var(--wf-shadow-xl);
@@ -12591,8 +12643,14 @@ exports[`Render Snapshots > SVG Snapshots > should render form to SVG 1`] = `
   font-weight: 600;
 }
 
+/* Board-scoped: absolute (not fixed) so the drawer pins to its own page /
+   canvas board — the nearest positioned ancestor (.wf-page is position:relative,
+   .wf-canvas-board is position:absolute) — instead of the browser viewport.
+   Matches the modal backdrop's scoping and keeps the fixed-layout invariant:
+   with position:fixed a drawer in a multi-page canvas escapes to the viewport
+   top-left, overlapping other boards (see no-responsive.md). */
 .wf-drawer {
-  position: fixed;
+  position: absolute;
   background: var(--wf-bg);
   border: 1px solid var(--wf-border);
   box-shadow: var(--wf-shadow-xl);
@@ -14564,8 +14622,14 @@ exports[`Render Snapshots > SVG Snapshots > should render layout to SVG 1`] = `
   font-weight: 600;
 }
 
+/* Board-scoped: absolute (not fixed) so the drawer pins to its own page /
+   canvas board — the nearest positioned ancestor (.wf-page is position:relative,
+   .wf-canvas-board is position:absolute) — instead of the browser viewport.
+   Matches the modal backdrop's scoping and keeps the fixed-layout invariant:
+   with position:fixed a drawer in a multi-page canvas escapes to the viewport
+   top-left, overlapping other boards (see no-responsive.md). */
 .wf-drawer {
-  position: fixed;
+  position: absolute;
   background: var(--wf-bg);
   border: 1px solid var(--wf-border);
   box-shadow: var(--wf-shadow-xl);
@@ -16541,8 +16605,14 @@ exports[`Render Snapshots > SVG Snapshots > should render simple text to SVG 1`]
   font-weight: 600;
 }
 
+/* Board-scoped: absolute (not fixed) so the drawer pins to its own page /
+   canvas board — the nearest positioned ancestor (.wf-page is position:relative,
+   .wf-canvas-board is position:absolute) — instead of the browser viewport.
+   Matches the modal backdrop's scoping and keeps the fixed-layout invariant:
+   with position:fixed a drawer in a multi-page canvas escapes to the viewport
+   top-left, overlapping other boards (see no-responsive.md). */
 .wf-drawer {
-  position: fixed;
+  position: absolute;
   background: var(--wf-bg);
   border: 1px solid var(--wf-border);
   box-shadow: var(--wf-shadow-xl);
@@ -18510,8 +18580,14 @@ exports[`Render Snapshots > SVG Snapshots > should respect padding option 1`] = 
   font-weight: 600;
 }
 
+/* Board-scoped: absolute (not fixed) so the drawer pins to its own page /
+   canvas board — the nearest positioned ancestor (.wf-page is position:relative,
+   .wf-canvas-board is position:absolute) — instead of the browser viewport.
+   Matches the modal backdrop's scoping and keeps the fixed-layout invariant:
+   with position:fixed a drawer in a multi-page canvas escapes to the viewport
+   top-left, overlapping other boards (see no-responsive.md). */
 .wf-drawer {
-  position: fixed;
+  position: absolute;
   background: var(--wf-bg);
   border: 1px solid var(--wf-border);
   box-shadow: var(--wf-shadow-xl);
