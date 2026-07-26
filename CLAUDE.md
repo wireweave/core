@@ -8,20 +8,22 @@ pnpm-workspace 모노레포 (`wireweave-monorepo`, private, MIT, `wireweave/wire
 
 ## 구성 (`packages/*` + `docs`)
 
-| 패키지           | npm 이름                     | 설명                                                                                   | 발행             |
-| ---------------- | ---------------------------- | -------------------------------------------------------------------------------------- | ---------------- |
-| core             | `@wireweave/core`            | DSL 파서/렌더러 (Peggy grammar)                                                        | npm              |
-| language-data    | `@wireweave/language-data`   | 에디터용 컴포넌트 어휘/언어 정의                                                       | npm              |
-| ux-rules         | `@wireweave/ux-rules`        | UX 검증 규칙/점수 (→ core)                                                             | npm              |
-| agent-prompts    | `@wireweave/agent-prompts`   | LLM 에이전트용 문법 가이드 프롬프트                                                    | npm              |
-| markdown-plugin  | `@wireweave/markdown-plugin` | `.wf` 마크다운 코드블록 렌더 (→ core)                                                  | npm              |
-| sdk              | `@wireweave/sdk`             | 플랫폼 클라이언트 — 로컬/원격 `dispatch`, auth, local-tools (api-server contract 소유) | npm              |
-| cli              | `@wireweave/cli`             | `wireweave` 바이너리 (→ sdk)                                                           | npm              |
-| mcp-server       | `@wireweave/mcp-server`      | `wireweave-mcp` MCP 서버 — API 서버 thin client (→ sdk)                                | npm              |
-| vscode-extension | `wireweave-vscode`           | VS Code / Cursor 확장 (→ core, language-data)                                          | vsce/ovsx (별도) |
-| docs             | `@wireweave/docs`            | VitePress 문서 (private, 비발행 — Vercel)                                              | —                |
+| 패키지           | npm 이름                     | 설명                                                                                                                                                               | 발행             |
+| ---------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------- |
+| core             | `@wireweave/core`            | DSL 파서/렌더러 (Peggy grammar)                                                                                                                                    | npm              |
+| language-data    | `@wireweave/language-data`   | 에디터용 컴포넌트 어휘/언어 정의                                                                                                                                   | npm              |
+| ux-rules         | `@wireweave/ux-rules`        | UX 검증 규칙/점수 (→ core)                                                                                                                                         | npm              |
+| agent-prompts    | `@wireweave/agent-prompts`   | LLM 에이전트용 문법 가이드 프롬프트                                                                                                                                | npm              |
+| markdown-plugin  | `@wireweave/markdown-plugin` | `.wf` 마크다운 코드블록 렌더 (→ core)                                                                                                                              | npm              |
+| sdk              | `@wireweave/sdk`             | 플랫폼 클라이언트 — 로컬/원격 `dispatch`, auth, local-tools (api-server contract 소유)                                                                             | npm              |
+| cli              | `@wireweave/cli`             | `wireweave` 바이너리 (→ sdk)                                                                                                                                       | npm              |
+| mcp-server       | `@wireweave/mcp-server`      | `wireweave-mcp` MCP 서버 — API 서버 thin client (→ sdk)                                                                                                            | npm              |
+| ssot-core        | `@wireweave/ssot-core`       | SSOT 코어 — frontmatter/body 파싱, 정규화 그래프, traversal·impact, 12-kind 스키마 파생 상수·interview slots·graph-view 파생 (무런타임 의존, isomorphic)           | npm              |
+| ssot-tools       | `@wireweave/ssot-tools`      | SSOT 파일시스템·오케스트레이션 — catalog build·scaffold·verify runner·mirror/lifecycle sync·auto-tag·fill-version·governance/propose/flag (→ ssot-core, Node 전용) | npm              |
+| vscode-extension | `wireweave-vscode`           | VS Code / Cursor 확장 (→ core, language-data)                                                                                                                      | vsce/ovsx (별도) |
+| docs             | `@wireweave/docs`            | VitePress 문서 (private, 비발행 — Vercel)                                                                                                                          | —                |
 
-의존 위상: core ← {ux-rules, markdown-plugin, language-data} ← sdk ← {cli, mcp-server}.
+의존 위상: core ← {ux-rules, markdown-plugin, language-data} ← sdk ← {cli, mcp-server}. ssot-core ← ssot-tools (SSOT 서브시스템, DSL 체인과 독립).
 
 ## 워크스페이스 규약
 
@@ -44,7 +46,7 @@ pnpm-workspace 모노레포 (`wireweave-monorepo`, private, MIT, `wireweave/wire
 - **OIDC trusted publishing** — `NPM_TOKEN` 없음, provenance (`NPM_CONFIG_PROVENANCE: true`).
 - 브랜치 전략: `develop` = beta (changesets **pre 모드**, `X.Y.Z-beta.N`) / `main` = stable. stable 릴리스 후 **main → develop 역동기화** 머지. 모든 자동 버전/릴리스/싱크 커밋에 `[skip ci]`.
 - changesets **ignore**: `@wireweave/docs` (Vercel 배포), `wireweave-vscode` (vsce/ovsx 별도 파이프라인).
-- npm 발행 대상 = core · language-data · ux-rules · agent-prompts · markdown-plugin · sdk · cli · mcp-server.
+- npm 발행 대상 = core · language-data · ux-rules · agent-prompts · markdown-plugin · sdk · cli · mcp-server · ssot-core · ssot-tools.
 
 ## 개발 명령
 

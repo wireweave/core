@@ -1,0 +1,71 @@
+{
+  "name": "@wireweave/ssot-tools",
+  "version": "0.0.0",
+  "description": "SSOT filesystem & orchestration layer — catalog build, scaffold, verify runner, mirror/lifecycle sync, auto-tag, fill-version, governance/propose/flag. Node-only; all graph/parse logic delegated to @wireweave/ssot-core.",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "knip": "knip",
+    "publint": "publint",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@wireweave/ssot-core": "workspace:*"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^22",
+    "eslint": "^10.4.0",
+    "knip": "^6.14.2",
+    "prettier": "^3.8.3",
+    "publint": "^0.3.21",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.60.0",
+    "vitest": "^3.1.1"
+  },
+  "keywords": [
+    "ssot",
+    "single-source-of-truth",
+    "catalog",
+    "governance",
+    "verify"
+  ],
+  "author": "Seungwoo Lee",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wireweave/wireweave.git",
+    "directory": "packages/ssot-tools"
+  },
+  "bugs": {
+    "url": "https://github.com/wireweave/wireweave/issues"
+  },
+  "homepage": "https://docs.wireweave.org",
+  "sideEffects": false
+}

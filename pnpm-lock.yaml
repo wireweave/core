@@ -538,6 +538,76 @@ importers:
         specifier: ^3.1.1
         version: 3.2.4(@types/node@25.9.1)(jiti@2.7.0)(yaml@2.9.0)
 
+  packages/ssot-core:
+    devDependencies:
+      '@eslint/js':
+        specifier: ^10.0.1
+        version: 10.0.1(eslint@10.4.1(jiti@2.7.0))
+      '@types/node':
+        specifier: ^22
+        version: 22.19.19
+      eslint:
+        specifier: ^10.4.0
+        version: 10.4.1(jiti@2.7.0)
+      knip:
+        specifier: ^6.14.2
+        version: 6.14.2
+      prettier:
+        specifier: ^3.8.3
+        version: 3.8.3
+      publint:
+        specifier: ^0.3.21
+        version: 0.3.21
+      tsup:
+        specifier: ^8.3.5
+        version: 8.5.1(jiti@2.7.0)(postcss@8.5.15)(typescript@5.9.3)(yaml@2.9.0)
+      typescript:
+        specifier: ^5.7.2
+        version: 5.9.3
+      typescript-eslint:
+        specifier: ^8.60.0
+        version: 8.60.0(eslint@10.4.1(jiti@2.7.0))(typescript@5.9.3)
+      vitest:
+        specifier: ^3.1.1
+        version: 3.2.4(@types/node@22.19.19)(jiti@2.7.0)(yaml@2.9.0)
+
+  packages/ssot-tools:
+    dependencies:
+      '@wireweave/ssot-core':
+        specifier: workspace:*
+        version: link:../ssot-core
+    devDependencies:
+      '@eslint/js':
+        specifier: ^10.0.1
+        version: 10.0.1(eslint@10.4.1(jiti@2.7.0))
+      '@types/node':
+        specifier: ^22
+        version: 22.19.19
+      eslint:
+        specifier: ^10.4.0
+        version: 10.4.1(jiti@2.7.0)
+      knip:
+        specifier: ^6.14.2
+        version: 6.14.2
+      prettier:
+        specifier: ^3.8.3
+        version: 3.8.3
+      publint:
+        specifier: ^0.3.21
+        version: 0.3.21
+      tsup:
+        specifier: ^8.3.5
+        version: 8.5.1(jiti@2.7.0)(postcss@8.5.15)(typescript@5.9.3)(yaml@2.9.0)
+      typescript:
+        specifier: ^5.7.2
+        version: 5.9.3
+      typescript-eslint:
+        specifier: ^8.60.0
+        version: 8.60.0(eslint@10.4.1(jiti@2.7.0))(typescript@5.9.3)
+      vitest:
+        specifier: ^3.1.1
+        version: 3.2.4(@types/node@22.19.19)(jiti@2.7.0)(yaml@2.9.0)
+
   packages/ux-rules:
     dependencies:
       '@wireweave/core':

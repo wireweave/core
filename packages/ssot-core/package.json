@@ -1,0 +1,69 @@
+{
+  "name": "@wireweave/ssot-core",
+  "version": "0.0.0",
+  "description": "SSOT core — frontmatter/body parsing, normalized graph, traversal & impact, structure detection. Zero runtime dependencies, isomorphic (browser + Node).",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build:schema": "node scripts/generate-constants.mjs",
+    "build": "pnpm build:schema && tsup",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "knip": "knip",
+    "publint": "publint",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^22",
+    "eslint": "^10.4.0",
+    "knip": "^6.14.2",
+    "prettier": "^3.8.3",
+    "publint": "^0.3.21",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.60.0",
+    "vitest": "^3.1.1"
+  },
+  "keywords": [
+    "ssot",
+    "single-source-of-truth",
+    "frontmatter",
+    "graph",
+    "impact-analysis"
+  ],
+  "author": "Seungwoo Lee",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wireweave/wireweave.git",
+    "directory": "packages/ssot-core"
+  },
+  "bugs": {
+    "url": "https://github.com/wireweave/wireweave/issues"
+  },
+  "homepage": "https://docs.wireweave.org",
+  "sideEffects": false
+}

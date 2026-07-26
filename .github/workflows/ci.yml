@@ -107,7 +107,9 @@ jobs:
           for pkg in \
             packages/core \
             packages/language-data \
-            packages/markdown-plugin; do
+            packages/markdown-plugin \
+            packages/ssot-core \
+            packages/ssot-tools; do
             (cd "$pkg" && pnpm pack --pack-destination "${GITHUB_WORKSPACE}/.pack-out")
           done
           ls -la .pack-out
