@@ -30,7 +30,12 @@ export { renderCanvas, layoutCanvas } from './canvas-renderer'
 export type { PlacedPage } from './canvas-renderer'
 
 // Re-export icons (ensures they're bundled with renderer)
-export { getIconData, renderIconSvg, lucideIcons } from '../icons/lucide-icons'
+export {
+  getIconData,
+  renderIconSvg,
+  renderUnknownIconSvg,
+  lucideIcons,
+} from '../icons/lucide-icons'
 export type { IconData, IconElement } from '../icons/lucide-icons'
 
 /**

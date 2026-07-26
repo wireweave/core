@@ -456,6 +456,19 @@ export interface ButtonNode extends BaseNode, CommonProps, InteractiveProps {
   icon?: string
   disabled?: boolean
   loading?: boolean
+  /**
+   * Accessible name, rendered as `aria-label`. Use this to give an icon-only
+   * button (`button "" icon="x" aria="Close"`) a real accessible name for
+   * screen-reader users (WCAG 4.1.2 / 1.1.1) without showing visible text.
+   * `aria-label` is accepted as a synonym.
+   */
+  aria?: string
+  'aria-label'?: string
+  /**
+   * Tooltip text, rendered as the `title` attribute. Also contributes an
+   * accessible name (lower priority than `aria-label`/text content).
+   */
+  title?: string
 }
 
 // ===========================================

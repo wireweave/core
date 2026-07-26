@@ -46418,8 +46418,13 @@ const iconAliases: Record<string, string> = {
   close: 'x',
   menu: 'menu',
   hamburger: 'menu',
-  dots: 'more-horizontal',
-  'dots-vertical': 'more-vertical',
+  // Lucide renamed the overflow/kebab-menu glyphs to `ellipsis` /
+  // `ellipsis-vertical`; map the legacy `more-*` names (and the `dots-*`
+  // shorthands) onto the real keys so none of them dead-end.
+  'more-horizontal': 'ellipsis',
+  'more-vertical': 'ellipsis-vertical',
+  dots: 'ellipsis',
+  'dots-vertical': 'ellipsis-vertical',
   cog: 'settings',
   gear: 'settings',
 }
@@ -46474,4 +46479,22 @@ export function renderIconSvg(
   // This ensures CSS rules can override the size reliably
   // (especially important in VSCode markdown preview's foreignObject environment)
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round" class="${className}"${styleAttr}>${elements}</svg>`
+}
+
+/**
+ * Render the canonical "unknown icon" placeholder SVG — a dashed circle with a
+ * `?` glyph. Shared by every renderer (icon node, button, input) so an
+ * unresolved icon name always produces the SAME visual placeholder and never
+ * leaks the raw DSL name as literal text. Callers add a
+ * `title="Unknown icon: <name>"` on the wrapping element for hover context.
+ */
+export function renderUnknownIconSvg(
+  className: string = '',
+  size: number = 24,
+  styleAttr: string = '',
+): string {
+  return `<svg class="${className}" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"${styleAttr}>
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" stroke-dasharray="4 2" fill="none" opacity="0.5"/>
+      <text x="12" y="16" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.7">?</text>
+    </svg>`
 }

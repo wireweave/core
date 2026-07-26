@@ -5,7 +5,7 @@
  */
 
 import { describe, it, expect } from 'vitest'
-import { parse } from '../src'
+import { parse, validate } from '../src'
 import { render, generateComponentStyles, defaultTheme } from '../src/renderer'
 
 describe('Component Rendering', () => {
@@ -282,6 +282,49 @@ describe('Component Rendering', () => {
       const result = render(doc)
 
       expect(result.html).toContain('wf-button-loading')
+    })
+
+    it('should emit aria-label for an icon-only button with an aria attribute', () => {
+      const doc = parse('page { button "" icon="search" aria="Search" ghost }')
+      const result = render(doc)
+
+      expect(result.html).toContain('aria-label="Search"')
+    })
+
+    it('should accept aria-label as a synonym for aria', () => {
+      const doc = parse('page { button "" icon="x" aria-label="Close" ghost }')
+      const result = render(doc)
+
+      expect(result.html).toContain('aria-label="Close"')
+    })
+
+    it('should emit a title attribute when authored', () => {
+      const doc = parse('page { button "" icon="menu" title="Open menu" ghost }')
+      const result = render(doc)
+
+      expect(result.html).toContain('title="Open menu"')
+    })
+
+    it('should not emit aria-label or title for a plain text button', () => {
+      const doc = parse('page { button "Save" }')
+      const result = render(doc)
+
+      expect(result.html).not.toContain('aria-label')
+      expect(result.html).not.toContain('title=')
+    })
+
+    // SSOT guard: the parser/AST/renderer accept button aria/aria-label/title,
+    // so validate() (driven by spec/components.ts + spec/attributes.ts) must
+    // recognize them too. Without this, spec and AST/renderer diverge and a
+    // grammatically valid icon-only button is flagged valid=false.
+    it('should validate button aria/aria-label/title as known attributes', () => {
+      const doc = parse(
+        'page { button "" icon="search" aria="Search" ghost button "" icon="x" aria-label="Close" ghost button "" icon="menu" title="Open menu" ghost }',
+      )
+      const result = validate(doc)
+
+      expect(result.valid).toBe(true)
+      expect(result.errors).toEqual([])
     })
   })
 

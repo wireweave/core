@@ -4,7 +4,7 @@
 
 import type { ButtonNode } from '../../../ast/types'
 import type { RenderContext } from './types'
-import { getIconData, renderIconSvg } from '../../../icons/lucide-icons'
+import { getIconData, renderIconSvg, renderUnknownIconSvg } from '../../../icons/lucide-icons'
 import { resolveSizeValue } from '../components'
 
 /**
@@ -37,9 +37,16 @@ export function renderButton(node: ButtonNode, ctx: RenderContext): string {
     baseStyles && sizeStyle ? `${baseStyles}; ${sizeStyle}` : baseStyles || sizeStyle
   const styleAttr = combinedStyles ? ` style="${combinedStyles}"` : ''
 
+  // Accessible name (WCAG 4.1.2): an explicit `aria` / `aria-label` attribute
+  // becomes `aria-label`; `title` becomes the tooltip and a fallback name.
+  // Only emitted when authored — buttons with visible text stay unchanged.
+  const accessibleName = node.aria ?? node['aria-label']
+
   const attrs: Record<string, string | boolean | undefined> = {
     class: classes,
     disabled: node.disabled,
+    'aria-label': accessibleName,
+    title: node.title,
     // Interactive attributes
     'data-navigate': node.navigate,
     'data-opens': node.opens,
@@ -53,7 +60,8 @@ export function renderButton(node: ButtonNode, ctx: RenderContext): string {
     if (iconData) {
       icon = renderIconSvg(iconData, 16, 2, `${ctx.prefix}-icon`)
     } else {
-      icon = `<span class="${ctx.prefix}-icon">[${ctx.escapeHtml(node.icon)}]</span>`
+      // Unknown icon: render the shared placeholder (never leak the raw name)
+      icon = `<span class="${ctx.prefix}-icon" title="Unknown icon: ${ctx.escapeHtml(node.icon)}">${renderUnknownIconSvg(`${ctx.prefix}-icon`, 16)}</span>`
     }
   }
   const loading = node.loading

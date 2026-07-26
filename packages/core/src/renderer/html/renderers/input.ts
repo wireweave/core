@@ -12,7 +12,7 @@ import type {
   SliderNode,
 } from '../../../ast/types'
 import type { RenderContext } from './types'
-import { getIconData, renderIconSvg } from '../../../icons/lucide-icons'
+import { getIconData, renderIconSvg, renderUnknownIconSvg } from '../../../icons/lucide-icons'
 
 /**
  * Render Input node
@@ -46,7 +46,8 @@ export function renderInput(node: InputNode, ctx: RenderContext): string {
     if (iconData) {
       iconHtml = renderIconSvg(iconData, 16, 2, `${ctx.prefix}-input-icon`)
     } else {
-      iconHtml = `<span class="${ctx.prefix}-input-icon">[${ctx.escapeHtml(node.icon)}]</span>`
+      // Unknown icon: render the shared placeholder (never leak the raw name)
+      iconHtml = `<span class="${ctx.prefix}-input-icon" title="Unknown icon: ${ctx.escapeHtml(node.icon)}">${renderUnknownIconSvg(`${ctx.prefix}-input-icon`, 16)}</span>`
     }
 
     const wrapperClasses = ctx.buildClassString([`${ctx.prefix}-input-wrapper`])

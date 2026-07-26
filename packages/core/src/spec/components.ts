@@ -266,6 +266,10 @@ export const COMPONENT_SPECS: readonly ComponentSpec[] = [
       'icon',
       'disabled',
       'loading',
+      // Accessibility: give icon-only buttons an accessible name / tooltip
+      'aria',
+      'aria-label',
+      'title',
     ],
     hasChildren: false,
     description: 'Clickable button',

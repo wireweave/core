@@ -11,7 +11,7 @@ import type {
 } from '../../../ast/types'
 import type { RenderContext } from './types'
 import { resolveSizeValue, buildClassString as _buildClassString } from '../components'
-import { getIconData, renderIconSvg } from '../../../icons/lucide-icons'
+import { getIconData, renderIconSvg, renderUnknownIconSvg } from '../../../icons/lucide-icons'
 
 /**
  * Build interactive data attributes string
@@ -217,13 +217,13 @@ export function renderIcon(node: IconNode, ctx: RenderContext): string {
     return `<span class="${wrapperClasses}"${wrapperStyleAttr}${interactiveAttrStr} aria-hidden="true">${svg}</span>`
   }
 
-  // Fallback for unknown icons - render a placeholder circle
+  // Fallback for unknown icons - render the shared placeholder circle
   const size = sizeResolved.style?.match(/(\d+)px/)?.[1] || '24'
   const sizeNum = parseInt(size, 10)
-  const placeholderSvg = `<svg class="${ctx.prefix}-icon ${sizeResolved.className || ''}" width="${sizeNum}" height="${sizeNum}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" stroke-dasharray="4 2" fill="none" opacity="0.5"/>
-      <text x="12" y="16" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.7">?</text>
-    </svg>`
+  const placeholderSvg = renderUnknownIconSvg(
+    `${ctx.prefix}-icon ${sizeResolved.className || ''}`,
+    sizeNum,
+  )
   const wrapperStyleAttr = baseStyles ? ` style="${baseStyles}"` : ''
   return `<span class="${wrapperClasses}"${wrapperStyleAttr}${interactiveAttrStr} aria-hidden="true" title="Unknown icon: ${ctx.escapeHtml(node.name)}">${placeholderSvg}</span>`
 }

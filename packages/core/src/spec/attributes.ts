@@ -184,6 +184,20 @@ export const ATTRIBUTE_SPECS: readonly AttributeSpec[] = [
   { name: 'external', type: 'boolean', description: 'External link' },
 
   // ============================================
+  // Accessibility Attributes
+  // ============================================
+  {
+    name: 'aria',
+    type: 'string',
+    description: 'Accessible name, rendered as aria-label (e.g. icon-only button)',
+  },
+  {
+    name: 'aria-label',
+    type: 'string',
+    description: 'Accessible name (synonym for aria), rendered as aria-label',
+  },
+
+  // ============================================
   // State Attributes
   // ============================================
   { name: 'active', type: 'number', description: 'Active index' },
