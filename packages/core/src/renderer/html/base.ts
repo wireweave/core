@@ -18,6 +18,7 @@ const DEFAULT_OPTIONS: Omit<Required<RenderOptions>, 'background'> & { backgroun
   includeStyles: true,
   minify: false,
   classPrefix: 'wf',
+  sourceAnchors: false,
 }
 
 /**

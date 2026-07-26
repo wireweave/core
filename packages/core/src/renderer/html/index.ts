@@ -6,6 +6,7 @@
 
 import type {
   AnyNode,
+  WireframeDocument,
   PageNode,
   HeaderNode,
   MainNode,
@@ -58,8 +59,27 @@ import type {
 } from '../../ast/types'
 // hasChildren guard available from ast/guards if needed
 import { BaseRenderer } from './base'
-import type { RenderOptions } from '../types'
+import type { RenderOptions, RenderResult } from '../types'
 import { resolveViewport } from '../../viewport'
+import {
+  ANCHOR_PATH_ATTR,
+  ANCHOR_LOC_ATTR,
+  buildAnchorPathMap,
+  formatAnchorLoc,
+} from '../../ast/anchor-path'
+
+/**
+ * Inject anchor attributes into the outermost opening tag of a rendered node's
+ * HTML. When a node renders several top-level elements, the first is anchored.
+ */
+function injectAnchorAttrs(html: string, path: string, loc?: AnyNode['loc']): string {
+  const attrs = loc
+    ? ` ${ANCHOR_PATH_ATTR}="${path}" ${ANCHOR_LOC_ATTR}="${formatAnchorLoc(loc)}"`
+    : ` ${ANCHOR_PATH_ATTR}="${path}"`
+  // Replace only the first opening tag (no /g). Attribute values are
+  // HTML-escaped, so the first `<` is always the outermost opening tag.
+  return html.replace(/<([a-zA-Z][a-zA-Z0-9-]*)/, (match) => `${match}${attrs}`)
+}
 
 // Re-export component utilities
 export * from './components'
@@ -192,9 +212,38 @@ export class HtmlRenderer extends BaseRenderer {
    */
   private readonly nodeRenderers: Record<string, (node: AnyNode) => string>
 
-  constructor(options: RenderOptions = {}) {
+  /**
+   * Node → anchor-path map for the document currently being rendered. Non-null
+   * only while rendering with `sourceAnchors` enabled.
+   */
+  private pathMap: Map<AnyNode, string> | null = null
+
+  /**
+   * Base index added to page anchor paths. Non-zero when a page is rendered in
+   * isolation (canvas per-page composition) but must keep its true document
+   * index in the anchor scheme.
+   */
+  private readonly pageIndexBase: number
+
+  constructor(options: RenderOptions = {}, pageIndexBase = 0) {
     super(options)
+    this.pageIndexBase = pageIndexBase
     this.nodeRenderers = this.createNodeRenderers()
+  }
+
+  /**
+   * Render a document, building the anchor-path map first when anchors are
+   * enabled so `renderNode` / `renderPage` can inject each node's path.
+   */
+  render(document: WireframeDocument): RenderResult {
+    if (this.context.options.sourceAnchors) {
+      this.pathMap = buildAnchorPathMap(document, this.pageIndexBase)
+    }
+    try {
+      return super.render(document)
+    } finally {
+      this.pathMap = null
+    }
   }
 
   /**
@@ -359,7 +408,16 @@ export class HtmlRenderer extends BaseRenderer {
     // Add data attributes for viewport info
     const dataAttrs = `data-viewport-width="${viewport.width}" data-viewport-height="${viewport.height}" data-viewport-label="${viewport.label}"`
 
-    const pageDiv = `<div class="${classes}" style="${combinedStyle}" ${dataAttrs}>\n${title}${uiContent}\n</div>`
+    let pageDiv = `<div class="${classes}" style="${combinedStyle}" ${dataAttrs}>\n${title}${uiContent}\n</div>`
+
+    // Anchor the page element itself (the `.wf-page` div, not the annotation
+    // wrapper). Descendant anchors are injected in renderNode.
+    if (this.pathMap) {
+      const path = this.pathMap.get(node)
+      if (path !== undefined) {
+        pageDiv = injectAnchorAttrs(pageDiv, path, node.loc)
+      }
+    }
 
     // If there are annotations, wrap page + annotations in a wrapper div
     if (annotationChildren.length > 0) {
@@ -375,10 +433,19 @@ export class HtmlRenderer extends BaseRenderer {
    */
   protected renderNode(node: AnyNode): string {
     const renderer = this.nodeRenderers[node.type]
-    if (renderer) {
-      return renderer(node)
+    const html = renderer ? renderer(node) : `<!-- Unknown node type: ${node.type} -->`
+
+    // Pages are rendered directly by renderDocument (bypassing renderNode) and
+    // inject their own anchor in renderPage — skip here to avoid double
+    // injection when a Page is dispatched through renderNode.
+    if (this.pathMap && node.type !== 'Page') {
+      const path = this.pathMap.get(node)
+      if (path !== undefined) {
+        return injectAnchorAttrs(html, path, node.loc)
+      }
     }
-    return `<!-- Unknown node type: ${node.type} -->`
+
+    return html
   }
 
   /**

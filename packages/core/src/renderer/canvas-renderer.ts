@@ -105,9 +105,12 @@ export function renderCanvas(
 
   const { placed, width, height } = layoutCanvas(doc.children, gap)
 
-  const pageRenderer = new HtmlRenderer({ ...options, includeStyles: false })
+  // Each page is rendered in isolation, so its anchor page-index is seeded with
+  // the page's true position in the document (pageIndexBase) to keep paths like
+  // `2.1.0` consistent with a whole-document render.
   const boards = placed
-    .map((p) => {
+    .map((p, pageIndex) => {
+      const pageRenderer = new HtmlRenderer({ ...options, includeStyles: false }, pageIndex)
       const { html: pageHtml } = pageRenderer.render({
         type: 'Document',
         children: [p.page],
