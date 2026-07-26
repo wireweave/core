@@ -77,26 +77,26 @@ stack: Layered container. Attrs: gap.
 relative: Positioned container.
 
 # CONTENT CONTAINERS
-card: Bordered box. String arg for title. Attrs: p (0-8), w, h, shadow (none/sm/md/lg), border.
-modal: Dialog. String arg for title. Attrs: w, h.
-drawer: Slide panel. String arg for title. Attrs: w, position.
+card: Bordered box. String arg for title. Attrs: p (0-8), w, h, shadow (none/sm/md/lg), border, navigate, opens, toggles, action.
+modal: Dialog. String arg for title. Attrs: w, h, id (opens/toggles target).
+drawer: Slide panel. String arg for title. Attrs: w, position, id (opens/toggles target).
 accordion: Expandable section. String arg for title.
 section: Grouped content. String arg for title.
 
 # TEXT COMPONENTS
 text: Inline text. String arg required. Attrs: size (xs/sm/base/md/lg/xl), weight (normal/medium/semibold/bold), muted, align.
 title: Heading. String arg required. Attrs: level (1-6), size, align, mb, mt.
-link: Hyperlink. String arg required. Attrs: href, external, ml, mr.
+link: Hyperlink. String arg required. Attrs: href, external, ml, mr, navigate, opens, toggles, action.
 
 # VISUAL COMPONENTS
-icon: Lucide icon. String arg is icon name. Attrs: size (xs/sm/md/lg/xl), muted.
-avatar: User avatar. String arg is name (shows initials). Attrs: size, src.
-badge: Label tag. String arg required. Attrs: variant (default/primary/success/warning/danger), size, pill.
-image: Image element. String arg is src. Attrs: w, h, alt.
+icon: Lucide icon. String arg is icon name — must be a valid Lucide name in kebab-case (e.g. the overflow/kebab menu is "ellipsis-vertical", horizontal is "ellipsis"; not "more-vertical"). Unknown names render as a "?" placeholder. Attrs: size (xs/sm/md/lg/xl), muted, navigate, opens, toggles, action.
+avatar: User avatar. String arg is name (shows initials). Attrs: size, src, navigate, opens, toggles, action.
+badge: Label tag. String arg required. Attrs: variant (default/primary/success/warning/danger), size, pill, navigate, opens, toggles, action.
+image: Image element. String arg is src. Attrs: w, h, alt, navigate, opens, toggles, action.
 placeholder: Dashed box for images/media. String arg is label. Attrs: h, w.
 
 # FORM COMPONENTS
-button: Clickable button. String arg is label (empty "" for icon-only). Attrs: primary/secondary/outline/ghost/danger (boolean variants), icon, size (xs/sm/md/lg), disabled, w.
+button: Clickable button. String arg is label (empty "" for icon-only). Attrs: primary/secondary/outline/ghost/danger (boolean variants), icon, size (xs/sm/md/lg), disabled, w, aria (accessible name for icon-only buttons → renders aria-label), title (tooltip), navigate, opens, toggles, action.
 input: Text input. String arg is label. Attrs: placeholder, inputType (text/email/password/number/tel/url/search/date), icon, w, size, required, disabled.
 select: Dropdown. String arg is label. Array arg for options. Attrs: placeholder, value.
 checkbox: Checkbox. String arg is label. Attrs: checked, disabled.
@@ -109,7 +109,7 @@ textarea: Multiline input. String arg is label. Attrs: rows, placeholder.
 nav: Menu. Array arg for simple items OR block with item children.
   - Array syntax: nav ["Home", "About", "Contact"]
   - Block syntax: nav { item "Label" icon="name" active }
-item: Nav item (inside nav/dropdown block). String arg is label. Attrs: icon, active, disabled, href.
+item: Nav item (inside nav/dropdown block). String arg is label. Attrs: icon, active, disabled, href, navigate, opens, toggles, action.
 tabs: Tab bar. Array arg for labels. Attrs: active (0-based index).
   - Block syntax: tabs { tab "Label" { children } }
 breadcrumb: Path trail. Array arg for items.
@@ -170,9 +170,10 @@ col: syntax: col [gap=N] [flex=N] [span=N] [scroll] { children }
 stack: syntax: stack [gap=N] { children }
   - Unlike col, stack only takes content height (does not flex to fill space).
 
-button: syntax: button "label" [variant] [size=SIZE] [icon="name"]
+button: syntax: button "label" [variant] [size=SIZE] [icon="name"] [aria="Accessible name"]
   - Variants are boolean attrs: primary, secondary, outline, ghost, danger.
-  - Icon-only: button "" icon="name" ghost (empty string required).
+  - Icon-only: button "" icon="name" aria="Action" ghost (empty string required).
+  - ALWAYS give an icon-only button an accessible name via aria="…" (renders aria-label) so screen readers can describe it. title="…" is a fallback.
   - NOT: button icon="name" (missing string arg causes parse error).
 
 input: syntax: input ["label"] [inputType=TYPE] [placeholder="text"]
@@ -184,15 +185,53 @@ nav: syntax: nav ["item1","item2"] [vertical] [active=N] OR nav { item "Label" i
   - active: 0-based index of active item.
   - Both array and block syntax are valid.
 
+# INTERACTION WIRING
+Every clickable element (button, link, card, icon, avatar, badge, image, nav/dropdown item) declares exactly ONE interaction attr:
+- navigate="Page Title or URL": page transition. A value exactly matching another top-level page title links the screens; anything else is treated as a URL.
+- opens="id": opens the modal/drawer with that id (same page).
+- toggles="id": shows/hides the modal/drawer with that id (same page).
+- action="name": named in-screen behavior (e.g. "submit", "logout", "delete"). action="none" marks a deliberately inert element.
+modal/drawer need id="…" to be reachable by opens/toggles.
+
+\`\`\`
+button "Sign in" primary action="submit"
+button "Delete account" danger opens="confirm-delete"
+modal "Confirm delete" id="confirm-delete" { text "Are you sure?" }
+button "" icon="bell" aria="Notifications" ghost toggles="notif-drawer"
+drawer "Notifications" id="notif-drawer" position=right { list ["No new notifications"] }
+card "Order #1042" navigate="Order Detail" { text "2 items" }
+link "Docs" navigate="https://docs.example.com"
+nav vertical {
+  item "Dashboard" icon="home" navigate="Dashboard" active
+  item "Help" icon="info" opens="help-modal"
+}
+modal "Help" id="help-modal" { text "FAQ" }
+dropdown {
+  item "Settings" navigate="Settings"
+  item "Logout" action="logout"
+}
+\`\`\`
+
+# LAYOUT GUIDANCE
+Wireframes are judged on layout quality, not just valid syntax. Follow these composition rules:
+
+- ADAPTIVE TARGET-N GRID: When showing N peer items (cards, tiles, stat boxes, product thumbnails), lay them out as an even grid whose column count fits N — do NOT stack everything in one column. Use a row with equal-width children: row gap=4 { col flex=1 { … } col flex=1 { … } col flex=1 { … } } gives 3 equal columns. For many items, add wrap so they reflow into rows of equal columns: row gap=4 wrap { /* each item a fixed-width or flex card */ }. Keep every column the same width (flex=1, or span out of 12) and one consistent gap.
+- SYMMETRIC MARGINS & SPACING: Use consistent, symmetric padding and gaps. Give header/main/footer the same horizontal padding (e.g. p=4) so content edges line up. Use ONE gap value within a group rather than ad-hoc per-item margins. Left and right insets should match; avoid lopsided spacing.
+- CHAT-REGION COMPOSITION: A chat / conversation / messaging screen is three stacked regions: (1) header with the contact/title, (2) main scroll holding the message list (alternate alignment — incoming left, outgoing right), and (3) a bottom input bar as a row pinned below main: row gap=2 { input "" placeholder="Message" flex=1  button "" icon="send" aria="Send" primary }. The composer is its OWN row outside the scroll area, never inside the message list.
+- INPUT SIZING: Inputs, selects and textareas in a form should fill their container — w="full" when stacked in a col, or flex=1 when sharing a row with a button. Keep a consistent size across one form. A search field uses input with icon="search".
+- ACCESSIBLE ICON BUTTONS: Every icon-only button needs an accessible name: button "" icon="x" aria="Close" ghost.
+
 # CONSTRAINTS
-DO: Emit multiple top-level page declarations when the user asks for multiple screens. Use viewport="WxH" or at(x, y) to position them. Use semantic layout (header, main, sidebar, footer). Use row/col for flex layouts. Quote all strings with double quotes. Write booleans without =true. Use inputType NOT type. Use w/h on components (width/height only on page).
+DO: Emit multiple top-level page declarations when the user asks for multiple screens. Use viewport="WxH" or at(x, y) to position them. Use semantic layout (header, main, sidebar, footer). Use row/col for flex layouts. Quote all strings with double quotes. Write booleans without =true. Use inputType NOT type. Use w/h on components (width/height only on page). Wire every clickable element with exactly one interaction attr (navigate/opens/toggles/action).
 DO NOT: Use components not in the spec. Quote numeric values. Quote enum values (start, center, between etc). Write boolean=true. Nest page inside page. Use HTML / CSS / JSX syntax. Collapse multi-view apps into one page with a sidebar tab switcher (use separate top-level pages instead).
 
 # MAPPING UI TO COMPONENTS
 - Photos / images / thumbnails -> placeholder with h and w
 - Maps / charts / graphs -> placeholder
 - Filter chips / tags -> badge
-- Icon buttons -> button "" icon="name" ghost
+- Icon buttons -> button "" icon="name" aria="Action" ghost (always give an accessible name)
+- Grid of N peer items -> row [wrap] with equal col flex=1 children (column count fits N)
+- Chat / messaging screen -> header + main scroll (message list) + bottom row { input flex=1  button "" icon="send" aria="Send" }
 - Search box -> input with icon="search"
 - Logo area -> icon or placeholder
 - Multiple distinct screens -> multiple top-level page declarations (one per screen)`
@@ -215,7 +254,7 @@ export function buildCompactGrammarPrompt(): string {
 - Multi-view apps default to separate top-level pages (not sidebar collapse).
 
 # LAYOUT: page(at, viewport, width, height, device, centered), header(h, border), main(p, scroll), footer(h, border), sidebar(w, border, position), section, row(gap, justify, align, wrap), col(gap, flex, span), stack, relative
-# CONTAINERS: card(p, shadow), modal(w), drawer(w, position), accordion
+# CONTAINERS: card(p, shadow), modal(w, id), drawer(w, position, id), accordion
 # TEXT: text(size, weight, muted), title(level), link(href)
 # VISUAL: icon(Lucide name), avatar(size), badge(variant), image, placeholder(h, w)
 # FORM: button(primary/danger/outline/ghost, icon, size), input(inputType, placeholder), select, checkbox, radio, switch, slider, textarea
@@ -224,11 +263,23 @@ export function buildCompactGrammarPrompt(): string {
 # FEEDBACK: alert(variant), toast, progress(value), spinner
 # UTILITY: divider
 
+# INTERACTIONS
+- Every clickable element (button, link, card, icon, avatar, badge, image, nav/dropdown item) declares exactly ONE of: navigate="Page Title or URL" | opens="modal/drawer id" | toggles="modal/drawer id" | action="name" ("none" = deliberately inert).
+- modal/drawer take id="…" as the opens/toggles target.
+- nav { item "Home" navigate="Home" }  dropdown { item "Logout" action="logout" }
+
+# LAYOUT GUIDANCE
+- Grid of N peer items: row [wrap] with equal col flex=1 children (column count fits N) — don't stack peers in one column.
+- Symmetric spacing: same horizontal padding on header/main/footer; one consistent gap per group; match left/right insets.
+- Chat screen: header + main scroll (message list, incoming left / outgoing right) + bottom composer row { input flex=1  button "" icon="send" aria="Send" } OUTSIDE the scroll area.
+- Input sizing: inputs/selects fill their container (w="full" stacked, flex=1 in a row); consistent size per form.
+
 # KEY RULES
 - sidebar: direct child of row, w=240, border.
 - nav in sidebar: must have vertical.
 - cards in row: flex=1 for equal width.
-- icon-only button: button "" icon="name" ghost.
+- icon-only button: button "" icon="name" aria="Action" ghost (aria = accessible name).
+- every clickable element: exactly one of navigate/opens/toggles/action.
 - inputType (not type) for inputs.
 - viewport (not width/height) when emitting multi-page canvas.
 - Multiple screens → multiple top-level pages, not nested pages.
