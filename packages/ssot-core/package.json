@@ -1,6 +1,6 @@
 {
   "name": "@wireweave/ssot-core",
-  "version": "0.0.0",
+  "version": "0.1.0-beta.0",
   "description": "SSOT core — frontmatter/body parsing, normalized graph, traversal & impact, structure detection. Zero runtime dependencies, isomorphic (browser + Node).",
   "type": "module",
   "main": "dist/index.cjs",

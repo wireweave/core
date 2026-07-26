@@ -1,6 +1,6 @@
 {
   "name": "@wireweave/ssot-tools",
-  "version": "0.0.0",
+  "version": "0.1.0-beta.0",
   "description": "SSOT filesystem & orchestration layer — catalog build, scaffold, verify runner, mirror/lifecycle sync, auto-tag, fill-version, governance/propose/flag. Node-only; all graph/parse logic delegated to @wireweave/ssot-core.",
   "type": "module",
   "main": "dist/index.cjs",

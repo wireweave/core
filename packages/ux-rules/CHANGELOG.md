@@ -1,5 +1,31 @@
 # Changelog
 
+## 1.5.0-beta.1
+
+### Minor Changes
+
+- [`ab1ef5b`](https://github.com/wireweave/wireweave/commit/ab1ef5b45efaea1490901f719191949e8b09c9bf) Thanks [@Seungwoo321](https://github.com/Seungwoo321)! - feat: three authoring-correctness content rules + icon-button a11y recalibration
+  - `content-unknown-icon` (warning): icon names on `button` / `input` / `icon` must
+    resolve to a real Lucide glyph — resolution is delegated to core's `getIconData`
+    (exact name, alias map, camelCase→kebab) so the rule never drifts from the renderer.
+  - `content-control-value-range` (warning): a `slider` / `progress` `value` must lie
+    within its declared `[min, max]` — an out-of-range value paints a pinned thumb/bar
+    while announcing an impossible number. Range defaults mirror the renderer
+    (slider `0..100`, progress `0..max||100`).
+  - `content-duplicate-control-label` (warning): a `slider` / `input` label must not be
+    repeated verbatim by an adjacent sibling `text` node (the "Temperature appears
+    twice" defect). Adjacency-scoped (`index ± 1`, same parent) so legitimate repeats
+    elsewhere are not flagged.
+  - `a11y-icon-button-label` recalibrated for wireframes: an icon-only button with an
+    `aria` / `aria-label` / `title` accessible name now passes, and a missing name is a
+    `warning` instead of an `error` — a low-fidelity sketch should not hard-fail the
+    document's `valid` gate over a placeholder's accessible name.
+
+### Patch Changes
+
+- Updated dependencies [[`506993d`](https://github.com/wireweave/wireweave/commit/506993dc040aa5702a5113d8bb5979ddb5f32c4f), [`e1142b0`](https://github.com/wireweave/wireweave/commit/e1142b0e385a8919799cf9c1a1364c224ca52a7c)]:
+  - @wireweave/core@3.1.0-beta.1
+
 ## 1.4.1-beta.0
 
 ### Patch Changes

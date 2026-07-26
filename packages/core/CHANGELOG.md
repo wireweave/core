@@ -1,5 +1,40 @@
 # Changelog
 
+## 3.1.0-beta.1
+
+### Minor Changes
+
+- [`506993d`](https://github.com/wireweave/wireweave/commit/506993dc040aa5702a5113d8bb5979ddb5f32c4f) Thanks [@Seungwoo321](https://github.com/Seungwoo321)! - feat: button accessible-name attributes + shared unknown-icon placeholder + lucide overflow alias remap
+  - `button` now accepts `aria` / `aria-label` (rendered as `aria-label`) and `title`
+    (tooltip + fallback name), giving icon-only buttons a real accessible name
+    (WCAG 4.1.2): `button "" icon="x" aria="Close"`. Only emitted when authored —
+    buttons with visible text render unchanged.
+  - Unknown icon names now render one canonical placeholder everywhere (icon node,
+    button icon, input icon) via the new `renderUnknownIconSvg` export — a dashed
+    circle with a `?` glyph plus a `title="Unknown icon: <name>"` hover — instead of
+    leaking the raw DSL name as literal `[name]` text in button/input.
+  - The overflow/kebab-menu aliases now target the real Lucide keys after the
+    upstream rename: `more-horizontal` / `dots` → `ellipsis`, `more-vertical` /
+    `dots-vertical` → `ellipsis-vertical` — none of the legacy names dead-end into
+    the placeholder anymore.
+
+### Patch Changes
+
+- [`e1142b0`](https://github.com/wireweave/wireweave/commit/e1142b0e385a8919799cf9c1a1364c224ca52a7c) Thanks [@Seungwoo321](https://github.com/Seungwoo321)! - fix(renderer): keep multi-page canvas from shrinking and scope drawers to their board
+
+  Two rendering fixes for the multi-page canvas, both instances of the fixed-layout
+  invariant (see `no-responsive.md`):
+  - `renderToHtml` wraps its output in a flex `<body>`. The multi-page `.wf-canvas`
+    was a flex item without `flex-shrink: 0`, so it collapsed below its intrinsic
+    width when the viewport was narrower than the canvas and the boards reflowed —
+    the same defect the single-page `.wf-page` already guards against. The standalone
+    wrapper now emits `.wf-canvas { flex-shrink: 0 }` (prefix-aware).
+  - `.wf-drawer` used `position: fixed`, so a drawer inside a page escaped to the
+    viewport top-left and overlapped other boards in canvas mode. It is now
+    `position: absolute`, scoping it to its nearest positioned ancestor
+    (`.wf-page` / `.wf-canvas-board`) — the same board-scoping the modal backdrop
+    already uses.
+
 ## 3.1.0-beta.0
 
 ### Minor Changes
