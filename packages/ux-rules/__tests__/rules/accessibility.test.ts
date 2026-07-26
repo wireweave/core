@@ -71,13 +71,40 @@ describe('Accessibility Rules', () => {
   })
 
   describe('a11y-icon-button-label', () => {
-    it('should report error for icon-only button (empty content with icon)', () => {
+    it('should warn (not error) for icon-only button with no accessible name', () => {
       const doc = parse('page { button "" icon=search }')
       const result = validateUX(doc, { categories: ['accessibility'] })
 
       const issue = result.issues.find((i) => i.ruleId === 'a11y-icon-button-label')
       expect(issue).toBeDefined()
-      expect(issue?.severity).toBe('error')
+      // Wireframes: a missing accessible name is an improvement, not a hard gate.
+      expect(issue?.severity).toBe('warning')
+      // It must not hard-fail the document.
+      expect(result.severityCounts.errors).toBe(0)
+    })
+
+    it('should pass for an icon-only button with an aria accessible name', () => {
+      const doc = parse('page { button "" icon=search aria="Search" }')
+      const result = validateUX(doc, { categories: ['accessibility'] })
+
+      const issue = result.issues.find((i) => i.ruleId === 'a11y-icon-button-label')
+      expect(issue).toBeUndefined()
+    })
+
+    it('should pass for an icon-only button with an aria-label accessible name', () => {
+      const doc = parse('page { button "" icon=x aria-label="Close" }')
+      const result = validateUX(doc, { categories: ['accessibility'] })
+
+      const issue = result.issues.find((i) => i.ruleId === 'a11y-icon-button-label')
+      expect(issue).toBeUndefined()
+    })
+
+    it('should pass for an icon-only button with a title accessible name', () => {
+      const doc = parse('page { button "" icon=menu title="Open menu" }')
+      const result = validateUX(doc, { categories: ['accessibility'] })
+
+      const issue = result.issues.find((i) => i.ruleId === 'a11y-icon-button-label')
+      expect(issue).toBeUndefined()
     })
 
     it('should pass for button with icon and text', () => {

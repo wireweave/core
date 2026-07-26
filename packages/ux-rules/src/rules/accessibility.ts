@@ -73,27 +73,54 @@ export const imageRequiresAlt: UXRule = {
 }
 
 /**
- * Check if icon-only button has accessible label
+ * Read an explicit accessible-name attribute off a node.
+ *
+ * A button's accessible name (WCAG 4.1.2) can come from an `aria` / `aria-label`
+ * attribute or, at lower priority, a `title`. These are first-class on
+ * `ButtonNode` in `@wireweave/core` and are rendered as `aria-label` / `title`.
+ */
+function getAccessibleNameAttr(node: AnyNode): string {
+  const record = node as unknown as Record<string, unknown>
+  const candidates = [record.aria, record['aria-label'], record.title]
+  for (const value of candidates) {
+    if (typeof value === 'string' && value.trim()) return value.trim()
+  }
+  return ''
+}
+
+/**
+ * Check if icon-only button has an accessible name.
+ *
+ * Recalibrated for wireframes (default severity `warning`, not `error`): a
+ * wireframe is a low-fidelity sketch and a missing accessible name on an
+ * icon-only placeholder should not hard-fail the document's `valid` gate.
+ *
+ * - An icon-only button WITH an accessible-name attribute (`aria` / `aria-label`
+ *   / `title`) — or with visible text — passes (no issue).
+ * - An icon-only button with NO accessible name is reported as a `warning`
+ *   (an improvement to make, not a blocking defect for a wireframe).
  */
 export const iconButtonRequiresLabel: UXRule = {
   id: 'a11y-icon-button-label',
   category: 'accessibility',
-  severity: 'error',
-  name: 'Icon-only button requires label',
-  description: 'Buttons with only an icon must have an accessible label',
+  severity: 'warning',
+  name: 'Icon-only button should have an accessible name',
+  description: 'Buttons with only an icon should have an accessible name (aria-label or title)',
   appliesTo: ['Button'],
   check: (node: AnyNode, context: UXRuleContext): UXIssue | null => {
     const hasIcon = 'icon' in node && node.icon
     const hasContent = getNodeText(node).trim()
+    const hasAccessibleName = getAccessibleNameAttr(node)
 
-    if (hasIcon && !hasContent) {
+    if (hasIcon && !hasContent && !hasAccessibleName) {
       return {
         ruleId: 'a11y-icon-button-label',
         category: 'accessibility',
-        severity: 'error',
-        message: 'Icon-only button is missing accessible text',
-        description: 'Screen readers cannot describe icon-only buttons without text',
-        suggestion: 'Add text content or aria-label to describe the button action',
+        severity: 'warning',
+        message: 'Icon-only button is missing an accessible name',
+        description: 'Screen readers cannot describe icon-only buttons without an accessible name',
+        suggestion:
+          'Add an aria attribute (e.g. button "" icon="search" aria="Search") or text content',
         path: context.path,
         nodeType: node.type,
         location: getNodeLocation(node),
