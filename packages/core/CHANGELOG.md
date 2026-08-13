@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.1.0-beta.3
+
+### Minor Changes
+
+- [#40](https://github.com/wireweave/wireweave/pull/40) [`83c2329`](https://github.com/wireweave/wireweave/commit/83c2329840e027c92e86d9f523c8e782a944160c) Thanks [@Seungwoo321](https://github.com/Seungwoo321)! - feat: expose the shared anchor navigation intent and classify URL-shaped `navigate` targets as external transitions.
+
+  fix: align the legacy `module` entrypoint with the published ESM file declared by `exports.import`.
+
 ## 3.1.0-beta.2
 
 ### Minor Changes
