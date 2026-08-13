@@ -834,12 +834,12 @@ describe('Interactive Attributes', () => {
   })
 
   describe('Link Interactive Props', () => {
-    it('should render link with navigate attribute', () => {
+    it('should move a URL-shaped link navigate into href', () => {
       const doc = parse('page { link "Dashboard" navigate="/dashboard" }')
       const result = render(doc)
 
       expect(result.html).toContain('href="/dashboard"')
-      expect(result.html).toContain('data-navigate="/dashboard"')
+      expect(result.html).not.toContain('data-navigate="/dashboard"')
     })
 
     it('should render link with opens attribute', () => {

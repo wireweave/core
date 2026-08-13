@@ -132,15 +132,39 @@ describe('extractScreenTransitions (E1)', () => {
     expect(logout).toMatchObject({ resolved: true, to: { pageIndex: 0, title: 'Login' } })
   })
 
-  it('reports URL-style navigate targets as dangling', () => {
+  it('reports URL-style navigate targets as external, not dangling', () => {
     const graph = extractScreenTransitions(parse(MULTI_PAGE))
-    expect(graph.dangling).toHaveLength(1)
-    expect(graph.dangling[0]).toMatchObject({
+    expect(graph.dangling).toHaveLength(0)
+    expect(graph.external).toHaveLength(1)
+    expect(graph.external[0]).toMatchObject({
       kind: 'navigate',
       target: '/reset',
-      resolved: false,
+      resolved: true,
+      external: true,
       to: null,
     })
+  })
+
+  it('prefers an exact page title over URL-shape classification', () => {
+    const graph = extractScreenTransitions(
+      parse('page "/docs" { text "Docs" } page "Home" { button "Open" navigate="/docs" }'),
+    )
+    const edge = graph.edges.find((candidate) => candidate.trigger.label === 'Open')
+
+    expect(edge).toMatchObject({ resolved: true, to: { pageIndex: 0, title: '/docs' } })
+    expect(edge?.external).toBeUndefined()
+    expect(graph.external).toHaveLength(0)
+    expect(graph.dangling).toHaveLength(0)
+  })
+
+  it('keeps an unmatched plain page name dangling', () => {
+    const graph = extractScreenTransitions(
+      parse('page "Home" { button "Open" navigate="Missing" }'),
+    )
+
+    expect(graph.external).toHaveLength(0)
+    expect(graph.dangling).toHaveLength(1)
+    expect(graph.dangling[0]).toMatchObject({ target: 'Missing', resolved: false, to: null })
   })
 
   it('resolves opens against overlay ids and keeps toggles/action off the page graph', () => {
@@ -198,7 +222,7 @@ page "Settings" { text "settings" }
 `
 
 describe('extractScreenTransitions — item-level triggers (E1b)', () => {
-  it('resolves nav array item navigate to a page and marks the URL-style item dangling', () => {
+  it('resolves nav array item navigate to a page and marks the URL-style item external', () => {
     const graph = extractScreenTransitions(parse(NAV_MENUS))
 
     const toDash = graph.edges.find((e) => e.trigger.label === 'To Dashboard')
@@ -211,11 +235,13 @@ describe('extractScreenTransitions — item-level triggers (E1b)', () => {
       trigger: { nodeType: 'Nav', item: { index: 0 } },
     })
 
-    expect(graph.dangling).toHaveLength(1)
-    expect(graph.dangling[0]).toMatchObject({
+    expect(graph.dangling).toHaveLength(0)
+    expect(graph.external).toHaveLength(1)
+    expect(graph.external[0]).toMatchObject({
       kind: 'navigate',
       target: '/missing',
-      resolved: false,
+      resolved: true,
+      external: true,
       to: null,
       trigger: { nodeType: 'Nav', label: 'Broken', item: { index: 1 } },
     })

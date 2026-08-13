@@ -2,8 +2,16 @@
  * Navigation Renderers (Nav, Tabs, Breadcrumb)
  */
 
-import type { NavNode, TabsNode, BreadcrumbNode, NavChild, NavBlockItem } from '../../../ast/types'
+import type {
+  NavNode,
+  TabsNode,
+  BreadcrumbNode,
+  NavChild,
+  NavItem,
+  NavBlockItem,
+} from '../../../ast/types'
 import type { RenderContext } from './types'
+import { anchorIntent, nonAnchorIntent } from '../interactive'
 
 /**
  * Render helper icon HTML
@@ -15,14 +23,16 @@ function renderIconHtml(iconName: string, prefix: string): string {
 /**
  * Render a single nav item
  */
-function renderNavItem(item: NavBlockItem, ctx: RenderContext): string {
+function renderNavItem(item: NavItem | NavBlockItem, ctx: RenderContext): string {
   const linkClasses = ctx.buildClassString([
     `${ctx.prefix}-nav-link`,
     item.active ? `${ctx.prefix}-nav-link-active` : undefined,
     item.disabled ? `${ctx.prefix}-nav-link-disabled` : undefined,
   ])
   const iconHtml = item.icon ? renderIconHtml(item.icon, ctx.prefix) + ' ' : ''
-  return `<a class="${linkClasses}" href="${item.href || '#'}">${iconHtml}${ctx.escapeHtml(item.label)}</a>`
+  const { href, attrs } = anchorIntent(item)
+  const intentAttrs = ctx.buildAttrsString(attrs)
+  return `<a class="${linkClasses}" href="${ctx.escapeHtml(href)}"${intentAttrs}>${iconHtml}${ctx.escapeHtml(item.label)}</a>`
 }
 
 /**
@@ -81,13 +91,7 @@ export function renderNav(node: NavNode, ctx: RenderContext): string {
       if (typeof item === 'string') {
         return `<a class="${ctx.prefix}-nav-link" href="#">${ctx.escapeHtml(item)}</a>`
       }
-      const linkClasses = ctx.buildClassString([
-        `${ctx.prefix}-nav-link`,
-        item.active ? `${ctx.prefix}-nav-link-active` : undefined,
-        item.disabled ? `${ctx.prefix}-nav-link-disabled` : undefined,
-      ])
-      const iconHtml = item.icon ? renderIconHtml(item.icon, ctx.prefix) + ' ' : ''
-      return `<a class="${linkClasses}" href="${item.href || '#'}">${iconHtml}${ctx.escapeHtml(item.label)}</a>`
+      return renderNavItem(item, ctx)
     })
     .join('\n')
 
@@ -137,9 +141,13 @@ export function renderBreadcrumb(node: BreadcrumbNode, ctx: RenderContext): stri
           ? `<span class="${ctx.prefix}-breadcrumb-item" aria-current="page">${ctx.escapeHtml(item)}</span>`
           : `<a class="${ctx.prefix}-breadcrumb-item" href="#">${ctx.escapeHtml(item)}</a>`
       }
-      return isLast
-        ? `<span class="${ctx.prefix}-breadcrumb-item" aria-current="page">${ctx.escapeHtml(item.label)}</span>`
-        : `<a class="${ctx.prefix}-breadcrumb-item" href="${item.href || '#'}">${ctx.escapeHtml(item.label)}</a>`
+      if (isLast) {
+        const intentAttrs = ctx.buildAttrsString(nonAnchorIntent(item))
+        return `<span class="${ctx.prefix}-breadcrumb-item" aria-current="page"${intentAttrs}>${ctx.escapeHtml(item.label)}</span>`
+      }
+      const { href, attrs } = anchorIntent(item)
+      const intentAttrs = ctx.buildAttrsString(attrs)
+      return `<a class="${ctx.prefix}-breadcrumb-item" href="${ctx.escapeHtml(href)}"${intentAttrs}>${ctx.escapeHtml(item.label)}</a>`
     })
     .join(separator)
 
