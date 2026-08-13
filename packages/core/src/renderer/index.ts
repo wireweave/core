@@ -32,6 +32,10 @@ export type { PlacedPage } from './canvas-renderer'
 export { renderSite, buildSiteModel } from './site'
 export type { SiteOptions, SiteModel, SiteScreen, SiteShell, ShellMiss } from './site'
 
+// Public renderer decision used by consumers that must mirror emitted anchors.
+export { anchorIntent } from './html/interactive'
+export type { InteractiveAttrs } from './html/interactive'
+
 // Re-export icons (ensures they're bundled with renderer)
 export {
   getIconData,

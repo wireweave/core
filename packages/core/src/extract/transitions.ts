@@ -20,10 +20,10 @@
  *
  * - **`navigate`** is a page transition. Its target resolves to a page when the
  *   target string, trimmed, exactly matches a page `title` (case-sensitive). On
- *   duplicate titles the first page in document order wins. URL-style targets
- *   (`navigate="/dashboard"`) do not match a title and are reported as
- *   {@link ScreenTransitionGraph.dangling | dangling}. This mirrors the DSL,
- *   where `navigate` is documented as a "URL or page" target.
+ *   duplicate titles the first page in document order wins. When no title
+ *   matches, URL-shaped targets (`navigate="/dashboard"`, `https://…`) are
+ *   reported as {@link ScreenTransitionGraph.external | external}; unmatched
+ *   plain names remain {@link ScreenTransitionGraph.dangling | dangling}.
  * - **`opens` / `toggles`** target an overlay *within the source page*, not
  *   another page, so their `to` is always `null`. They resolve when a `Modal`
  *   or `Drawer` in the same page has `id === target` (the only nodes that carry
@@ -37,6 +37,7 @@
 
 import type { AnyNode, PageNode, WireframeDocument } from '../ast'
 import { documentPages, walk } from '../ast'
+import { isUrlTarget } from '../interaction/target'
 import { categoryOf, getInteractiveLabel, getInteractions, getItemInteractions } from './node-info'
 import type {
   InteractionKind,
@@ -81,6 +82,13 @@ function resolveEdge(
       edge.resolved = true
       return { edge, isDangling: false }
     }
+    // Resolve document names before classifying by shape so an unusual page
+    // title such as "/docs" remains addressable.
+    if (isUrlTarget(target)) {
+      edge.external = true
+      edge.resolved = true
+      return { edge, isDangling: false }
+    }
     return { edge, isDangling: true }
   }
 
@@ -113,6 +121,7 @@ export function extractScreenTransitions(doc: WireframeDocument): ScreenTransiti
 
   const edges: TransitionEdge[] = []
   const dangling: TransitionEdge[] = []
+  const external: TransitionEdge[] = []
 
   pages.forEach((page, pageIndex) => {
     const overlayIds = collectOverlayIds(page)
@@ -134,6 +143,7 @@ export function extractScreenTransitions(doc: WireframeDocument): ScreenTransiti
       )
       edges.push(edge)
       if (isDangling) dangling.push(edge)
+      if (edge.external) external.push(edge)
     }
 
     for (const child of page.children) {
@@ -163,7 +173,7 @@ export function extractScreenTransitions(doc: WireframeDocument): ScreenTransiti
     }
   })
 
-  return { screens, edges, dangling }
+  return { screens, edges, dangling, external }
 }
 
 function fromDescriptor(pageIndex: number, page: PageNode): TransitionEdge['from'] {

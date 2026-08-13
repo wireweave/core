@@ -4,6 +4,7 @@
 
 import type { TooltipNode, PopoverNode, DropdownNode } from '../../../ast/types'
 import type { RenderContext } from './types'
+import { anchorIntent, nonAnchorIntent } from '../interactive'
 
 /**
  * Render Tooltip node
@@ -74,21 +75,15 @@ export function renderDropdown(node: DropdownNode, ctx: RenderContext): string {
         dropdownItem.disabled ? `${ctx.prefix}-dropdown-item-disabled` : undefined,
       ])
 
-      // Build interactive data attributes
-      const interactiveAttrs: Record<string, string | undefined> = {
-        'data-navigate': dropdownItem.navigate,
-        'data-opens': dropdownItem.opens,
-        'data-toggles': dropdownItem.toggles,
-        'data-action': dropdownItem.action,
-      }
-      const interactiveAttrStr = ctx.buildAttrsString(interactiveAttrs)
       const disabledAttr = dropdownItem.disabled ? ' disabled="disabled"' : ''
 
       // Use <a> if href is provided, otherwise use <button>
       if (dropdownItem.href || dropdownItem.navigate) {
-        const href = dropdownItem.href || dropdownItem.navigate || '#'
-        return `<a class="${itemClasses}" href="${ctx.escapeHtml(href)}"${interactiveAttrStr}>${ctx.escapeHtml(dropdownItem.label)}</a>`
+        const { href, attrs } = anchorIntent(dropdownItem)
+        const anchorAttrStr = ctx.buildAttrsString(attrs)
+        return `<a class="${itemClasses}" href="${ctx.escapeHtml(href)}"${anchorAttrStr}>${ctx.escapeHtml(dropdownItem.label)}</a>`
       }
+      const interactiveAttrStr = ctx.buildAttrsString(nonAnchorIntent(dropdownItem))
       return `<button class="${itemClasses}"${disabledAttr}${interactiveAttrStr}>${ctx.escapeHtml(dropdownItem.label)}</button>`
     })
     .join('\n')

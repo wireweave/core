@@ -147,12 +147,19 @@ export interface TransitionEdge {
   trigger: { nodeType: NodeType; label?: string; loc?: SourceLocation; item?: { index: number } }
   /**
    * Whether `target` resolved to a concrete destination for its kind:
-   * - `navigate`: a page whose title matches `target`.
+   * - `navigate`: a page whose title matches `target`, or a URL-shaped external
+   *   destination outside this document.
    * - `opens` / `toggles`: a `Modal` / `Drawer` with `id === target` in the
    *   source page.
    * - `action`: always `false` (an opaque handler id has no structural target).
    */
   resolved: boolean
+  /**
+   * Present, and always `true`, when a `navigate` target is a URL rather than a
+   * page name. External edges are resolved destinations outside this document,
+   * so `to` remains `null` and they never appear in `dangling`.
+   */
+  external?: true
 }
 
 /**
@@ -162,9 +169,12 @@ export interface ScreenTransitionGraph {
   screens: TransitionScreen[]
   edges: TransitionEdge[]
   /**
-   * The subset of `navigate` edges whose target matched no page title
-   * (`resolved === false`, `to === null`). Intra-page `opens` / `toggles` and
-   * opaque `action` edges are not page transitions and never appear here.
+   * The subset of `navigate` edges whose target matched no page title and was
+   * not URL-shaped (`resolved === false`, `to === null`). Intra-page
+   * `opens` / `toggles`, opaque `action` edges, and external URLs never appear
+   * here.
    */
   dangling: TransitionEdge[]
+  /** URL-shaped `navigate` edges that leave the current document. */
+  external: TransitionEdge[]
 }

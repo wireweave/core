@@ -4,6 +4,7 @@
 
 import type { TextNode, TitleNode, LinkNode, ValueWithUnit, TextSize } from '../../../ast/types'
 import type { RenderContext } from './types'
+import { anchorIntent } from '../interactive'
 
 /**
  * Type guard to check if a value is a ValueWithUnit object (custom pixel value)
@@ -112,14 +113,11 @@ export function renderLink(node: LinkNode, ctx: RenderContext): string {
   const styles = ctx.buildCommonStyles(node)
   const styleAttr = styles ? ` style="${styles}"` : ''
 
+  const { href, attrs: intentAttrs } = anchorIntent(node)
   const attrs: Record<string, string | boolean | undefined> = {
     class: classes,
-    href: node.href || node.navigate || '#',
-    // Interactive attributes
-    'data-navigate': node.navigate,
-    'data-opens': node.opens,
-    'data-toggles': node.toggles,
-    'data-action': node.action,
+    href,
+    ...intentAttrs,
   }
 
   if (node.external) {
