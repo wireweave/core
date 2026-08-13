@@ -3,7 +3,7 @@
  */
 
 import { describe, it, expect } from 'vitest'
-import { parse, render, renderToSvg } from '../../src'
+import { documentPages, parse, render, renderToSvg } from '../../src'
 
 describe('Pipeline Integration', () => {
   describe('Full Pipeline', () => {
@@ -63,9 +63,9 @@ describe('Pipeline Integration', () => {
 
       // Parse
       const doc = parse(source)
-      expect(doc.children).toHaveLength(1)
-      expect(doc.children[0].type).toBe('Page')
-      expect(doc.children[0].title).toBe('Dashboard')
+      expect(documentPages(doc)).toHaveLength(1)
+      expect(documentPages(doc)[0].type).toBe('Page')
+      expect(documentPages(doc)[0].title).toBe('Dashboard')
 
       // Render HTML
       const { html, css } = render(doc)

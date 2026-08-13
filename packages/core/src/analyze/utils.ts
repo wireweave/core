@@ -3,12 +3,13 @@
  */
 
 import type { WireframeDocument, AnyNode } from '../ast/types'
+import { documentPages } from '../ast/utils'
 
 /**
  * Collect all nodes from a document
  */
 export function collectNodes(doc: WireframeDocument, nodes: AnyNode[]): void {
-  for (const page of doc.children) {
+  for (const page of documentPages(doc)) {
     collectNodeRecursive(page, nodes)
   }
 }

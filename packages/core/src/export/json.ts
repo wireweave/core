@@ -3,6 +3,7 @@
  */
 
 import type { WireframeDocument, AnyNode } from '../ast/types'
+import { documentPages } from '../ast/utils'
 import type { JsonNode, JsonExportResult, ExportOptions } from './types'
 import { getNodeContent, extractAttributes, countNodes, getComponentTypes } from './utils'
 
@@ -55,7 +56,7 @@ export function exportToJson(
 ): JsonExportResult {
   const pages: JsonNode[] = []
 
-  for (const page of doc.children || []) {
+  for (const page of documentPages(doc)) {
     pages.push(nodeToJson(page, options))
   }
 

@@ -24,6 +24,7 @@
  */
 
 import type { AnyNode, SourceLocation, WireframeDocument } from './types'
+import { documentPages } from './utils'
 
 /** DOM attribute carrying a node's page-relative index path. */
 export const ANCHOR_PATH_ATTR = 'data-wf-path'
@@ -82,7 +83,7 @@ export function walkAnchorPaths(
   visit: (node: AnyNode, path: string) => void,
   pageIndexBase = 0,
 ): void {
-  doc.children.forEach((page, i) => {
+  documentPages(doc).forEach((page, i) => {
     visitAnchorNode(page, String(pageIndexBase + i), visit)
   })
 }
@@ -129,7 +130,7 @@ export function resolveAnchorPath(
   }
 
   const [pageSegment, ...childSegments] = indices as [number, ...number[]]
-  let node: AnyNode | undefined = doc.children[pageSegment - pageIndexBase]
+  let node: AnyNode | undefined = documentPages(doc)[pageSegment - pageIndexBase]
   for (const childIndex of childSegments) {
     if (!node) return undefined
     node = anchorChildNodes(node)[childIndex]

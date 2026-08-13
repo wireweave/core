@@ -12,7 +12,7 @@ import {
   calculateViewportScale,
   wrapInPreviewContainer,
 } from '../src/viewport'
-import { parse, render, renderToSvg } from '../src'
+import { documentPages, parse, render, renderToSvg } from '../src'
 
 describe('Viewport Module', () => {
   describe('DEVICE_PRESETS', () => {
@@ -242,23 +242,23 @@ describe('Viewport Integration', () => {
   describe('Parser with viewport', () => {
     it('should parse viewport attribute as number', () => {
       const doc = parse('page viewport=1920 { text "Hello" }')
-      expect(doc.children[0].viewport).toBe(1920)
+      expect(documentPages(doc)[0].viewport).toBe(1920)
     })
 
     it('should parse viewport attribute as string', () => {
       const doc = parse('page viewport="1920x1080" { text "Hello" }')
-      expect(doc.children[0].viewport).toBe('1920x1080')
+      expect(documentPages(doc)[0].viewport).toBe('1920x1080')
     })
 
     it('should parse device attribute', () => {
       const doc = parse('page device="iphone14" { text "Hello" }')
-      expect(doc.children[0].device).toBe('iphone14')
+      expect(documentPages(doc)[0].device).toBe('iphone14')
     })
 
     it('should parse both viewport and device (device takes precedence)', () => {
       const doc = parse('page viewport=1920 device="iphone14" { text "Hello" }')
-      expect(doc.children[0].viewport).toBe(1920)
-      expect(doc.children[0].device).toBe('iphone14')
+      expect(documentPages(doc)[0].viewport).toBe(1920)
+      expect(documentPages(doc)[0].device).toBe('iphone14')
     })
   })
 

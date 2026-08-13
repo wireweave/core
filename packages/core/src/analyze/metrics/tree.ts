@@ -5,6 +5,7 @@
 import type { WireframeDocument, AnyNode } from '../../ast/types'
 import type { TreeMetrics } from '../types'
 import { getChildren } from '../utils'
+import { documentPages } from '../../ast/utils'
 
 /**
  * Calculate tree structure metrics
@@ -16,7 +17,7 @@ export function calculateTreeMetrics(doc: WireframeDocument, allNodes: AnyNode[]
   let containerNodes = 0
 
   // Calculate depths
-  for (const page of doc.children) {
+  for (const page of documentPages(doc)) {
     calculateDepthRecursive(page, 1, (depth, hasChildren) => {
       totalDepth += depth
       if (depth > maxDepth) maxDepth = depth

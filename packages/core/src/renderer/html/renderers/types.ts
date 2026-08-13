@@ -21,6 +21,9 @@ export interface RenderContext {
   /** Escape HTML special characters */
   escapeHtml: (text: string) => string
 
+  /** Prefix an authored DOM id with the renderer's current scope. */
+  scopedId: (id: string) => string
+
   /** Build CSS class string from array */
   buildClassString: (classes: (string | undefined | false)[]) => string
 

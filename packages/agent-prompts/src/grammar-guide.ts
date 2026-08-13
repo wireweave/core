@@ -64,8 +64,31 @@ Renderer modes (the host picks one; you only need to emit valid pages):
 - renderCanvas(doc) — composes all pages into one bounded canvas.
 - renderPage(page) — single-page export primitive (1 page = 1 file).
 
+# SHARED PAGE LAYOUTS
+When several pages share a shell, define it once as a top-level layout and put
+the varying page content at its slot. Layout definitions and pages are siblings;
+a layout is not a screen by itself.
+
+- layout NAME { ... slot ... } — a named page shell. NAME is a bare identifier.
+- slot — a bare positional marker inside a layout. It takes no name and no braces.
+- page "Title" uses=NAME { ... } — draw the page inside layout NAME; the page body
+  contains only the content unique to that screen.
+
+Example:
+
+\`\`\`
+layout app {
+  header { title "Acme" }
+  slot
+  footer { text "© 2026 Acme" }
+}
+
+page "Home" uses=app { text "Welcome back" }
+page "Docs" uses=app { text "Getting started" }
+\`\`\`
+
 # LAYOUT COMPONENTS
-page: Root container. Attrs: title (string arg), at(x, y), viewport, width, height (pixels), device (mobile/tablet/desktop preset), centered (boolean).
+page: Root container. Attrs: title (string arg), uses (layout name), at(x, y), viewport, width, height (pixels), device (mobile/tablet/desktop preset), centered (boolean).
 header: Top section. Attrs: h (height), p (padding), border (boolean, default true).
 main: Primary content. Attrs: p, scroll (boolean).
 footer: Bottom section. Attrs: h, p, border.
@@ -253,7 +276,8 @@ export function buildCompactGrammarPrompt(): string {
 - Use viewport="WxH" per page; omit at() to auto-flow, use at(x, y) to pin.
 - Multi-view apps default to separate top-level pages (not sidebar collapse).
 
-# LAYOUT: page(at, viewport, width, height, device, centered), header(h, border), main(p, scroll), footer(h, border), sidebar(w, border, position), section, row(gap, justify, align, wrap), col(gap, flex, span), stack, relative
+# SHARED PAGE LAYOUTS: layout NAME { … slot … } defines a top-level shell; slot is a bare marker with no name or braces; page "Title" uses=NAME { … } places that page inside the shell. Layouts and pages are top-level siblings.
+# LAYOUT: page(at, viewport, width, height, device, centered, uses), header(h, border), main(p, scroll), footer(h, border), sidebar(w, border, position), section, row(gap, justify, align, wrap), col(gap, flex, span), stack, relative
 # CONTAINERS: card(p, shadow), modal(w, id), drawer(w, position, id), accordion
 # TEXT: text(size, weight, muted), title(level), link(href)
 # VISUAL: icon(Lucide name), avatar(size), badge(variant), image, placeholder(h, w)

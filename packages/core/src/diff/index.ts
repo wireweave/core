@@ -5,6 +5,7 @@
  */
 
 import type { WireframeDocument, AnyNode } from '../ast/types'
+import { documentPages } from '../ast/utils'
 import type { DiffResult, DiffSummary, NodeChange, DiffOptions } from './types'
 import { countNodes } from './utils'
 import { compareNodes, flattenChanges } from './compare'
@@ -26,8 +27,8 @@ export function diff(
   newDoc: WireframeDocument,
   options: DiffOptions = {},
 ): DiffResult {
-  const oldPages = oldDoc.children || []
-  const newPages = newDoc.children || []
+  const oldPages = documentPages(oldDoc)
+  const newPages = documentPages(newDoc)
 
   const allChanges: NodeChange[] = []
 

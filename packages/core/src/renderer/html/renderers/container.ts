@@ -56,7 +56,7 @@ export function renderModal(node: ModalNode, ctx: RenderContext): string {
 
   const styles = ctx.buildCommonStyles(node)
   const styleAttr = styles ? ` style="${styles}"` : ''
-  const idAttr = node.id ? ` id="${ctx.escapeHtml(node.id)}"` : ''
+  const idAttr = node.id ? ` id="${ctx.escapeHtml(ctx.scopedId(node.id))}"` : ''
 
   const title = node.title
     ? `<h2 class="${ctx.prefix}-title">${ctx.escapeHtml(node.title)}</h2>\n`
@@ -82,7 +82,7 @@ export function renderDrawer(node: DrawerNode, ctx: RenderContext): string {
 
   const styles = ctx.buildCommonStyles(node)
   const styleAttr = styles ? ` style="${styles}"` : ''
-  const idAttr = node.id ? ` id="${ctx.escapeHtml(node.id)}"` : ''
+  const idAttr = node.id ? ` id="${ctx.escapeHtml(ctx.scopedId(node.id))}"` : ''
 
   const title = node.title
     ? `<h2 class="${ctx.prefix}-title">${ctx.escapeHtml(node.title)}</h2>\n`

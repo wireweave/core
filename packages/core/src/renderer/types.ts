@@ -27,6 +27,8 @@ export interface RenderOptions {
    * `false` — output is byte-identical to non-anchored rendering when off.
    */
   sourceAnchors?: boolean
+  /** Prefix authored overlay ids with a renderer-owned scope. */
+  idScope?: string
 }
 
 export interface RenderResult {

@@ -66,6 +66,8 @@ const CHILD_KEYWORDS = new Set([
   'group',
   'marker',
   'annotations',
+  'layout',
+  'slot',
 ])
 
 /** Error thrown when a value or name cannot be expressed in the grammar. */
@@ -103,6 +105,19 @@ export function assertAttributeName(name: string, context: string): void {
       `attribute name ${JSON.stringify(name)} collides with a child keyword and cannot be parsed back`,
     )
   }
+}
+
+/**
+ * Assert that a named layout uses the grammar's bare Identifier form.
+ *
+ * Definition names occupy a positional grammar slot, so child keywords are
+ * allowed here even though they cannot be emitted as attribute names.
+ */
+export function assertDefinitionName(name: unknown, context: string): string {
+  if (typeof name !== 'string' || !IDENTIFIER_RE.test(name)) {
+    printError(context, `name ${JSON.stringify(name)} is not a grammar identifier`)
+  }
+  return name
 }
 
 /** Canonical double-quoted string literal with the grammar's five escapes. */

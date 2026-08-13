@@ -7,7 +7,7 @@
  */
 
 import type { AnyNode, PageNode, SelectNode, SelectOption, WireframeDocument } from '../ast'
-import { isInputComponentNode, walk } from '../ast'
+import { documentPages, isInputComponentNode, walk } from '../ast'
 import type { ComponentCategory } from '../spec'
 import {
   categoryOf,
@@ -164,5 +164,5 @@ export function extractScreenFields(page: PageNode): ScreenFields {
  * Extract {@link ScreenFields} for every page in a document, in document order.
  */
 export function extractAllScreenFields(doc: WireframeDocument): ScreenFields[] {
-  return doc.children.map((page) => extractScreenFields(page))
+  return documentPages(doc).map((page) => extractScreenFields(page))
 }

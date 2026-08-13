@@ -3,6 +3,7 @@
  */
 
 import type { WireframeDocument, AnyNode } from '../ast/types'
+import { documentPages } from '../ast/utils'
 import type { ExportOptions } from './types'
 import { SKIP_ATTRIBUTES } from './constants'
 
@@ -61,7 +62,7 @@ export function countNodes(doc: WireframeDocument): number {
     }
   }
 
-  for (const page of doc.children || []) {
+  for (const page of documentPages(doc)) {
     walk(page)
   }
 
@@ -85,7 +86,7 @@ export function getComponentTypes(doc: WireframeDocument): string[] {
     }
   }
 
-  for (const page of doc.children || []) {
+  for (const page of documentPages(doc)) {
     walk(page)
   }
 
