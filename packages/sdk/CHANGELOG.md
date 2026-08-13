@@ -1,5 +1,13 @@
 # @wireweave/sdk
 
+## 0.1.1-beta.2
+
+### Patch Changes
+
+- Updated dependencies [[`f4a7b36`](https://github.com/wireweave/wireweave/commit/f4a7b36061f8310ffcb9a933dd457c6d3b0d89cc)]:
+  - @wireweave/core@3.1.0-beta.2
+  - @wireweave/ux-rules@1.5.0-beta.2
+
 ## 0.1.1-beta.1
 
 ### Patch Changes

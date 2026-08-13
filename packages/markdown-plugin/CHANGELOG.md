@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.2.12-beta.2
+
+### Patch Changes
+
+- [#39](https://github.com/wireweave/wireweave/pull/39) [`1bf1ccb`](https://github.com/wireweave/wireweave/commit/1bf1ccb4b59270bfe70fd7ae42d4a3a1258385cf) Thanks [@Seungwoo321](https://github.com/Seungwoo321)! - fix: ignore top-level layout definitions when rendering markdown previews.
+
+- Updated dependencies [[`f4a7b36`](https://github.com/wireweave/wireweave/commit/f4a7b36061f8310ffcb9a933dd457c6d3b0d89cc)]:
+  - @wireweave/core@3.1.0-beta.2
+
 ## 1.2.12-beta.1
 
 ### Patch Changes

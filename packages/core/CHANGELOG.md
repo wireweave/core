@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.1.0-beta.2
+
+### Minor Changes
+
+- [#39](https://github.com/wireweave/wireweave/pull/39) [`f4a7b36`](https://github.com/wireweave/wireweave/commit/f4a7b36061f8310ffcb9a933dd457c6d3b0d89cc) Thanks [@Seungwoo321](https://github.com/Seungwoo321)! - feat: publish the verified named layout, slot, page-uses, and site-render contract for Wireweave beta.
+
+  Component definition/invocation reuse remains out of scope until the full end-to-end contract is implemented and verified.
+
 ## 3.1.0-beta.1
 
 ### Minor Changes

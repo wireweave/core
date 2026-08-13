@@ -22,6 +22,8 @@
     "core-dom-anchors",
     "core-extract-apis",
     "core-wf-printer",
+    "layout-site-beta",
+    "markdown-plugin-layout-compat",
     "ssot-core-initial-release",
     "ssot-tools-initial-release",
     "ux-rules-content-authoring"
