@@ -147,7 +147,7 @@ export interface InteractiveProps {
 // ===========================================
 
 /**
- * Wireframe Document — root node, holds zero or more `Page`s.
+ * Wireframe Document — root node, holds pages and named layout definitions.
  *
  * Multi-page semantics:
  * - A document is a *canvas* of pages. `renderPage` consumes one page;
@@ -159,7 +159,7 @@ export interface InteractiveProps {
  */
 export interface WireframeDocument extends BaseNode {
   type: 'Document'
-  children: PageNode[]
+  children: TopLevelNode[]
 }
 
 // ===========================================
@@ -180,6 +180,8 @@ export interface WireframeDocument extends BaseNode {
  */
 export interface PageNode extends BaseNode, CommonProps {
   type: 'Page'
+  /** Stable address used by `navigate=`; distinct from the display title. */
+  id?: string
   title?: string | null
   /** Center content both horizontally and vertically */
   centered?: boolean
@@ -187,7 +189,27 @@ export interface PageNode extends BaseNode, CommonProps {
   viewport?: string | number
   /** Device preset (e.g., "iphone14", "desktop") */
   device?: string
+  /** Named layout shell that hosts this page's own children. */
+  uses?: string
   children: AnyNode[]
+}
+
+/**
+ * A named page shell declared with `layout NAME { ... slot ... }`.
+ *
+ * Layout definitions are top-level structure, not screens. The renderer
+ * composes a page's children into the first slot when the page says
+ * `uses=NAME`.
+ */
+export interface LayoutDefinitionNode extends BaseNode, CommonProps {
+  type: 'Layout'
+  name: string
+  children: AnyNode[]
+}
+
+/** Bare positional marker inside a layout definition. */
+export interface SlotNode extends BaseNode, CommonProps {
+  type: 'Slot'
 }
 
 export interface HeaderNode extends BaseNode, CommonProps {
@@ -800,6 +822,10 @@ export interface AnnotationItemNode extends BaseNode {
 
 export type LayoutNode = PageNode | HeaderNode | MainNode | FooterNode | SidebarNode | SectionNode
 
+export type DefinitionNode = LayoutDefinitionNode
+
+export type TopLevelNode = PageNode | DefinitionNode
+
 export type GridNode = RowNode | ColNode | StackNode | RelativeNode
 
 export type ContainerComponentNode = CardNode | ModalNode | DrawerNode | AccordionNode
@@ -829,6 +855,7 @@ export type AnnotationNode = MarkerNode | AnnotationsNode | AnnotationItemNode
 
 export type ContainerNode =
   | LayoutNode
+  | DefinitionNode
   | GridNode
   | ContainerComponentNode
   | PopoverNode
@@ -847,12 +874,15 @@ export type LeafNode =
   | NavigationNode
   | DividerComponentNode
   | MarkerNode
+  | SlotNode
 
 export type AnyNode = ContainerNode | LeafNode
 
 export type NodeType =
   | 'Document'
   | 'Page'
+  | 'Layout'
+  | 'Slot'
   | 'Header'
   | 'Main'
   | 'Footer'

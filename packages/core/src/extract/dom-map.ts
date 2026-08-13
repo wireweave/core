@@ -12,6 +12,7 @@
  */
 
 import type { AnyNode, NodeType, SourceLocation, WireframeDocument } from '../ast'
+import { documentPages } from '../ast'
 import { anchorChildNodes, resolveAnchorPath, walkAnchorPaths } from '../ast/anchor-path'
 import type { ComponentCategory } from '../spec'
 import { categoryOf, getLabel } from './node-info'
@@ -90,7 +91,7 @@ export function getPageSource(
   doc: WireframeDocument,
   pageIndex: number,
 ): SourceSlice | undefined {
-  const page = doc.children[pageIndex]
+  const page = documentPages(doc)[pageIndex]
   if (!page?.loc) return undefined
   return sliceSource(source, page.loc)
 }
@@ -116,7 +117,7 @@ export function getNodeSource(
  * between the tree panel and the rendered canvas.
  */
 export function buildDomTree(doc: WireframeDocument, pageIndexBase = 0): DomTreeNode[] {
-  return doc.children.map((page, i) => buildDomTreeNode(page, String(pageIndexBase + i)))
+  return documentPages(doc).map((page, i) => buildDomTreeNode(page, String(pageIndexBase + i)))
 }
 
 function buildDomTreeNode(node: AnyNode, path: string): DomTreeNode {

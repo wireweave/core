@@ -3,7 +3,7 @@
  */
 
 import { describe, it, expect } from 'vitest'
-import { parse } from '../src'
+import { documentPages, parse } from '../src'
 import {
   render,
   renderPage,
@@ -22,23 +22,23 @@ describe('grammar: page at(x, y)', () => {
       page "Login" at(0, 0) viewport="1280x800" { text "hi" }
       page "Dashboard" at(1344, 0) viewport="1280x800" { text "db" }
     `)
-    expect(doc.children).toHaveLength(2)
-    expect(doc.children[0].x).toBe(0)
-    expect(doc.children[0].y).toBe(0)
-    expect(doc.children[1].x).toBe(1344)
-    expect(doc.children[1].y).toBe(0)
+    expect(documentPages(doc)).toHaveLength(2)
+    expect(documentPages(doc)[0].x).toBe(0)
+    expect(documentPages(doc)[0].y).toBe(0)
+    expect(documentPages(doc)[1].x).toBe(1344)
+    expect(documentPages(doc)[1].y).toBe(0)
   })
 
   it('omits x / y when at() is absent (auto-grid candidate)', () => {
     const doc = sampleDoc(`page "P" { text "x" }`)
-    expect(doc.children[0].x).toBeUndefined()
-    expect(doc.children[0].y).toBeUndefined()
+    expect(documentPages(doc)[0].x).toBeUndefined()
+    expect(documentPages(doc)[0].y).toBeUndefined()
   })
 
   it('parses negative coordinates', () => {
     const doc = sampleDoc(`page "P" at(-200, -100) { text "x" }`)
-    expect(doc.children[0].x).toBe(-200)
-    expect(doc.children[0].y).toBe(-100)
+    expect(documentPages(doc)[0].x).toBe(-200)
+    expect(documentPages(doc)[0].y).toBe(-100)
   })
 
   it('accepts multiple top-level pages separated by whitespace', () => {
@@ -50,17 +50,19 @@ describe('grammar: page at(x, y)', () => {
 
       page "C" { text "3" }
     `)
-    expect(doc.children.map((p) => p.title)).toEqual(['A', 'B', 'C'])
+    expect(documentPages(doc).map((p) => p.title)).toEqual(['A', 'B', 'C'])
   })
 })
 
 describe('renderPage(): pure single-page primitive', () => {
   it('produces identical HTML regardless of sibling pages in the source', () => {
-    const onlyPage = sampleDoc(`page "Solo" viewport="1280x800" { text "x" }`).children[0]
-    const sibling = sampleDoc(`
+    const onlyPage = documentPages(sampleDoc(`page "Solo" viewport="1280x800" { text "x" }`))[0]
+    const sibling = documentPages(
+      sampleDoc(`
       page "Other" viewport="1280x800" { text "y" }
       page "Solo" viewport="1280x800" { text "x" }
-    `).children[1]
+    `),
+    )[1]
 
     const a = renderPage(onlyPage)
     const b = renderPage(sibling)
@@ -71,14 +73,14 @@ describe('renderPage(): pure single-page primitive', () => {
   })
 
   it('returns resolved pixel dimensions from viewport string', () => {
-    const page = sampleDoc(`page "P" viewport="1280x800" { }`).children[0]
+    const page = documentPages(sampleDoc(`page "P" viewport="1280x800" { }`))[0]
     const r = renderPage(page)
     expect(r.width).toBe(1280)
     expect(r.height).toBe(800)
   })
 
   it('prefers explicit numeric w/h over viewport', () => {
-    const page = sampleDoc(`page "P" w=900 h=600 viewport="1280x800" { }`).children[0]
+    const page = documentPages(sampleDoc(`page "P" w=900 h=600 viewport="1280x800" { }`))[0]
     const r = renderPage(page)
     expect(r.width).toBe(900)
     expect(r.height).toBe(600)
@@ -91,7 +93,7 @@ describe('layoutCanvas(): coordinate resolution', () => {
       page "A" at(0, 0) viewport="1280x800" { }
       page "B" at(1344, 0) viewport="1280x800" { }
     `)
-    const { placed, width, height } = layoutCanvas(doc.children)
+    const { placed, width, height } = layoutCanvas(documentPages(doc))
     expect(placed.map((p) => [p.x, p.y])).toEqual([
       [0, 0],
       [1344, 0],
@@ -106,7 +108,7 @@ describe('layoutCanvas(): coordinate resolution', () => {
       page "B" viewport="1280x800" { }
       page "C" viewport="375x812" { }
     `)
-    const { placed, width, height } = layoutCanvas(doc.children, 64)
+    const { placed, width, height } = layoutCanvas(documentPages(doc), 64)
     // A: x=0, B: x=1280+64=1344, C: x=1344+1280+64=2688
     expect(placed[0].x).toBe(0)
     expect(placed[1].x).toBe(1344)
@@ -121,9 +123,9 @@ describe('layoutCanvas(): coordinate resolution', () => {
       page "A" viewport="1280x800" { }
       page "B" viewport="1280x800" { }
     `)
-    const a = layoutCanvas(doc.children, 0)
+    const a = layoutCanvas(documentPages(doc), 0)
     expect(a.placed[1].x).toBe(1280)
-    const b = layoutCanvas(doc.children, 100)
+    const b = layoutCanvas(documentPages(doc), 100)
     expect(b.placed[1].x).toBe(1380)
   })
 })
@@ -261,7 +263,7 @@ describe('renderToSvg(): multi-page sizing', () => {
 
 describe('resolvePageDimensions()', () => {
   it('falls back to viewport when w/h not numeric', () => {
-    const page = sampleDoc(`page "P" viewport="1440x900" { }`).children[0]
+    const page = documentPages(sampleDoc(`page "P" viewport="1440x900" { }`))[0]
     expect(resolvePageDimensions(page)).toEqual({ width: 1440, height: 900 })
   })
 })

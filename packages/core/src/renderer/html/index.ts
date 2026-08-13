@@ -225,6 +225,9 @@ export class HtmlRenderer extends BaseRenderer {
    */
   private readonly pageIndexBase: number
 
+  /** Content supplied by a site renderer for the next layout slot. */
+  private slotContent: string | null = null
+
   constructor(options: RenderOptions = {}, pageIndexBase = 0) {
     super(options)
     this.pageIndexBase = pageIndexBase
@@ -253,6 +256,7 @@ export class HtmlRenderer extends BaseRenderer {
     return {
       prefix: this.prefix,
       escapeHtml: this.escapeHtml.bind(this),
+      scopedId: this.scopedId.bind(this),
       buildClassString: this.buildClassString.bind(this),
       buildAttrsString: this.buildAttrsString.bind(this),
       buildCommonStyles: this.buildCommonStyles.bind(this),
@@ -332,6 +336,7 @@ export class HtmlRenderer extends BaseRenderer {
       Breadcrumb: (node) => this.renderBreadcrumb(node as BreadcrumbNode),
       // Other
       Divider: (node) => this.renderDivider(node as DividerComponentNode),
+      Slot: () => this.renderSlot(),
       // Annotation nodes
       Marker: (node) => this.renderMarker(node as MarkerNode),
       Annotations: (node) => this.renderAnnotations(node as AnnotationsNode),
@@ -446,6 +451,25 @@ export class HtmlRenderer extends BaseRenderer {
     }
 
     return html
+  }
+
+  /** Render the first slot with the supplied page content, if any. */
+  protected renderSlot(): string {
+    const content = this.slotContent
+    this.slotContent = null
+    const open = `<div class="${this.prefix}-slot">`
+    return content === null ? `${open}</div>` : `${open}\n${content}\n</div>`
+  }
+
+  /** Render nodes without adding a page frame, optionally filling a slot. */
+  renderFragment(nodes: AnyNode[], slotContent: string | null = null): string {
+    const previous = this.slotContent
+    this.slotContent = slotContent
+    try {
+      return this.renderChildren(nodes)
+    } finally {
+      this.slotContent = previous
+    }
   }
 
   /**

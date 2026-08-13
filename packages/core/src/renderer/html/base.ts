@@ -5,6 +5,7 @@
  */
 
 import type { WireframeDocument, AnyNode } from '../../ast/types'
+import { documentPages } from '../../ast/utils'
 import type { RenderOptions, RenderResult, RenderContext, ThemeConfig } from '../types'
 import { defaultTheme, darkTheme } from '../types'
 import { generateStyles } from '../styles'
@@ -19,6 +20,7 @@ const DEFAULT_OPTIONS: Omit<Required<RenderOptions>, 'background'> & { backgroun
   minify: false,
   classPrefix: 'wf',
   sourceAnchors: false,
+  idScope: '',
 }
 
 /**
@@ -74,7 +76,7 @@ export abstract class BaseRenderer {
    * Render a complete wireframe document
    */
   protected renderDocument(document: WireframeDocument): string {
-    const pages = document.children
+    const pages = documentPages(document)
       .map((page) => this.renderPage(page))
       .join(this.context.options.minify ? '' : '\n')
 
@@ -136,6 +138,11 @@ export abstract class BaseRenderer {
     }
 
     return text.replace(/[&<>"']/g, (char) => escapeMap[char] || char)
+  }
+
+  /** Return the DOM id for an authored id under this renderer's scope. */
+  protected scopedId(id: string): string {
+    return this.context.options.idScope + id
   }
 
   /**

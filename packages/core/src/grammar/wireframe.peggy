@@ -41,6 +41,7 @@ Document
 
 TopLevelElement
   = Page
+  / LayoutDefinition
   / Comment { return null; }
 
 // ============================================================
@@ -51,6 +52,16 @@ Page
   = "page" _ label:StringLiteral? _ attrs:Attributes? _ "{" _ children:Children _ "}" {
       return createNode('Page', {
         title: label || null,
+        ...attrsToObject(attrs),
+        children
+      });
+    }
+
+// A named page shell. Definitions are top-level structure, not screens.
+LayoutDefinition
+  = "layout" !IdentifierChar _ name:Identifier _ attrs:Attributes? _ "{" _ children:Children _ "}" {
+      return createNode('Layout', {
+        name,
         ...attrsToObject(attrs),
         children
       });
@@ -69,7 +80,15 @@ Child
   = LayoutElement
   / ContainerElement
   / UIElement
+  / Slot
   / Comment { return null; }
+
+// Bare positional marker inside a layout definition. The site renderer fills
+// the first slot with the children of a page that declares uses=NAME.
+Slot
+  = "slot" !IdentifierChar {
+      return createNode('Slot');
+    }
 
 // ============================================================
 // Layout Elements
@@ -716,7 +735,8 @@ ChildKeyword
     / "alert" / "toast" / "progress" / "spinner"
     / "tooltip" / "popover" / "dropdown" / "divider"
     / "nav" / "tabs" / "tab" / "breadcrumb" / "group"
-    / "marker" / "annotations") !IdentifierChar
+    / "marker" / "annotations"
+    / "layout" / "slot") !IdentifierChar
 
 IdentifierChar
   = [a-zA-Z0-9_-]

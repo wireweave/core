@@ -5,6 +5,7 @@
  */
 
 import type { WireframeDocument } from '../ast/types'
+import { documentPages } from '../ast/utils'
 import { createHtmlRenderer } from './html'
 import type {
   RenderOptions,
@@ -28,6 +29,8 @@ export { generateComponentStyles } from './styles-components'
 export { renderPage, resolvePageDimensions } from './page-renderer'
 export { renderCanvas, layoutCanvas } from './canvas-renderer'
 export type { PlacedPage } from './canvas-renderer'
+export { renderSite, buildSiteModel } from './site'
+export type { SiteOptions, SiteModel, SiteScreen, SiteShell, ShellMiss } from './site'
 
 // Re-export icons (ensures they're bundled with renderer)
 export {
@@ -55,7 +58,7 @@ export function render(
   document: WireframeDocument,
   options: RenderOptions | CanvasOptions = {},
 ): RenderResult {
-  const isMultiPage = document.children.length > 1
+  const isMultiPage = documentPages(document).length > 1
 
   if (isMultiPage) {
     const result = renderCanvas(document, options)
@@ -84,7 +87,7 @@ export function renderToHtml(document: WireframeDocument, options: RenderOptions
   //     Centering an oversized canvas pushes its left/top edge into a negative,
   //     unreachable scroll offset — only the middle screen shows, which looks
   //     like multi-page rendering being broken.
-  const isMultiPage = document.children.length > 1
+  const isMultiPage = documentPages(document).length > 1
   const bodyAlign = isMultiPage
     ? 'justify-content: flex-start;\n  align-items: flex-start;'
     : 'justify-content: center;\n  align-items: center;'
@@ -144,7 +147,7 @@ export function renderToSvg(
   document: WireframeDocument,
   options: SvgRenderOptions = {},
 ): SvgRenderResult {
-  const isMultiPage = document.children.length > 1
+  const isMultiPage = documentPages(document).length > 1
   let width = options.width ?? 800
   let height = options.height ?? 600
   let html: string
@@ -161,7 +164,7 @@ export function renderToSvg(
     html = canvas.html
     css = canvas.css
   } else {
-    const firstPage = document.children[0]
+    const firstPage = documentPages(document)[0]
     if (firstPage && options.width === undefined && options.height === undefined) {
       const dims = resolvePageDimensions(firstPage)
       width = dims.width

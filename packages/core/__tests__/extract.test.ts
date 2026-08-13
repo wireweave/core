@@ -5,6 +5,7 @@
 import { describe, it, expect } from 'vitest'
 import {
   parse,
+  documentPages,
   extractScreenFields,
   extractAllScreenFields,
   extractScreenTransitions,
@@ -32,7 +33,7 @@ page "Dashboard" {
 describe('extractScreenFields (E3)', () => {
   it('extracts title, inputs, and per-category counts from a form page', () => {
     const doc = parse(MULTI_PAGE)
-    const login = extractScreenFields(doc.children[0])
+    const login = extractScreenFields(documentPages(doc)[0])
 
     expect(login.title).toBe('Login')
     expect(login.inputs).toHaveLength(2)
@@ -55,7 +56,7 @@ describe('extractScreenFields (E3)', () => {
 
   it('normalises select options to strings', () => {
     const doc = parse('page "P" { select "Role" ["Admin", "User"] }')
-    const fields = extractScreenFields(doc.children[0])
+    const fields = extractScreenFields(documentPages(doc)[0])
     expect(fields.inputs[0]).toMatchObject({
       nodeType: 'Select',
       label: 'Role',
@@ -65,7 +66,7 @@ describe('extractScreenFields (E3)', () => {
 
   it('collects display/data/text nodes as displayData', () => {
     const doc = parse(MULTI_PAGE)
-    const dash = extractScreenFields(doc.children[1])
+    const dash = extractScreenFields(documentPages(doc)[1])
 
     const types = dash.displayData.map((d) => d.nodeType).sort()
     // Title + Text("Welcome back") + Badge + Text("Profile" inside modal)
@@ -77,7 +78,7 @@ describe('extractScreenFields (E3)', () => {
 
   it('emits one action per interactive prop, including multi-prop nodes', () => {
     const doc = parse(MULTI_PAGE)
-    const dash = extractScreenFields(doc.children[1])
+    const dash = extractScreenFields(documentPages(doc)[1])
 
     const logout = dash.actions.filter((a) => a.label === 'Log out')
     expect(logout).toHaveLength(2)
@@ -91,7 +92,7 @@ describe('extractScreenFields (E3)', () => {
 
   it('handles an empty page', () => {
     const doc = parse('page "Blank" {}')
-    const fields = extractScreenFields(doc.children[0])
+    const fields = extractScreenFields(documentPages(doc)[0])
     expect(fields.title).toBe('Blank')
     expect(fields.elements).toHaveLength(0)
     expect(fields.inputs).toHaveLength(0)
@@ -283,7 +284,7 @@ describe('extractScreenTransitions — item-level triggers (E1b)', () => {
 describe('extractScreenFields — item-level actions', () => {
   it('surfaces nav/dropdown/breadcrumb item interactions as actions with item context', () => {
     const doc = parse(NAV_MENUS)
-    const dashboard = extractScreenFields(doc.children[1])
+    const dashboard = extractScreenFields(documentPages(doc)[1])
 
     const itemActions = dashboard.actions.filter((a) => a.item !== undefined)
     expect(itemActions).toEqual([

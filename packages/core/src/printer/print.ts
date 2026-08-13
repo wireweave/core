@@ -10,6 +10,7 @@ import type { AnyNode, WireframeDocument } from '../ast/types'
 import { parse } from '../parser'
 import {
   assertAttributeName,
+  assertDefinitionName,
   isPlainObject,
   printArray,
   printAttributeValue,
@@ -140,6 +141,16 @@ function containerLines(
     keyword,
     labelProp ? optionalLabel(node, labelProp) : null,
     ...attrSegments(node, consumed, node.type),
+  ]
+  return blockLines(depth, segments, childrenLines(node, depth), 'required')
+}
+
+/** Print a named layout definition: `layout NAME { ... }`. */
+function definitionLines(node: AnyNode, keyword: string, depth: number): string[] {
+  const segments = [
+    keyword,
+    assertDefinitionName(rec(node).name, node.type),
+    ...attrSegments(node, ['name'], node.type),
   ]
   return blockLines(depth, segments, childrenLines(node, depth), 'required')
 }
@@ -347,6 +358,8 @@ function printNodeLines(node: AnyNode, depth: number): string[] {
     // -- containers with an optional label ---------------------------------
     case 'Page':
       return containerLines(node, 'page', 'title', depth)
+    case 'Layout':
+      return definitionLines(node, 'layout', depth)
     case 'Card':
       return containerLines(node, 'card', 'title', depth)
     case 'Modal':
@@ -414,6 +427,8 @@ function printNodeLines(node: AnyNode, depth: number): string[] {
     case 'Progress':
     case 'Divider':
       return leafLine(node, node.type.toLowerCase(), null, [], depth)
+    case 'Slot':
+      return leafLine(node, 'slot', null, [], depth)
     case 'Marker':
       return leafLine(node, 'marker', integerSegment(node, 'number'), ['number'], depth)
 
@@ -492,9 +507,9 @@ function printNodeLines(node: AnyNode, depth: number): string[] {
  * ```
  */
 export function printWireframe(doc: WireframeDocument): string {
-  const pages = (doc.children ?? []).map((page) => printNodeLines(page, 0).join('\n'))
-  if (pages.length === 0) return ''
-  return `${pages.join('\n\n')}\n`
+  const topLevel = (doc.children ?? []).map((child) => printNodeLines(child, 0).join('\n'))
+  if (topLevel.length === 0) return ''
+  return `${topLevel.join('\n\n')}\n`
 }
 
 /**

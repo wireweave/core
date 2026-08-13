@@ -36,7 +36,7 @@
  */
 
 import type { AnyNode, PageNode, WireframeDocument } from '../ast'
-import { walk } from '../ast'
+import { documentPages, walk } from '../ast'
 import { categoryOf, getInteractiveLabel, getInteractions, getItemInteractions } from './node-info'
 import type {
   InteractionKind,
@@ -94,7 +94,8 @@ function resolveEdge(
  * Derive the screen-transition graph for a whole document.
  */
 export function extractScreenTransitions(doc: WireframeDocument): ScreenTransitionGraph {
-  const screens: TransitionScreen[] = doc.children.map((page, index) => {
+  const pages = documentPages(doc)
+  const screens: TransitionScreen[] = pages.map((page, index) => {
     const screen: TransitionScreen = { index }
     if (page.title != null) screen.title = page.title
     if (page.loc) screen.loc = page.loc
@@ -103,7 +104,7 @@ export function extractScreenTransitions(doc: WireframeDocument): ScreenTransiti
 
   // Title → page index (trimmed, first occurrence wins).
   const titleToIndex = new Map<string, number>()
-  doc.children.forEach((page, index) => {
+  pages.forEach((page, index) => {
     if (page.title != null) {
       const key = page.title.trim()
       if (!titleToIndex.has(key)) titleToIndex.set(key, index)
@@ -113,7 +114,7 @@ export function extractScreenTransitions(doc: WireframeDocument): ScreenTransiti
   const edges: TransitionEdge[] = []
   const dangling: TransitionEdge[] = []
 
-  doc.children.forEach((page, pageIndex) => {
+  pages.forEach((page, pageIndex) => {
     const overlayIds = collectOverlayIds(page)
     const from = fromDescriptor(pageIndex, page)
 
@@ -129,7 +130,7 @@ export function extractScreenTransitions(doc: WireframeDocument): ScreenTransiti
         trigger,
         titleToIndex,
         overlayIds,
-        doc.children,
+        pages,
       )
       edges.push(edge)
       if (isDangling) dangling.push(edge)

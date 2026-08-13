@@ -62,6 +62,13 @@ const META_ATTRIBUTES = new Set([
   'options',
 ])
 
+// Positional values written by the grammar rather than by `name=value`.
+// `name` remains a real attribute on icon/avatar/radio, so this is scoped to
+// layout definitions instead of being added to META_ATTRIBUTES globally.
+const POSITIONAL_PROPS: Readonly<Record<string, readonly string[]>> = {
+  Layout: ['name'],
+}
+
 /**
  * Validate a Wireweave AST document
  *
@@ -102,10 +109,12 @@ export function validate(
 
     // Check all attributes on this node
     const validAttrs = new Set(spec.attributes)
+    const positional = POSITIONAL_PROPS[nodeType]
 
     for (const key of Object.keys(node)) {
       // Skip meta attributes
       if (META_ATTRIBUTES.has(key)) continue
+      if (positional?.includes(key)) continue
 
       // Check if attribute is valid for this component
       if (!validAttrs.has(key)) {
@@ -143,12 +152,15 @@ export function validate(
     return true
   }
 
-  // Validate each page in the document
+  // Validate pages and layout definitions. Definitions share the top-level
+  // list with pages but retain their own path/index namespace for diagnostics.
+  let pageIndex = 0
+  let definitionIndex = 0
   if (ast.children) {
-    for (let i = 0; i < ast.children.length; i++) {
-      const page = ast.children[i]
-      const shouldContinue = validateNode(page, `pages[${i}]`)
-      if (!shouldContinue) break
+    for (const child of ast.children) {
+      const isPage = child.type === 'Page'
+      const path = isPage ? `pages[${pageIndex++}]` : `definitions[${definitionIndex++}]`
+      if (!validateNode(child, path)) break
     }
   }
 

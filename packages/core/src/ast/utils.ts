@@ -4,7 +4,7 @@
  * Provides traversal and search utilities for AST nodes
  */
 
-import type { AnyNode, WireframeDocument, NodeType } from './types'
+import type { AnyNode, DefinitionNode, PageNode, WireframeDocument, NodeType } from './types'
 import { hasChildren } from './guards'
 
 /**
@@ -52,9 +52,25 @@ export function walk(
  * @param callback - Function called for each node
  */
 export function walkDocument(document: WireframeDocument, callback: WalkCallback): void {
-  for (const page of document.children) {
-    walk(page, callback)
+  for (const child of document.children) {
+    walk(child, callback)
   }
+}
+
+/**
+ * Return only the document's pages, in source order.
+ *
+ * Layout definitions share the document's top-level list with pages but are
+ * not screens. Page-indexed consumers must use this helper so a definition
+ * never becomes an accidental page.
+ */
+export function documentPages(document: WireframeDocument): PageNode[] {
+  return document.children.filter((child): child is PageNode => child.type === 'Page')
+}
+
+/** Return the document's named layout definitions, in source order. */
+export function documentDefinitions(document: WireframeDocument): DefinitionNode[] {
+  return document.children.filter((child): child is DefinitionNode => child.type === 'Layout')
 }
 
 /**

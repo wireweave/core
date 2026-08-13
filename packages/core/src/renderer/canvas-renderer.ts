@@ -17,6 +17,7 @@
  */
 
 import type { WireframeDocument, PageNode } from '../ast/types'
+import { documentPages } from '../ast/utils'
 import type { CanvasOptions, CanvasRenderResult } from './types'
 import { HtmlRenderer } from './html'
 import { resolvePageDimensions } from './page-renderer'
@@ -93,8 +94,9 @@ export function renderCanvas(
 
   const theme = options.theme === 'dark' ? darkTheme : defaultTheme
   const css = includeStyles ? generateStyles(theme, prefix) : ''
+  const pages = documentPages(doc)
 
-  if (doc.children.length === 0) {
+  if (pages.length === 0) {
     return {
       html: `<div class="${prefix}-canvas" data-empty="true"></div>`,
       css,
@@ -103,7 +105,7 @@ export function renderCanvas(
     }
   }
 
-  const { placed, width, height } = layoutCanvas(doc.children, gap)
+  const { placed, width, height } = layoutCanvas(pages, gap)
 
   // Each page is rendered in isolation, so its anchor page-index is seeded with
   // the page's true position in the document (pageIndexBase) to keep paths like

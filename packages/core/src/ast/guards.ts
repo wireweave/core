@@ -19,6 +19,8 @@ import type {
   OverlayNode,
   NavigationNode,
   PageNode,
+  LayoutDefinitionNode,
+  SlotNode,
   HeaderNode,
   MainNode,
   FooterNode,
@@ -68,6 +70,7 @@ import type {
 
 const CONTAINER_TYPES: NodeType[] = [
   'Page',
+  'Layout',
   'Header',
   'Main',
   'Footer',
@@ -105,6 +108,14 @@ export function isLayoutNode(node: AnyNode): node is LayoutNode {
 
 export function isPageNode(node: AnyNode): node is PageNode {
   return node.type === 'Page'
+}
+
+export function isLayoutDefinitionNode(node: AnyNode): node is LayoutDefinitionNode {
+  return node.type === 'Layout'
+}
+
+export function isSlotNode(node: AnyNode): node is SlotNode {
+  return node.type === 'Slot'
 }
 
 export function isHeaderNode(node: AnyNode): node is HeaderNode {

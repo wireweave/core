@@ -6,6 +6,7 @@
  */
 
 import type { WireframeDocument, AnyNode, SpacingValue, ValueWithUnit } from '../ast/types'
+import { documentPages } from '../ast/utils'
 import type {
   FigmaNode,
   FigmaExportResult,
@@ -484,7 +485,7 @@ export function exportToFigma(doc: WireframeDocument): FigmaExportResult {
     children: [],
   }
 
-  for (const page of doc.children || []) {
+  for (const page of documentPages(doc)) {
     ;(documentNode.children as FigmaNode[]).push(nodeToFigma(page))
   }
 

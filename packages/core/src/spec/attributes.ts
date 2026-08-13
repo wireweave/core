@@ -227,6 +227,8 @@ export const ATTRIBUTE_SPECS: readonly AttributeSpec[] = [
   // ============================================
   { name: 'viewport', type: 'string', description: 'Viewport size (e.g., "1440x900")' },
   { name: 'device', type: 'string', description: 'Device preset' },
+  { name: 'id', type: 'string', description: 'Stable identifier for a page or overlay' },
+  { name: 'uses', type: 'string', description: 'Name of the layout a page is drawn inside' },
 ] as const
 
 /**
