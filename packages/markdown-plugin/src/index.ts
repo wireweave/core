@@ -5,6 +5,7 @@
  */
 
 import {
+  documentPages,
   parse,
   render,
   renderToSvg,
@@ -86,7 +87,7 @@ export function renderWireframe(code: string, options: WireframePluginOptions = 
 
       case 'html-preview': {
         const { html, css } = render(doc, { theme: opts.theme })
-        const firstPage = doc.children[0]
+        const firstPage = documentPages(doc)[0]
         const viewport = resolveViewport(firstPage?.viewport, firstPage?.device)
 
         const previewHtml = wrapInPreviewContainer(html, viewport, {
