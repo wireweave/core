@@ -1,6 +1,6 @@
 {
   "name": "@wireweave/sdk",
-  "version": "0.1.1-beta.3",
+  "version": "0.1.1-beta.4",
   "description": "Wireweave SDK - typed HTTP client, auth, and local tools for the Wireweave API. Sole owner of api-server contract for mcp-server, cli, and skill packages.",
   "type": "module",
   "main": "dist/index.js",

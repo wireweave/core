@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.8.2-beta.4
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @wireweave/sdk@0.1.1-beta.4
+
 ## 1.8.2-beta.3
 
 ### Patch Changes

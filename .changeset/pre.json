@@ -19,6 +19,7 @@
     "agent-prompts-interaction-wiring",
     "core-a11y-icons",
     "core-anchor-navigation",
+    "core-app-runtime",
     "core-canvas-fixes",
     "core-dom-anchors",
     "core-extract-apis",

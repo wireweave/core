@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.1.0-beta.4
+
+### Minor Changes
+
+- [#41](https://github.com/wireweave/wireweave/pull/41) [`8d7c014`](https://github.com/wireweave/wireweave/commit/8d7c014915c76aa299c42bf75935ddba9a992e66) Thanks [@Seungwoo321](https://github.com/Seungwoo321)! - Add reusable application components, deterministic multi-screen compilation, and typed prototype interactions.
+
 ## 3.1.0-beta.3
 
 ### Minor Changes
