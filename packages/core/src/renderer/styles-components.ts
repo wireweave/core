@@ -7,7 +7,7 @@
  * - Responsive design
  */
 
-import type { ThemeConfig } from './types'
+import type { AnnotationStyle, ThemeConfig } from './types'
 import {
   generateContainerStyles,
   generateTextStyles,
@@ -27,7 +27,11 @@ import {
 /**
  * Generate all component-specific CSS styles
  */
-export function generateComponentStyles(_theme: ThemeConfig, prefix: string = 'wf'): string {
+export function generateComponentStyles(
+  _theme: ThemeConfig,
+  prefix: string = 'wf',
+  annotationStyle: AnnotationStyle = 'legacy',
+): string {
   const parts: string[] = [
     generateContainerStyles(prefix),
     generateTextStyles(prefix),
@@ -41,7 +45,7 @@ export function generateComponentStyles(_theme: ThemeConfig, prefix: string = 'w
     generateSemanticMarkerStyles(_theme, prefix),
     generateAccessibilityStyles(prefix),
     generateDividerStyles(prefix),
-    generateAnnotationStyles(_theme, prefix),
+    generateAnnotationStyles(_theme, prefix, annotationStyle),
   ]
 
   return parts.join('\n\n')

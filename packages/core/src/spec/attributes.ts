@@ -229,6 +229,30 @@ export const ATTRIBUTE_SPECS: readonly AttributeSpec[] = [
   { name: 'device', type: 'string', description: 'Device preset' },
   { name: 'id', type: 'string', description: 'Stable identifier for a page or overlay' },
   { name: 'uses', type: 'string', description: 'Name of the layout a page is drawn inside' },
+  { name: 'navigate', type: 'string', description: 'Screen id, title, or URL to navigate to' },
+  { name: 'opens', type: 'string', description: 'Overlay id to open' },
+  { name: 'toggles', type: 'string', description: 'Overlay id to toggle' },
+  { name: 'action', type: 'string', description: 'Named legacy interaction action' },
+  {
+    name: 'on',
+    type: 'object',
+    description: 'Typed click event with an optional equality guard and ordered effects',
+  },
+  {
+    name: 'visibleWhen',
+    type: 'object',
+    description: 'Equality guard controlling whether this branch is visible',
+  },
+  {
+    name: 'enabledWhen',
+    type: 'object',
+    description: 'Equality guard controlling whether this control is enabled',
+  },
+  {
+    name: 'states',
+    type: 'object[]',
+    description: 'Typed application state declarations owned by a page or shared layout',
+  },
 ] as const
 
 /**
@@ -283,4 +307,16 @@ export const COMMON_ATTRIBUTES: readonly string[] = [
   // Position
   'x',
   'y',
+  // State-controlled outcomes
+  'visibleWhen',
+  'enabledWhen',
+] as const
+
+/** Attributes shared by elements that can trigger interactions. */
+export const INTERACTIVE_ATTRIBUTES: readonly string[] = [
+  'navigate',
+  'opens',
+  'toggles',
+  'action',
+  'on',
 ] as const

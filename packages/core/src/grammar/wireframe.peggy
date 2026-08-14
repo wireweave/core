@@ -26,6 +26,24 @@
     }
     return result;
   }
+
+  function namedValuesToObject(values) {
+    const result = {};
+    for (const value of values || []) result[value.name] = value.value;
+    return result;
+  }
+
+  function createComponentParameter(name, valueType) {
+    return { name, valueType };
+  }
+
+  function createNamedValue(name, value) {
+    return { name, value };
+  }
+
+  function createComponentSlotFill(name, children, loc) {
+    return { name, children, loc };
+  }
 }
 
 // ============================================================
@@ -42,6 +60,7 @@ Document
 TopLevelElement
   = Page
   / LayoutDefinition
+  / ComponentDefinition
   / Comment { return null; }
 
 // ============================================================
@@ -67,6 +86,80 @@ LayoutDefinition
       });
     }
 
+ComponentDefinition
+  = "component" !IdentifierChar _ name:Identifier _ parameters:ComponentParameters? _ attrs:Attributes? _ "{" _ children:Children _ "}" {
+      return createNode('Component', {
+        name,
+        parameters: parameters || [],
+        ...attrsToObject(attrs),
+        children
+      });
+    }
+
+ComponentParameters
+  = "(" _ parameters:ComponentParameterList? _ ")" { return parameters || []; }
+
+ComponentParameterList
+  = head:ComponentParameter tail:(_ "," _ ComponentParameter)* {
+      return [head, ...tail.map(item => item[3])];
+    }
+
+ComponentParameter
+  = name:Identifier _ ":" _ valueType:("string" / "number" / "boolean") {
+      return createComponentParameter(name, valueType);
+    }
+
+ComponentUse
+  = "use" !IdentifierChar _ name:Identifier _ inputs:ComponentArguments? _ namespace:ComponentNamespace? _ fills:ComponentFillBlock? {
+      return createNode('ComponentUse', {
+        name,
+        ...(namespace ? { namespace } : {}),
+        inputs: namedValuesToObject(inputs),
+        fills: fills || []
+      });
+    }
+
+ComponentArguments
+  = "(" _ values:ComponentArgumentList? _ ")" { return values || []; }
+
+ComponentArgumentList
+  = head:ComponentArgument tail:(_ "," _ ComponentArgument)* {
+      return [head, ...tail.map(item => item[3])];
+    }
+
+ComponentArgument
+  = name:Identifier _ "=" _ value:ComponentInputValue { return createNamedValue(name, value); }
+
+ComponentInputValue
+  = StringLiteral
+  / Number
+  / Boolean
+  / Identifier
+
+ComponentNamespace
+  = "from" !IdentifierChar _ "=" _ namespace:StringLiteral { return namespace; }
+
+ComponentFillBlock
+  = "{" _ fills:(ComponentSlotFill _)* "}" { return fills.map(item => item[0]); }
+
+ComponentSlotFill
+  = "fill" !IdentifierChar _ name:Identifier _ "{" _ children:Children _ "}" {
+      return createComponentSlotFill(name, children, location());
+    }
+
+Slot
+  = "slot" !IdentifierChar name:SlotName? _ attrs:Attributes? {
+      return createNode('Slot', {
+        ...(name ? { name } : {}),
+        ...attrsToObject(attrs)
+      });
+    }
+
+SlotName
+  = [ \t]+ !ChildKeyword name:Identifier &([ \t]*("\r\n" / "\n" / "\r" / "}" / "//" / "/*" / !.)) {
+      return name;
+    }
+
 // ============================================================
 // Children (Block Content)
 // ============================================================
@@ -77,18 +170,12 @@ Children
     }
 
 Child
-  = LayoutElement
+  = ComponentUse
+  / LayoutElement
   / ContainerElement
   / UIElement
   / Slot
   / Comment { return null; }
-
-// Bare positional marker inside a layout definition. The site renderer fills
-// the first slot with the children of a page that declares uses=NAME.
-Slot
-  = "slot" !IdentifierChar {
-      return createNode('Slot');
-    }
 
 // ============================================================
 // Layout Elements
@@ -736,7 +823,7 @@ ChildKeyword
     / "tooltip" / "popover" / "dropdown" / "divider"
     / "nav" / "tabs" / "tab" / "breadcrumb" / "group"
     / "marker" / "annotations"
-    / "layout" / "slot") !IdentifierChar
+    / "layout" / "component" / "use" / "fill" / "slot") !IdentifierChar
 
 IdentifierChar
   = [a-zA-Z0-9_-]

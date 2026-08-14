@@ -5,9 +5,24 @@
  * that is clearly separate from the wireframe UI.
  */
 
-import type { ThemeConfig } from '../types'
+import type { AnnotationStyle, ThemeConfig } from '../types'
 
-export function generateAnnotationStyles(_theme: ThemeConfig, prefix: string): string {
+export function generateAnnotationStyles(
+  _theme: ThemeConfig,
+  prefix: string,
+  annotationStyle: AnnotationStyle = 'legacy',
+): string {
+  const neutral = annotationStyle === 'neutral'
+  const markerBackground = neutral ? '#000000' : '#3b82f6'
+  const markerBorder = neutral ? '#000000' : '#2563eb'
+  const markerColor = neutral ? '#FFFFFF' : 'white'
+  const panelBackground = neutral ? '#FAFAFA' : '#fafafa'
+  const panelBorder = neutral ? '#888888' : '#d1d5db'
+  const headerColor = neutral ? '#666666' : '#6b7280'
+  const headerBorder = neutral ? '#CCCCCC' : '#e5e7eb'
+  const titleColor = neutral ? '#333333' : '#374151'
+  const contentColor = neutral ? '#666666' : '#6b7280'
+
   return `/* Annotation Components */
 
 /* Marker - Number marker for referencing */
@@ -18,9 +33,9 @@ export function generateAnnotationStyles(_theme: ThemeConfig, prefix: string): s
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: #3b82f6;
-  border: 2px solid #2563eb;
-  color: white;
+  background: ${markerBackground};
+  border: 2px solid ${markerBorder};
+  color: ${markerColor};
   font-size: 11px;
   font-weight: 600;
   line-height: 1;
@@ -36,8 +51,8 @@ export function generateAnnotationStyles(_theme: ThemeConfig, prefix: string): s
 /* Annotations Panel - Documentation container */
 .${prefix}-annotations {
   margin-top: 16px;
-  background: #fafafa;
-  border: 2px dashed #d1d5db;
+  background: ${panelBackground};
+  border: 2px dashed ${panelBorder};
   border-radius: 8px;
   padding: 16px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -49,10 +64,10 @@ export function generateAnnotationStyles(_theme: ThemeConfig, prefix: string): s
   gap: 8px;
   font-weight: 600;
   font-size: 14px;
-  color: #6b7280;
+  color: ${headerColor};
   margin-bottom: 16px;
   padding-bottom: 8px;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid ${headerBorder};
 }
 
 .${prefix}-annotations-icon {
@@ -85,8 +100,8 @@ export function generateAnnotationStyles(_theme: ThemeConfig, prefix: string): s
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background: #3b82f6;
-  color: white;
+  background: ${markerBackground};
+  color: ${markerColor};
   font-size: 10px;
   font-weight: 600;
   flex-shrink: 0;
@@ -95,13 +110,13 @@ export function generateAnnotationStyles(_theme: ThemeConfig, prefix: string): s
 .${prefix}-annotation-item-title {
   font-weight: 500;
   font-size: 13px;
-  color: #374151;
+  color: ${titleColor};
 }
 
 .${prefix}-annotation-item-content {
   padding-left: 26px;
   font-size: 12px;
-  color: #6b7280;
+  color: ${contentColor};
   line-height: 1.5;
 }
 
@@ -109,6 +124,6 @@ export function generateAnnotationStyles(_theme: ThemeConfig, prefix: string): s
 .${prefix}-annotation-item-content .${prefix}-text {
   margin: 0;
   font-size: 12px;
-  color: #6b7280;
+  color: ${contentColor};
 }`
 }

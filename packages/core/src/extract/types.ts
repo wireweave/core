@@ -9,7 +9,8 @@
  */
 
 import type { ComponentCategory } from '../spec'
-import type { InputType, NodeType, SourceLocation } from '../ast'
+import type { InputType, NodeType, SourceLocation, StateGuard } from '../ast'
+import type { NormalizedInteractionEffect } from '../interaction/model'
 
 /**
  * The kind of interaction an interactive node triggers, taken directly from the
@@ -118,6 +119,7 @@ export interface ScreenFields {
  * A node in the screen-transition graph.
  */
 export interface TransitionScreen {
+  id?: string
   title?: string
   index: number
   loc?: SourceLocation
@@ -127,16 +129,22 @@ export interface TransitionScreen {
  * A resolved or dangling transition trigger.
  */
 export interface TransitionEdge {
-  from: { pageIndex: number; title?: string }
+  from: { pageIndex: number; id?: string; title?: string }
   /**
    * The destination page for a resolved `navigate` edge. Always `null` for
    * `opens` / `toggles` / `action`, which are intra-page or opaque and never
    * cross a page boundary.
    */
-  to: { pageIndex: number; title?: string } | null
+  to: { pageIndex: number; id?: string; title?: string } | null
   /** The raw target string as written in the DSL. */
   target: string
   kind: InteractionKind
+  /** Typed event metadata; absent for legacy scalar interaction attributes. */
+  event?: 'click'
+  guard?: StateGuard
+  effect?: NormalizedInteractionEffect
+  /** A shared-layout edge is expanded once for every screen using that layout. */
+  source?: 'screen' | 'layout'
   /**
    * What fired the transition. For a component node, `nodeType` is that node's
    * type. For a menu item inside a nav/dropdown/breadcrumb, `nodeType` is the

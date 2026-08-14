@@ -8,9 +8,7 @@
 import type { MarkerNode, AnnotationsNode, AnnotationItemNode } from '../../../ast/types'
 import type { RenderContext } from './types'
 
-/**
- * Marker colors mapping
- */
+/** Marker colors retained for legacy renders. */
 const MARKER_COLORS: Record<string, { bg: string; border: string }> = {
   blue: { bg: '#3b82f6', border: '#2563eb' },
   red: { bg: '#ef4444', border: '#dc2626' },
@@ -18,6 +16,15 @@ const MARKER_COLORS: Record<string, { bg: string; border: string }> = {
   yellow: { bg: '#eab308', border: '#ca8a04' },
   purple: { bg: '#a855f7', border: '#9333ea' },
   orange: { bg: '#f97316', border: '#ea580c' },
+}
+
+const NEUTRAL_MARKER_STYLE = { bg: '#000000', border: '#000000', foreground: '#FFFFFF' }
+
+function markerStyle(color: string | undefined, annotationStyle: RenderContext['annotationStyle']) {
+  if (annotationStyle === 'neutral') return NEUTRAL_MARKER_STYLE
+
+  const legacy = MARKER_COLORS[color ?? 'blue'] ?? MARKER_COLORS.blue
+  return { ...legacy, foreground: 'white' }
 }
 
 /**
@@ -67,9 +74,7 @@ function getAnchorStyles(anchor: string | undefined): string {
  * Creates a numbered circle marker for referencing in annotations.
  */
 export function renderMarker(node: MarkerNode, ctx: RenderContext): string {
-  const color = node.color || 'blue'
-  const colorConfig = MARKER_COLORS[color] || MARKER_COLORS.blue
-
+  const color = markerStyle(node.color, ctx.annotationStyle)
   const baseStyles = [
     'display: inline-flex',
     'align-items: center',
@@ -77,9 +82,9 @@ export function renderMarker(node: MarkerNode, ctx: RenderContext): string {
     'width: 20px',
     'height: 20px',
     'border-radius: 50%',
-    `background: ${colorConfig.bg}`,
-    `border: 2px solid ${colorConfig.border}`,
-    'color: white',
+    `background: ${color.bg}`,
+    `border: 2px solid ${color.border}`,
+    `color: ${color.foreground}`,
     'font-size: 11px',
     'font-weight: 600',
     'line-height: 1',
@@ -128,9 +133,8 @@ export function renderAnnotations(node: AnnotationsNode, ctx: RenderContext): st
  * Creates an individual annotation entry with marker number and description.
  */
 export function renderAnnotationItem(node: AnnotationItemNode, ctx: RenderContext): string {
-  const color = MARKER_COLORS.blue
-
-  const markerStyle = [
+  const color = markerStyle('blue', ctx.annotationStyle)
+  const inlineStyle = [
     'display: inline-flex',
     'align-items: center',
     'justify-content: center',
@@ -138,7 +142,7 @@ export function renderAnnotationItem(node: AnnotationItemNode, ctx: RenderContex
     'height: 18px',
     'border-radius: 50%',
     `background: ${color.bg}`,
-    'color: white',
+    `color: ${color.foreground}`,
     'font-size: 10px',
     'font-weight: 600',
     'flex-shrink: 0',
@@ -149,7 +153,7 @@ export function renderAnnotationItem(node: AnnotationItemNode, ctx: RenderContex
 
   return `<div class="${ctx.prefix}-annotation-item">
   <div class="${ctx.prefix}-annotation-item-header">
-    <span class="${ctx.prefix}-annotation-marker" style="${markerStyle}">${node.number}</span>
+    <span class="${ctx.prefix}-annotation-marker" style="${inlineStyle}">${node.number}</span>
     <span class="${ctx.prefix}-annotation-item-title">${ctx.escapeHtml(node.title)}</span>
   </div>
   ${content ? `<div class="${ctx.prefix}-annotation-item-content">${content}</div>` : ''}

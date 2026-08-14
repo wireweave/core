@@ -19,6 +19,7 @@ const DEFAULT_OPTIONS: Omit<Required<RenderOptions>, 'background'> & { backgroun
   includeStyles: true,
   minify: false,
   classPrefix: 'wf',
+  annotationStyle: 'legacy',
   sourceAnchors: false,
   idScope: '',
 }
@@ -63,7 +64,11 @@ export abstract class BaseRenderer {
   render(document: WireframeDocument): RenderResult {
     const html = this.renderDocument(document)
     const css = this.context.options.includeStyles
-      ? generateStyles(this.context.theme, this.context.options.classPrefix)
+      ? generateStyles(
+          this.context.theme,
+          this.context.options.classPrefix,
+          this.context.options.annotationStyle,
+        )
       : ''
 
     return {

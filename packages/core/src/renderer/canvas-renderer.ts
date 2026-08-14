@@ -93,7 +93,7 @@ export function renderCanvas(
   const includeStyles = options.includeStyles !== false
 
   const theme = options.theme === 'dark' ? darkTheme : defaultTheme
-  const css = includeStyles ? generateStyles(theme, prefix) : ''
+  const css = includeStyles ? generateStyles(theme, prefix, options.annotationStyle) : ''
   const pages = documentPages(doc)
 
   if (pages.length === 0) {

@@ -6,7 +6,7 @@
  * `src/grammar/wireframe.peggy`; printed output is always valid parser input.
  */
 
-import type { AnyNode, WireframeDocument } from '../ast/types'
+import type { AnyNode, ComponentUseNode, WireframeDocument } from '../ast/types'
 import { parse } from '../parser'
 import {
   assertAttributeName,
@@ -153,6 +153,46 @@ function definitionLines(node: AnyNode, keyword: string, depth: number): string[
     ...attrSegments(node, ['name'], node.type),
   ]
   return blockLines(depth, segments, childrenLines(node, depth), 'required')
+}
+
+function componentDefinitionLines(node: AnyNode, depth: number): string[] {
+  if (node.type !== 'Component') printError('component', 'expected a Component node')
+  const parameters = node.parameters ?? []
+  const seen = new Set<string>()
+  const printedParameters = parameters.map((parameter) => {
+    const name = assertDefinitionName(parameter.name, 'Component parameter')
+    if (seen.has(name)) printError(node.type, `duplicate parameter ${JSON.stringify(name)}`)
+    seen.add(name)
+    if (!['string', 'number', 'boolean'].includes(parameter.valueType)) {
+      printError(node.type, `unknown parameter type ${JSON.stringify(parameter.valueType)}`)
+    }
+    return `${name}: ${parameter.valueType}`
+  })
+  const signature = printedParameters.length > 0 ? `(${printedParameters.join(', ')})` : null
+  const segments = [
+    'component',
+    `${assertDefinitionName(node.name, node.type)}${signature ?? ''}`,
+    ...attrSegments(node, ['name', 'parameters'], node.type),
+  ]
+  return blockLines(depth, segments, childrenLines(node, depth), 'required')
+}
+
+function componentUseLines(node: ComponentUseNode, depth: number): string[] {
+  const inputNames = Object.keys(node.inputs).sort()
+  const inputList = inputNames
+    .map((name) => {
+      assertDefinitionName(name, 'Component input')
+      return `${name}=${printAttributeValue(node.inputs[name], 'Component input')}`
+    })
+    .join(', ')
+  const call = `${assertDefinitionName(node.name, node.type)}(${inputList})`
+  const namespace = node.namespace === undefined ? null : `from=${printString(node.namespace)}`
+  const content = node.fills.flatMap((fill) => {
+    const fillName = assertDefinitionName(fill.name, 'Component slot fill')
+    const children = fill.children.flatMap((child) => printNodeLines(child, depth + 2))
+    return blockLines(depth + 1, ['fill', fillName], children, 'required')
+  })
+  return blockLines(depth, ['use', call, namespace], content, 'optional')
 }
 
 /** Leaf element line: `keyword [label] attrs`. */
@@ -360,6 +400,10 @@ function printNodeLines(node: AnyNode, depth: number): string[] {
       return containerLines(node, 'page', 'title', depth)
     case 'Layout':
       return definitionLines(node, 'layout', depth)
+    case 'Component':
+      return componentDefinitionLines(node, depth)
+    case 'ComponentUse':
+      return componentUseLines(node, depth)
     case 'Card':
       return containerLines(node, 'card', 'title', depth)
     case 'Modal':
@@ -428,7 +472,7 @@ function printNodeLines(node: AnyNode, depth: number): string[] {
     case 'Divider':
       return leafLine(node, node.type.toLowerCase(), null, [], depth)
     case 'Slot':
-      return leafLine(node, 'slot', null, [], depth)
+      return leafLine(node, 'slot', node.name ?? null, ['name'], depth)
     case 'Marker':
       return leafLine(node, 'marker', integerSegment(node, 'number'), ['number'], depth)
 

@@ -8,6 +8,9 @@
 // Render Options
 // ===========================================
 
+/** Annotation presentation used by the renderer. */
+export type AnnotationStyle = 'legacy' | 'neutral'
+
 export interface RenderOptions {
   /** Theme variant */
   theme?: 'light' | 'dark'
@@ -21,6 +24,8 @@ export interface RenderOptions {
   classPrefix?: string
   /** Background color (e.g., '#ffffff', 'transparent') */
   background?: string
+  /** Explicit neutral mode preserves the historical presentation by default. */
+  annotationStyle?: AnnotationStyle
   /**
    * Emit source-anchor attributes (`data-wf-path` / `data-wf-loc`) on each
    * rendered component element, enabling DOM ↔ AST ↔ source mapping. Default
