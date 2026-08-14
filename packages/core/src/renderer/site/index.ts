@@ -1,4 +1,5 @@
 import type { WireframeDocument } from '../../ast/types'
+import { collectInteractions } from '../../interaction/model'
 import { HtmlRenderer } from '../html'
 import { generateStyles } from '../styles'
 import { resolvePageDimensions } from '../page-renderer'
@@ -8,11 +9,15 @@ import { buildSiteModel } from './model'
 import type { SiteModel, SiteScreen, SiteShell } from './model'
 import { generateSiteStyles } from './styles'
 import { ID_SCOPE_ATTR, siteRuntime } from './runtime'
+import type { SiteRuntimeRegistry } from './runtime'
 
 export type { SiteModel, SiteScreen, SiteShell, ShellMiss } from './model'
 export { buildSiteModel } from './model'
 
-export interface SiteOptions extends Pick<RenderOptions, 'theme' | 'classPrefix' | 'background'> {
+export interface SiteOptions extends Pick<
+  RenderOptions,
+  'theme' | 'classPrefix' | 'background' | 'annotationStyle'
+> {
   title?: string
   entry?: string
 }
@@ -109,15 +114,53 @@ function resolveTitle(model: SiteModel, options: SiteOptions, entry: number): st
   return title || 'Wireframe'
 }
 
+function compactRuntimeInteractions(
+  model: SiteModel,
+  interactions: ReturnType<typeof collectInteractions>['interactions'],
+): Pick<SiteRuntimeRegistry, 'handlers' | 'screenHandlers' | 'shellHandlers'> {
+  const handlers: SiteRuntimeRegistry['handlers'] = []
+  const handlerIds = new Map<string, number>()
+  const screenHandlers: Record<string, number[]> = {}
+  const shellHandlers: Record<string, number[]> = {}
+
+  const intern = (signature: string, handler: (typeof interactions)[number]['handler']): number => {
+    const existing = handlerIds.get(signature)
+    if (existing !== undefined) return existing
+    const id = handlers.length
+    handlerIds.set(signature, id)
+    handlers.push(handler)
+    return id
+  }
+
+  const add = (owner: Record<string, number[]>, key: string, id: number): void => {
+    const ids = owner[key] ?? (owner[key] = [])
+    if (!ids.includes(id)) ids.push(id)
+  }
+
+  for (const interaction of interactions) {
+    const id = intern(interaction.signature, interaction.handler)
+    if (interaction.source === 'screen') {
+      add(screenHandlers, String(interaction.screenIndex), id)
+      continue
+    }
+    const shell = model.screens[interaction.screenIndex]?.shell
+    if (shell !== undefined) add(shellHandlers, shell, id)
+  }
+
+  return { handlers, screenHandlers, shellHandlers }
+}
+
 /** Render pages and their optional named layouts as one self-contained site. */
 export function renderSite(document: WireframeDocument, options: SiteOptions = {}): string {
   const prefix = options.classPrefix ?? DEFAULT_PREFIX
   const model = buildSiteModel(document)
+  const interactionModel = collectInteractions(document)
   const make: MakeRenderer = (idScope) =>
     new HtmlRenderer({
       theme: options.theme,
       classPrefix: prefix,
       background: options.background,
+      annotationStyle: options.annotationStyle,
       includeStyles: false,
       idScope,
     })
@@ -132,12 +175,16 @@ export function renderSite(document: WireframeDocument, options: SiteOptions = {
 
   const entry = resolveEntry(model, options)
   const theme = options.theme === 'dark' ? darkTheme : defaultTheme
-  const css = generateStyles(theme, prefix) + generateSiteStyles(prefix)
+  const css = generateStyles(theme, prefix, options.annotationStyle) + generateSiteStyles(prefix)
+  const runtimeInteractions = compactRuntimeInteractions(model, interactionModel.interactions)
   const runtime = siteRuntime(
     {
       names: Object.fromEntries(model.names),
       fragments: model.screens.map((screen) => screen.name ?? String(screen.index)),
       entry: entry.index,
+      states: interactionModel.states,
+      ...runtimeInteractions,
+      diagnostics: interactionModel.diagnostics,
     },
     prefix,
   )
@@ -146,6 +193,7 @@ export function renderSite(document: WireframeDocument, options: SiteOptions = {
     ['data-screen-count', String(model.screens.length)],
     ['data-shell-count', String(model.shells.length)],
     ['data-wf-entry-unresolved', entry.unresolved],
+    ['data-wf-diagnostic-count', String(interactionModel.diagnostics.length)],
   ])
 
   return `<!DOCTYPE html>

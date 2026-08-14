@@ -6,6 +6,7 @@
 
 import type {
   AnyNode,
+  InteractiveProps,
   WireframeDocument,
   PageNode,
   HeaderNode,
@@ -53,6 +54,7 @@ import type {
   MarkerNode,
   AnnotationsNode,
   AnnotationItemNode,
+  ComponentUseNode,
   CommonProps,
   ValueWithUnit,
   SpacingValue,
@@ -67,6 +69,7 @@ import {
   buildAnchorPathMap,
   formatAnchorLoc,
 } from '../../ast/anchor-path'
+import { interactiveAttrs } from './interactive'
 
 /**
  * Inject anchor attributes into the outermost opening tag of a rendered node's
@@ -255,6 +258,7 @@ export class HtmlRenderer extends BaseRenderer {
   private getRenderContext(): RenderContext {
     return {
       prefix: this.prefix,
+      annotationStyle: this.context.options.annotationStyle,
       escapeHtml: this.escapeHtml.bind(this),
       scopedId: this.scopedId.bind(this),
       buildClassString: this.buildClassString.bind(this),
@@ -337,6 +341,7 @@ export class HtmlRenderer extends BaseRenderer {
       // Other
       Divider: (node) => this.renderDivider(node as DividerComponentNode),
       Slot: () => this.renderSlot(),
+      ComponentUse: (node) => this.renderComponentUse(node as ComponentUseNode),
       // Annotation nodes
       Marker: (node) => this.renderMarker(node as MarkerNode),
       Annotations: (node) => this.renderAnnotations(node as AnnotationsNode),
@@ -438,7 +443,21 @@ export class HtmlRenderer extends BaseRenderer {
    */
   protected renderNode(node: AnyNode): string {
     const renderer = this.nodeRenderers[node.type]
-    const html = renderer ? renderer(node) : `<!-- Unknown node type: ${node.type} -->`
+    let html = renderer ? renderer(node) : `<!-- Unknown node type: ${node.type} -->`
+    const rootOpeningTag = /^<[a-zA-Z][a-zA-Z0-9-]*\b[^>]*>/.exec(html)?.[0] ?? ''
+
+    const intentAttrs = Object.fromEntries(
+      Object.entries(interactiveAttrs(node as Partial<InteractiveProps>)).filter(
+        ([name, value]) =>
+          name.startsWith('data-wf-') &&
+          value !== undefined &&
+          !rootOpeningTag.includes(` ${name}=`),
+      ),
+    ) as Record<string, string | undefined>
+    const intentAttrString = this.buildAttrsString(intentAttrs)
+    if (rootOpeningTag.length > 0 && intentAttrString.length > 0) {
+      html = html.replace(/^<([a-zA-Z][a-zA-Z0-9-]*)/, (match) => `${match}${intentAttrString}`)
+    }
 
     // Pages are rendered directly by renderDocument (bypassing renderNode) and
     // inject their own anchor in renderPage — skip here to avoid double
@@ -459,6 +478,17 @@ export class HtmlRenderer extends BaseRenderer {
     this.slotContent = null
     const open = `<div class="${this.prefix}-slot">`
     return content === null ? `${open}</div>` : `${open}\n${content}\n</div>`
+  }
+
+  /** Render one linked component invocation with its stable instance marker. */
+  protected renderComponentUse(node: ComponentUseNode): string {
+    const component = this.escapeHtml(node.name)
+    if (node.children === undefined || node.instanceId === undefined) {
+      return `<div class="${this.prefix}-component-instance" data-wf-component="${component}" data-wf-component-unresolved style="display: contents"></div>`
+    }
+    const instanceId = this.escapeHtml(node.instanceId)
+    const content = this.renderChildren(node.children)
+    return `<div class="${this.prefix}-component-instance" data-wf-component="${component}" data-wf-instance="${instanceId}" style="display: contents">\n${content}\n</div>`
   }
 
   /** Render nodes without adding a page frame, optionally filling a slot. */

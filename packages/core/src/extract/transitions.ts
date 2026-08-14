@@ -37,8 +37,9 @@
 
 import type { AnyNode, PageNode, WireframeDocument } from '../ast'
 import { documentPages, walk } from '../ast'
+import { collectInteractions } from '../interaction/model'
 import { isUrlTarget } from '../interaction/target'
-import { categoryOf, getInteractiveLabel, getInteractions, getItemInteractions } from './node-info'
+import { buildSiteModel } from '../renderer/site/model'
 import type {
   InteractionKind,
   ScreenTransitionGraph,
@@ -46,10 +47,19 @@ import type {
   TransitionScreen,
 } from './types'
 
+function pageId(page: PageNode): string | undefined {
+  const id = page.id?.trim()
+  return id !== undefined && id.length > 0 ? id : undefined
+}
+
 /** Collect `id`s of overlay containers (Modal / Drawer) declared within a page. */
 function collectOverlayIds(page: PageNode): Set<string> {
+  return collectOverlayIdsFrom(page.children)
+}
+
+function collectOverlayIdsFrom(children: readonly AnyNode[]): Set<string> {
   const ids = new Set<string>()
-  for (const child of page.children) {
+  for (const child of children) {
     walk(child, (node: AnyNode) => {
       if (node.type === 'Modal' || node.type === 'Drawer') {
         const id = node.id
@@ -69,6 +79,7 @@ function resolveEdge(
   kind: InteractionKind,
   target: string,
   trigger: TransitionEdge['trigger'],
+  idToIndex: ReadonlyMap<string, number>,
   titleToIndex: ReadonlyMap<string, number>,
   overlayIds: ReadonlySet<string>,
   pages: readonly PageNode[],
@@ -76,9 +87,10 @@ function resolveEdge(
   const edge: TransitionEdge = { from, to: null, target, kind, trigger, resolved: false }
 
   if (kind === 'navigate') {
-    const targetIndex = titleToIndex.get(target.trim())
+    const key = target.trim()
+    const targetIndex = idToIndex.get(key) ?? titleToIndex.get(key)
     if (targetIndex !== undefined) {
-      edge.to = toDescriptor(targetIndex, pages[targetIndex])
+      edge.to = pageDescriptor(targetIndex, pages[targetIndex])
       edge.resolved = true
       return { edge, isDangling: false }
     }
@@ -105,14 +117,18 @@ export function extractScreenTransitions(doc: WireframeDocument): ScreenTransiti
   const pages = documentPages(doc)
   const screens: TransitionScreen[] = pages.map((page, index) => {
     const screen: TransitionScreen = { index }
+    const id = pageId(page)
+    if (id !== undefined) screen.id = id
     if (page.title != null) screen.title = page.title
     if (page.loc) screen.loc = page.loc
     return screen
   })
 
-  // Title → page index (trimmed, first occurrence wins).
+  const idToIndex = new Map<string, number>()
   const titleToIndex = new Map<string, number>()
   pages.forEach((page, index) => {
+    const id = pageId(page)
+    if (id !== undefined && !idToIndex.has(id)) idToIndex.set(id, index)
     if (page.title != null) {
       const key = page.title.trim()
       if (!titleToIndex.has(key)) titleToIndex.set(key, index)
@@ -123,66 +139,89 @@ export function extractScreenTransitions(doc: WireframeDocument): ScreenTransiti
   const dangling: TransitionEdge[] = []
   const external: TransitionEdge[] = []
 
-  pages.forEach((page, pageIndex) => {
-    const overlayIds = collectOverlayIds(page)
-    const from = fromDescriptor(pageIndex, page)
+  const site = buildSiteModel(doc)
+  const shellLayouts = new Map(site.shells.map((shell) => [shell.name, shell.layout] as const))
+  const overlayIds = pages.map((page, pageIndex) => {
+    const ids = collectOverlayIds(page)
+    const shell = site.screens[pageIndex]?.shell
+    const layout = shell === undefined ? undefined : shellLayouts.get(shell)
+    if (layout !== undefined) {
+      for (const id of collectOverlayIdsFrom(layout.children)) ids.add(id)
+    }
+    return ids
+  })
 
-    const push = (
-      kind: InteractionKind,
-      target: string,
-      trigger: TransitionEdge['trigger'],
-    ): void => {
-      const { edge, isDangling } = resolveEdge(
+  for (const interaction of collectInteractions(doc).interactions) {
+    const page = pages[interaction.screenIndex]
+    if (page === undefined) continue
+    const from = pageDescriptor(interaction.screenIndex, page)
+
+    for (const effect of interaction.handler.effects) {
+      let kind: InteractionKind
+      let target: string
+      switch (effect.kind) {
+        case 'navigate':
+          kind = 'navigate'
+          target = effect.target
+          break
+        case 'open':
+          kind = 'opens'
+          target = effect.target
+          break
+        case 'toggle-overlay':
+          kind = 'toggles'
+          target = effect.target
+          break
+        case 'legacy-action':
+          kind = 'action'
+          target = effect.action
+          break
+        case 'set':
+        case 'reset':
+        case 'toggle':
+          kind = 'action'
+          target = effect.state
+          break
+        case 'close':
+          kind = 'action'
+          target = effect.target
+          break
+      }
+
+      const resolved = resolveEdge(
         from,
         kind,
         target,
-        trigger,
+        interaction.trigger,
+        idToIndex,
         titleToIndex,
-        overlayIds,
+        overlayIds[interaction.screenIndex] ?? new Set<string>(),
         pages,
       )
+      const { edge } = resolved
+      if (interaction.legacyKind === undefined) {
+        edge.event = interaction.handler.event
+        if (interaction.handler.guard !== undefined) edge.guard = interaction.handler.guard
+        edge.effect = effect
+      }
+      if (interaction.source === 'layout') edge.source = 'layout'
       edges.push(edge)
-      if (isDangling) dangling.push(edge)
+      if (resolved.isDangling) dangling.push(edge)
       if (edge.external) external.push(edge)
     }
-
-    for (const child of page.children) {
-      walk(child, (node: AnyNode) => {
-        // Only real component nodes emit interactions; pseudo item/group/tab
-        // nodes reached by traversal are handled via their container below.
-        if (categoryOf(node) === undefined) return
-
-        const label = getInteractiveLabel(node)
-        for (const { kind, target } of getInteractions(node)) {
-          const trigger: TransitionEdge['trigger'] = { nodeType: node.type }
-          if (label !== undefined) trigger.label = label
-          if (node.loc) trigger.loc = node.loc
-          push(kind, target, trigger)
-        }
-
-        for (const item of getItemInteractions(node)) {
-          const trigger: TransitionEdge['trigger'] = {
-            nodeType: item.container,
-            item: { index: item.itemIndex },
-          }
-          if (item.itemLabel !== undefined) trigger.label = item.itemLabel
-          if (node.loc) trigger.loc = node.loc
-          push(item.kind, item.target, trigger)
-        }
-      })
-    }
-  })
+  }
 
   return { screens, edges, dangling, external }
 }
 
-function fromDescriptor(pageIndex: number, page: PageNode): TransitionEdge['from'] {
-  return page.title != null ? { pageIndex, title: page.title } : { pageIndex }
-}
-
-function toDescriptor(
+function pageDescriptor(
   pageIndex: number,
   page: PageNode | undefined,
-): { pageIndex: number; title?: string } {
-  return page?.title != null ? { pageIndex, title: page.title } : { pageIndex }
+): { pageIndex: number; id?: string; title?: string } {
+  const descriptor: { pageIndex: number; id?: string; title?: string } = { pageIndex }
+  if (page === undefined) return descriptor
+  const id = pageId(page)
+  if (id !== undefined) descriptor.id = id
+  if (page.title != null) descriptor.title = page.title
+  return descriptor
 }

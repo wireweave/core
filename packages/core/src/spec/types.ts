@@ -5,7 +5,14 @@
 /**
  * Attribute value type
  */
-export type AttributeValueType = 'boolean' | 'number' | 'string' | 'string[]' | 'enum'
+export type AttributeValueType =
+  | 'boolean'
+  | 'number'
+  | 'string'
+  | 'string[]'
+  | 'object'
+  | 'object[]'
+  | 'enum'
 
 /**
  * Attribute definition

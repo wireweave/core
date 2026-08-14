@@ -5,6 +5,7 @@
  */
 
 import type { AnyNode, CommonProps } from '../../../ast/types'
+import type { AnnotationStyle } from '../../types'
 
 /**
  * Common style props type (excludes 'align' for compatibility)
@@ -17,6 +18,9 @@ type StyleProps = Omit<Partial<CommonProps>, 'align'> & { align?: string }
 export interface RenderContext {
   /** CSS class prefix (e.g., 'wf') */
   prefix: string
+
+  /** Annotation presentation for this render. */
+  annotationStyle: AnnotationStyle
 
   /** Escape HTML special characters */
   escapeHtml: (text: string) => string

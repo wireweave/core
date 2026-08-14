@@ -121,7 +121,14 @@ export interface AppearanceProps {
 }
 
 export interface CommonProps
-  extends SpacingProps, SizeProps, FlexProps, GridProps, PositionProps, AppearanceProps {}
+  extends
+    SpacingProps,
+    SizeProps,
+    FlexProps,
+    GridProps,
+    PositionProps,
+    AppearanceProps,
+    GuardedOutcomeProps {}
 
 // ===========================================
 // Interactive Props
@@ -131,7 +138,47 @@ export interface CommonProps
  * Interactive properties for components that can trigger actions.
  * Used for buttons, links, avatars, icons, and other clickable elements.
  */
-export interface InteractiveProps {
+/** Scalar values supported by the deterministic prototype state store. */
+export type StateValue = string | number | boolean
+
+/** Closed scalar types supported by a state declaration. */
+export type StateValueType = 'string' | 'number' | 'boolean'
+
+/** One typed state value and the value it resets to. */
+export interface StateDeclaration {
+  name: string
+  valueType: StateValueType
+  initial: StateValue
+}
+
+/** Equality is the only guard operation: small, typed, and deterministic. */
+export interface StateGuard {
+  state: string
+  equals: StateValue
+}
+
+/** State-controlled render outcomes available on every ordinary node. */
+export interface GuardedOutcomeProps {
+  visibleWhen?: StateGuard
+  enabledWhen?: StateGuard
+}
+
+export type InteractionEffect =
+  | { kind: 'navigate'; target: string }
+  | { kind: 'set'; state: string; value: StateValue }
+  | { kind: 'reset'; state: string }
+  | { kind: 'toggle'; state: string }
+  | { kind: 'open'; target: string }
+  | { kind: 'close'; target: string }
+
+/** A browser event with an optional state guard and ordered effects. */
+export interface InteractionHandler {
+  event: 'click'
+  guard?: StateGuard
+  effects: InteractionEffect[]
+}
+
+export interface InteractiveProps extends GuardedOutcomeProps {
   /** Navigate to another page or URL */
   navigate?: string
   /** Opens a modal, drawer, or other overlay element by id */
@@ -140,6 +187,8 @@ export interface InteractiveProps {
   toggles?: string
   /** Custom action identifier (e.g., "submit", "logout", "delete") */
   action?: string
+  /** Typed event/guard/effect handlers. Legacy intent props remain supported. */
+  on?: InteractionHandler | InteractionHandler[]
 }
 
 // ===========================================
@@ -191,6 +240,8 @@ export interface PageNode extends BaseNode, CommonProps {
   device?: string
   /** Named layout shell that hosts this page's own children. */
   uses?: string
+  /** Application state declarations contributed by this screen module. */
+  states?: StateDeclaration[]
   children: AnyNode[]
 }
 
@@ -204,12 +255,50 @@ export interface PageNode extends BaseNode, CommonProps {
 export interface LayoutDefinitionNode extends BaseNode, CommonProps {
   type: 'Layout'
   name: string
+  /** Application state declarations contributed by this shared layout module. */
+  states?: StateDeclaration[]
   children: AnyNode[]
 }
 
-/** Bare positional marker inside a layout definition. */
+/** A named reusable component definition. */
+export interface ComponentDefinitionNode extends BaseNode, CommonProps {
+  type: 'Component'
+  name: string
+  parameters?: ComponentParameter[]
+  children: AnyNode[]
+}
+
+export type ComponentParameterType = 'string' | 'number' | 'boolean'
+
+export interface ComponentParameter {
+  name: string
+  valueType: ComponentParameterType
+}
+
+export type ComponentInputValue = string | number | boolean
+
+export interface ComponentSlotFill {
+  name: string
+  children: AnyNode[]
+  loc?: SourceLocation
+}
+
+/** An explicit reusable-component invocation. */
+export interface ComponentUseNode extends BaseNode {
+  type: 'ComponentUse'
+  name: string
+  namespace?: string
+  inputs: Record<string, ComponentInputValue>
+  fills: ComponentSlotFill[]
+  instanceId?: string
+  targetId?: string
+  children?: AnyNode[]
+}
+
+/** Bare positional marker inside a layout or named marker inside a component. */
 export interface SlotNode extends BaseNode, CommonProps {
   type: 'Slot'
+  name?: string
 }
 
 export interface HeaderNode extends BaseNode, CommonProps {
@@ -822,7 +911,7 @@ export interface AnnotationItemNode extends BaseNode {
 
 export type LayoutNode = PageNode | HeaderNode | MainNode | FooterNode | SidebarNode | SectionNode
 
-export type DefinitionNode = LayoutDefinitionNode
+export type DefinitionNode = LayoutDefinitionNode | ComponentDefinitionNode
 
 export type TopLevelNode = PageNode | DefinitionNode
 
@@ -862,6 +951,7 @@ export type ContainerNode =
   | TooltipNode
   | AnnotationsNode
   | AnnotationItemNode
+  | ComponentUseNode
 
 export type LeafNode =
   | TextContentNode
@@ -882,6 +972,8 @@ export type NodeType =
   | 'Document'
   | 'Page'
   | 'Layout'
+  | 'Component'
+  | 'ComponentUse'
   | 'Slot'
   | 'Header'
   | 'Main'

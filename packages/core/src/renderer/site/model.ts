@@ -55,6 +55,7 @@ function hasSlot(layout: LayoutDefinitionNode): boolean {
 function layoutsByName(doc: WireframeDocument): Map<string, LayoutDefinitionNode> {
   const layouts = new Map<string, LayoutDefinitionNode>()
   for (const definition of documentDefinitions(doc)) {
+    if (definition.type !== 'Layout') continue
     const name = definition.name.trim()
     if (name.length > 0 && !layouts.has(name)) layouts.set(name, definition)
   }

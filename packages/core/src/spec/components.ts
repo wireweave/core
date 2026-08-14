@@ -6,7 +6,7 @@
  */
 
 import type { ComponentSpec } from './types'
-import { COMMON_ATTRIBUTES } from './attributes'
+import { COMMON_ATTRIBUTES, INTERACTIVE_ATTRIBUTES } from './attributes'
 
 /**
  * All valid components in Wireweave DSL
@@ -29,6 +29,7 @@ export const COMPONENT_SPECS: readonly ComponentSpec[] = [
       'centered',
       'id',
       'uses',
+      'states',
     ],
     hasChildren: true,
     description: 'Root container for a wireframe page',
@@ -37,9 +38,25 @@ export const COMPONENT_SPECS: readonly ComponentSpec[] = [
     name: 'layout',
     nodeType: 'Layout',
     category: 'layout',
-    attributes: [],
+    attributes: ['states'],
     hasChildren: true,
     description: 'Named page shell containing a slot for page content',
+  },
+  {
+    name: 'component',
+    nodeType: 'Component',
+    category: 'layout',
+    attributes: [],
+    hasChildren: true,
+    description: 'Named reusable component definition with typed inputs and slots',
+  },
+  {
+    name: 'use',
+    nodeType: 'ComponentUse',
+    category: 'layout',
+    attributes: [],
+    hasChildren: true,
+    description: 'Explicit reusable component invocation with named inputs and fills',
   },
   {
     name: 'slot',
@@ -133,7 +150,14 @@ export const COMPONENT_SPECS: readonly ComponentSpec[] = [
     name: 'card',
     nodeType: 'Card',
     category: 'container',
-    attributes: [...COMMON_ATTRIBUTES, 'title', 'shadow', 'border', 'rounded'],
+    attributes: [
+      ...COMMON_ATTRIBUTES,
+      ...INTERACTIVE_ATTRIBUTES,
+      'title',
+      'shadow',
+      'border',
+      'rounded',
+    ],
     hasChildren: true,
     description: 'Card container with optional title',
   },
@@ -185,7 +209,7 @@ export const COMPONENT_SPECS: readonly ComponentSpec[] = [
     name: 'link',
     nodeType: 'Link',
     category: 'text',
-    attributes: [...COMMON_ATTRIBUTES, 'href', 'external'],
+    attributes: [...COMMON_ATTRIBUTES, ...INTERACTIVE_ATTRIBUTES, 'href', 'external'],
     hasChildren: false,
     description: 'Hyperlink text',
   },
@@ -199,6 +223,7 @@ export const COMPONENT_SPECS: readonly ComponentSpec[] = [
     category: 'input',
     attributes: [
       ...COMMON_ATTRIBUTES,
+      ...INTERACTIVE_ATTRIBUTES,
       'label',
       'inputType',
       'placeholder',
@@ -275,6 +300,7 @@ export const COMPONENT_SPECS: readonly ComponentSpec[] = [
     category: 'input',
     attributes: [
       ...COMMON_ATTRIBUTES,
+      ...INTERACTIVE_ATTRIBUTES,
       'primary',
       'secondary',
       'outline',
@@ -300,7 +326,7 @@ export const COMPONENT_SPECS: readonly ComponentSpec[] = [
     name: 'image',
     nodeType: 'Image',
     category: 'display',
-    attributes: [...COMMON_ATTRIBUTES, 'src', 'alt'],
+    attributes: [...COMMON_ATTRIBUTES, ...INTERACTIVE_ATTRIBUTES, 'src', 'alt'],
     hasChildren: false,
     description: 'Image placeholder',
   },
@@ -316,7 +342,7 @@ export const COMPONENT_SPECS: readonly ComponentSpec[] = [
     name: 'avatar',
     nodeType: 'Avatar',
     category: 'display',
-    attributes: [...COMMON_ATTRIBUTES, 'name', 'src', 'size'],
+    attributes: [...COMMON_ATTRIBUTES, ...INTERACTIVE_ATTRIBUTES, 'name', 'src', 'size'],
     hasChildren: false,
     description: 'User avatar',
   },
@@ -324,7 +350,15 @@ export const COMPONENT_SPECS: readonly ComponentSpec[] = [
     name: 'badge',
     nodeType: 'Badge',
     category: 'display',
-    attributes: [...COMMON_ATTRIBUTES, 'variant', 'pill', 'icon', 'size', 'anchor'],
+    attributes: [
+      ...COMMON_ATTRIBUTES,
+      ...INTERACTIVE_ATTRIBUTES,
+      'variant',
+      'pill',
+      'icon',
+      'size',
+      'anchor',
+    ],
     hasChildren: false,
     description: 'Status badge',
   },
@@ -332,7 +366,7 @@ export const COMPONENT_SPECS: readonly ComponentSpec[] = [
     name: 'icon',
     nodeType: 'Icon',
     category: 'display',
-    attributes: [...COMMON_ATTRIBUTES, 'name', 'size', 'muted'],
+    attributes: [...COMMON_ATTRIBUTES, ...INTERACTIVE_ATTRIBUTES, 'name', 'size', 'muted'],
     hasChildren: false,
     description: 'Lucide icon',
   },

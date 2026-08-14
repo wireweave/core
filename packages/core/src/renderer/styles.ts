@@ -4,7 +4,7 @@
  * Generates CSS classes for grid, spacing, and flex utilities
  */
 
-import type { ThemeConfig } from './types'
+import type { AnnotationStyle, ThemeConfig } from './types'
 import { generateComponentStyles } from './styles-components'
 
 /**
@@ -14,7 +14,11 @@ import { generateComponentStyles } from './styles-components'
  * @param prefix - CSS class prefix (default: 'wf')
  * @returns Complete CSS string
  */
-export function generateStyles(theme: ThemeConfig, prefix: string = 'wf'): string {
+export function generateStyles(
+  theme: ThemeConfig,
+  prefix: string = 'wf',
+  annotationStyle: AnnotationStyle = 'legacy',
+): string {
   const parts: string[] = [
     generateCssVariables(theme, prefix),
     generateBaseStyles(prefix),
@@ -23,7 +27,7 @@ export function generateStyles(theme: ThemeConfig, prefix: string = 'wf'): strin
     generateFlexClasses(prefix),
     generateSizeClasses(prefix),
     generateLayoutClasses(prefix),
-    generateComponentStyles(theme, prefix),
+    generateComponentStyles(theme, prefix, annotationStyle),
   ]
 
   return parts.join('\n\n')

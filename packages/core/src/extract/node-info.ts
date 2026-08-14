@@ -85,6 +85,14 @@ export interface ItemInteraction {
   itemLabel?: string
 }
 
+/** One item that can carry legacy or typed interaction intent. */
+export interface ItemInteractionSource {
+  props: Partial<InteractiveProps>
+  container: NodeType
+  itemIndex: number
+  itemLabel?: string
+}
+
 /**
  * The item-level interactions declared inside a container node.
  *
@@ -100,15 +108,13 @@ export interface ItemInteraction {
  *
  * Returns `[]` for any node that is not an interactive-item container.
  */
-export function getItemInteractions(node: AnyNode): ItemInteraction[] {
-  const out: ItemInteraction[] = []
+export function getItemInteractionSources(node: AnyNode): ItemInteractionSource[] {
+  const out: ItemInteractionSource[] = []
   let index = 0
   const emit = (label: string | undefined, props: Partial<InteractiveProps>): void => {
-    for (const { kind, target } of interactionsOf(props)) {
-      const item: ItemInteraction = { kind, target, container: node.type, itemIndex: index }
-      if (label !== undefined) item.itemLabel = label
-      out.push(item)
-    }
+    const item: ItemInteractionSource = { props, container: node.type, itemIndex: index }
+    if (label !== undefined) item.itemLabel = label
+    out.push(item)
     index += 1
   }
 
@@ -148,5 +154,22 @@ export function getItemInteractions(node: AnyNode): ItemInteraction[] {
     }
   }
 
+  return out
+}
+
+export function getItemInteractions(node: AnyNode): ItemInteraction[] {
+  const out: ItemInteraction[] = []
+  for (const source of getItemInteractionSources(node)) {
+    for (const { kind, target } of interactionsOf(source.props)) {
+      const item: ItemInteraction = {
+        kind,
+        target,
+        container: source.container,
+        itemIndex: source.itemIndex,
+      }
+      if (source.itemLabel !== undefined) item.itemLabel = source.itemLabel
+      out.push(item)
+    }
+  }
   return out
 }
