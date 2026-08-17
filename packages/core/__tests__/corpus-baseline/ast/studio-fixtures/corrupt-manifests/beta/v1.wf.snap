@@ -1,0 +1,15 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "content": "B",
+          "type": "Text"
+        }
+      ],
+      "title": "Beta",
+      "type": "Page"
+    }
+  ],
+  "type": "Document"
+}

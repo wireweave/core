@@ -1,0 +1,215 @@
+page width=1280 height=800 {
+  col {
+    header h=64 p=0 border {
+      row justify=between align=center px=4 {
+        row gap=4 align=center {
+          icon "music" size=lg
+          button "" icon="home" ghost size=lg
+          row border rounded p=2 gap=2 align=center flex=1 w=400 {
+            icon "search" size=sm muted
+            text "어떤 콘텐츠를 감상하고 싶으세요?" size=sm muted
+          }
+          button "" icon="grid" ghost
+        }
+        row gap=3 align=center {
+          text "Premium" size=sm muted
+          text "지원" size=sm muted
+          text "다운로드하기" size=sm muted
+          divider vertical h=20
+          row gap=2 align=center {
+            icon "download" size=sm
+            text "앱 설치하기" size=sm
+          }
+          button "가입하기" outline size=sm
+          button "로그인하기" primary size=sm
+        }
+      }
+    }
+
+    row flex=1 {
+      sidebar w=350 p=0 border {
+        col p=3 gap=4 {
+          row justify=between align=center {
+            row gap=2 align=center {
+              icon "library" size=sm
+              text "내 라이브러리" weight=semibold
+            }
+            icon "plus" size=sm
+          }
+          card p=4 {
+            col gap=2 {
+              text "첫 번째 플레이리스트를 만드세요." size=sm weight=semibold
+              text "어렵지 않아요. 저희가 도와드릴게요." size=xs muted
+              button "플레이리스트 만들기" outline size=sm
+            }
+          }
+          card p=4 {
+            col gap=2 {
+              text "팔로우할 팟캐스트를 찾아보세요" size=sm weight=semibold
+              text "새로운 에피소드에 대한 소식을 알려드릴게요." size=xs muted
+              button "팟캐스트 둘러보기" outline size=sm
+            }
+          }
+          col gap=1 mt=8 {
+            row gap=2 wrap {
+              text "법률 정보" size=xs muted
+              text "안전 및 개인정보 보호 센터" size=xs muted
+              text "개인정보 처리방침" size=xs muted
+            }
+            row gap=2 {
+              text "광고 상세정보" size=xs muted
+              text "접근성" size=xs muted
+              text "쿠키" size=xs muted
+            }
+          }
+          row gap=2 align=center border rounded p=2 w=100 {
+            icon "globe" size=sm
+            text "한국어" size=sm
+          }
+        }
+      }
+
+      main p=6 scroll flex=1 {
+        col gap=8 {
+          col gap=4 {
+            row justify=between align=center {
+              text "인기 상승 곡" weight=bold size=xl
+              text "모두 표시" size=sm muted
+            }
+            row gap=4 {
+              col w=180 gap=2 {
+                placeholder "앨범 아트" h=180 w=full
+                text "Love Love Love" size=sm weight=semibold
+                text "에픽하이" size=xs muted
+              }
+              col w=180 gap=2 {
+                placeholder "앨범 아트" h=180 w=full
+                text "Punk Rocky" size=sm weight=semibold
+                text "A$AP Rocky" size=xs muted
+              }
+              col w=180 gap=2 {
+                placeholder "앨범 아트" h=180 w=full
+                text "0+0" size=sm weight=semibold
+                text "HANRORO" size=xs muted
+              }
+              col w=180 gap=2 {
+                placeholder "앨범 아트" h=180 w=full
+                text "그대 작은 나의 세상이 되어" size=sm weight=semibold
+                text "카더가든" size=xs muted
+              }
+              col w=180 gap=2 {
+                placeholder "앨범 아트" h=180 w=full
+                text "Close to you" size=sm weight=semibold
+                text "SOLE, THAMA" size=xs muted
+              }
+            }
+          }
+
+          col gap=4 {
+            row justify=between align=center {
+              text "인기 아티스트" weight=bold size=xl
+              text "모두 표시" size=sm muted
+            }
+            row gap=4 {
+              col w=180 gap=2 align=center {
+                avatar "GD" size=xl
+                text "G-DRAGON" size=sm weight=semibold
+                text "아티스트" size=xs muted
+              }
+              col w=180 gap=2 align=center {
+                avatar "ae" size=xl
+                text "aespa" size=sm weight=semibold
+                text "아티스트" size=xs muted
+              }
+              col w=180 gap=2 align=center {
+                avatar "D6" size=xl
+                text "DAY6" size=sm weight=semibold
+                text "아티스트" size=xs muted
+              }
+              col w=180 gap=2 align=center {
+                avatar "NJ" size=xl
+                text "NewJeans" size=sm weight=semibold
+                text "아티스트" size=xs muted
+              }
+              col w=180 gap=2 align=center {
+                avatar "LS" size=xl
+                text "LE SSERAFIM" size=sm weight=semibold
+                text "아티스트" size=xs muted
+              }
+            }
+          }
+
+          col gap=4 {
+            row justify=between align=center {
+              text "인기 앨범 및 싱글" weight=bold size=xl
+              text "모두 표시" size=sm muted
+            }
+            row gap=4 {
+              col w=180 gap=2 {
+                placeholder "앨범" h=180 w=full
+                text "Caligo Pt.1" size=sm weight=semibold
+                text "PLAVE" size=xs muted
+              }
+              col w=180 gap=2 {
+                placeholder "앨범" h=180 w=full
+                text "IM HERO" size=sm weight=semibold
+                text "임영웅" size=xs muted
+              }
+              col w=180 gap=2 {
+                placeholder "앨범" h=180 w=full
+                text "Echo" size=sm weight=semibold
+                text "진" size=xs muted
+              }
+              col w=180 gap=2 {
+                placeholder "앨범" h=180 w=full
+                text "MUSE" size=sm weight=semibold
+                text "지민" size=xs muted
+              }
+              col w=180 gap=2 {
+                placeholder "앨범" h=180 w=full
+                text "GOLDEN" size=sm weight=semibold
+                text "정국" size=xs muted
+              }
+            }
+          }
+        }
+      }
+    }
+
+    footer h=80 border p=0 {
+      row justify=between align=center px=4 {
+        row gap=3 align=center w=250 {
+          placeholder "앨범아트" h=56 w=56
+          col gap=0 {
+            text "Supernova" weight=semibold size=sm
+            text "aespa" size=xs muted
+          }
+          icon "heart" size=sm muted
+        }
+        col gap=2 align=center flex=1 {
+          row gap=4 align=center {
+            icon "shuffle" size=sm muted
+            icon "skip-back" size=sm
+            button "" icon="play" primary size=lg
+            icon "skip-forward" size=sm
+            icon "repeat" size=sm muted
+          }
+          row gap=2 align=center w=400 {
+            text "1:23" size=xs muted
+            progress value=35 flex=1
+            text "3:42" size=xs muted
+          }
+        }
+        row gap=3 align=center w=200 justify=end {
+          icon "list-music" size=sm muted
+          icon "monitor" size=sm muted
+          row gap=2 align=center {
+            icon "volume-2" size=sm
+            progress value=70 w=80
+          }
+          icon "maximize-2" size=sm muted
+        }
+      }
+    }
+  }
+}

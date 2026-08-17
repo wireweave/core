@@ -17,6 +17,20 @@ export function generateInputStyles(_theme: ThemeConfig, prefix: string): string
   font-weight: 500;
 }
 
+/* Field - a label and its control are one unit, stacked vertically. Without
+   this wrapper the two are separate flex items of the containing row and the
+   label drifts beside the control instead of sitting above it. */
+.${prefix}-field {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* A field in a flex row sizes to its content, not the whole row */
+.${prefix}-row > .${prefix}-field {
+  flex: 0 1 auto;
+}
+
 .${prefix}-input,
 .${prefix}-textarea,
 .${prefix}-select {
@@ -33,12 +47,22 @@ export function generateInputStyles(_theme: ThemeConfig, prefix: string): string
   transition: border-color 0.15s ease;
 }
 
-/* Inputs in flex rows should not take full width */
+/* Text inputs in flex rows share the leftover space rather than forcing 100% */
 .${prefix}-row > .${prefix}-input,
-.${prefix}-row > .${prefix}-select {
+.${prefix}-row > .${prefix}-textarea {
   width: auto;
   flex: 1 1 auto;
   min-width: 120px;
+}
+
+/* A select sizes to its widest option — growing it to fill the row pushes the
+   siblings (labels, avatars, actions) out of the visible area. */
+.${prefix}-row > .${prefix}-select,
+.${prefix}-field > .${prefix}-select {
+  width: auto;
+  flex: 0 1 auto;
+  min-width: 120px;
+  max-width: 100%;
 }
 
 .${prefix}-input:focus,

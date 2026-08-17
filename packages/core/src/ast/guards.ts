@@ -115,6 +115,11 @@ export function isPageNode(node: AnyNode): node is PageNode {
   return node.type === 'Page'
 }
 
+// ===========================================
+// Reuse Definition Type Guards
+// ===========================================
+
+/** A `layout` or `component` definition — a named tree, not a screen. */
 export function isDefinitionNode(node: AnyNode): node is DefinitionNode {
   return node.type === 'Layout' || node.type === 'Component'
 }

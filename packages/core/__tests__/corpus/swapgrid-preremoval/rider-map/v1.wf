@@ -1,0 +1,93 @@
+page "교환소 지도" viewport="375x812" {
+  col gap=2 p=3 {
+    card p=3 shadow=sm {
+      row align=center gap=3 justify=between {
+        row align=center gap=3 navigate="배터리 상태 상세" {
+          icon "battery-charging" size=md
+          col gap=0 {
+            text "A규격" size=sm weight=semibold
+            text "내 배터리 42%" muted size=xs
+          }
+        }
+        row align=center gap=2 {
+          button "" aria="교환소 검색" ghost icon=search navigate="교환소 검색" size=sm
+          button "" aria="알림 목록 (읽지 않음 3건)" ghost icon=bell navigate="알림 목록" size=sm
+          badge "3" action=none pill size=xs variant=danger
+        }
+      }
+    }
+    card navigate="내 예약" p=2 shadow=sm {
+      row align=center gap=2 justify=between {
+        row align=center gap=2 {
+          icon "bookmark-check" size=sm
+          text "강남대로점 예약 · 18분 남음" size=sm weight=medium
+        }
+        icon "chevron-right" action=none muted size=sm
+      }
+    }
+    card navigate="교환 진행" p=2 shadow=sm {
+      row align=center gap=2 justify=between {
+        row align=center gap=2 {
+          icon "refresh-cw" size=sm
+          text "교환 진행 중 — 이어서 진행" size=sm weight=medium
+        }
+        icon "chevron-right" action=none muted size=sm
+      }
+    }
+  }
+  placeholder "지도 — 교환소 핀(이름 + A규격 완충 수) · 확대·축소 · 끌어 이동" h=248 w=full
+  row justify=end p=3 {
+    button "" action=center-on-me aria="내 위치로 이동" icon=locate-fixed primary
+  }
+  card p=4 shadow=lg w=full {
+    col gap=3 {
+      row justify=center {
+        divider my=0
+      }
+      row align=center justify=between {
+        text "주변 교환소" size=sm weight=semibold
+        text "거리순 · 1분 전 기준" muted size=xs
+      }
+      col gap=3 scroll {
+        card navigate="교환소 상세" p=3 {
+          row align=center gap=3 justify=between {
+            col gap=1 {
+              text "강남대로점" size=sm weight=semibold
+              row align=center gap=2 {
+                text "320m" muted size=xs
+                badge "운영중" action=none pill size=xs variant=success
+              }
+            }
+            col align=end gap=0 {
+              text "A규격 완충 4" size=sm weight=semibold
+              text "1분 전 기준" muted size=xs
+            }
+          }
+        }
+        card navigate="교환소 상세" p=3 {
+          row align=center gap=3 justify=between {
+            col gap=1 {
+              text "역삼역점" size=sm weight=semibold
+              row align=center gap=2 {
+                text "780m" muted size=xs
+                badge "운영중" action=none pill size=xs variant=success
+              }
+            }
+            col align=end gap=0 {
+              text "A규격 완충 1" size=sm weight=semibold
+              text "2분 전 기준" muted size=xs
+            }
+          }
+        }
+      }
+    }
+  }
+  footer h=64 p=2 {
+    nav {
+      item "지도" active icon=map navigate="교환소 지도"
+      item "내 예약" icon=bookmark navigate="내 예약"
+      item "이용내역" icon=receipt navigate="이용내역"
+      item "설정" icon=settings navigate="설정"
+    }
+  }
+}

@@ -1,0 +1,65 @@
+page "예약 실패" viewport="375x812" {
+  header h=72 p=4 {
+    row align=center justify=between {
+      row align=center gap=2 {
+        button "" aria="뒤로" ghost icon=chevron-left navigate="교환소 상세" size=sm
+        text "강남역 3번출구 교환소" weight=semibold
+      }
+      badge "운영중" pill variant=success
+    }
+  }
+  main p=4 scroll {
+    col gap=3 {
+      placeholder "교환소 위치 지도" h=104
+      row gap=3 {
+        col flex=1 {
+          card p=3 {
+            text "내 규격 완충" muted size=xs
+            title "2" level=3
+          }
+        }
+        col flex=1 {
+          card p=3 {
+            text "충전 중" muted size=xs
+            title "4" level=3
+          }
+        }
+        col flex=1 {
+          card p=3 {
+            text "빈 슬롯" muted size=xs
+            title "3" level=3
+          }
+        }
+      }
+    }
+  }
+  footer h=408 p=4 {
+    col gap=3 {
+      divider my=0
+      col gap=2 {
+        icon "clock-alert" size=lg
+        title "방금 마지막 배터리가 다른 분에게 갔습니다" level=3
+        text "거의 같은 순간에 다른 라이더가 그 배터리를 먼저 잡았습니다." muted size=sm
+      }
+      card p=3 {
+        col gap=2 {
+          row align=center justify=between {
+            text "지금 이 교환소의 내 규격 완충" muted size=sm
+            text "2개" weight=semibold
+          }
+          row align=center justify=between {
+            text "내 차량 규격" muted size=sm
+            text "A 규격" size=sm
+          }
+        }
+      }
+      col gap=2 {
+        button "다시 시도" action=retry-reservation primary w=full
+        row gap=2 {
+          button "다른 교환소 찾기" flex=1 navigate="교환소 지도" outline
+          button "닫기" flex=1 ghost navigate="교환소 상세"
+        }
+      }
+    }
+  }
+}

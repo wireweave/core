@@ -1,0 +1,20 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "label": "Email",
+          "type": "Input"
+        },
+        {
+          "content": "Sign in",
+          "primary": true,
+          "type": "Button"
+        }
+      ],
+      "title": "Login",
+      "type": "Page"
+    }
+  ],
+  "type": "Document"
+}

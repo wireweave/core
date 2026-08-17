@@ -1,0 +1,347 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "content": "이용내역",
+                  "level": 1,
+                  "size": "md",
+                  "type": "Title"
+                },
+                {
+                  "action": "filter-custom",
+                  "aria": "기간 선택",
+                  "content": "",
+                  "ghost": true,
+                  "icon": "calendar",
+                  "size": "sm",
+                  "type": "Button"
+                }
+              ],
+              "justify": "between",
+              "type": "Row"
+            }
+          ],
+          "h": 80,
+          "p": 4,
+          "type": "Header"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "action": "filter-this-month",
+                              "content": "이번 달",
+                              "pill": true,
+                              "primary": true,
+                              "type": "Badge"
+                            },
+                            {
+                              "action": "filter-last-month",
+                              "content": "지난 달",
+                              "pill": true,
+                              "type": "Badge"
+                            },
+                            {
+                              "action": "filter-custom",
+                              "content": "기간 선택",
+                              "pill": true,
+                              "type": "Badge"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "2026년 7월",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "교환 12회",
+                              "size": "sm",
+                              "type": "Text",
+                              "weight": "semibold"
+                            }
+                          ],
+                          "justify": "between",
+                          "type": "Row"
+                        }
+                      ],
+                      "gap": 2,
+                      "type": "Col"
+                    }
+                  ],
+                  "p": 3,
+                  "title": null,
+                  "type": "Card"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "action": "collapse-entry",
+                          "children": [
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "content": "14:32 · A규격 · 98%",
+                                  "muted": true,
+                                  "size": "sm",
+                                  "type": "Text"
+                                },
+                                {
+                                  "muted": true,
+                                  "name": "chevron-up",
+                                  "size": "sm",
+                                  "type": "Icon"
+                                }
+                              ],
+                              "justify": "between",
+                              "type": "Row"
+                            }
+                          ],
+                          "p": 3,
+                          "title": "강남 교환소",
+                          "type": "Card"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "content": "반납",
+                                      "muted": true,
+                                      "size": "sm",
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "content": "SG-A-004821",
+                                      "size": "sm",
+                                      "type": "Text",
+                                      "weight": "medium"
+                                    }
+                                  ],
+                                  "justify": "between",
+                                  "type": "Row"
+                                },
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "content": "수령",
+                                      "muted": true,
+                                      "size": "sm",
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "content": "SG-A-007193",
+                                      "size": "sm",
+                                      "type": "Text",
+                                      "weight": "medium"
+                                    }
+                                  ],
+                                  "justify": "between",
+                                  "type": "Row"
+                                },
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "content": "결과",
+                                      "muted": true,
+                                      "size": "sm",
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "action": "none",
+                                      "content": "완료",
+                                      "pill": true,
+                                      "success": true,
+                                      "type": "Badge"
+                                    }
+                                  ],
+                                  "justify": "between",
+                                  "type": "Row"
+                                }
+                              ],
+                              "gap": 1,
+                              "type": "Col"
+                            }
+                          ],
+                          "p": 3,
+                          "title": null,
+                          "type": "Card"
+                        }
+                      ],
+                      "gap": 2,
+                      "type": "Col"
+                    }
+                  ],
+                  "title": "7월 26일 (오늘)",
+                  "type": "Section"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "action": "expand-entry",
+                          "children": [
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "content": "13:12",
+                                      "muted": true,
+                                      "size": "sm",
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "action": "none",
+                                      "content": "미완결",
+                                      "pill": true,
+                                      "type": "Badge",
+                                      "warning": true
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Row"
+                                },
+                                {
+                                  "muted": true,
+                                  "name": "chevron-down",
+                                  "size": "sm",
+                                  "type": "Icon"
+                                }
+                              ],
+                              "justify": "between",
+                              "type": "Row"
+                            }
+                          ],
+                          "p": 3,
+                          "title": "왕십리 교환소",
+                          "type": "Card"
+                        },
+                        {
+                          "action": "expand-entry",
+                          "children": [
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "content": "08:20 · A규격 · 97%",
+                                  "muted": true,
+                                  "size": "sm",
+                                  "type": "Text"
+                                },
+                                {
+                                  "muted": true,
+                                  "name": "chevron-down",
+                                  "size": "sm",
+                                  "type": "Icon"
+                                }
+                              ],
+                              "justify": "between",
+                              "type": "Row"
+                            }
+                          ],
+                          "p": 3,
+                          "title": "성수 교환소",
+                          "type": "Card"
+                        }
+                      ],
+                      "gap": 2,
+                      "type": "Col"
+                    }
+                  ],
+                  "title": "7월 25일",
+                  "type": "Section"
+                },
+                {
+                  "action": "load-more",
+                  "content": "더 불러오기",
+                  "outline": true,
+                  "type": "Button",
+                  "w": "full"
+                }
+              ],
+              "gap": 4,
+              "type": "Col"
+            }
+          ],
+          "p": 4,
+          "scroll": true,
+          "type": "Main"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "icon": "map",
+                  "label": "지도",
+                  "navigate": "교환소 지도",
+                  "type": "NavItem"
+                },
+                {
+                  "icon": "ticket",
+                  "label": "내 예약",
+                  "navigate": "내 예약",
+                  "type": "NavItem"
+                },
+                {
+                  "action": "none",
+                  "active": true,
+                  "icon": "receipt",
+                  "label": "이용내역",
+                  "type": "NavItem"
+                },
+                {
+                  "icon": "settings",
+                  "label": "설정",
+                  "navigate": "설정",
+                  "type": "NavItem"
+                }
+              ],
+              "items": [],
+              "type": "Nav"
+            }
+          ],
+          "h": 80,
+          "p": 2,
+          "type": "Footer"
+        }
+      ],
+      "title": "이용내역",
+      "type": "Page",
+      "viewport": "375x812"
+    }
+  ],
+  "type": "Document"
+}

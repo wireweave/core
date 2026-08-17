@@ -3,31 +3,51 @@
   "version": "1.5.2",
   "description": "Shared language definitions for Wireweave DSL editors",
   "type": "module",
-  "main": "dist/index.js",
+  "sideEffects": false,
+  "main": "dist/index.cjs",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
     },
     "./monaco": {
-      "types": "./dist/monaco/index.d.ts",
-      "import": "./dist/monaco/index.js",
-      "require": "./dist/monaco/index.cjs"
+      "import": {
+        "types": "./dist/monaco/index.d.ts",
+        "default": "./dist/monaco/index.js"
+      },
+      "require": {
+        "types": "./dist/monaco/index.d.cts",
+        "default": "./dist/monaco/index.cjs"
+      }
     },
     "./codemirror": {
-      "types": "./dist/codemirror/index.d.ts",
-      "import": "./dist/codemirror/index.js",
-      "require": "./dist/codemirror/index.cjs"
+      "import": {
+        "types": "./dist/codemirror/index.d.ts",
+        "default": "./dist/codemirror/index.js"
+      },
+      "require": {
+        "types": "./dist/codemirror/index.d.cts",
+        "default": "./dist/codemirror/index.cjs"
+      }
     }
   },
   "files": [
     "dist"
   ],
+  "engines": {
+    "node": ">=22.13.0"
+  },
   "scripts": {
     "build": "tsup",
+    "postbuild": "node ../../scripts/dist-freshness-gate.mjs --write .",
     "test": "vitest run",
     "test:watch": "vitest",
     "clean": "rm -rf dist",
@@ -38,7 +58,10 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "knip": "knip",
-    "publint": "publint"
+    "publint": "publint --strict"
+  },
+  "dependencies": {
+    "@wireweave/core": "workspace:*"
   },
   "peerDependencies": {
     "@codemirror/autocomplete": "^6.0.0",

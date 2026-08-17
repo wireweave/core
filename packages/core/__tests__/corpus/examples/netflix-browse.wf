@@ -1,0 +1,215 @@
+page width=1280 height=720 {
+  header h=68 p=0 {
+    row justify=between align=center px=6 {
+      row gap=6 align=center {
+        text "NETFLIX" bold size=xl
+        nav {
+          item "홈" active
+          item "시리즈"
+          item "영화"
+          item "NEW! 요즘 대세 콘텐츠"
+          item "내가 찜한 리스트"
+        }
+      }
+      row gap=4 align=center {
+        icon "search"
+        icon "bell"
+        avatar "User" size=sm
+        icon "chevron-down" size=sm
+      }
+    }
+  }
+
+  main p=0 scroll {
+    col gap=0 {
+      col h=450 justify=end p=8 {
+        col gap=4 w=550 {
+          badge "TOP 10" variant=danger
+          title "오징어 게임" level=1 size=3xl
+          row gap=3 align=center {
+            badge "Emmy Nominee" variant=default
+            badge "Highly Rewatched" variant=default
+            text "2021" size=sm muted
+            text "시즌 2개" size=sm muted
+            badge "15+" variant=default
+          }
+          text "456명의 참가자들이 456억 원의 상금을 두고 목숨을 건 서바이벌 게임에 뛰어든다. 빚에 쫓기는 사람들이 의문의 초대장을 받고..." size=sm
+          row gap=3 {
+            button "재생" primary icon="play"
+            button "상세 정보" secondary icon="info"
+            button "" icon="plus" ghost
+            button "" icon="thumbs-up" ghost
+          }
+        }
+      }
+
+      col gap=8 px=8 py=6 {
+        col gap=3 {
+          row justify=between align=center {
+            text "오늘 대한민국의 TOP 10 시리즈" bold size=lg
+            row gap=1 align=center {
+              icon "chevron-left" size=sm muted
+              icon "chevron-right" size=sm
+            }
+          }
+          row gap=2 {
+            col w=230 {
+              card h=130 p=0 shadow=none {
+                row h=full {
+                  col w=60 justify=center align=center {
+                    text "1" bold size=3xl
+                  }
+                  placeholder "포스터" h=full flex=1
+                }
+              }
+            }
+            col w=230 {
+              card h=130 p=0 shadow=none {
+                row h=full {
+                  col w=60 justify=center align=center {
+                    text "2" bold size=3xl
+                  }
+                  placeholder "포스터" h=full flex=1
+                }
+              }
+            }
+            col w=230 {
+              card h=130 p=0 shadow=none {
+                row h=full {
+                  col w=60 justify=center align=center {
+                    text "3" bold size=3xl
+                  }
+                  placeholder "포스터" h=full flex=1
+                }
+              }
+            }
+            col w=230 {
+              card h=130 p=0 shadow=none {
+                row h=full {
+                  col w=60 justify=center align=center {
+                    text "4" bold size=3xl
+                  }
+                  placeholder "포스터" h=full flex=1
+                }
+              }
+            }
+            col w=230 {
+              card h=130 p=0 shadow=none {
+                row h=full {
+                  col w=60 justify=center align=center {
+                    text "5" bold size=3xl
+                  }
+                  placeholder "포스터" h=full flex=1
+                }
+              }
+            }
+          }
+        }
+
+        col gap=3 {
+          row justify=between align=center {
+            text "시청 중인 콘텐츠" bold size=lg
+            text "모두 보기" size=sm muted
+          }
+          row gap=3 {
+            col gap=1 {
+              card w=230 h=130 p=0 shadow=none {
+                placeholder "썸네일" h=full w=full
+              }
+              progress value=45 w=230
+              row justify=between align=center {
+                text "더 글로리" size=xs
+                badge "Cult Favorite" variant=default size=xs
+              }
+            }
+            col gap=1 {
+              card w=230 h=130 p=0 shadow=none {
+                placeholder "썸네일" h=full w=full
+              }
+              progress value=72 w=230
+              row justify=between align=center {
+                text "무빙" size=xs
+                badge "Award Winner" variant=default size=xs
+              }
+            }
+            col gap=1 {
+              card w=230 h=130 p=0 shadow=none {
+                placeholder "썸네일" h=full w=full
+              }
+              progress value=20 w=230
+              row justify=between align=center {
+                text "지금 우리 학교는" size=xs
+                badge "Trending" variant=default size=xs
+              }
+            }
+            col gap=1 {
+              card w=230 h=130 p=0 shadow=none {
+                placeholder "썸네일" h=full w=full
+              }
+              progress value=88 w=230
+              row justify=between align=center {
+                text "이상한 변호사 우영우" size=xs
+                badge "Emmy Nominee" variant=default size=xs
+              }
+            }
+          }
+        }
+
+        col gap=3 {
+          row justify=between align=center {
+            text "새로 올라온 콘텐츠" bold size=lg
+            text "모두 보기" size=sm muted
+          }
+          row gap=3 {
+            card w=230 h=130 p=0 shadow=none {
+              col h=full justify=end p=2 {
+                badge "NEW" variant=danger size=xs
+              }
+            }
+            card w=230 h=130 p=0 shadow=none {
+              col h=full justify=end p=2 {
+                badge "NEW" variant=danger size=xs
+              }
+            }
+            card w=230 h=130 p=0 shadow=none {
+              col h=full justify=end p=2 {
+                badge "NEW" variant=danger size=xs
+              }
+            }
+            card w=230 h=130 p=0 shadow=none {
+              col h=full justify=end p=2 {
+                badge "NEW" variant=danger size=xs
+              }
+            }
+            card w=230 h=130 p=0 shadow=none {
+              col h=full justify=end p=2 {
+                badge "NEW" variant=danger size=xs
+              }
+            }
+          }
+        }
+
+        col gap=3 {
+          text "회원님을 위한 추천 콘텐츠" bold size=lg
+          row gap=3 {
+            card w=230 h=130 p=0 shadow=none {
+              placeholder "추천1" h=full w=full
+            }
+            card w=230 h=130 p=0 shadow=none {
+              placeholder "추천2" h=full w=full
+            }
+            card w=230 h=130 p=0 shadow=none {
+              placeholder "추천3" h=full w=full
+            }
+            card w=230 h=130 p=0 shadow=none {
+              placeholder "추천4" h=full w=full
+            }
+            card w=230 h=130 p=0 shadow=none {
+              placeholder "추천5" h=full w=full
+            }
+          }
+        }
+      }
+    }
+  }
+}

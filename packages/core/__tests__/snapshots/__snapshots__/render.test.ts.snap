@@ -403,6 +403,7 @@ exports[`Render Snapshots > CSS Snapshots > should generate dark theme CSS 1`] =
 
 /* Border Utilities */
 .wf-border { border: 1px solid var(--wf-border); }
+.wf-rounded { border-radius: var(--wf-radius); }
 
 /* Layout Components */
 .wf-header {
@@ -769,6 +770,20 @@ h6.wf-title { font-size: 16px; }
   font-weight: 500;
 }
 
+/* Field - a label and its control are one unit, stacked vertically. Without
+   this wrapper the two are separate flex items of the containing row and the
+   label drifts beside the control instead of sitting above it. */
+.wf-field {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* A field in a flex row sizes to its content, not the whole row */
+.wf-row > .wf-field {
+  flex: 0 1 auto;
+}
+
 .wf-input,
 .wf-textarea,
 .wf-select {
@@ -785,12 +800,22 @@ h6.wf-title { font-size: 16px; }
   transition: border-color 0.15s ease;
 }
 
-/* Inputs in flex rows should not take full width */
+/* Text inputs in flex rows share the leftover space rather than forcing 100% */
 .wf-row > .wf-input,
-.wf-row > .wf-select {
+.wf-row > .wf-textarea {
   width: auto;
   flex: 1 1 auto;
   min-width: 120px;
+}
+
+/* A select sizes to its widest option — growing it to fill the row pushes the
+   siblings (labels, avatars, actions) out of the visible area. */
+.wf-row > .wf-select,
+.wf-field > .wf-select {
+  width: auto;
+  flex: 0 1 auto;
+  min-width: 120px;
+  max-width: 100%;
 }
 
 .wf-input:focus,
@@ -1198,6 +1223,12 @@ img.wf-image {
   border: 1px solid var(--wf-border);
   border-radius: var(--wf-radius);
   background: var(--wf-bg);
+  /* A badge is a fixed-size marker. As a flex item it would otherwise stretch
+     to the row height and have its width squeezed below the text, breaking a
+     short label across lines. */
+  flex-shrink: 0;
+  align-self: center;
+  white-space: nowrap;
 }
 
 .wf-badge-pill {
@@ -1391,6 +1422,12 @@ svg.wf-icon-xl { width: 32px; height: 32px; }
 .wf-alert-success { border-left: 3px solid var(--wf-success); }
 .wf-alert-warning { border-left: 3px solid var(--wf-warning); }
 .wf-alert-danger { border-left: 3px solid var(--wf-danger); }
+
+/* The alert box is already a flex row with a gap; the icon is its first item. */
+.wf-alert-icon {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
 
 .wf-alert-close {
   margin-left: auto;
@@ -2356,6 +2393,7 @@ exports[`Render Snapshots > CSS Snapshots > should generate light theme CSS 1`] 
 
 /* Border Utilities */
 .wf-border { border: 1px solid var(--wf-border); }
+.wf-rounded { border-radius: var(--wf-radius); }
 
 /* Layout Components */
 .wf-header {
@@ -2722,6 +2760,20 @@ h6.wf-title { font-size: 16px; }
   font-weight: 500;
 }
 
+/* Field - a label and its control are one unit, stacked vertically. Without
+   this wrapper the two are separate flex items of the containing row and the
+   label drifts beside the control instead of sitting above it. */
+.wf-field {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* A field in a flex row sizes to its content, not the whole row */
+.wf-row > .wf-field {
+  flex: 0 1 auto;
+}
+
 .wf-input,
 .wf-textarea,
 .wf-select {
@@ -2738,12 +2790,22 @@ h6.wf-title { font-size: 16px; }
   transition: border-color 0.15s ease;
 }
 
-/* Inputs in flex rows should not take full width */
+/* Text inputs in flex rows share the leftover space rather than forcing 100% */
 .wf-row > .wf-input,
-.wf-row > .wf-select {
+.wf-row > .wf-textarea {
   width: auto;
   flex: 1 1 auto;
   min-width: 120px;
+}
+
+/* A select sizes to its widest option — growing it to fill the row pushes the
+   siblings (labels, avatars, actions) out of the visible area. */
+.wf-row > .wf-select,
+.wf-field > .wf-select {
+  width: auto;
+  flex: 0 1 auto;
+  min-width: 120px;
+  max-width: 100%;
 }
 
 .wf-input:focus,
@@ -3151,6 +3213,12 @@ img.wf-image {
   border: 1px solid var(--wf-border);
   border-radius: var(--wf-radius);
   background: var(--wf-bg);
+  /* A badge is a fixed-size marker. As a flex item it would otherwise stretch
+     to the row height and have its width squeezed below the text, breaking a
+     short label across lines. */
+  flex-shrink: 0;
+  align-self: center;
+  white-space: nowrap;
 }
 
 .wf-badge-pill {
@@ -3344,6 +3412,12 @@ svg.wf-icon-xl { width: 32px; height: 32px; }
 .wf-alert-success { border-left: 3px solid var(--wf-success); }
 .wf-alert-warning { border-left: 3px solid var(--wf-warning); }
 .wf-alert-danger { border-left: 3px solid var(--wf-danger); }
+
+/* The alert box is already a flex row with a gap; the icon is its first item. */
+.wf-alert-icon {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
 
 .wf-alert-close {
   margin-left: auto;
@@ -3950,10 +4024,10 @@ exports[`Render Snapshots > Complex Page Snapshots > should render login page 1`
             <div class="wf-col wf-col-4">
                     <div class="wf-card wf-card-flex" style="padding: 24px">
                               <h2 class="wf-title" style="margin-bottom: 24px">Sign In</h2>
-                              <label class="wf-input-label">Email</label>
-                              <input class="wf-input" type="email" required="required" style="margin-bottom: 16px" />
-                              <label class="wf-input-label">Password</label>
-                              <input class="wf-input" type="password" required="required" style="margin-bottom: 16px" />
+                              <div class="wf-field"><label class="wf-input-label">Email</label>
+                              <input class="wf-input" type="email" required="required" style="margin-bottom: 16px" /></div>
+                              <div class="wf-field"><label class="wf-input-label">Password</label>
+                              <input class="wf-input" type="password" required="required" style="margin-bottom: 16px" /></div>
                               <button class="wf-button wf-button-primary">Sign In</button>
                     </div>
             </div>
@@ -4394,6 +4468,7 @@ body {
 
 /* Border Utilities */
 .wf-border { border: 1px solid var(--wf-border); }
+.wf-rounded { border-radius: var(--wf-radius); }
 
 /* Layout Components */
 .wf-header {
@@ -4760,6 +4835,20 @@ h6.wf-title { font-size: 16px; }
   font-weight: 500;
 }
 
+/* Field - a label and its control are one unit, stacked vertically. Without
+   this wrapper the two are separate flex items of the containing row and the
+   label drifts beside the control instead of sitting above it. */
+.wf-field {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* A field in a flex row sizes to its content, not the whole row */
+.wf-row > .wf-field {
+  flex: 0 1 auto;
+}
+
 .wf-input,
 .wf-textarea,
 .wf-select {
@@ -4776,12 +4865,22 @@ h6.wf-title { font-size: 16px; }
   transition: border-color 0.15s ease;
 }
 
-/* Inputs in flex rows should not take full width */
+/* Text inputs in flex rows share the leftover space rather than forcing 100% */
 .wf-row > .wf-input,
-.wf-row > .wf-select {
+.wf-row > .wf-textarea {
   width: auto;
   flex: 1 1 auto;
   min-width: 120px;
+}
+
+/* A select sizes to its widest option — growing it to fill the row pushes the
+   siblings (labels, avatars, actions) out of the visible area. */
+.wf-row > .wf-select,
+.wf-field > .wf-select {
+  width: auto;
+  flex: 0 1 auto;
+  min-width: 120px;
+  max-width: 100%;
 }
 
 .wf-input:focus,
@@ -5189,6 +5288,12 @@ img.wf-image {
   border: 1px solid var(--wf-border);
   border-radius: var(--wf-radius);
   background: var(--wf-bg);
+  /* A badge is a fixed-size marker. As a flex item it would otherwise stretch
+     to the row height and have its width squeezed below the text, breaking a
+     short label across lines. */
+  flex-shrink: 0;
+  align-self: center;
+  white-space: nowrap;
 }
 
 .wf-badge-pill {
@@ -5382,6 +5487,12 @@ svg.wf-icon-xl { width: 32px; height: 32px; }
 .wf-alert-success { border-left: 3px solid var(--wf-success); }
 .wf-alert-warning { border-left: 3px solid var(--wf-warning); }
 .wf-alert-danger { border-left: 3px solid var(--wf-danger); }
+
+/* The alert box is already a flex row with a gap; the icon is its first item. */
+.wf-alert-icon {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
 
 .wf-alert-close {
   margin-left: auto;
@@ -6385,6 +6496,7 @@ body {
 
 /* Border Utilities */
 .wf-border { border: 1px solid var(--wf-border); }
+.wf-rounded { border-radius: var(--wf-radius); }
 
 /* Layout Components */
 .wf-header {
@@ -6751,6 +6863,20 @@ h6.wf-title { font-size: 16px; }
   font-weight: 500;
 }
 
+/* Field - a label and its control are one unit, stacked vertically. Without
+   this wrapper the two are separate flex items of the containing row and the
+   label drifts beside the control instead of sitting above it. */
+.wf-field {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* A field in a flex row sizes to its content, not the whole row */
+.wf-row > .wf-field {
+  flex: 0 1 auto;
+}
+
 .wf-input,
 .wf-textarea,
 .wf-select {
@@ -6767,12 +6893,22 @@ h6.wf-title { font-size: 16px; }
   transition: border-color 0.15s ease;
 }
 
-/* Inputs in flex rows should not take full width */
+/* Text inputs in flex rows share the leftover space rather than forcing 100% */
 .wf-row > .wf-input,
-.wf-row > .wf-select {
+.wf-row > .wf-textarea {
   width: auto;
   flex: 1 1 auto;
   min-width: 120px;
+}
+
+/* A select sizes to its widest option — growing it to fill the row pushes the
+   siblings (labels, avatars, actions) out of the visible area. */
+.wf-row > .wf-select,
+.wf-field > .wf-select {
+  width: auto;
+  flex: 0 1 auto;
+  min-width: 120px;
+  max-width: 100%;
 }
 
 .wf-input:focus,
@@ -7180,6 +7316,12 @@ img.wf-image {
   border: 1px solid var(--wf-border);
   border-radius: var(--wf-radius);
   background: var(--wf-bg);
+  /* A badge is a fixed-size marker. As a flex item it would otherwise stretch
+     to the row height and have its width squeezed below the text, breaking a
+     short label across lines. */
+  flex-shrink: 0;
+  align-self: center;
+  white-space: nowrap;
 }
 
 .wf-badge-pill {
@@ -7373,6 +7515,12 @@ svg.wf-icon-xl { width: 32px; height: 32px; }
 .wf-alert-success { border-left: 3px solid var(--wf-success); }
 .wf-alert-warning { border-left: 3px solid var(--wf-warning); }
 .wf-alert-danger { border-left: 3px solid var(--wf-danger); }
+
+/* The alert box is already a flex row with a gap; the icon is its first item. */
+.wf-alert-icon {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
 
 .wf-alert-close {
   margin-left: auto;
@@ -8000,12 +8148,12 @@ exports[`Render Snapshots > HTML Snapshots > should render form elements 1`] = `
 "<div class="wf-page" style="position: relative; width: 1440px; height: 900px; overflow: hidden" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
   <div class="wf-card wf-card-flex" style="padding: 16px">
       <div class="wf-row">
-            <label class="wf-input-label">Email</label>
-            <input class="wf-input" type="email" placeholder="Enter email" required="required" />
+            <div class="wf-field"><label class="wf-input-label">Email</label>
+            <input class="wf-input" type="email" placeholder="Enter email" required="required" /></div>
       </div>
       <div class="wf-row">
-            <label class="wf-input-label">Password</label>
-            <input class="wf-input" type="password" required="required" />
+            <div class="wf-field"><label class="wf-input-label">Password</label>
+            <input class="wf-input" type="password" required="required" /></div>
       </div>
       <div class="wf-row">
             <label class="wf-checkbox"><input type="checkbox" /><span>Remember me</span></label>
@@ -8490,6 +8638,7 @@ exports[`Render Snapshots > SVG Snapshots > should render buttons to SVG 1`] = `
 
 /* Border Utilities */
 .wf-border { border: 1px solid var(--wf-border); }
+.wf-rounded { border-radius: var(--wf-radius); }
 
 /* Layout Components */
 .wf-header {
@@ -8856,6 +9005,20 @@ h6.wf-title { font-size: 16px; }
   font-weight: 500;
 }
 
+/* Field - a label and its control are one unit, stacked vertically. Without
+   this wrapper the two are separate flex items of the containing row and the
+   label drifts beside the control instead of sitting above it. */
+.wf-field {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* A field in a flex row sizes to its content, not the whole row */
+.wf-row > .wf-field {
+  flex: 0 1 auto;
+}
+
 .wf-input,
 .wf-textarea,
 .wf-select {
@@ -8872,12 +9035,22 @@ h6.wf-title { font-size: 16px; }
   transition: border-color 0.15s ease;
 }
 
-/* Inputs in flex rows should not take full width */
+/* Text inputs in flex rows share the leftover space rather than forcing 100% */
 .wf-row > .wf-input,
-.wf-row > .wf-select {
+.wf-row > .wf-textarea {
   width: auto;
   flex: 1 1 auto;
   min-width: 120px;
+}
+
+/* A select sizes to its widest option — growing it to fill the row pushes the
+   siblings (labels, avatars, actions) out of the visible area. */
+.wf-row > .wf-select,
+.wf-field > .wf-select {
+  width: auto;
+  flex: 0 1 auto;
+  min-width: 120px;
+  max-width: 100%;
 }
 
 .wf-input:focus,
@@ -9285,6 +9458,12 @@ img.wf-image {
   border: 1px solid var(--wf-border);
   border-radius: var(--wf-radius);
   background: var(--wf-bg);
+  /* A badge is a fixed-size marker. As a flex item it would otherwise stretch
+     to the row height and have its width squeezed below the text, breaking a
+     short label across lines. */
+  flex-shrink: 0;
+  align-self: center;
+  white-space: nowrap;
 }
 
 .wf-badge-pill {
@@ -9478,6 +9657,12 @@ svg.wf-icon-xl { width: 32px; height: 32px; }
 .wf-alert-success { border-left: 3px solid var(--wf-success); }
 .wf-alert-warning { border-left: 3px solid var(--wf-warning); }
 .wf-alert-danger { border-left: 3px solid var(--wf-danger); }
+
+/* The alert box is already a flex row with a gap; the icon is its first item. */
+.wf-alert-icon {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
 
 .wf-alert-close {
   margin-left: auto;
@@ -10467,6 +10652,7 @@ exports[`Render Snapshots > SVG Snapshots > should render card to SVG 1`] = `
 
 /* Border Utilities */
 .wf-border { border: 1px solid var(--wf-border); }
+.wf-rounded { border-radius: var(--wf-radius); }
 
 /* Layout Components */
 .wf-header {
@@ -10833,6 +11019,20 @@ h6.wf-title { font-size: 16px; }
   font-weight: 500;
 }
 
+/* Field - a label and its control are one unit, stacked vertically. Without
+   this wrapper the two are separate flex items of the containing row and the
+   label drifts beside the control instead of sitting above it. */
+.wf-field {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* A field in a flex row sizes to its content, not the whole row */
+.wf-row > .wf-field {
+  flex: 0 1 auto;
+}
+
 .wf-input,
 .wf-textarea,
 .wf-select {
@@ -10849,12 +11049,22 @@ h6.wf-title { font-size: 16px; }
   transition: border-color 0.15s ease;
 }
 
-/* Inputs in flex rows should not take full width */
+/* Text inputs in flex rows share the leftover space rather than forcing 100% */
 .wf-row > .wf-input,
-.wf-row > .wf-select {
+.wf-row > .wf-textarea {
   width: auto;
   flex: 1 1 auto;
   min-width: 120px;
+}
+
+/* A select sizes to its widest option — growing it to fill the row pushes the
+   siblings (labels, avatars, actions) out of the visible area. */
+.wf-row > .wf-select,
+.wf-field > .wf-select {
+  width: auto;
+  flex: 0 1 auto;
+  min-width: 120px;
+  max-width: 100%;
 }
 
 .wf-input:focus,
@@ -11262,6 +11472,12 @@ img.wf-image {
   border: 1px solid var(--wf-border);
   border-radius: var(--wf-radius);
   background: var(--wf-bg);
+  /* A badge is a fixed-size marker. As a flex item it would otherwise stretch
+     to the row height and have its width squeezed below the text, breaking a
+     short label across lines. */
+  flex-shrink: 0;
+  align-self: center;
+  white-space: nowrap;
 }
 
 .wf-badge-pill {
@@ -11455,6 +11671,12 @@ svg.wf-icon-xl { width: 32px; height: 32px; }
 .wf-alert-success { border-left: 3px solid var(--wf-success); }
 .wf-alert-warning { border-left: 3px solid var(--wf-warning); }
 .wf-alert-danger { border-left: 3px solid var(--wf-danger); }
+
+/* The alert box is already a flex row with a gap; the icon is its first item. */
+.wf-alert-icon {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
 
 .wf-alert-close {
   margin-left: auto;
@@ -12445,6 +12667,7 @@ exports[`Render Snapshots > SVG Snapshots > should render form to SVG 1`] = `
 
 /* Border Utilities */
 .wf-border { border: 1px solid var(--wf-border); }
+.wf-rounded { border-radius: var(--wf-radius); }
 
 /* Layout Components */
 .wf-header {
@@ -12811,6 +13034,20 @@ h6.wf-title { font-size: 16px; }
   font-weight: 500;
 }
 
+/* Field - a label and its control are one unit, stacked vertically. Without
+   this wrapper the two are separate flex items of the containing row and the
+   label drifts beside the control instead of sitting above it. */
+.wf-field {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* A field in a flex row sizes to its content, not the whole row */
+.wf-row > .wf-field {
+  flex: 0 1 auto;
+}
+
 .wf-input,
 .wf-textarea,
 .wf-select {
@@ -12827,12 +13064,22 @@ h6.wf-title { font-size: 16px; }
   transition: border-color 0.15s ease;
 }
 
-/* Inputs in flex rows should not take full width */
+/* Text inputs in flex rows share the leftover space rather than forcing 100% */
 .wf-row > .wf-input,
-.wf-row > .wf-select {
+.wf-row > .wf-textarea {
   width: auto;
   flex: 1 1 auto;
   min-width: 120px;
+}
+
+/* A select sizes to its widest option — growing it to fill the row pushes the
+   siblings (labels, avatars, actions) out of the visible area. */
+.wf-row > .wf-select,
+.wf-field > .wf-select {
+  width: auto;
+  flex: 0 1 auto;
+  min-width: 120px;
+  max-width: 100%;
 }
 
 .wf-input:focus,
@@ -13240,6 +13487,12 @@ img.wf-image {
   border: 1px solid var(--wf-border);
   border-radius: var(--wf-radius);
   background: var(--wf-bg);
+  /* A badge is a fixed-size marker. As a flex item it would otherwise stretch
+     to the row height and have its width squeezed below the text, breaking a
+     short label across lines. */
+  flex-shrink: 0;
+  align-self: center;
+  white-space: nowrap;
 }
 
 .wf-badge-pill {
@@ -13433,6 +13686,12 @@ svg.wf-icon-xl { width: 32px; height: 32px; }
 .wf-alert-success { border-left: 3px solid var(--wf-success); }
 .wf-alert-warning { border-left: 3px solid var(--wf-warning); }
 .wf-alert-danger { border-left: 3px solid var(--wf-danger); }
+
+/* The alert box is already a flex row with a gap; the icon is its first item. */
+.wf-alert-icon {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
 
 .wf-alert-close {
   margin-left: auto;
@@ -13996,8 +14255,8 @@ svg.wf-icon-xl { width: 32px; height: 32px; }
       </style>
       <div class="wf-page" style="position: relative; width: 1440px; height: 900px; overflow: hidden" data-viewport-width="1440" data-viewport-height="900" data-viewport-label="Desktop">
   <div class="wf-card wf-card-flex">
-      <label class="wf-input-label">Name</label>
-      <input class="wf-input" type="text" placeholder="Enter name" />
+      <div class="wf-field"><label class="wf-input-label">Name</label>
+      <input class="wf-input" type="text" placeholder="Enter name" /></div>
       <button class="wf-button wf-button-primary">Submit</button>
   </div>
 </div>
@@ -14424,6 +14683,7 @@ exports[`Render Snapshots > SVG Snapshots > should render layout to SVG 1`] = `
 
 /* Border Utilities */
 .wf-border { border: 1px solid var(--wf-border); }
+.wf-rounded { border-radius: var(--wf-radius); }
 
 /* Layout Components */
 .wf-header {
@@ -14790,6 +15050,20 @@ h6.wf-title { font-size: 16px; }
   font-weight: 500;
 }
 
+/* Field - a label and its control are one unit, stacked vertically. Without
+   this wrapper the two are separate flex items of the containing row and the
+   label drifts beside the control instead of sitting above it. */
+.wf-field {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* A field in a flex row sizes to its content, not the whole row */
+.wf-row > .wf-field {
+  flex: 0 1 auto;
+}
+
 .wf-input,
 .wf-textarea,
 .wf-select {
@@ -14806,12 +15080,22 @@ h6.wf-title { font-size: 16px; }
   transition: border-color 0.15s ease;
 }
 
-/* Inputs in flex rows should not take full width */
+/* Text inputs in flex rows share the leftover space rather than forcing 100% */
 .wf-row > .wf-input,
-.wf-row > .wf-select {
+.wf-row > .wf-textarea {
   width: auto;
   flex: 1 1 auto;
   min-width: 120px;
+}
+
+/* A select sizes to its widest option — growing it to fill the row pushes the
+   siblings (labels, avatars, actions) out of the visible area. */
+.wf-row > .wf-select,
+.wf-field > .wf-select {
+  width: auto;
+  flex: 0 1 auto;
+  min-width: 120px;
+  max-width: 100%;
 }
 
 .wf-input:focus,
@@ -15219,6 +15503,12 @@ img.wf-image {
   border: 1px solid var(--wf-border);
   border-radius: var(--wf-radius);
   background: var(--wf-bg);
+  /* A badge is a fixed-size marker. As a flex item it would otherwise stretch
+     to the row height and have its width squeezed below the text, breaking a
+     short label across lines. */
+  flex-shrink: 0;
+  align-self: center;
+  white-space: nowrap;
 }
 
 .wf-badge-pill {
@@ -15412,6 +15702,12 @@ svg.wf-icon-xl { width: 32px; height: 32px; }
 .wf-alert-success { border-left: 3px solid var(--wf-success); }
 .wf-alert-warning { border-left: 3px solid var(--wf-warning); }
 .wf-alert-danger { border-left: 3px solid var(--wf-danger); }
+
+/* The alert box is already a flex row with a gap; the icon is its first item. */
+.wf-alert-icon {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
 
 .wf-alert-close {
   margin-left: auto;
@@ -16407,6 +16703,7 @@ exports[`Render Snapshots > SVG Snapshots > should render simple text to SVG 1`]
 
 /* Border Utilities */
 .wf-border { border: 1px solid var(--wf-border); }
+.wf-rounded { border-radius: var(--wf-radius); }
 
 /* Layout Components */
 .wf-header {
@@ -16773,6 +17070,20 @@ h6.wf-title { font-size: 16px; }
   font-weight: 500;
 }
 
+/* Field - a label and its control are one unit, stacked vertically. Without
+   this wrapper the two are separate flex items of the containing row and the
+   label drifts beside the control instead of sitting above it. */
+.wf-field {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* A field in a flex row sizes to its content, not the whole row */
+.wf-row > .wf-field {
+  flex: 0 1 auto;
+}
+
 .wf-input,
 .wf-textarea,
 .wf-select {
@@ -16789,12 +17100,22 @@ h6.wf-title { font-size: 16px; }
   transition: border-color 0.15s ease;
 }
 
-/* Inputs in flex rows should not take full width */
+/* Text inputs in flex rows share the leftover space rather than forcing 100% */
 .wf-row > .wf-input,
-.wf-row > .wf-select {
+.wf-row > .wf-textarea {
   width: auto;
   flex: 1 1 auto;
   min-width: 120px;
+}
+
+/* A select sizes to its widest option — growing it to fill the row pushes the
+   siblings (labels, avatars, actions) out of the visible area. */
+.wf-row > .wf-select,
+.wf-field > .wf-select {
+  width: auto;
+  flex: 0 1 auto;
+  min-width: 120px;
+  max-width: 100%;
 }
 
 .wf-input:focus,
@@ -17202,6 +17523,12 @@ img.wf-image {
   border: 1px solid var(--wf-border);
   border-radius: var(--wf-radius);
   background: var(--wf-bg);
+  /* A badge is a fixed-size marker. As a flex item it would otherwise stretch
+     to the row height and have its width squeezed below the text, breaking a
+     short label across lines. */
+  flex-shrink: 0;
+  align-self: center;
+  white-space: nowrap;
 }
 
 .wf-badge-pill {
@@ -17395,6 +17722,12 @@ svg.wf-icon-xl { width: 32px; height: 32px; }
 .wf-alert-success { border-left: 3px solid var(--wf-success); }
 .wf-alert-warning { border-left: 3px solid var(--wf-warning); }
 .wf-alert-danger { border-left: 3px solid var(--wf-danger); }
+
+/* The alert box is already a flex row with a gap; the icon is its first item. */
+.wf-alert-icon {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
 
 .wf-alert-close {
   margin-left: auto;
@@ -18382,6 +18715,7 @@ exports[`Render Snapshots > SVG Snapshots > should respect padding option 1`] = 
 
 /* Border Utilities */
 .wf-border { border: 1px solid var(--wf-border); }
+.wf-rounded { border-radius: var(--wf-radius); }
 
 /* Layout Components */
 .wf-header {
@@ -18748,6 +19082,20 @@ h6.wf-title { font-size: 16px; }
   font-weight: 500;
 }
 
+/* Field - a label and its control are one unit, stacked vertically. Without
+   this wrapper the two are separate flex items of the containing row and the
+   label drifts beside the control instead of sitting above it. */
+.wf-field {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* A field in a flex row sizes to its content, not the whole row */
+.wf-row > .wf-field {
+  flex: 0 1 auto;
+}
+
 .wf-input,
 .wf-textarea,
 .wf-select {
@@ -18764,12 +19112,22 @@ h6.wf-title { font-size: 16px; }
   transition: border-color 0.15s ease;
 }
 
-/* Inputs in flex rows should not take full width */
+/* Text inputs in flex rows share the leftover space rather than forcing 100% */
 .wf-row > .wf-input,
-.wf-row > .wf-select {
+.wf-row > .wf-textarea {
   width: auto;
   flex: 1 1 auto;
   min-width: 120px;
+}
+
+/* A select sizes to its widest option — growing it to fill the row pushes the
+   siblings (labels, avatars, actions) out of the visible area. */
+.wf-row > .wf-select,
+.wf-field > .wf-select {
+  width: auto;
+  flex: 0 1 auto;
+  min-width: 120px;
+  max-width: 100%;
 }
 
 .wf-input:focus,
@@ -19177,6 +19535,12 @@ img.wf-image {
   border: 1px solid var(--wf-border);
   border-radius: var(--wf-radius);
   background: var(--wf-bg);
+  /* A badge is a fixed-size marker. As a flex item it would otherwise stretch
+     to the row height and have its width squeezed below the text, breaking a
+     short label across lines. */
+  flex-shrink: 0;
+  align-self: center;
+  white-space: nowrap;
 }
 
 .wf-badge-pill {
@@ -19370,6 +19734,12 @@ svg.wf-icon-xl { width: 32px; height: 32px; }
 .wf-alert-success { border-left: 3px solid var(--wf-success); }
 .wf-alert-warning { border-left: 3px solid var(--wf-warning); }
 .wf-alert-danger { border-left: 3px solid var(--wf-danger); }
+
+/* The alert box is already a flex row with a gap; the icon is its first item. */
+.wf-alert-icon {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
 
 .wf-alert-close {
   margin-left: auto;

@@ -1,0 +1,131 @@
+page width=900 height=800 {
+  row {
+    sidebar w=240 p=0 {
+      header h=44 p=0 {
+        row align=center px=3 gap=2 {
+          avatar "W" size=sm
+          text "내 워크스페이스" weight=semibold size=sm
+          icon "chevron-down" size=sm
+        }
+      }
+      col p=2 gap=1 scroll {
+        nav vertical {
+          item "검색" icon="search"
+          item "홈" icon="home"
+          item "받은 편지함" icon="inbox"
+        }
+        divider
+        section "즐겨찾기" {
+          nav vertical {
+            item "프로젝트 관리" icon="file-text" active
+            item "회의록" icon="file-text"
+            item "아이디어 노트" icon="file-text"
+          }
+        }
+        section "개인 페이지" {
+          nav vertical {
+            item "일기장" icon="file-text"
+            item "독서 목록" icon="file-text"
+            item "여행 계획" icon="file-text"
+          }
+        }
+      }
+    }
+
+    col flex=1 {
+      header h=44 border p=0 {
+        row justify=between align=center px=4 {
+          row gap=1 {
+            text "프로젝트 관리" size=sm muted
+          }
+          row gap=2 {
+            button "공유" ghost size=sm
+            icon "more-horizontal" size=sm
+          }
+        }
+      }
+
+      main p=0 scroll {
+        col px=16 py=8 gap=6 {
+          col gap=2 {
+            row gap=2 align=center {
+              text "📋" size=xl
+              title "프로젝트 관리" level=1
+            }
+            row gap=4 {
+              text "만든 날짜: 2024년 1월 1일" size=sm muted
+              text "마지막 수정: 오늘" size=sm muted
+            }
+          }
+
+          col gap=4 {
+            text "2024년 1분기 프로젝트 목록과 진행 상황을 관리합니다."
+
+            col gap=2 {
+              title "진행 중인 프로젝트" level=2
+              card p=4 {
+                col gap=3 {
+                  row justify=between align=center {
+                    row gap=2 align=center {
+                      checkbox checked
+                      text "웹사이트 리뉴얼" weight=semibold
+                    }
+                    badge "진행중" variant=warning
+                  }
+                  row gap=4 {
+                    text "담당: 김개발" size=sm muted
+                    text "기한: 1월 31일" size=sm muted
+                  }
+                  progress value=65
+                }
+              }
+              card p=4 {
+                col gap=3 {
+                  row justify=between align=center {
+                    row gap=2 align=center {
+                      checkbox
+                      text "모바일 앱 개발" weight=semibold
+                    }
+                    badge "진행중" variant=warning
+                  }
+                  row gap=4 {
+                    text "담당: 이모바일" size=sm muted
+                    text "기한: 2월 15일" size=sm muted
+                  }
+                  progress value=30
+                }
+              }
+            }
+
+            col gap=2 {
+              title "완료된 프로젝트" level=2
+              card p=4 {
+                col gap=2 {
+                  row justify=between align=center {
+                    row gap=2 align=center {
+                      checkbox checked
+                      text "로고 디자인" weight=semibold
+                    }
+                    badge "완료" variant=success
+                  }
+                  text "2024년 1월 5일 완료" size=sm muted
+                }
+              }
+            }
+
+            col gap=2 {
+              title "메모" level=2
+              card p=4 {
+                col gap=2 {
+                  text "• 주간 회의: 매주 월요일 오전 10시"
+                  text "• 스프린트 기간: 2주"
+                  text "• 다음 마일스톤: 1월 20일"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

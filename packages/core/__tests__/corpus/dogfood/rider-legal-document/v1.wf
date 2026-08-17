@@ -1,0 +1,33 @@
+page "약관과 안내 문서" viewport="375x812" {
+  header h=80 p=4 {
+    row align=center gap=3 {
+      button "" aria="닫기" ghost icon=x navigate="설정"
+      col flex=1 gap=1 {
+        text "이용약관" size=base weight=semibold
+        text "시행일 2026-05-01 · v3.2" muted size=xs
+      }
+    }
+  }
+  main p=4 scroll {
+    col gap=4 {
+      title "제1조 (목적)" level=3 mb=0 size=md
+      text "이 약관은 SwapGrid 배터리 교환 서비스의 이용 조건과 절차, 라이더와 플랫폼의 권리·의무를 정함을 목적으로 합니다." size=sm
+      title "제2조 (용어의 정의)" level=3 mb=0 size=md
+      list ["교환소 — 완충 배터리를 보관하고 교환을 수행하는 설비.", "배터리 규격 — 등록 차량에 따라 자동으로 결정되는 배터리 종류.", "예약 — 특정 배터리 한 개를 선점해 두는 행위."]
+      title "제3조 (예약과 취소)" level=3 mb=0 size=md
+      text "예약은 라이더가 등록한 차량의 규격으로만 생성됩니다. 라이더는 도착 전 언제든 예약을 취소할 수 있으며, 취소된 배터리는 즉시 교환 가능 상태로 되돌아갑니다." size=sm
+      text "예약 유효 시간 및 동시 예약 가능 건수는 별도 안내에 따릅니다." muted size=sm
+      title "제4조 (개인정보의 처리)" level=3 mb=0 size=md
+      text "개인정보 처리 방침은 별도 문서로 제공되며, 자세한 내용은 아래 링크에서 확인할 수 있습니다." size=sm
+      link "개인정보 처리방침 전문 보기" external navigate="https://swapgrid.example.com/privacy"
+      divider my=2
+      col gap=1 {
+        row align=center gap=2 {
+          icon "history" muted size=sm
+          link "이전 버전 보기" navigate="https://swapgrid.example.com/terms/versions"
+        }
+        text "이전에 동의한 버전 v3.1 (2026-01-12)" muted size=xs
+      }
+    }
+  }
+}

@@ -4,7 +4,8 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'node',
-    include: ['__tests__/**/*.ts', 'src/**/*.test.ts'],
+    // `*.test.ts` only — `__tests__/helpers/` holds shared, test-free modules.
+    include: ['__tests__/**/*.test.ts', 'src/**/*.test.ts'],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'html', 'lcov'],

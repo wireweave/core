@@ -1,0 +1,209 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "border": true,
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "content": "Bookmark",
+                  "level": 4,
+                  "type": "Title"
+                },
+                {
+                  "name": "settings",
+                  "size": "md",
+                  "type": "Icon"
+                }
+              ],
+              "justify": "between",
+              "type": "Row"
+            }
+          ],
+          "h": 56,
+          "p": 4,
+          "type": "Header"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "children": [],
+                      "h": 80,
+                      "label": "Cover",
+                      "type": "Placeholder",
+                      "w": 60
+                    },
+                    {
+                      "children": [
+                        {
+                          "content": "The Great Gatsby",
+                          "type": "Text",
+                          "weight": "semibold"
+                        },
+                        {
+                          "content": "F. Scott Fitzgerald",
+                          "muted": true,
+                          "size": "sm",
+                          "type": "Text"
+                        },
+                        {
+                          "size": "sm",
+                          "type": "Progress",
+                          "value": 60
+                        },
+                        {
+                          "content": "Last read: Today",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        }
+                      ],
+                      "flex": 1,
+                      "gap": 1,
+                      "type": "Col"
+                    }
+                  ],
+                  "gap": 3,
+                  "type": "Row"
+                }
+              ],
+              "p": 3,
+              "title": null,
+              "type": "Card"
+            },
+            {
+              "children": [
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "children": [],
+                      "h": 80,
+                      "label": "Cover",
+                      "type": "Placeholder",
+                      "w": 60
+                    },
+                    {
+                      "children": [
+                        {
+                          "content": "To Kill a Mockingbird",
+                          "type": "Text",
+                          "weight": "semibold"
+                        },
+                        {
+                          "content": "Harper Lee",
+                          "muted": true,
+                          "size": "sm",
+                          "type": "Text"
+                        },
+                        {
+                          "size": "sm",
+                          "type": "Progress",
+                          "value": 30
+                        },
+                        {
+                          "content": "Last read: Yesterday",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        }
+                      ],
+                      "flex": 1,
+                      "gap": 1,
+                      "type": "Col"
+                    }
+                  ],
+                  "gap": 3,
+                  "type": "Row"
+                }
+              ],
+              "p": 3,
+              "title": null,
+              "type": "Card"
+            },
+            {
+              "children": [
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "children": [],
+                      "h": 80,
+                      "label": "Cover",
+                      "type": "Placeholder",
+                      "w": 60
+                    },
+                    {
+                      "children": [
+                        {
+                          "content": "1984",
+                          "type": "Text",
+                          "weight": "semibold"
+                        },
+                        {
+                          "content": "George Orwell",
+                          "muted": true,
+                          "size": "sm",
+                          "type": "Text"
+                        },
+                        {
+                          "size": "sm",
+                          "type": "Progress",
+                          "value": 80
+                        },
+                        {
+                          "content": "Last read: Oct 3",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        }
+                      ],
+                      "flex": 1,
+                      "gap": 1,
+                      "type": "Col"
+                    }
+                  ],
+                  "gap": 3,
+                  "type": "Row"
+                }
+              ],
+              "p": 3,
+              "title": null,
+              "type": "Card"
+            }
+          ],
+          "gap": 3,
+          "p": 4,
+          "scroll": true,
+          "type": "Main"
+        },
+        {
+          "bottom": 24,
+          "content": "+",
+          "h": 56,
+          "position": "absolute",
+          "primary": true,
+          "right": 24,
+          "rounded": "full",
+          "size": "lg",
+          "type": "Button",
+          "w": 56
+        }
+      ],
+      "device": "mobile",
+      "height": 812,
+      "title": "Book List",
+      "type": "Page",
+      "width": 375
+    }
+  ],
+  "type": "Document"
+}

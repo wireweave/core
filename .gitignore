@@ -9,6 +9,12 @@ out/
 *.tsbuildinfo
 .turbo/
 
+# Records the source hashes each build was produced from, so
+# scripts/dist-freshness-gate.mjs can tell a current dist from a stale one.
+# Local build state, never committed — and deliberately outside dist/ so it
+# stays out of the published tarball.
+.build-fingerprint.json
+
 # framework-generated output (examples + docs) — never version-controlled
 .svelte-kit/
 .next/

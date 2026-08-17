@@ -8,7 +8,6 @@ import {
   linkAndCompileApp,
   parse,
   printWireframe,
-  renderSite,
   validate,
   type AppManifest,
   type AppModuleInput,
@@ -211,28 +210,6 @@ describe('CORE-INTERACTION-RUNTIME', () => {
     click(dom, guardedRoute)
     expect(document.querySelector('.wf-site')?.getAttribute('data-current-screen')).toBe('1')
     expect(dom.window.location.hash).toBe('#settings')
-  })
-
-  it('applies nested parent and child guards independently', () => {
-    const dom = mount(
-      renderSite(
-        parse(`page "Nested guards" states=[
-  { name=outer, valueType=boolean, initial=false },
-  { name=inner, valueType=boolean, initial=true }
-] {
-  section visibleWhen={ state=outer, equals=true } {
-    text "Child" visibleWhen={ state=inner, equals=true }
-  }
-}`),
-      ),
-    )
-    const section = dom.window.document.querySelector('.wf-section')
-    const child = dom.window.document.querySelector('.wf-text')
-
-    expect(section?.getAttribute('data-wf-visible-when')).toContain('"outer"')
-    expect(section?.hasAttribute('hidden')).toBe(true)
-    expect(child?.getAttribute('data-wf-visible-when')).toContain('"inner"')
-    expect(child?.hasAttribute('hidden')).toBe(false)
   })
 
   it('uses the same normalized page+layout route set for graph and runtime', () => {

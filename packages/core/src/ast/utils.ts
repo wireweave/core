@@ -48,6 +48,9 @@ export function walk(
 /**
  * Walk through a document's AST
  *
+ * Covers every top-level child — pages *and* reuse definitions — because a walk
+ * is about visiting nodes, not about selecting screens.
+ *
  * @param document - The wireframe document
  * @param callback - Function called for each node
  */
@@ -58,19 +61,31 @@ export function walkDocument(document: WireframeDocument, callback: WalkCallback
 }
 
 /**
- * Return only the document's pages, in source order.
+ * The document's pages, in source order.
  *
- * Layout definitions share the document's top-level list with pages but are
- * not screens. Page-indexed consumers must use this helper so a definition
- * never becomes an accidental page.
+ * A document's children are not all screens: `layout` and `component`
+ * definitions sit alongside `page` as top-level siblings. Anything that counts,
+ * indexes, renders or exports *screens* must select them through this helper
+ * rather than reading `document.children` directly — otherwise a definition
+ * silently becomes screen #0.
+ *
+ * @param document - The wireframe document
+ * @returns Only the `Page` children
  */
 export function documentPages(document: WireframeDocument): PageNode[] {
   return document.children.filter((child): child is PageNode => child.type === 'Page')
 }
 
-/** Return the document's named layout definitions, in source order. */
+/**
+ * The document's reuse definitions (`layout` / `component`), in source order.
+ *
+ * @param document - The wireframe document
+ * @returns Only the definition children
+ */
 export function documentDefinitions(document: WireframeDocument): DefinitionNode[] {
-  return document.children.filter((child): child is DefinitionNode => child.type === 'Layout')
+  return document.children.filter(
+    (child): child is DefinitionNode => child.type === 'Layout' || child.type === 'Component',
+  )
 }
 
 /**

@@ -29,11 +29,45 @@ export { generateComponentStyles } from './styles-components'
 export { renderPage, resolvePageDimensions } from './page-renderer'
 export { renderCanvas, layoutCanvas } from './canvas-renderer'
 export type { PlacedPage } from './canvas-renderer'
+
+// Site composition — the whole document as one navigable HTML file.
 export { renderSite, buildSiteModel } from './site'
 export type { SiteOptions, SiteModel, SiteScreen, SiteShell, ShellMiss } from './site'
 
-// Public renderer decision used by consumers that must mirror emitted anchors.
-export { anchorIntent } from './html/interactive'
+/**
+ * Interaction intent, as the renderer decided it.
+ *
+ * A consumer that reasons about rendered output — a demo compiler deciding
+ * which elements a click can reach, an audit reporting which transitions the
+ * document can actually perform — needs the same answer the renderer reached:
+ * for this node, does a `data-navigate` go out, and with what value? That
+ * answer is not `node.navigate`. On an anchor a URL-shaped target moves into
+ * the `href` and the data attribute is dropped entirely, so reading the AST
+ * field credits a wire the document cannot perform.
+ *
+ * The rule is exported rather than the predicate under it, for the reason
+ * `interactive.ts` gives for owning it in one place: a consumer handed
+ * `isUrlTarget` would still have to recompose "authored `href` wins, else URL
+ * moves, else inert" — a second copy of the composition, which is the same
+ * drift surface one level up. Handing over {@link anchorIntent} and
+ * {@link interactiveAttrs} leaves nothing to recompose. Which of the two a node
+ * gets is decided by whether its renderer emits an `<a>`, and that is the one
+ * fact a consumer still mirrors.
+ *
+ * {@link INERT_HREF} travels with them because "this anchor has no destination"
+ * is the same statement read from the other side.
+ */
+export {
+  anchorIntent,
+  interactiveAttrs,
+  INERT_HREF,
+  EXTERNAL_NAVIGATE_ATTR,
+  INTERACTIVE_ATTR_NAMES,
+  TYPED_INTERACTION_ATTR,
+  VISIBLE_GUARD_ATTR,
+  ENABLED_GUARD_ATTR,
+  guardedOutcomeAttrs,
+} from './html/interactive'
 export type { InteractiveAttrs } from './html/interactive'
 
 // Re-export icons (ensures they're bundled with renderer)

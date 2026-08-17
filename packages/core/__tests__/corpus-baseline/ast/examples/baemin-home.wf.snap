@@ -1,0 +1,678 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "children": [
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "name": "map-pin",
+                          "size": "sm",
+                          "type": "Icon"
+                        },
+                        {
+                          "content": "강남구 역삼동",
+                          "size": "sm",
+                          "type": "Text",
+                          "weight": "semibold"
+                        },
+                        {
+                          "name": "chevron-down",
+                          "size": "sm",
+                          "type": "Icon"
+                        }
+                      ],
+                      "gap": 1,
+                      "type": "Row"
+                    }
+                  ],
+                  "gap": 0,
+                  "type": "Col"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "search",
+                      "type": "Icon"
+                    },
+                    {
+                      "name": "bell",
+                      "type": "Icon"
+                    }
+                  ],
+                  "gap": 3,
+                  "type": "Row"
+                }
+              ],
+              "justify": "between",
+              "px": 4,
+              "type": "Row"
+            }
+          ],
+          "h": 56,
+          "p": 0,
+          "type": "Header"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "",
+                              "icon": "utensils",
+                              "size": "lg",
+                              "type": "Badge"
+                            },
+                            {
+                              "content": "전체",
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 1,
+                          "type": "Col",
+                          "w": 70
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "",
+                              "icon": "beef",
+                              "size": "lg",
+                              "type": "Badge",
+                              "variant": "secondary"
+                            },
+                            {
+                              "content": "치킨",
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 1,
+                          "type": "Col",
+                          "w": 70
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "",
+                              "icon": "pizza",
+                              "size": "lg",
+                              "type": "Badge",
+                              "variant": "secondary"
+                            },
+                            {
+                              "content": "피자",
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 1,
+                          "type": "Col",
+                          "w": 70
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "",
+                              "icon": "soup",
+                              "size": "lg",
+                              "type": "Badge",
+                              "variant": "secondary"
+                            },
+                            {
+                              "content": "중식",
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 1,
+                          "type": "Col",
+                          "w": 70
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "",
+                              "icon": "sandwich",
+                              "size": "lg",
+                              "type": "Badge",
+                              "variant": "secondary"
+                            },
+                            {
+                              "content": "버거",
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 1,
+                          "type": "Col",
+                          "w": 70
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "",
+                              "icon": "fish",
+                              "size": "lg",
+                              "type": "Badge",
+                              "variant": "secondary"
+                            },
+                            {
+                              "content": "일식",
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 1,
+                          "type": "Col",
+                          "w": 70
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "",
+                              "icon": "salad",
+                              "size": "lg",
+                              "type": "Badge",
+                              "variant": "secondary"
+                            },
+                            {
+                              "content": "샐러드",
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 1,
+                          "type": "Col",
+                          "w": 70
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "",
+                              "icon": "coffee",
+                              "size": "lg",
+                              "type": "Badge",
+                              "variant": "secondary"
+                            },
+                            {
+                              "content": "카페",
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 1,
+                          "type": "Col",
+                          "w": 70
+                        }
+                      ],
+                      "gap": 3,
+                      "justify": "between",
+                      "type": "Row",
+                      "wrap": true
+                    }
+                  ],
+                  "gap": 4,
+                  "p": 4,
+                  "type": "Col"
+                },
+                {
+                  "children": [
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "content": "우리 동네 인기 맛집",
+                          "type": "Text",
+                          "weight": "bold"
+                        },
+                        {
+                          "content": "더보기",
+                          "muted": true,
+                          "size": "sm",
+                          "type": "Text"
+                        }
+                      ],
+                      "justify": "between",
+                      "type": "Row"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "children": [],
+                              "h": 150,
+                              "label": "음식 사진",
+                              "type": "Placeholder",
+                              "w": "full"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "content": "맛있는 치킨집",
+                                      "type": "Text",
+                                      "weight": "bold"
+                                    },
+                                    {
+                                      "align": "center",
+                                      "children": [
+                                        {
+                                          "name": "star",
+                                          "size": "sm",
+                                          "type": "Icon"
+                                        },
+                                        {
+                                          "content": "4.8",
+                                          "size": "sm",
+                                          "type": "Text",
+                                          "weight": "semibold"
+                                        },
+                                        {
+                                          "content": "(2,847)",
+                                          "muted": true,
+                                          "size": "sm",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "gap": 1,
+                                      "type": "Row"
+                                    }
+                                  ],
+                                  "justify": "between",
+                                  "type": "Row"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "content": "배민1",
+                                      "size": "sm",
+                                      "type": "Badge",
+                                      "variant": "info"
+                                    },
+                                    {
+                                      "content": "쿠폰",
+                                      "size": "sm",
+                                      "type": "Badge",
+                                      "variant": "warning"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Row"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "content": "배달 32~47분",
+                                      "muted": true,
+                                      "size": "sm",
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "content": "·",
+                                      "muted": true,
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "content": "배달팁 0~3,000원",
+                                      "muted": true,
+                                      "size": "sm",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Row"
+                                }
+                              ],
+                              "gap": 2,
+                              "p": 3,
+                              "type": "Col"
+                            }
+                          ],
+                          "type": "Col"
+                        }
+                      ],
+                      "p": 0,
+                      "title": null,
+                      "type": "Card"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "children": [],
+                              "h": 150,
+                              "label": "음식 사진",
+                              "type": "Placeholder",
+                              "w": "full"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "content": "김밥천국",
+                                      "type": "Text",
+                                      "weight": "bold"
+                                    },
+                                    {
+                                      "align": "center",
+                                      "children": [
+                                        {
+                                          "name": "star",
+                                          "size": "sm",
+                                          "type": "Icon"
+                                        },
+                                        {
+                                          "content": "4.5",
+                                          "size": "sm",
+                                          "type": "Text",
+                                          "weight": "semibold"
+                                        },
+                                        {
+                                          "content": "(1,234)",
+                                          "muted": true,
+                                          "size": "sm",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "gap": 1,
+                                      "type": "Row"
+                                    }
+                                  ],
+                                  "justify": "between",
+                                  "type": "Row"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "content": "배민1",
+                                      "size": "sm",
+                                      "type": "Badge",
+                                      "variant": "info"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Row"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "content": "배달 25~35분",
+                                      "muted": true,
+                                      "size": "sm",
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "content": "·",
+                                      "muted": true,
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "content": "배달팁 1,000~2,000원",
+                                      "muted": true,
+                                      "size": "sm",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Row"
+                                }
+                              ],
+                              "gap": 2,
+                              "p": 3,
+                              "type": "Col"
+                            }
+                          ],
+                          "type": "Col"
+                        }
+                      ],
+                      "p": 0,
+                      "title": null,
+                      "type": "Card"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "children": [],
+                              "h": 150,
+                              "label": "음식 사진",
+                              "type": "Placeholder",
+                              "w": "full"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "content": "행복한 피자",
+                                      "type": "Text",
+                                      "weight": "bold"
+                                    },
+                                    {
+                                      "align": "center",
+                                      "children": [
+                                        {
+                                          "name": "star",
+                                          "size": "sm",
+                                          "type": "Icon"
+                                        },
+                                        {
+                                          "content": "4.7",
+                                          "size": "sm",
+                                          "type": "Text",
+                                          "weight": "semibold"
+                                        },
+                                        {
+                                          "content": "(892)",
+                                          "muted": true,
+                                          "size": "sm",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "gap": 1,
+                                      "type": "Row"
+                                    }
+                                  ],
+                                  "justify": "between",
+                                  "type": "Row"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "content": "쿠폰",
+                                      "size": "sm",
+                                      "type": "Badge",
+                                      "variant": "warning"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Row"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "content": "배달 40~55분",
+                                      "muted": true,
+                                      "size": "sm",
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "content": "·",
+                                      "muted": true,
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "content": "배달팁 2,000~4,000원",
+                                      "muted": true,
+                                      "size": "sm",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Row"
+                                }
+                              ],
+                              "gap": 2,
+                              "p": 3,
+                              "type": "Col"
+                            }
+                          ],
+                          "type": "Col"
+                        }
+                      ],
+                      "p": 0,
+                      "title": null,
+                      "type": "Card"
+                    }
+                  ],
+                  "gap": 3,
+                  "px": 4,
+                  "type": "Col"
+                }
+              ],
+              "gap": 4,
+              "type": "Col"
+            }
+          ],
+          "p": 0,
+          "scroll": true,
+          "type": "Main"
+        },
+        {
+          "border": true,
+          "children": [
+            {
+              "children": [
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "name": "home",
+                      "type": "Icon"
+                    },
+                    {
+                      "content": "홈",
+                      "size": "xs",
+                      "type": "Text"
+                    }
+                  ],
+                  "gap": 1,
+                  "type": "Col"
+                },
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "name": "search",
+                      "type": "Icon"
+                    },
+                    {
+                      "content": "검색",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    }
+                  ],
+                  "gap": 1,
+                  "type": "Col"
+                },
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "name": "heart",
+                      "type": "Icon"
+                    },
+                    {
+                      "content": "찜",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    }
+                  ],
+                  "gap": 1,
+                  "type": "Col"
+                },
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "name": "receipt",
+                      "type": "Icon"
+                    },
+                    {
+                      "content": "주문내역",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    }
+                  ],
+                  "gap": 1,
+                  "type": "Col"
+                },
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "name": "user",
+                      "type": "Icon"
+                    },
+                    {
+                      "content": "내 정보",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    }
+                  ],
+                  "gap": 1,
+                  "type": "Col"
+                }
+              ],
+              "justify": "around",
+              "type": "Row"
+            }
+          ],
+          "p": 2,
+          "type": "Footer"
+        }
+      ],
+      "device": "mobile",
+      "height": 750,
+      "title": null,
+      "type": "Page",
+      "width": 375
+    }
+  ],
+  "type": "Document"
+}

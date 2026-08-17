@@ -1,0 +1,430 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "name": "battery-charging",
+                          "size": "md",
+                          "type": "Icon"
+                        },
+                        {
+                          "children": [
+                            {
+                              "content": "A규격",
+                              "size": "sm",
+                              "type": "Text",
+                              "weight": "semibold"
+                            },
+                            {
+                              "content": "내 배터리 42%",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 0,
+                          "type": "Col"
+                        }
+                      ],
+                      "gap": 3,
+                      "navigate": "배터리 상태 상세",
+                      "type": "Row"
+                    },
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "aria": "교환소 검색",
+                          "content": "",
+                          "ghost": true,
+                          "icon": "search",
+                          "navigate": "교환소 검색",
+                          "size": "sm",
+                          "type": "Button"
+                        },
+                        {
+                          "aria": "알림 목록 (읽지 않음 3건)",
+                          "content": "",
+                          "ghost": true,
+                          "icon": "bell",
+                          "navigate": "알림 목록",
+                          "size": "sm",
+                          "type": "Button"
+                        },
+                        {
+                          "action": "none",
+                          "content": "3",
+                          "pill": true,
+                          "size": "xs",
+                          "type": "Badge",
+                          "variant": "danger"
+                        }
+                      ],
+                      "gap": 2,
+                      "type": "Row"
+                    }
+                  ],
+                  "gap": 3,
+                  "justify": "between",
+                  "type": "Row"
+                }
+              ],
+              "p": 3,
+              "shadow": "sm",
+              "title": null,
+              "type": "Card"
+            },
+            {
+              "children": [
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "name": "bookmark-check",
+                          "size": "sm",
+                          "type": "Icon"
+                        },
+                        {
+                          "content": "강남��로점 예약 · 18분 남음",
+                          "size": "sm",
+                          "type": "Text",
+                          "weight": "medium"
+                        }
+                      ],
+                      "gap": 2,
+                      "type": "Row"
+                    },
+                    {
+                      "action": "none",
+                      "muted": true,
+                      "name": "chevron-right",
+                      "size": "sm",
+                      "type": "Icon"
+                    }
+                  ],
+                  "gap": 2,
+                  "justify": "between",
+                  "type": "Row"
+                }
+              ],
+              "navigate": "내 예약",
+              "p": 2,
+              "shadow": "sm",
+              "title": null,
+              "type": "Card"
+            },
+            {
+              "children": [
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "name": "refresh-cw",
+                          "size": "sm",
+                          "type": "Icon"
+                        },
+                        {
+                          "content": "교환 진행 중 — 이어서 진행",
+                          "size": "sm",
+                          "type": "Text",
+                          "weight": "medium"
+                        }
+                      ],
+                      "gap": 2,
+                      "type": "Row"
+                    },
+                    {
+                      "action": "none",
+                      "muted": true,
+                      "name": "chevron-right",
+                      "size": "sm",
+                      "type": "Icon"
+                    }
+                  ],
+                  "gap": 2,
+                  "justify": "between",
+                  "type": "Row"
+                }
+              ],
+              "navigate": "교환 진행",
+              "p": 2,
+              "shadow": "sm",
+              "title": null,
+              "type": "Card"
+            }
+          ],
+          "gap": 2,
+          "p": 3,
+          "type": "Col"
+        },
+        {
+          "children": [],
+          "h": 248,
+          "label": "지도 — 교환소 핀(이름 + A규격 완충 수) · 확대·축소 · 끌어 이동",
+          "type": "Placeholder",
+          "w": "full"
+        },
+        {
+          "children": [
+            {
+              "action": "center-on-me",
+              "aria": "내 위치로 이동",
+              "content": "",
+              "icon": "locate-fixed",
+              "primary": true,
+              "type": "Button"
+            }
+          ],
+          "justify": "end",
+          "p": 3,
+          "type": "Row"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "my": 0,
+                      "type": "Divider"
+                    }
+                  ],
+                  "justify": "center",
+                  "type": "Row"
+                },
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "content": "주변 교환소",
+                      "size": "sm",
+                      "type": "Text",
+                      "weight": "semibold"
+                    },
+                    {
+                      "content": "거리순 · 1분 전 기준",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    }
+                  ],
+                  "justify": "between",
+                  "type": "Row"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "content": "강남대로점",
+                                  "size": "sm",
+                                  "type": "Text",
+                                  "weight": "semibold"
+                                },
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "content": "320m",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "action": "none",
+                                      "content": "운영중",
+                                      "pill": true,
+                                      "size": "xs",
+                                      "type": "Badge",
+                                      "variant": "success"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Row"
+                                }
+                              ],
+                              "gap": 1,
+                              "type": "Col"
+                            },
+                            {
+                              "align": "end",
+                              "children": [
+                                {
+                                  "content": "A규격 완충 4",
+                                  "size": "sm",
+                                  "type": "Text",
+                                  "weight": "semibold"
+                                },
+                                {
+                                  "content": "1분 전 기준",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 0,
+                              "type": "Col"
+                            }
+                          ],
+                          "gap": 3,
+                          "justify": "between",
+                          "type": "Row"
+                        }
+                      ],
+                      "navigate": "교환소 상세",
+                      "p": 3,
+                      "title": null,
+                      "type": "Card"
+                    },
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "content": "역삼역점",
+                                  "size": "sm",
+                                  "type": "Text",
+                                  "weight": "semibold"
+                                },
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "content": "780m",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "action": "none",
+                                      "content": "운영중",
+                                      "pill": true,
+                                      "size": "xs",
+                                      "type": "Badge",
+                                      "variant": "success"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Row"
+                                }
+                              ],
+                              "gap": 1,
+                              "type": "Col"
+                            },
+                            {
+                              "align": "end",
+                              "children": [
+                                {
+                                  "content": "A규격 완충 1",
+                                  "size": "sm",
+                                  "type": "Text",
+                                  "weight": "semibold"
+                                },
+                                {
+                                  "content": "2분 전 기준",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 0,
+                              "type": "Col"
+                            }
+                          ],
+                          "gap": 3,
+                          "justify": "between",
+                          "type": "Row"
+                        }
+                      ],
+                      "navigate": "교환소 상세",
+                      "p": 3,
+                      "title": null,
+                      "type": "Card"
+                    }
+                  ],
+                  "gap": 3,
+                  "scroll": true,
+                  "type": "Col"
+                }
+              ],
+              "gap": 3,
+              "type": "Col"
+            }
+          ],
+          "p": 4,
+          "shadow": "lg",
+          "title": null,
+          "type": "Card",
+          "w": "full"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "active": true,
+                  "icon": "map",
+                  "label": "지도",
+                  "navigate": "교환소 지도",
+                  "type": "NavItem"
+                },
+                {
+                  "icon": "bookmark",
+                  "label": "내 예약",
+                  "navigate": "내 예약",
+                  "type": "NavItem"
+                },
+                {
+                  "icon": "receipt",
+                  "label": "이용내역",
+                  "navigate": "이용내역",
+                  "type": "NavItem"
+                },
+                {
+                  "icon": "settings",
+                  "label": "설정",
+                  "navigate": "설정",
+                  "type": "NavItem"
+                }
+              ],
+              "items": [],
+              "type": "Nav"
+            }
+          ],
+          "h": 64,
+          "p": 2,
+          "type": "Footer"
+        }
+      ],
+      "title": "교환소 지도",
+      "type": "Page",
+      "viewport": "375x812"
+    }
+  ],
+  "type": "Document"
+}

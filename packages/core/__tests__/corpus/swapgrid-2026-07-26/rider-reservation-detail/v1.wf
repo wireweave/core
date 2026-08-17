@@ -1,0 +1,83 @@
+page "내 예약" viewport="375x812" {
+  header h=72 p=4 {
+    row align=center justify=between {
+      title "내 예약" level=2 mb=0 mt=0 size=lg
+      button "" aria="알림 목록" ghost icon=bell navigate="알림 목록" size=sm
+    }
+  }
+  main p=4 scroll {
+    col gap=4 {
+      alert "연결이 불안정합니다. 마지막으로 받은 정보입니다." icon=wifi-off variant=warning
+      card "성수 교환소" navigate="교환소 상세" p=4 shadow=md {
+        col gap=3 {
+          row align=center justify=between {
+            text "서울 성동구 아차산로 100" muted size=sm
+            badge "곧 만료" pill variant=warning
+          }
+          text "적용 규격 · A규격 (등록 차량 기준)" muted size=xs
+          divider my=0
+          row align=center justify=between {
+            text "남은 유효 시간" muted size=sm
+            text "04:32" size=xl weight=bold
+          }
+          text "시간이 지나면 예약이 사라집니다." muted size=xs
+          col gap=2 {
+            button "교환 시작" navigate="QR 스캔" primary w=full
+            row gap=2 {
+              button "길 안내" action=open-directions icon=navigation outline w=full
+              button "예약 취소" action=cancel-reservation ghost w=full
+            }
+          }
+        }
+      }
+      card "왕십리 교환소" navigate="교환소 상세" p=4 shadow=sm {
+        col gap=3 {
+          row align=center justify=between {
+            text "서울 성동구 왕십리로 300" muted size=sm
+            badge "예약됨" pill variant=success
+          }
+          text "적용 규격 · A규격 (등록 차량 기준)" muted size=xs
+          divider my=0
+          row align=center justify=between {
+            text "남은 유효 시간" muted size=sm
+            text "27:15" size=xl weight=bold
+          }
+          col gap=2 {
+            button "교환 시작" navigate="QR 스캔" primary w=full
+            row gap=2 {
+              button "길 안내" action=open-directions icon=navigation outline w=full
+              button "예약 취소" action=cancel-reservation ghost w=full
+            }
+          }
+        }
+      }
+      card border p=4 shadow=none {
+        col gap=2 {
+          text "잡아둔 예약이 없습니다" size=sm weight=medium
+          button "교환소 찾기" navigate="교환소 지도" outline w=full
+        }
+      }
+      text "아래로 당겨 새로고침" align=center muted size=xs
+    }
+  }
+  footer h=72 p=2 {
+    row align=center gap=0 {
+      col align=center flex=1 gap=1 {
+        icon "map" muted navigate="교환소 지도" size=sm
+        text "지도" align=center muted size=xs
+      }
+      col align=center flex=1 gap=1 {
+        icon "calendar-check" action=none size=sm
+        text "내 예약" align=center size=xs weight=medium
+      }
+      col align=center flex=1 gap=1 {
+        icon "receipt" muted navigate="이용내역" size=sm
+        text "이용내역" align=center muted size=xs
+      }
+      col align=center flex=1 gap=1 {
+        icon "settings" muted navigate="설정" size=sm
+        text "설정" align=center muted size=xs
+      }
+    }
+  }
+}

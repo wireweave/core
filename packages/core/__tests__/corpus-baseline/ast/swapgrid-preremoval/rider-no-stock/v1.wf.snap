@@ -1,0 +1,238 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "aria": "뒤로",
+                  "content": "",
+                  "ghost": true,
+                  "icon": "arrow-left",
+                  "navigate": "교환소 상세",
+                  "type": "Button"
+                },
+                {
+                  "content": "강남역 2번출구 교환소",
+                  "type": "Text",
+                  "weight": "semibold"
+                },
+                {
+                  "action": "none",
+                  "aria": "더보기",
+                  "content": "",
+                  "ghost": true,
+                  "icon": "ellipsis-vertical",
+                  "type": "Button"
+                }
+              ],
+              "gap": 2,
+              "justify": "between",
+              "type": "Row"
+            }
+          ],
+          "h": 76,
+          "p": 4,
+          "type": "Header"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "h": 80,
+                      "label": "교환소 상세 (뒤 화면)",
+                      "type": "Placeholder",
+                      "w": "full"
+                    },
+                    {
+                      "children": [
+                        {
+                          "content": "운영 중",
+                          "pill": true,
+                          "type": "Badge",
+                          "variant": "success"
+                        },
+                        {
+                          "content": "24시간",
+                          "pill": true,
+                          "type": "Badge"
+                        }
+                      ],
+                      "gap": 2,
+                      "type": "Row"
+                    }
+                  ],
+                  "gap": 2,
+                  "type": "Col"
+                },
+                {
+                  "my": 0,
+                  "type": "Divider"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "children": [],
+                              "h": 6,
+                              "label": null,
+                              "type": "Placeholder",
+                              "w": 40
+                            }
+                          ],
+                          "justify": "center",
+                          "type": "Row"
+                        },
+                        {
+                          "children": [
+                            {
+                              "content": "이 교환소에는 지금 내 배터리가 없습니다",
+                              "level": 3,
+                              "size": "lg",
+                              "type": "Title"
+                            },
+                            {
+                              "content": "강남역 2번출구 교환소",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 1,
+                          "type": "Col"
+                        },
+                        {
+                          "content": "내 규격 배터리 2개가 충전 중입니다.",
+                          "icon": "battery-charging",
+                          "type": "Alert",
+                          "variant": "info"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "content": "충전 중",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "2개",
+                                  "size": "lg",
+                                  "type": "Text",
+                                  "weight": "bold"
+                                }
+                              ],
+                              "flex": 1,
+                              "gap": 1,
+                              "type": "Col"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "content": "완충 예상",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "약 40분 후",
+                                  "size": "lg",
+                                  "type": "Text",
+                                  "weight": "bold"
+                                }
+                              ],
+                              "flex": 1,
+                              "gap": 1,
+                              "type": "Col"
+                            }
+                          ],
+                          "gap": 3,
+                          "type": "Row"
+                        },
+                        {
+                          "label": "충전 진행",
+                          "type": "Progress",
+                          "value": 62,
+                          "w": "full"
+                        },
+                        {
+                          "action": "request-stock-alert",
+                          "content": "알림 받기",
+                          "icon": "bell",
+                          "outline": true,
+                          "type": "Button",
+                          "w": "full"
+                        },
+                        {
+                          "content": "알림은 배터리를 잡아두지 않습니다.",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        }
+                      ],
+                      "gap": 3,
+                      "type": "Col"
+                    }
+                  ],
+                  "p": 4,
+                  "title": null,
+                  "type": "Card"
+                }
+              ],
+              "gap": 4,
+              "type": "Col"
+            }
+          ],
+          "p": 4,
+          "scroll": true,
+          "type": "Main"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "content": "지도로 돌아가기",
+                  "navigate": "교환소 지도",
+                  "primary": true,
+                  "size": "lg",
+                  "type": "Button",
+                  "w": "full"
+                },
+                {
+                  "content": "닫기",
+                  "ghost": true,
+                  "navigate": "교환소 상세",
+                  "type": "Button",
+                  "w": "full"
+                }
+              ],
+              "gap": 3,
+              "type": "Col"
+            }
+          ],
+          "h": 136,
+          "p": 4,
+          "type": "Footer"
+        }
+      ],
+      "title": "재고 없음",
+      "type": "Page",
+      "viewport": "375x812"
+    }
+  ],
+  "type": "Document"
+}

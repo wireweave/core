@@ -1,0 +1,19 @@
+{
+  "children": [
+    {
+      "centered": true,
+      "children": [
+        {
+          "content": "Click Me",
+          "primary": true,
+          "type": "Button"
+        }
+      ],
+      "height": 100,
+      "title": null,
+      "type": "Page",
+      "width": 300
+    }
+  ],
+  "type": "Document"
+}

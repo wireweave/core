@@ -94,8 +94,11 @@ export function renderCanvas(
 
   const theme = options.theme === 'dark' ? darkTheme : defaultTheme
   const css = includeStyles ? generateStyles(theme, prefix, options.annotationStyle) : ''
+
   const pages = documentPages(doc)
 
+  // A document holding only `layout` / `component` definitions has nothing to
+  // place: definitions are fragments pages refer to, not screens.
   if (pages.length === 0) {
     return {
       html: `<div class="${prefix}-canvas" data-empty="true"></div>`,

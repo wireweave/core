@@ -333,7 +333,8 @@ function generateSizeClasses(prefix: string): string {
 .${prefix}-bg-secondary { background-color: var(--${prefix}-secondary); }
 
 /* Border Utilities */
-.${prefix}-border { border: 1px solid var(--${prefix}-border); }`
+.${prefix}-border { border: 1px solid var(--${prefix}-border); }
+.${prefix}-rounded { border-radius: var(--${prefix}-radius); }`
 }
 
 /**

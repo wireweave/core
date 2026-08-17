@@ -1,4 +1,6 @@
 import { describe, it, expect } from 'vitest'
+import { ATTRIBUTE_SPECS } from '@wireweave/core/spec'
+import { EDITOR_ONLY_ATTRIBUTES, PENDING_CORE_ATTRIBUTES } from '../src/core-spec-gaps.js'
 import {
   ALL_COMPONENTS,
   COMPONENT_MAP,
@@ -6,7 +8,8 @@ import {
   VALID_COMPONENT_NAMES,
   ATTRIBUTES,
   ATTRIBUTE_MAP,
-  COMMON_ATTRIBUTES,
+  BOX_ATTRIBUTES,
+  CONTAINER_ATTRIBUTES,
   VALID_ATTRIBUTE_NAMES,
   CATEGORY_LABELS,
   VALUE_KEYWORDS,
@@ -31,16 +34,28 @@ describe('Components', () => {
     expect(ALL_COMPONENTS.length).toBeGreaterThan(0)
   })
 
-  it('should have matching COMPONENT_MAP size', () => {
-    expect(COMPONENT_MAP.size).toBe(ALL_COMPONENTS.length)
+  // The lookup structures are projections of ALL_COMPONENTS. Comparing sizes
+  // only catches a duplicate key; it passes a map keyed on the wrong field, or
+  // one whose entries point at the wrong component. Assert reachability in both
+  // directions instead, so the lookup has to actually resolve.
+  it('reaches every component through COMPONENT_MAP, and nothing else', () => {
+    for (const comp of ALL_COMPONENTS) {
+      expect(COMPONENT_MAP.get(comp.name), `"${comp.name}" is not reachable by name`).toBe(comp)
+    }
+    const known = new Set(ALL_COMPONENTS.map((c) => c.name))
+    expect([...COMPONENT_MAP.keys()].filter((key) => !known.has(key))).toEqual([])
   })
 
-  it('should have matching NODE_TYPE_MAP size', () => {
-    expect(NODE_TYPE_MAP.size).toBe(ALL_COMPONENTS.length)
+  it('reaches every component through NODE_TYPE_MAP, and nothing else', () => {
+    for (const comp of ALL_COMPONENTS) {
+      expect(NODE_TYPE_MAP.get(comp.nodeType), `"${comp.nodeType}" is not reachable`).toBe(comp)
+    }
+    const known = new Set(ALL_COMPONENTS.map((c) => c.nodeType))
+    expect([...NODE_TYPE_MAP.keys()].filter((key) => !known.has(key))).toEqual([])
   })
 
-  it('should have matching VALID_COMPONENT_NAMES size', () => {
-    expect(VALID_COMPONENT_NAMES.size).toBe(ALL_COMPONENTS.length)
+  it('admits exactly the component names as valid', () => {
+    expect([...VALID_COMPONENT_NAMES].sort()).toEqual(ALL_COMPONENTS.map((c) => c.name).sort())
   })
 
   it('should have required fields for every component', () => {
@@ -71,17 +86,30 @@ describe('Attributes', () => {
     expect(ATTRIBUTES.length).toBeGreaterThan(0)
   })
 
-  it('should have matching ATTRIBUTE_MAP size', () => {
-    expect(ATTRIBUTE_MAP.size).toBe(ATTRIBUTES.length)
+  it('reaches every attribute through ATTRIBUTE_MAP, and nothing else', () => {
+    for (const attr of ATTRIBUTES) {
+      expect(ATTRIBUTE_MAP.get(attr.name), `"${attr.name}" is not reachable by name`).toBe(attr)
+    }
+    const known = new Set(ATTRIBUTES.map((a) => a.name))
+    expect([...ATTRIBUTE_MAP.keys()].filter((key) => !known.has(key))).toEqual([])
   })
 
-  it('should have matching VALID_ATTRIBUTE_NAMES size', () => {
-    expect(VALID_ATTRIBUTE_NAMES.size).toBe(ATTRIBUTES.length)
+  it('admits exactly the attribute names as valid', () => {
+    expect([...VALID_ATTRIBUTE_NAMES].sort()).toEqual(ATTRIBUTES.map((a) => a.name).sort())
   })
 
-  it('should have unique attribute names', () => {
-    const names = ATTRIBUTES.map((a) => a.name)
-    expect(new Set(names).size).toBe(names.length)
+  // The vocabulary is the union of three source registries. `core-spec-sync`
+  // asserts nothing appears here that those registries do not declare; this is
+  // the opposite direction — dropping a registry from the derivation leaves a
+  // strictly smaller, still self-consistent vocabulary that every other
+  // assertion in this file accepts.
+  it('carries every attribute its source registries declare', () => {
+    const declared = [
+      ...ATTRIBUTE_SPECS.map((spec) => spec.name),
+      ...EDITOR_ONLY_ATTRIBUTES.map((attr) => attr.name),
+      ...PENDING_CORE_ATTRIBUTES.map((attr) => attr.name),
+    ]
+    expect(declared.filter((name) => !ATTRIBUTE_MAP.has(name))).toEqual([])
   })
 
   it('should have enum values for enum type attributes', () => {
@@ -92,10 +120,21 @@ describe('Attributes', () => {
     }
   })
 
-  it('should have COMMON_ATTRIBUTES as valid attribute names', () => {
-    for (const name of COMMON_ATTRIBUTES) {
-      expect(ATTRIBUTE_MAP.has(name)).toBe(true)
+  it('resolves both shared attribute lists to real attributes', () => {
+    // Both lists name attributes rather than declaring them, so either can point
+    // at something the registry does not have. `spec-reference-closure.test.ts`
+    // asserts the same closure at the core boundary; this one holds it at the
+    // package's own re-export, which is what editors actually read.
+    for (const name of [...BOX_ATTRIBUTES, ...CONTAINER_ATTRIBUTES]) {
+      expect(ATTRIBUTE_MAP.has(name), `"${name}" is listed but not declared`).toBe(true)
     }
+  })
+
+  it('keeps the box and container lists disjoint', () => {
+    // The merged "common" list these replaced could not express the difference.
+    // If a name appears in both, the distinction has quietly collapsed back.
+    const box = new Set(BOX_ATTRIBUTES)
+    expect(CONTAINER_ATTRIBUTES.filter((name) => box.has(name))).toEqual([])
   })
 
   it('exposes the at(x, y) functional attribute', () => {

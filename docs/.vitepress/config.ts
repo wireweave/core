@@ -9,7 +9,7 @@ const __dirname = dirname(__filename)
 
 // Load custom wireframe language definition for Shiki
 const wireframeLang = JSON.parse(
-  readFileSync(resolve(__dirname, 'wireframe.tmLanguage.json'), 'utf-8'),
+  readFileSync(resolve(__dirname, 'wireframe.tmLanguage.generated.json'), 'utf-8'),
 ) as LanguageRegistration
 
 export default defineConfig({

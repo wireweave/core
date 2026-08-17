@@ -1,0 +1,89 @@
+page "배터리 상태 상세" viewport="375x812" {
+  header h=72 p=3 {
+    row align=center gap=2 {
+      button "" action=back aria="뒤로" ghost icon=arrow-left size=sm
+      title "내 배터리" level=1 size=md
+    }
+  }
+  main p=4 scroll {
+    col gap=4 {
+      alert "10분 전에 받은 값입니다. 지금 값이 아닐 수 있어요." icon=clock variant=warning
+      card p=5 {
+        col align=center gap=3 {
+          text "충전량" muted size=sm
+          title "72%" align=center level=2 size=xl
+          progress max=100 value=72 w=full
+          text "오늘 14:20 기준" align=center muted size=xs
+          text "지금 남아 있는 전기의 양입니다." align=center muted size=sm
+        }
+      }
+      card p=5 {
+        col gap=3 {
+          row align=center justify=between {
+            text "건강도" muted size=sm
+            badge "양호" pill variant=success
+          }
+          row align=baseline gap=2 {
+            title "94%" level=2 size=lg
+            text "새 배터리 대비" muted size=sm
+          }
+          progress max=100 value=94 w=full
+          text "새것일 때와 비교해 담을 수 있는 전기의 양입니다. 94%인 배터리를 100%까지 충전해도 담기는 전기는 새 배터리의 94%입니다." muted size=sm
+          text "배터리 관리 장치가 보고한 값 · 오늘 14:20 기준" muted size=xs
+        }
+      }
+      section "배터리 정보" {
+        col gap=3 {
+          row align=center justify=between {
+            text "배터리 규격" muted size=sm
+            text "A규격 (72V 40Ah)" size=sm weight=medium
+          }
+          divider my=0
+          row align=center justify=between {
+            text "제조사 일련번호" muted size=sm
+            text "SG-A-2024-018374" size=sm weight=medium
+          }
+          divider my=0
+          row align=center justify=between {
+            text "받은 시각" muted size=sm
+            text "오늘 09:12" size=sm weight=medium
+          }
+          divider my=0
+          row align=center justify=between {
+            text "받은 교환소" muted size=sm
+            text "성수 교환소" size=sm weight=medium
+          }
+        }
+      }
+      section "이력" {
+        card navigate="이용내역" p=4 {
+          row align=center justify=between {
+            col gap=1 {
+              text "이 배터리를 받은 교환 보기" size=sm weight=medium
+              text "오늘 09:12 · 성수 교환소" muted size=xs
+            }
+            icon "chevron-right" muted size=sm
+          }
+        }
+      }
+      section "안내" {
+        col gap=3 {
+          alert "차량이 등록되어 있지 않으면 어느 배터리를 쓰는지 알 수 없습니다. 첫 교환을 하면 사용 중인 배터리가 여기에 표시됩니다." icon=info variant=info
+          card navigate="차량 등록" p=4 {
+            row align=center justify=between {
+              text "차량 등록하기" size=sm weight=medium
+              icon "chevron-right" muted size=sm
+            }
+          }
+        }
+      }
+      col gap=2 {
+        text "배터리는 제조사가 소유하고 플랫폼이 운용합니다. 지금 쓰는 배터리는 다음 교환에서 반납됩니다." muted size=xs
+        text "남은 주행 거리는 표시하지 않습니다. 적재량·주행 습관·지형·기온에 따라 크게 달라지기 때문입니다." muted size=xs
+      }
+    }
+  }
+  footer h=88 p=4 {
+    button "교환소 찾기" icon=map-pin navigate="교환소 지도" primary w=full
+  }
+}

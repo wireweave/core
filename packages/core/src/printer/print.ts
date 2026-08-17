@@ -145,7 +145,12 @@ function containerLines(
   return blockLines(depth, segments, childrenLines(node, depth), 'required')
 }
 
-/** Print a named layout definition: `layout NAME { ... }`. */
+/**
+ * Reuse definition: `keyword <name> attrs { children }` (block required).
+ *
+ * The name prints bare, not quoted — it is a grammar `Identifier`, matching how
+ * a page spells the reference back as `uses=app`.
+ */
 function definitionLines(node: AnyNode, keyword: string, depth: number): string[] {
   const segments = [
     keyword,
@@ -216,9 +221,14 @@ interface ListItemShape extends Rec {
   children: ListItemShape[]
 }
 
-/** Block-form list item: `{ content, ...attrs, children: ListItemShape[] }`. */
+/**
+ * Block-form list item. `type` is the parser's own answer, so it is the test —
+ * the shape checks below only guard the props this printer reads, for ASTs
+ * built by hand rather than parsed.
+ */
 function isListItemShape(value: unknown): value is ListItemShape {
   if (!isPlainObject(value)) return false
+  if (value.type !== 'ListItem') return false
   if (typeof value.content !== 'string') return false
   if (!Array.isArray(value.children)) return false
   return value.children.every(isListItemShape)
@@ -274,15 +284,15 @@ function tableLines(node: AnyNode, depth: number): string[] {
 function dropdownLines(node: AnyNode, depth: number): string[] {
   const items = (rec(node).items ?? []) as unknown[]
   const content = items.map((item) => {
-    if (isPlainObject(item) && item.type === 'divider') return `${ind(depth + 1)}divider`
-    if (isPlainObject(item) && typeof item.label === 'string') {
+    if (isPlainObject(item) && item.type === 'Divider') return `${ind(depth + 1)}divider`
+    if (isPlainObject(item) && item.type === 'DropdownItem' && typeof item.label === 'string') {
       return headLine(depth + 1, [
         'item',
         printString(item.label),
         ...attrSegments(item, ['label'], 'Dropdown item'),
       ])
     }
-    printError(node.type, 'each item must be a divider or have a string "label"')
+    printError(node.type, 'each item must be a DropdownItem with a string "label", or a Divider')
   })
   const segments = ['dropdown', ...attrSegments(node, ['items'], node.type)]
   return blockLines(depth, segments, content, 'required')
@@ -296,8 +306,8 @@ function navChildLines(child: unknown, depth: number, inGroup: boolean): string[
   if (!isPlainObject(child)) {
     printError('Nav', 'block children must be item / group / divider objects')
   }
-  if (child.type === 'divider') return [`${ind(depth)}divider`]
-  if (child.type === 'item') {
+  if (child.type === 'Divider') return [`${ind(depth)}divider`]
+  if (child.type === 'NavItem') {
     if (typeof child.label !== 'string') {
       printError('Nav', 'nav item must have a string "label"')
     }
@@ -309,7 +319,7 @@ function navChildLines(child: unknown, depth: number, inGroup: boolean): string[
       ]),
     ]
   }
-  if (child.type === 'group') {
+  if (child.type === 'NavGroup') {
     if (inGroup) {
       printError('Nav', 'the grammar does not allow a group inside a group')
     }
@@ -398,12 +408,6 @@ function printNodeLines(node: AnyNode, depth: number): string[] {
     // -- containers with an optional label ---------------------------------
     case 'Page':
       return containerLines(node, 'page', 'title', depth)
-    case 'Layout':
-      return definitionLines(node, 'layout', depth)
-    case 'Component':
-      return componentDefinitionLines(node, depth)
-    case 'ComponentUse':
-      return componentUseLines(node, depth)
     case 'Card':
       return containerLines(node, 'card', 'title', depth)
     case 'Modal':
@@ -416,6 +420,14 @@ function printNodeLines(node: AnyNode, depth: number): string[] {
       return containerLines(node, 'section', 'title', depth)
     case 'Popover':
       return containerLines(node, 'popover', 'title', depth)
+
+    // -- reuse definitions (named, not labelled) ---------------------------
+    case 'Layout':
+      return definitionLines(node, 'layout', depth)
+    case 'Component':
+      return componentDefinitionLines(node, depth)
+    case 'ComponentUse':
+      return componentUseLines(node, depth)
 
     // -- containers without a label ----------------------------------------
     case 'Header':
@@ -472,6 +484,9 @@ function printNodeLines(node: AnyNode, depth: number): string[] {
     case 'Divider':
       return leafLine(node, node.type.toLowerCase(), null, [], depth)
     case 'Slot':
+      // A bare positional marker: no name, no block. Safe to print bare because
+      // `slot` is a grammar ChildKeyword, so it cannot be re-read as a flag
+      // attribute of the preceding sibling (contrast `Placeholder` below).
       return leafLine(node, 'slot', node.name ?? null, ['name'], depth)
     case 'Marker':
       return leafLine(node, 'marker', integerSegment(node, 'number'), ['number'], depth)
@@ -551,9 +566,11 @@ function printNodeLines(node: AnyNode, depth: number): string[] {
  * ```
  */
 export function printWireframe(doc: WireframeDocument): string {
-  const topLevel = (doc.children ?? []).map((child) => printNodeLines(child, 0).join('\n'))
-  if (topLevel.length === 0) return ''
-  return `${topLevel.join('\n\n')}\n`
+  // Top-level children are pages *and* reuse definitions, printed in source
+  // order so a `layout` keeps its position relative to the pages using it.
+  const elements = (doc.children ?? []).map((child) => printNodeLines(child, 0).join('\n'))
+  if (elements.length === 0) return ''
+  return `${elements.join('\n\n')}\n`
 }
 
 /**

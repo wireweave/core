@@ -11,7 +11,7 @@ import type {
   NavBlockItem,
 } from '../../../ast/types'
 import type { RenderContext } from './types'
-import { anchorIntent, nonAnchorIntent } from '../interactive'
+import { anchorIntent, interactiveAttrs, INERT_HREF } from '../interactive'
 
 /**
  * Render helper icon HTML
@@ -21,7 +21,15 @@ function renderIconHtml(iconName: string, prefix: string): string {
 }
 
 /**
- * Render a single nav item
+ * Render a single nav item — array syntax (`nav ["…"]`) and block syntax
+ * (`nav { item … }`) produce identical markup, so both go through here.
+ *
+ * `href` and the interaction attributes are two different layers: `href` is the
+ * anchor a browser follows, while `data-navigate` and friends are the *declared*
+ * screen-transition intent that the transition graph and the studio runtime
+ * consume. Collapsing one into the other would lose the distinction
+ * `extract/transitions.ts` relies on, so `anchorIntent` owns the single rule
+ * deciding which channel a destination travels in.
  */
 function renderNavItem(item: NavItem | NavBlockItem, ctx: RenderContext): string {
   const linkClasses = ctx.buildClassString([
@@ -41,13 +49,13 @@ function renderNavItem(item: NavItem | NavBlockItem, ctx: RenderContext): string
 function renderNavChildren(children: NavChild[], ctx: RenderContext): string {
   return children
     .map((child) => {
-      if (child.type === 'divider') {
+      if (child.type === 'Divider') {
         return `<hr class="${ctx.prefix}-nav-divider" />`
       }
-      if (child.type === 'group') {
+      if (child.type === 'NavGroup') {
         const groupItems = child.items
           .map((item) => {
-            if (item.type === 'divider') {
+            if (item.type === 'Divider') {
               return `<hr class="${ctx.prefix}-nav-divider" />`
             }
             return renderNavItem(item, ctx)
@@ -58,7 +66,7 @@ function renderNavChildren(children: NavChild[], ctx: RenderContext): string {
 ${groupItems}
 </div>`
       }
-      if (child.type === 'item') {
+      if (child.type === 'NavItem') {
         return renderNavItem(child, ctx)
       }
       return ''
@@ -89,7 +97,8 @@ export function renderNav(node: NavNode, ctx: RenderContext): string {
   const items = node.items
     .map((item) => {
       if (typeof item === 'string') {
-        return `<a class="${ctx.prefix}-nav-link" href="#">${ctx.escapeHtml(item)}</a>`
+        // Bare label: no href, no declared intent, nothing to carry.
+        return `<a class="${ctx.prefix}-nav-link" href="${INERT_HREF}">${ctx.escapeHtml(item)}</a>`
       }
       return renderNavItem(item, ctx)
     })
@@ -100,6 +109,12 @@ export function renderNav(node: NavNode, ctx: RenderContext): string {
 
 /**
  * Render Tabs node
+ *
+ * Tab items are plain strings in the AST (`TabsNode.items: string[]`) and carry
+ * no {@link InteractiveProps}, so there is no declared intent to emit — the
+ * same reason `extract/transitions.ts` derives no transition from them. A tab's
+ * panel content is reached by normal traversal instead. Giving tabs their own
+ * `navigate` would be a grammar and AST change, not a renderer one.
  */
 export function renderTabs(node: TabsNode, ctx: RenderContext): string {
   const classes = ctx.buildClassString([`${ctx.prefix}-tabs`, ...ctx.getCommonClasses(node)])
@@ -139,11 +154,19 @@ export function renderBreadcrumb(node: BreadcrumbNode, ctx: RenderContext): stri
       if (typeof item === 'string') {
         return isLast
           ? `<span class="${ctx.prefix}-breadcrumb-item" aria-current="page">${ctx.escapeHtml(item)}</span>`
-          : `<a class="${ctx.prefix}-breadcrumb-item" href="#">${ctx.escapeHtml(item)}</a>`
+          : `<a class="${ctx.prefix}-breadcrumb-item" href="${INERT_HREF}">${ctx.escapeHtml(item)}</a>`
       }
+      // The trailing crumb is the current page, so it stays a non-anchor
+      // `<span aria-current="page">` (WCAG 2.2 — the current location must not
+      // present itself as a link). Declared intent is still carried: it is data
+      // the author wrote and `extract/transitions.ts` already emits an edge for
+      // it, so dropping it here would put renderer and extractor out of step.
+      // A `data-*` attribute on a `<span>` adds no role and no tab stop. Having
+      // no `href`, that crumb also keeps a URL-shaped target in the attribute —
+      // there is no anchor to move it into.
       if (isLast) {
-        const intentAttrs = ctx.buildAttrsString(nonAnchorIntent(item))
-        return `<span class="${ctx.prefix}-breadcrumb-item" aria-current="page"${intentAttrs}>${ctx.escapeHtml(item.label)}</span>`
+        const spanAttrs = ctx.buildAttrsString(interactiveAttrs(item))
+        return `<span class="${ctx.prefix}-breadcrumb-item" aria-current="page"${spanAttrs}>${ctx.escapeHtml(item.label)}</span>`
       }
       const { href, attrs } = anchorIntent(item)
       const intentAttrs = ctx.buildAttrsString(attrs)

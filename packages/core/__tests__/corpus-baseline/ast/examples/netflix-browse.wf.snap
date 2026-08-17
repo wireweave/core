@@ -1,0 +1,937 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "bold": true,
+                      "content": "NETFLIX",
+                      "size": "xl",
+                      "type": "Text"
+                    },
+                    {
+                      "children": [
+                        {
+                          "active": true,
+                          "label": "홈",
+                          "type": "NavItem"
+                        },
+                        {
+                          "label": "시리즈",
+                          "type": "NavItem"
+                        },
+                        {
+                          "label": "영화",
+                          "type": "NavItem"
+                        },
+                        {
+                          "label": "NEW! 요즘 대세 콘텐츠",
+                          "type": "NavItem"
+                        },
+                        {
+                          "label": "내가 찜한 리스트",
+                          "type": "NavItem"
+                        }
+                      ],
+                      "items": [],
+                      "type": "Nav"
+                    }
+                  ],
+                  "gap": 6,
+                  "type": "Row"
+                },
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "name": "search",
+                      "type": "Icon"
+                    },
+                    {
+                      "name": "bell",
+                      "type": "Icon"
+                    },
+                    {
+                      "name": "User",
+                      "size": "sm",
+                      "type": "Avatar"
+                    },
+                    {
+                      "name": "chevron-down",
+                      "size": "sm",
+                      "type": "Icon"
+                    }
+                  ],
+                  "gap": 4,
+                  "type": "Row"
+                }
+              ],
+              "justify": "between",
+              "px": 6,
+              "type": "Row"
+            }
+          ],
+          "h": 68,
+          "p": 0,
+          "type": "Header"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "content": "TOP 10",
+                          "type": "Badge",
+                          "variant": "danger"
+                        },
+                        {
+                          "content": "오징어 게임",
+                          "level": 1,
+                          "size": 3,
+                          "type": "Title",
+                          "xl": true
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "Emmy Nominee",
+                              "type": "Badge",
+                              "variant": "default"
+                            },
+                            {
+                              "content": "Highly Rewatched",
+                              "type": "Badge",
+                              "variant": "default"
+                            },
+                            {
+                              "content": "2021",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "시즌 2개",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "15+",
+                              "type": "Badge",
+                              "variant": "default"
+                            }
+                          ],
+                          "gap": 3,
+                          "type": "Row"
+                        },
+                        {
+                          "content": "456명의 참가자들이 456억 원의 상금을 두고 목숨을 건 서바이벌 게임에 뛰어든다. 빚에 쫓기는 사람들이 의문의 초대장을 받고...",
+                          "size": "sm",
+                          "type": "Text"
+                        },
+                        {
+                          "children": [
+                            {
+                              "content": "재생",
+                              "icon": "play",
+                              "primary": true,
+                              "type": "Button"
+                            },
+                            {
+                              "content": "상세 정보",
+                              "icon": "info",
+                              "secondary": true,
+                              "type": "Button"
+                            },
+                            {
+                              "content": "",
+                              "ghost": true,
+                              "icon": "plus",
+                              "type": "Button"
+                            },
+                            {
+                              "content": "",
+                              "ghost": true,
+                              "icon": "thumbs-up",
+                              "type": "Button"
+                            }
+                          ],
+                          "gap": 3,
+                          "type": "Row"
+                        }
+                      ],
+                      "gap": 4,
+                      "type": "Col",
+                      "w": 550
+                    }
+                  ],
+                  "h": 450,
+                  "justify": "end",
+                  "p": 8,
+                  "type": "Col"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "bold": true,
+                              "content": "오늘 대한민국의 TOP 10 시리즈",
+                              "size": "lg",
+                              "type": "Text"
+                            },
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "muted": true,
+                                  "name": "chevron-left",
+                                  "size": "sm",
+                                  "type": "Icon"
+                                },
+                                {
+                                  "name": "chevron-right",
+                                  "size": "sm",
+                                  "type": "Icon"
+                                }
+                              ],
+                              "gap": 1,
+                              "type": "Row"
+                            }
+                          ],
+                          "justify": "between",
+                          "type": "Row"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "children": [
+                                        {
+                                          "align": "center",
+                                          "children": [
+                                            {
+                                              "bold": true,
+                                              "content": "1",
+                                              "size": 3,
+                                              "type": "Text",
+                                              "xl": true
+                                            }
+                                          ],
+                                          "justify": "center",
+                                          "type": "Col",
+                                          "w": 60
+                                        },
+                                        {
+                                          "children": [],
+                                          "flex": 1,
+                                          "h": "full",
+                                          "label": "포스터",
+                                          "type": "Placeholder"
+                                        }
+                                      ],
+                                      "h": "full",
+                                      "type": "Row"
+                                    }
+                                  ],
+                                  "h": 130,
+                                  "p": 0,
+                                  "shadow": "none",
+                                  "title": null,
+                                  "type": "Card"
+                                }
+                              ],
+                              "type": "Col",
+                              "w": 230
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "children": [
+                                        {
+                                          "align": "center",
+                                          "children": [
+                                            {
+                                              "bold": true,
+                                              "content": "2",
+                                              "size": 3,
+                                              "type": "Text",
+                                              "xl": true
+                                            }
+                                          ],
+                                          "justify": "center",
+                                          "type": "Col",
+                                          "w": 60
+                                        },
+                                        {
+                                          "children": [],
+                                          "flex": 1,
+                                          "h": "full",
+                                          "label": "포스터",
+                                          "type": "Placeholder"
+                                        }
+                                      ],
+                                      "h": "full",
+                                      "type": "Row"
+                                    }
+                                  ],
+                                  "h": 130,
+                                  "p": 0,
+                                  "shadow": "none",
+                                  "title": null,
+                                  "type": "Card"
+                                }
+                              ],
+                              "type": "Col",
+                              "w": 230
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "children": [
+                                        {
+                                          "align": "center",
+                                          "children": [
+                                            {
+                                              "bold": true,
+                                              "content": "3",
+                                              "size": 3,
+                                              "type": "Text",
+                                              "xl": true
+                                            }
+                                          ],
+                                          "justify": "center",
+                                          "type": "Col",
+                                          "w": 60
+                                        },
+                                        {
+                                          "children": [],
+                                          "flex": 1,
+                                          "h": "full",
+                                          "label": "포스터",
+                                          "type": "Placeholder"
+                                        }
+                                      ],
+                                      "h": "full",
+                                      "type": "Row"
+                                    }
+                                  ],
+                                  "h": 130,
+                                  "p": 0,
+                                  "shadow": "none",
+                                  "title": null,
+                                  "type": "Card"
+                                }
+                              ],
+                              "type": "Col",
+                              "w": 230
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "children": [
+                                        {
+                                          "align": "center",
+                                          "children": [
+                                            {
+                                              "bold": true,
+                                              "content": "4",
+                                              "size": 3,
+                                              "type": "Text",
+                                              "xl": true
+                                            }
+                                          ],
+                                          "justify": "center",
+                                          "type": "Col",
+                                          "w": 60
+                                        },
+                                        {
+                                          "children": [],
+                                          "flex": 1,
+                                          "h": "full",
+                                          "label": "포스터",
+                                          "type": "Placeholder"
+                                        }
+                                      ],
+                                      "h": "full",
+                                      "type": "Row"
+                                    }
+                                  ],
+                                  "h": 130,
+                                  "p": 0,
+                                  "shadow": "none",
+                                  "title": null,
+                                  "type": "Card"
+                                }
+                              ],
+                              "type": "Col",
+                              "w": 230
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "children": [
+                                        {
+                                          "align": "center",
+                                          "children": [
+                                            {
+                                              "bold": true,
+                                              "content": "5",
+                                              "size": 3,
+                                              "type": "Text",
+                                              "xl": true
+                                            }
+                                          ],
+                                          "justify": "center",
+                                          "type": "Col",
+                                          "w": 60
+                                        },
+                                        {
+                                          "children": [],
+                                          "flex": 1,
+                                          "h": "full",
+                                          "label": "포스터",
+                                          "type": "Placeholder"
+                                        }
+                                      ],
+                                      "h": "full",
+                                      "type": "Row"
+                                    }
+                                  ],
+                                  "h": 130,
+                                  "p": 0,
+                                  "shadow": "none",
+                                  "title": null,
+                                  "type": "Card"
+                                }
+                              ],
+                              "type": "Col",
+                              "w": 230
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Row"
+                        }
+                      ],
+                      "gap": 3,
+                      "type": "Col"
+                    },
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "bold": true,
+                              "content": "시청 중인 콘텐츠",
+                              "size": "lg",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "모두 보기",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            }
+                          ],
+                          "justify": "between",
+                          "type": "Row"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "children": [],
+                                      "h": "full",
+                                      "label": "썸네일",
+                                      "type": "Placeholder",
+                                      "w": "full"
+                                    }
+                                  ],
+                                  "h": 130,
+                                  "p": 0,
+                                  "shadow": "none",
+                                  "title": null,
+                                  "type": "Card",
+                                  "w": 230
+                                },
+                                {
+                                  "type": "Progress",
+                                  "value": 45,
+                                  "w": 230
+                                },
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "content": "더 글로리",
+                                      "size": "xs",
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "content": "Cult Favorite",
+                                      "size": "xs",
+                                      "type": "Badge",
+                                      "variant": "default"
+                                    }
+                                  ],
+                                  "justify": "between",
+                                  "type": "Row"
+                                }
+                              ],
+                              "gap": 1,
+                              "type": "Col"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "children": [],
+                                      "h": "full",
+                                      "label": "썸네일",
+                                      "type": "Placeholder",
+                                      "w": "full"
+                                    }
+                                  ],
+                                  "h": 130,
+                                  "p": 0,
+                                  "shadow": "none",
+                                  "title": null,
+                                  "type": "Card",
+                                  "w": 230
+                                },
+                                {
+                                  "type": "Progress",
+                                  "value": 72,
+                                  "w": 230
+                                },
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "content": "무빙",
+                                      "size": "xs",
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "content": "Award Winner",
+                                      "size": "xs",
+                                      "type": "Badge",
+                                      "variant": "default"
+                                    }
+                                  ],
+                                  "justify": "between",
+                                  "type": "Row"
+                                }
+                              ],
+                              "gap": 1,
+                              "type": "Col"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "children": [],
+                                      "h": "full",
+                                      "label": "썸네일",
+                                      "type": "Placeholder",
+                                      "w": "full"
+                                    }
+                                  ],
+                                  "h": 130,
+                                  "p": 0,
+                                  "shadow": "none",
+                                  "title": null,
+                                  "type": "Card",
+                                  "w": 230
+                                },
+                                {
+                                  "type": "Progress",
+                                  "value": 20,
+                                  "w": 230
+                                },
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "content": "지금 우리 학교는",
+                                      "size": "xs",
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "content": "Trending",
+                                      "size": "xs",
+                                      "type": "Badge",
+                                      "variant": "default"
+                                    }
+                                  ],
+                                  "justify": "between",
+                                  "type": "Row"
+                                }
+                              ],
+                              "gap": 1,
+                              "type": "Col"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "children": [],
+                                      "h": "full",
+                                      "label": "썸네일",
+                                      "type": "Placeholder",
+                                      "w": "full"
+                                    }
+                                  ],
+                                  "h": 130,
+                                  "p": 0,
+                                  "shadow": "none",
+                                  "title": null,
+                                  "type": "Card",
+                                  "w": 230
+                                },
+                                {
+                                  "type": "Progress",
+                                  "value": 88,
+                                  "w": 230
+                                },
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "content": "이상한 변호사 우영우",
+                                      "size": "xs",
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "content": "Emmy Nominee",
+                                      "size": "xs",
+                                      "type": "Badge",
+                                      "variant": "default"
+                                    }
+                                  ],
+                                  "justify": "between",
+                                  "type": "Row"
+                                }
+                              ],
+                              "gap": 1,
+                              "type": "Col"
+                            }
+                          ],
+                          "gap": 3,
+                          "type": "Row"
+                        }
+                      ],
+                      "gap": 3,
+                      "type": "Col"
+                    },
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "bold": true,
+                              "content": "새로 올라온 콘텐츠",
+                              "size": "lg",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "모두 보기",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            }
+                          ],
+                          "justify": "between",
+                          "type": "Row"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "content": "NEW",
+                                      "size": "xs",
+                                      "type": "Badge",
+                                      "variant": "danger"
+                                    }
+                                  ],
+                                  "h": "full",
+                                  "justify": "end",
+                                  "p": 2,
+                                  "type": "Col"
+                                }
+                              ],
+                              "h": 130,
+                              "p": 0,
+                              "shadow": "none",
+                              "title": null,
+                              "type": "Card",
+                              "w": 230
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "content": "NEW",
+                                      "size": "xs",
+                                      "type": "Badge",
+                                      "variant": "danger"
+                                    }
+                                  ],
+                                  "h": "full",
+                                  "justify": "end",
+                                  "p": 2,
+                                  "type": "Col"
+                                }
+                              ],
+                              "h": 130,
+                              "p": 0,
+                              "shadow": "none",
+                              "title": null,
+                              "type": "Card",
+                              "w": 230
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "content": "NEW",
+                                      "size": "xs",
+                                      "type": "Badge",
+                                      "variant": "danger"
+                                    }
+                                  ],
+                                  "h": "full",
+                                  "justify": "end",
+                                  "p": 2,
+                                  "type": "Col"
+                                }
+                              ],
+                              "h": 130,
+                              "p": 0,
+                              "shadow": "none",
+                              "title": null,
+                              "type": "Card",
+                              "w": 230
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "content": "NEW",
+                                      "size": "xs",
+                                      "type": "Badge",
+                                      "variant": "danger"
+                                    }
+                                  ],
+                                  "h": "full",
+                                  "justify": "end",
+                                  "p": 2,
+                                  "type": "Col"
+                                }
+                              ],
+                              "h": 130,
+                              "p": 0,
+                              "shadow": "none",
+                              "title": null,
+                              "type": "Card",
+                              "w": 230
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "content": "NEW",
+                                      "size": "xs",
+                                      "type": "Badge",
+                                      "variant": "danger"
+                                    }
+                                  ],
+                                  "h": "full",
+                                  "justify": "end",
+                                  "p": 2,
+                                  "type": "Col"
+                                }
+                              ],
+                              "h": 130,
+                              "p": 0,
+                              "shadow": "none",
+                              "title": null,
+                              "type": "Card",
+                              "w": 230
+                            }
+                          ],
+                          "gap": 3,
+                          "type": "Row"
+                        }
+                      ],
+                      "gap": 3,
+                      "type": "Col"
+                    },
+                    {
+                      "children": [
+                        {
+                          "bold": true,
+                          "content": "회원님을 위한 추천 콘텐츠",
+                          "size": "lg",
+                          "type": "Text"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [],
+                                  "h": "full",
+                                  "label": "추천1",
+                                  "type": "Placeholder",
+                                  "w": "full"
+                                }
+                              ],
+                              "h": 130,
+                              "p": 0,
+                              "shadow": "none",
+                              "title": null,
+                              "type": "Card",
+                              "w": 230
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [],
+                                  "h": "full",
+                                  "label": "추천2",
+                                  "type": "Placeholder",
+                                  "w": "full"
+                                }
+                              ],
+                              "h": 130,
+                              "p": 0,
+                              "shadow": "none",
+                              "title": null,
+                              "type": "Card",
+                              "w": 230
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [],
+                                  "h": "full",
+                                  "label": "추천3",
+                                  "type": "Placeholder",
+                                  "w": "full"
+                                }
+                              ],
+                              "h": 130,
+                              "p": 0,
+                              "shadow": "none",
+                              "title": null,
+                              "type": "Card",
+                              "w": 230
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [],
+                                  "h": "full",
+                                  "label": "추천4",
+                                  "type": "Placeholder",
+                                  "w": "full"
+                                }
+                              ],
+                              "h": 130,
+                              "p": 0,
+                              "shadow": "none",
+                              "title": null,
+                              "type": "Card",
+                              "w": 230
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [],
+                                  "h": "full",
+                                  "label": "추천5",
+                                  "type": "Placeholder",
+                                  "w": "full"
+                                }
+                              ],
+                              "h": 130,
+                              "p": 0,
+                              "shadow": "none",
+                              "title": null,
+                              "type": "Card",
+                              "w": 230
+                            }
+                          ],
+                          "gap": 3,
+                          "type": "Row"
+                        }
+                      ],
+                      "gap": 3,
+                      "type": "Col"
+                    }
+                  ],
+                  "gap": 8,
+                  "px": 8,
+                  "py": 6,
+                  "type": "Col"
+                }
+              ],
+              "gap": 0,
+              "type": "Col"
+            }
+          ],
+          "p": 0,
+          "scroll": true,
+          "type": "Main"
+        }
+      ],
+      "height": 720,
+      "title": null,
+      "type": "Page",
+      "width": 1280
+    }
+  ],
+  "type": "Document"
+}

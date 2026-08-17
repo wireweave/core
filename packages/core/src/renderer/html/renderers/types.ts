@@ -25,7 +25,10 @@ export interface RenderContext {
   /** Escape HTML special characters */
   escapeHtml: (text: string) => string
 
-  /** Prefix an authored DOM id with the renderer's current scope. */
+  /**
+   * The DOM id an authored id becomes — the authored name under the render's
+   * `idScope`. Identity only: whatever points at it keeps the authored name.
+   */
   scopedId: (id: string) => string
 
   /** Build CSS class string from array */

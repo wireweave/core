@@ -1,0 +1,15 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "content": "Sign in",
+          "type": "Button"
+        }
+      ],
+      "title": "Login",
+      "type": "Page"
+    }
+  ],
+  "type": "Document"
+}

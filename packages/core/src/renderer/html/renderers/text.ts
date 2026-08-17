@@ -54,10 +54,13 @@ function getSizeClassName(size: TextSize | undefined, prefix: string): string | 
  * Render Text node
  */
 export function renderText(node: TextNode, ctx: RenderContext): string {
+  // `bold` is a shorthand for the weight the DSL already has a token for, so it
+  // resolves to the same class rather than a second styling path.
+  const weight = node.weight ?? (node.bold ? 'bold' : undefined)
   const classes = ctx.buildClassString([
     `${ctx.prefix}-text`,
     getSizeClassName(node.size, ctx.prefix),
-    node.weight ? `${ctx.prefix}-text-${node.weight}` : undefined,
+    weight ? `${ctx.prefix}-text-${weight}` : undefined,
     node.align ? `${ctx.prefix}-text-${node.align}` : undefined,
     node.muted ? `${ctx.prefix}-text-muted` : undefined,
     ...ctx.getCommonClasses(node),
@@ -113,6 +116,8 @@ export function renderLink(node: LinkNode, ctx: RenderContext): string {
   const styles = ctx.buildCommonStyles(node)
   const styleAttr = styles ? ` style="${styles}"` : ''
 
+  // `href` and `navigate` are separate layers; `anchorIntent` owns the one rule
+  // that decides which of them carries the destination.
   const { href, attrs: intentAttrs } = anchorIntent(node)
   const attrs: Record<string, string | boolean | undefined> = {
     class: classes,

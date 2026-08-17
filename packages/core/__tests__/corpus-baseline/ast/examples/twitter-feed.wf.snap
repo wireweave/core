@@ -1,0 +1,1560 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "border": true,
+              "children": [
+                {
+                  "children": [
+                    {
+                      "name": "twitter",
+                      "p": 2,
+                      "size": "lg",
+                      "type": "Icon"
+                    },
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "name": "home",
+                              "size": "md",
+                              "type": "Icon"
+                            },
+                            {
+                              "content": "Home",
+                              "size": "md",
+                              "type": "Text",
+                              "weight": "bold"
+                            }
+                          ],
+                          "gap": 4,
+                          "hover": true,
+                          "p": 3,
+                          "rounded": true,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "name": "search",
+                              "size": "md",
+                              "type": "Icon"
+                            },
+                            {
+                              "content": "Explore",
+                              "size": "md",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 4,
+                          "hover": true,
+                          "p": 3,
+                          "rounded": true,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "name": "bell",
+                                  "size": "md",
+                                  "type": "Icon"
+                                },
+                                {
+                                  "content": "3",
+                                  "size": "xs",
+                                  "type": "Badge",
+                                  "variant": "primary"
+                                }
+                              ],
+                              "type": "Row"
+                            },
+                            {
+                              "content": "Notifications",
+                              "size": "md",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 4,
+                          "hover": true,
+                          "p": 3,
+                          "rounded": true,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "name": "user-plus",
+                              "size": "md",
+                              "type": "Icon"
+                            },
+                            {
+                              "content": "Follow",
+                              "size": "md",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 4,
+                          "hover": true,
+                          "p": 3,
+                          "rounded": true,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "name": "mail",
+                              "size": "md",
+                              "type": "Icon"
+                            },
+                            {
+                              "content": "Chat",
+                              "size": "md",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 4,
+                          "hover": true,
+                          "p": 3,
+                          "rounded": true,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "name": "sparkles",
+                              "size": "md",
+                              "type": "Icon"
+                            },
+                            {
+                              "content": "Grok",
+                              "size": "md",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 4,
+                          "hover": true,
+                          "p": 3,
+                          "rounded": true,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "name": "bookmark",
+                              "size": "md",
+                              "type": "Icon"
+                            },
+                            {
+                              "content": "Bookmarks",
+                              "size": "md",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 4,
+                          "hover": true,
+                          "p": 3,
+                          "rounded": true,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "name": "users",
+                              "size": "md",
+                              "type": "Icon"
+                            },
+                            {
+                              "content": "Communities",
+                              "size": "md",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 4,
+                          "hover": true,
+                          "p": 3,
+                          "rounded": true,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "name": "twitter",
+                              "size": "md",
+                              "type": "Icon"
+                            },
+                            {
+                              "content": "Premium",
+                              "size": "md",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 4,
+                          "hover": true,
+                          "p": 3,
+                          "rounded": true,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "name": "user",
+                              "size": "md",
+                              "type": "Icon"
+                            },
+                            {
+                              "content": "Profile",
+                              "size": "md",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 4,
+                          "hover": true,
+                          "p": 3,
+                          "rounded": true,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "name": "more-horizontal",
+                              "size": "md",
+                              "type": "Icon"
+                            },
+                            {
+                              "content": "More",
+                              "size": "md",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 4,
+                          "hover": true,
+                          "p": 3,
+                          "rounded": true,
+                          "type": "Row"
+                        }
+                      ],
+                      "gap": 0,
+                      "type": "Col"
+                    },
+                    {
+                      "content": "Post",
+                      "primary": true,
+                      "size": "lg",
+                      "type": "Button",
+                      "w": "full"
+                    },
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "name": "JK",
+                          "size": "md",
+                          "type": "Avatar"
+                        },
+                        {
+                          "children": [
+                            {
+                              "content": "John Kim",
+                              "size": "sm",
+                              "type": "Text",
+                              "weight": "semibold"
+                            },
+                            {
+                              "content": "@johnkim_dev",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            }
+                          ],
+                          "flex": 1,
+                          "gap": 0,
+                          "type": "Col"
+                        },
+                        {
+                          "muted": true,
+                          "name": "more-horizontal",
+                          "size": "sm",
+                          "type": "Icon"
+                        }
+                      ],
+                      "gap": 3,
+                      "mt": 4,
+                      "p": 3,
+                      "type": "Row"
+                    }
+                  ],
+                  "gap": 1,
+                  "p": 3,
+                  "type": "Col"
+                }
+              ],
+              "p": 0,
+              "type": "Sidebar",
+              "w": 275
+            },
+            {
+              "border": true,
+              "children": [
+                {
+                  "children": [
+                    {
+                      "border": true,
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "For you",
+                              "size": "sm",
+                              "type": "Text",
+                              "weight": "bold"
+                            },
+                            {
+                              "mt": 2,
+                              "type": "Divider",
+                              "w": 60
+                            }
+                          ],
+                          "flex": 1,
+                          "p": 4,
+                          "type": "Col"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "Following",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            }
+                          ],
+                          "flex": 1,
+                          "p": 4,
+                          "type": "Col"
+                        }
+                      ],
+                      "justify": "around",
+                      "p": 0,
+                      "type": "Row"
+                    },
+                    {
+                      "align": "start",
+                      "border": true,
+                      "children": [
+                        {
+                          "name": "JK",
+                          "size": "md",
+                          "type": "Avatar"
+                        },
+                        {
+                          "children": [
+                            {
+                              "content": "What's happening?",
+                              "muted": true,
+                              "size": "md",
+                              "type": "Text"
+                            },
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "muted": true,
+                                      "name": "image",
+                                      "size": "sm",
+                                      "type": "Icon"
+                                    },
+                                    {
+                                      "muted": true,
+                                      "name": "file-video",
+                                      "size": "sm",
+                                      "type": "Icon"
+                                    },
+                                    {
+                                      "muted": true,
+                                      "name": "vote",
+                                      "size": "sm",
+                                      "type": "Icon"
+                                    },
+                                    {
+                                      "muted": true,
+                                      "name": "smile",
+                                      "size": "sm",
+                                      "type": "Icon"
+                                    },
+                                    {
+                                      "muted": true,
+                                      "name": "calendar",
+                                      "size": "sm",
+                                      "type": "Icon"
+                                    },
+                                    {
+                                      "muted": true,
+                                      "name": "map-pin",
+                                      "size": "sm",
+                                      "type": "Icon"
+                                    }
+                                  ],
+                                  "gap": 4,
+                                  "type": "Row"
+                                },
+                                {
+                                  "content": "Post",
+                                  "disabled": true,
+                                  "primary": true,
+                                  "size": "sm",
+                                  "type": "Button"
+                                }
+                              ],
+                              "justify": "between",
+                              "type": "Row"
+                            }
+                          ],
+                          "flex": 1,
+                          "gap": 3,
+                          "type": "Col"
+                        }
+                      ],
+                      "gap": 3,
+                      "p": 4,
+                      "type": "Row"
+                    },
+                    {
+                      "border": true,
+                      "children": [
+                        {
+                          "align": "start",
+                          "children": [
+                            {
+                              "name": "TK",
+                              "size": "md",
+                              "type": "Avatar"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "align": "center",
+                                      "children": [
+                                        {
+                                          "content": "TechKorea",
+                                          "size": "sm",
+                                          "type": "Text",
+                                          "weight": "bold"
+                                        },
+                                        {
+                                          "name": "badge-check",
+                                          "size": "sm",
+                                          "type": "Icon"
+                                        },
+                                        {
+                                          "content": "@TechKorea",
+                                          "muted": true,
+                                          "size": "sm",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "gap": 1,
+                                      "type": "Row"
+                                    },
+                                    {
+                                      "align": "center",
+                                      "children": [
+                                        {
+                                          "content": "Ad",
+                                          "muted": true,
+                                          "size": "xs",
+                                          "type": "Text"
+                                        },
+                                        {
+                                          "muted": true,
+                                          "name": "more-horizontal",
+                                          "size": "sm",
+                                          "type": "Icon"
+                                        }
+                                      ],
+                                      "gap": 2,
+                                      "type": "Row"
+                                    }
+                                  ],
+                                  "justify": "between",
+                                  "type": "Row"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "content": "신제품 출시 안내",
+                                      "size": "sm",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "content": "새로운 기능, 새로운 경험",
+                                      "size": "sm",
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "content": "지금 바로 확인하세요!",
+                                      "size": "sm",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 1,
+                                  "type": "Col"
+                                },
+                                {
+                                  "children": [],
+                                  "h": 300,
+                                  "label": "광고 이미지",
+                                  "type": "Placeholder",
+                                  "w": "full"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "align": "center",
+                                      "children": [
+                                        {
+                                          "muted": true,
+                                          "name": "message-circle",
+                                          "size": "sm",
+                                          "type": "Icon"
+                                        },
+                                        {
+                                          "content": "12",
+                                          "muted": true,
+                                          "size": "xs",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "gap": 1,
+                                      "type": "Row"
+                                    },
+                                    {
+                                      "align": "center",
+                                      "children": [
+                                        {
+                                          "muted": true,
+                                          "name": "repeat",
+                                          "size": "sm",
+                                          "type": "Icon"
+                                        },
+                                        {
+                                          "content": "456",
+                                          "muted": true,
+                                          "size": "xs",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "gap": 1,
+                                      "type": "Row"
+                                    },
+                                    {
+                                      "align": "center",
+                                      "children": [
+                                        {
+                                          "muted": true,
+                                          "name": "heart",
+                                          "size": "sm",
+                                          "type": "Icon"
+                                        },
+                                        {
+                                          "content": "2.1K",
+                                          "muted": true,
+                                          "size": "xs",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "gap": 1,
+                                      "type": "Row"
+                                    },
+                                    {
+                                      "align": "center",
+                                      "children": [
+                                        {
+                                          "muted": true,
+                                          "name": "bar-chart-2",
+                                          "size": "sm",
+                                          "type": "Icon"
+                                        },
+                                        {
+                                          "content": "52K",
+                                          "muted": true,
+                                          "size": "xs",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "gap": 1,
+                                      "type": "Row"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "muted": true,
+                                          "name": "bookmark",
+                                          "size": "sm",
+                                          "type": "Icon"
+                                        },
+                                        {
+                                          "muted": true,
+                                          "name": "share",
+                                          "size": "sm",
+                                          "type": "Icon"
+                                        }
+                                      ],
+                                      "gap": 2,
+                                      "type": "Row"
+                                    }
+                                  ],
+                                  "justify": "between",
+                                  "px": 4,
+                                  "type": "Row"
+                                }
+                              ],
+                              "flex": 1,
+                              "gap": 2,
+                              "type": "Col"
+                            }
+                          ],
+                          "gap": 3,
+                          "p": 4,
+                          "type": "Row"
+                        }
+                      ],
+                      "type": "Col"
+                    },
+                    {
+                      "border": true,
+                      "children": [
+                        {
+                          "align": "start",
+                          "children": [
+                            {
+                              "name": "DL",
+                              "size": "md",
+                              "type": "Avatar"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "align": "center",
+                                      "children": [
+                                        {
+                                          "content": "DevLee",
+                                          "size": "sm",
+                                          "type": "Text",
+                                          "weight": "bold"
+                                        },
+                                        {
+                                          "name": "badge-check",
+                                          "size": "sm",
+                                          "type": "Icon"
+                                        },
+                                        {
+                                          "content": "@devlee_code",
+                                          "muted": true,
+                                          "size": "sm",
+                                          "type": "Text"
+                                        },
+                                        {
+                                          "content": "·",
+                                          "muted": true,
+                                          "size": "sm",
+                                          "type": "Text"
+                                        },
+                                        {
+                                          "content": "2h",
+                                          "muted": true,
+                                          "size": "sm",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "gap": 1,
+                                      "type": "Row"
+                                    },
+                                    {
+                                      "muted": true,
+                                      "name": "more-horizontal",
+                                      "size": "sm",
+                                      "type": "Icon"
+                                    }
+                                  ],
+                                  "justify": "between",
+                                  "type": "Row"
+                                },
+                                {
+                                  "content": "오늘 새로운 오픈소스 프로젝트를 공개했습니다! 많은 관심 부탁드려요 🚀 React 기반의 UI 컴포넌트 라이브러리입니다.",
+                                  "size": "sm",
+                                  "type": "Text"
+                                },
+                                {
+                                  "children": [],
+                                  "h": 280,
+                                  "label": "프로젝트 스크린샷",
+                                  "type": "Placeholder",
+                                  "w": "full"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "align": "center",
+                                      "children": [
+                                        {
+                                          "muted": true,
+                                          "name": "message-circle",
+                                          "size": "sm",
+                                          "type": "Icon"
+                                        },
+                                        {
+                                          "content": "234",
+                                          "muted": true,
+                                          "size": "xs",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "gap": 1,
+                                      "type": "Row"
+                                    },
+                                    {
+                                      "align": "center",
+                                      "children": [
+                                        {
+                                          "muted": true,
+                                          "name": "repeat",
+                                          "size": "sm",
+                                          "type": "Icon"
+                                        },
+                                        {
+                                          "content": "1.2K",
+                                          "muted": true,
+                                          "size": "xs",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "gap": 1,
+                                      "type": "Row"
+                                    },
+                                    {
+                                      "align": "center",
+                                      "children": [
+                                        {
+                                          "muted": true,
+                                          "name": "heart",
+                                          "size": "sm",
+                                          "type": "Icon"
+                                        },
+                                        {
+                                          "content": "8.5K",
+                                          "muted": true,
+                                          "size": "xs",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "gap": 1,
+                                      "type": "Row"
+                                    },
+                                    {
+                                      "align": "center",
+                                      "children": [
+                                        {
+                                          "muted": true,
+                                          "name": "bar-chart-2",
+                                          "size": "sm",
+                                          "type": "Icon"
+                                        },
+                                        {
+                                          "content": "125K",
+                                          "muted": true,
+                                          "size": "xs",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "gap": 1,
+                                      "type": "Row"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "muted": true,
+                                          "name": "bookmark",
+                                          "size": "sm",
+                                          "type": "Icon"
+                                        },
+                                        {
+                                          "muted": true,
+                                          "name": "share",
+                                          "size": "sm",
+                                          "type": "Icon"
+                                        }
+                                      ],
+                                      "gap": 2,
+                                      "type": "Row"
+                                    }
+                                  ],
+                                  "justify": "between",
+                                  "px": 4,
+                                  "type": "Row"
+                                }
+                              ],
+                              "flex": 1,
+                              "gap": 2,
+                              "type": "Col"
+                            }
+                          ],
+                          "gap": 3,
+                          "p": 4,
+                          "type": "Row"
+                        }
+                      ],
+                      "type": "Col"
+                    },
+                    {
+                      "border": true,
+                      "children": [
+                        {
+                          "align": "start",
+                          "children": [
+                            {
+                              "name": "AP",
+                              "size": "md",
+                              "type": "Avatar"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "align": "center",
+                                      "children": [
+                                        {
+                                          "content": "AI Pioneer",
+                                          "size": "sm",
+                                          "type": "Text",
+                                          "weight": "bold"
+                                        },
+                                        {
+                                          "name": "badge-check",
+                                          "size": "sm",
+                                          "type": "Icon"
+                                        },
+                                        {
+                                          "content": "@ai_pioneer",
+                                          "muted": true,
+                                          "size": "sm",
+                                          "type": "Text"
+                                        },
+                                        {
+                                          "content": "·",
+                                          "muted": true,
+                                          "size": "sm",
+                                          "type": "Text"
+                                        },
+                                        {
+                                          "content": "5h",
+                                          "muted": true,
+                                          "size": "sm",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "gap": 1,
+                                      "type": "Row"
+                                    },
+                                    {
+                                      "muted": true,
+                                      "name": "more-horizontal",
+                                      "size": "sm",
+                                      "type": "Icon"
+                                    }
+                                  ],
+                                  "justify": "between",
+                                  "type": "Row"
+                                },
+                                {
+                                  "content": "AI 기술의 미래에 대한 인터뷰 영상입니다. 꼭 시청해보세요!",
+                                  "size": "sm",
+                                  "type": "Text"
+                                },
+                                {
+                                  "border": true,
+                                  "children": [
+                                    {
+                                      "align": "center",
+                                      "children": [
+                                        {
+                                          "children": [],
+                                          "h": 80,
+                                          "label": "영상 썸네일",
+                                          "type": "Placeholder",
+                                          "w": 120
+                                        },
+                                        {
+                                          "children": [
+                                            {
+                                              "content": "From TechTalks",
+                                              "muted": true,
+                                              "size": "xs",
+                                              "type": "Text"
+                                            },
+                                            {
+                                              "content": "AI의 미래: 전문가 인터뷰",
+                                              "size": "sm",
+                                              "type": "Text",
+                                              "weight": "semibold"
+                                            }
+                                          ],
+                                          "flex": 1,
+                                          "gap": 1,
+                                          "type": "Col"
+                                        }
+                                      ],
+                                      "gap": 3,
+                                      "type": "Row"
+                                    }
+                                  ],
+                                  "p": 3,
+                                  "title": null,
+                                  "type": "Card"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "align": "center",
+                                      "children": [
+                                        {
+                                          "muted": true,
+                                          "name": "message-circle",
+                                          "size": "sm",
+                                          "type": "Icon"
+                                        },
+                                        {
+                                          "content": "89",
+                                          "muted": true,
+                                          "size": "xs",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "gap": 1,
+                                      "type": "Row"
+                                    },
+                                    {
+                                      "align": "center",
+                                      "children": [
+                                        {
+                                          "muted": true,
+                                          "name": "repeat",
+                                          "size": "sm",
+                                          "type": "Icon"
+                                        },
+                                        {
+                                          "content": "567",
+                                          "muted": true,
+                                          "size": "xs",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "gap": 1,
+                                      "type": "Row"
+                                    },
+                                    {
+                                      "align": "center",
+                                      "children": [
+                                        {
+                                          "muted": true,
+                                          "name": "heart",
+                                          "size": "sm",
+                                          "type": "Icon"
+                                        },
+                                        {
+                                          "content": "3.2K",
+                                          "muted": true,
+                                          "size": "xs",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "gap": 1,
+                                      "type": "Row"
+                                    },
+                                    {
+                                      "align": "center",
+                                      "children": [
+                                        {
+                                          "muted": true,
+                                          "name": "bar-chart-2",
+                                          "size": "sm",
+                                          "type": "Icon"
+                                        },
+                                        {
+                                          "content": "78K",
+                                          "muted": true,
+                                          "size": "xs",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "gap": 1,
+                                      "type": "Row"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "muted": true,
+                                          "name": "bookmark",
+                                          "size": "sm",
+                                          "type": "Icon"
+                                        },
+                                        {
+                                          "muted": true,
+                                          "name": "share",
+                                          "size": "sm",
+                                          "type": "Icon"
+                                        }
+                                      ],
+                                      "gap": 2,
+                                      "type": "Row"
+                                    }
+                                  ],
+                                  "justify": "between",
+                                  "px": 4,
+                                  "type": "Row"
+                                }
+                              ],
+                              "flex": 1,
+                              "gap": 2,
+                              "type": "Col"
+                            }
+                          ],
+                          "gap": 3,
+                          "p": 4,
+                          "type": "Row"
+                        }
+                      ],
+                      "type": "Col"
+                    }
+                  ],
+                  "gap": 0,
+                  "type": "Col"
+                }
+              ],
+              "flex": 1,
+              "p": 0,
+              "scroll": true,
+              "type": "Main"
+            },
+            {
+              "border": true,
+              "children": [
+                {
+                  "children": [
+                    {
+                      "align": "center",
+                      "border": true,
+                      "children": [
+                        {
+                          "muted": true,
+                          "name": "search",
+                          "size": "sm",
+                          "type": "Icon"
+                        },
+                        {
+                          "content": "Search",
+                          "muted": true,
+                          "size": "sm",
+                          "type": "Text"
+                        }
+                      ],
+                      "gap": 2,
+                      "p": 2,
+                      "rounded": true,
+                      "type": "Row"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "content": "Subscribe to Premium",
+                              "size": "md",
+                              "type": "Text",
+                              "weight": "bold"
+                            },
+                            {
+                              "content": "Subscribe to unlock new features and if eligible, receive a share of revenue.",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "Subscribe",
+                              "primary": true,
+                              "size": "sm",
+                              "type": "Button",
+                              "w": 100
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Col"
+                        }
+                      ],
+                      "p": 4,
+                      "title": null,
+                      "type": "Card"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "content": "Today's News",
+                                  "size": "md",
+                                  "type": "Text",
+                                  "weight": "bold"
+                                },
+                                {
+                                  "muted": true,
+                                  "name": "x",
+                                  "size": "sm",
+                                  "type": "Icon"
+                                }
+                              ],
+                              "justify": "between",
+                              "type": "Row"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "content": "글로벌 테크 기업 신제품 발표 예정",
+                                      "size": "sm",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "content": "14 hours ago · Technology · 85.2K posts",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 1,
+                                  "type": "Col"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "content": "국내 스타트업 투자 유치 소식",
+                                      "size": "sm",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "content": "8 hours ago · Business · 42.1K posts",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 1,
+                                  "type": "Col"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "content": "오픈소스 컨퍼런스 개최 안내",
+                                      "size": "sm",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "content": "2 days ago · Tech · 23.5K posts",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 1,
+                                  "type": "Col"
+                                }
+                              ],
+                              "gap": 3,
+                              "type": "Col"
+                            }
+                          ],
+                          "gap": 3,
+                          "type": "Col"
+                        }
+                      ],
+                      "p": 4,
+                      "title": null,
+                      "type": "Card"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "content": "What's happening",
+                              "size": "md",
+                              "type": "Text",
+                              "weight": "bold"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "content": "Trending in South Korea",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "content": "개발자컨퍼런스",
+                                      "size": "sm",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    }
+                                  ],
+                                  "gap": 0,
+                                  "type": "Col"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "content": "Trending in South Korea",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "content": "AI트렌드",
+                                      "size": "sm",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "content": "15,234 posts",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 0,
+                                  "type": "Col"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "content": "Technology · Trending",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "content": "오픈소스",
+                                      "size": "sm",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "content": "8,456 posts",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 0,
+                                  "type": "Col"
+                                }
+                              ],
+                              "gap": 3,
+                              "type": "Col"
+                            },
+                            {
+                              "content": "Show more",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 3,
+                          "type": "Col"
+                        }
+                      ],
+                      "p": 4,
+                      "title": null,
+                      "type": "Card"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "content": "Who to follow",
+                              "size": "md",
+                              "type": "Text",
+                              "weight": "bold"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "name": "MK",
+                                      "size": "md",
+                                      "type": "Avatar"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "align": "center",
+                                          "children": [
+                                            {
+                                              "content": "MinJu Kim",
+                                              "size": "sm",
+                                              "type": "Text",
+                                              "weight": "semibold"
+                                            },
+                                            {
+                                              "name": "badge-check",
+                                              "size": "xs",
+                                              "type": "Icon"
+                                            }
+                                          ],
+                                          "gap": 1,
+                                          "type": "Row"
+                                        },
+                                        {
+                                          "content": "@minjukim_ai",
+                                          "muted": true,
+                                          "size": "xs",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "flex": 1,
+                                      "gap": 0,
+                                      "type": "Col"
+                                    },
+                                    {
+                                      "content": "Follow",
+                                      "outline": true,
+                                      "size": "sm",
+                                      "type": "Button"
+                                    }
+                                  ],
+                                  "gap": 3,
+                                  "type": "Row"
+                                },
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "name": "TC",
+                                      "size": "md",
+                                      "type": "Avatar"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "align": "center",
+                                          "children": [
+                                            {
+                                              "content": "TechCrunch Korea",
+                                              "size": "sm",
+                                              "type": "Text",
+                                              "weight": "semibold"
+                                            },
+                                            {
+                                              "name": "badge-check",
+                                              "size": "xs",
+                                              "type": "Icon"
+                                            }
+                                          ],
+                                          "gap": 1,
+                                          "type": "Row"
+                                        },
+                                        {
+                                          "content": "@techcrunch_kr",
+                                          "muted": true,
+                                          "size": "xs",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "flex": 1,
+                                      "gap": 0,
+                                      "type": "Col"
+                                    },
+                                    {
+                                      "content": "Follow",
+                                      "outline": true,
+                                      "size": "sm",
+                                      "type": "Button"
+                                    }
+                                  ],
+                                  "gap": 3,
+                                  "type": "Row"
+                                },
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "name": "OS",
+                                      "size": "md",
+                                      "type": "Avatar"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "align": "center",
+                                          "children": [
+                                            {
+                                              "content": "OpenSource Hub",
+                                              "size": "sm",
+                                              "type": "Text",
+                                              "weight": "semibold"
+                                            },
+                                            {
+                                              "name": "badge-check",
+                                              "size": "xs",
+                                              "type": "Icon"
+                                            }
+                                          ],
+                                          "gap": 1,
+                                          "type": "Row"
+                                        },
+                                        {
+                                          "content": "@opensource_hub",
+                                          "muted": true,
+                                          "size": "xs",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "flex": 1,
+                                      "gap": 0,
+                                      "type": "Col"
+                                    },
+                                    {
+                                      "content": "Follow",
+                                      "outline": true,
+                                      "size": "sm",
+                                      "type": "Button"
+                                    }
+                                  ],
+                                  "gap": 3,
+                                  "type": "Row"
+                                }
+                              ],
+                              "gap": 3,
+                              "type": "Col"
+                            },
+                            {
+                              "content": "Show more",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 3,
+                          "type": "Col"
+                        }
+                      ],
+                      "p": 4,
+                      "title": null,
+                      "type": "Card"
+                    },
+                    {
+                      "children": [
+                        {
+                          "content": "Terms of Service",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "Privacy Policy",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "Cookie Policy",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "Accessibility",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "Ads info",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "More",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "© 2026 X Corp.",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        }
+                      ],
+                      "gap": 2,
+                      "type": "Row",
+                      "wrap": true
+                    }
+                  ],
+                  "gap": 4,
+                  "p": 4,
+                  "type": "Col"
+                }
+              ],
+              "p": 0,
+              "type": "Sidebar",
+              "w": 350
+            }
+          ],
+          "type": "Row"
+        }
+      ],
+      "height": 800,
+      "title": null,
+      "type": "Page",
+      "width": 1280
+    }
+  ],
+  "type": "Document"
+}

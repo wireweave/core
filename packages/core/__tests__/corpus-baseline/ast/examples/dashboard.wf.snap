@@ -1,0 +1,170 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "content": "Admin Dashboard",
+                  "level": 3,
+                  "type": "Title"
+                },
+                {
+                  "name": "U",
+                  "type": "Avatar"
+                }
+              ],
+              "justify": "between",
+              "type": "Row"
+            }
+          ],
+          "p": 4,
+          "type": "Header"
+        },
+        {
+          "children": [
+            {
+              "content": "Overview",
+              "level": 2,
+              "mb": 6,
+              "type": "Title"
+            },
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "content": "Total Users",
+                      "muted": true,
+                      "type": "Text"
+                    },
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "content": "1,234",
+                          "level": 2,
+                          "type": "Title"
+                        },
+                        {
+                          "content": "↑ 12%",
+                          "type": "Badge",
+                          "variant": "success"
+                        }
+                      ],
+                      "justify": "between",
+                      "type": "Row"
+                    }
+                  ],
+                  "gap": 2,
+                  "p": 4,
+                  "title": null,
+                  "type": "Card"
+                },
+                {
+                  "children": [
+                    {
+                      "content": "Active Sessions",
+                      "muted": true,
+                      "type": "Text"
+                    },
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "content": "567",
+                          "level": 2,
+                          "type": "Title"
+                        },
+                        {
+                          "content": "↑ 5%",
+                          "type": "Badge",
+                          "variant": "success"
+                        }
+                      ],
+                      "justify": "between",
+                      "type": "Row"
+                    }
+                  ],
+                  "gap": 2,
+                  "p": 4,
+                  "title": null,
+                  "type": "Card"
+                },
+                {
+                  "children": [
+                    {
+                      "content": "Revenue",
+                      "muted": true,
+                      "type": "Text"
+                    },
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "content": "$12.3K",
+                          "level": 2,
+                          "type": "Title"
+                        },
+                        {
+                          "content": "↓ 3%",
+                          "type": "Badge",
+                          "variant": "danger"
+                        }
+                      ],
+                      "justify": "between",
+                      "type": "Row"
+                    }
+                  ],
+                  "gap": 2,
+                  "p": 4,
+                  "title": null,
+                  "type": "Card"
+                }
+              ],
+              "gap": 4,
+              "mb": 6,
+              "type": "Row"
+            },
+            {
+              "children": [
+                {
+                  "content": "Recent Activity",
+                  "level": 4,
+                  "mb": 4,
+                  "type": "Title"
+                },
+                {
+                  "content": "John - Login (5 min ago)",
+                  "type": "Text"
+                },
+                {
+                  "content": "Jane - Purchase (12 min ago)",
+                  "type": "Text"
+                },
+                {
+                  "content": "Bob - Sign up (1 hour ago)",
+                  "type": "Text"
+                }
+              ],
+              "gap": 2,
+              "p": 4,
+              "title": null,
+              "type": "Card"
+            }
+          ],
+          "p": 6,
+          "type": "Main"
+        }
+      ],
+      "height": 800,
+      "title": "Dashboard",
+      "type": "Page",
+      "width": 1200
+    }
+  ],
+  "type": "Document"
+}

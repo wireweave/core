@@ -8,6 +8,7 @@
  */
 
 import type { ValueWithUnit } from '../ast/types'
+import { GRAMMAR_CHILD_KEYWORDS } from '../spec/grammar-elements.generated'
 
 /** Grammar `Identifier`: `[a-zA-Z_][a-zA-Z0-9_-]*` */
 const IDENTIFIER_RE = /^[a-zA-Z_][a-zA-Z0-9_-]*$/
@@ -17,58 +18,10 @@ const UNITS = new Set(['px', '%', 'em', 'rem', 'vh', 'vw'])
 
 /**
  * Grammar `ChildKeyword` set — these cannot be used as attribute names
- * (`AttributeName = !ChildKeyword Identifier`).
+ * (`AttributeName = !ChildKeyword Identifier`). Extracted from the grammar, so
+ * a keyword added there is rejected here without any hand-sync.
  */
-const CHILD_KEYWORDS = new Set([
-  'page',
-  'header',
-  'main',
-  'footer',
-  'sidebar',
-  'row',
-  'col',
-  'stack',
-  'relative',
-  'card',
-  'modal',
-  'drawer',
-  'accordion',
-  'section',
-  'text',
-  'link',
-  'button',
-  'input',
-  'textarea',
-  'select',
-  'checkbox',
-  'radio',
-  'switch',
-  'slider',
-  'image',
-  'avatar',
-  'badge',
-  'table',
-  'columns',
-  'list',
-  'item',
-  'alert',
-  'toast',
-  'progress',
-  'spinner',
-  'tooltip',
-  'popover',
-  'dropdown',
-  'divider',
-  'nav',
-  'tabs',
-  'tab',
-  'breadcrumb',
-  'group',
-  'marker',
-  'annotations',
-  'layout',
-  'slot',
-])
+const CHILD_KEYWORDS: ReadonlySet<string> = new Set(GRAMMAR_CHILD_KEYWORDS)
 
 /** Error thrown when a value or name cannot be expressed in the grammar. */
 export function printError(context: string, message: string): never {
@@ -108,10 +61,12 @@ export function assertAttributeName(name: string, context: string): void {
 }
 
 /**
- * Assert that a named layout uses the grammar's bare Identifier form.
+ * Assert that `name` is printable as a definition name — the bare grammar
+ * `Identifier` after `layout` / `component`.
  *
- * Definition names occupy a positional grammar slot, so child keywords are
- * allowed here even though they cannot be emitted as attribute names.
+ * Unlike {@link assertAttributeName} this deliberately allows `ChildKeyword`s:
+ * the name sits in a positional slot, not in `AttributeName` position, so
+ * `layout card { … }` parses back unambiguously.
  */
 export function assertDefinitionName(name: unknown, context: string): string {
   if (typeof name !== 'string' || !IDENTIFIER_RE.test(name)) {

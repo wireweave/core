@@ -1,0 +1,29 @@
+page "QR 스캔" viewport="375x812" {
+  header border=false p=4 {
+    row align=center justify=between {
+      button "" aria="닫기" ghost icon=x navigate="교환소 상세"
+      col align=center gap=0 {
+        text "강남 2호 교환소" weight=semibold
+        text "코드 인식 대기" muted size=xs
+      }
+      button "" action=toggle-torch aria="손전등 켜기" ghost icon=flashlight
+    }
+  }
+  main p=4 {
+    col align=center gap=4 {
+      placeholder "카메라 미리보기 · 코드를 사각형 안에 맞춰 주세요" h=280 w=full
+      row align=center gap=2 justify=center {
+        icon "scan-line" muted size=sm
+        text "인식되면 자동으로 교환이 시작됩니다" align=center muted size=sm
+      }
+      alert "화면이 어둡습니다. 손전등을 켜면 인식이 쉬워집니다." icon=lightbulb variant=info
+      link "코드를 읽을 수 없나요?" navigate="QR 스캔 · 번호 입력"
+    }
+  }
+  footer border=false p=4 {
+    col gap=2 {
+      button "다른 교환소 찾기" navigate="교환소 지도" outline w=full
+      text "예약해 둔 교환소: 강남 2호" align=center muted size=xs
+    }
+  }
+}

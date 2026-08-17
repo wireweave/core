@@ -184,8 +184,3 @@ export function anchorIntent(node: Partial<InteractiveProps> & { href?: string }
   }
   return { href: INERT_HREF, attrs }
 }
-
-/** Internal helper for non-anchor variants of otherwise anchor-based widgets. */
-export function nonAnchorIntent(node: Partial<InteractiveProps>): InteractiveAttrs {
-  return interactiveAttrs(node)
-}

@@ -1,0 +1,376 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "border": true,
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "name": "instagram",
+                  "size": "lg",
+                  "type": "Icon"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "heart",
+                      "type": "Icon"
+                    },
+                    {
+                      "name": "message-circle",
+                      "type": "Icon"
+                    }
+                  ],
+                  "gap": 3,
+                  "type": "Row"
+                }
+              ],
+              "justify": "between",
+              "type": "Row"
+            }
+          ],
+          "p": 3,
+          "type": "Header"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "name": "User",
+                          "size": "md",
+                          "type": "Avatar"
+                        },
+                        {
+                          "children": [
+                            {
+                              "content": "johndoe",
+                              "type": "Text",
+                              "weight": "bold"
+                            },
+                            {
+                              "content": "New York",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 0,
+                          "type": "Col"
+                        }
+                      ],
+                      "gap": 3,
+                      "p": 3,
+                      "type": "Row"
+                    },
+                    {
+                      "children": [],
+                      "h": 250,
+                      "label": "Photo",
+                      "type": "Placeholder",
+                      "w": "full"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "name": "heart",
+                                  "type": "Icon"
+                                },
+                                {
+                                  "name": "message-circle",
+                                  "type": "Icon"
+                                },
+                                {
+                                  "name": "send",
+                                  "type": "Icon"
+                                }
+                              ],
+                              "gap": 3,
+                              "type": "Row"
+                            },
+                            {
+                              "name": "bookmark",
+                              "type": "Icon"
+                            }
+                          ],
+                          "justify": "between",
+                          "type": "Row"
+                        },
+                        {
+                          "content": "1,234 likes",
+                          "size": "sm",
+                          "type": "Text",
+                          "weight": "bold"
+                        },
+                        {
+                          "content": "johndoe Beautiful sunset!",
+                          "size": "sm",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "View all 42 comments",
+                          "muted": true,
+                          "size": "sm",
+                          "type": "Text"
+                        }
+                      ],
+                      "gap": 2,
+                      "p": 3,
+                      "type": "Col"
+                    }
+                  ],
+                  "type": "Col"
+                },
+                {
+                  "children": [
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "name": "Jane",
+                          "size": "md",
+                          "type": "Avatar"
+                        },
+                        {
+                          "children": [
+                            {
+                              "content": "jane_doe",
+                              "type": "Text",
+                              "weight": "bold"
+                            },
+                            {
+                              "content": "Los Angeles",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 0,
+                          "type": "Col"
+                        }
+                      ],
+                      "gap": 3,
+                      "p": 3,
+                      "type": "Row"
+                    },
+                    {
+                      "children": [],
+                      "h": 250,
+                      "label": "Photo",
+                      "type": "Placeholder",
+                      "w": "full"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "name": "heart",
+                                  "type": "Icon"
+                                },
+                                {
+                                  "name": "message-circle",
+                                  "type": "Icon"
+                                },
+                                {
+                                  "name": "send",
+                                  "type": "Icon"
+                                }
+                              ],
+                              "gap": 3,
+                              "type": "Row"
+                            },
+                            {
+                              "name": "bookmark",
+                              "type": "Icon"
+                            }
+                          ],
+                          "justify": "between",
+                          "type": "Row"
+                        },
+                        {
+                          "content": "2,567 likes",
+                          "size": "sm",
+                          "type": "Text",
+                          "weight": "bold"
+                        },
+                        {
+                          "content": "jane_doe City vibes 🌆",
+                          "size": "sm",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "View all 89 comments",
+                          "muted": true,
+                          "size": "sm",
+                          "type": "Text"
+                        }
+                      ],
+                      "gap": 2,
+                      "p": 3,
+                      "type": "Col"
+                    }
+                  ],
+                  "type": "Col"
+                },
+                {
+                  "children": [
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "name": "Mike",
+                          "size": "md",
+                          "type": "Avatar"
+                        },
+                        {
+                          "children": [
+                            {
+                              "content": "mike_photo",
+                              "type": "Text",
+                              "weight": "bold"
+                            },
+                            {
+                              "content": "Tokyo",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 0,
+                          "type": "Col"
+                        }
+                      ],
+                      "gap": 3,
+                      "p": 3,
+                      "type": "Row"
+                    },
+                    {
+                      "children": [],
+                      "h": 250,
+                      "label": "Photo",
+                      "type": "Placeholder",
+                      "w": "full"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "name": "heart",
+                                  "type": "Icon"
+                                },
+                                {
+                                  "name": "message-circle",
+                                  "type": "Icon"
+                                },
+                                {
+                                  "name": "send",
+                                  "type": "Icon"
+                                }
+                              ],
+                              "gap": 3,
+                              "type": "Row"
+                            },
+                            {
+                              "name": "bookmark",
+                              "type": "Icon"
+                            }
+                          ],
+                          "justify": "between",
+                          "type": "Row"
+                        },
+                        {
+                          "content": "892 likes",
+                          "size": "sm",
+                          "type": "Text",
+                          "weight": "bold"
+                        },
+                        {
+                          "content": "mike_photo Night lights",
+                          "size": "sm",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "View all 23 comments",
+                          "muted": true,
+                          "size": "sm",
+                          "type": "Text"
+                        }
+                      ],
+                      "gap": 2,
+                      "p": 3,
+                      "type": "Col"
+                    }
+                  ],
+                  "type": "Col"
+                }
+              ],
+              "gap": 0,
+              "type": "Col"
+            }
+          ],
+          "p": 0,
+          "scroll": true,
+          "type": "Main"
+        },
+        {
+          "border": true,
+          "children": [
+            {
+              "children": [
+                {
+                  "name": "home",
+                  "type": "Icon"
+                },
+                {
+                  "name": "search",
+                  "type": "Icon"
+                },
+                {
+                  "name": "plus-square",
+                  "type": "Icon"
+                },
+                {
+                  "name": "film",
+                  "type": "Icon"
+                },
+                {
+                  "name": "Me",
+                  "size": "sm",
+                  "type": "Avatar"
+                }
+              ],
+              "justify": "around",
+              "type": "Row"
+            }
+          ],
+          "p": 3,
+          "type": "Footer"
+        }
+      ],
+      "device": "mobile",
+      "height": 600,
+      "title": null,
+      "type": "Page",
+      "width": 375
+    }
+  ],
+  "type": "Document"
+}

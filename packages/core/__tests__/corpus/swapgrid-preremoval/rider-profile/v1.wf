@@ -1,0 +1,132 @@
+page "프로필" viewport="375x812" {
+  header h=80 p=4 {
+    row align=center gap=3 justify=between {
+      row align=center gap=2 {
+        button "" aria="뒤로" ghost icon=arrow-left navigate="설정" size=sm
+        title "프로필" level=1 size=lg
+      }
+      button "저장" action=save disabled primary size=sm
+    }
+  }
+  main p=4 scroll {
+    col gap=5 {
+      alert "정보 변경은 소속 운영사에 요청하세요" icon=info variant=info
+      section "내 정보" {
+        col gap=3 {
+          input "이름" placeholder="김라이더" type=text w=full
+          card navigate="연락처 변경" p=3 {
+            row align=center gap=3 justify=between {
+              col gap=1 {
+                text "연락처" muted size=sm
+                text "010-1234-5678" size=base weight=medium
+              }
+              icon "chevron-right" muted size=sm
+            }
+          }
+          text "연락처는 본인확인에 쓰이므로 별도 절차로 변경합니다." muted size=xs
+        }
+      }
+      section "소속" {
+        col gap=3 {
+          row align=center gap=3 justify=between {
+            text "소속 운영사" muted size=sm
+            row align=center gap=2 {
+              text "그린모빌리티" size=base weight=medium
+              icon "lock" muted size=xs
+            }
+          }
+          row align=center gap=3 justify=between {
+            text "소속된 시점" muted size=sm
+            text "2026-03-02" size=base
+          }
+          text "소속은 볼 수 있는 교환소와 이력의 경계를 정하므로 직접 바꿀 수 없습니다." muted size=xs
+        }
+      }
+      section "차량" {
+        col gap=3 {
+          card navigate="차량 등록" p=3 {
+            row align=center gap=3 justify=between {
+              col gap=1 {
+                text "등록 차량" muted size=sm
+                text "혼다 PCX 일렉트릭" size=base weight=medium
+                badge "배터리 규격 A" pill size=sm
+              }
+              icon "chevron-right" muted size=sm
+            }
+          }
+        }
+      }
+      section "계정" {
+        col gap=3 {
+          row align=center gap=3 justify=between {
+            text "계정 식별자" muted size=sm
+            text "RD-4820-7715" size=base
+          }
+          row align=center gap=3 justify=between {
+            text "가입 시점" muted size=sm
+            text "2026-03-02 14:20" size=base
+          }
+        }
+      }
+      divider my=2
+      col gap=2 {
+        button "탈퇴" action=withdraw danger w=full
+        text "OPEN: 라이더 자율 탈퇴 허용 여부 미정. 허용할 때만 노출됩니다." align=center muted size=xs
+      }
+      divider my=2
+      section "상태 변형" {
+        col gap=4 {
+          card "저장 중" p=3 {
+            col gap=3 {
+              row align=center gap=2 {
+                spinner size=sm
+                text "변경 내용을 반영하는 중" size=sm weight=medium
+              }
+              progress value=60 w=full
+              text "입력이 잠깁니다." muted size=xs
+            }
+          }
+          card "저장 실패" p=3 {
+            col gap=3 {
+              alert "네트워크 문제로 변경 내용을 반영하지 못했습니다." icon=triangle-alert variant=danger
+              text "고친 값은 화면에 그대로 남아 있습니다." muted size=xs
+              row gap=2 justify=end {
+                button "닫기" action=dismiss ghost size=sm
+                button "다시 시도" action=retry-save primary size=sm
+              }
+            }
+          }
+          card "저장하지 않은 변경" p=3 {
+            col gap=3 {
+              text "고친 값을 버리고 설정으로 돌아갈까요?" size=sm
+              row gap=2 justify=end {
+                button "계속 편집" action=dismiss ghost size=sm
+                button "버리고 나가기" danger navigate="설정" size=sm
+              }
+            }
+          }
+          card "차량 미등록" navigate="차량 등록" p=3 {
+            row align=center gap=3 justify=between {
+              col gap=1 {
+                text "등록 차량" muted size=sm
+                text "등록되지 않음" muted size=base
+                text "차량을 등록해야 지도에 재고가 보입니다." muted size=xs
+              }
+              icon "chevron-right" muted size=sm
+            }
+          }
+          card "탈퇴 확인" p=3 {
+            col gap=3 {
+              alert "탈퇴 시 이용내역이 어떻게 되는지 아직 정해지지 않았습니다." icon=triangle-alert variant=warning
+              text "교환 사건은 지워지지 않는 기록입니다." muted size=xs
+              row gap=2 justify=end {
+                button "취소" action=dismiss ghost size=sm
+                button "탈퇴 진행" action=withdraw danger size=sm
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

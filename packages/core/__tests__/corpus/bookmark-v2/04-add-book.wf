@@ -1,0 +1,21 @@
+page "Add Book" width=375 height=812 {
+  header h=56 border p=4 {
+    row justify=between align=center {
+      text "Add Book" weight=medium
+      icon "x" size=md
+    }
+  }
+  main p=4 scroll gap=4 {
+    input "Search by title or ISBN" icon=search w=full
+    col align=center gap=4 {
+      placeholder "Cover" w=120 h=160
+      input "Title" w=full
+      input "Author" w=full
+      input "Total Pages" inputType=number w=full
+      select "Category" ["Fiction", "Non-fiction", "Technical", "Self-help"] placeholder="Select category" w=full
+    }
+  }
+  footer p=4 border {
+    button "Add Book" primary w=full
+  }
+}

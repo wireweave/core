@@ -1,0 +1,516 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "content": "Wireweave",
+                  "level": 1,
+                  "type": "Title"
+                },
+                {
+                  "content": "Sign in to your workspace",
+                  "type": "Text"
+                },
+                {
+                  "children": [
+                    {
+                      "inputType": "email",
+                      "label": "Email",
+                      "placeholder": "you@example.com",
+                      "required": true,
+                      "type": "Input"
+                    },
+                    {
+                      "inputType": "password",
+                      "label": "Password",
+                      "required": true,
+                      "type": "Input"
+                    },
+                    {
+                      "label": "Remember me",
+                      "type": "Checkbox"
+                    },
+                    {
+                      "content": "Sign in",
+                      "navigate": "Dashboard",
+                      "type": "Button",
+                      "variant": "primary"
+                    },
+                    {
+                      "content": "Forgot password?",
+                      "navigate": "/reset",
+                      "type": "Link"
+                    }
+                  ],
+                  "title": "Sign in",
+                  "type": "Card"
+                }
+              ],
+              "gap": 4,
+              "type": "Stack"
+            }
+          ],
+          "p": 8,
+          "type": "Main"
+        }
+      ],
+      "title": "Login",
+      "type": "Page",
+      "viewport": "1280x800",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "content": "Acme Console",
+                  "level": 2,
+                  "type": "Title"
+                },
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "content": "Notifications",
+                      "toggles": "notif-drawer",
+                      "type": "Button"
+                    },
+                    {
+                      "name": "JD",
+                      "type": "Avatar"
+                    }
+                  ],
+                  "gap": 2,
+                  "type": "Row"
+                }
+              ],
+              "flex": true,
+              "justify": "between",
+              "type": "Row"
+            }
+          ],
+          "p": 4,
+          "type": "Header"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "label": "Dashboard",
+                      "navigate": "Dashboard",
+                      "type": "NavItem"
+                    },
+                    {
+                      "label": "Profile",
+                      "navigate": "Profile",
+                      "type": "NavItem"
+                    },
+                    {
+                      "label": "Settings",
+                      "navigate": "Settings",
+                      "type": "NavItem"
+                    },
+                    {
+                      "type": "Divider"
+                    },
+                    {
+                      "label": "Docs",
+                      "navigate": "/docs",
+                      "type": "NavItem"
+                    }
+                  ],
+                  "items": [],
+                  "type": "Nav",
+                  "vertical": true
+                }
+              ],
+              "span": 2,
+              "type": "Sidebar"
+            },
+            {
+              "children": [
+                {
+                  "items": [
+                    "Home",
+                    "Dashboard"
+                  ],
+                  "type": "Breadcrumb"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "content": "$48,200",
+                              "level": 3,
+                              "type": "Title"
+                            },
+                            {
+                              "content": "+12%",
+                              "type": "Badge"
+                            }
+                          ],
+                          "title": "Revenue",
+                          "type": "Card"
+                        }
+                      ],
+                      "span": 4,
+                      "type": "Col"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "content": "1,847",
+                              "level": 3,
+                              "type": "Title"
+                            },
+                            {
+                              "content": "+4%",
+                              "type": "Badge"
+                            }
+                          ],
+                          "title": "Active users",
+                          "type": "Card"
+                        }
+                      ],
+                      "span": 4,
+                      "type": "Col"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "content": "2.1%",
+                              "level": 3,
+                              "type": "Title"
+                            },
+                            {
+                              "content": "-0.3%",
+                              "type": "Badge"
+                            }
+                          ],
+                          "title": "Churn",
+                          "type": "Card"
+                        }
+                      ],
+                      "span": 4,
+                      "type": "Col"
+                    }
+                  ],
+                  "gap": 4,
+                  "type": "Row"
+                },
+                {
+                  "children": [
+                    {
+                      "columns": [
+                        "Name",
+                        "Email",
+                        "Plan",
+                        "Status"
+                      ],
+                      "rows": [
+                        [
+                          "Jane Doe",
+                          "jane@acme.io",
+                          "Pro",
+                          "active"
+                        ],
+                        [
+                          "Sam Roe",
+                          "sam@acme.io",
+                          "Free",
+                          "trial"
+                        ],
+                        [
+                          "Kim Lee",
+                          "kim@acme.io",
+                          "Team",
+                          "active"
+                        ]
+                      ],
+                      "type": "Table"
+                    },
+                    {
+                      "content": "View profile",
+                      "navigate": "Profile",
+                      "type": "Button"
+                    }
+                  ],
+                  "title": "Recent signups",
+                  "type": "Card"
+                }
+              ],
+              "p": 4,
+              "span": 10,
+              "type": "Main"
+            }
+          ],
+          "type": "Row"
+        },
+        {
+          "children": [
+            {
+              "items": [
+                "Deploy finished",
+                "New signup: jane@acme.io",
+                "Invoice #1042 paid"
+              ],
+              "type": "List"
+            }
+          ],
+          "id": "notif-drawer",
+          "title": "Notifications",
+          "type": "Drawer"
+        },
+        {
+          "children": [
+            {
+              "align": "center",
+              "content": "2026 Acme Inc.",
+              "type": "Text"
+            }
+          ],
+          "p": 4,
+          "type": "Footer"
+        }
+      ],
+      "title": "Dashboard",
+      "type": "Page",
+      "viewport": "1280x800",
+      "x": 1344,
+      "y": 0
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "content": "Settings",
+                  "level": 2,
+                  "type": "Title"
+                },
+                {
+                  "content": "Back to dashboard",
+                  "navigate": "Dashboard",
+                  "type": "Button"
+                }
+              ],
+              "flex": true,
+              "justify": "between",
+              "type": "Row"
+            }
+          ],
+          "p": 4,
+          "type": "Header"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "label": "Workspace name",
+                  "placeholder": "Acme Inc.",
+                  "type": "Input"
+                },
+                {
+                  "label": "Default role",
+                  "options": [
+                    "Admin",
+                    "Member",
+                    "Viewer"
+                  ],
+                  "type": "Select"
+                },
+                {
+                  "label": "Email notifications",
+                  "type": "Switch"
+                }
+              ],
+              "title": "Workspace",
+              "type": "Card"
+            },
+            {
+              "children": [
+                {
+                  "content": "Deleting the workspace is permanent.",
+                  "type": "Text"
+                },
+                {
+                  "content": "Delete workspace",
+                  "opens": "confirm-delete",
+                  "type": "Button",
+                  "variant": "danger"
+                }
+              ],
+              "title": "Danger zone",
+              "type": "Card"
+            }
+          ],
+          "p": 6,
+          "type": "Main"
+        },
+        {
+          "children": [
+            {
+              "content": "This cannot be undone. All wireframes will be removed.",
+              "type": "Text"
+            },
+            {
+              "children": [
+                {
+                  "content": "Cancel",
+                  "type": "Button"
+                },
+                {
+                  "content": "Delete forever",
+                  "type": "Button",
+                  "variant": "danger"
+                }
+              ],
+              "gap": 2,
+              "type": "Row"
+            }
+          ],
+          "id": "confirm-delete",
+          "title": "Delete workspace?",
+          "type": "Modal"
+        }
+      ],
+      "title": "Settings",
+      "type": "Page",
+      "viewport": "1280x800",
+      "x": 2688,
+      "y": 0
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "content": "Profile",
+                  "level": 2,
+                  "type": "Title"
+                },
+                {
+                  "content": "Account settings",
+                  "navigate": "Settings",
+                  "type": "Button"
+                }
+              ],
+              "flex": true,
+              "justify": "between",
+              "type": "Row"
+            }
+          ],
+          "p": 4,
+          "type": "Header"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "name": "JD",
+                          "type": "Avatar"
+                        },
+                        {
+                          "content": "Product designer",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "Pro plan",
+                          "type": "Badge"
+                        },
+                        {
+                          "content": "Back to dashboard",
+                          "navigate": "Dashboard",
+                          "type": "Button"
+                        }
+                      ],
+                      "title": "Jane Doe",
+                      "type": "Card"
+                    }
+                  ],
+                  "span": 4,
+                  "type": "Col"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "label": "Display name",
+                          "placeholder": "Jane Doe",
+                          "type": "Input"
+                        },
+                        {
+                          "inputType": "email",
+                          "label": "Email",
+                          "placeholder": "jane@acme.io",
+                          "type": "Input"
+                        },
+                        {
+                          "label": "Bio",
+                          "placeholder": "A short bio",
+                          "type": "Textarea"
+                        },
+                        {
+                          "content": "Save changes",
+                          "type": "Button",
+                          "variant": "primary"
+                        }
+                      ],
+                      "title": "Details",
+                      "type": "Card"
+                    }
+                  ],
+                  "span": 8,
+                  "type": "Col"
+                }
+              ],
+              "gap": 4,
+              "type": "Row"
+            }
+          ],
+          "p": 6,
+          "type": "Main"
+        }
+      ],
+      "title": "Profile",
+      "type": "Page",
+      "viewport": "1280x800",
+      "x": 1344,
+      "y": 864
+    }
+  ],
+  "type": "Document"
+}

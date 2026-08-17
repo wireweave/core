@@ -12,7 +12,7 @@ import {
   calculateViewportScale,
   wrapInPreviewContainer,
 } from '../src/viewport'
-import { documentPages, parse, render, renderToSvg } from '../src'
+import { parse, render, renderToSvg, documentPages } from '../src'
 
 describe('Viewport Module', () => {
   describe('DEVICE_PRESETS', () => {

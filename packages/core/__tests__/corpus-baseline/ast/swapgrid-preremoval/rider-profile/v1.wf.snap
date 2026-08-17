@@ -1,0 +1,578 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "aria": "뒤로",
+                      "content": "",
+                      "ghost": true,
+                      "icon": "arrow-left",
+                      "navigate": "설정",
+                      "size": "sm",
+                      "type": "Button"
+                    },
+                    {
+                      "content": "프로필",
+                      "level": 1,
+                      "size": "lg",
+                      "type": "Title"
+                    }
+                  ],
+                  "gap": 2,
+                  "type": "Row"
+                },
+                {
+                  "action": "save",
+                  "content": "저장",
+                  "disabled": true,
+                  "primary": true,
+                  "size": "sm",
+                  "type": "Button"
+                }
+              ],
+              "gap": 3,
+              "justify": "between",
+              "type": "Row"
+            }
+          ],
+          "h": 80,
+          "p": 4,
+          "type": "Header"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "content": "정보 변경은 소속 운영사에 요청하세요",
+                  "icon": "info",
+                  "type": "Alert",
+                  "variant": "info"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "inputType": "text",
+                          "label": "이름",
+                          "placeholder": "김라이더",
+                          "type": "Input",
+                          "w": "full"
+                        },
+                        {
+                          "children": [
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "content": "연락처",
+                                      "muted": true,
+                                      "size": "sm",
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "content": "010-1234-5678",
+                                      "size": "base",
+                                      "type": "Text",
+                                      "weight": "medium"
+                                    }
+                                  ],
+                                  "gap": 1,
+                                  "type": "Col"
+                                },
+                                {
+                                  "muted": true,
+                                  "name": "chevron-right",
+                                  "size": "sm",
+                                  "type": "Icon"
+                                }
+                              ],
+                              "gap": 3,
+                              "justify": "between",
+                              "type": "Row"
+                            }
+                          ],
+                          "navigate": "연락처 변경",
+                          "p": 3,
+                          "title": null,
+                          "type": "Card"
+                        },
+                        {
+                          "content": "연락처는 본인확인에 쓰이므로 별도 절차로 변경합니다.",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        }
+                      ],
+                      "gap": 3,
+                      "type": "Col"
+                    }
+                  ],
+                  "title": "내 정보",
+                  "type": "Section"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "소속 운영사",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            },
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "content": "그린모빌리티",
+                                  "size": "base",
+                                  "type": "Text",
+                                  "weight": "medium"
+                                },
+                                {
+                                  "muted": true,
+                                  "name": "lock",
+                                  "size": "xs",
+                                  "type": "Icon"
+                                }
+                              ],
+                              "gap": 2,
+                              "type": "Row"
+                            }
+                          ],
+                          "gap": 3,
+                          "justify": "between",
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "소속된 시점",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "2026-03-02",
+                              "size": "base",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 3,
+                          "justify": "between",
+                          "type": "Row"
+                        },
+                        {
+                          "content": "소속은 볼 수 있는 교환소와 이력의 경계를 정하므로 직접 바꿀 수 없습니다.",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        }
+                      ],
+                      "gap": 3,
+                      "type": "Col"
+                    }
+                  ],
+                  "title": "소속",
+                  "type": "Section"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "content": "등록 차량",
+                                      "muted": true,
+                                      "size": "sm",
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "content": "혼다 PCX 일렉트릭",
+                                      "size": "base",
+                                      "type": "Text",
+                                      "weight": "medium"
+                                    },
+                                    {
+                                      "content": "배터리 규격 A",
+                                      "pill": true,
+                                      "size": "sm",
+                                      "type": "Badge"
+                                    }
+                                  ],
+                                  "gap": 1,
+                                  "type": "Col"
+                                },
+                                {
+                                  "muted": true,
+                                  "name": "chevron-right",
+                                  "size": "sm",
+                                  "type": "Icon"
+                                }
+                              ],
+                              "gap": 3,
+                              "justify": "between",
+                              "type": "Row"
+                            }
+                          ],
+                          "navigate": "차량 등록",
+                          "p": 3,
+                          "title": null,
+                          "type": "Card"
+                        }
+                      ],
+                      "gap": 3,
+                      "type": "Col"
+                    }
+                  ],
+                  "title": "차량",
+                  "type": "Section"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "계정 식별자",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "RD-4820-7715",
+                              "size": "base",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 3,
+                          "justify": "between",
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "가입 시점",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "2026-03-02 14:20",
+                              "size": "base",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 3,
+                          "justify": "between",
+                          "type": "Row"
+                        }
+                      ],
+                      "gap": 3,
+                      "type": "Col"
+                    }
+                  ],
+                  "title": "계정",
+                  "type": "Section"
+                },
+                {
+                  "my": 2,
+                  "type": "Divider"
+                },
+                {
+                  "children": [
+                    {
+                      "action": "withdraw",
+                      "content": "탈퇴",
+                      "danger": true,
+                      "type": "Button",
+                      "w": "full"
+                    },
+                    {
+                      "align": "center",
+                      "content": "OPEN: 라이더 자율 탈퇴 허용 여부 미정. 허용할 때만 노출됩니다.",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    }
+                  ],
+                  "gap": 2,
+                  "type": "Col"
+                },
+                {
+                  "my": 2,
+                  "type": "Divider"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "label": null,
+                                      "size": "sm",
+                                      "type": "Spinner"
+                                    },
+                                    {
+                                      "content": "변경 내용을 반영하는 중",
+                                      "size": "sm",
+                                      "type": "Text",
+                                      "weight": "medium"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Row"
+                                },
+                                {
+                                  "type": "Progress",
+                                  "value": 60,
+                                  "w": "full"
+                                },
+                                {
+                                  "content": "입력이 잠깁니다.",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 3,
+                              "type": "Col"
+                            }
+                          ],
+                          "p": 3,
+                          "title": "저장 중",
+                          "type": "Card"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "content": "네트워크 문제로 변경 내용을 반영하지 못했습니다.",
+                                  "icon": "triangle-alert",
+                                  "type": "Alert",
+                                  "variant": "danger"
+                                },
+                                {
+                                  "content": "고친 값은 화면에 그대로 남아 있습니다.",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "action": "dismiss",
+                                      "content": "닫기",
+                                      "ghost": true,
+                                      "size": "sm",
+                                      "type": "Button"
+                                    },
+                                    {
+                                      "action": "retry-save",
+                                      "content": "다시 시도",
+                                      "primary": true,
+                                      "size": "sm",
+                                      "type": "Button"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "justify": "end",
+                                  "type": "Row"
+                                }
+                              ],
+                              "gap": 3,
+                              "type": "Col"
+                            }
+                          ],
+                          "p": 3,
+                          "title": "저장 실패",
+                          "type": "Card"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "content": "고친 값을 버리고 설정으로 돌아갈까요?",
+                                  "size": "sm",
+                                  "type": "Text"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "action": "dismiss",
+                                      "content": "계속 편집",
+                                      "ghost": true,
+                                      "size": "sm",
+                                      "type": "Button"
+                                    },
+                                    {
+                                      "content": "버리고 나가기",
+                                      "danger": true,
+                                      "navigate": "설정",
+                                      "size": "sm",
+                                      "type": "Button"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "justify": "end",
+                                  "type": "Row"
+                                }
+                              ],
+                              "gap": 3,
+                              "type": "Col"
+                            }
+                          ],
+                          "p": 3,
+                          "title": "저장하지 않은 변경",
+                          "type": "Card"
+                        },
+                        {
+                          "children": [
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "content": "등록 차량",
+                                      "muted": true,
+                                      "size": "sm",
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "content": "등록되지 않음",
+                                      "muted": true,
+                                      "size": "base",
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "content": "차량을 등록해야 지도에 재고가 보입니다.",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 1,
+                                  "type": "Col"
+                                },
+                                {
+                                  "muted": true,
+                                  "name": "chevron-right",
+                                  "size": "sm",
+                                  "type": "Icon"
+                                }
+                              ],
+                              "gap": 3,
+                              "justify": "between",
+                              "type": "Row"
+                            }
+                          ],
+                          "navigate": "차량 등록",
+                          "p": 3,
+                          "title": "차량 미등록",
+                          "type": "Card"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "content": "탈퇴 시 이용내역이 어떻게 되는지 아직 정해지지 않았습니다.",
+                                  "icon": "triangle-alert",
+                                  "type": "Alert",
+                                  "variant": "warning"
+                                },
+                                {
+                                  "content": "교환 사건은 지워지지 않는 기록입니다.",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "action": "dismiss",
+                                      "content": "취소",
+                                      "ghost": true,
+                                      "size": "sm",
+                                      "type": "Button"
+                                    },
+                                    {
+                                      "action": "withdraw",
+                                      "content": "탈퇴 진행",
+                                      "danger": true,
+                                      "size": "sm",
+                                      "type": "Button"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "justify": "end",
+                                  "type": "Row"
+                                }
+                              ],
+                              "gap": 3,
+                              "type": "Col"
+                            }
+                          ],
+                          "p": 3,
+                          "title": "탈퇴 확인",
+                          "type": "Card"
+                        }
+                      ],
+                      "gap": 4,
+                      "type": "Col"
+                    }
+                  ],
+                  "title": "상태 변형",
+                  "type": "Section"
+                }
+              ],
+              "gap": 5,
+              "type": "Col"
+            }
+          ],
+          "p": 4,
+          "scroll": true,
+          "type": "Main"
+        }
+      ],
+      "title": "프로필",
+      "type": "Page",
+      "viewport": "375x812"
+    }
+  ],
+  "type": "Document"
+}

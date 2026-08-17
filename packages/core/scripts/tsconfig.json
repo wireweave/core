@@ -1,0 +1,38 @@
+{
+  // Build scripts are a TypeScript project of their own, not exemptions.
+  //
+  // typescript-eslint's `allowDefaultProject` is a small escape hatch — it caps
+  // at eight matched files by design, because every file on that list is
+  // type-checked without a project and costs a fresh inferred program. The
+  // scripts directory grows with the build, so listing each new script there
+  // walks the package into that cap. A tsconfig here is what the project
+  // service looks for anyway: it finds the nearest config that includes the
+  // file, so scripts get real type information and the exemption list stays
+  // for the handful of root-level config files it was meant for.
+  //
+  // `noEmit` because nothing here is built — the package's own build (`tsup`,
+  // driven by ../tsconfig.json) never sees this directory.
+  //
+  // The `.d.mts` files are excluded on purpose. A `foo.d.mts` beside `foo.mjs`
+  // is how the tests import a script and get types, but TypeScript prefers the
+  // declaration over the implementation when both are root files, which drops
+  // the `.mjs` out of the program and leaves the linter with nothing to parse.
+  // They stay visible to `../tsconfig.json`, which is the project that resolves
+  // those imports; here only the implementations are wanted.
+  //
+  // `checkJs` stays off: these files were never type-checked, and turning the
+  // check on is a separate change with its own findings, not a side effect of
+  // giving them a project. Type information is available to type-aware lint
+  // rules either way — `checkJs` governs only whether `tsc` reports on them.
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": false,
+    "noEmit": true,
+    "declaration": false,
+    "declarationMap": false,
+    "sourceMap": false
+  },
+  "include": ["**/*"],
+  "exclude": ["**/*.d.mts"]
+}

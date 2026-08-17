@@ -1,0 +1,496 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "name": "W",
+                          "size": "sm",
+                          "type": "Avatar"
+                        },
+                        {
+                          "content": "내 워크스페이스",
+                          "size": "sm",
+                          "type": "Text",
+                          "weight": "semibold"
+                        },
+                        {
+                          "name": "chevron-down",
+                          "size": "sm",
+                          "type": "Icon"
+                        }
+                      ],
+                      "gap": 2,
+                      "px": 3,
+                      "type": "Row"
+                    }
+                  ],
+                  "h": 44,
+                  "p": 0,
+                  "type": "Header"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "icon": "search",
+                          "label": "검색",
+                          "type": "NavItem"
+                        },
+                        {
+                          "icon": "home",
+                          "label": "홈",
+                          "type": "NavItem"
+                        },
+                        {
+                          "icon": "inbox",
+                          "label": "받은 편지함",
+                          "type": "NavItem"
+                        }
+                      ],
+                      "items": [],
+                      "type": "Nav",
+                      "vertical": true
+                    },
+                    {
+                      "type": "Divider"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "active": true,
+                              "icon": "file-text",
+                              "label": "프로젝트 관리",
+                              "type": "NavItem"
+                            },
+                            {
+                              "icon": "file-text",
+                              "label": "회의록",
+                              "type": "NavItem"
+                            },
+                            {
+                              "icon": "file-text",
+                              "label": "아이디어 노트",
+                              "type": "NavItem"
+                            }
+                          ],
+                          "items": [],
+                          "type": "Nav",
+                          "vertical": true
+                        }
+                      ],
+                      "title": "즐겨찾기",
+                      "type": "Section"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "icon": "file-text",
+                              "label": "일기장",
+                              "type": "NavItem"
+                            },
+                            {
+                              "icon": "file-text",
+                              "label": "독서 목록",
+                              "type": "NavItem"
+                            },
+                            {
+                              "icon": "file-text",
+                              "label": "여행 계획",
+                              "type": "NavItem"
+                            }
+                          ],
+                          "items": [],
+                          "type": "Nav",
+                          "vertical": true
+                        }
+                      ],
+                      "title": "개인 페이지",
+                      "type": "Section"
+                    }
+                  ],
+                  "gap": 1,
+                  "p": 2,
+                  "scroll": true,
+                  "type": "Col"
+                }
+              ],
+              "p": 0,
+              "type": "Sidebar",
+              "w": 240
+            },
+            {
+              "children": [
+                {
+                  "border": true,
+                  "children": [
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "content": "프로젝트 관리",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 1,
+                          "type": "Row"
+                        },
+                        {
+                          "children": [
+                            {
+                              "content": "공유",
+                              "ghost": true,
+                              "size": "sm",
+                              "type": "Button"
+                            },
+                            {
+                              "name": "more-horizontal",
+                              "size": "sm",
+                              "type": "Icon"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Row"
+                        }
+                      ],
+                      "justify": "between",
+                      "px": 4,
+                      "type": "Row"
+                    }
+                  ],
+                  "h": 44,
+                  "p": 0,
+                  "type": "Header"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "content": "📋",
+                                  "size": "xl",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "프로젝트 관리",
+                                  "level": 1,
+                                  "type": "Title"
+                                }
+                              ],
+                              "gap": 2,
+                              "type": "Row"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "content": "만든 날짜: 2024년 1월 1일",
+                                  "muted": true,
+                                  "size": "sm",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "마지막 수정: 오늘",
+                                  "muted": true,
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 4,
+                              "type": "Row"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Col"
+                        },
+                        {
+                          "children": [
+                            {
+                              "content": "2024년 1분기 프로젝트 목록과 진행 상황을 관리합니다.",
+                              "type": "Text"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "content": "진행 중인 프로젝트",
+                                  "level": 2,
+                                  "type": "Title"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "children": [
+                                        {
+                                          "align": "center",
+                                          "children": [
+                                            {
+                                              "align": "center",
+                                              "children": [
+                                                {
+                                                  "checked": true,
+                                                  "label": null,
+                                                  "type": "Checkbox"
+                                                },
+                                                {
+                                                  "content": "웹사이트 리뉴얼",
+                                                  "type": "Text",
+                                                  "weight": "semibold"
+                                                }
+                                              ],
+                                              "gap": 2,
+                                              "type": "Row"
+                                            },
+                                            {
+                                              "content": "진행중",
+                                              "type": "Badge",
+                                              "variant": "warning"
+                                            }
+                                          ],
+                                          "justify": "between",
+                                          "type": "Row"
+                                        },
+                                        {
+                                          "children": [
+                                            {
+                                              "content": "담당: 김개발",
+                                              "muted": true,
+                                              "size": "sm",
+                                              "type": "Text"
+                                            },
+                                            {
+                                              "content": "기한: 1월 31일",
+                                              "muted": true,
+                                              "size": "sm",
+                                              "type": "Text"
+                                            }
+                                          ],
+                                          "gap": 4,
+                                          "type": "Row"
+                                        },
+                                        {
+                                          "type": "Progress",
+                                          "value": 65
+                                        }
+                                      ],
+                                      "gap": 3,
+                                      "type": "Col"
+                                    }
+                                  ],
+                                  "p": 4,
+                                  "title": null,
+                                  "type": "Card"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "children": [
+                                        {
+                                          "align": "center",
+                                          "children": [
+                                            {
+                                              "align": "center",
+                                              "children": [
+                                                {
+                                                  "label": null,
+                                                  "type": "Checkbox"
+                                                },
+                                                {
+                                                  "content": "모바일 앱 개발",
+                                                  "type": "Text",
+                                                  "weight": "semibold"
+                                                }
+                                              ],
+                                              "gap": 2,
+                                              "type": "Row"
+                                            },
+                                            {
+                                              "content": "진행중",
+                                              "type": "Badge",
+                                              "variant": "warning"
+                                            }
+                                          ],
+                                          "justify": "between",
+                                          "type": "Row"
+                                        },
+                                        {
+                                          "children": [
+                                            {
+                                              "content": "담당: 이모바일",
+                                              "muted": true,
+                                              "size": "sm",
+                                              "type": "Text"
+                                            },
+                                            {
+                                              "content": "기한: 2월 15일",
+                                              "muted": true,
+                                              "size": "sm",
+                                              "type": "Text"
+                                            }
+                                          ],
+                                          "gap": 4,
+                                          "type": "Row"
+                                        },
+                                        {
+                                          "type": "Progress",
+                                          "value": 30
+                                        }
+                                      ],
+                                      "gap": 3,
+                                      "type": "Col"
+                                    }
+                                  ],
+                                  "p": 4,
+                                  "title": null,
+                                  "type": "Card"
+                                }
+                              ],
+                              "gap": 2,
+                              "type": "Col"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "content": "완료된 프로젝트",
+                                  "level": 2,
+                                  "type": "Title"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "children": [
+                                        {
+                                          "align": "center",
+                                          "children": [
+                                            {
+                                              "align": "center",
+                                              "children": [
+                                                {
+                                                  "checked": true,
+                                                  "label": null,
+                                                  "type": "Checkbox"
+                                                },
+                                                {
+                                                  "content": "로고 디자인",
+                                                  "type": "Text",
+                                                  "weight": "semibold"
+                                                }
+                                              ],
+                                              "gap": 2,
+                                              "type": "Row"
+                                            },
+                                            {
+                                              "content": "완료",
+                                              "type": "Badge",
+                                              "variant": "success"
+                                            }
+                                          ],
+                                          "justify": "between",
+                                          "type": "Row"
+                                        },
+                                        {
+                                          "content": "2024년 1월 5일 완료",
+                                          "muted": true,
+                                          "size": "sm",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "gap": 2,
+                                      "type": "Col"
+                                    }
+                                  ],
+                                  "p": 4,
+                                  "title": null,
+                                  "type": "Card"
+                                }
+                              ],
+                              "gap": 2,
+                              "type": "Col"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "content": "메모",
+                                  "level": 2,
+                                  "type": "Title"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "children": [
+                                        {
+                                          "content": "• 주간 회의: 매주 월요일 오전 10시",
+                                          "type": "Text"
+                                        },
+                                        {
+                                          "content": "• 스프린트 기간: 2주",
+                                          "type": "Text"
+                                        },
+                                        {
+                                          "content": "• 다음 마일스톤: 1월 20일",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "gap": 2,
+                                      "type": "Col"
+                                    }
+                                  ],
+                                  "p": 4,
+                                  "title": null,
+                                  "type": "Card"
+                                }
+                              ],
+                              "gap": 2,
+                              "type": "Col"
+                            }
+                          ],
+                          "gap": 4,
+                          "type": "Col"
+                        }
+                      ],
+                      "gap": 6,
+                      "px": 16,
+                      "py": 8,
+                      "type": "Col"
+                    }
+                  ],
+                  "p": 0,
+                  "scroll": true,
+                  "type": "Main"
+                }
+              ],
+              "flex": 1,
+              "type": "Col"
+            }
+          ],
+          "type": "Row"
+        }
+      ],
+      "height": 800,
+      "title": null,
+      "type": "Page",
+      "width": 900
+    }
+  ],
+  "type": "Document"
+}

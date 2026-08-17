@@ -1,0 +1,848 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "muted": true,
+                          "name": "chevron-left",
+                          "size": "sm",
+                          "type": "Icon"
+                        },
+                        {
+                          "content": "개발자 커뮤니티",
+                          "size": "sm",
+                          "type": "Text",
+                          "weight": "semibold"
+                        }
+                      ],
+                      "gap": 2,
+                      "type": "Row"
+                    },
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "name": "inbox",
+                          "size": "sm",
+                          "type": "Icon"
+                        },
+                        {
+                          "muted": true,
+                          "name": "help-circle",
+                          "size": "sm",
+                          "type": "Icon"
+                        }
+                      ],
+                      "gap": 3,
+                      "type": "Row"
+                    }
+                  ],
+                  "justify": "between",
+                  "px": 4,
+                  "type": "Row"
+                }
+              ],
+              "h": 32,
+              "p": 0,
+              "type": "Header"
+            },
+            {
+              "children": [
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "name": "H",
+                      "size": "md",
+                      "type": "Avatar"
+                    },
+                    {
+                      "type": "Divider"
+                    },
+                    {
+                      "name": "S1",
+                      "size": "md",
+                      "type": "Avatar"
+                    },
+                    {
+                      "name": "S2",
+                      "size": "md",
+                      "type": "Avatar"
+                    },
+                    {
+                      "name": "S3",
+                      "size": "md",
+                      "type": "Avatar"
+                    },
+                    {
+                      "type": "Divider"
+                    },
+                    {
+                      "content": "",
+                      "ghost": true,
+                      "icon": "plus",
+                      "type": "Button"
+                    },
+                    {
+                      "content": "",
+                      "ghost": true,
+                      "icon": "compass",
+                      "type": "Button"
+                    }
+                  ],
+                  "gap": 2,
+                  "p": 3,
+                  "type": "Col",
+                  "w": 72
+                },
+                {
+                  "children": [
+                    {
+                      "border": true,
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "개발자 커뮤니티",
+                              "size": "sm",
+                              "type": "Text",
+                              "weight": "bold"
+                            },
+                            {
+                              "name": "chevron-down",
+                              "size": "sm",
+                              "type": "Icon"
+                            }
+                          ],
+                          "justify": "between",
+                          "px": 4,
+                          "type": "Row"
+                        }
+                      ],
+                      "h": 48,
+                      "p": 0,
+                      "type": "Header"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "active": true,
+                                  "icon": "hash",
+                                  "label": "일반",
+                                  "type": "NavItem"
+                                },
+                                {
+                                  "icon": "hash",
+                                  "label": "공지사항",
+                                  "type": "NavItem"
+                                },
+                                {
+                                  "icon": "hash",
+                                  "label": "질문답변",
+                                  "type": "NavItem"
+                                },
+                                {
+                                  "icon": "hash",
+                                  "label": "프로젝트-공유",
+                                  "type": "NavItem"
+                                },
+                                {
+                                  "icon": "hash",
+                                  "label": "취업정보",
+                                  "type": "NavItem"
+                                }
+                              ],
+                              "items": [],
+                              "type": "Nav",
+                              "vertical": true
+                            }
+                          ],
+                          "title": "텍스트 채널",
+                          "type": "Section"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "icon": "volume-2",
+                                  "label": "일반 음성",
+                                  "type": "NavItem"
+                                },
+                                {
+                                  "icon": "volume-2",
+                                  "label": "스터디룸 1",
+                                  "type": "NavItem"
+                                },
+                                {
+                                  "icon": "volume-2",
+                                  "label": "스터디룸 2",
+                                  "type": "NavItem"
+                                }
+                              ],
+                              "items": [],
+                              "type": "Nav",
+                              "vertical": true
+                            }
+                          ],
+                          "title": "음성 채널",
+                          "type": "Section"
+                        }
+                      ],
+                      "gap": 1,
+                      "p": 2,
+                      "scroll": true,
+                      "type": "Col"
+                    },
+                    {
+                      "border": true,
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "name": "Me",
+                              "size": "sm",
+                              "type": "Avatar"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "content": "내 닉네임",
+                                  "size": "sm",
+                                  "type": "Text",
+                                  "weight": "semibold"
+                                },
+                                {
+                                  "content": "온라인",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text"
+                                }
+                              ],
+                              "flex": 1,
+                              "gap": 0,
+                              "type": "Col"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "muted": true,
+                                  "name": "mic",
+                                  "size": "sm",
+                                  "type": "Icon"
+                                },
+                                {
+                                  "muted": true,
+                                  "name": "headphones",
+                                  "size": "sm",
+                                  "type": "Icon"
+                                },
+                                {
+                                  "muted": true,
+                                  "name": "settings",
+                                  "size": "sm",
+                                  "type": "Icon"
+                                }
+                              ],
+                              "gap": 1,
+                              "type": "Row"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Row"
+                        }
+                      ],
+                      "p": 2,
+                      "type": "Footer"
+                    }
+                  ],
+                  "p": 0,
+                  "type": "Sidebar",
+                  "w": 240
+                },
+                {
+                  "children": [
+                    {
+                      "border": true,
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "name": "hash",
+                                  "type": "Icon"
+                                },
+                                {
+                                  "content": "일반",
+                                  "type": "Text",
+                                  "weight": "bold"
+                                },
+                                {
+                                  "content": "개발 관련 자유로운 대화",
+                                  "muted": true,
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 2,
+                              "type": "Row"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "muted": true,
+                                  "name": "bell",
+                                  "size": "sm",
+                                  "type": "Icon"
+                                },
+                                {
+                                  "muted": true,
+                                  "name": "pin",
+                                  "size": "sm",
+                                  "type": "Icon"
+                                },
+                                {
+                                  "muted": true,
+                                  "name": "users",
+                                  "size": "sm",
+                                  "type": "Icon"
+                                },
+                                {
+                                  "label": null,
+                                  "placeholder": "검색",
+                                  "type": "Input",
+                                  "w": 180
+                                },
+                                {
+                                  "muted": true,
+                                  "name": "inbox",
+                                  "size": "sm",
+                                  "type": "Icon"
+                                },
+                                {
+                                  "muted": true,
+                                  "name": "help-circle",
+                                  "size": "sm",
+                                  "type": "Icon"
+                                }
+                              ],
+                              "gap": 3,
+                              "type": "Row"
+                            }
+                          ],
+                          "justify": "between",
+                          "px": 4,
+                          "type": "Row"
+                        }
+                      ],
+                      "h": 48,
+                      "p": 0,
+                      "type": "Header"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "align": "start",
+                              "children": [
+                                {
+                                  "name": "김개발",
+                                  "size": "md",
+                                  "type": "Avatar"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "align": "baseline",
+                                      "children": [
+                                        {
+                                          "content": "김개발",
+                                          "size": "sm",
+                                          "type": "Text",
+                                          "weight": "bold"
+                                        },
+                                        {
+                                          "content": "오늘 오후 2:30",
+                                          "muted": true,
+                                          "size": "xs",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "gap": 2,
+                                      "type": "Row"
+                                    },
+                                    {
+                                      "content": "안녕하세요! React 관련해서 질문이 있는데요, useEffect에서 cleanup 함수는 언제 호출되나요?",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 1,
+                                  "type": "Col"
+                                }
+                              ],
+                              "gap": 3,
+                              "type": "Row"
+                            },
+                            {
+                              "align": "start",
+                              "children": [
+                                {
+                                  "name": "이풀스택",
+                                  "size": "md",
+                                  "type": "Avatar"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "align": "baseline",
+                                      "children": [
+                                        {
+                                          "content": "이풀스택",
+                                          "size": "sm",
+                                          "type": "Text",
+                                          "weight": "bold"
+                                        },
+                                        {
+                                          "content": "오늘 오후 2:32",
+                                          "muted": true,
+                                          "size": "xs",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "gap": 2,
+                                      "type": "Row"
+                                    },
+                                    {
+                                      "content": "컴포넌트가 언마운트될 때와 의존성 배열의 값이 변경되어 effect가 다시 실행되기 전에 호출됩니다!",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 1,
+                                  "type": "Col"
+                                }
+                              ],
+                              "gap": 3,
+                              "type": "Row"
+                            },
+                            {
+                              "align": "start",
+                              "children": [
+                                {
+                                  "name": "박주니어",
+                                  "size": "md",
+                                  "type": "Avatar"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "align": "baseline",
+                                      "children": [
+                                        {
+                                          "content": "박주니어",
+                                          "size": "sm",
+                                          "type": "Text",
+                                          "weight": "bold"
+                                        },
+                                        {
+                                          "content": "오늘 오후 2:35",
+                                          "muted": true,
+                                          "size": "xs",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "gap": 2,
+                                      "type": "Row"
+                                    },
+                                    {
+                                      "content": "저도 그거 헷갈렸었는데, 공식 문서에 잘 나와있어요 👍",
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "children": [
+                                            {
+                                              "content": "React 공식 문서 - useEffect",
+                                              "size": "sm",
+                                              "type": "Text",
+                                              "weight": "bold"
+                                            },
+                                            {
+                                              "content": "react.dev",
+                                              "muted": true,
+                                              "size": "xs",
+                                              "type": "Text"
+                                            }
+                                          ],
+                                          "gap": 1,
+                                          "type": "Col"
+                                        }
+                                      ],
+                                      "mt": 2,
+                                      "p": 3,
+                                      "title": null,
+                                      "type": "Card",
+                                      "w": 400
+                                    }
+                                  ],
+                                  "gap": 1,
+                                  "type": "Col"
+                                }
+                              ],
+                              "gap": 3,
+                              "type": "Row"
+                            },
+                            {
+                              "align": "start",
+                              "children": [
+                                {
+                                  "name": "김개발",
+                                  "size": "md",
+                                  "type": "Avatar"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "align": "baseline",
+                                      "children": [
+                                        {
+                                          "content": "김개발",
+                                          "size": "sm",
+                                          "type": "Text",
+                                          "weight": "bold"
+                                        },
+                                        {
+                                          "content": "오늘 오후 2:38",
+                                          "muted": true,
+                                          "size": "xs",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "gap": 2,
+                                      "type": "Row"
+                                    },
+                                    {
+                                      "content": "감사합니다! 이해됐어요 😊",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 1,
+                                  "type": "Col"
+                                }
+                              ],
+                              "gap": 3,
+                              "type": "Row"
+                            },
+                            {
+                              "align": "start",
+                              "children": [
+                                {
+                                  "name": "최시니어",
+                                  "size": "md",
+                                  "type": "Avatar"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "align": "baseline",
+                                      "children": [
+                                        {
+                                          "content": "최시니어",
+                                          "size": "sm",
+                                          "type": "Text",
+                                          "weight": "bold"
+                                        },
+                                        {
+                                          "content": "Admin",
+                                          "size": "xs",
+                                          "type": "Badge",
+                                          "variant": "danger"
+                                        },
+                                        {
+                                          "content": "오늘 오후 3:15",
+                                          "muted": true,
+                                          "size": "xs",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "gap": 2,
+                                      "type": "Row"
+                                    },
+                                    {
+                                      "content": "추가로 설명드리면, StrictMode에서는 개발 환경에서 cleanup이 두 번 호출될 수 있어요. 이건 의도된 동작입니다.",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 1,
+                                  "type": "Col"
+                                }
+                              ],
+                              "gap": 3,
+                              "type": "Row"
+                            }
+                          ],
+                          "gap": 4,
+                          "p": 4,
+                          "type": "Col"
+                        }
+                      ],
+                      "flex": 1,
+                      "p": 0,
+                      "scroll": true,
+                      "type": "Main"
+                    },
+                    {
+                      "border": true,
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "name": "plus-circle",
+                              "type": "Icon"
+                            },
+                            {
+                              "label": null,
+                              "placeholder": "#일반에 메시지 보내기",
+                              "type": "Input",
+                              "w": "full"
+                            },
+                            {
+                              "muted": true,
+                              "name": "gift",
+                              "type": "Icon"
+                            },
+                            {
+                              "muted": true,
+                              "name": "sticker",
+                              "type": "Icon"
+                            },
+                            {
+                              "muted": true,
+                              "name": "smile",
+                              "type": "Icon"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Row"
+                        }
+                      ],
+                      "p": 3,
+                      "type": "Footer"
+                    }
+                  ],
+                  "flex": 1,
+                  "type": "Col"
+                },
+                {
+                  "border": true,
+                  "children": [
+                    {
+                      "content": "온라인 — 12",
+                      "mb": 2,
+                      "muted": true,
+                      "size": "sm",
+                      "type": "Text"
+                    },
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "name": "이풀스택",
+                              "size": "sm",
+                              "type": "Avatar"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "content": "이풀스택",
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 0,
+                              "type": "Col"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "name": "박주니어",
+                              "size": "sm",
+                              "type": "Avatar"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "content": "박주니어",
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 0,
+                              "type": "Col"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "name": "최시니어",
+                              "size": "sm",
+                              "type": "Avatar"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "content": "최시니어",
+                                      "size": "sm",
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "content": "Admin",
+                                      "size": "xs",
+                                      "type": "Badge",
+                                      "variant": "danger"
+                                    }
+                                  ],
+                                  "gap": 1,
+                                  "type": "Row"
+                                }
+                              ],
+                              "gap": 0,
+                              "type": "Col"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "name": "정백엔드",
+                              "size": "sm",
+                              "type": "Avatar"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "content": "정백엔드",
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 0,
+                              "type": "Col"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Row"
+                        }
+                      ],
+                      "gap": 2,
+                      "type": "Col"
+                    },
+                    {
+                      "content": "오프라인 — 45",
+                      "mb": 2,
+                      "mt": 4,
+                      "muted": true,
+                      "size": "sm",
+                      "type": "Text"
+                    },
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "name": "강디자인",
+                              "size": "sm",
+                              "type": "Avatar"
+                            },
+                            {
+                              "content": "강디자인",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "name": "윤기획",
+                              "size": "sm",
+                              "type": "Avatar"
+                            },
+                            {
+                              "content": "윤기획",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Row"
+                        }
+                      ],
+                      "gap": 2,
+                      "type": "Col"
+                    }
+                  ],
+                  "p": 3,
+                  "type": "Col",
+                  "w": 240
+                }
+              ],
+              "flex": 1,
+              "type": "Row"
+            }
+          ],
+          "type": "Col"
+        }
+      ],
+      "height": 800,
+      "title": null,
+      "type": "Page",
+      "width": 1440
+    }
+  ],
+  "type": "Document"
+}

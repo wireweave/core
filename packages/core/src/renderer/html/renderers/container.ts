@@ -4,23 +4,7 @@
 
 import type { CardNode, ModalNode, DrawerNode, AccordionNode } from '../../../ast/types'
 import type { RenderContext } from './types'
-
-/**
- * Build interactive data attributes
- */
-function buildInteractiveAttrs(node: {
-  navigate?: string
-  opens?: string
-  toggles?: string
-  action?: string
-}): Record<string, string | undefined> {
-  return {
-    'data-navigate': node.navigate,
-    'data-opens': node.opens,
-    'data-toggles': node.toggles,
-    'data-action': node.action,
-  }
-}
+import { interactiveAttrs } from '../interactive'
 
 /**
  * Render Card node
@@ -38,8 +22,7 @@ export function renderCard(node: CardNode, ctx: RenderContext): string {
   const styles = ctx.buildCommonStyles(node)
   const styleAttr = styles ? ` style="${styles}"` : ''
 
-  const interactiveAttrs = buildInteractiveAttrs(node)
-  const interactiveAttrStr = ctx.buildAttrsString(interactiveAttrs)
+  const interactiveAttrStr = ctx.buildAttrsString(interactiveAttrs(node))
 
   const title = node.title
     ? `<h3 class="${ctx.prefix}-title">${ctx.escapeHtml(node.title)}</h3>\n`

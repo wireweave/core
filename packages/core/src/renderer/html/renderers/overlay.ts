@@ -4,7 +4,7 @@
 
 import type { TooltipNode, PopoverNode, DropdownNode } from '../../../ast/types'
 import type { RenderContext } from './types'
-import { anchorIntent, nonAnchorIntent } from '../interactive'
+import { anchorIntent, interactiveAttrs } from '../interactive'
 
 /**
  * Render Tooltip node
@@ -55,20 +55,10 @@ export function renderDropdown(node: DropdownNode, ctx: RenderContext): string {
 
   const items = node.items
     .map((item) => {
-      if ('type' in item && item.type === 'divider') {
+      if (item.type === 'Divider') {
         return `<hr class="${ctx.prefix}-divider" />`
       }
-      // TypeScript narrowing: item is DropdownItemNode after the divider check
-      const dropdownItem = item as {
-        label: string
-        href?: string
-        danger?: boolean
-        disabled?: boolean
-        navigate?: string
-        opens?: string
-        toggles?: string
-        action?: string
-      }
+      const dropdownItem = item
       const itemClasses = ctx.buildClassString([
         `${ctx.prefix}-dropdown-item`,
         dropdownItem.danger ? `${ctx.prefix}-dropdown-item-danger` : undefined,
@@ -77,13 +67,15 @@ export function renderDropdown(node: DropdownNode, ctx: RenderContext): string {
 
       const disabledAttr = dropdownItem.disabled ? ' disabled="disabled"' : ''
 
-      // Use <a> if href is provided, otherwise use <button>
+      // An item that links or names a destination is an <a>; one that only acts
+      // is a <button>. `anchorIntent` owns which channel the destination travels
+      // in — the same split nav and breadcrumb items use.
       if (dropdownItem.href || dropdownItem.navigate) {
         const { href, attrs } = anchorIntent(dropdownItem)
         const anchorAttrStr = ctx.buildAttrsString(attrs)
         return `<a class="${itemClasses}" href="${ctx.escapeHtml(href)}"${anchorAttrStr}>${ctx.escapeHtml(dropdownItem.label)}</a>`
       }
-      const interactiveAttrStr = ctx.buildAttrsString(nonAnchorIntent(dropdownItem))
+      const interactiveAttrStr = ctx.buildAttrsString(interactiveAttrs(dropdownItem))
       return `<button class="${itemClasses}"${disabledAttr}${interactiveAttrStr}>${ctx.escapeHtml(dropdownItem.label)}</button>`
     })
     .join('\n')

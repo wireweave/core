@@ -12,9 +12,12 @@ import {
   renderToSvg,
   resolvePageDimensions,
 } from '../src/renderer'
-import type { WireframeDocument } from '../src/ast/types'
+import type { PageNode, WireframeDocument } from '../src/ast/types'
 
 const sampleDoc = (src: string): WireframeDocument => parse(src)
+
+/** The document's pages — `children` also holds reuse definitions. */
+const samplePages = (src: string): PageNode[] => documentPages(parse(src))
 
 describe('grammar: page at(x, y)', () => {
   it('parses at(x, y) into Page.x / Page.y', () => {
@@ -22,23 +25,23 @@ describe('grammar: page at(x, y)', () => {
       page "Login" at(0, 0) viewport="1280x800" { text "hi" }
       page "Dashboard" at(1344, 0) viewport="1280x800" { text "db" }
     `)
-    expect(documentPages(doc)).toHaveLength(2)
-    expect(documentPages(doc)[0].x).toBe(0)
-    expect(documentPages(doc)[0].y).toBe(0)
-    expect(documentPages(doc)[1].x).toBe(1344)
-    expect(documentPages(doc)[1].y).toBe(0)
+    expect(doc.children).toHaveLength(2)
+    expect(doc.children[0].x).toBe(0)
+    expect(doc.children[0].y).toBe(0)
+    expect(doc.children[1].x).toBe(1344)
+    expect(doc.children[1].y).toBe(0)
   })
 
   it('omits x / y when at() is absent (auto-grid candidate)', () => {
     const doc = sampleDoc(`page "P" { text "x" }`)
-    expect(documentPages(doc)[0].x).toBeUndefined()
-    expect(documentPages(doc)[0].y).toBeUndefined()
+    expect(doc.children[0].x).toBeUndefined()
+    expect(doc.children[0].y).toBeUndefined()
   })
 
   it('parses negative coordinates', () => {
     const doc = sampleDoc(`page "P" at(-200, -100) { text "x" }`)
-    expect(documentPages(doc)[0].x).toBe(-200)
-    expect(documentPages(doc)[0].y).toBe(-100)
+    expect(doc.children[0].x).toBe(-200)
+    expect(doc.children[0].y).toBe(-100)
   })
 
   it('accepts multiple top-level pages separated by whitespace', () => {
@@ -56,13 +59,11 @@ describe('grammar: page at(x, y)', () => {
 
 describe('renderPage(): pure single-page primitive', () => {
   it('produces identical HTML regardless of sibling pages in the source', () => {
-    const onlyPage = documentPages(sampleDoc(`page "Solo" viewport="1280x800" { text "x" }`))[0]
-    const sibling = documentPages(
-      sampleDoc(`
+    const onlyPage = samplePages(`page "Solo" viewport="1280x800" { text "x" }`)[0]
+    const sibling = samplePages(`
       page "Other" viewport="1280x800" { text "y" }
       page "Solo" viewport="1280x800" { text "x" }
-    `),
-    )[1]
+    `)[1]
 
     const a = renderPage(onlyPage)
     const b = renderPage(sibling)
@@ -73,14 +74,14 @@ describe('renderPage(): pure single-page primitive', () => {
   })
 
   it('returns resolved pixel dimensions from viewport string', () => {
-    const page = documentPages(sampleDoc(`page "P" viewport="1280x800" { }`))[0]
+    const page = samplePages(`page "P" viewport="1280x800" { }`)[0]
     const r = renderPage(page)
     expect(r.width).toBe(1280)
     expect(r.height).toBe(800)
   })
 
   it('prefers explicit numeric w/h over viewport', () => {
-    const page = documentPages(sampleDoc(`page "P" w=900 h=600 viewport="1280x800" { }`))[0]
+    const page = samplePages(`page "P" w=900 h=600 viewport="1280x800" { }`)[0]
     const r = renderPage(page)
     expect(r.width).toBe(900)
     expect(r.height).toBe(600)
@@ -263,7 +264,7 @@ describe('renderToSvg(): multi-page sizing', () => {
 
 describe('resolvePageDimensions()', () => {
   it('falls back to viewport when w/h not numeric', () => {
-    const page = documentPages(sampleDoc(`page "P" viewport="1440x900" { }`))[0]
+    const page = samplePages(`page "P" viewport="1440x900" { }`)[0]
     expect(resolvePageDimensions(page)).toEqual({ width: 1440, height: 900 })
   })
 })

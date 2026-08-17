@@ -6,6 +6,7 @@ import type { ButtonNode } from '../../../ast/types'
 import type { RenderContext } from './types'
 import { getIconData, renderIconSvg, renderUnknownIconSvg } from '../../../icons/lucide-icons'
 import { resolveSizeValue } from '../components'
+import { interactiveAttrs } from '../interactive'
 
 /**
  * Render Button node
@@ -47,11 +48,7 @@ export function renderButton(node: ButtonNode, ctx: RenderContext): string {
     disabled: node.disabled,
     'aria-label': accessibleName,
     title: node.title,
-    // Interactive attributes
-    'data-navigate': node.navigate,
-    'data-opens': node.opens,
-    'data-toggles': node.toggles,
-    'data-action': node.action,
+    ...interactiveAttrs(node),
   }
 
   let icon = ''

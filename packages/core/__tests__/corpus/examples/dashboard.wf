@@ -1,0 +1,45 @@
+// Dashboard wireframe example
+
+page "Dashboard" width=1200 height=800 {
+  header p=4 {
+    row justify=between align=center {
+      title "Admin Dashboard" level=3
+      avatar "U"
+    }
+  }
+
+  main p=6 {
+    title "Overview" level=2 mb=6
+
+    row gap=4 mb=6 {
+      card p=4 gap=2 {
+        text "Total Users" muted
+        row justify=between align=center {
+          title "1,234" level=2
+          badge "↑ 12%" variant=success
+        }
+      }
+      card p=4 gap=2 {
+        text "Active Sessions" muted
+        row justify=between align=center {
+          title "567" level=2
+          badge "↑ 5%" variant=success
+        }
+      }
+      card p=4 gap=2 {
+        text "Revenue" muted
+        row justify=between align=center {
+          title "$12.3K" level=2
+          badge "↓ 3%" variant=danger
+        }
+      }
+    }
+
+    card p=4 gap=2 {
+      title "Recent Activity" level=4 mb=4
+      text "John - Login (5 min ago)"
+      text "Jane - Purchase (12 min ago)"
+      text "Bob - Sign up (1 hour ago)"
+    }
+  }
+}

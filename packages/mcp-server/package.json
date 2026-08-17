@@ -16,6 +16,7 @@
   },
   "scripts": {
     "build": "tsup",
+    "postbuild": "node ../../scripts/dist-freshness-gate.mjs --write .",
     "dev": "tsup --watch",
     "start": "node dist/index.js",
     "start:http": "node dist/index.js --http",
@@ -26,7 +27,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "knip": "knip",
-    "publint": "publint"
+    "publint": "publint --strict"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",
@@ -54,6 +55,9 @@
   "files": [
     "dist"
   ],
+  "engines": {
+    "node": ">=22.13.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wireweave/wireweave.git",

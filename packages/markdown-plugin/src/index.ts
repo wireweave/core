@@ -87,6 +87,8 @@ export function renderWireframe(code: string, options: WireframePluginOptions = 
 
       case 'html-preview': {
         const { html, css } = render(doc, { theme: opts.theme })
+        // Document children include `layout` / `component` definitions; the
+        // preview viewport comes from the first *page*.
         const firstPage = documentPages(doc)[0]
         const viewport = resolveViewport(firstPage?.viewport, firstPage?.device)
 

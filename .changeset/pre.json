@@ -10,24 +10,16 @@
     "@wireweave/markdown-plugin": "1.2.11",
     "@wireweave/mcp-server": "1.8.1",
     "@wireweave/sdk": "0.1.0",
-    "@wireweave/ssot-core": "0.0.0",
-    "@wireweave/ssot-tools": "0.0.0",
     "@wireweave/ux-rules": "1.4.0",
     "wireweave-vscode": "2.0.0"
   },
   "changesets": [
     "agent-prompts-interaction-wiring",
     "core-a11y-icons",
-    "core-anchor-navigation",
-    "core-app-runtime",
     "core-canvas-fixes",
     "core-dom-anchors",
     "core-extract-apis",
     "core-wf-printer",
-    "layout-site-beta",
-    "markdown-plugin-layout-compat",
-    "ssot-core-initial-release",
-    "ssot-tools-initial-release",
     "ux-rules-content-authoring"
   ]
 }

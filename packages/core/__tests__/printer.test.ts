@@ -16,24 +16,11 @@ import * as fs from 'node:fs'
 import * as path from 'node:path'
 import { parse, printWireframe, formatWireframeCode } from '../src'
 import type { WireframeDocument } from '../src'
+import { stripLoc, walkFiles } from './helpers/ast'
 
 // ---------------------------------------------------------------------------
 // helpers
 // ---------------------------------------------------------------------------
-
-/** Deep-copy with every `loc` removed (source locations are not printed). */
-function stripLoc(value: unknown): unknown {
-  if (Array.isArray(value)) return value.map(stripLoc)
-  if (value && typeof value === 'object') {
-    const out: Record<string, unknown> = {}
-    for (const [key, entry] of Object.entries(value)) {
-      if (key === 'loc') continue
-      out[key] = stripLoc(entry)
-    }
-    return out
-  }
-  return value
-}
 
 /** Assert laws (a) + (b) for one DSL source. Returns the canonical text. */
 function expectRoundTrip(source: string, label = 'inline fixture'): string {
@@ -307,7 +294,9 @@ describe('printer — unprintable structures throw', () => {
     const doc = docWith({
       type: 'Nav',
       items: [],
-      children: [{ type: 'group', label: 'a', items: [{ type: 'group', label: 'b', items: [] }] }],
+      children: [
+        { type: 'NavGroup', label: 'a', items: [{ type: 'NavGroup', label: 'b', items: [] }] },
+      ],
     })
     expect(() => printWireframe(doc)).toThrow(/group inside a group/)
   })
@@ -320,18 +309,6 @@ describe('printer — unprintable structures throw', () => {
 interface Fixture {
   source: string
   text: string
-}
-
-function walkFiles(dir: string, extension: string, out: string[]): void {
-  if (!fs.existsSync(dir)) return
-  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-    if (entry.name === 'node_modules' || entry.name === 'dist' || entry.name.startsWith('.')) {
-      continue
-    }
-    const full = path.join(dir, entry.name)
-    if (entry.isDirectory()) walkFiles(full, extension, out)
-    else if (entry.name.endsWith(extension)) out.push(full)
-  }
 }
 
 /** Backtick template literals (no interpolation) from a TS source file. */

@@ -40,8 +40,8 @@ export * from './analyze'
 // Extract (deterministic SSOT-shaped derivations)
 export * from './extract'
 
-// App manifest, linker, and deterministic compiler
-export * from './app'
-
-// Normalized interaction/state model shared by extraction and rendering
+// Typed state/event normalization shared by graph extraction and site runtime
 export * from './interaction'
+
+// Application manifest, module linker, and resolved app document
+export * from './app'

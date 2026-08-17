@@ -1,0 +1,700 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "border": true,
+                  "children": [
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "name": "flame",
+                              "type": "Icon"
+                            },
+                            {
+                              "align": "baseline",
+                              "children": [
+                                {
+                                  "bold": true,
+                                  "content": "E-Torch",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "Admin",
+                                  "muted": true,
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 1,
+                              "type": "Row"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Row"
+                        },
+                        {
+                          "content": "",
+                          "ghost": true,
+                          "icon": "chevrons-left",
+                          "type": "Button"
+                        }
+                      ],
+                      "justify": "between",
+                      "px": 4,
+                      "type": "Row"
+                    }
+                  ],
+                  "h": {
+                    "unit": "px",
+                    "value": 57
+                  },
+                  "p": 0,
+                  "type": "Header"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "active": 0,
+                          "children": [],
+                          "items": [
+                            "대시보드"
+                          ],
+                          "type": "Nav",
+                          "vertical": true
+                        }
+                      ],
+                      "title": "개요",
+                      "type": "Section"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [],
+                          "items": [
+                            "지표 관리",
+                            "사용자 관리",
+                            "데이터 소스",
+                            "플랜 설정",
+                            "템플릿 관리",
+                            "카테고리 관리",
+                            "수동 데이터"
+                          ],
+                          "type": "Nav",
+                          "vertical": true
+                        }
+                      ],
+                      "title": "시스템 관리",
+                      "type": "Section"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [],
+                          "items": [
+                            "신고 관리",
+                            "위반자 관리"
+                          ],
+                          "type": "Nav",
+                          "vertical": true
+                        }
+                      ],
+                      "title": "콘텐츠 검열",
+                      "type": "Section"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [],
+                          "items": [
+                            "활동 로그"
+                          ],
+                          "type": "Nav",
+                          "vertical": true
+                        }
+                      ],
+                      "title": "시스템",
+                      "type": "Section"
+                    }
+                  ],
+                  "p": 4,
+                  "type": "Col"
+                }
+              ],
+              "p": 0,
+              "type": "Sidebar",
+              "w": {
+                "unit": "px",
+                "value": 255
+              }
+            },
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "content": "",
+                          "ghost": true,
+                          "icon": "moon",
+                          "type": "Button"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "align": "end",
+                              "children": [
+                                {
+                                  "content": "홍길동",
+                                  "size": "sm",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "관리자",
+                                  "muted": true,
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "type": "Col"
+                            },
+                            {
+                              "name": "User",
+                              "type": "Avatar"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Row"
+                        },
+                        {
+                          "content": "로그아웃",
+                          "icon": "log-out",
+                          "outline": true,
+                          "type": "Button"
+                        }
+                      ],
+                      "gap": 4,
+                      "justify": "end",
+                      "px": 4,
+                      "type": "Row"
+                    }
+                  ],
+                  "h": {
+                    "unit": "px",
+                    "value": 57
+                  },
+                  "p": 0,
+                  "type": "Header"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "content": "관리자 대시보드",
+                          "level": 3,
+                          "mb": 0,
+                          "type": "Title"
+                        },
+                        {
+                          "content": "E-Torch 시스템 현황을 확인하세요",
+                          "muted": true,
+                          "type": "Text"
+                        }
+                      ],
+                      "gap": 0,
+                      "type": "Col"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "content": "전체 사용자",
+                                      "muted": true,
+                                      "size": "sm",
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "content": "2",
+                                      "level": 2,
+                                      "type": "Title"
+                                    }
+                                  ],
+                                  "gap": 1,
+                                  "type": "Col"
+                                },
+                                {
+                                  "content": "",
+                                  "icon": "users",
+                                  "size": "lg",
+                                  "type": "Badge"
+                                }
+                              ],
+                              "justify": "between",
+                              "type": "Row"
+                            }
+                          ],
+                          "flex": 1,
+                          "p": 4,
+                          "title": null,
+                          "type": "Card"
+                        },
+                        {
+                          "children": [
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "content": "등록된 지표",
+                                      "muted": true,
+                                      "size": "sm",
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "content": "26",
+                                      "level": 2,
+                                      "type": "Title"
+                                    }
+                                  ],
+                                  "gap": 1,
+                                  "type": "Col"
+                                },
+                                {
+                                  "content": "",
+                                  "icon": "chart-bar",
+                                  "size": "lg",
+                                  "type": "Badge"
+                                }
+                              ],
+                              "justify": "between",
+                              "type": "Row"
+                            }
+                          ],
+                          "flex": 1,
+                          "p": 4,
+                          "title": null,
+                          "type": "Card"
+                        },
+                        {
+                          "children": [
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "content": "대기 중인 신고",
+                                      "muted": true,
+                                      "size": "sm",
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "content": "0",
+                                      "level": 2,
+                                      "type": "Title"
+                                    }
+                                  ],
+                                  "gap": 1,
+                                  "type": "Col"
+                                },
+                                {
+                                  "content": "",
+                                  "icon": "triangle-alert",
+                                  "size": "lg",
+                                  "type": "Badge"
+                                }
+                              ],
+                              "justify": "between",
+                              "type": "Row"
+                            }
+                          ],
+                          "flex": 1,
+                          "p": 4,
+                          "title": null,
+                          "type": "Card"
+                        },
+                        {
+                          "children": [
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "content": "데이터 소스",
+                                      "muted": true,
+                                      "size": "sm",
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "content": "7",
+                                      "level": 2,
+                                      "type": "Title"
+                                    }
+                                  ],
+                                  "gap": 1,
+                                  "type": "Col"
+                                },
+                                {
+                                  "content": "",
+                                  "icon": "database",
+                                  "size": "lg",
+                                  "type": "Badge"
+                                }
+                              ],
+                              "justify": "between",
+                              "type": "Row"
+                            }
+                          ],
+                          "flex": 1,
+                          "p": 4,
+                          "title": null,
+                          "type": "Card"
+                        }
+                      ],
+                      "gap": 6,
+                      "type": "Row"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "content": "새 지표 등록",
+                                  "ghost": true,
+                                  "justify": "start",
+                                  "type": "Button",
+                                  "w": "full"
+                                },
+                                {
+                                  "content": "신고 검토",
+                                  "ghost": true,
+                                  "justify": "start",
+                                  "type": "Button",
+                                  "w": "full"
+                                },
+                                {
+                                  "content": "사용자 관리",
+                                  "ghost": true,
+                                  "justify": "start",
+                                  "type": "Button",
+                                  "w": "full"
+                                }
+                              ],
+                              "gap": 2,
+                              "type": "Col"
+                            }
+                          ],
+                          "flex": 1,
+                          "p": 4,
+                          "title": "빠른 작업",
+                          "type": "Card"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "align": "start",
+                                  "children": [
+                                    {
+                                      "name": "plus",
+                                      "size": "sm",
+                                      "type": "Icon"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "children": [
+                                            {
+                                              "content": "지표 등록",
+                                              "size": "sm",
+                                              "type": "Text"
+                                            },
+                                            {
+                                              "content": "4일 전",
+                                              "muted": true,
+                                              "size": "sm",
+                                              "type": "Text"
+                                            }
+                                          ],
+                                          "justify": "between",
+                                          "type": "Row"
+                                        },
+                                        {
+                                          "content": "홍길동(관리자) · indicator",
+                                          "muted": true,
+                                          "size": "sm",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "flex": 1,
+                                      "gap": 0,
+                                      "type": "Col"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Row"
+                                },
+                                {
+                                  "align": "start",
+                                  "children": [
+                                    {
+                                      "name": "plus",
+                                      "size": "sm",
+                                      "type": "Icon"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "children": [
+                                            {
+                                              "content": "지표 등록",
+                                              "size": "sm",
+                                              "type": "Text"
+                                            },
+                                            {
+                                              "content": "4일 전",
+                                              "muted": true,
+                                              "size": "sm",
+                                              "type": "Text"
+                                            }
+                                          ],
+                                          "justify": "between",
+                                          "type": "Row"
+                                        },
+                                        {
+                                          "content": "홍길동(관리자) · indicator",
+                                          "muted": true,
+                                          "size": "sm",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "flex": 1,
+                                      "gap": 0,
+                                      "type": "Col"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Row"
+                                }
+                              ],
+                              "gap": 3,
+                              "type": "Col"
+                            }
+                          ],
+                          "flex": 1,
+                          "p": 4,
+                          "title": "최근 활동",
+                          "type": "Card"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "bold": true,
+                                      "content": "시스템 상태",
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "content": "새로고침",
+                                      "ghost": true,
+                                      "icon": "refresh-cw",
+                                      "size": "sm",
+                                      "type": "Button"
+                                    }
+                                  ],
+                                  "justify": "between",
+                                  "type": "Row"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "children": [
+                                        {
+                                          "align": "center",
+                                          "children": [
+                                            {
+                                              "content": "",
+                                              "size": "sm",
+                                              "type": "Badge",
+                                              "variant": "success"
+                                            },
+                                            {
+                                              "content": "KOSIS",
+                                              "type": "Text"
+                                            }
+                                          ],
+                                          "gap": 2,
+                                          "type": "Row"
+                                        },
+                                        {
+                                          "children": [
+                                            {
+                                              "content": "정상",
+                                              "size": "sm",
+                                              "type": "Badge",
+                                              "variant": "success"
+                                            },
+                                            {
+                                              "content": "300ms",
+                                              "muted": true,
+                                              "size": "sm",
+                                              "type": "Text"
+                                            }
+                                          ],
+                                          "gap": 2,
+                                          "type": "Row"
+                                        }
+                                      ],
+                                      "justify": "between",
+                                      "type": "Row"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "align": "center",
+                                          "children": [
+                                            {
+                                              "content": "",
+                                              "size": "sm",
+                                              "type": "Badge",
+                                              "variant": "success"
+                                            },
+                                            {
+                                              "content": "ECOS",
+                                              "type": "Text"
+                                            }
+                                          ],
+                                          "gap": 2,
+                                          "type": "Row"
+                                        },
+                                        {
+                                          "children": [
+                                            {
+                                              "content": "정상",
+                                              "size": "sm",
+                                              "type": "Badge",
+                                              "variant": "success"
+                                            },
+                                            {
+                                              "content": "89ms",
+                                              "muted": true,
+                                              "size": "sm",
+                                              "type": "Text"
+                                            }
+                                          ],
+                                          "gap": 2,
+                                          "type": "Row"
+                                        }
+                                      ],
+                                      "justify": "between",
+                                      "type": "Row"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "align": "center",
+                                          "children": [
+                                            {
+                                              "content": "",
+                                              "size": "sm",
+                                              "type": "Badge",
+                                              "variant": "warning"
+                                            },
+                                            {
+                                              "content": "OECD",
+                                              "type": "Text"
+                                            }
+                                          ],
+                                          "gap": 2,
+                                          "type": "Row"
+                                        },
+                                        {
+                                          "children": [
+                                            {
+                                              "content": "지연",
+                                              "size": "sm",
+                                              "type": "Badge",
+                                              "variant": "warning"
+                                            },
+                                            {
+                                              "content": "1.1s",
+                                              "muted": true,
+                                              "size": "sm",
+                                              "type": "Text"
+                                            }
+                                          ],
+                                          "gap": 2,
+                                          "type": "Row"
+                                        }
+                                      ],
+                                      "justify": "between",
+                                      "type": "Row"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Col"
+                                }
+                              ],
+                              "gap": 4,
+                              "type": "Col"
+                            }
+                          ],
+                          "flex": 1,
+                          "p": 4,
+                          "title": null,
+                          "type": "Card"
+                        }
+                      ],
+                      "gap": 6,
+                      "type": "Row"
+                    }
+                  ],
+                  "gap": 6,
+                  "p": 6,
+                  "type": "Main"
+                }
+              ],
+              "flex": 1,
+              "type": "Col"
+            }
+          ],
+          "type": "Row"
+        }
+      ],
+      "height": 700,
+      "title": null,
+      "type": "Page",
+      "width": 1200
+    }
+  ],
+  "type": "Document"
+}

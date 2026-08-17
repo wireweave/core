@@ -1,0 +1,44 @@
+page "Book List" device="mobile" width=375 height=812 {
+  header h=56 border p=4 {
+    row justify=between align=center {
+      title "Bookmark" level=4
+      icon "settings" size=md
+    }
+  }
+  main p=4 scroll gap=3 {
+    card p=3 {
+      row gap=3 align=center {
+        placeholder "Cover" w=60 h=80
+        col gap=1 flex=1 {
+          text "The Great Gatsby" weight=semibold
+          text "F. Scott Fitzgerald" size=sm muted
+          progress value=60 size=sm
+          text "Last read: Today" size=xs muted
+        }
+      }
+    }
+    card p=3 {
+      row gap=3 align=center {
+        placeholder "Cover" w=60 h=80
+        col gap=1 flex=1 {
+          text "To Kill a Mockingbird" weight=semibold
+          text "Harper Lee" size=sm muted
+          progress value=30 size=sm
+          text "Last read: Yesterday" size=xs muted
+        }
+      }
+    }
+    card p=3 {
+      row gap=3 align=center {
+        placeholder "Cover" w=60 h=80
+        col gap=1 flex=1 {
+          text "1984" weight=semibold
+          text "George Orwell" size=sm muted
+          progress value=80 size=sm
+          text "Last read: Oct 3" size=xs muted
+        }
+      }
+    }
+  }
+  button "+" primary size=lg w=56 h=56 position="absolute" bottom=24 right=24 rounded=full
+}

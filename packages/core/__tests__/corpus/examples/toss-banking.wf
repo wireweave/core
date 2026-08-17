@@ -1,0 +1,155 @@
+page device=mobile width=375 height=750 {
+  header h=56 p=0 {
+    row justify=between align=center px=4 {
+      text "토스" bold size=lg
+      row gap=3 {
+        icon "bell"
+        icon "settings"
+      }
+    }
+  }
+
+  main p=0 scroll {
+    col gap=4 p=4 {
+      card p=4 {
+        col gap=4 {
+          row justify=between align=center {
+            text "토스뱅크 통장" weight=semibold
+            icon "chevron-right" size=sm muted
+          }
+          col gap=1 {
+            text "1,234,567원" bold size=xl
+            text "하나은행 123-456-78901" size=sm muted
+          }
+          row gap=2 {
+            button "송금" primary flex=1
+            button "내 계좌" outline flex=1
+          }
+        }
+      }
+
+      card p=4 {
+        col gap=3 {
+          row justify=between align=center {
+            text "토스증권" weight=semibold
+            icon "chevron-right" size=sm muted
+          }
+          row justify=between align=center {
+            col gap=1 {
+              text "내 주식" size=sm muted
+              text "2,456,780원" bold size=lg
+            }
+            col gap=1 align=end {
+              text "오늘" size=sm muted
+              text "+12,340원 (+0.5%)" size=sm
+            }
+          }
+        }
+      }
+
+      col gap=3 {
+        text "자산" weight=bold
+        card p=3 {
+          row justify=between align=center {
+            row gap=3 align=center {
+              badge "" icon="piggy-bank" variant=info size=lg
+              col gap=0 {
+                text "저축" size=sm
+                text "500,000원" weight=semibold
+              }
+            }
+            icon "chevron-right" size=sm muted
+          }
+        }
+        card p=3 {
+          row justify=between align=center {
+            row gap=3 align=center {
+              badge "" icon="credit-card" variant=warning size=lg
+              col gap=0 {
+                text "카드" size=sm
+                text "이번 달 85,400원" weight=semibold
+              }
+            }
+            icon "chevron-right" size=sm muted
+          }
+        }
+        card p=3 {
+          row justify=between align=center {
+            row gap=3 align=center {
+              badge "" icon="coins" variant=success size=lg
+              col gap=0 {
+                text "포인트" size=sm
+                text "3,200P" weight=semibold
+              }
+            }
+            icon "chevron-right" size=sm muted
+          }
+        }
+      }
+
+      col gap=3 {
+        row justify=between align=center {
+          text "최근 거래" weight=bold
+          text "더보기" size=sm muted
+        }
+        col gap=2 {
+          row justify=between align=center py=2 border {
+            row gap=3 align=center {
+              avatar "스벅" size=sm
+              col gap=0 {
+                text "스타벅스" size=sm weight=semibold
+                text "오늘 09:30" size=xs muted
+              }
+            }
+            text "-5,500원" weight=semibold
+          }
+          row justify=between align=center py=2 border {
+            row gap=3 align=center {
+              avatar "급여" size=sm
+              col gap=0 {
+                text "급여" size=sm weight=semibold
+                text "어제" size=xs muted
+              }
+            }
+            text "+3,500,000원" weight=semibold
+          }
+          row justify=between align=center py=2 border {
+            row gap=3 align=center {
+              avatar "배민" size=sm
+              col gap=0 {
+                text "배달의민족" size=sm weight=semibold
+                text "1월 7일" size=xs muted
+              }
+            }
+            text "-24,500원" weight=semibold
+          }
+        }
+      }
+    }
+  }
+
+  footer border p=2 {
+    row justify=around {
+      col align=center gap=1 {
+        icon "home"
+        text "홈" size=xs
+      }
+      col align=center gap=1 {
+        icon "bar-chart-2"
+        text "혜택" size=xs muted
+      }
+      col align=center gap=1 {
+        icon "send"
+        text "송금" size=xs muted
+      }
+      col align=center gap=1 {
+        icon "credit-card"
+        text "결제" size=xs muted
+      }
+      col align=center gap=1 {
+        icon "menu"
+        text "전체" size=xs muted
+      }
+    }
+  }
+}

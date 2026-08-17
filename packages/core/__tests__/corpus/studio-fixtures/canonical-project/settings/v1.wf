@@ -1,0 +1,3 @@
+page "Settings" {
+  button "Save" primary
+}

@@ -114,6 +114,12 @@ img.${prefix}-image {
   border: 1px solid var(--${prefix}-border);
   border-radius: var(--${prefix}-radius);
   background: var(--${prefix}-bg);
+  /* A badge is a fixed-size marker. As a flex item it would otherwise stretch
+     to the row height and have its width squeezed below the text, breaking a
+     short label across lines. */
+  flex-shrink: 0;
+  align-self: center;
+  white-space: nowrap;
 }
 
 .${prefix}-badge-pill {

@@ -1,0 +1,220 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "aria": "뒤로 가기",
+                      "content": "",
+                      "ghost": true,
+                      "icon": "arrow-left",
+                      "navigate": "내 예약",
+                      "size": "sm",
+                      "type": "Button"
+                    },
+                    {
+                      "content": "내 예약",
+                      "level": 1,
+                      "size": "md",
+                      "type": "Title"
+                    }
+                  ],
+                  "gap": 2,
+                  "type": "Row"
+                },
+                {
+                  "content": "유효",
+                  "pill": true,
+                  "type": "Badge",
+                  "variant": "success"
+                }
+              ],
+              "justify": "between",
+              "type": "Row"
+            }
+          ],
+          "h": 80,
+          "p": 4,
+          "type": "Header"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "A규격 완충 1개 선점됨",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "23분 남음",
+                              "pill": true,
+                              "type": "Badge",
+                              "variant": "warning"
+                            }
+                          ],
+                          "justify": "between",
+                          "type": "Row"
+                        },
+                        {
+                          "my": 1,
+                          "type": "Divider"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "muted": true,
+                              "name": "map-pin",
+                              "size": "sm",
+                              "type": "Icon"
+                            },
+                            {
+                              "content": "서울 강남구 테헤란로 152",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "muted": true,
+                              "name": "battery-charging",
+                              "size": "sm",
+                              "type": "Icon"
+                            },
+                            {
+                              "content": "예약번호 R-20260726-0412",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Row"
+                        }
+                      ],
+                      "gap": 2,
+                      "type": "Col"
+                    }
+                  ],
+                  "navigate": "교환소 상세",
+                  "p": 4,
+                  "shadow": "sm",
+                  "title": "강남 교환소",
+                  "type": "Card"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "content": "강남 교환소",
+                                  "type": "Text",
+                                  "weight": "semibold"
+                                },
+                                {
+                                  "content": "23분 남음",
+                                  "muted": true,
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "justify": "between",
+                              "type": "Row"
+                            },
+                            {
+                              "content": "취소하면 잡아둔 배터리가 다른 라이더에게 갈 수 있습니다. 취소는 되돌릴 수 없습니다.",
+                              "size": "sm",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Col"
+                        },
+                        {
+                          "content": "이번 달 취소 2회째입니다. 노쇼 정책은 확정되지 않았습니다.",
+                          "icon": "info",
+                          "type": "Alert",
+                          "variant": "info"
+                        },
+                        {
+                          "children": [
+                            {
+                              "content": "그대로 두기",
+                              "navigate": "내 예약",
+                              "primary": true,
+                              "type": "Button",
+                              "w": "full"
+                            },
+                            {
+                              "action": "cancel-reservation",
+                              "content": "예약 취소하기",
+                              "outline": true,
+                              "type": "Button",
+                              "w": "full"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Col"
+                        }
+                      ],
+                      "gap": 4,
+                      "type": "Col"
+                    }
+                  ],
+                  "p": 4,
+                  "shadow": "lg",
+                  "title": "이 예약을 취소할까요",
+                  "type": "Card"
+                },
+                {
+                  "align": "center",
+                  "content": "대화상자 밖을 누르거나 뒤로 가면 예약은 그대로 유지됩니다.",
+                  "muted": true,
+                  "size": "xs",
+                  "type": "Text"
+                }
+              ],
+              "gap": 4,
+              "type": "Col"
+            }
+          ],
+          "p": 4,
+          "scroll": true,
+          "type": "Main"
+        }
+      ],
+      "device": "mobile",
+      "title": "예약 취소",
+      "type": "Page",
+      "viewport": "375x812"
+    }
+  ],
+  "type": "Document"
+}

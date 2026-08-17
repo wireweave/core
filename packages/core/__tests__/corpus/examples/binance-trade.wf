@@ -1,0 +1,497 @@
+page width=1280 height=800 {
+  header h=48 p=0 {
+    row justify=between align=center px=4 {
+      row gap=5 align=center {
+        text "BINANCE" bold size=lg
+        nav {
+          item "Buy Crypto"
+          item "Markets"
+          item "Trade" active
+          item "Futures"
+          item "Earn"
+          item "Square"
+          item "More"
+        }
+      }
+      row gap=3 align=center {
+        icon "search"
+        button "Log In" ghost size=sm
+        button "Sign Up" primary size=sm
+        icon "sun" size=sm muted
+      }
+    }
+  }
+
+  row h=24 px=4 align=center border {
+    text "State of the Blockchain 2025: Binance's Year-in-Review..." size=xs muted
+  }
+
+  row h=50 px=4 gap=6 align=center border {
+    row gap=3 align=center {
+      icon "bitcoin" size=lg
+      col gap=0 {
+        row gap=1 align=center {
+          text "BTC/USDT" weight=bold
+          icon "chevron-down" size=xs
+        }
+        text "$91,205.94" size=xs muted
+      }
+    }
+    row gap=6 {
+      col gap=0 {
+        text "91,205.94" bold size=lg
+      }
+    }
+    row gap=4 {
+      col gap=0 align=end {
+        text "24h Chg" size=xs muted
+        text "-118.34 -0.13%" size=xs
+      }
+      col gap=0 align=end {
+        text "24h High" size=xs muted
+        text "91,687.99" size=xs
+      }
+      col gap=0 align=end {
+        text "24h Low" size=xs muted
+        text "89,311.00" size=xs
+      }
+      col gap=0 align=end {
+        text "24h Vol(BTC)" size=xs muted
+        text "15,976.55" size=xs
+      }
+      col gap=0 align=end {
+        text "24h Vol(USDT)" size=xs muted
+        text "1,446,336,140" size=xs
+      }
+    }
+    row gap=2 {
+      badge "POW" size=xs
+      badge "Payments" size=xs
+    }
+  }
+
+  row flex=1 {
+    col w=280 border p=0 {
+      row h=32 px=2 justify=between align=center border {
+        text "Order Book" size=sm weight=semibold
+        row gap=1 {
+          icon "layout-grid" size=xs muted
+          icon "align-justify" size=xs muted
+        }
+      }
+      row h=24 px=2 justify=between align=center border {
+        row gap=1 {
+          icon "bar-chart-2" size=xs muted
+          icon "bar-chart" size=xs muted
+        }
+        row gap=1 align=center {
+          text "0.01" size=xs
+          icon "chevron-down" size=xs
+        }
+      }
+      row h=20 px=2 justify=between align=center {
+        text "Price (USDT)" size=xs muted
+        text "Amount (BTC)" size=xs muted
+        text "Total" size=xs muted
+      }
+      col flex=1 scroll {
+        row px=2 py=0 justify=between {
+          text "91,212.33" size=xs
+          text "0.00300" size=xs muted
+          text "273.63" size=xs muted
+        }
+        row px=2 py=0 justify=between {
+          text "91,211.49" size=xs
+          text "0.00012" size=xs muted
+          text "10.94" size=xs muted
+        }
+        row px=2 py=0 justify=between {
+          text "91,210.70" size=xs
+          text "0.00250" size=xs muted
+          text "228.02" size=xs muted
+        }
+        row px=2 py=0 justify=between {
+          text "91,209.44" size=xs
+          text "0.00006" size=xs muted
+          text "5.47" size=xs muted
+        }
+        row px=2 py=0 justify=between {
+          text "91,208.50" size=xs
+          text "0.02330" size=xs muted
+          text "2.12K" size=xs muted
+        }
+        row px=2 py=0 justify=between {
+          text "91,207.95" size=xs
+          text "0.05422" size=xs muted
+          text "4.94K" size=xs muted
+        }
+        row px=2 py=0 justify=between {
+          text "91,206.44" size=xs
+          text "0.00155" size=xs muted
+          text "141.36" size=xs muted
+        }
+        row px=2 py=0 justify=between {
+          text "91,205.97" size=xs
+          text "0.00027" size=xs muted
+          text "24.62" size=xs muted
+        }
+      }
+      row h=36 px=2 justify=center align=center border {
+        text "91,205.94" bold
+        icon "arrow-up" size=sm
+      }
+      col flex=1 scroll {
+        row px=2 py=0 justify=between {
+          text "91,205.93" size=xs
+          text "3.56105" size=xs muted
+          text "324.78K" size=xs muted
+        }
+        row px=2 py=0 justify=between {
+          text "91,205.92" size=xs
+          text "0.00060" size=xs muted
+          text "54.72" size=xs muted
+        }
+        row px=2 py=0 justify=between {
+          text "91,205.89" size=xs
+          text "0.00012" size=xs muted
+          text "10.94" size=xs muted
+        }
+        row px=2 py=0 justify=between {
+          text "91,205.88" size=xs
+          text "0.05359" size=xs muted
+          text "4.88K" size=xs muted
+        }
+        row px=2 py=0 justify=between {
+          text "91,205.59" size=xs
+          text "0.00012" size=xs muted
+          text "10.94" size=xs muted
+        }
+        row px=2 py=0 justify=between {
+          text "91,205.58" size=xs
+          text "0.13460" size=xs muted
+          text "12.27K" size=xs muted
+        }
+        row px=2 py=0 justify=between {
+          text "91,204.87" size=xs
+          text "0.00006" size=xs muted
+          text "5.47" size=xs muted
+        }
+        row px=2 py=0 justify=between {
+          text "91,204.56" size=xs
+          text "0.36226" size=xs muted
+          text "33.03K" size=xs muted
+        }
+      }
+      row h=20 px=2 align=center border {
+        row flex=1 h=8 {
+          col w=70% h=full {
+            text "" size=xs
+          }
+          col flex=1 h=full {
+            text "" size=xs
+          }
+        }
+      }
+    }
+
+    col flex=1 border {
+      row h=32 px=3 justify=between align=center border {
+        row gap=4 {
+          text "Chart" size=sm weight=semibold
+          text "Info" size=sm muted
+          text "Trading Data" size=sm muted
+          text "Square" size=sm muted
+        }
+        row gap=2 {
+          icon "sparkles" size=sm muted
+          icon "settings" size=sm muted
+        }
+      }
+      row h=28 px=3 gap=2 align=center border {
+        text "Time" size=xs muted
+        text "1s" size=xs muted
+        text "15m" size=xs muted
+        text "1H" size=xs muted
+        text "4H" size=xs muted
+        text "1D" size=xs
+        text "1W" size=xs muted
+        divider vertical h=16
+        text "Original" size=xs
+        text "Trading View" size=xs muted
+        text "Depth" size=xs muted
+      }
+
+      placeholder "캔들스틱 차트" flex=1 w=full
+
+      placeholder "볼륨 차트" h=60 w=full
+
+      row h=32 px=3 gap=4 align=center border {
+        text "Spot" size=sm weight=semibold
+        text "Cross" size=sm muted
+        text "Isolated" size=sm muted
+        text "Grid" size=sm muted
+      }
+      row h=28 px=3 gap=3 align=center border {
+        text "Limit" size=sm
+        text "Market" size=sm muted
+        text "Stop Limit" size=sm muted
+        icon "chevron-down" size=xs
+      }
+      row h=100 px=3 py=2 gap=4 {
+        col flex=1 gap=2 {
+          row gap=2 align=center {
+            text "Price" size=xs muted
+            input value="91,225.88" size=sm w=full
+            text "USDT" size=xs muted
+          }
+          row gap=2 align=center {
+            text "Amount" size=xs muted
+            input placeholder="" size=sm w=full
+            text "BTC" size=xs muted
+          }
+          button "Log In" primary w=full size=sm
+        }
+        col flex=1 gap=2 {
+          row gap=2 align=center {
+            text "Price" size=xs muted
+            input value="91,225.88" size=sm w=full
+            text "USDT" size=xs muted
+          }
+          row gap=2 align=center {
+            text "Amount" size=xs muted
+            input placeholder="" size=sm w=full
+            text "BTC" size=xs muted
+          }
+          button "Log In" danger w=full size=sm
+        }
+      }
+    }
+
+    col w=220 border p=0 {
+      row h=36 px=2 align=center border {
+        input placeholder="Search" w=full size=sm icon="search"
+      }
+      row h=28 px=2 gap=2 align=center border {
+        icon "star" size=xs muted
+        text "New" size=xs muted
+        text "USDC" size=xs muted
+        col border px=2 {
+          text "USDT" size=xs weight=semibold
+        }
+        text "USD1" size=xs muted
+        text "BNB" size=xs muted
+        text "BTC" size=xs muted
+      }
+      row h=24 px=2 justify=between align=center border {
+        row gap=1 align=center {
+          text "Pair" size=xs muted
+          icon "chevron-down" size=xs muted
+        }
+        row gap=1 align=center {
+          text "Last Price" size=xs muted
+          text "/" size=xs muted
+          text "24h Chg" size=xs muted
+          icon "chevron-down" size=xs muted
+        }
+      }
+      col flex=1 scroll border {
+        row h=36 px=2 gap=2 align=center border {
+          icon "star" size=xs muted
+          row gap=1 flex=1 {
+            text "0G" size=xs
+            text "/USDT" size=xs muted
+            badge "5x" size=xs
+          }
+          col gap=0 align=end {
+            text "0.902" size=xs
+            text "-5.15%" size=xs
+          }
+        }
+        row h=36 px=2 gap=2 align=center border {
+          icon "star" size=xs
+          row gap=1 flex=1 {
+            text "BTC" size=xs weight=semibold
+            text "/USDT" size=xs muted
+            badge "5x" size=xs
+          }
+          col gap=0 align=end {
+            text "91,205" size=xs
+            text "-0.13%" size=xs
+          }
+        }
+        row h=36 px=2 gap=2 align=center border {
+          icon "star" size=xs muted
+          row gap=1 flex=1 {
+            text "ETH" size=xs
+            text "/USDT" size=xs muted
+            badge "5x" size=xs
+          }
+          col gap=0 align=end {
+            text "3,113" size=xs
+            text "-1.80%" size=xs
+          }
+        }
+        row h=36 px=2 gap=2 align=center border {
+          icon "star" size=xs muted
+          row gap=1 flex=1 {
+            text "SOL" size=xs
+            text "/USDT" size=xs muted
+            badge "5x" size=xs
+          }
+          col gap=0 align=end {
+            text "139.16" size=xs
+            text "+1.85%" size=xs
+          }
+        }
+        row h=36 px=2 gap=2 align=center border {
+          icon "star" size=xs muted
+          row gap=1 flex=1 {
+            text "XRP" size=xs
+            text "/USDT" size=xs muted
+            badge "5x" size=xs
+          }
+          col gap=0 align=end {
+            text "2.13" size=xs
+            text "-1.24%" size=xs
+          }
+        }
+        row h=36 px=2 gap=2 align=center border {
+          icon "star" size=xs muted
+          row gap=1 flex=1 {
+            text "BNB" size=xs
+            text "/USDT" size=xs muted
+            badge "5x" size=xs
+          }
+          col gap=0 align=end {
+            text "893.34" size=xs
+            text "-0.83%" size=xs
+          }
+        }
+        row h=36 px=2 gap=2 align=center border {
+          icon "star" size=xs muted
+          row gap=1 flex=1 {
+            text "DOGE" size=xs
+            text "/USDT" size=xs muted
+            badge "5x" size=xs
+          }
+          col gap=0 align=end {
+            text "0.1425" size=xs
+            text "-2.89%" size=xs
+          }
+        }
+        row h=36 px=2 gap=2 align=center border {
+          icon "star" size=xs muted
+          row gap=1 flex=1 {
+            text "AAVE" size=xs
+            text "/USDT" size=xs muted
+            badge "5x" size=xs
+          }
+          col gap=0 align=end {
+            text "165.14" size=xs
+            text "-1.71%" size=xs
+          }
+        }
+        row h=36 px=2 gap=2 align=center {
+          icon "star" size=xs muted
+          row gap=1 flex=1 {
+            text "ACA" size=xs
+            text "/USDT" size=xs muted
+            badge "5x" size=xs
+          }
+          col gap=0 align=end {
+            text "0.0077" size=xs
+            text "-3.75%" size=xs
+          }
+        }
+      }
+    }
+
+    col w=180 border p=0 {
+      row h=32 px=2 gap=3 align=center border {
+        text "Market Trades" size=sm weight=semibold
+        text "My Trades" size=sm muted
+        icon "more-horizontal" size=xs muted
+      }
+      row h=24 px=2 justify=between align=center border {
+        text "Price (USDT)" size=xs muted
+        text "Amount (BTC)" size=xs muted
+        text "Time" size=xs muted
+      }
+      col flex=1 scroll border {
+        row h=20 px=2 justify=between align=center {
+          text "91,205.94" size=xs
+          text "0.00021" size=xs muted
+          text "09:45:45" size=xs muted
+        }
+        row h=20 px=2 justify=between align=center {
+          text "91,205.94" size=xs
+          text "0.00026" size=xs muted
+          text "09:45:45" size=xs muted
+        }
+        row h=20 px=2 justify=between align=center {
+          text "91,205.93" size=xs
+          text "0.00154" size=xs muted
+          text "09:45:45" size=xs muted
+        }
+        row h=20 px=2 justify=between align=center {
+          text "91,205.94" size=xs
+          text "0.00054" size=xs muted
+          text "09:45:44" size=xs muted
+        }
+        row h=20 px=2 justify=between align=center {
+          text "91,205.93" size=xs
+          text "0.00070" size=xs muted
+          text "09:45:44" size=xs muted
+        }
+        row h=20 px=2 justify=between align=center {
+          text "91,205.94" size=xs
+          text "0.01629" size=xs muted
+          text "09:45:44" size=xs muted
+        }
+        row h=20 px=2 justify=between align=center {
+          text "91,205.94" size=xs
+          text "0.00043" size=xs muted
+          text "09:45:44" size=xs muted
+        }
+        row h=20 px=2 justify=between align=center {
+          text "91,205.94" size=xs
+          text "0.00039" size=xs muted
+          text "09:45:44" size=xs muted
+        }
+        row h=20 px=2 justify=between align=center {
+          text "91,205.93" size=xs
+          text "0.00510" size=xs muted
+          text "09:45:43" size=xs muted
+        }
+        row h=20 px=2 justify=between align=center {
+          text "91,205.94" size=xs
+          text "0.00245" size=xs muted
+          text "09:45:43" size=xs muted
+        }
+      }
+    }
+  }
+
+  row h=28 px=4 gap=4 align=center border {
+    row gap=1 align=center {
+      icon "wifi" size=xs
+      text "Stable connection" size=xs muted
+    }
+    divider vertical h=16
+    row gap=3 {
+      text "BTC/USDT" size=xs
+      text "-0.13%" size=xs
+      text "91,205.94" size=xs muted
+    }
+    row gap=3 {
+      text "ETH/USDT" size=xs
+      text "-1.80%" size=xs
+      text "3,113.22" size=xs muted
+    }
+    row gap=3 {
+      text "SOL/USDT" size=xs
+      text "+1.85%" size=xs
+      text "139.16" size=xs muted
+    }
+  }
+}

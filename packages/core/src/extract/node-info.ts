@@ -8,20 +8,22 @@
 import type { AnyNode, InteractiveProps, NodeType } from '../ast'
 import { isBreadcrumbNode, isDropdownNode, isNavNode } from '../ast'
 import type { ComponentCategory } from '../spec'
-import { NODE_TYPE_MAP } from '../spec'
+import { ELEMENT_NODE_TYPE_MAP } from '../spec'
 import type { InteractionKind } from './types'
 
 /** Interaction props in a fixed emission order (deterministic output). */
 const INTERACTION_KINDS: readonly InteractionKind[] = ['navigate', 'opens', 'toggles', 'action']
 
 /**
- * The component category of a real AST node, or `undefined` for pseudo-nodes
- * that are not registered components (e.g. nav block `item` / `group` entries,
- * `tab` panels). A defined category is the single test for "this is a real
- * component node" across the extract module.
+ * The component category of an element node, or `undefined` for block-scoped
+ * nodes (nav block `item` / `group` entries, dropdown and list items, `tab`
+ * panels). A defined category is the single test for "this is a real component
+ * node" across the extract module — an inventory of a screen counts the nav,
+ * not each of its entries — which is why this reads the element-only map and
+ * not the one validation uses.
  */
 export function categoryOf(node: AnyNode): ComponentCategory | undefined {
-  return NODE_TYPE_MAP.get(node.type)?.category
+  return ELEMENT_NODE_TYPE_MAP.get(node.type)?.category
 }
 
 /**
@@ -94,19 +96,9 @@ export interface ItemInteractionSource {
 }
 
 /**
- * The item-level interactions declared inside a container node.
- *
- * Nav (both array `nav [...]` and block `nav { item … group { item … } }`
- * syntax, including grouped items), Dropdown, and Breadcrumb carry
- * `InteractiveProps` on their items — the source of most transitions in a
- * multi-screen wireframe. This flattens them in deterministic document order.
- *
- * `Tabs` items are plain strings with no `InteractiveProps`, so tabs contribute
- * no item-level interactions; their panel content is captured by normal node
- * traversal instead. Item `href` is a raw anchor, not a declared `navigate`
- * intent, and is intentionally excluded — mirroring node-level extraction.
- *
- * Returns `[]` for any node that is not an interactive-item container.
+ * Interactive item sources in the same flattened order used by extraction and
+ * rendering. Keeping the item itself available lets typed `on=` handlers and
+ * legacy scalar intents go through one normalizer.
  */
 export function getItemInteractionSources(node: AnyNode): ItemInteractionSource[] {
   const out: ItemInteractionSource[] = []
@@ -127,21 +119,17 @@ export function getItemInteractionSources(node: AnyNode): ItemInteractionSource[
       emit(it.label, it)
     }
     for (const child of node.children) {
-      if (child.type === 'item') {
+      if (child.type === 'NavItem') {
         emit(child.label, child)
-      } else if (child.type === 'group') {
+      } else if (child.type === 'NavGroup') {
         for (const groupItem of child.items) {
-          if (groupItem.type === 'item') emit(groupItem.label, groupItem)
+          if (groupItem.type === 'NavItem') emit(groupItem.label, groupItem)
         }
       }
     }
   } else if (isDropdownNode(node)) {
     for (const it of node.items) {
-      // Only `DropdownItemNode` carries a label; `DividerNode` does not.
-      if (!('label' in it)) {
-        index += 1
-        continue
-      }
+      if (it.type !== 'DropdownItem') continue
       emit(it.label, it)
     }
   } else if (isBreadcrumbNode(node)) {
@@ -157,6 +145,25 @@ export function getItemInteractionSources(node: AnyNode): ItemInteractionSource[
   return out
 }
 
+/**
+ * The item-level interactions declared inside a container node.
+ *
+ * Nav (both array `nav [...]` and block `nav { item … group { item … } }`
+ * syntax, including grouped items), Dropdown, and Breadcrumb carry
+ * `InteractiveProps` on their items — the source of most transitions in a
+ * multi-screen wireframe. This flattens them in deterministic document order.
+ *
+ * `itemIndex` counts only the positions that can hold an intent — plain label
+ * items included, dividers and group headings excluded — uniformly across every
+ * container. See `extract/transitions.ts` for why.
+ *
+ * `Tabs` items are plain strings with no `InteractiveProps`, so tabs contribute
+ * no item-level interactions; their panel content is captured by normal node
+ * traversal instead. Item `href` is a raw anchor, not a declared `navigate`
+ * intent, and is intentionally excluded — mirroring node-level extraction.
+ *
+ * Returns `[]` for any node that is not an interactive-item container.
+ */
 export function getItemInteractions(node: AnyNode): ItemInteraction[] {
   const out: ItemInteraction[] = []
   for (const source of getItemInteractionSources(node)) {
@@ -171,5 +178,6 @@ export function getItemInteractions(node: AnyNode): ItemInteraction[] {
       out.push(item)
     }
   }
+
   return out
 }

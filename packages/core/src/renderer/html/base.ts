@@ -78,14 +78,17 @@ export abstract class BaseRenderer {
   }
 
   /**
-   * Render a complete wireframe document
+   * Render a complete wireframe document.
+   *
+   * Only pages are drawn. A document's top level also holds `layout` and
+   * `component` definitions, which are reusable fragments a page refers to —
+   * drawing one would put a screen on the canvas that the author never wrote a
+   * page for, and would do it the moment the reuse feature was used at all.
    */
   protected renderDocument(document: WireframeDocument): string {
-    const pages = documentPages(document)
+    return documentPages(document)
       .map((page) => this.renderPage(page))
       .join(this.context.options.minify ? '' : '\n')
-
-    return pages
   }
 
   /**
@@ -145,7 +148,19 @@ export abstract class BaseRenderer {
     return text.replace(/[&<>"']/g, (char) => escapeMap[char] || char)
   }
 
-  /** Return the DOM id for an authored id under this renderer's scope. */
+  /**
+   * The DOM id an authored id becomes under this render's `idScope`.
+   *
+   * One function so that "what is the id in the document" has one answer. A
+   * renderer that prefixed at some emission sites and not others would produce
+   * a document where `#confirm` resolves for one element and `#s0-confirm` for
+   * another, which is worse than either convention alone.
+   *
+   * Only identity is prefixed. The interaction attributes that point at an
+   * overlay still carry the name their author wrote — they are spelled in one
+   * file (`html/interactive.ts`) and read by whoever consumes them, which
+   * composes the scope back on. See `RenderOptions.idScope`.
+   */
   protected scopedId(id: string): string {
     return this.context.options.idScope + id
   }

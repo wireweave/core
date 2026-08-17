@@ -14,7 +14,11 @@ export default tseslint.config(
     languageOptions: {
       parserOptions: {
         projectService: {
-          allowDefaultProject: ['eslint.config.mjs', 'commitlint.config.js'],
+          allowDefaultProject: [
+            'eslint.config.mjs',
+            'commitlint.config.js',
+            '.vitepress/generate-tmlanguage.mjs',
+          ],
         },
         tsconfigRootDir: import.meta.dirname,
         extraFileExtensions: ['.vue'],
@@ -28,6 +32,16 @@ export default tseslint.config(
         { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
       ],
       'no-console': ['warn', { allow: ['warn', 'error'] }],
+    },
+  },
+  {
+    // 빌드 스크립트는 브라우저가 아니라 Node 에서 실행된다.
+    files: ['.vitepress/generate-tmlanguage.mjs'],
+    languageOptions: {
+      globals: {
+        console: 'readonly',
+        process: 'readonly',
+      },
     },
   },
   {

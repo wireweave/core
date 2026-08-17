@@ -1,0 +1,92 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "border": true,
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "content": "Add Memo",
+                  "type": "Text",
+                  "weight": "semibold"
+                },
+                {
+                  "name": "x",
+                  "type": "Icon"
+                }
+              ],
+              "justify": "between",
+              "type": "Row"
+            }
+          ],
+          "h": 56,
+          "p": 3,
+          "type": "Header"
+        },
+        {
+          "children": [
+            {
+              "inputType": "number",
+              "label": "Page",
+              "placeholder": "Enter page number",
+              "type": "Input"
+            },
+            {
+              "label": "What are you thinking?",
+              "placeholder": "Start typing your thoughts...",
+              "type": "Textarea"
+            },
+            {
+              "label": "Feeling",
+              "options": [
+                "Excited",
+                "Thoughtful",
+                "Confused",
+                "Inspired"
+              ],
+              "placeholder": "Select a feeling",
+              "type": "Select"
+            }
+          ],
+          "gap": 4,
+          "p": 4,
+          "scroll": true,
+          "type": "Main"
+        },
+        {
+          "border": true,
+          "children": [
+            {
+              "children": [
+                {
+                  "content": "Cancel",
+                  "outline": true,
+                  "type": "Button"
+                },
+                {
+                  "content": "Save",
+                  "primary": true,
+                  "type": "Button"
+                }
+              ],
+              "gap": 2,
+              "justify": "end",
+              "type": "Row"
+            }
+          ],
+          "p": 3,
+          "type": "Footer"
+        }
+      ],
+      "device": "mobile",
+      "height": 812,
+      "title": "Add Memo",
+      "type": "Page",
+      "width": 375
+    }
+  ],
+  "type": "Document"
+}

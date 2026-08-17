@@ -1,0 +1,55 @@
+page "연결 끊김 · 설정" viewport="375x812" {
+  header h=152 p=4 {
+    col gap=2 {
+      row align=center gap=2 justify=between {
+        text "설정" size=lg weight=semibold
+        badge "오프라인" pill size=xs variant=warning
+      }
+      alert "연결이 끊겼습니다 · 읽을 수는 있지만 바꿀 수 없습니다" icon=wifi-off variant=warning
+    }
+  }
+  main p=4 scroll {
+    col gap=4 {
+      card p=3 {
+        row align=center gap=3 {
+          avatar "김라이더" size=md
+          col gap=1 {
+            text "김라이더" size=sm weight=semibold
+            text "010-1234-5678 · 14:32 기준" muted size=xs
+          }
+        }
+      }
+      col gap=2 {
+        text "지금도 볼 수 있는 것" size=sm weight=semibold
+        card p=2 {
+          nav vertical {
+            item "알림 목록" icon=bell navigate="연결 끊김 · 알림 목록"
+            item "이용내역" icon=receipt navigate="연결 끊김 · 영역 대체"
+            item "약관과 안내 문서" action=none icon=file-text
+          }
+        }
+      }
+      col gap=2 {
+        text "지금은 바꿀 수 없는 것" size=sm weight=semibold
+        card p=3 {
+          col gap=2 {
+            list ["프로필 수정", "차량 등록 변경", "알림 설정 변경"]
+            text "값 변경은 서버가 처리합니다. 연결이 돌아온 뒤에 됩니다." muted size=xs
+          }
+        }
+      }
+      col gap=2 {
+        button "다시 시도" action=retry icon=refresh-cw primary w=full
+        button "로그아웃" action=none disabled ghost w=full
+      }
+    }
+  }
+  footer h=76 p=2 {
+    nav {
+      item "지도" icon=map navigate="연결 끊김 · 상단 안내 줄"
+      item "내 예약" icon=calendar-check navigate="연결 끊김 · 내 예약"
+      item "이용내역" icon=receipt navigate="연결 끊김 · 영역 대체"
+      item "설정" active icon=settings navigate="연결 끊김 · 설정"
+    }
+  }
+}

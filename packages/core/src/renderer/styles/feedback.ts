@@ -22,6 +22,12 @@ export function generateFeedbackStyles(_theme: ThemeConfig, prefix: string): str
 .${prefix}-alert-warning { border-left: 3px solid var(--${prefix}-warning); }
 .${prefix}-alert-danger { border-left: 3px solid var(--${prefix}-danger); }
 
+/* The alert box is already a flex row with a gap; the icon is its first item. */
+.${prefix}-alert-icon {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
 .${prefix}-alert-close {
   margin-left: auto;
   background: transparent;

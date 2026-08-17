@@ -642,13 +642,13 @@ function peg$parse(input, options) {
     const columns = [];
     const rows = [];
     for (const item of items.map(i => i[0]).filter(i => i !== null)) {
-      if (item.type === 'columns') columns.push(...item.values);
-      else if (item.type === 'row') rows.push(item.values);
+      if (item.kind === 'columns') columns.push(...item.values);
+      else if (item.kind === 'row') rows.push(item.values);
     }
     return { columns, rows };
   }
-  function peg$f52(values) {    return { type: 'columns', values };  }
-  function peg$f53(values) {    return { type: 'row', values };  }
+  function peg$f52(values) {    return { kind: 'columns', values };  }
+  function peg$f53(values) {    return { kind: 'row', values };  }
   function peg$f54() {    return null;  }
   function peg$f55(items, attrs, block) {
     return createNode('List', {
@@ -660,11 +660,11 @@ function peg$parse(input, options) {
     return items.map(i => i[0]).filter(i => i !== null);
   }
   function peg$f57(label, attrs, nested) {
-    return {
+    return createBlockNode('ListItem', {
       content: label,
       ...attrsToObject(attrs),
       children: nested || []
-    };
+    });
   }
   function peg$f58() {    return null;  }
   function peg$f59(label, attrs) {
@@ -708,12 +708,13 @@ function peg$parse(input, options) {
     const processedItems = items.map(item => {
       if (typeof item === 'string') {
         if (item === '---' || item === '-' || item === 'divider') {
-          return { type: 'divider' };
+          return createBlockNode('Divider', {});
         }
-        return { label: item };
+        return createBlockNode('DropdownItem', { label: item });
       }
-      // Object item with label, icon, etc.
-      return item;
+      // Object item with label, icon, etc. Array syntax puts every item on
+      // the one `dropdown [...]` construct, so they share its `loc`.
+      return createBlockNode('DropdownItem', item);
     });
     return createNode('Dropdown', {
       ...attrsToObject(attrs),
@@ -730,9 +731,9 @@ function peg$parse(input, options) {
     return items.map(i => i[0]).filter(i => i !== null);
   }
   function peg$f68(label, attrs) {
-    return { label, ...attrsToObject(attrs) };
+    return createBlockNode('DropdownItem', { label, ...attrsToObject(attrs) });
   }
-  function peg$f69() {    return { type: 'divider' };  }
+  function peg$f69() {    return createBlockNode('Divider', {});  }
   function peg$f70() {    return null;  }
   function peg$f71(items, attrs, block) {
     return createNode('Nav', {
@@ -744,24 +745,22 @@ function peg$parse(input, options) {
   function peg$f72(content) {
     return content.map(c => c[0]).filter(c => c !== null);
   }
-  function peg$f73() {    return { type: 'divider' };  }
+  function peg$f73() {    return createBlockNode('Divider', {});  }
   function peg$f74() {    return null;  }
   function peg$f75(label, attrs, items) {
-    return {
-      type: 'group',
+    return createBlockNode('NavGroup', {
       label,
       ...attrsToObject(attrs),
       items: items.map(i => i[0]).filter(i => i !== null)
-    };
+    });
   }
-  function peg$f76() {    return { type: 'divider' };  }
+  function peg$f76() {    return createBlockNode('Divider', {});  }
   function peg$f77() {    return null;  }
   function peg$f78(label, attrs) {
-    return {
-      type: 'item',
+    return createBlockNode('NavItem', {
       label,
       ...attrsToObject(attrs)
-    };
+    });
   }
   function peg$f79(items, attrs, block) {
     return createNode('Tabs', {
@@ -7345,6 +7344,25 @@ function peg$parse(input, options) {
 
   // Helper: Create AST node with location info
   function createNode(type, props = {}) {
+    return {
+      type,
+      ...props,
+      loc: location()
+    };
+  }
+
+  // Helper: Create a node that only exists inside a specific parent's block —
+  // `nav { item … group { … } }`, `dropdown { divider }`. Identical to
+  // createNode; the separate name is what tells the element extractor that the
+  // enclosing rule's keyword names the *parent*, not this node. Nodes reaching
+  // the AST go through one of these two, so reading their arguments is a
+  // complete inventory of the node types the parser can emit — see
+  // `__tests__/grammar-spec-ssot.test.ts`. A bare `{ type: … }` object literal
+  // would be a node type nothing downstream can discover, so intermediate
+  // values that never reach the AST are keyed on `kind` instead. Rules that
+  // still return a bare object are enumerated with their reason in that same
+  // test and the list may only shrink.
+  function createBlockNode(type, props = {}) {
     return {
       type,
       ...props,

@@ -1,11 +1,20 @@
 /**
  * Keywords and labels for Wireweave DSL
+ *
+ * `VALUE_KEYWORDS` is derived from the attribute specification: an enum value is
+ * a value keyword because some attribute accepts it, so listing them separately
+ * could only ever drift. Categories come from `@wireweave/core/spec` too — this
+ * module supplies their display labels, nothing more.
  */
 
+import { ATTRIBUTE_SPECS } from '@wireweave/core/spec'
+
+import { PENDING_CORE_ATTRIBUTES } from './core-spec-gaps.js'
 import type { ComponentCategory } from './types.js'
 
 // Category labels for display
 export const CATEGORY_LABELS: Record<ComponentCategory, string> = {
+  structure: 'Structure',
   layout: 'Layout',
   container: 'Container',
   grid: 'Grid',
@@ -19,98 +28,28 @@ export const CATEGORY_LABELS: Record<ComponentCategory, string> = {
   annotation: 'Annotation',
 }
 
-// Value keywords used in the language
-export const VALUE_KEYWORDS = [
-  // Booleans
-  'true',
-  'false',
+/**
+ * Literals owned by the grammar rather than by any attribute: the `Boolean` rule
+ * in `wireframe.peggy` accepts exactly these two as a bare attribute value.
+ */
+const BOOLEAN_LITERALS: readonly string[] = ['true', 'false']
 
-  // Button variants
-  'primary',
-  'secondary',
-  'outline',
-  'ghost',
-
-  // Status variants
-  'success',
-  'danger',
-  'warning',
-  'info',
-  'default',
-
-  // Sizes
-  'xs',
-  'sm',
-  'md',
-  'lg',
-  'xl',
-  'base',
-  '2xl',
-  '3xl',
-
-  // Flex alignment
-  'start',
-  'center',
-  'end',
-  'between',
-  'around',
-  'evenly',
-  'stretch',
-  'baseline',
-
-  // Positions
-  'left',
-  'right',
-  'top',
-  'bottom',
-  'top-left',
-  'top-center',
-  'top-right',
-  'bottom-left',
-  'bottom-center',
-  'bottom-right',
-  'center-left',
-  'center-right',
-
-  // Marker colors
-  'blue',
-  'red',
-  'green',
-  'yellow',
-  'purple',
-  'orange',
-
-  // Sizing
-  'full',
-  'auto',
-  'screen',
-  'fit',
-
-  // Font weights
-  'normal',
-  'medium',
-  'semibold',
-  'bold',
-
-  // Input types
-  'text',
-  'email',
-  'password',
-  'number',
-  'tel',
-  'url',
-  'search',
-  'date',
-
-  // Flex direction
-  'row',
-  'column',
-  'row-reverse',
-  'column-reverse',
-
-  // List
-  'none',
-  'nowrap',
+/**
+ * Value keywords used in the language — every value an attribute enumerates,
+ * plus the grammar's boolean literals.
+ *
+ * Built from the core registry, deliberately not from this package's own
+ * `ATTRIBUTES`. `core-spec-sync.test.ts` computes the same set from `ATTRIBUTES`
+ * and asserts the two agree, which only means something while the two sides are
+ * different expressions. Collapsing them onto one source would turn that
+ * assertion into a restatement of this line and stop it catching anything.
+ */
+export const VALUE_KEYWORDS: string[] = [
+  ...new Set([
+    ...BOOLEAN_LITERALS,
+    ...ATTRIBUTE_SPECS.flatMap((attr) => attr.values ?? []),
+    ...PENDING_CORE_ATTRIBUTES.flatMap((attr) => attr.values ?? []),
+  ]),
 ]
 
 // Common number suggestions for attributes

@@ -4,6 +4,8 @@
  * Complete list of all valid attributes in Wireweave DSL.
  */
 
+import { DEVICE_PRESETS } from '../viewport/presets'
+
 import type { AttributeSpec } from './types'
 
 /**
@@ -32,8 +34,18 @@ export const ATTRIBUTE_SPECS: readonly AttributeSpec[] = [
   // ============================================
   // Size Attributes
   // ============================================
-  { name: 'w', type: 'string', description: 'Width (number, "full", "auto", "screen", "fit")' },
-  { name: 'h', type: 'string', description: 'Height (number, "full", "auto", "screen")' },
+  {
+    name: 'w',
+    type: 'string',
+    values: ['full', 'auto', 'screen', 'fit'],
+    description: 'Width — a number of pixels, or one of the size keywords',
+  },
+  {
+    name: 'h',
+    type: 'string',
+    values: ['full', 'auto', 'screen'],
+    description: 'Height — a number of pixels, or one of the size keywords',
+  },
   { name: 'width', type: 'number', description: 'Width in pixels (page only)' },
   { name: 'height', type: 'number', description: 'Height in pixels (page only)' },
   { name: 'minW', type: 'number', description: 'Minimum width' },
@@ -63,7 +75,16 @@ export const ATTRIBUTE_SPECS: readonly AttributeSpec[] = [
     values: ['start', 'center', 'end', 'stretch', 'baseline'],
     description: 'Cross axis alignment',
   },
-  { name: 'wrap', type: 'boolean', description: 'Enable flex wrap' },
+  {
+    name: 'wrap',
+    type: 'boolean',
+    values: ['nowrap'],
+    // `boolean | 'nowrap'` in the AST: bare `wrap` enables wrapping, and
+    // `wrap=nowrap` opts a container out of it (`renderer/html/index.ts`
+    // branches on the keyword). Both halves have to be stated or the keyword
+    // reads as an unknown value to every editor downstream.
+    description: 'Enable flex wrap, or wrap=nowrap to force a single line',
+  },
   { name: 'span', type: 'number', description: 'Grid column span (1-12)' },
   { name: 'sm', type: 'number', description: 'Responsive span at 576px+' },
   { name: 'md', type: 'number', description: 'Responsive span at 768px+' },
@@ -162,7 +183,33 @@ export const ATTRIBUTE_SPECS: readonly AttributeSpec[] = [
   { name: 'placeholder', type: 'string', description: 'Placeholder text' },
   { name: 'value', type: 'string', description: 'Default value' },
   { name: 'label', type: 'string', description: 'Field label' },
-  { name: 'name', type: 'string', description: 'Form field name' },
+  /**
+   * One row, three meanings, and the row states only what they share.
+   *
+   * This registry is a flat namespace: {@link ATTRIBUTE_MAP} and
+   * {@link VALID_ATTRIBUTE_NAMES} are keyed by attribute name alone, with no
+   * owning element, so a name can hold exactly one spec. `name` is written by
+   * three unrelated elements — the group name on `radio`, the person's name an
+   * `avatar` draws initials from, and the glyph an `icon` resolves — and a
+   * second `name` row does not scope them apart, it silently shadows (last
+   * write wins in the Map, while the count-based gates in
+   * `packages/language-data` see a duplicate and go red). So this description
+   * says what is true of all three and no more.
+   *
+   * What is true of only one of them goes in `attribute-overrides.ts`, keyed by
+   * element, and is read through `attributeFor`. That is why the glyph domain is
+   * not listed here: it holds on `icon` alone, and a `values` list on this row
+   * would tell every element-blind consumer that a radio group must be called
+   * `circle-alert`.
+   *
+   * Never add a second row for a name that already exists. Widen this one, and
+   * put the narrow half in the override table.
+   */
+  {
+    name: 'name',
+    type: 'string',
+    description: 'Name — what the element is called, or the named thing it resolves',
+  },
   { name: 'required', type: 'boolean', description: 'Required field' },
   { name: 'disabled', type: 'boolean', description: 'Disabled state' },
   { name: 'readonly', type: 'boolean', description: 'Read-only state' },
@@ -180,6 +227,13 @@ export const ATTRIBUTE_SPECS: readonly AttributeSpec[] = [
   { name: 'src', type: 'string', description: 'Source URL' },
   { name: 'alt', type: 'string', description: 'Alt text' },
   { name: 'href', type: 'string', description: 'Link URL' },
+  /**
+   * Left open here on purpose. The glyph set is closed and known — see
+   * `attribute-overrides.ts` — but a `values` list on this row is mirrored into
+   * the editor's element-blind value vocabulary, which would colour 1,667 words
+   * like `home` and `map` as language constants in every value position. Ask
+   * `attributeFor(element, 'icon')` for the domain.
+   */
   { name: 'icon', type: 'string', description: 'Icon name' },
   { name: 'external', type: 'boolean', description: 'External link' },
 
@@ -226,13 +280,39 @@ export const ATTRIBUTE_SPECS: readonly AttributeSpec[] = [
   // Page/Viewport Attributes
   // ============================================
   { name: 'viewport', type: 'string', description: 'Viewport size (e.g., "1440x900")' },
-  { name: 'device', type: 'string', description: 'Device preset' },
-  { name: 'id', type: 'string', description: 'Stable identifier for a page or overlay' },
-  { name: 'uses', type: 'string', description: 'Name of the layout a page is drawn inside' },
-  { name: 'navigate', type: 'string', description: 'Screen id, title, or URL to navigate to' },
-  { name: 'opens', type: 'string', description: 'Overlay id to open' },
-  { name: 'toggles', type: 'string', description: 'Overlay id to toggle' },
-  { name: 'action', type: 'string', description: 'Named legacy interaction action' },
+  {
+    name: 'device',
+    type: 'enum',
+    // Derived, not transcribed: `resolveViewport` looks the value up in
+    // `DEVICE_PRESETS` and silently falls back to the default when it misses, so
+    // a hand-kept copy of the key list would turn every typo into a wireframe
+    // rendered at the wrong width with no diagnostic.
+    values: Object.keys(DEVICE_PRESETS),
+    description: 'Device preset',
+  },
+
+  // ============================================
+  // Interaction Attributes
+  // ============================================
+  // The wire between two screens, or between a screen and one of its overlays.
+  // `navigate` / `opens` / `toggles` resolve against an `id` (see below); the
+  // AST counterpart is `InteractiveProps` in `src/ast/types.ts`.
+  {
+    name: 'navigate',
+    type: 'string',
+    description: 'Screen this element navigates to — a page id, a page title, or a URL',
+  },
+  { name: 'opens', type: 'string', description: 'id of the modal or drawer this element opens' },
+  {
+    name: 'toggles',
+    type: 'string',
+    description: 'id of the modal or drawer this element shows or hides',
+  },
+  {
+    name: 'action',
+    type: 'string',
+    description: 'Named interaction with no target, e.g. back, close, submit',
+  },
   {
     name: 'on',
     type: 'object',
@@ -253,6 +333,42 @@ export const ATTRIBUTE_SPECS: readonly AttributeSpec[] = [
     type: 'object[]',
     description: 'Typed application state declarations owned by a page or shared layout',
   },
+  {
+    name: 'id',
+    type: 'string',
+    description: 'Stable identifier this page or overlay is addressed by, as distinct from title',
+  },
+
+  // ============================================
+  // Annotation Attributes
+  // ============================================
+  {
+    name: 'anchor',
+    type: 'enum',
+    values: [
+      'top-left',
+      'top-center',
+      'top-right',
+      'center-left',
+      'center',
+      'center-right',
+      'bottom-left',
+      'bottom-center',
+      'bottom-right',
+    ],
+    description: 'Corner or edge of the parent this element is pinned to',
+  },
+  {
+    name: 'color',
+    type: 'enum',
+    values: ['blue', 'red', 'green', 'yellow', 'purple', 'orange'],
+    description: 'Marker color',
+  },
+
+  // ============================================
+  // Reuse Attributes
+  // ============================================
+  { name: 'uses', type: 'string', description: 'Name of the layout a page is drawn inside' },
 ] as const
 
 /**
@@ -270,9 +386,28 @@ export const ATTRIBUTE_MAP: ReadonlyMap<string, AttributeSpec> = new Map(
 )
 
 /**
- * Common attributes available to most components
+ * Attributes every element accepts, because every renderer turns them into that
+ * element's own box: padding, margin, gap, size bounds, absolute offsets.
+ *
+ * The membership of this list is measured, not asserted.
+ * `@wireweave/language-data`'s `__tests__/spec-render-closure.test.ts` renders
+ * each element with and without each attribute it declares and fails on any pair
+ * that leaves the output identical — bar a short list of recorded render debt,
+ * which may only shrink. So an attribute only some elements honour cannot sit
+ * here: it belongs in {@link CONTAINER_ATTRIBUTES} or on the individual elements
+ * that read it. Changes to the list itself are caught by
+ * `__tests__/spec-surface-baseline.ts` in the same package, in both directions:
+ * a name leaving this list withdraws syntax from documents already using it, and
+ * that is as much a failure as a name arriving unreviewed.
+ *
+ * Both gates live outside this package deliberately. A check shipped alongside
+ * the list it checks is the producer grading its own output, and this list is
+ * the thing under test.
  */
-export const COMMON_ATTRIBUTES: readonly string[] = [
+export const BOX_ATTRIBUTES: readonly string[] = [
+  // Guarded runtime outcomes
+  'visibleWhen',
+  'enabledWhen',
   // Spacing
   'p',
   'px',
@@ -296,23 +431,42 @@ export const COMMON_ATTRIBUTES: readonly string[] = [
   'maxW',
   'minH',
   'maxH',
+  // Position
+  'x',
+  'y',
+] as const
+
+/**
+ * Attributes only the elements that render a flex container honour — the flex
+ * properties themselves plus the decoration `getCommonClasses` puts on that
+ * container.
+ *
+ * Leaf controls (`checkbox`, `radio`, `divider`, `marker`, `annotations`) build
+ * their own markup and read none of these, so they declare {@link BOX_ATTRIBUTES}
+ * alone. Spread both lists on an element that renders a container.
+ */
+export const CONTAINER_ATTRIBUTES: readonly string[] = [
   // Flex
   'flex',
   'direction',
   'justify',
   'align',
   'wrap',
-  // Grid
-  'span',
-  // Position
-  'x',
-  'y',
-  // State-controlled outcomes
-  'visibleWhen',
-  'enabledWhen',
+  // Decoration
+  'bg',
+  'border',
+  'rounded',
 ] as const
 
-/** Attributes shared by elements that can trigger interactions. */
+/**
+ * Attributes every element that can be interacted with accepts.
+ *
+ * The mirror of `InteractiveProps` in `src/ast/types.ts`: an element whose node
+ * extends that interface belongs in this list, and one whose node does not, does
+ * not. Spread it the way {@link BOX_ATTRIBUTES} is spread, so that adding an
+ * interaction attribute reaches every interactive element at once rather than
+ * six out of seven.
+ */
 export const INTERACTIVE_ATTRIBUTES: readonly string[] = [
   'navigate',
   'opens',

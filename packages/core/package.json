@@ -3,33 +3,102 @@
   "version": "3.1.0-beta.4",
   "description": "Core parser and renderer for wireweave",
   "type": "module",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
+  "sideEffects": false,
+  "main": "src/index.ts",
+  "module": "src/index.ts",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
+      "development": "./src/index.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
     "./parser": {
       "types": "./dist/parser.d.ts",
+      "development": "./src/parser/index.ts",
       "import": "./dist/parser.js",
       "require": "./dist/parser.cjs"
     },
     "./renderer": {
       "types": "./dist/renderer.d.ts",
+      "development": "./src/renderer/index.ts",
       "import": "./dist/renderer.js",
       "require": "./dist/renderer.cjs"
+    },
+    "./spec": {
+      "types": "./dist/spec.d.ts",
+      "development": "./src/spec/index.ts",
+      "import": "./dist/spec.js",
+      "require": "./dist/spec.cjs"
+    }
+  },
+  "publishConfig": {
+    "main": "dist/index.cjs",
+    "module": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "exports": {
+      ".": {
+        "import": {
+          "types": "./dist/index.d.ts",
+          "default": "./dist/index.js"
+        },
+        "require": {
+          "types": "./dist/index.d.cts",
+          "default": "./dist/index.cjs"
+        }
+      },
+      "./parser": {
+        "import": {
+          "types": "./dist/parser.d.ts",
+          "default": "./dist/parser.js"
+        },
+        "require": {
+          "types": "./dist/parser.d.cts",
+          "default": "./dist/parser.cjs"
+        }
+      },
+      "./renderer": {
+        "import": {
+          "types": "./dist/renderer.d.ts",
+          "default": "./dist/renderer.js"
+        },
+        "require": {
+          "types": "./dist/renderer.d.cts",
+          "default": "./dist/renderer.cjs"
+        }
+      },
+      "./spec": {
+        "import": {
+          "types": "./dist/spec.d.ts",
+          "default": "./dist/spec.js"
+        },
+        "require": {
+          "types": "./dist/spec.d.cts",
+          "default": "./dist/spec.cjs"
+        }
+      }
     }
   },
   "files": [
     "dist"
   ],
+  "engines": {
+    "node": ">=22.13.0"
+  },
   "scripts": {
     "build:grammar": "peggy --format es -o src/parser/generated-parser.js src/grammar/wireframe.peggy",
+    "build:spec": "node scripts/extract-grammar-elements.mjs",
+    "build:icons": "node scripts/generate-icons.mjs",
+    "build:icon-names": "node scripts/extract-icon-names.mjs",
     "build:ts": "tsup",
-    "build": "pnpm build:grammar && pnpm build:ts",
+    "build": "pnpm build:grammar && pnpm build:spec && pnpm build:icons && pnpm build:icon-names && pnpm build:ts",
+    "postbuild": "node ../../scripts/dist-freshness-gate.mjs --write .",
+    "check:parser-sync": "node scripts/check-generated-parser.mjs",
+    "check:spec-sync": "node scripts/extract-grammar-elements.mjs --check",
+    "check:icons-sync": "node scripts/generate-icons.mjs --check",
+    "check:icon-names-sync": "node scripts/extract-icon-names.mjs --check",
+    "pretest": "pnpm run check:parser-sync && pnpm run check:spec-sync && pnpm run check:icons-sync && pnpm run check:icon-names-sync",
     "test": "vitest run",
     "test:watch": "vitest",
     "storybook": "storybook dev -p 6006",
@@ -41,6 +110,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "knip": "knip",
+    "publint": "publint --strict",
     "release": "release-it"
   },
   "devDependencies": {
@@ -55,12 +125,13 @@
     "@vitest/coverage-v8": "^3.2.4",
     "eslint": "^10.3.0",
     "husky": "^9.1.7",
-    "jsdom": "^28.1.0",
+    "jsdom": "^30.0.1",
     "knip": "^6.13.1",
     "lint-staged": "^17.0.4",
     "lucide": "^0.562.0",
     "peggy": "^5.0.0",
     "prettier": "^3.8.3",
+    "publint": "^0.3.21",
     "release-it": "^19.2.3",
     "storybook": "^10.2.18",
     "tsup": "^8.3.5",

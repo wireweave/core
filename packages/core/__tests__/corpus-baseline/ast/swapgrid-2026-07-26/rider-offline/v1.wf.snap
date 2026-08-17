@@ -1,0 +1,245 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "content": "설정",
+                      "size": "lg",
+                      "type": "Text",
+                      "weight": "semibold"
+                    },
+                    {
+                      "content": "오프라인",
+                      "pill": true,
+                      "size": "xs",
+                      "type": "Badge",
+                      "variant": "warning"
+                    }
+                  ],
+                  "gap": 2,
+                  "justify": "between",
+                  "type": "Row"
+                },
+                {
+                  "content": "연결이 끊겼습니다 · 읽을 수는 있지만 바꿀 수 없습니다",
+                  "icon": "wifi-off",
+                  "type": "Alert",
+                  "variant": "warning"
+                }
+              ],
+              "gap": 2,
+              "type": "Col"
+            }
+          ],
+          "h": 152,
+          "p": 4,
+          "type": "Header"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "name": "김라이더",
+                          "size": "md",
+                          "type": "Avatar"
+                        },
+                        {
+                          "children": [
+                            {
+                              "content": "김라이더",
+                              "size": "sm",
+                              "type": "Text",
+                              "weight": "semibold"
+                            },
+                            {
+                              "content": "010-1234-5678 · 14:32 기준",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 1,
+                          "type": "Col"
+                        }
+                      ],
+                      "gap": 3,
+                      "type": "Row"
+                    }
+                  ],
+                  "p": 3,
+                  "title": null,
+                  "type": "Card"
+                },
+                {
+                  "children": [
+                    {
+                      "content": "지금도 볼 수 있는 것",
+                      "size": "sm",
+                      "type": "Text",
+                      "weight": "semibold"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "icon": "bell",
+                              "label": "알림 목록",
+                              "navigate": "연결 끊김 · 알림 목록",
+                              "type": "NavItem"
+                            },
+                            {
+                              "icon": "receipt",
+                              "label": "이용내역",
+                              "navigate": "연결 끊김 · 영역 대체",
+                              "type": "NavItem"
+                            },
+                            {
+                              "action": "none",
+                              "icon": "file-text",
+                              "label": "약관과 안내 문서",
+                              "type": "NavItem"
+                            }
+                          ],
+                          "items": [],
+                          "type": "Nav",
+                          "vertical": true
+                        }
+                      ],
+                      "p": 2,
+                      "title": null,
+                      "type": "Card"
+                    }
+                  ],
+                  "gap": 2,
+                  "type": "Col"
+                },
+                {
+                  "children": [
+                    {
+                      "content": "지금은 바꿀 수 없는 것",
+                      "size": "sm",
+                      "type": "Text",
+                      "weight": "semibold"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "items": [
+                                "프로필 수정",
+                                "차량 등록 변경",
+                                "알림 설정 변경"
+                              ],
+                              "type": "List"
+                            },
+                            {
+                              "content": "값 변경은 서버가 처리합니다. 연결이 돌아온 뒤에 됩니다.",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Col"
+                        }
+                      ],
+                      "p": 3,
+                      "title": null,
+                      "type": "Card"
+                    }
+                  ],
+                  "gap": 2,
+                  "type": "Col"
+                },
+                {
+                  "children": [
+                    {
+                      "action": "retry",
+                      "content": "다시 시도",
+                      "icon": "refresh-cw",
+                      "primary": true,
+                      "type": "Button",
+                      "w": "full"
+                    },
+                    {
+                      "action": "none",
+                      "content": "로그아웃",
+                      "disabled": true,
+                      "ghost": true,
+                      "type": "Button",
+                      "w": "full"
+                    }
+                  ],
+                  "gap": 2,
+                  "type": "Col"
+                }
+              ],
+              "gap": 4,
+              "type": "Col"
+            }
+          ],
+          "p": 4,
+          "scroll": true,
+          "type": "Main"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "icon": "map",
+                  "label": "지도",
+                  "navigate": "연결 끊김 · 상단 안내 줄",
+                  "type": "NavItem"
+                },
+                {
+                  "icon": "calendar-check",
+                  "label": "내 예약",
+                  "navigate": "연결 끊김 · 내 예약",
+                  "type": "NavItem"
+                },
+                {
+                  "icon": "receipt",
+                  "label": "이용내역",
+                  "navigate": "연결 끊김 · 영역 대체",
+                  "type": "NavItem"
+                },
+                {
+                  "active": true,
+                  "icon": "settings",
+                  "label": "설정",
+                  "navigate": "연결 끊김 · 설정",
+                  "type": "NavItem"
+                }
+              ],
+              "items": [],
+              "type": "Nav"
+            }
+          ],
+          "h": 76,
+          "p": 2,
+          "type": "Footer"
+        }
+      ],
+      "title": "연결 끊김 · 설정",
+      "type": "Page",
+      "viewport": "375x812"
+    }
+  ],
+  "type": "Document"
+}

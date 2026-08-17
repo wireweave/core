@@ -24,7 +24,10 @@ export interface RenderOptions {
   classPrefix?: string
   /** Background color (e.g., '#ffffff', 'transparent') */
   background?: string
-  /** Explicit neutral mode preserves the historical presentation by default. */
+  /**
+   * Annotation presentation. Defaults to `legacy` so existing render output
+   * stays unchanged; use `neutral` for deterministic grayscale annotations.
+   */
   annotationStyle?: AnnotationStyle
   /**
    * Emit source-anchor attributes (`data-wf-path` / `data-wf-loc`) on each
@@ -32,7 +35,27 @@ export interface RenderOptions {
    * `false` — output is byte-identical to non-anchored rendering when off.
    */
   sourceAnchors?: boolean
-  /** Prefix authored overlay ids with a renderer-owned scope. */
+  /**
+   * Prefix prepended to every DOM `id` this render emits.
+   *
+   * An authored `id` is unique inside the page that declares it and nowhere
+   * else, which is all a page needs while it is a document of its own. Compose
+   * several pages into one document and that stops being true: two screens
+   * declaring `confirm` produce two elements with the same id, and a duplicate
+   * id is not a rendering bug — the picture is right — but it is a lie told to
+   * every reader of the DOM. Devtools resolve it to the first match, the
+   * accessibility tree treats `aria-*` references as pointing at one element,
+   * and any external tool doing `#confirm` gets an arbitrary one of them.
+   *
+   * Default `''` — no prefix, so output is byte-identical to unscoped
+   * rendering when unset, which is what every existing entry point does.
+   * `renderSite` sets it per screen and per shell, because it is the one
+   * renderer that puts pages of different origin in the same document.
+   *
+   * Authored intent is not rewritten: the interaction attributes that point at
+   * an overlay keep the name their author wrote, and their consumer composes
+   * the scope back on. The prefix belongs to identity, not to intent.
+   */
   idScope?: string
 }
 

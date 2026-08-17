@@ -1,0 +1,188 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "border": true,
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "content": "ShopStyle",
+                  "level": 4,
+                  "type": "Title"
+                },
+                {
+                  "children": [
+                    {
+                      "content": "Home",
+                      "type": "Link"
+                    },
+                    {
+                      "content": "Products",
+                      "type": "Link"
+                    },
+                    {
+                      "content": "Categories",
+                      "type": "Link"
+                    }
+                  ],
+                  "gap": 4,
+                  "type": "Row"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "search",
+                      "type": "Icon"
+                    },
+                    {
+                      "name": "heart",
+                      "type": "Icon"
+                    },
+                    {
+                      "name": "shopping-cart",
+                      "type": "Icon"
+                    }
+                  ],
+                  "gap": 2,
+                  "type": "Row"
+                }
+              ],
+              "justify": "between",
+              "type": "Row"
+            }
+          ],
+          "p": 3,
+          "type": "Header"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [],
+                  "h": 300,
+                  "label": "Product Image",
+                  "type": "Placeholder",
+                  "w": 300
+                },
+                {
+                  "children": [
+                    {
+                      "content": "New Arrival",
+                      "type": "Badge",
+                      "variant": "info"
+                    },
+                    {
+                      "content": "Premium Headphones",
+                      "level": 3,
+                      "type": "Title"
+                    },
+                    {
+                      "children": [
+                        {
+                          "name": "star",
+                          "size": "sm",
+                          "type": "Icon"
+                        },
+                        {
+                          "name": "star",
+                          "size": "sm",
+                          "type": "Icon"
+                        },
+                        {
+                          "name": "star",
+                          "size": "sm",
+                          "type": "Icon"
+                        },
+                        {
+                          "name": "star",
+                          "size": "sm",
+                          "type": "Icon"
+                        },
+                        {
+                          "name": "star",
+                          "size": "sm",
+                          "type": "Icon"
+                        },
+                        {
+                          "content": "(128)",
+                          "muted": true,
+                          "size": "sm",
+                          "type": "Text"
+                        }
+                      ],
+                      "gap": 1,
+                      "type": "Row"
+                    },
+                    {
+                      "content": "$299.00",
+                      "level": 2,
+                      "type": "Title"
+                    },
+                    {
+                      "content": "Premium noise-cancelling headphones.",
+                      "muted": true,
+                      "size": "sm",
+                      "type": "Text"
+                    },
+                    {
+                      "children": [
+                        {
+                          "content": "Color:",
+                          "size": "sm",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "Black",
+                          "pill": true,
+                          "type": "Badge"
+                        },
+                        {
+                          "content": "White",
+                          "pill": true,
+                          "type": "Badge"
+                        }
+                      ],
+                      "gap": 2,
+                      "type": "Row"
+                    },
+                    {
+                      "children": [
+                        {
+                          "content": "Add to Cart",
+                          "primary": true,
+                          "type": "Button"
+                        },
+                        {
+                          "content": "Wishlist",
+                          "outline": true,
+                          "type": "Button"
+                        }
+                      ],
+                      "gap": 2,
+                      "type": "Row"
+                    }
+                  ],
+                  "gap": 3,
+                  "type": "Col"
+                }
+              ],
+              "gap": 6,
+              "type": "Row"
+            }
+          ],
+          "p": 4,
+          "type": "Main"
+        }
+      ],
+      "height": 450,
+      "title": "Product",
+      "type": "Page",
+      "width": 900
+    }
+  ],
+  "type": "Document"
+}

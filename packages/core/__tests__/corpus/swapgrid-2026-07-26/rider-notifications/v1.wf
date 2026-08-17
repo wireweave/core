@@ -1,0 +1,108 @@
+page "알림 목록" viewport="375x812" {
+  header p=4 {
+    row align=center justify=between {
+      row align=center gap=2 {
+        button "" aria="뒤로" ghost icon=arrow-left navigate="교환소 지도" size=sm
+        title "알림" level=1 size=lg
+      }
+      button "모두 읽음" action=mark-all-read ghost size=sm
+    }
+  }
+  main p=4 scroll {
+    col gap=4 {
+      alert "기기 알림이 꺼져 있습니다. 앱 설정에서 켜주세요." icon=bell-off variant=warning
+      col gap=2 {
+        card navigate="내 예약" p=3 {
+          row align=start gap=3 {
+            icon "circle-dot" size=sm
+            col flex=1 gap=1 {
+              row align=center gap=2 {
+                badge "예약 만료 임박" pill size=sm variant=warning
+                text "5분 전" muted size=xs
+              }
+              text "예약한 배터리가 10분 뒤 만료됩니다." size=sm weight=medium
+            }
+          }
+        }
+        card navigate="내 예약" p=3 {
+          row align=start gap=3 {
+            icon "circle-dot" size=sm
+            col flex=1 gap=1 {
+              row align=center gap=2 {
+                badge "예약 확정" pill size=sm variant=primary
+                text "22분 전" muted size=xs
+              }
+              text "강남 3번 교환소 A규격 배터리가 예약되었습니다." size=sm weight=medium
+            }
+          }
+        }
+        card navigate="교환소 상세" p=3 {
+          row align=start gap=3 {
+            icon "circle-dot" size=sm
+            col flex=1 gap=1 {
+              row align=center gap=2 {
+                badge "교환소 장애" pill size=sm variant=danger
+                text "1시간 전" muted size=xs
+              }
+              text "예약한 역삼 1번 교환소가 이용 불가 상태입니다." size=sm weight=medium
+            }
+          }
+        }
+        divider my=1
+        card navigate="이용내역" p=3 {
+          row align=start gap=3 {
+            icon "circle" muted size=sm
+            col flex=1 gap=1 {
+              row align=center gap=2 {
+                badge "교환 완료" pill size=sm variant=success
+                text "어제 18:40" muted size=xs
+              }
+              text "선릉 2번 교환소에서 교환이 완료되었습니다." muted size=sm
+            }
+          }
+        }
+        card navigate="교환 중단" p=3 {
+          row align=start gap=3 {
+            icon "circle" muted size=sm
+            col flex=1 gap=1 {
+              row align=center gap=2 {
+                badge "교환 중단" pill size=sm variant=danger
+                text "어제 09:12" muted size=xs
+              }
+              text "반납 후 배출이 완료되지 않았습니다." muted size=sm
+            }
+          }
+        }
+        card navigate="약관과 안내 문서" p=3 {
+          row align=start gap=3 {
+            icon "circle" muted size=sm
+            col flex=1 gap=1 {
+              row align=center gap=2 {
+                badge "공지" pill size=sm variant=default
+                text "3일 전" muted size=xs
+              }
+              text "서비스 이용약관이 개정되었습니다." muted size=sm
+            }
+          }
+        }
+        card action=none p=3 {
+          row align=start gap=3 {
+            icon "circle" muted size=sm
+            col flex=1 gap=1 {
+              row align=center gap=2 {
+                badge "예약 만료됨" pill size=sm variant=default
+                text "5일 전" muted size=xs
+              }
+              text "예약이 만료되었습니다." muted size=sm
+              text "이미 지난 알림입니다" muted size=xs
+            }
+          }
+        }
+      }
+      button "더 불러오기" action=load-more outline w=full
+      row justify=center {
+        link "알림 설정" navigate="설정"
+      }
+    }
+  }
+}

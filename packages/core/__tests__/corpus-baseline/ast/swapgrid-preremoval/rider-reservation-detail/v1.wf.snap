@@ -1,0 +1,398 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "content": "내 예약",
+                  "level": 2,
+                  "mb": 0,
+                  "mt": 0,
+                  "size": "lg",
+                  "type": "Title"
+                },
+                {
+                  "aria": "알림 목록",
+                  "content": "",
+                  "ghost": true,
+                  "icon": "bell",
+                  "navigate": "알림 목록",
+                  "size": "sm",
+                  "type": "Button"
+                }
+              ],
+              "justify": "between",
+              "type": "Row"
+            }
+          ],
+          "h": 72,
+          "p": 4,
+          "type": "Header"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "content": "연결이 불안정합니다. 마지막으로 받은 정보입니다.",
+                  "icon": "wifi-off",
+                  "type": "Alert",
+                  "variant": "warning"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "서울 성동구 아차산로 100",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "곧 만료",
+                              "pill": true,
+                              "type": "Badge",
+                              "variant": "warning"
+                            }
+                          ],
+                          "justify": "between",
+                          "type": "Row"
+                        },
+                        {
+                          "content": "적용 규격 · A규격 (등록 차량 기준)",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "my": 0,
+                          "type": "Divider"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "남은 유효 시간",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "04:32",
+                              "size": "xl",
+                              "type": "Text",
+                              "weight": "bold"
+                            }
+                          ],
+                          "justify": "between",
+                          "type": "Row"
+                        },
+                        {
+                          "content": "시간이 지나면 예약이 사라집니다.",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "children": [
+                            {
+                              "content": "교환 시작",
+                              "navigate": "QR 스캔",
+                              "primary": true,
+                              "type": "Button",
+                              "w": "full"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "action": "open-directions",
+                                  "content": "길 안내",
+                                  "icon": "navigation",
+                                  "outline": true,
+                                  "type": "Button",
+                                  "w": "full"
+                                },
+                                {
+                                  "action": "cancel-reservation",
+                                  "content": "예약 취소",
+                                  "ghost": true,
+                                  "type": "Button",
+                                  "w": "full"
+                                }
+                              ],
+                              "gap": 2,
+                              "type": "Row"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Col"
+                        }
+                      ],
+                      "gap": 3,
+                      "type": "Col"
+                    }
+                  ],
+                  "navigate": "교환소 상세",
+                  "p": 4,
+                  "shadow": "md",
+                  "title": "성수 교환소",
+                  "type": "Card"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "서울 성동구 왕십리로 300",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "예약됨",
+                              "pill": true,
+                              "type": "Badge",
+                              "variant": "success"
+                            }
+                          ],
+                          "justify": "between",
+                          "type": "Row"
+                        },
+                        {
+                          "content": "적용 규격 · A규격 (등록 차량 기준)",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "my": 0,
+                          "type": "Divider"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "남은 유효 시간",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "27:15",
+                              "size": "xl",
+                              "type": "Text",
+                              "weight": "bold"
+                            }
+                          ],
+                          "justify": "between",
+                          "type": "Row"
+                        },
+                        {
+                          "children": [
+                            {
+                              "content": "교환 시작",
+                              "navigate": "QR 스캔",
+                              "primary": true,
+                              "type": "Button",
+                              "w": "full"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "action": "open-directions",
+                                  "content": "길 안내",
+                                  "icon": "navigation",
+                                  "outline": true,
+                                  "type": "Button",
+                                  "w": "full"
+                                },
+                                {
+                                  "action": "cancel-reservation",
+                                  "content": "예약 취소",
+                                  "ghost": true,
+                                  "type": "Button",
+                                  "w": "full"
+                                }
+                              ],
+                              "gap": 2,
+                              "type": "Row"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Col"
+                        }
+                      ],
+                      "gap": 3,
+                      "type": "Col"
+                    }
+                  ],
+                  "navigate": "교환소 상세",
+                  "p": 4,
+                  "shadow": "sm",
+                  "title": "왕십리 교환소",
+                  "type": "Card"
+                },
+                {
+                  "border": true,
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "content": "잡아둔 예약이 없습니다",
+                          "size": "sm",
+                          "type": "Text",
+                          "weight": "medium"
+                        },
+                        {
+                          "content": "교환소 찾기",
+                          "navigate": "교환소 지도",
+                          "outline": true,
+                          "type": "Button",
+                          "w": "full"
+                        }
+                      ],
+                      "gap": 2,
+                      "type": "Col"
+                    }
+                  ],
+                  "p": 4,
+                  "shadow": "none",
+                  "title": null,
+                  "type": "Card"
+                },
+                {
+                  "align": "center",
+                  "content": "아래로 당겨 새로고침",
+                  "muted": true,
+                  "size": "xs",
+                  "type": "Text"
+                }
+              ],
+              "gap": 4,
+              "type": "Col"
+            }
+          ],
+          "p": 4,
+          "scroll": true,
+          "type": "Main"
+        },
+        {
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "muted": true,
+                      "name": "map",
+                      "navigate": "교환소 지도",
+                      "size": "sm",
+                      "type": "Icon"
+                    },
+                    {
+                      "align": "center",
+                      "content": "지도",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    }
+                  ],
+                  "flex": 1,
+                  "gap": 1,
+                  "type": "Col"
+                },
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "action": "none",
+                      "name": "calendar-check",
+                      "size": "sm",
+                      "type": "Icon"
+                    },
+                    {
+                      "align": "center",
+                      "content": "내 예약",
+                      "size": "xs",
+                      "type": "Text",
+                      "weight": "medium"
+                    }
+                  ],
+                  "flex": 1,
+                  "gap": 1,
+                  "type": "Col"
+                },
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "muted": true,
+                      "name": "receipt",
+                      "navigate": "이용내역",
+                      "size": "sm",
+                      "type": "Icon"
+                    },
+                    {
+                      "align": "center",
+                      "content": "이용내역",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    }
+                  ],
+                  "flex": 1,
+                  "gap": 1,
+                  "type": "Col"
+                },
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "muted": true,
+                      "name": "settings",
+                      "navigate": "설정",
+                      "size": "sm",
+                      "type": "Icon"
+                    },
+                    {
+                      "align": "center",
+                      "content": "설정",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    }
+                  ],
+                  "flex": 1,
+                  "gap": 1,
+                  "type": "Col"
+                }
+              ],
+              "gap": 0,
+              "type": "Row"
+            }
+          ],
+          "h": 72,
+          "p": 2,
+          "type": "Footer"
+        }
+      ],
+      "title": "내 예약",
+      "type": "Page",
+      "viewport": "375x812"
+    }
+  ],
+  "type": "Document"
+}

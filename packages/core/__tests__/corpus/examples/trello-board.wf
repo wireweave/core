@@ -1,0 +1,184 @@
+page width=1200 height=700 {
+  header h=48 border p=0 {
+    row justify=between align=center px=4 {
+      row gap=4 align=center {
+        icon "trello" size=lg
+        text "프로젝트 보드" weight=bold
+        badge "팀 프로젝트" variant=secondary size=sm
+      }
+      row gap=3 align=center {
+        button "필터" ghost size=sm icon="filter"
+        row gap=1 {
+          avatar "A" size=sm
+          avatar "B" size=sm
+          avatar "C" size=sm
+          badge "+2" variant=secondary size=sm
+        }
+        button "공유" outline size=sm
+      }
+    }
+  }
+
+  main p=4 scroll {
+    row gap=4 align=start {
+      card w=280 p=3 {
+        col gap=3 {
+          row justify=between align=center {
+            text "📋 할 일" weight=bold
+            icon "more-horizontal" size=sm muted
+          }
+          col gap=2 {
+            card p=3 shadow=sm {
+              col gap=2 {
+                text "홈페이지 디자인 수정" size=sm weight=semibold
+                row gap=2 {
+                  badge "디자인" variant=info size=sm
+                }
+                row justify=between align=center mt=2 {
+                  row gap=1 {
+                    icon "message-square" size=sm muted
+                    text "3" size=xs muted
+                  }
+                  avatar "A" size=xs
+                }
+              }
+            }
+            card p=3 shadow=sm {
+              col gap=2 {
+                text "API 문서 작성" size=sm weight=semibold
+                row gap=2 {
+                  badge "문서" variant=warning size=sm
+                }
+                row justify=between align=center mt=2 {
+                  row gap=1 {
+                    icon "paperclip" size=sm muted
+                    text "2" size=xs muted
+                  }
+                  avatar "B" size=xs
+                }
+              }
+            }
+            card p=3 shadow=sm {
+              col gap=2 {
+                text "테스트 케이스 작성" size=sm weight=semibold
+                row gap=2 {
+                  badge "개발" variant=success size=sm
+                }
+              }
+            }
+          }
+          button "카드 추가" ghost size=sm w=full icon="plus"
+        }
+      }
+
+      card w=280 p=3 {
+        col gap=3 {
+          row justify=between align=center {
+            text "🔄 진행 중" weight=bold
+            icon "more-horizontal" size=sm muted
+          }
+          col gap=2 {
+            card p=3 shadow=sm {
+              col gap=2 {
+                text "로그인 기능 구현" size=sm weight=semibold
+                row gap=2 {
+                  badge "개발" variant=success size=sm
+                  badge "긴급" variant=danger size=sm
+                }
+                row justify=between align=center mt=2 {
+                  row gap=1 {
+                    icon "check-square" size=sm muted
+                    text "3/5" size=xs muted
+                  }
+                  avatar "C" size=xs
+                }
+              }
+            }
+            card p=3 shadow=sm {
+              col gap=2 {
+                text "데이터베이스 설계" size=sm weight=semibold
+                row gap=2 {
+                  badge "개발" variant=success size=sm
+                }
+                row justify=between align=center mt=2 {
+                  row gap=1 {
+                    icon "calendar" size=sm muted
+                    text "1월 15일" size=xs muted
+                  }
+                  avatar "A" size=xs
+                }
+              }
+            }
+          }
+          button "카드 추가" ghost size=sm w=full icon="plus"
+        }
+      }
+
+      card w=280 p=3 {
+        col gap=3 {
+          row justify=between align=center {
+            text "👀 리뷰" weight=bold
+            icon "more-horizontal" size=sm muted
+          }
+          col gap=2 {
+            card p=3 shadow=sm {
+              col gap=2 {
+                text "결제 시스템 연동" size=sm weight=semibold
+                row gap=2 {
+                  badge "개발" variant=success size=sm
+                }
+                row justify=between align=center mt=2 {
+                  row gap=1 {
+                    icon "message-square" size=sm muted
+                    text "8" size=xs muted
+                  }
+                  row gap=1 {
+                    avatar "B" size=xs
+                    avatar "C" size=xs
+                  }
+                }
+              }
+            }
+          }
+          button "카드 추가" ghost size=sm w=full icon="plus"
+        }
+      }
+
+      card w=280 p=3 {
+        col gap=3 {
+          row justify=between align=center {
+            text "✅ 완료" weight=bold
+            icon "more-horizontal" size=sm muted
+          }
+          col gap=2 {
+            card p=3 shadow=sm {
+              col gap=2 {
+                text "프로젝트 셋업" size=sm weight=semibold
+                row gap=2 {
+                  badge "설정" variant=secondary size=sm
+                }
+              }
+            }
+            card p=3 shadow=sm {
+              col gap=2 {
+                text "Git 저장소 생성" size=sm weight=semibold
+                row gap=2 {
+                  badge "설정" variant=secondary size=sm
+                }
+              }
+            }
+            card p=3 shadow=sm {
+              col gap=2 {
+                text "디자인 시스템 정의" size=sm weight=semibold
+                row gap=2 {
+                  badge "디자인" variant=info size=sm
+                }
+              }
+            }
+          }
+          button "카드 추가" ghost size=sm w=full icon="plus"
+        }
+      }
+    }
+  }
+}

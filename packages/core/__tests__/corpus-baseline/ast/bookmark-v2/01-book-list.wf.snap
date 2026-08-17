@@ -1,0 +1,143 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "border": true,
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "content": "Bookmark",
+                  "level": 4,
+                  "type": "Title"
+                },
+                {
+                  "name": "settings",
+                  "size": "lg",
+                  "type": "Icon"
+                }
+              ],
+              "justify": "between",
+              "px": 4,
+              "py": 2,
+              "type": "Row"
+            }
+          ],
+          "h": 56,
+          "type": "Header"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "h": 200,
+                      "label": "Book Cover",
+                      "type": "Placeholder",
+                      "w": "full"
+                    },
+                    {
+                      "content": "Book Title 1",
+                      "level": 4,
+                      "mt": 3,
+                      "type": "Title"
+                    },
+                    {
+                      "content": "Author Name 1",
+                      "muted": true,
+                      "type": "Text"
+                    },
+                    {
+                      "mt": 3,
+                      "type": "Progress",
+                      "value": 75
+                    }
+                  ],
+                  "p": 4,
+                  "title": null,
+                  "type": "Card"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "h": 200,
+                      "label": "Book Cover",
+                      "type": "Placeholder",
+                      "w": "full"
+                    },
+                    {
+                      "content": "Book Title 2",
+                      "level": 4,
+                      "mt": 3,
+                      "type": "Title"
+                    },
+                    {
+                      "content": "Author Name 2",
+                      "muted": true,
+                      "type": "Text"
+                    },
+                    {
+                      "mt": 3,
+                      "type": "Progress",
+                      "value": 50
+                    }
+                  ],
+                  "p": 4,
+                  "title": null,
+                  "type": "Card"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "h": 200,
+                      "label": "Book Cover",
+                      "type": "Placeholder",
+                      "w": "full"
+                    },
+                    {
+                      "content": "Book Title 3",
+                      "level": 4,
+                      "mt": 3,
+                      "type": "Title"
+                    },
+                    {
+                      "content": "Author Name 3",
+                      "muted": true,
+                      "type": "Text"
+                    },
+                    {
+                      "mt": 3,
+                      "type": "Progress",
+                      "value": 25
+                    }
+                  ],
+                  "p": 4,
+                  "title": null,
+                  "type": "Card"
+                }
+              ],
+              "gap": 4,
+              "type": "Col"
+            }
+          ],
+          "gap": 6,
+          "p": 4,
+          "scroll": true,
+          "type": "Main"
+        }
+      ],
+      "height": 812,
+      "title": "Bookmark",
+      "type": "Page",
+      "width": 375
+    }
+  ],
+  "type": "Document"
+}

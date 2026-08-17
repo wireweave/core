@@ -145,8 +145,10 @@ describe('Interaction Rules', () => {
     })
   })
 
-  // Note: MenuItem/DropdownItem node types are not supported by @wireweave/core parser yet
-  // Tests for interaction-menu-action will be added when support is available
+  // The parser does emit `DropdownItem` now, but it puts the items in the
+  // dropdown's `items` array rather than `children`, which is what the UX walker
+  // descends into — so the rule still has nothing to fire on. `MenuItem` has no
+  // grammar rule at all. Behavioural tests wait on the walker reaching `items`.
   describe('interaction-menu-action', () => {
     it('should have correct rule definition', () => {
       const rule = interactionRules.find((r) => r.id === 'interaction-menu-action')

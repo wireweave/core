@@ -118,6 +118,7 @@ export interface PositionProps {
 export interface AppearanceProps {
   bg?: 'muted' | 'primary' | 'secondary'
   border?: boolean
+  rounded?: boolean
 }
 
 export interface CommonProps
@@ -196,7 +197,7 @@ export interface InteractiveProps extends GuardedOutcomeProps {
 // ===========================================
 
 /**
- * Wireframe Document — root node, holds pages and named layout definitions.
+ * Wireframe Document — root node, holds `Page`s and reuse definitions.
  *
  * Multi-page semantics:
  * - A document is a *canvas* of pages. `renderPage` consumes one page;
@@ -205,6 +206,23 @@ export interface InteractiveProps extends GuardedOutcomeProps {
  * - The canvas itself (gap, layout) is a *renderer* concern, not part of
  *   the DSL — see `CanvasOptions` in `renderer/types.ts`. Chrome / grid /
  *   pan-zoom are host concerns and live entirely outside the renderer.
+ *
+ * A document child is not necessarily a page: `layout` and `component`
+ * definitions are top-level siblings of `page` (see {@link TopLevelNode}).
+ * They define trees to be reused, not screens to be drawn, so consumers that
+ * want screens must select them — {@link documentPages}.
+ *
+ * Two independent name scopes live at this level, and neither is enforced by
+ * the parser:
+ * - {@link PageNode.id} — what `navigate=` addresses.
+ * - the `name` of a {@link LayoutDefinitionNode} / {@link ComponentDefinitionNode}
+ *   — what `uses=` addresses.
+ *
+ * A duplicate in either scope is a well-formed document that means something
+ * unintended (a second page with the same `id` is simply unreachable), so it
+ * is a diagnostic, not a parse error: reporting it belongs to `validation/`,
+ * where it can carry a location and still let the file be parsed, printed and
+ * edited. Resolution must therefore stay total in the presence of duplicates.
  */
 export interface WireframeDocument extends BaseNode {
   type: 'Document'
@@ -229,7 +247,20 @@ export interface WireframeDocument extends BaseNode {
  */
 export interface PageNode extends BaseNode, CommonProps {
   type: 'Page'
-  /** Stable address used by `navigate=`; distinct from the display title. */
+  /**
+   * Stable identifier this page is referenced by — the `id=home` attribute.
+   *
+   * This is the screen's *address*, as distinct from {@link PageNode.title},
+   * which is its *display name*. `navigate="home"` resolves against this, so
+   * renaming a title must not break a link. Same role the `id` on
+   * {@link ModalNode} / {@link DrawerNode} plays for `opens=` / `toggles=`,
+   * one scope up: those address an overlay within a page, this addresses a
+   * page within a document.
+   *
+   * Optional, and deliberately not enforced unique by the parser — see the
+   * note on {@link WireframeDocument} for where uniqueness is checked and what
+   * a duplicate costs.
+   */
   id?: string
   title?: string | null
   /** Center content both horizontally and vertically */
@@ -238,52 +269,90 @@ export interface PageNode extends BaseNode, CommonProps {
   viewport?: string | number
   /** Device preset (e.g., "iphone14", "desktop") */
   device?: string
-  /** Named layout shell that hosts this page's own children. */
+  /**
+   * Name of the `layout` this page is drawn inside — the `uses=app` attribute.
+   * Resolving it to a {@link LayoutDefinitionNode} is a renderer concern; the
+   * parser only records the reference.
+   */
   uses?: string
   /** Application state declarations contributed by this screen module. */
   states?: StateDeclaration[]
   children: AnyNode[]
 }
 
+// ===========================================
+// Reuse Definition Nodes
+// ===========================================
+
 /**
- * A named page shell declared with `layout NAME { ... slot ... }`.
+ * Layout — a named shell defined once and referenced by pages (`uses=<name>`).
  *
- * Layout definitions are top-level structure, not screens. The renderer
- * composes a page's children into the first slot when the page says
- * `uses=NAME`.
+ * A layout body is ordinary element content plus one {@link SlotNode} marking
+ * where a referencing page's own children belong:
+ *
+ * ```wireframe
+ * layout app {
+ *   header { title "Acme" }
+ *   slot
+ *   footer { text "© 2026" }
+ * }
+ * ```
+ *
+ * The node type is `'Layout'`; the interface is named `LayoutDefinitionNode`
+ * because `LayoutNode` already names the union of layout-*category* elements
+ * (page / header / main / footer / sidebar / section).
  */
 export interface LayoutDefinitionNode extends BaseNode, CommonProps {
   type: 'Layout'
+  /** Grammar `Identifier` this layout is referenced by. */
   name: string
   /** Application state declarations contributed by this shared layout module. */
   states?: StateDeclaration[]
   children: AnyNode[]
 }
 
-/** A named reusable component definition. */
+/**
+ * Component — a named fragment defined once for reuse across pages.
+ *
+ * Definition and round-trip only: expanding a component into its use sites is
+ * a renderer concern, so nothing here describes instantiation.
+ */
 export interface ComponentDefinitionNode extends BaseNode, CommonProps {
   type: 'Component'
+  /** Grammar `Identifier` this component is referenced by. */
   name: string
+  /** Typed values every invocation must provide by name. */
   parameters?: ComponentParameter[]
   children: AnyNode[]
 }
 
+/** Scalar input types supported by reusable component contracts. */
 export type ComponentParameterType = 'string' | 'number' | 'boolean'
 
+/** One named, required input declared by a reusable component. */
 export interface ComponentParameter {
   name: string
   valueType: ComponentParameterType
 }
 
+/** Values accepted by a component invocation. */
 export type ComponentInputValue = string | number | boolean
 
+/** Content supplied to one named slot at a component use-site. */
 export interface ComponentSlotFill {
   name: string
   children: AnyNode[]
   loc?: SourceLocation
 }
 
-/** An explicit reusable-component invocation. */
+/**
+ * An explicit reusable-component invocation.
+ *
+ * This is intentionally separate from {@link PageNode.uses}: `uses=` remains
+ * the legacy page-layout reference, while `use` invokes a component fragment.
+ * The linker fills `instanceId`, `targetId`, and `children` after validating
+ * and expanding the invocation.
+ */
 export interface ComponentUseNode extends BaseNode {
   type: 'ComponentUse'
   name: string
@@ -295,9 +364,16 @@ export interface ComponentUseNode extends BaseNode {
   children?: AnyNode[]
 }
 
-/** Bare positional marker inside a layout or named marker inside a component. */
+/**
+ * Slot — the position inside a {@link LayoutDefinitionNode} where a
+ * referencing page's own content is placed.
+ *
+ * A bare positional marker: no name, no block. Its position among its parent's
+ * `children` is the whole content of the node.
+ */
 export interface SlotNode extends BaseNode, CommonProps {
   type: 'Slot'
+  /** Required for component slots; absent for the legacy layout slot. */
   name?: string
 }
 
@@ -451,6 +527,8 @@ export interface TextNode extends BaseNode, Omit<CommonProps, 'align'> {
   content: string
   size?: TextSize
   weight?: TextWeight
+  /** Shorthand for `weight: 'bold'`; an explicit `weight` wins. */
+  bold?: boolean
   align?: TextAlign
   muted?: boolean
 }
@@ -654,7 +732,8 @@ export interface TableNode extends BaseNode, CommonProps {
   hover?: boolean
 }
 
-export interface ListItemNode {
+export interface ListItemNode extends BaseNode {
+  type: 'ListItem'
   content: string
   icon?: string
   children?: ListItemNode[]
@@ -732,7 +811,8 @@ export interface PopoverNode extends BaseNode, CommonProps {
   children: AnyNode[]
 }
 
-export interface DropdownItemNode extends InteractiveProps {
+export interface DropdownItemNode extends BaseNode, InteractiveProps {
+  type: 'DropdownItem'
   label: string
   icon?: string
   href?: string
@@ -740,13 +820,9 @@ export interface DropdownItemNode extends InteractiveProps {
   disabled?: boolean
 }
 
-export interface DividerNode {
-  type: 'divider'
-}
-
 export interface DropdownNode extends BaseNode, CommonProps {
   type: 'Dropdown'
-  items: (DropdownItemNode | DividerNode)[]
+  items: (DropdownItemNode | DividerComponentNode)[]
 }
 
 // ===========================================
@@ -762,9 +838,15 @@ export interface NavItem extends InteractiveProps {
   disabled?: boolean
 }
 
-/** Nav item for block syntax: item "label" icon="x" active */
-export interface NavBlockItem extends InteractiveProps {
-  type: 'item'
+/**
+ * Nav item for block syntax: item "label" icon="x" active
+ *
+ * `NavItem` is the same shape written as an array entry, which carries no `type`
+ * because an array position needs no discriminant. Here the tag is load-bearing:
+ * a nav block holds items, groups and dividers in one list.
+ */
+export interface NavBlockItem extends BaseNode, InteractiveProps {
+  type: 'NavItem'
   label: string
   icon?: string
   href?: string
@@ -773,20 +855,20 @@ export interface NavBlockItem extends InteractiveProps {
 }
 
 /** Nav group for block syntax: group "label" { ... } */
-export interface NavGroupNode {
-  type: 'group'
+export interface NavGroupNode extends BaseNode {
+  type: 'NavGroup'
   label: string
-  collapsed?: boolean
-  items: (NavBlockItem | NavDivider)[]
+  items: (NavBlockItem | DividerComponentNode)[]
 }
 
-/** Divider inside nav block */
-export interface NavDivider {
-  type: 'divider'
-}
-
-/** Nav child can be group, item, or divider */
-export type NavChild = NavGroupNode | NavBlockItem | NavDivider
+/**
+ * Nav child can be group, item, or divider.
+ *
+ * The divider is the ordinary {@link DividerComponentNode}: `divider` means one
+ * thing in this DSL, and a separator written inside a nav block is the same
+ * element as one written between two cards.
+ */
+export type NavChild = NavGroupNode | NavBlockItem | DividerComponentNode
 
 export interface NavNode extends BaseNode, CommonProps {
   type: 'Nav'
@@ -911,8 +993,10 @@ export interface AnnotationItemNode extends BaseNode {
 
 export type LayoutNode = PageNode | HeaderNode | MainNode | FooterNode | SidebarNode | SectionNode
 
+/** A named tree defined once for reuse, rather than a screen to draw. */
 export type DefinitionNode = LayoutDefinitionNode | ComponentDefinitionNode
 
+/** What a {@link WireframeDocument} can hold directly. */
 export type TopLevelNode = PageNode | DefinitionNode
 
 export type GridNode = RowNode | ColNode | StackNode | RelativeNode

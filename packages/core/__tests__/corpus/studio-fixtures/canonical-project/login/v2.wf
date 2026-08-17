@@ -1,0 +1,4 @@
+page "Login" {
+  input "Email"
+  button "Sign in" primary
+}

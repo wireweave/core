@@ -56,7 +56,7 @@
       {
         "language": "wireframe",
         "scopeName": "source.wireframe",
-        "path": "./syntaxes/wireframe.tmLanguage.json"
+        "path": "./syntaxes/wireframe.tmLanguage.generated.json"
       }
     ],
     "commands": [
@@ -154,7 +154,9 @@
     }
   },
   "scripts": {
-    "build": "tsup",
+    "build:syntax": "node ../../scripts/dist-freshness-gate.mjs --require-deps && node scripts/generate-tmlanguage.mjs",
+    "build": "pnpm build:syntax && tsup",
+    "postbuild": "node ../../scripts/dist-freshness-gate.mjs --write .",
     "watch": "tsup --watch",
     "package": "vsce package --no-dependencies",
     "clean": "rm -rf dist",

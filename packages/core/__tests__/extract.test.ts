@@ -139,32 +139,10 @@ describe('extractScreenTransitions (E1)', () => {
     expect(graph.external[0]).toMatchObject({
       kind: 'navigate',
       target: '/reset',
-      resolved: true,
       external: true,
+      resolved: true,
       to: null,
     })
-  })
-
-  it('prefers an exact page title over URL-shape classification', () => {
-    const graph = extractScreenTransitions(
-      parse('page "/docs" { text "Docs" } page "Home" { button "Open" navigate="/docs" }'),
-    )
-    const edge = graph.edges.find((candidate) => candidate.trigger.label === 'Open')
-
-    expect(edge).toMatchObject({ resolved: true, to: { pageIndex: 0, title: '/docs' } })
-    expect(edge?.external).toBeUndefined()
-    expect(graph.external).toHaveLength(0)
-    expect(graph.dangling).toHaveLength(0)
-  })
-
-  it('keeps an unmatched plain page name dangling', () => {
-    const graph = extractScreenTransitions(
-      parse('page "Home" { button "Open" navigate="Missing" }'),
-    )
-
-    expect(graph.external).toHaveLength(0)
-    expect(graph.dangling).toHaveLength(1)
-    expect(graph.dangling[0]).toMatchObject({ target: 'Missing', resolved: false, to: null })
   })
 
   it('resolves opens against overlay ids and keeps toggles/action off the page graph', () => {
@@ -195,7 +173,8 @@ const NAV_MENUS = `
 page "Home" {
   nav [
     { label="To Dashboard" navigate="Dashboard" }
-    { label="Broken" navigate="/missing" }
+    { label="Outbound" navigate="/missing" }
+    { label="Broken" navigate="Nowhere" }
   ]
 }
 
@@ -235,15 +214,24 @@ describe('extractScreenTransitions — item-level triggers (E1b)', () => {
       trigger: { nodeType: 'Nav', item: { index: 0 } },
     })
 
-    expect(graph.dangling).toHaveLength(0)
+    // A URL-shaped item leaves the document; only an unmatched *name* is a defect.
     expect(graph.external).toHaveLength(1)
     expect(graph.external[0]).toMatchObject({
       kind: 'navigate',
       target: '/missing',
-      resolved: true,
       external: true,
+      resolved: true,
       to: null,
-      trigger: { nodeType: 'Nav', label: 'Broken', item: { index: 1 } },
+      trigger: { nodeType: 'Nav', label: 'Outbound', item: { index: 1 } },
+    })
+
+    expect(graph.dangling).toHaveLength(1)
+    expect(graph.dangling[0]).toMatchObject({
+      kind: 'navigate',
+      target: 'Nowhere',
+      resolved: false,
+      to: null,
+      trigger: { nodeType: 'Nav', label: 'Broken', item: { index: 2 } },
     })
   })
 
@@ -287,11 +275,12 @@ describe('extractScreenTransitions — item-level triggers (E1b)', () => {
       trigger: { label: 'Open Panel', item: { index: 0 } },
     })
 
-    // The divider is not an item; the item after it keeps its raw index (2).
+    // A divider can never hold an intent, so it occupies no index: the item
+    // after it is the second addressable item, not the third.
     const signOut = graph.edges.find(
       (e) => e.trigger.nodeType === 'Dropdown' && e.kind === 'action',
     )
-    expect(signOut).toMatchObject({ target: 'logout', trigger: { item: { index: 2 } } })
+    expect(signOut).toMatchObject({ target: 'logout', trigger: { item: { index: 1 } } })
   })
 
   it('resolves breadcrumb item navigate by title', () => {

@@ -1,0 +1,1296 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "border": true,
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "name": "menu",
+                      "size": "lg",
+                      "type": "Icon"
+                    },
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "name": "youtube",
+                          "size": "lg",
+                          "type": "Icon"
+                        },
+                        {
+                          "bold": true,
+                          "content": "YouTube",
+                          "size": "lg",
+                          "type": "Text"
+                        }
+                      ],
+                      "gap": 1,
+                      "type": "Row"
+                    }
+                  ],
+                  "gap": 4,
+                  "type": "Row"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "label": null,
+                          "placeholder": "검색",
+                          "type": "Input",
+                          "w": "full"
+                        },
+                        {
+                          "content": "",
+                          "icon": "search",
+                          "outline": true,
+                          "type": "Button"
+                        },
+                        {
+                          "content": "",
+                          "ghost": true,
+                          "icon": "mic",
+                          "type": "Button"
+                        }
+                      ],
+                      "gap": 0,
+                      "type": "Row",
+                      "w": 600
+                    }
+                  ],
+                  "flex": 1,
+                  "justify": "center",
+                  "type": "Row"
+                },
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "content": "",
+                      "ghost": true,
+                      "icon": "square-plus",
+                      "type": "Button"
+                    },
+                    {
+                      "content": "",
+                      "ghost": true,
+                      "icon": "bell",
+                      "type": "Button"
+                    },
+                    {
+                      "name": "User",
+                      "size": "sm",
+                      "type": "Avatar"
+                    }
+                  ],
+                  "gap": 3,
+                  "type": "Row"
+                }
+              ],
+              "justify": "between",
+              "px": 4,
+              "type": "Row"
+            }
+          ],
+          "h": 56,
+          "p": 0,
+          "type": "Header"
+        },
+        {
+          "children": [
+            {
+              "border": true,
+              "children": [
+                {
+                  "children": [
+                    {
+                      "align": "center",
+                      "bg": "muted",
+                      "children": [
+                        {
+                          "name": "home",
+                          "size": "sm",
+                          "type": "Icon"
+                        },
+                        {
+                          "content": "홈",
+                          "size": "sm",
+                          "type": "Text"
+                        }
+                      ],
+                      "gap": 3,
+                      "p": 2,
+                      "rounded": true,
+                      "type": "Row"
+                    },
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "muted": true,
+                          "name": "zap",
+                          "size": "sm",
+                          "type": "Icon"
+                        },
+                        {
+                          "content": "Shorts",
+                          "muted": true,
+                          "size": "sm",
+                          "type": "Text"
+                        }
+                      ],
+                      "gap": 3,
+                      "p": 2,
+                      "type": "Row"
+                    },
+                    {
+                      "type": "Divider"
+                    },
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "content": "구독",
+                          "size": "sm",
+                          "type": "Text",
+                          "weight": "semibold"
+                        },
+                        {
+                          "muted": true,
+                          "name": "chevron-right",
+                          "size": "sm",
+                          "type": "Icon"
+                        }
+                      ],
+                      "justify": "between",
+                      "py": 2,
+                      "type": "Row"
+                    },
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "name": "TC",
+                              "size": "xs",
+                              "type": "Avatar"
+                            },
+                            {
+                              "content": "Tech Channel",
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 3,
+                          "py": 1,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "name": "MV",
+                              "size": "xs",
+                              "type": "Avatar"
+                            },
+                            {
+                              "content": "Music Videos",
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 3,
+                          "py": 1,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "name": "GL",
+                              "size": "xs",
+                              "type": "Avatar"
+                            },
+                            {
+                              "content": "Gaming Live",
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 3,
+                          "py": 1,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "muted": true,
+                              "name": "chevron-down",
+                              "size": "xs",
+                              "type": "Icon"
+                            },
+                            {
+                              "content": "더보기",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 3,
+                          "py": 1,
+                          "type": "Row"
+                        }
+                      ],
+                      "gap": 0,
+                      "type": "Col"
+                    },
+                    {
+                      "type": "Divider"
+                    },
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "content": "내 페이지",
+                          "size": "sm",
+                          "type": "Text",
+                          "weight": "semibold"
+                        },
+                        {
+                          "muted": true,
+                          "name": "chevron-right",
+                          "size": "sm",
+                          "type": "Icon"
+                        }
+                      ],
+                      "justify": "between",
+                      "py": 2,
+                      "type": "Row"
+                    },
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "muted": true,
+                              "name": "history",
+                              "size": "sm",
+                              "type": "Icon"
+                            },
+                            {
+                              "content": "기록",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 3,
+                          "py": 1,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "muted": true,
+                              "name": "list",
+                              "size": "sm",
+                              "type": "Icon"
+                            },
+                            {
+                              "content": "재생목록",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 3,
+                          "py": 1,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "muted": true,
+                              "name": "clock",
+                              "size": "sm",
+                              "type": "Icon"
+                            },
+                            {
+                              "content": "나중에 볼 동영상",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 3,
+                          "py": 1,
+                          "type": "Row"
+                        }
+                      ],
+                      "gap": 0,
+                      "type": "Col"
+                    }
+                  ],
+                  "gap": 0,
+                  "px": 3,
+                  "py": 2,
+                  "type": "Col"
+                }
+              ],
+              "p": 0,
+              "type": "Sidebar",
+              "w": 220
+            },
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "align": "center",
+                      "border": true,
+                      "children": [
+                        {
+                          "content": "전체",
+                          "type": "Badge",
+                          "variant": "primary"
+                        },
+                        {
+                          "content": "팟캐스트",
+                          "type": "Badge",
+                          "variant": "outline"
+                        },
+                        {
+                          "content": "라이브",
+                          "type": "Badge",
+                          "variant": "outline"
+                        },
+                        {
+                          "content": "음악",
+                          "type": "Badge",
+                          "variant": "outline"
+                        },
+                        {
+                          "content": "믹스",
+                          "type": "Badge",
+                          "variant": "outline"
+                        },
+                        {
+                          "content": "게임",
+                          "type": "Badge",
+                          "variant": "outline"
+                        },
+                        {
+                          "muted": true,
+                          "name": "chevron-right",
+                          "size": "sm",
+                          "type": "Icon"
+                        }
+                      ],
+                      "gap": 2,
+                      "px": 4,
+                      "py": 3,
+                      "type": "Row"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [],
+                                  "h": 200,
+                                  "label": "Wireweave Ad",
+                                  "type": "Placeholder",
+                                  "w": "full"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "content": "AI와 함께 와이어프레임을 작성하세요 - Wireweave",
+                                      "size": "sm",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "content": "스폰서 · Wireweave",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "content": "자세히 보기",
+                                          "outline": true,
+                                          "size": "sm",
+                                          "type": "Button"
+                                        },
+                                        {
+                                          "content": "시작하기",
+                                          "primary": true,
+                                          "size": "sm",
+                                          "type": "Button"
+                                        }
+                                      ],
+                                      "gap": 2,
+                                      "type": "Row"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Col"
+                                }
+                              ],
+                              "flex": 1,
+                              "gap": 2,
+                              "type": "Col"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [],
+                                  "h": 200,
+                                  "label": "Live Thumbnail",
+                                  "type": "Placeholder",
+                                  "w": "full"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "name": "TC",
+                                      "size": "sm",
+                                      "type": "Avatar"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "content": "[LIVE] Tech Talk Stream",
+                                          "size": "sm",
+                                          "type": "Text",
+                                          "weight": "semibold"
+                                        },
+                                        {
+                                          "content": "Tech Channel",
+                                          "muted": true,
+                                          "size": "xs",
+                                          "type": "Text"
+                                        },
+                                        {
+                                          "content": "1.2K watching",
+                                          "muted": true,
+                                          "size": "xs",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "flex": 1,
+                                      "gap": 0,
+                                      "type": "Col"
+                                    },
+                                    {
+                                      "muted": true,
+                                      "name": "more-vertical",
+                                      "size": "sm",
+                                      "type": "Icon"
+                                    }
+                                  ],
+                                  "gap": 3,
+                                  "type": "Row"
+                                }
+                              ],
+                              "flex": 1,
+                              "gap": 2,
+                              "type": "Col"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [],
+                                  "h": 200,
+                                  "label": "Thumbnail",
+                                  "type": "Placeholder",
+                                  "w": "full"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "name": "DC",
+                                      "size": "sm",
+                                      "type": "Avatar"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "content": "10 Tips for Better Productivity",
+                                          "size": "sm",
+                                          "type": "Text",
+                                          "weight": "semibold"
+                                        },
+                                        {
+                                          "content": "Daily Content",
+                                          "muted": true,
+                                          "size": "xs",
+                                          "type": "Text"
+                                        },
+                                        {
+                                          "content": "150K views · 2 weeks ago",
+                                          "muted": true,
+                                          "size": "xs",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "flex": 1,
+                                      "gap": 0,
+                                      "type": "Col"
+                                    },
+                                    {
+                                      "muted": true,
+                                      "name": "more-vertical",
+                                      "size": "sm",
+                                      "type": "Icon"
+                                    }
+                                  ],
+                                  "gap": 3,
+                                  "type": "Row"
+                                }
+                              ],
+                              "flex": 1,
+                              "gap": 2,
+                              "type": "Col"
+                            }
+                          ],
+                          "gap": 4,
+                          "type": "Row"
+                        },
+                        {
+                          "children": [
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "name": "flame",
+                                      "size": "sm",
+                                      "type": "Icon"
+                                    },
+                                    {
+                                      "content": "Shorts",
+                                      "size": "md",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Row"
+                                },
+                                {
+                                  "muted": true,
+                                  "name": "more-vertical",
+                                  "size": "sm",
+                                  "type": "Icon"
+                                }
+                              ],
+                              "justify": "between",
+                              "type": "Row"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "children": [],
+                                      "h": 280,
+                                      "label": "Shorts",
+                                      "type": "Placeholder",
+                                      "w": "full"
+                                    },
+                                    {
+                                      "content": "Amazing Dance Moves",
+                                      "size": "xs",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "content": "3.1M views",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "flex": 1,
+                                  "gap": 1,
+                                  "type": "Col"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "children": [],
+                                      "h": 280,
+                                      "label": "Shorts",
+                                      "type": "Placeholder",
+                                      "w": "full"
+                                    },
+                                    {
+                                      "content": "Quick Cooking Tips",
+                                      "size": "xs",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "content": "250K views",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "flex": 1,
+                                  "gap": 1,
+                                  "type": "Col"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "children": [],
+                                      "h": 280,
+                                      "label": "Shorts",
+                                      "type": "Placeholder",
+                                      "w": "full"
+                                    },
+                                    {
+                                      "content": "Funny Pet Moments",
+                                      "size": "xs",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "content": "370K views",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "flex": 1,
+                                  "gap": 1,
+                                  "type": "Col"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "children": [],
+                                      "h": 280,
+                                      "label": "Shorts",
+                                      "type": "Placeholder",
+                                      "w": "full"
+                                    },
+                                    {
+                                      "content": "Life Hacks You Need",
+                                      "size": "xs",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "content": "250K views",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "flex": 1,
+                                  "gap": 1,
+                                  "type": "Col"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "children": [],
+                                      "h": 280,
+                                      "label": "Shorts",
+                                      "type": "Placeholder",
+                                      "w": "full"
+                                    },
+                                    {
+                                      "content": "Travel Highlights",
+                                      "size": "xs",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "content": "1.01M views",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "flex": 1,
+                                  "gap": 1,
+                                  "type": "Col"
+                                }
+                              ],
+                              "gap": 3,
+                              "type": "Row"
+                            }
+                          ],
+                          "gap": 3,
+                          "type": "Col"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [],
+                                  "h": 200,
+                                  "label": "Thumbnail",
+                                  "type": "Placeholder",
+                                  "w": "full"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "name": "MV",
+                                      "size": "sm",
+                                      "type": "Avatar"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "content": "Top Hits Playlist 2024",
+                                          "size": "sm",
+                                          "type": "Text",
+                                          "weight": "semibold"
+                                        },
+                                        {
+                                          "content": "Music Videos",
+                                          "muted": true,
+                                          "size": "xs",
+                                          "type": "Text"
+                                        },
+                                        {
+                                          "content": "7.3M views · 1 year ago",
+                                          "muted": true,
+                                          "size": "xs",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "flex": 1,
+                                      "gap": 0,
+                                      "type": "Col"
+                                    },
+                                    {
+                                      "muted": true,
+                                      "name": "more-vertical",
+                                      "size": "sm",
+                                      "type": "Icon"
+                                    }
+                                  ],
+                                  "gap": 3,
+                                  "type": "Row"
+                                }
+                              ],
+                              "flex": 1,
+                              "gap": 2,
+                              "type": "Col"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [],
+                                  "h": 200,
+                                  "label": "Thumbnail",
+                                  "type": "Placeholder",
+                                  "w": "full"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "name": "CC",
+                                      "size": "sm",
+                                      "type": "Avatar"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "content": "Learn Coding in 30 Days",
+                                          "size": "sm",
+                                          "type": "Text",
+                                          "weight": "semibold"
+                                        },
+                                        {
+                                          "content": "Code Camp",
+                                          "muted": true,
+                                          "size": "xs",
+                                          "type": "Text"
+                                        },
+                                        {
+                                          "content": "10K views · 3 weeks ago",
+                                          "muted": true,
+                                          "size": "xs",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "flex": 1,
+                                      "gap": 0,
+                                      "type": "Col"
+                                    },
+                                    {
+                                      "muted": true,
+                                      "name": "more-vertical",
+                                      "size": "sm",
+                                      "type": "Icon"
+                                    }
+                                  ],
+                                  "gap": 3,
+                                  "type": "Row"
+                                }
+                              ],
+                              "flex": 1,
+                              "gap": 2,
+                              "type": "Col"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [],
+                                  "h": 200,
+                                  "label": "Thumbnail",
+                                  "type": "Placeholder",
+                                  "w": "full"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "name": "FT",
+                                      "size": "sm",
+                                      "type": "Avatar"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "content": "Fitness Routine for Beginners",
+                                          "size": "sm",
+                                          "type": "Text",
+                                          "weight": "semibold"
+                                        },
+                                        {
+                                          "content": "Fitness Today",
+                                          "muted": true,
+                                          "size": "xs",
+                                          "type": "Text"
+                                        },
+                                        {
+                                          "content": "5.1K views · 4 days ago",
+                                          "muted": true,
+                                          "size": "xs",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "flex": 1,
+                                      "gap": 0,
+                                      "type": "Col"
+                                    },
+                                    {
+                                      "muted": true,
+                                      "name": "more-vertical",
+                                      "size": "sm",
+                                      "type": "Icon"
+                                    }
+                                  ],
+                                  "gap": 3,
+                                  "type": "Row"
+                                }
+                              ],
+                              "flex": 1,
+                              "gap": 2,
+                              "type": "Col"
+                            }
+                          ],
+                          "gap": 4,
+                          "type": "Row"
+                        },
+                        {
+                          "children": [
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "name": "flame",
+                                      "size": "sm",
+                                      "type": "Icon"
+                                    },
+                                    {
+                                      "content": "Shorts",
+                                      "size": "md",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Row"
+                                },
+                                {
+                                  "muted": true,
+                                  "name": "more-vertical",
+                                  "size": "sm",
+                                  "type": "Icon"
+                                }
+                              ],
+                              "justify": "between",
+                              "type": "Row"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "children": [],
+                                      "h": 280,
+                                      "label": "Shorts",
+                                      "type": "Placeholder",
+                                      "w": "full"
+                                    },
+                                    {
+                                      "content": "Quick DIY Projects",
+                                      "size": "xs",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "content": "8.5K views",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "flex": 1,
+                                  "gap": 1,
+                                  "type": "Col"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "children": [],
+                                      "h": 280,
+                                      "label": "Shorts",
+                                      "type": "Placeholder",
+                                      "w": "full"
+                                    },
+                                    {
+                                      "content": "Tech Tips in 60 Sec",
+                                      "size": "xs",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "content": "14K views",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "flex": 1,
+                                  "gap": 1,
+                                  "type": "Col"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "children": [],
+                                      "h": 280,
+                                      "label": "Shorts",
+                                      "type": "Placeholder",
+                                      "w": "full"
+                                    },
+                                    {
+                                      "content": "Books That Changed Me",
+                                      "size": "xs",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "content": "33K views",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "flex": 1,
+                                  "gap": 1,
+                                  "type": "Col"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "children": [],
+                                      "h": 280,
+                                      "label": "Shorts",
+                                      "type": "Placeholder",
+                                      "w": "full"
+                                    },
+                                    {
+                                      "content": "Behind the Scenes",
+                                      "size": "xs",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "content": "450K views",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "flex": 1,
+                                  "gap": 1,
+                                  "type": "Col"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "children": [],
+                                      "h": 280,
+                                      "label": "Shorts",
+                                      "type": "Placeholder",
+                                      "w": "full"
+                                    },
+                                    {
+                                      "content": "Sibling Pranks",
+                                      "size": "xs",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "content": "4.15M views",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "flex": 1,
+                                  "gap": 1,
+                                  "type": "Col"
+                                }
+                              ],
+                              "gap": 3,
+                              "type": "Row"
+                            }
+                          ],
+                          "gap": 3,
+                          "type": "Col"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [],
+                                  "h": 200,
+                                  "label": "Thumbnail",
+                                  "type": "Placeholder",
+                                  "w": "full"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "name": "VL",
+                                      "size": "sm",
+                                      "type": "Avatar"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "content": "Vlog: A Day in My Life",
+                                          "size": "sm",
+                                          "type": "Text",
+                                          "weight": "semibold"
+                                        },
+                                        {
+                                          "content": "Vlogger Life",
+                                          "muted": true,
+                                          "size": "xs",
+                                          "type": "Text"
+                                        },
+                                        {
+                                          "content": "210K views · 7 days ago",
+                                          "muted": true,
+                                          "size": "xs",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "flex": 1,
+                                      "gap": 0,
+                                      "type": "Col"
+                                    },
+                                    {
+                                      "muted": true,
+                                      "name": "more-vertical",
+                                      "size": "sm",
+                                      "type": "Icon"
+                                    }
+                                  ],
+                                  "gap": 3,
+                                  "type": "Row"
+                                }
+                              ],
+                              "flex": 1,
+                              "gap": 2,
+                              "type": "Col"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [],
+                                  "h": 200,
+                                  "label": "Thumbnail",
+                                  "type": "Placeholder",
+                                  "w": "full"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "name": "CK",
+                                      "size": "sm",
+                                      "type": "Avatar"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "content": "Easy Recipe: Chocolate Cookies",
+                                          "size": "sm",
+                                          "type": "Text",
+                                          "weight": "semibold"
+                                        },
+                                        {
+                                          "content": "Chef Kitchen",
+                                          "muted": true,
+                                          "size": "xs",
+                                          "type": "Text"
+                                        },
+                                        {
+                                          "content": "4.1M views · 2 weeks ago",
+                                          "muted": true,
+                                          "size": "xs",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "flex": 1,
+                                      "gap": 0,
+                                      "type": "Col"
+                                    },
+                                    {
+                                      "muted": true,
+                                      "name": "more-vertical",
+                                      "size": "sm",
+                                      "type": "Icon"
+                                    }
+                                  ],
+                                  "gap": 3,
+                                  "type": "Row"
+                                }
+                              ],
+                              "flex": 1,
+                              "gap": 2,
+                              "type": "Col"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [],
+                                  "h": 200,
+                                  "label": "Thumbnail",
+                                  "type": "Placeholder",
+                                  "w": "full"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "name": "TN",
+                                      "size": "sm",
+                                      "type": "Avatar"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "content": "Weekly Tech News Roundup",
+                                          "size": "sm",
+                                          "type": "Text",
+                                          "weight": "semibold"
+                                        },
+                                        {
+                                          "content": "Tech News Daily",
+                                          "muted": true,
+                                          "size": "xs",
+                                          "type": "Text"
+                                        },
+                                        {
+                                          "content": "40K views · 2 weeks ago",
+                                          "muted": true,
+                                          "size": "xs",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "flex": 1,
+                                      "gap": 0,
+                                      "type": "Col"
+                                    },
+                                    {
+                                      "muted": true,
+                                      "name": "more-vertical",
+                                      "size": "sm",
+                                      "type": "Icon"
+                                    }
+                                  ],
+                                  "gap": 3,
+                                  "type": "Row"
+                                }
+                              ],
+                              "flex": 1,
+                              "gap": 2,
+                              "type": "Col"
+                            }
+                          ],
+                          "gap": 4,
+                          "type": "Row"
+                        }
+                      ],
+                      "gap": 6,
+                      "p": 4,
+                      "type": "Col"
+                    }
+                  ],
+                  "gap": 0,
+                  "type": "Col"
+                }
+              ],
+              "p": 0,
+              "scroll": true,
+              "type": "Main"
+            }
+          ],
+          "type": "Row"
+        }
+      ],
+      "height": 800,
+      "title": null,
+      "type": "Page",
+      "width": 1280
+    }
+  ],
+  "type": "Document"
+}

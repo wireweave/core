@@ -1,0 +1,757 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "border": true,
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "bold": true,
+                  "content": "Medium",
+                  "size": "xl",
+                  "type": "Text"
+                },
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "align": "center",
+                      "border": true,
+                      "children": [
+                        {
+                          "muted": true,
+                          "name": "search",
+                          "size": "sm",
+                          "type": "Icon"
+                        },
+                        {
+                          "content": "Search",
+                          "muted": true,
+                          "size": "sm",
+                          "type": "Text"
+                        }
+                      ],
+                      "gap": 2,
+                      "p": 2,
+                      "rounded": true,
+                      "type": "Row"
+                    }
+                  ],
+                  "gap": 2,
+                  "type": "Row"
+                },
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "name": "edit",
+                          "size": "sm",
+                          "type": "Icon"
+                        },
+                        {
+                          "content": "Write",
+                          "size": "sm",
+                          "type": "Text"
+                        }
+                      ],
+                      "gap": 2,
+                      "type": "Row"
+                    },
+                    {
+                      "content": "Sign up",
+                      "ghost": true,
+                      "size": "sm",
+                      "type": "Button"
+                    },
+                    {
+                      "content": "Sign in",
+                      "muted": true,
+                      "size": "sm",
+                      "type": "Text"
+                    }
+                  ],
+                  "gap": 3,
+                  "type": "Row"
+                }
+              ],
+              "justify": "between",
+              "px": 6,
+              "type": "Row"
+            }
+          ],
+          "h": 56,
+          "p": 0,
+          "type": "Header"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "content": "좋은 개발자가 되기 위한 5가지 습관",
+                      "level": 1,
+                      "type": "Title"
+                    },
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "name": "김개발",
+                          "size": "md",
+                          "type": "Avatar"
+                        },
+                        {
+                          "children": [
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "content": "김개발",
+                                  "type": "Text",
+                                  "weight": "semibold"
+                                },
+                                {
+                                  "content": "Follow",
+                                  "primary": true,
+                                  "size": "sm",
+                                  "type": "Button"
+                                }
+                              ],
+                              "gap": 2,
+                              "type": "Row"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "content": "10 min read",
+                                  "muted": true,
+                                  "size": "sm",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "·",
+                                  "muted": true,
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "Jan 8, 2025",
+                                  "muted": true,
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 2,
+                              "type": "Row"
+                            }
+                          ],
+                          "flex": 1,
+                          "gap": 1,
+                          "type": "Col"
+                        }
+                      ],
+                      "gap": 3,
+                      "type": "Row"
+                    },
+                    {
+                      "align": "center",
+                      "border": true,
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "muted": true,
+                                  "name": "hand",
+                                  "size": "sm",
+                                  "type": "Icon"
+                                },
+                                {
+                                  "content": "2.4K",
+                                  "muted": true,
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 1,
+                              "type": "Row"
+                            },
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "muted": true,
+                                  "name": "message-circle",
+                                  "size": "sm",
+                                  "type": "Icon"
+                                },
+                                {
+                                  "content": "89",
+                                  "muted": true,
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 1,
+                              "type": "Row"
+                            }
+                          ],
+                          "gap": 4,
+                          "type": "Row"
+                        },
+                        {
+                          "children": [
+                            {
+                              "muted": true,
+                              "name": "bookmark",
+                              "size": "sm",
+                              "type": "Icon"
+                            },
+                            {
+                              "muted": true,
+                              "name": "headphones",
+                              "size": "sm",
+                              "type": "Icon"
+                            },
+                            {
+                              "muted": true,
+                              "name": "share",
+                              "size": "sm",
+                              "type": "Icon"
+                            }
+                          ],
+                          "gap": 3,
+                          "type": "Row"
+                        }
+                      ],
+                      "justify": "between",
+                      "py": 2,
+                      "type": "Row"
+                    }
+                  ],
+                  "gap": 4,
+                  "type": "Col"
+                },
+                {
+                  "children": [],
+                  "h": 400,
+                  "label": "대표 이미지",
+                  "type": "Placeholder",
+                  "w": "full"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "content": "소프트웨어 개발은 단순히 코드를 작성하는 것 이상입니다. 진정한 개발자가 되기 위해서는 기술적 능력뿐만 아니라 올바른 습관과 마인드셋이 필요합니다. 오늘은 제가 10년간의 경험을 통해 배운 5가지 핵심 습관을 공유하고자 합니다.",
+                          "type": "Text"
+                        }
+                      ],
+                      "gap": 3,
+                      "type": "Col"
+                    },
+                    {
+                      "children": [
+                        {
+                          "content": "1. 매일 코드 읽기",
+                          "level": 2,
+                          "type": "Title"
+                        },
+                        {
+                          "content": "좋은 글을 쓰려면 많이 읽어야 하듯, 좋은 코드를 작성하려면 좋은 코드를 많이 읽어야 합니다. GitHub에서 인기 있는 오픈소스 프로젝트의 코드를 매일 30분씩 읽어보세요. 다른 개발자들이 어떻게 문제를 해결하는지 배울 수 있습니다.",
+                          "type": "Text"
+                        }
+                      ],
+                      "gap": 3,
+                      "type": "Col"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "content": "💡 Tip",
+                              "type": "Text",
+                              "weight": "bold"
+                            },
+                            {
+                              "content": "처음에는 자신이 사용하는 라이브러리의 소스 코드부터 시작해보세요. 익숙한 API의 내부 구현을 이해하면 더 효과적으로 사용할 수 있습니다.",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Col"
+                        }
+                      ],
+                      "p": 4,
+                      "title": null,
+                      "type": "Card"
+                    },
+                    {
+                      "children": [
+                        {
+                          "content": "2. 문서화 습관",
+                          "level": 2,
+                          "type": "Title"
+                        },
+                        {
+                          "content": "코드만큼 중요한 것이 문서입니다. 미래의 자신과 동료를 위해 항상 명확한 문서를 작성하세요. README, 주석, API 문서 등 모든 형태의 문서화에 익숙해지세요.",
+                          "type": "Text"
+                        }
+                      ],
+                      "gap": 3,
+                      "type": "Col"
+                    },
+                    {
+                      "children": [
+                        {
+                          "content": "3. 작은 커밋, 자주 커밋",
+                          "level": 2,
+                          "type": "Title"
+                        },
+                        {
+                          "content": "하나의 큰 변경보다 여러 개의 작은 변경이 낫습니다. 각 커밋은 하나의 목적만 가져야 하며, 커밋 메시지는 명확해야 합니다. 이는 코드 리뷰를 쉽게 만들고, 문제 발생 시 롤백을 용이하게 합니다.",
+                          "type": "Text"
+                        }
+                      ],
+                      "gap": 3,
+                      "type": "Col"
+                    },
+                    {
+                      "children": [
+                        {
+                          "content": "4. 테스트 코드 작성하기",
+                          "level": 2,
+                          "type": "Title"
+                        },
+                        {
+                          "content": "테스트 코드는 단순히 버그를 찾는 것이 아닙니다. 테스트를 작성하면서 코드의 설계를 다시 생각하게 되고, 더 나은 구조를 만들 수 있습니다. TDD(Test-Driven Development)를 시도해보세요.",
+                          "type": "Text"
+                        },
+                        {
+                          "border": true,
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "content": "코드 예시",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "describe('Calculator', () => {\n  it('should add two numbers', () => {\n    expect(add(2, 3)).toBe(5);\n  });\n});",
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 1,
+                              "type": "Col"
+                            }
+                          ],
+                          "p": 3,
+                          "title": null,
+                          "type": "Card"
+                        }
+                      ],
+                      "gap": 3,
+                      "type": "Col"
+                    },
+                    {
+                      "children": [
+                        {
+                          "content": "5. 지속적인 학습",
+                          "level": 2,
+                          "type": "Title"
+                        },
+                        {
+                          "content": "기술은 빠르게 변화합니다. 매일 30분이라도 새로운 것을 배우는 시간을 확보하세요. 블로그, 유튜브, 컨퍼런스 영상 등 다양한 소스를 활용하세요.",
+                          "type": "Text"
+                        }
+                      ],
+                      "gap": 3,
+                      "type": "Col"
+                    },
+                    {
+                      "type": "Divider"
+                    },
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "name": "hand",
+                              "size": "lg",
+                              "type": "Icon"
+                            },
+                            {
+                              "content": "2.4K",
+                              "type": "Text",
+                              "weight": "semibold"
+                            }
+                          ],
+                          "gap": 1,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "name": "message-circle",
+                              "size": "lg",
+                              "type": "Icon"
+                            },
+                            {
+                              "content": "89",
+                              "type": "Text",
+                              "weight": "semibold"
+                            }
+                          ],
+                          "gap": 1,
+                          "type": "Row"
+                        },
+                        {
+                          "children": [
+                            {
+                              "name": "bookmark",
+                              "size": "md",
+                              "type": "Icon"
+                            },
+                            {
+                              "name": "share",
+                              "size": "md",
+                              "type": "Icon"
+                            }
+                          ],
+                          "flex": 1,
+                          "gap": 3,
+                          "justify": "end",
+                          "type": "Row"
+                        }
+                      ],
+                      "gap": 4,
+                      "py": 4,
+                      "type": "Row"
+                    }
+                  ],
+                  "gap": 6,
+                  "type": "Col"
+                },
+                {
+                  "children": [
+                    {
+                      "content": "Programming",
+                      "type": "Badge",
+                      "variant": "outline"
+                    },
+                    {
+                      "content": "Software Development",
+                      "type": "Badge",
+                      "variant": "outline"
+                    },
+                    {
+                      "content": "Career",
+                      "type": "Badge",
+                      "variant": "outline"
+                    },
+                    {
+                      "content": "Productivity",
+                      "type": "Badge",
+                      "variant": "outline"
+                    },
+                    {
+                      "content": "Self Improvement",
+                      "type": "Badge",
+                      "variant": "outline"
+                    }
+                  ],
+                  "gap": 2,
+                  "type": "Row",
+                  "wrap": true
+                },
+                {
+                  "type": "Divider"
+                },
+                {
+                  "children": [
+                    {
+                      "align": "start",
+                      "children": [
+                        {
+                          "name": "김개발",
+                          "size": "lg",
+                          "type": "Avatar"
+                        },
+                        {
+                          "children": [
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "content": "Written by 김개발",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "content": "1.2K followers",
+                                          "muted": true,
+                                          "size": "sm",
+                                          "type": "Text"
+                                        },
+                                        {
+                                          "content": "·",
+                                          "muted": true,
+                                          "size": "sm",
+                                          "type": "Text"
+                                        },
+                                        {
+                                          "content": "256 following",
+                                          "muted": true,
+                                          "size": "sm",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "gap": 2,
+                                      "type": "Row"
+                                    }
+                                  ],
+                                  "gap": 0,
+                                  "type": "Col"
+                                },
+                                {
+                                  "content": "Follow",
+                                  "primary": true,
+                                  "size": "sm",
+                                  "type": "Button"
+                                }
+                              ],
+                              "justify": "between",
+                              "type": "Row"
+                            },
+                            {
+                              "content": "시니어 소프트웨어 엔지니어 | 오픈소스 컨트리뷰터 | 기술 블로거. 10년간의 개발 경험을 바탕으로 개발자 성장에 관한 이야기를 나눕니다.",
+                              "size": "sm",
+                              "type": "Text"
+                            }
+                          ],
+                          "flex": 1,
+                          "gap": 2,
+                          "type": "Col"
+                        }
+                      ],
+                      "gap": 3,
+                      "type": "Row"
+                    }
+                  ],
+                  "gap": 4,
+                  "py": 4,
+                  "type": "Col"
+                },
+                {
+                  "type": "Divider"
+                },
+                {
+                  "children": [
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "content": "Responses (89)",
+                          "type": "Text",
+                          "weight": "semibold"
+                        },
+                        {
+                          "muted": true,
+                          "name": "shield-check",
+                          "size": "sm",
+                          "type": "Icon"
+                        }
+                      ],
+                      "justify": "between",
+                      "type": "Row"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "content": "What are your thoughts?",
+                              "muted": true,
+                              "type": "Text"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "muted": true,
+                                      "name": "bold",
+                                      "size": "sm",
+                                      "type": "Icon"
+                                    },
+                                    {
+                                      "muted": true,
+                                      "name": "italic",
+                                      "size": "sm",
+                                      "type": "Icon"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Row"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "content": "Cancel",
+                                      "ghost": true,
+                                      "size": "sm",
+                                      "type": "Button"
+                                    },
+                                    {
+                                      "content": "Respond",
+                                      "disabled": true,
+                                      "primary": true,
+                                      "size": "sm",
+                                      "type": "Button"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Row"
+                                }
+                              ],
+                              "justify": "between",
+                              "type": "Row"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Col"
+                        }
+                      ],
+                      "p": 3,
+                      "title": null,
+                      "type": "Card"
+                    },
+                    {
+                      "content": "See all responses",
+                      "ghost": true,
+                      "size": "sm",
+                      "type": "Button"
+                    }
+                  ],
+                  "gap": 4,
+                  "py": 4,
+                  "type": "Col"
+                }
+              ],
+              "gap": 6,
+              "px": 20,
+              "py": 10,
+              "type": "Col"
+            }
+          ],
+          "p": 0,
+          "scroll": true,
+          "type": "Main"
+        },
+        {
+          "border": true,
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "content": "Help",
+                  "muted": true,
+                  "size": "xs",
+                  "type": "Text"
+                },
+                {
+                  "content": "Status",
+                  "muted": true,
+                  "size": "xs",
+                  "type": "Text"
+                },
+                {
+                  "content": "About",
+                  "muted": true,
+                  "size": "xs",
+                  "type": "Text"
+                },
+                {
+                  "content": "Careers",
+                  "muted": true,
+                  "size": "xs",
+                  "type": "Text"
+                },
+                {
+                  "content": "Press",
+                  "muted": true,
+                  "size": "xs",
+                  "type": "Text"
+                },
+                {
+                  "content": "Blog",
+                  "muted": true,
+                  "size": "xs",
+                  "type": "Text"
+                },
+                {
+                  "content": "Privacy",
+                  "muted": true,
+                  "size": "xs",
+                  "type": "Text"
+                },
+                {
+                  "content": "Rules",
+                  "muted": true,
+                  "size": "xs",
+                  "type": "Text"
+                },
+                {
+                  "content": "Terms",
+                  "muted": true,
+                  "size": "xs",
+                  "type": "Text"
+                },
+                {
+                  "content": "Text to speech",
+                  "muted": true,
+                  "size": "xs",
+                  "type": "Text"
+                }
+              ],
+              "gap": 4,
+              "justify": "center",
+              "px": 6,
+              "type": "Row"
+            }
+          ],
+          "h": 48,
+          "p": 0,
+          "type": "Footer"
+        }
+      ],
+      "height": 900,
+      "title": null,
+      "type": "Page",
+      "width": 800
+    }
+  ],
+  "type": "Document"
+}

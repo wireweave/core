@@ -12,23 +12,7 @@ import type {
 import type { RenderContext } from './types'
 import { resolveSizeValue, buildClassString as _buildClassString } from '../components'
 import { getIconData, renderIconSvg, renderUnknownIconSvg } from '../../../icons/lucide-icons'
-
-/**
- * Build interactive data attributes string
- */
-function buildInteractiveAttrs(node: {
-  navigate?: string
-  opens?: string
-  toggles?: string
-  action?: string
-}): Record<string, string | undefined> {
-  return {
-    'data-navigate': node.navigate,
-    'data-opens': node.opens,
-    'data-toggles': node.toggles,
-    'data-action': node.action,
-  }
-}
+import { interactiveAttrs } from '../interactive'
 
 /**
  * Render Image node
@@ -45,7 +29,7 @@ export function renderImage(node: ImageNode, ctx: RenderContext): string {
       class: classes,
       src: node.src,
       alt: node.alt || 'Image',
-      ...buildInteractiveAttrs(node),
+      ...interactiveAttrs(node),
     }
     // Add style attribute for img tag
     const imgStyleAttr = styles ? `; ${styles}` : ''
@@ -55,8 +39,7 @@ export function renderImage(node: ImageNode, ctx: RenderContext): string {
   // Otherwise render as placeholder with image icon
   const label = node.alt || 'Image'
   const icon = `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>`
-  const interactiveAttrs = buildInteractiveAttrs(node)
-  const interactiveAttrStr = ctx.buildAttrsString(interactiveAttrs)
+  const interactiveAttrStr = ctx.buildAttrsString(interactiveAttrs(node))
   return `<div class="${classes}"${styleAttr}${interactiveAttrStr} role="img" aria-label="${ctx.escapeHtml(label)}">${icon}<span>${ctx.escapeHtml(label)}</span></div>`
 }
 
@@ -127,8 +110,7 @@ export function renderAvatar(node: AvatarNode, ctx: RenderContext): string {
     }
   }
 
-  const interactiveAttrs = buildInteractiveAttrs(node)
-  const interactiveAttrStr = ctx.buildAttrsString(interactiveAttrs)
+  const interactiveAttrStr = ctx.buildAttrsString(interactiveAttrs(node))
   return `<div class="${classes}"${styleAttr}${interactiveAttrStr} role="img" aria-label="${ctx.escapeHtml(node.name || 'Avatar')}">${content}</div>`
 }
 
@@ -136,8 +118,7 @@ export function renderAvatar(node: AvatarNode, ctx: RenderContext): string {
  * Render Badge node
  */
 export function renderBadge(node: BadgeNode, ctx: RenderContext): string {
-  const interactiveAttrs = buildInteractiveAttrs(node)
-  const interactiveAttrStr = ctx.buildAttrsString(interactiveAttrs)
+  const interactiveAttrStr = ctx.buildAttrsString(interactiveAttrs(node))
 
   // Resolve size: token string (xs, sm, md, lg, xl) or custom px number/ValueWithUnit
   const sizeResolved = resolveSizeValue(node.size, 'badge', ctx.prefix)
@@ -194,8 +175,7 @@ export function renderBadge(node: BadgeNode, ctx: RenderContext): string {
  */
 export function renderIcon(node: IconNode, ctx: RenderContext): string {
   const iconData = getIconData(node.name)
-  const interactiveAttrs = buildInteractiveAttrs(node)
-  const interactiveAttrStr = ctx.buildAttrsString(interactiveAttrs)
+  const interactiveAttrStr = ctx.buildAttrsString(interactiveAttrs(node))
 
   // Resolve size: token string (xs, sm, md, lg, xl) or custom px number
   const sizeResolved = resolveSizeValue(node.size, 'icon', ctx.prefix)

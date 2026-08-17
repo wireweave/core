@@ -1,0 +1,15 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "content": "Welcome",
+          "type": "Text"
+        }
+      ],
+      "title": "Home",
+      "type": "Page"
+    }
+  ],
+  "type": "Document"
+}

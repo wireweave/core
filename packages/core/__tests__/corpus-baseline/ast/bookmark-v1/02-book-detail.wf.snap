@@ -1,0 +1,209 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "border": true,
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "name": "arrow_back",
+                  "type": "Icon"
+                },
+                {
+                  "content": "Book Title",
+                  "type": "Text",
+                  "weight": "semibold"
+                }
+              ],
+              "gap": 4,
+              "justify": "start",
+              "type": "Row"
+            }
+          ],
+          "h": 56,
+          "p": 4,
+          "type": "Header"
+        },
+        {
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "children": [],
+                  "h": 240,
+                  "label": "Cover",
+                  "type": "Placeholder",
+                  "w": 160
+                },
+                {
+                  "align": "center",
+                  "content": "The Great Gatsby",
+                  "level": 3,
+                  "type": "Title"
+                },
+                {
+                  "align": "center",
+                  "content": "F. Scott Fitzgerald",
+                  "muted": true,
+                  "size": "lg",
+                  "type": "Text"
+                }
+              ],
+              "gap": 4,
+              "type": "Col"
+            },
+            {
+              "children": [
+                {
+                  "content": "145/320 pages",
+                  "size": "md",
+                  "type": "Badge",
+                  "variant": "default"
+                },
+                {
+                  "max": 320,
+                  "type": "Progress",
+                  "value": 145
+                }
+              ],
+              "gap": 2,
+              "type": "Col"
+            },
+            {
+              "content": "Reading Log",
+              "level": 4,
+              "mb": 3,
+              "mt": 6,
+              "type": "Title"
+            },
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "content": "May 15, 2023",
+                          "muted": true,
+                          "size": "sm",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "Page 145",
+                          "size": "sm",
+                          "type": "Badge",
+                          "variant": "primary"
+                        }
+                      ],
+                      "justify": "between",
+                      "mb": 2,
+                      "type": "Row"
+                    },
+                    {
+                      "align": "left",
+                      "content": "Really enjoying the symbolism in this chapter. The green light seems to represent hope and the American Dream.",
+                      "size": "base",
+                      "type": "Text"
+                    }
+                  ],
+                  "p": 4,
+                  "title": null,
+                  "type": "Card"
+                },
+                {
+                  "children": [
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "content": "May 10, 2023",
+                          "muted": true,
+                          "size": "sm",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "Page 120",
+                          "size": "sm",
+                          "type": "Badge",
+                          "variant": "primary"
+                        }
+                      ],
+                      "justify": "between",
+                      "mb": 2,
+                      "type": "Row"
+                    },
+                    {
+                      "align": "left",
+                      "content": "The character development of Gatsby is fascinating. He seems so mysterious and full of contradictions.",
+                      "size": "base",
+                      "type": "Text"
+                    }
+                  ],
+                  "p": 4,
+                  "title": null,
+                  "type": "Card"
+                },
+                {
+                  "children": [
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "content": "May 5, 2023",
+                          "muted": true,
+                          "size": "sm",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "Page 89",
+                          "size": "sm",
+                          "type": "Badge",
+                          "variant": "primary"
+                        }
+                      ],
+                      "justify": "between",
+                      "mb": 2,
+                      "type": "Row"
+                    },
+                    {
+                      "align": "left",
+                      "content": "Started reading today. The writing style is beautiful and descriptive. Looking forward to seeing where the story goes.",
+                      "size": "base",
+                      "type": "Text"
+                    }
+                  ],
+                  "p": 4,
+                  "title": null,
+                  "type": "Card"
+                }
+              ],
+              "gap": 3,
+              "type": "Col"
+            },
+            {
+              "content": "Add Memo",
+              "primary": true,
+              "type": "Button",
+              "w": "full"
+            }
+          ],
+          "gap": 6,
+          "p": 4,
+          "scroll": true,
+          "type": "Main"
+        }
+      ],
+      "device": "mobile",
+      "height": 812,
+      "title": "Book Detail",
+      "type": "Page",
+      "width": 375
+    }
+  ],
+  "type": "Document"
+}

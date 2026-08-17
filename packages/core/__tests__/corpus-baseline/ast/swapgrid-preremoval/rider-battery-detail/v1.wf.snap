@@ -1,0 +1,399 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "action": "back",
+                  "aria": "뒤로",
+                  "content": "",
+                  "ghost": true,
+                  "icon": "arrow-left",
+                  "size": "sm",
+                  "type": "Button"
+                },
+                {
+                  "content": "내 배터리",
+                  "level": 1,
+                  "size": "md",
+                  "type": "Title"
+                }
+              ],
+              "gap": 2,
+              "type": "Row"
+            }
+          ],
+          "h": 72,
+          "p": 3,
+          "type": "Header"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "content": "10분 전에 받은 값입니다. 지금 값이 아닐 수 있어요.",
+                  "icon": "clock",
+                  "type": "Alert",
+                  "variant": "warning"
+                },
+                {
+                  "children": [
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "content": "충전량",
+                          "muted": true,
+                          "size": "sm",
+                          "type": "Text"
+                        },
+                        {
+                          "align": "center",
+                          "content": "72%",
+                          "level": 2,
+                          "size": "xl",
+                          "type": "Title"
+                        },
+                        {
+                          "max": 100,
+                          "type": "Progress",
+                          "value": 72,
+                          "w": "full"
+                        },
+                        {
+                          "align": "center",
+                          "content": "오늘 14:20 기준",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "align": "center",
+                          "content": "지금 남아 있는 전기의 양입니다.",
+                          "muted": true,
+                          "size": "sm",
+                          "type": "Text"
+                        }
+                      ],
+                      "gap": 3,
+                      "type": "Col"
+                    }
+                  ],
+                  "p": 5,
+                  "title": null,
+                  "type": "Card"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "건강도",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "양호",
+                              "pill": true,
+                              "type": "Badge",
+                              "variant": "success"
+                            }
+                          ],
+                          "justify": "between",
+                          "type": "Row"
+                        },
+                        {
+                          "align": "baseline",
+                          "children": [
+                            {
+                              "content": "94%",
+                              "level": 2,
+                              "size": "lg",
+                              "type": "Title"
+                            },
+                            {
+                              "content": "새 배터리 대비",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Row"
+                        },
+                        {
+                          "max": 100,
+                          "type": "Progress",
+                          "value": 94,
+                          "w": "full"
+                        },
+                        {
+                          "content": "새것일 때와 비교해 담을 수 있는 전기의 양입니다. 94%인 배터리를 100%까지 충전해도 담기는 전기는 새 배터리의 94%입니다.",
+                          "muted": true,
+                          "size": "sm",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "배터리 관리 장치가 보고한 값 · 오늘 14:20 기준",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        }
+                      ],
+                      "gap": 3,
+                      "type": "Col"
+                    }
+                  ],
+                  "p": 5,
+                  "title": null,
+                  "type": "Card"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "배터리 규격",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "A규격 (72V 40Ah)",
+                              "size": "sm",
+                              "type": "Text",
+                              "weight": "medium"
+                            }
+                          ],
+                          "justify": "between",
+                          "type": "Row"
+                        },
+                        {
+                          "my": 0,
+                          "type": "Divider"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "제조사 일련번호",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "SG-A-2024-018374",
+                              "size": "sm",
+                              "type": "Text",
+                              "weight": "medium"
+                            }
+                          ],
+                          "justify": "between",
+                          "type": "Row"
+                        },
+                        {
+                          "my": 0,
+                          "type": "Divider"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "받은 시각",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "오늘 09:12",
+                              "size": "sm",
+                              "type": "Text",
+                              "weight": "medium"
+                            }
+                          ],
+                          "justify": "between",
+                          "type": "Row"
+                        },
+                        {
+                          "my": 0,
+                          "type": "Divider"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "받은 교환소",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "성수 교환소",
+                              "size": "sm",
+                              "type": "Text",
+                              "weight": "medium"
+                            }
+                          ],
+                          "justify": "between",
+                          "type": "Row"
+                        }
+                      ],
+                      "gap": 3,
+                      "type": "Col"
+                    }
+                  ],
+                  "title": "배터리 정보",
+                  "type": "Section"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "content": "이 배터리를 받은 교환 보기",
+                                  "size": "sm",
+                                  "type": "Text",
+                                  "weight": "medium"
+                                },
+                                {
+                                  "content": "오늘 09:12 · 성수 교환소",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 1,
+                              "type": "Col"
+                            },
+                            {
+                              "muted": true,
+                              "name": "chevron-right",
+                              "size": "sm",
+                              "type": "Icon"
+                            }
+                          ],
+                          "justify": "between",
+                          "type": "Row"
+                        }
+                      ],
+                      "navigate": "이용내역",
+                      "p": 4,
+                      "title": null,
+                      "type": "Card"
+                    }
+                  ],
+                  "title": "이력",
+                  "type": "Section"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "content": "차량이 등록되어 있지 않으면 어느 배터리를 쓰는지 알 수 없습니다. 첫 교환을 하면 사용 중인 배터리가 여기에 표시됩니다.",
+                          "icon": "info",
+                          "type": "Alert",
+                          "variant": "info"
+                        },
+                        {
+                          "children": [
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "content": "차량 등록하기",
+                                  "size": "sm",
+                                  "type": "Text",
+                                  "weight": "medium"
+                                },
+                                {
+                                  "muted": true,
+                                  "name": "chevron-right",
+                                  "size": "sm",
+                                  "type": "Icon"
+                                }
+                              ],
+                              "justify": "between",
+                              "type": "Row"
+                            }
+                          ],
+                          "navigate": "차량 등록",
+                          "p": 4,
+                          "title": null,
+                          "type": "Card"
+                        }
+                      ],
+                      "gap": 3,
+                      "type": "Col"
+                    }
+                  ],
+                  "title": "안내",
+                  "type": "Section"
+                },
+                {
+                  "children": [
+                    {
+                      "content": "배터리는 제조사가 소유하고 플랫폼이 운용합니다. 지금 쓰는 배터리는 다음 교환에서 반납됩니다.",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    },
+                    {
+                      "content": "남은 주행 거리는 표시하지 않습니다. 적재량·주행 습관·지형·기온에 따라 크게 달라지기 때문입니다.",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    }
+                  ],
+                  "gap": 2,
+                  "type": "Col"
+                }
+              ],
+              "gap": 4,
+              "type": "Col"
+            }
+          ],
+          "p": 4,
+          "scroll": true,
+          "type": "Main"
+        },
+        {
+          "children": [
+            {
+              "content": "교환소 찾기",
+              "icon": "map-pin",
+              "navigate": "교환소 지도",
+              "primary": true,
+              "type": "Button",
+              "w": "full"
+            }
+          ],
+          "h": 88,
+          "p": 4,
+          "type": "Footer"
+        }
+      ],
+      "title": "배터리 상태 상세",
+      "type": "Page",
+      "viewport": "375x812"
+    }
+  ],
+  "type": "Document"
+}

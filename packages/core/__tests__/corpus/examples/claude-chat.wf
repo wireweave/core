@@ -1,0 +1,244 @@
+page width=1280 height=800 {
+  row {
+    sidebar w=280 p=0 {
+      col h=full {
+        row h=56 px=4 justify=between align=center {
+          text "Claude" bold size=lg
+          button "" icon="sidebar" ghost size=sm
+        }
+
+        col flex=1 p=3 gap=1 scroll {
+          button "새 채팅" ghost w=full justify=start icon="plus" size=sm
+
+          col gap=0 mt=2 {
+            row gap=3 align=center py=2 px=2 rounded hover {
+              icon "message-square" size=sm muted
+              text "채팅" size=sm
+            }
+            row gap=3 align=center py=2 px=2 rounded hover {
+              icon "folder" size=sm muted
+              text "프로젝트" size=sm
+            }
+            row gap=3 align=center py=2 px=2 rounded hover {
+              icon "box" size=sm muted
+              text "아티팩트" size=sm
+            }
+            row gap=3 align=center py=2 px=2 rounded hover {
+              icon "code" size=sm muted
+              text "코드" size=sm
+            }
+          }
+
+          col gap=1 mt=4 {
+            text "즐겨찾기" size=xs muted weight=semibold
+            col gap=0 {
+              row gap=2 align=center py=1 px=2 {
+                icon "folder" size=xs muted
+                text "프론트엔드 학습 정리" size=xs
+              }
+              row gap=2 align=center py=1 px=2 {
+                icon "folder" size=xs muted
+                text "사이드 프로젝트 기획" size=xs
+              }
+              row gap=2 align=center py=1 px=2 {
+                icon "message-square" size=xs muted
+                text "API 설계 논의" size=xs
+              }
+            }
+          }
+
+          col gap=1 mt=3 {
+            row justify=between align=center {
+              text "최근 항목" size=xs muted weight=semibold
+              text "숨기기" size=xs muted
+            }
+            col gap=0 {
+              row gap=2 align=center py=1 px=2 rounded bg=muted {
+                text "React 상태관리 라이브러리 비교" size=xs weight=semibold
+              }
+              row gap=2 align=center py=1 px=2 {
+                text "TypeScript 제네릭 활용법" size=xs
+              }
+              row gap=2 align=center py=1 px=2 {
+                text "Next.js 14 마이그레이션" size=xs
+              }
+              row gap=2 align=center py=1 px=2 {
+                text "TailwindCSS v4 변경사항" size=xs
+              }
+              row gap=2 align=center py=1 px=2 {
+                text "PostgreSQL 쿼리 최적화" size=xs
+              }
+              row gap=2 align=center py=1 px=2 {
+                text "Docker 컨테이너 설정" size=xs
+              }
+            }
+            row gap=2 align=center py=1 px=2 mt=1 {
+              icon "list" size=xs muted
+              text "모든 채팅" size=xs muted
+            }
+          }
+        }
+
+        row h=56 px=3 gap=2 align=center border {
+          avatar "JK" size=sm
+          col flex=1 gap=0 {
+            text "John Kim" size=sm weight=semibold
+            text "Pro 플랜" size=xs muted
+          }
+          icon "chevron-up" size=sm muted
+        }
+      }
+    }
+
+    col flex=1 {
+      header h=48 border p=0 {
+        row justify=between align=center px=4 {
+          row gap=2 align=center {
+            text "React 상태관리 라이브러리 비교" weight=semibold
+            icon "chevron-down" size=sm muted
+          }
+          button "공유" ghost size=sm
+        }
+      }
+
+      main flex=1 p=0 scroll {
+        col gap=6 p=6 {
+          col gap=2 {
+            row gap=1 align=center {
+              text "2025년 1월 8일" size=xs muted
+            }
+          }
+
+          col gap=3 {
+            row gap=3 align=start {
+              col flex=1 {
+                text "React 프로젝트에서 상태 관리 라이브러리를 선택하려고 하는데, Redux와 Zustand 중 어떤 것을 추천하시나요? 저희는 3명 규모의 작은 팀이고 중간 규모의 대시보드 프로젝트입니다." size=sm
+                row gap=2 mt=2 {
+                  button "" icon="rotate-ccw" ghost size=sm
+                  button "" icon="edit" ghost size=sm
+                }
+              }
+            }
+          }
+
+          col gap=3 {
+            row gap=3 align=start {
+              icon "sparkles" size=md
+              col flex=1 gap=3 {
+                card p=3 {
+                  row gap=2 align=center {
+                    text "프로젝트 요구사항을 분석하고 적합한 라이브러리를 선정합니다." size=xs muted
+                    icon "chevron-down" size=xs muted
+                  }
+                }
+
+                text "좋은 질문입니다! 말씀하신 상황(3명 팀, 중간 규모 대시보드)을 고려했을 때 Zustand를 추천드립니다." size=sm
+
+                col gap=2 {
+                  text "Zustand를 추천하는 이유" weight=semibold size=sm
+                  list [
+                    "보일러플레이트가 적어 빠른 개발 가능",
+                    "작은 번들 사이즈 (약 1KB)",
+                    "TypeScript 지원이 우수함",
+                    "React 18의 concurrent features와 호환"
+                  ]
+                }
+
+                col gap=2 {
+                  text "Redux가 더 적합한 경우" weight=semibold size=sm
+                  list [
+                    "대규모 팀에서 일관된 패턴이 필요할 때",
+                    "복잡한 미들웨어 로직이 필요할 때",
+                    "Redux DevTools의 time-travel 디버깅이 중요할 때"
+                  ]
+                }
+
+                card p=3 {
+                  col gap=2 {
+                    text "Zustand 기본 예제" weight=semibold size=sm
+                    text "import { create } from 'zustand'\n\nconst useStore = create((set) => ({\n  count: 0,\n  increment: () => set((state) => ({ count: state.count + 1 }))\n}))" size=xs
+                  }
+                }
+
+                text "대시보드 프로젝트라면 서버 상태 관리도 중요한데, TanStack Query(React Query)와 함께 사용하시면 더욱 효율적입니다. Zustand는 클라이언트 UI 상태에, React Query는 서버 데이터 캐싱에 사용하시면 됩니다." size=sm
+
+                row gap=2 mt=2 {
+                  button "" icon="copy" ghost size=sm
+                  button "" icon="thumbs-up" ghost size=sm
+                  button "" icon="thumbs-down" ghost size=sm
+                  button "" icon="rotate-ccw" ghost size=sm
+                }
+              }
+            }
+          }
+
+          col gap=3 {
+            row gap=3 align=start {
+              col flex=1 {
+                text "감사합니다! Zustand와 React Query 조합으로 시작해볼게요. 혹시 초기 설정 예제 코드를 보여주실 수 있나요?" size=sm
+                row gap=2 mt=2 {
+                  button "" icon="rotate-ccw" ghost size=sm
+                  button "" icon="edit" ghost size=sm
+                }
+              }
+            }
+          }
+
+          col gap=3 {
+            row gap=3 align=start {
+              icon "sparkles" size=md
+              col flex=1 gap=3 {
+                text "물론이죠! 다음은 Zustand와 React Query를 함께 사용하는 초기 설정 예제입니다." size=sm
+
+                card p=3 {
+                  col gap=2 {
+                    row justify=between align=center {
+                      text "store.ts" weight=semibold size=sm
+                      button "" icon="copy" ghost size=sm
+                    }
+                    text "// Zustand store for UI state\nimport { create } from 'zustand'\n\ninterface UIState {\n  sidebarOpen: boolean\n  toggleSidebar: () => void\n}\n\nexport const useUIStore = create<UIState>((set) => ({\n  sidebarOpen: true,\n  toggleSidebar: () => set((s) => ({ sidebarOpen: !s.sidebarOpen }))\n}))" size=xs
+                  }
+                }
+
+                text "이 구조로 시작하시면 추후 확장하기도 용이합니다. 추가 질문이 있으시면 말씀해 주세요!" size=sm
+
+                row gap=2 mt=2 {
+                  button "" icon="copy" ghost size=sm
+                  button "" icon="thumbs-up" ghost size=sm
+                  button "" icon="thumbs-down" ghost size=sm
+                  button "" icon="rotate-ccw" ghost size=sm
+                }
+              }
+            }
+          }
+        }
+      }
+
+      footer border p=4 {
+        col gap=2 {
+          card p=3 {
+            col gap=2 {
+              input placeholder="답글..." w=full
+              row justify=between align=center {
+                row gap=2 {
+                  button "" icon="plus" ghost size=sm
+                  button "" icon="clock" ghost size=sm
+                }
+                row gap=2 align=center {
+                  row gap=1 align=center {
+                    text "Opus 4.5" size=sm
+                    icon "chevron-down" size=xs
+                  }
+                  button "" icon="arrow-up" primary size=sm disabled
+                }
+              }
+            }
+          }
+          row justify=center {
+            text "Claude는 AI이며 실수할 수 있습니다. 중요한 정보는 확인하세요." size=xs muted
+          }
+        }
+      }
+    }
+  }
+}

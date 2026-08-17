@@ -1,0 +1,624 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "bold": true,
+                  "content": "토스",
+                  "size": "lg",
+                  "type": "Text"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "bell",
+                      "type": "Icon"
+                    },
+                    {
+                      "name": "settings",
+                      "type": "Icon"
+                    }
+                  ],
+                  "gap": 3,
+                  "type": "Row"
+                }
+              ],
+              "justify": "between",
+              "px": 4,
+              "type": "Row"
+            }
+          ],
+          "h": 56,
+          "p": 0,
+          "type": "Header"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "토스뱅크 통장",
+                              "type": "Text",
+                              "weight": "semibold"
+                            },
+                            {
+                              "muted": true,
+                              "name": "chevron-right",
+                              "size": "sm",
+                              "type": "Icon"
+                            }
+                          ],
+                          "justify": "between",
+                          "type": "Row"
+                        },
+                        {
+                          "children": [
+                            {
+                              "bold": true,
+                              "content": "1,234,567원",
+                              "size": "xl",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "하나은행 123-456-78901",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 1,
+                          "type": "Col"
+                        },
+                        {
+                          "children": [
+                            {
+                              "content": "송금",
+                              "flex": 1,
+                              "primary": true,
+                              "type": "Button"
+                            },
+                            {
+                              "content": "내 계좌",
+                              "flex": 1,
+                              "outline": true,
+                              "type": "Button"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Row"
+                        }
+                      ],
+                      "gap": 4,
+                      "type": "Col"
+                    }
+                  ],
+                  "p": 4,
+                  "title": null,
+                  "type": "Card"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "토스증권",
+                              "type": "Text",
+                              "weight": "semibold"
+                            },
+                            {
+                              "muted": true,
+                              "name": "chevron-right",
+                              "size": "sm",
+                              "type": "Icon"
+                            }
+                          ],
+                          "justify": "between",
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "content": "내 주식",
+                                  "muted": true,
+                                  "size": "sm",
+                                  "type": "Text"
+                                },
+                                {
+                                  "bold": true,
+                                  "content": "2,456,780원",
+                                  "size": "lg",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 1,
+                              "type": "Col"
+                            },
+                            {
+                              "align": "end",
+                              "children": [
+                                {
+                                  "content": "오늘",
+                                  "muted": true,
+                                  "size": "sm",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "+12,340원 (+0.5%)",
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 1,
+                              "type": "Col"
+                            }
+                          ],
+                          "justify": "between",
+                          "type": "Row"
+                        }
+                      ],
+                      "gap": 3,
+                      "type": "Col"
+                    }
+                  ],
+                  "p": 4,
+                  "title": null,
+                  "type": "Card"
+                },
+                {
+                  "children": [
+                    {
+                      "content": "자산",
+                      "type": "Text",
+                      "weight": "bold"
+                    },
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "content": "",
+                                  "icon": "piggy-bank",
+                                  "size": "lg",
+                                  "type": "Badge",
+                                  "variant": "info"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "content": "저축",
+                                      "size": "sm",
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "content": "500,000원",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    }
+                                  ],
+                                  "gap": 0,
+                                  "type": "Col"
+                                }
+                              ],
+                              "gap": 3,
+                              "type": "Row"
+                            },
+                            {
+                              "muted": true,
+                              "name": "chevron-right",
+                              "size": "sm",
+                              "type": "Icon"
+                            }
+                          ],
+                          "justify": "between",
+                          "type": "Row"
+                        }
+                      ],
+                      "p": 3,
+                      "title": null,
+                      "type": "Card"
+                    },
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "content": "",
+                                  "icon": "credit-card",
+                                  "size": "lg",
+                                  "type": "Badge",
+                                  "variant": "warning"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "content": "카드",
+                                      "size": "sm",
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "content": "이번 달 85,400원",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    }
+                                  ],
+                                  "gap": 0,
+                                  "type": "Col"
+                                }
+                              ],
+                              "gap": 3,
+                              "type": "Row"
+                            },
+                            {
+                              "muted": true,
+                              "name": "chevron-right",
+                              "size": "sm",
+                              "type": "Icon"
+                            }
+                          ],
+                          "justify": "between",
+                          "type": "Row"
+                        }
+                      ],
+                      "p": 3,
+                      "title": null,
+                      "type": "Card"
+                    },
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "content": "",
+                                  "icon": "coins",
+                                  "size": "lg",
+                                  "type": "Badge",
+                                  "variant": "success"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "content": "포인트",
+                                      "size": "sm",
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "content": "3,200P",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    }
+                                  ],
+                                  "gap": 0,
+                                  "type": "Col"
+                                }
+                              ],
+                              "gap": 3,
+                              "type": "Row"
+                            },
+                            {
+                              "muted": true,
+                              "name": "chevron-right",
+                              "size": "sm",
+                              "type": "Icon"
+                            }
+                          ],
+                          "justify": "between",
+                          "type": "Row"
+                        }
+                      ],
+                      "p": 3,
+                      "title": null,
+                      "type": "Card"
+                    }
+                  ],
+                  "gap": 3,
+                  "type": "Col"
+                },
+                {
+                  "children": [
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "content": "최근 거래",
+                          "type": "Text",
+                          "weight": "bold"
+                        },
+                        {
+                          "content": "더보기",
+                          "muted": true,
+                          "size": "sm",
+                          "type": "Text"
+                        }
+                      ],
+                      "justify": "between",
+                      "type": "Row"
+                    },
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "border": true,
+                          "children": [
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "name": "스벅",
+                                  "size": "sm",
+                                  "type": "Avatar"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "content": "스타벅스",
+                                      "size": "sm",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "content": "오늘 09:30",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 0,
+                                  "type": "Col"
+                                }
+                              ],
+                              "gap": 3,
+                              "type": "Row"
+                            },
+                            {
+                              "content": "-5,500원",
+                              "type": "Text",
+                              "weight": "semibold"
+                            }
+                          ],
+                          "justify": "between",
+                          "py": 2,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "border": true,
+                          "children": [
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "name": "급여",
+                                  "size": "sm",
+                                  "type": "Avatar"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "content": "급여",
+                                      "size": "sm",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "content": "어제",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 0,
+                                  "type": "Col"
+                                }
+                              ],
+                              "gap": 3,
+                              "type": "Row"
+                            },
+                            {
+                              "content": "+3,500,000원",
+                              "type": "Text",
+                              "weight": "semibold"
+                            }
+                          ],
+                          "justify": "between",
+                          "py": 2,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "border": true,
+                          "children": [
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "name": "배민",
+                                  "size": "sm",
+                                  "type": "Avatar"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "content": "배달의민족",
+                                      "size": "sm",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "content": "1월 7일",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 0,
+                                  "type": "Col"
+                                }
+                              ],
+                              "gap": 3,
+                              "type": "Row"
+                            },
+                            {
+                              "content": "-24,500원",
+                              "type": "Text",
+                              "weight": "semibold"
+                            }
+                          ],
+                          "justify": "between",
+                          "py": 2,
+                          "type": "Row"
+                        }
+                      ],
+                      "gap": 2,
+                      "type": "Col"
+                    }
+                  ],
+                  "gap": 3,
+                  "type": "Col"
+                }
+              ],
+              "gap": 4,
+              "p": 4,
+              "type": "Col"
+            }
+          ],
+          "p": 0,
+          "scroll": true,
+          "type": "Main"
+        },
+        {
+          "border": true,
+          "children": [
+            {
+              "children": [
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "name": "home",
+                      "type": "Icon"
+                    },
+                    {
+                      "content": "홈",
+                      "size": "xs",
+                      "type": "Text"
+                    }
+                  ],
+                  "gap": 1,
+                  "type": "Col"
+                },
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "name": "bar-chart-2",
+                      "type": "Icon"
+                    },
+                    {
+                      "content": "혜택",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    }
+                  ],
+                  "gap": 1,
+                  "type": "Col"
+                },
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "name": "send",
+                      "type": "Icon"
+                    },
+                    {
+                      "content": "송금",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    }
+                  ],
+                  "gap": 1,
+                  "type": "Col"
+                },
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "name": "credit-card",
+                      "type": "Icon"
+                    },
+                    {
+                      "content": "결제",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    }
+                  ],
+                  "gap": 1,
+                  "type": "Col"
+                },
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "name": "menu",
+                      "type": "Icon"
+                    },
+                    {
+                      "content": "전체",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    }
+                  ],
+                  "gap": 1,
+                  "type": "Col"
+                }
+              ],
+              "justify": "around",
+              "type": "Row"
+            }
+          ],
+          "p": 2,
+          "type": "Footer"
+        }
+      ],
+      "device": "mobile",
+      "height": 750,
+      "title": null,
+      "type": "Page",
+      "width": 375
+    }
+  ],
+  "type": "Document"
+}

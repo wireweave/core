@@ -1,0 +1,44 @@
+page "Book Detail" width=375 height=812 device="mobile" {
+  header h=56 border p=4 {
+    row justify=start align=center gap=4 {
+      icon "arrow_back"
+      text "Book Title" weight=semibold
+    }
+  }
+  main p=4 scroll gap=6 {
+    col gap=4 align=center {
+      placeholder "Cover" w=160 h=240
+      title "The Great Gatsby" level=3 align=center
+      text "F. Scott Fitzgerald" size=lg muted align=center
+    }
+    col gap=2 {
+      badge "145/320 pages" variant=default size=md
+      progress value=145 max=320
+    }
+    title "Reading Log" level=4 mt=6 mb=3
+    col gap=3 {
+      card p=4 {
+        row justify=between align=center mb=2 {
+          text "May 15, 2023" size=sm muted
+          badge "Page 145" variant=primary size=sm
+        }
+        text "Really enjoying the symbolism in this chapter. The green light seems to represent hope and the American Dream." size="base" align=left
+      }
+      card p=4 {
+        row justify=between align=center mb=2 {
+          text "May 10, 2023" size=sm muted
+          badge "Page 120" variant=primary size=sm
+        }
+        text "The character development of Gatsby is fascinating. He seems so mysterious and full of contradictions." size="base" align=left
+      }
+      card p=4 {
+        row justify=between align=center mb=2 {
+          text "May 5, 2023" size=sm muted
+          badge "Page 89" variant=primary size=sm
+        }
+        text "Started reading today. The writing style is beautiful and descriptive. Looking forward to seeing where the story goes." size="base" align=left
+      }
+    }
+    button "Add Memo" primary w=full
+  }
+}

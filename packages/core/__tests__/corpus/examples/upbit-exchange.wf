@@ -1,0 +1,324 @@
+page width=1440 height=800 {
+  col {
+    header h=56 p=0 {
+      row justify=between align=center px=4 {
+        row gap=6 align=center {
+          text "UPbit" bold size=lg
+          row gap=4 {
+            text "거래소" weight=semibold
+            text "입출금" muted
+            text "투자내역" muted
+            text "코인동향" muted
+            text "서비스 더보기" muted
+          }
+          badge "Upbit Biz" variant=outline size=sm
+        }
+        row gap=3 align=center {
+          button "로그인" ghost size=sm
+          button "회원가입" primary size=sm
+          text "고객센터" size=sm muted
+          row gap=1 align=center {
+            icon "globe" size=sm
+            text "KO" size=sm
+          }
+        }
+      }
+    }
+
+    row flex=1 {
+      col flex=1 {
+        row h=48 px=4 justify=between align=center border {
+          row gap=3 align=center {
+            icon "bitcoin" size=lg
+            row gap=2 align=center {
+              text "비트코인" weight=bold
+              text "BTC/KRW" size=sm muted
+              icon "chevron-down" size=sm
+            }
+          }
+          row gap=6 align=center {
+            text "시세" weight=semibold
+            text "정보" muted
+            text "마켓 인사이트" muted
+          }
+          icon "settings" size=sm muted
+        }
+
+        row h=100 px=4 gap=6 align=center border {
+          col gap=1 {
+            text "133,557,000" bold size=2xl
+            row gap=2 {
+              text "+0.29%" size=sm
+              text "▲383,000" size=sm
+            }
+          }
+          placeholder "미니차트" w=120 h=60
+          row gap=8 flex=1 justify=end {
+            col gap=0 align=end {
+              text "고가" size=xs muted
+              text "133,896,000" size=sm
+            }
+            col gap=0 align=end {
+              text "저가" size=xs muted
+              text "132,800,000" size=sm
+            }
+            col gap=0 align=end {
+              text "거래량(24H)" size=xs muted
+              text "1,154.609 BTC" size=sm
+            }
+            col gap=0 align=end {
+              text "거래대금(24H)" size=xs muted
+              text "152,704백만 KRW" size=sm
+            }
+          }
+        }
+
+        row h=28 px=4 gap=8 align=center border {
+          row gap=2 {
+            text "Coinbase" size=xs muted
+            text "132,760,029" size=xs
+          }
+          row gap=2 {
+            text "Bitfinex" size=xs muted
+            text "132,798,388" size=xs
+          }
+          row gap=2 {
+            text "Kraken" size=xs muted
+            text "132,719,781" size=xs
+          }
+        }
+
+        col flex=1 border {
+          row h=40 px=3 gap=3 align=center border {
+            icon "maximize" size=sm muted
+            icon "edit-2" size=sm muted
+            icon "plus" size=sm muted
+            divider vertical h=20
+            row gap=1 align=center {
+              text "30분" size=sm
+              icon "chevron-down" size=xs
+            }
+            row gap=1 align=center {
+              text "차트설정" size=sm muted
+              icon "chevron-down" size=xs
+            }
+            row gap=1 align=center {
+              text "지표" size=sm muted
+              icon "chevron-down" size=xs
+            }
+            text "초기화" size=sm muted
+            row flex=1 justify=end gap=4 {
+              row gap=1 align=center {
+                icon "circle" size=xs
+                text "기본차트" size=sm
+              }
+              row gap=1 align=center {
+                icon "circle" size=xs muted
+                text "트레이딩뷰" size=sm muted
+              }
+            }
+          }
+
+          placeholder "캔들스틱 차트" flex=1 w=full
+
+          placeholder "볼륨 차트" h=100 w=full
+        }
+
+        row h=44 border {
+          row flex=1 justify=center gap=6 align=center border {
+            text "일반호가" size=sm weight=semibold
+            text "누적호가" size=sm muted
+            text "호가주문" size=sm muted
+            row gap=1 align=center {
+              text "모아보기" size=sm muted
+              icon "chevron-down" size=xs
+            }
+          }
+          row flex=1 justify=center gap=6 align=center {
+            text "매수" size=sm weight=semibold
+            text "매도" size=sm muted
+            text "간편주문" size=sm muted
+            text "거래내역" size=sm muted
+          }
+        }
+      }
+
+      col w=340 border p=0 {
+        row h=44 px=3 align=center border {
+          input placeholder="코인명/심볼검색" w=full size=sm icon="search"
+        }
+        row h=36 border {
+          col flex=1 align=center justify=center border {
+            text "원화" size=xs weight=semibold
+          }
+          col flex=1 align=center justify=center {
+            text "BTC" size=xs muted
+          }
+          col flex=1 align=center justify=center {
+            text "USDT" size=xs muted
+          }
+          col flex=1 align=center justify=center {
+            text "보유" size=xs muted
+          }
+          col flex=1 align=center justify=center {
+            text "관심" size=xs muted
+          }
+        }
+        row h=28 px=3 justify=between align=center border {
+          row gap=1 align=center {
+            text "한글명" size=xs muted
+            icon "chevron-down" size=xs muted
+          }
+          text "현재가" size=xs muted
+          text "전일대비" size=xs muted
+          text "거래대금" size=xs muted
+        }
+        col scroll flex=1 {
+          row h=48 px=3 gap=2 align=center border {
+            icon "star" size=xs muted
+            icon "arrow-up" size=xs
+            col gap=0 flex=1 {
+              text "에스알피(리플)" size=xs
+              text "XRP/KRW" size=xs muted
+            }
+            col gap=0 align=end {
+              text "3,116" size=xs
+              text "+0.35%" size=xs
+            }
+            text "465,771백만" size=xs muted
+          }
+          row h=48 px=3 gap=2 align=center border bg=muted {
+            icon "star" size=xs
+            icon "arrow-up" size=xs
+            col gap=0 flex=1 {
+              text "비트코인" size=xs weight=semibold
+              text "BTC/KRW" size=xs muted
+            }
+            col gap=0 align=end {
+              text "133,557,000" size=xs
+              text "+0.29%" size=xs
+            }
+            text "152,705백만" size=xs muted
+          }
+          row h=48 px=3 gap=2 align=center border {
+            icon "star" size=xs muted
+            icon "arrow-up" size=xs
+            col gap=0 flex=1 {
+              text "이더리움" size=xs
+              text "ETH/KRW" size=xs muted
+            }
+            col gap=0 align=end {
+              text "4,565,000" size=xs
+              text "+0.37%" size=xs
+            }
+            text "144,759백만" size=xs muted
+          }
+          row h=48 px=3 gap=2 align=center border {
+            icon "star" size=xs muted
+            icon "arrow-up" size=xs
+            col gap=0 flex=1 {
+              text "메디블록" size=xs
+              text "MED/KRW" size=xs muted
+            }
+            col gap=0 align=end {
+              text "5.39" size=xs
+              text "+19.51%" size=xs
+            }
+            text "136,217백만" size=xs muted
+          }
+          row h=48 px=3 gap=2 align=center border {
+            icon "star" size=xs muted
+            icon "arrow-down" size=xs
+            col gap=0 flex=1 {
+              text "엘프" size=xs
+              text "ELF/KRW" size=xs muted
+            }
+            col gap=0 align=end {
+              text "157" size=xs
+              text "-4.85%" size=xs
+            }
+            text "88,028백만" size=xs muted
+          }
+          row h=48 px=3 gap=2 align=center border {
+            icon "star" size=xs muted
+            icon "arrow-up" size=xs
+            col gap=0 flex=1 {
+              text "솔라나" size=xs
+              text "SOL/KRW" size=xs muted
+            }
+            col gap=0 align=end {
+              text "203,800" size=xs
+              text "+0.74%" size=xs
+            }
+            text "84,385백만" size=xs muted
+          }
+          row h=48 px=3 gap=2 align=center border {
+            icon "star" size=xs muted
+            icon "arrow-down" size=xs
+            col gap=0 flex=1 {
+              text "지케이패스" size=xs
+              text "ZKP/KRW" size=xs muted
+            }
+            col gap=0 align=end {
+              text "232" size=xs
+              text "-2.11%" size=xs
+            }
+            text "81,705백만" size=xs muted
+          }
+          row h=48 px=3 gap=2 align=center border {
+            icon "star" size=xs muted
+            icon "arrow-down" size=xs
+            col gap=0 flex=1 {
+              text "테더" size=xs
+              text "USDT/KRW" size=xs muted
+            }
+            col gap=0 align=end {
+              text "1,461" size=xs
+              text "-0.14%" size=xs
+            }
+            text "76,161백만" size=xs muted
+          }
+          row h=48 px=3 gap=2 align=center border {
+            icon "star" size=xs muted
+            icon "arrow-up" size=xs
+            col gap=0 flex=1 {
+              text "체인바운티" size=xs
+              text "BOUNTY/KRW" size=xs muted
+            }
+            col gap=0 align=end {
+              text "61.9" size=xs
+              text "+45.65%" size=xs
+            }
+            text "55,516백만" size=xs muted
+          }
+          row h=48 px=3 gap=2 align=center border {
+            icon "star" size=xs muted
+            icon "arrow-down" size=xs
+            col gap=0 flex=1 {
+              text "브레비스" size=xs
+              text "BREV/KRW" size=xs muted
+            }
+            col gap=0 align=end {
+              text "563" size=xs
+              text "-3.60%" size=xs
+            }
+            text "49,363백만" size=xs muted
+          }
+          row h=48 px=3 gap=2 align=center {
+            icon "star" size=xs muted
+            icon "arrow-up" size=xs
+            col gap=0 flex=1 {
+              text "도지코인" size=xs
+              text "DOGE/KRW" size=xs muted
+            }
+            col gap=0 align=end {
+              text "209" size=xs
+              text "+0.97%" size=xs
+            }
+            text "49,123백만" size=xs muted
+          }
+        }
+      }
+    }
+  }
+}

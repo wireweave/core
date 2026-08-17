@@ -1,0 +1,2343 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "bold": true,
+                      "content": "BINANCE",
+                      "size": "lg",
+                      "type": "Text"
+                    },
+                    {
+                      "children": [
+                        {
+                          "label": "Buy Crypto",
+                          "type": "NavItem"
+                        },
+                        {
+                          "label": "Markets",
+                          "type": "NavItem"
+                        },
+                        {
+                          "active": true,
+                          "label": "Trade",
+                          "type": "NavItem"
+                        },
+                        {
+                          "label": "Futures",
+                          "type": "NavItem"
+                        },
+                        {
+                          "label": "Earn",
+                          "type": "NavItem"
+                        },
+                        {
+                          "label": "Square",
+                          "type": "NavItem"
+                        },
+                        {
+                          "label": "More",
+                          "type": "NavItem"
+                        }
+                      ],
+                      "items": [],
+                      "type": "Nav"
+                    }
+                  ],
+                  "gap": 5,
+                  "type": "Row"
+                },
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "name": "search",
+                      "type": "Icon"
+                    },
+                    {
+                      "content": "Log In",
+                      "ghost": true,
+                      "size": "sm",
+                      "type": "Button"
+                    },
+                    {
+                      "content": "Sign Up",
+                      "primary": true,
+                      "size": "sm",
+                      "type": "Button"
+                    },
+                    {
+                      "muted": true,
+                      "name": "sun",
+                      "size": "sm",
+                      "type": "Icon"
+                    }
+                  ],
+                  "gap": 3,
+                  "type": "Row"
+                }
+              ],
+              "justify": "between",
+              "px": 4,
+              "type": "Row"
+            }
+          ],
+          "h": 48,
+          "p": 0,
+          "type": "Header"
+        },
+        {
+          "align": "center",
+          "border": true,
+          "children": [
+            {
+              "content": "State of the Blockchain 2025: Binance's Year-in-Review...",
+              "muted": true,
+              "size": "xs",
+              "type": "Text"
+            }
+          ],
+          "h": 24,
+          "px": 4,
+          "type": "Row"
+        },
+        {
+          "align": "center",
+          "border": true,
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "name": "bitcoin",
+                  "size": "lg",
+                  "type": "Icon"
+                },
+                {
+                  "children": [
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "content": "BTC/USDT",
+                          "type": "Text",
+                          "weight": "bold"
+                        },
+                        {
+                          "name": "chevron-down",
+                          "size": "xs",
+                          "type": "Icon"
+                        }
+                      ],
+                      "gap": 1,
+                      "type": "Row"
+                    },
+                    {
+                      "content": "$91,205.94",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    }
+                  ],
+                  "gap": 0,
+                  "type": "Col"
+                }
+              ],
+              "gap": 3,
+              "type": "Row"
+            },
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "bold": true,
+                      "content": "91,205.94",
+                      "size": "lg",
+                      "type": "Text"
+                    }
+                  ],
+                  "gap": 0,
+                  "type": "Col"
+                }
+              ],
+              "gap": 6,
+              "type": "Row"
+            },
+            {
+              "children": [
+                {
+                  "align": "end",
+                  "children": [
+                    {
+                      "content": "24h Chg",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    },
+                    {
+                      "content": "-118.34 -0.13%",
+                      "size": "xs",
+                      "type": "Text"
+                    }
+                  ],
+                  "gap": 0,
+                  "type": "Col"
+                },
+                {
+                  "align": "end",
+                  "children": [
+                    {
+                      "content": "24h High",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    },
+                    {
+                      "content": "91,687.99",
+                      "size": "xs",
+                      "type": "Text"
+                    }
+                  ],
+                  "gap": 0,
+                  "type": "Col"
+                },
+                {
+                  "align": "end",
+                  "children": [
+                    {
+                      "content": "24h Low",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    },
+                    {
+                      "content": "89,311.00",
+                      "size": "xs",
+                      "type": "Text"
+                    }
+                  ],
+                  "gap": 0,
+                  "type": "Col"
+                },
+                {
+                  "align": "end",
+                  "children": [
+                    {
+                      "content": "24h Vol(BTC)",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    },
+                    {
+                      "content": "15,976.55",
+                      "size": "xs",
+                      "type": "Text"
+                    }
+                  ],
+                  "gap": 0,
+                  "type": "Col"
+                },
+                {
+                  "align": "end",
+                  "children": [
+                    {
+                      "content": "24h Vol(USDT)",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    },
+                    {
+                      "content": "1,446,336,140",
+                      "size": "xs",
+                      "type": "Text"
+                    }
+                  ],
+                  "gap": 0,
+                  "type": "Col"
+                }
+              ],
+              "gap": 4,
+              "type": "Row"
+            },
+            {
+              "children": [
+                {
+                  "content": "POW",
+                  "size": "xs",
+                  "type": "Badge"
+                },
+                {
+                  "content": "Payments",
+                  "size": "xs",
+                  "type": "Badge"
+                }
+              ],
+              "gap": 2,
+              "type": "Row"
+            }
+          ],
+          "gap": 6,
+          "h": 50,
+          "px": 4,
+          "type": "Row"
+        },
+        {
+          "children": [
+            {
+              "border": true,
+              "children": [
+                {
+                  "align": "center",
+                  "border": true,
+                  "children": [
+                    {
+                      "content": "Order Book",
+                      "size": "sm",
+                      "type": "Text",
+                      "weight": "semibold"
+                    },
+                    {
+                      "children": [
+                        {
+                          "muted": true,
+                          "name": "layout-grid",
+                          "size": "xs",
+                          "type": "Icon"
+                        },
+                        {
+                          "muted": true,
+                          "name": "align-justify",
+                          "size": "xs",
+                          "type": "Icon"
+                        }
+                      ],
+                      "gap": 1,
+                      "type": "Row"
+                    }
+                  ],
+                  "h": 32,
+                  "justify": "between",
+                  "px": 2,
+                  "type": "Row"
+                },
+                {
+                  "align": "center",
+                  "border": true,
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "muted": true,
+                          "name": "bar-chart-2",
+                          "size": "xs",
+                          "type": "Icon"
+                        },
+                        {
+                          "muted": true,
+                          "name": "bar-chart",
+                          "size": "xs",
+                          "type": "Icon"
+                        }
+                      ],
+                      "gap": 1,
+                      "type": "Row"
+                    },
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "content": "0.01",
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "name": "chevron-down",
+                          "size": "xs",
+                          "type": "Icon"
+                        }
+                      ],
+                      "gap": 1,
+                      "type": "Row"
+                    }
+                  ],
+                  "h": 24,
+                  "justify": "between",
+                  "px": 2,
+                  "type": "Row"
+                },
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "content": "Price (USDT)",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    },
+                    {
+                      "content": "Amount (BTC)",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    },
+                    {
+                      "content": "Total",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    }
+                  ],
+                  "h": 20,
+                  "justify": "between",
+                  "px": 2,
+                  "type": "Row"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "content": "91,212.33",
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "0.00300",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "273.63",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        }
+                      ],
+                      "justify": "between",
+                      "px": 2,
+                      "py": 0,
+                      "type": "Row"
+                    },
+                    {
+                      "children": [
+                        {
+                          "content": "91,211.49",
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "0.00012",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "10.94",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        }
+                      ],
+                      "justify": "between",
+                      "px": 2,
+                      "py": 0,
+                      "type": "Row"
+                    },
+                    {
+                      "children": [
+                        {
+                          "content": "91,210.70",
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "0.00250",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "228.02",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        }
+                      ],
+                      "justify": "between",
+                      "px": 2,
+                      "py": 0,
+                      "type": "Row"
+                    },
+                    {
+                      "children": [
+                        {
+                          "content": "91,209.44",
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "0.00006",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "5.47",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        }
+                      ],
+                      "justify": "between",
+                      "px": 2,
+                      "py": 0,
+                      "type": "Row"
+                    },
+                    {
+                      "children": [
+                        {
+                          "content": "91,208.50",
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "0.02330",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "2.12K",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        }
+                      ],
+                      "justify": "between",
+                      "px": 2,
+                      "py": 0,
+                      "type": "Row"
+                    },
+                    {
+                      "children": [
+                        {
+                          "content": "91,207.95",
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "0.05422",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "4.94K",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        }
+                      ],
+                      "justify": "between",
+                      "px": 2,
+                      "py": 0,
+                      "type": "Row"
+                    },
+                    {
+                      "children": [
+                        {
+                          "content": "91,206.44",
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "0.00155",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "141.36",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        }
+                      ],
+                      "justify": "between",
+                      "px": 2,
+                      "py": 0,
+                      "type": "Row"
+                    },
+                    {
+                      "children": [
+                        {
+                          "content": "91,205.97",
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "0.00027",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "24.62",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        }
+                      ],
+                      "justify": "between",
+                      "px": 2,
+                      "py": 0,
+                      "type": "Row"
+                    }
+                  ],
+                  "flex": 1,
+                  "scroll": true,
+                  "type": "Col"
+                },
+                {
+                  "align": "center",
+                  "border": true,
+                  "children": [
+                    {
+                      "bold": true,
+                      "content": "91,205.94",
+                      "type": "Text"
+                    },
+                    {
+                      "name": "arrow-up",
+                      "size": "sm",
+                      "type": "Icon"
+                    }
+                  ],
+                  "h": 36,
+                  "justify": "center",
+                  "px": 2,
+                  "type": "Row"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "content": "91,205.93",
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "3.56105",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "324.78K",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        }
+                      ],
+                      "justify": "between",
+                      "px": 2,
+                      "py": 0,
+                      "type": "Row"
+                    },
+                    {
+                      "children": [
+                        {
+                          "content": "91,205.92",
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "0.00060",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "54.72",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        }
+                      ],
+                      "justify": "between",
+                      "px": 2,
+                      "py": 0,
+                      "type": "Row"
+                    },
+                    {
+                      "children": [
+                        {
+                          "content": "91,205.89",
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "0.00012",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "10.94",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        }
+                      ],
+                      "justify": "between",
+                      "px": 2,
+                      "py": 0,
+                      "type": "Row"
+                    },
+                    {
+                      "children": [
+                        {
+                          "content": "91,205.88",
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "0.05359",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "4.88K",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        }
+                      ],
+                      "justify": "between",
+                      "px": 2,
+                      "py": 0,
+                      "type": "Row"
+                    },
+                    {
+                      "children": [
+                        {
+                          "content": "91,205.59",
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "0.00012",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "10.94",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        }
+                      ],
+                      "justify": "between",
+                      "px": 2,
+                      "py": 0,
+                      "type": "Row"
+                    },
+                    {
+                      "children": [
+                        {
+                          "content": "91,205.58",
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "0.13460",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "12.27K",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        }
+                      ],
+                      "justify": "between",
+                      "px": 2,
+                      "py": 0,
+                      "type": "Row"
+                    },
+                    {
+                      "children": [
+                        {
+                          "content": "91,204.87",
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "0.00006",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "5.47",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        }
+                      ],
+                      "justify": "between",
+                      "px": 2,
+                      "py": 0,
+                      "type": "Row"
+                    },
+                    {
+                      "children": [
+                        {
+                          "content": "91,204.56",
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "0.36226",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "33.03K",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        }
+                      ],
+                      "justify": "between",
+                      "px": 2,
+                      "py": 0,
+                      "type": "Row"
+                    }
+                  ],
+                  "flex": 1,
+                  "scroll": true,
+                  "type": "Col"
+                },
+                {
+                  "align": "center",
+                  "border": true,
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "content": "",
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "h": "full",
+                          "type": "Col",
+                          "w": {
+                            "unit": "%",
+                            "value": 70
+                          }
+                        },
+                        {
+                          "children": [
+                            {
+                              "content": "",
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "flex": 1,
+                          "h": "full",
+                          "type": "Col"
+                        }
+                      ],
+                      "flex": 1,
+                      "h": 8,
+                      "type": "Row"
+                    }
+                  ],
+                  "h": 20,
+                  "px": 2,
+                  "type": "Row"
+                }
+              ],
+              "p": 0,
+              "type": "Col",
+              "w": 280
+            },
+            {
+              "border": true,
+              "children": [
+                {
+                  "align": "center",
+                  "border": true,
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "content": "Chart",
+                          "size": "sm",
+                          "type": "Text",
+                          "weight": "semibold"
+                        },
+                        {
+                          "content": "Info",
+                          "muted": true,
+                          "size": "sm",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "Trading Data",
+                          "muted": true,
+                          "size": "sm",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "Square",
+                          "muted": true,
+                          "size": "sm",
+                          "type": "Text"
+                        }
+                      ],
+                      "gap": 4,
+                      "type": "Row"
+                    },
+                    {
+                      "children": [
+                        {
+                          "muted": true,
+                          "name": "sparkles",
+                          "size": "sm",
+                          "type": "Icon"
+                        },
+                        {
+                          "muted": true,
+                          "name": "settings",
+                          "size": "sm",
+                          "type": "Icon"
+                        }
+                      ],
+                      "gap": 2,
+                      "type": "Row"
+                    }
+                  ],
+                  "h": 32,
+                  "justify": "between",
+                  "px": 3,
+                  "type": "Row"
+                },
+                {
+                  "align": "center",
+                  "border": true,
+                  "children": [
+                    {
+                      "content": "Time",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    },
+                    {
+                      "content": "1s",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    },
+                    {
+                      "content": "15m",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    },
+                    {
+                      "content": "1H",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    },
+                    {
+                      "content": "4H",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    },
+                    {
+                      "content": "1D",
+                      "size": "xs",
+                      "type": "Text"
+                    },
+                    {
+                      "content": "1W",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    },
+                    {
+                      "h": 16,
+                      "type": "Divider",
+                      "vertical": true
+                    },
+                    {
+                      "content": "Original",
+                      "size": "xs",
+                      "type": "Text"
+                    },
+                    {
+                      "content": "Trading View",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    },
+                    {
+                      "content": "Depth",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    }
+                  ],
+                  "gap": 2,
+                  "h": 28,
+                  "px": 3,
+                  "type": "Row"
+                },
+                {
+                  "children": [],
+                  "flex": 1,
+                  "label": "캔들스틱 차트",
+                  "type": "Placeholder",
+                  "w": "full"
+                },
+                {
+                  "children": [],
+                  "h": 60,
+                  "label": "볼륨 차트",
+                  "type": "Placeholder",
+                  "w": "full"
+                },
+                {
+                  "align": "center",
+                  "border": true,
+                  "children": [
+                    {
+                      "content": "Spot",
+                      "size": "sm",
+                      "type": "Text",
+                      "weight": "semibold"
+                    },
+                    {
+                      "content": "Cross",
+                      "muted": true,
+                      "size": "sm",
+                      "type": "Text"
+                    },
+                    {
+                      "content": "Isolated",
+                      "muted": true,
+                      "size": "sm",
+                      "type": "Text"
+                    },
+                    {
+                      "content": "Grid",
+                      "muted": true,
+                      "size": "sm",
+                      "type": "Text"
+                    }
+                  ],
+                  "gap": 4,
+                  "h": 32,
+                  "px": 3,
+                  "type": "Row"
+                },
+                {
+                  "align": "center",
+                  "border": true,
+                  "children": [
+                    {
+                      "content": "Limit",
+                      "size": "sm",
+                      "type": "Text"
+                    },
+                    {
+                      "content": "Market",
+                      "muted": true,
+                      "size": "sm",
+                      "type": "Text"
+                    },
+                    {
+                      "content": "Stop Limit",
+                      "muted": true,
+                      "size": "sm",
+                      "type": "Text"
+                    },
+                    {
+                      "name": "chevron-down",
+                      "size": "xs",
+                      "type": "Icon"
+                    }
+                  ],
+                  "gap": 3,
+                  "h": 28,
+                  "px": 3,
+                  "type": "Row"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "Price",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "label": null,
+                              "size": "sm",
+                              "type": "Input",
+                              "value": "91,225.88",
+                              "w": "full"
+                            },
+                            {
+                              "content": "USDT",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "Amount",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "label": null,
+                              "placeholder": "",
+                              "size": "sm",
+                              "type": "Input",
+                              "w": "full"
+                            },
+                            {
+                              "content": "BTC",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Row"
+                        },
+                        {
+                          "content": "Log In",
+                          "primary": true,
+                          "size": "sm",
+                          "type": "Button",
+                          "w": "full"
+                        }
+                      ],
+                      "flex": 1,
+                      "gap": 2,
+                      "type": "Col"
+                    },
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "Price",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "label": null,
+                              "size": "sm",
+                              "type": "Input",
+                              "value": "91,225.88",
+                              "w": "full"
+                            },
+                            {
+                              "content": "USDT",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "Amount",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "label": null,
+                              "placeholder": "",
+                              "size": "sm",
+                              "type": "Input",
+                              "w": "full"
+                            },
+                            {
+                              "content": "BTC",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Row"
+                        },
+                        {
+                          "content": "Log In",
+                          "danger": true,
+                          "size": "sm",
+                          "type": "Button",
+                          "w": "full"
+                        }
+                      ],
+                      "flex": 1,
+                      "gap": 2,
+                      "type": "Col"
+                    }
+                  ],
+                  "gap": 4,
+                  "h": 100,
+                  "px": 3,
+                  "py": 2,
+                  "type": "Row"
+                }
+              ],
+              "flex": 1,
+              "type": "Col"
+            },
+            {
+              "border": true,
+              "children": [
+                {
+                  "align": "center",
+                  "border": true,
+                  "children": [
+                    {
+                      "icon": "search",
+                      "label": null,
+                      "placeholder": "Search",
+                      "size": "sm",
+                      "type": "Input",
+                      "w": "full"
+                    }
+                  ],
+                  "h": 36,
+                  "px": 2,
+                  "type": "Row"
+                },
+                {
+                  "align": "center",
+                  "border": true,
+                  "children": [
+                    {
+                      "muted": true,
+                      "name": "star",
+                      "size": "xs",
+                      "type": "Icon"
+                    },
+                    {
+                      "content": "New",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    },
+                    {
+                      "content": "USDC",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    },
+                    {
+                      "border": true,
+                      "children": [
+                        {
+                          "content": "USDT",
+                          "size": "xs",
+                          "type": "Text",
+                          "weight": "semibold"
+                        }
+                      ],
+                      "px": 2,
+                      "type": "Col"
+                    },
+                    {
+                      "content": "USD1",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    },
+                    {
+                      "content": "BNB",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    },
+                    {
+                      "content": "BTC",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    }
+                  ],
+                  "gap": 2,
+                  "h": 28,
+                  "px": 2,
+                  "type": "Row"
+                },
+                {
+                  "align": "center",
+                  "border": true,
+                  "children": [
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "content": "Pair",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "muted": true,
+                          "name": "chevron-down",
+                          "size": "xs",
+                          "type": "Icon"
+                        }
+                      ],
+                      "gap": 1,
+                      "type": "Row"
+                    },
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "content": "Last Price",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "/",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "24h Chg",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "muted": true,
+                          "name": "chevron-down",
+                          "size": "xs",
+                          "type": "Icon"
+                        }
+                      ],
+                      "gap": 1,
+                      "type": "Row"
+                    }
+                  ],
+                  "h": 24,
+                  "justify": "between",
+                  "px": 2,
+                  "type": "Row"
+                },
+                {
+                  "border": true,
+                  "children": [
+                    {
+                      "align": "center",
+                      "border": true,
+                      "children": [
+                        {
+                          "muted": true,
+                          "name": "star",
+                          "size": "xs",
+                          "type": "Icon"
+                        },
+                        {
+                          "children": [
+                            {
+                              "content": "0G",
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "/USDT",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "5x",
+                              "size": "xs",
+                              "type": "Badge"
+                            }
+                          ],
+                          "flex": 1,
+                          "gap": 1,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "end",
+                          "children": [
+                            {
+                              "content": "0.902",
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "-5.15%",
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 0,
+                          "type": "Col"
+                        }
+                      ],
+                      "gap": 2,
+                      "h": 36,
+                      "px": 2,
+                      "type": "Row"
+                    },
+                    {
+                      "align": "center",
+                      "border": true,
+                      "children": [
+                        {
+                          "name": "star",
+                          "size": "xs",
+                          "type": "Icon"
+                        },
+                        {
+                          "children": [
+                            {
+                              "content": "BTC",
+                              "size": "xs",
+                              "type": "Text",
+                              "weight": "semibold"
+                            },
+                            {
+                              "content": "/USDT",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "5x",
+                              "size": "xs",
+                              "type": "Badge"
+                            }
+                          ],
+                          "flex": 1,
+                          "gap": 1,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "end",
+                          "children": [
+                            {
+                              "content": "91,205",
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "-0.13%",
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 0,
+                          "type": "Col"
+                        }
+                      ],
+                      "gap": 2,
+                      "h": 36,
+                      "px": 2,
+                      "type": "Row"
+                    },
+                    {
+                      "align": "center",
+                      "border": true,
+                      "children": [
+                        {
+                          "muted": true,
+                          "name": "star",
+                          "size": "xs",
+                          "type": "Icon"
+                        },
+                        {
+                          "children": [
+                            {
+                              "content": "ETH",
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "/USDT",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "5x",
+                              "size": "xs",
+                              "type": "Badge"
+                            }
+                          ],
+                          "flex": 1,
+                          "gap": 1,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "end",
+                          "children": [
+                            {
+                              "content": "3,113",
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "-1.80%",
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 0,
+                          "type": "Col"
+                        }
+                      ],
+                      "gap": 2,
+                      "h": 36,
+                      "px": 2,
+                      "type": "Row"
+                    },
+                    {
+                      "align": "center",
+                      "border": true,
+                      "children": [
+                        {
+                          "muted": true,
+                          "name": "star",
+                          "size": "xs",
+                          "type": "Icon"
+                        },
+                        {
+                          "children": [
+                            {
+                              "content": "SOL",
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "/USDT",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "5x",
+                              "size": "xs",
+                              "type": "Badge"
+                            }
+                          ],
+                          "flex": 1,
+                          "gap": 1,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "end",
+                          "children": [
+                            {
+                              "content": "139.16",
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "+1.85%",
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 0,
+                          "type": "Col"
+                        }
+                      ],
+                      "gap": 2,
+                      "h": 36,
+                      "px": 2,
+                      "type": "Row"
+                    },
+                    {
+                      "align": "center",
+                      "border": true,
+                      "children": [
+                        {
+                          "muted": true,
+                          "name": "star",
+                          "size": "xs",
+                          "type": "Icon"
+                        },
+                        {
+                          "children": [
+                            {
+                              "content": "XRP",
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "/USDT",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "5x",
+                              "size": "xs",
+                              "type": "Badge"
+                            }
+                          ],
+                          "flex": 1,
+                          "gap": 1,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "end",
+                          "children": [
+                            {
+                              "content": "2.13",
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "-1.24%",
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 0,
+                          "type": "Col"
+                        }
+                      ],
+                      "gap": 2,
+                      "h": 36,
+                      "px": 2,
+                      "type": "Row"
+                    },
+                    {
+                      "align": "center",
+                      "border": true,
+                      "children": [
+                        {
+                          "muted": true,
+                          "name": "star",
+                          "size": "xs",
+                          "type": "Icon"
+                        },
+                        {
+                          "children": [
+                            {
+                              "content": "BNB",
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "/USDT",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "5x",
+                              "size": "xs",
+                              "type": "Badge"
+                            }
+                          ],
+                          "flex": 1,
+                          "gap": 1,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "end",
+                          "children": [
+                            {
+                              "content": "893.34",
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "-0.83%",
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 0,
+                          "type": "Col"
+                        }
+                      ],
+                      "gap": 2,
+                      "h": 36,
+                      "px": 2,
+                      "type": "Row"
+                    },
+                    {
+                      "align": "center",
+                      "border": true,
+                      "children": [
+                        {
+                          "muted": true,
+                          "name": "star",
+                          "size": "xs",
+                          "type": "Icon"
+                        },
+                        {
+                          "children": [
+                            {
+                              "content": "DOGE",
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "/USDT",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "5x",
+                              "size": "xs",
+                              "type": "Badge"
+                            }
+                          ],
+                          "flex": 1,
+                          "gap": 1,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "end",
+                          "children": [
+                            {
+                              "content": "0.1425",
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "-2.89%",
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 0,
+                          "type": "Col"
+                        }
+                      ],
+                      "gap": 2,
+                      "h": 36,
+                      "px": 2,
+                      "type": "Row"
+                    },
+                    {
+                      "align": "center",
+                      "border": true,
+                      "children": [
+                        {
+                          "muted": true,
+                          "name": "star",
+                          "size": "xs",
+                          "type": "Icon"
+                        },
+                        {
+                          "children": [
+                            {
+                              "content": "AAVE",
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "/USDT",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "5x",
+                              "size": "xs",
+                              "type": "Badge"
+                            }
+                          ],
+                          "flex": 1,
+                          "gap": 1,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "end",
+                          "children": [
+                            {
+                              "content": "165.14",
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "-1.71%",
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 0,
+                          "type": "Col"
+                        }
+                      ],
+                      "gap": 2,
+                      "h": 36,
+                      "px": 2,
+                      "type": "Row"
+                    },
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "muted": true,
+                          "name": "star",
+                          "size": "xs",
+                          "type": "Icon"
+                        },
+                        {
+                          "children": [
+                            {
+                              "content": "ACA",
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "/USDT",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "5x",
+                              "size": "xs",
+                              "type": "Badge"
+                            }
+                          ],
+                          "flex": 1,
+                          "gap": 1,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "end",
+                          "children": [
+                            {
+                              "content": "0.0077",
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "-3.75%",
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 0,
+                          "type": "Col"
+                        }
+                      ],
+                      "gap": 2,
+                      "h": 36,
+                      "px": 2,
+                      "type": "Row"
+                    }
+                  ],
+                  "flex": 1,
+                  "scroll": true,
+                  "type": "Col"
+                }
+              ],
+              "p": 0,
+              "type": "Col",
+              "w": 220
+            },
+            {
+              "border": true,
+              "children": [
+                {
+                  "align": "center",
+                  "border": true,
+                  "children": [
+                    {
+                      "content": "Market Trades",
+                      "size": "sm",
+                      "type": "Text",
+                      "weight": "semibold"
+                    },
+                    {
+                      "content": "My Trades",
+                      "muted": true,
+                      "size": "sm",
+                      "type": "Text"
+                    },
+                    {
+                      "muted": true,
+                      "name": "more-horizontal",
+                      "size": "xs",
+                      "type": "Icon"
+                    }
+                  ],
+                  "gap": 3,
+                  "h": 32,
+                  "px": 2,
+                  "type": "Row"
+                },
+                {
+                  "align": "center",
+                  "border": true,
+                  "children": [
+                    {
+                      "content": "Price (USDT)",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    },
+                    {
+                      "content": "Amount (BTC)",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    },
+                    {
+                      "content": "Time",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    }
+                  ],
+                  "h": 24,
+                  "justify": "between",
+                  "px": 2,
+                  "type": "Row"
+                },
+                {
+                  "border": true,
+                  "children": [
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "content": "91,205.94",
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "0.00021",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "09:45:45",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        }
+                      ],
+                      "h": 20,
+                      "justify": "between",
+                      "px": 2,
+                      "type": "Row"
+                    },
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "content": "91,205.94",
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "0.00026",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "09:45:45",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        }
+                      ],
+                      "h": 20,
+                      "justify": "between",
+                      "px": 2,
+                      "type": "Row"
+                    },
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "content": "91,205.93",
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "0.00154",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "09:45:45",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        }
+                      ],
+                      "h": 20,
+                      "justify": "between",
+                      "px": 2,
+                      "type": "Row"
+                    },
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "content": "91,205.94",
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "0.00054",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "09:45:44",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        }
+                      ],
+                      "h": 20,
+                      "justify": "between",
+                      "px": 2,
+                      "type": "Row"
+                    },
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "content": "91,205.93",
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "0.00070",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "09:45:44",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        }
+                      ],
+                      "h": 20,
+                      "justify": "between",
+                      "px": 2,
+                      "type": "Row"
+                    },
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "content": "91,205.94",
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "0.01629",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "09:45:44",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        }
+                      ],
+                      "h": 20,
+                      "justify": "between",
+                      "px": 2,
+                      "type": "Row"
+                    },
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "content": "91,205.94",
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "0.00043",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "09:45:44",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        }
+                      ],
+                      "h": 20,
+                      "justify": "between",
+                      "px": 2,
+                      "type": "Row"
+                    },
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "content": "91,205.94",
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "0.00039",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "09:45:44",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        }
+                      ],
+                      "h": 20,
+                      "justify": "between",
+                      "px": 2,
+                      "type": "Row"
+                    },
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "content": "91,205.93",
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "0.00510",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "09:45:43",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        }
+                      ],
+                      "h": 20,
+                      "justify": "between",
+                      "px": 2,
+                      "type": "Row"
+                    },
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "content": "91,205.94",
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "0.00245",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "09:45:43",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        }
+                      ],
+                      "h": 20,
+                      "justify": "between",
+                      "px": 2,
+                      "type": "Row"
+                    }
+                  ],
+                  "flex": 1,
+                  "scroll": true,
+                  "type": "Col"
+                }
+              ],
+              "p": 0,
+              "type": "Col",
+              "w": 180
+            }
+          ],
+          "flex": 1,
+          "type": "Row"
+        },
+        {
+          "align": "center",
+          "border": true,
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "name": "wifi",
+                  "size": "xs",
+                  "type": "Icon"
+                },
+                {
+                  "content": "Stable connection",
+                  "muted": true,
+                  "size": "xs",
+                  "type": "Text"
+                }
+              ],
+              "gap": 1,
+              "type": "Row"
+            },
+            {
+              "h": 16,
+              "type": "Divider",
+              "vertical": true
+            },
+            {
+              "children": [
+                {
+                  "content": "BTC/USDT",
+                  "size": "xs",
+                  "type": "Text"
+                },
+                {
+                  "content": "-0.13%",
+                  "size": "xs",
+                  "type": "Text"
+                },
+                {
+                  "content": "91,205.94",
+                  "muted": true,
+                  "size": "xs",
+                  "type": "Text"
+                }
+              ],
+              "gap": 3,
+              "type": "Row"
+            },
+            {
+              "children": [
+                {
+                  "content": "ETH/USDT",
+                  "size": "xs",
+                  "type": "Text"
+                },
+                {
+                  "content": "-1.80%",
+                  "size": "xs",
+                  "type": "Text"
+                },
+                {
+                  "content": "3,113.22",
+                  "muted": true,
+                  "size": "xs",
+                  "type": "Text"
+                }
+              ],
+              "gap": 3,
+              "type": "Row"
+            },
+            {
+              "children": [
+                {
+                  "content": "SOL/USDT",
+                  "size": "xs",
+                  "type": "Text"
+                },
+                {
+                  "content": "+1.85%",
+                  "size": "xs",
+                  "type": "Text"
+                },
+                {
+                  "content": "139.16",
+                  "muted": true,
+                  "size": "xs",
+                  "type": "Text"
+                }
+              ],
+              "gap": 3,
+              "type": "Row"
+            }
+          ],
+          "gap": 4,
+          "h": 28,
+          "px": 4,
+          "type": "Row"
+        }
+      ],
+      "height": 800,
+      "title": null,
+      "type": "Page",
+      "width": 1280
+    }
+  ],
+  "type": "Document"
+}

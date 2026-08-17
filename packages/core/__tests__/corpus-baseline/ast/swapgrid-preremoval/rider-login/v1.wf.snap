@@ -1,0 +1,191 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "border": false,
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "name": "battery-charging",
+                  "size": "xl",
+                  "type": "Icon"
+                },
+                {
+                  "align": "center",
+                  "content": "SwapGrid",
+                  "level": 1,
+                  "size": "xl",
+                  "type": "Title"
+                },
+                {
+                  "align": "center",
+                  "content": "라이더",
+                  "muted": true,
+                  "size": "sm",
+                  "type": "Text"
+                }
+              ],
+              "gap": 2,
+              "type": "Col"
+            }
+          ],
+          "h": 120,
+          "p": 6,
+          "type": "Header"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "content": "인증 방식 미확정 (OPEN)",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    },
+                    {
+                      "icon": "user",
+                      "inputType": "text",
+                      "label": "식별자",
+                      "placeholder": "계정 식별자",
+                      "required": true,
+                      "type": "Input",
+                      "w": "full"
+                    },
+                    {
+                      "icon": "lock",
+                      "inputType": "password",
+                      "label": "인증값",
+                      "placeholder": "인증값을 입력하세요",
+                      "required": true,
+                      "type": "Input",
+                      "w": "full"
+                    }
+                  ],
+                  "gap": 4,
+                  "type": "Col"
+                },
+                {
+                  "children": [
+                    {
+                      "action": "submit",
+                      "content": "로그인",
+                      "disabled": true,
+                      "primary": true,
+                      "size": "lg",
+                      "type": "Button",
+                      "w": "full"
+                    },
+                    {
+                      "checked": true,
+                      "label": "자동 로그인",
+                      "type": "Switch"
+                    },
+                    {
+                      "content": "다음 실행 때 이 화면을 건너뜁니다.",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    }
+                  ],
+                  "gap": 4,
+                  "type": "Col"
+                },
+                {
+                  "my": 2,
+                  "type": "Divider"
+                },
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "content": "계정이 없으신가요?",
+                          "muted": true,
+                          "size": "sm",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "가입",
+                          "navigate": "가입",
+                          "type": "Link"
+                        }
+                      ],
+                      "gap": 2,
+                      "justify": "center",
+                      "type": "Row"
+                    },
+                    {
+                      "content": "로그인에 문제가 있나요?",
+                      "opens": "recovery-sheet",
+                      "type": "Link"
+                    },
+                    {
+                      "align": "center",
+                      "content": "계정은 소속 운영사가 발급합니다",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    }
+                  ],
+                  "gap": 3,
+                  "type": "Col"
+                }
+              ],
+              "gap": 6,
+              "type": "Col"
+            }
+          ],
+          "p": 6,
+          "scroll": true,
+          "type": "Main"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "content": "복구 경로가 아직 정해지지 않았습니다.",
+                  "icon": "info",
+                  "type": "Alert",
+                  "variant": "info"
+                },
+                {
+                  "content": "인증 방식이 정해지면 이 안내에 연결할 대상이 확정됩니다.",
+                  "muted": true,
+                  "size": "sm",
+                  "type": "Text"
+                },
+                {
+                  "content": "닫기",
+                  "outline": true,
+                  "toggles": "recovery-sheet",
+                  "type": "Button",
+                  "w": "full"
+                }
+              ],
+              "gap": 4,
+              "type": "Col"
+            }
+          ],
+          "id": "recovery-sheet",
+          "position": "right",
+          "title": "계정 복구 안내",
+          "type": "Drawer",
+          "w": 340
+        }
+      ],
+      "title": "로그인",
+      "type": "Page",
+      "viewport": "375x812"
+    }
+  ],
+  "type": "Document"
+}

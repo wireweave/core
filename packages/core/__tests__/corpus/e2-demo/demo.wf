@@ -1,0 +1,120 @@
+// E2 demo — multi-screen canvas + DOM anchors
+// 4 screens laid out on an explicit canvas grid via `at(x, y)`.
+
+page "Login" at(0, 0) viewport="1280x800" {
+  main p=8 {
+    stack gap=4 align=center {
+      title "Wireweave" level=1
+      text "Sign in to your workspace"
+      card "Sign in" {
+        input "Email" inputType="email" placeholder="you@example.com" required
+        input "Password" inputType="password" required
+        checkbox "Remember me"
+        button "Sign in" variant=primary navigate="Dashboard"
+        link "Forgot password?" navigate="/reset"
+      }
+    }
+  }
+}
+
+page "Dashboard" at(1344, 0) viewport="1280x800" {
+  header p=4 {
+    row flex justify=between align=center {
+      title "Acme Console" level=2
+      row gap=2 align=center {
+        button "Notifications" toggles="notif-drawer"
+        avatar "JD"
+      }
+    }
+  }
+  row {
+    sidebar span=2 {
+      nav vertical {
+        item "Dashboard" navigate="Dashboard"
+        item "Profile" navigate="Profile"
+        item "Settings" navigate="Settings"
+        divider
+        item "Docs" navigate="/docs"
+      }
+    }
+    main span=10 p=4 {
+      breadcrumb ["Home", "Dashboard"]
+      row gap=4 {
+        col span=4 { card "Revenue" { title "$48,200" level=3 badge "+12%" } }
+        col span=4 { card "Active users" { title "1,847" level=3 badge "+4%" } }
+        col span=4 { card "Churn" { title "2.1%" level=3 badge "-0.3%" } }
+      }
+      card "Recent signups" {
+        table [
+          ["Name", "Email", "Plan", "Status"],
+          ["Jane Doe", "jane@acme.io", "Pro", "active"],
+          ["Sam Roe", "sam@acme.io", "Free", "trial"],
+          ["Kim Lee", "kim@acme.io", "Team", "active"]
+        ]
+        button "View profile" navigate="Profile"
+      }
+    }
+  }
+  drawer "Notifications" id="notif-drawer" {
+    list ["Deploy finished", "New signup: jane@acme.io", "Invoice #1042 paid"]
+  }
+  footer p=4 {
+    text "2026 Acme Inc." align=center
+  }
+}
+
+page "Settings" at(2688, 0) viewport="1280x800" {
+  header p=4 {
+    row flex justify=between align=center {
+      title "Settings" level=2
+      button "Back to dashboard" navigate="Dashboard"
+    }
+  }
+  main p=6 {
+    card "Workspace" {
+      input "Workspace name" placeholder="Acme Inc."
+      select "Default role" ["Admin", "Member", "Viewer"]
+      switch "Email notifications"
+    }
+    card "Danger zone" {
+      text "Deleting the workspace is permanent."
+      button "Delete workspace" variant=danger opens="confirm-delete"
+    }
+  }
+  modal "Delete workspace?" id="confirm-delete" {
+    text "This cannot be undone. All wireframes will be removed."
+    row gap=2 {
+      button "Cancel"
+      button "Delete forever" variant=danger
+    }
+  }
+}
+
+page "Profile" at(1344, 864) viewport="1280x800" {
+  header p=4 {
+    row flex justify=between align=center {
+      title "Profile" level=2
+      button "Account settings" navigate="Settings"
+    }
+  }
+  main p=6 {
+    row gap=4 {
+      col span=4 {
+        card "Jane Doe" {
+          avatar "JD"
+          text "Product designer"
+          badge "Pro plan"
+          button "Back to dashboard" navigate="Dashboard"
+        }
+      }
+      col span=8 {
+        card "Details" {
+          input "Display name" placeholder="Jane Doe"
+          input "Email" inputType="email" placeholder="jane@acme.io"
+          textarea "Bio" placeholder="A short bio"
+          button "Save changes" variant=primary
+        }
+      }
+    }
+  }
+}

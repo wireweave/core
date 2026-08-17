@@ -1,0 +1,15 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "content": "G",
+          "type": "Text"
+        }
+      ],
+      "title": "Gamma",
+      "type": "Page"
+    }
+  ],
+  "type": "Document"
+}

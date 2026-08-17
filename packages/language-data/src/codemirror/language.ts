@@ -5,76 +5,13 @@
  */
 
 import type { StringStream } from '@codemirror/language'
-import { ALL_COMPONENTS, ATTRIBUTES } from '../index.js'
+import { ALL_COMPONENTS, ATTRIBUTES, VALUE_KEYWORDS } from '../index.js'
 
 // Component names for highlighting
 const COMPONENT_NAMES = ALL_COMPONENTS.map((c) => c.name)
 
 // Attribute names for highlighting
 const ATTRIBUTE_NAMES = ATTRIBUTES.map((a) => a.name)
-
-// Value keywords
-const VALUE_KEYWORDS = [
-  // Sizes
-  'xs',
-  'sm',
-  'md',
-  'lg',
-  'xl',
-  '2xl',
-  '3xl',
-  // Weights
-  'thin',
-  'light',
-  'normal',
-  'medium',
-  'semibold',
-  'bold',
-  'extrabold',
-  // Alignments
-  'left',
-  'center',
-  'right',
-  'start',
-  'end',
-  'top',
-  'middle',
-  'bottom',
-  'between',
-  'around',
-  'evenly',
-  'stretch',
-  // Directions
-  'horizontal',
-  'vertical',
-  // Variants
-  'primary',
-  'secondary',
-  'outline',
-  'ghost',
-  'link',
-  'danger',
-  'info',
-  'success',
-  'warning',
-  'error',
-  // Boolean
-  'true',
-  'false',
-  // Devices
-  'mobile',
-  'tablet',
-  'desktop',
-  // Input types
-  'text',
-  'email',
-  'password',
-  'number',
-  'tel',
-  'url',
-  'search',
-  'date',
-]
 
 /**
  * StreamLanguage token function for CodeMirror

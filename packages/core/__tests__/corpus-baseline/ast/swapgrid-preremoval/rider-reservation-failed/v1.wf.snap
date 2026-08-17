@@ -1,0 +1,271 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "aria": "뒤로",
+                      "content": "",
+                      "ghost": true,
+                      "icon": "chevron-left",
+                      "navigate": "교환소 상세",
+                      "size": "sm",
+                      "type": "Button"
+                    },
+                    {
+                      "content": "강남역 3번출구 교환소",
+                      "type": "Text",
+                      "weight": "semibold"
+                    }
+                  ],
+                  "gap": 2,
+                  "type": "Row"
+                },
+                {
+                  "content": "운영중",
+                  "pill": true,
+                  "type": "Badge",
+                  "variant": "success"
+                }
+              ],
+              "justify": "between",
+              "type": "Row"
+            }
+          ],
+          "h": 72,
+          "p": 4,
+          "type": "Header"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [],
+                  "h": 104,
+                  "label": "교환소 위치 지도",
+                  "type": "Placeholder"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "content": "내 규격 완충",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "2",
+                              "level": 3,
+                              "type": "Title"
+                            }
+                          ],
+                          "p": 3,
+                          "title": null,
+                          "type": "Card"
+                        }
+                      ],
+                      "flex": 1,
+                      "type": "Col"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "content": "충전 중",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "4",
+                              "level": 3,
+                              "type": "Title"
+                            }
+                          ],
+                          "p": 3,
+                          "title": null,
+                          "type": "Card"
+                        }
+                      ],
+                      "flex": 1,
+                      "type": "Col"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "content": "빈 슬롯",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "3",
+                              "level": 3,
+                              "type": "Title"
+                            }
+                          ],
+                          "p": 3,
+                          "title": null,
+                          "type": "Card"
+                        }
+                      ],
+                      "flex": 1,
+                      "type": "Col"
+                    }
+                  ],
+                  "gap": 3,
+                  "type": "Row"
+                }
+              ],
+              "gap": 3,
+              "type": "Col"
+            }
+          ],
+          "p": 4,
+          "scroll": true,
+          "type": "Main"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "my": 0,
+                  "type": "Divider"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "clock-alert",
+                      "size": "lg",
+                      "type": "Icon"
+                    },
+                    {
+                      "content": "방금 마지막 배터리가 다른 분에게 갔습니다",
+                      "level": 3,
+                      "type": "Title"
+                    },
+                    {
+                      "content": "거의 같은 순간에 다른 라이더가 그 배터리를 먼저 잡았습니다.",
+                      "muted": true,
+                      "size": "sm",
+                      "type": "Text"
+                    }
+                  ],
+                  "gap": 2,
+                  "type": "Col"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "지금 이 교환소의 내 규격 완충",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "2개",
+                              "type": "Text",
+                              "weight": "semibold"
+                            }
+                          ],
+                          "justify": "between",
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "내 차량 규격",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "A 규격",
+                              "size": "sm",
+                              "type": "Text"
+                            }
+                          ],
+                          "justify": "between",
+                          "type": "Row"
+                        }
+                      ],
+                      "gap": 2,
+                      "type": "Col"
+                    }
+                  ],
+                  "p": 3,
+                  "title": null,
+                  "type": "Card"
+                },
+                {
+                  "children": [
+                    {
+                      "action": "retry-reservation",
+                      "content": "다시 시도",
+                      "primary": true,
+                      "type": "Button",
+                      "w": "full"
+                    },
+                    {
+                      "children": [
+                        {
+                          "content": "다른 교환소 찾기",
+                          "flex": 1,
+                          "navigate": "교환소 지도",
+                          "outline": true,
+                          "type": "Button"
+                        },
+                        {
+                          "content": "닫기",
+                          "flex": 1,
+                          "ghost": true,
+                          "navigate": "교환소 상세",
+                          "type": "Button"
+                        }
+                      ],
+                      "gap": 2,
+                      "type": "Row"
+                    }
+                  ],
+                  "gap": 2,
+                  "type": "Col"
+                }
+              ],
+              "gap": 3,
+              "type": "Col"
+            }
+          ],
+          "h": 408,
+          "p": 4,
+          "type": "Footer"
+        }
+      ],
+      "title": "예약 실패",
+      "type": "Page",
+      "viewport": "375x812"
+    }
+  ],
+  "type": "Document"
+}

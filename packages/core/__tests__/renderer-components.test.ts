@@ -800,6 +800,9 @@ describe('Interactive Attributes', () => {
       const doc = parse('page { button "Go" navigate="/dashboard" }')
       const result = render(doc)
 
+      // A button has no `href` channel, so a URL-shaped target has only the data
+      // attribute to travel in. Dropping it here would discard what the author
+      // wrote; the URL rule is scoped to elements that can carry a destination.
       expect(result.html).toContain('data-navigate="/dashboard"')
     })
 
@@ -834,12 +837,35 @@ describe('Interactive Attributes', () => {
   })
 
   describe('Link Interactive Props', () => {
-    it('should move a URL-shaped link navigate into href', () => {
+    it('should carry a URL-shaped navigate in href, not data-navigate', () => {
       const doc = parse('page { link "Dashboard" navigate="/dashboard" }')
       const result = render(doc)
 
+      // A URL is a destination a browser can follow, and an anchor already has
+      // the channel for it. Leaving it in `data-navigate` too would put two
+      // competing destinations on one element — one element, one intent.
       expect(result.html).toContain('href="/dashboard"')
-      expect(result.html).not.toContain('data-navigate="/dashboard"')
+      expect(result.html).not.toContain('data-navigate')
+      expect(result.html).not.toContain('href="#"')
+    })
+
+    it('should leave a page-name navigate in data-navigate with an inert href', () => {
+      const doc = parse('page { link "Dashboard" navigate="Dashboard" }')
+      const result = render(doc)
+
+      // The counter-proof that the URL rule does not leak: a page name is not a
+      // URL, and putting one in `href` would emit a broken relative link.
+      expect(result.html).toContain('href="#"')
+      expect(result.html).toContain('data-navigate="Dashboard"')
+      expect(result.html).not.toContain('href="Dashboard"')
+    })
+
+    it('should keep an authored href alongside navigate', () => {
+      const doc = parse('page { link "Docs" href="/docs" navigate="Dashboard" }')
+      const result = render(doc)
+
+      expect(result.html).toContain('href="/docs"')
+      expect(result.html).toContain('data-navigate="Dashboard"')
     })
 
     it('should render link with opens attribute', () => {

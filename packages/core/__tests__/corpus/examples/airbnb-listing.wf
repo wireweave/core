@@ -1,0 +1,443 @@
+page width=1280 height=900 {
+  col {
+    header h=80 border p=0 {
+      row justify=between align=center px=6 {
+        row gap=2 align=center {
+          icon "home" size=lg
+          text "airbnb" bold size=xl
+        }
+        row gap=1 border rounded p=2 {
+          row gap=2 align=center {
+            text "숙소" size=sm weight=semibold
+            text "체험" size=sm muted
+            badge "NEW" size=xs
+            text "서비스" size=sm muted
+            badge "NEW" size=xs
+          }
+          divider vertical h=20
+          row gap=1 {
+            button "어디든지" ghost size=sm
+            button "언제든 일주일" ghost size=sm
+            button "게스트 추가" ghost size=sm
+          }
+          button "" icon="search" primary size=sm
+        }
+        row gap=3 align=center {
+          button "호스팅 하기" ghost size=sm
+          icon "globe" size=sm
+          row gap=2 align=center border rounded p=2 {
+            icon "menu" size=sm
+            avatar "U" size=sm
+          }
+        }
+      }
+    }
+
+    main p=0 scroll {
+      col gap=6 px=10 py=6 {
+        row justify=between align=center {
+          title "서울 강남의 모던한 아파트" level=1
+          row gap=2 {
+            button "공유하기" ghost size=sm icon="share"
+            button "저장" ghost size=sm icon="heart"
+          }
+        }
+
+        row gap=2 {
+          placeholder "메인 이미지" h=400 flex=1
+          col gap=2 flex=1 {
+            row gap=2 {
+              placeholder "이미지 2" h=196 flex=1
+              placeholder "이미지 3" h=196 flex=1
+            }
+            row gap=2 {
+              placeholder "이미지 4" h=196 flex=1
+              col flex=1 {
+                placeholder "이미지 5" h=196 w=full
+                button "사진 모두 보기" outline size=sm
+              }
+            }
+          }
+        }
+
+        row gap=8 {
+          col flex=1 gap=6 {
+            col gap=2 {
+              title "한국의 부티크 호텔의 객실" level=2
+              text "최대 인원 2명 · 침실 1개 · 침대 1개 · 욕실 1개" muted
+            }
+
+            row gap=4 align=center {
+              card p=3 {
+                row gap=2 align=center {
+                  col gap=0 {
+                    badge "게스트 선호" variant=outline size=sm
+                    text "에어비앤비 게스트에게 가장 사랑받는 숙소" size=xs muted
+                  }
+                  col gap=0 align=center {
+                    text "4.93" bold size=xl
+                    row gap=0 {
+                      icon "star" size=xs
+                      icon "star" size=xs
+                      icon "star" size=xs
+                      icon "star" size=xs
+                      icon "star" size=xs
+                    }
+                  }
+                  col gap=0 align=center {
+                    text "41개" bold size=lg
+                    text "후기" size=xs muted
+                  }
+                }
+              }
+            }
+
+            row gap=4 py=3 border wrap {
+              row gap=2 align=center {
+                icon "train" size=sm muted
+                text "지하철역 근처" size=sm
+              }
+              row gap=2 align=center {
+                icon "check-circle" size=sm muted
+                text "순조로운 체크인" size=sm
+              }
+              row gap=2 align=center {
+                icon "wind" size=sm muted
+                text "에어컨" size=sm
+              }
+              row gap=2 align=center {
+                icon "wifi" size=sm muted
+                text "와이파이" size=sm
+              }
+            }
+
+            row gap=3 py=4 border align=center {
+              avatar "호스트" size=lg
+              col gap=0 flex=1 {
+                text "호스트: 민수님" weight=semibold
+                row gap=2 {
+                  badge "슈퍼호스트" size=xs
+                  text "호스팅 경력 3년" size=sm muted
+                }
+              }
+            }
+
+            divider
+
+            col gap=3 {
+              text "숙소 소개" weight=semibold
+              text "강남역 도보 5분 거리에 위치한 모던한 아파트입니다. 넓은 거실과 쾌적한 침실, 완비된 주방이 있어 편안한 숙박이 가능합니다. 주변에 맛집과 쇼핑몰이 많아 편리합니다." size=sm
+              button "더 보기" ghost size=sm icon="chevron-down"
+            }
+
+            divider
+
+            col gap=3 {
+              title "숙소 편의시설" level=3
+              row gap=4 wrap {
+                row gap=2 align=center {
+                  icon "wifi" size=sm
+                  text "와이파이" size=sm
+                }
+                row gap=2 align=center {
+                  icon "wind" size=sm
+                  text "에어컨" size=sm
+                }
+                row gap=2 align=center {
+                  icon "wind" size=sm
+                  text "헤어드라이어" size=sm
+                }
+                row gap=2 align=center {
+                  icon "camera" size=sm muted
+                  text "실외 보안 카메라" size=sm
+                }
+              }
+              button "편의시설 모두 보기" outline size=sm
+            }
+
+            divider
+
+            col gap=4 {
+              row gap=2 align=center {
+                text "4.93" bold size=2xl
+                title "후기 41개" level=3
+              }
+              row gap=6 wrap {
+                col gap=1 flex=1 {
+                  row justify=between {
+                    text "청결도" size=sm
+                    text "5.0" size=sm
+                  }
+                  progress value=100 h=1
+                }
+                col gap=1 flex=1 {
+                  row justify=between {
+                    text "정확도" size=sm
+                    text "4.9" size=sm
+                  }
+                  progress value=98 h=1
+                }
+                col gap=1 flex=1 {
+                  row justify=between {
+                    text "체크인" size=sm
+                    text "5.0" size=sm
+                  }
+                  progress value=100 h=1
+                }
+              }
+              row gap=6 wrap {
+                col gap=1 flex=1 {
+                  row justify=between {
+                    text "의사소통" size=sm
+                    text "5.0" size=sm
+                  }
+                  progress value=100 h=1
+                }
+                col gap=1 flex=1 {
+                  row justify=between {
+                    text "위치" size=sm
+                    text "4.6" size=sm
+                  }
+                  progress value=92 h=1
+                }
+                col gap=1 flex=1 {
+                  row justify=between {
+                    text "가격 대비 만족도" size=sm
+                    text "4.9" size=sm
+                  }
+                  progress value=98 h=1
+                }
+              }
+              row gap=2 {
+                badge "깨끗한 숙소" variant=outline size=sm
+                badge "편안한 침대" variant=outline size=sm
+                badge "가성비 좋은 숙소" variant=outline size=sm
+              }
+              col gap=3 {
+                card p=3 {
+                  col gap=2 {
+                    row gap=2 align=center {
+                      avatar "GS" size=sm
+                      col gap=0 {
+                        text "Guest" size=sm weight=semibold
+                        text "1주 전" size=xs muted
+                      }
+                      row gap=0 {
+                        icon "star" size=xs
+                        icon "star" size=xs
+                        icon "star" size=xs
+                        icon "star" size=xs
+                        icon "star" size=xs
+                      }
+                    }
+                    text "너무 깔끔하고 좋았습니다" size=sm
+                  }
+                }
+                card p=3 {
+                  col gap=2 {
+                    row gap=2 align=center {
+                      avatar "HR" size=sm
+                      col gap=0 {
+                        text "Haram" size=sm weight=semibold
+                        text "2주 전" size=xs muted
+                      }
+                      row gap=0 {
+                        icon "star" size=xs
+                        icon "star" size=xs
+                        icon "star" size=xs
+                        icon "star" size=xs
+                        icon "star" size=xs
+                      }
+                    }
+                    text "숙소가 예상보다 깨끗했고 저렴한 가격에 하루 묵기 좋은것같습니다" size=sm
+                  }
+                }
+              }
+              button "후기 41개 모두 보기" outline w=full
+            }
+
+            divider
+
+            col gap=3 {
+              title "위치" level=3
+              text "서울, 한국" weight=semibold
+              text "가산디지털단지역(1호선, 7호선)과 도보 15분거리. 공항에서 직항으로 바로 오는 버스(6004번) 정류장과 도보 5분거리." size=sm muted
+              placeholder "지도" h=300 w=full
+              button "더 보기" ghost size=sm icon="chevron-right"
+            }
+
+            divider
+
+            col gap=4 {
+              title "호스트 소개" level=3
+              row gap=4 {
+                card p=4 flex=1 {
+                  col gap=3 align=center {
+                    avatar "MS" size=xl
+                    text "민수" weight=bold size=lg
+                    badge "슈퍼호스트" size=sm
+                    row gap=4 {
+                      col gap=0 align=center {
+                        text "128" weight=bold
+                        text "후기" size=xs muted
+                      }
+                      col gap=0 align=center {
+                        row gap=1 align=center {
+                          text "4.92" weight=bold
+                          icon "star" size=xs
+                        }
+                        text "평점" size=xs muted
+                      }
+                      col gap=0 align=center {
+                        text "3" weight=bold
+                        text "년" size=xs muted
+                      }
+                    }
+                  }
+                }
+                col gap=2 flex=1 {
+                  text "안녕하세요! 호스트 민수입니다. 게스트분들이 편안하게 머무실 수 있도록 최선을 다하고 있습니다." size=sm
+                  row gap=2 {
+                    icon "message-circle" size=sm muted
+                    text "응답률: 100%" size=sm
+                  }
+                  row gap=2 {
+                    icon "clock" size=sm muted
+                    text "1시간 이내에 응답" size=sm
+                  }
+                  button "호스트에게 메시지 보내기" outline
+                }
+              }
+            }
+
+            divider
+
+            col gap=3 {
+              title "알아두어야 할 사항" level=3
+              row gap=6 {
+                col gap=2 flex=1 {
+                  row gap=2 align=center {
+                    icon "calendar" size=sm
+                    text "환불 정책" weight=semibold size=sm
+                  }
+                  text "여행 날짜를 입력하여 취소 및 환불 정보를 확인하세요." size=xs muted
+                  button "날짜 추가" ghost size=sm
+                }
+                col gap=2 flex=1 {
+                  row gap=2 align=center {
+                    icon "clipboard" size=sm
+                    text "숙소 이용규칙" weight=semibold size=sm
+                  }
+                  text "체크인: 오후 3:00 이후" size=xs
+                  text "게스트 정원 2명" size=xs
+                  button "자세히 알아보기" ghost size=sm
+                }
+                col gap=2 flex=1 {
+                  row gap=2 align=center {
+                    icon "shield" size=sm
+                    text "안전 및 공간" weight=semibold size=sm
+                  }
+                  text "일산화탄소 경보기 설치 여부 정보 없음" size=xs
+                  text "부지 내 실외 보안 카메라" size=xs
+                  button "자세히 알아보기" ghost size=sm
+                }
+              }
+            }
+          }
+
+          col w=380 gap=4 {
+            card p=5 {
+              col gap=4 {
+                text "날짜를 선택해 요금 확인" weight=semibold size=lg
+
+                card p=0 border {
+                  col {
+                    row border {
+                      col p=3 flex=1 border {
+                        text "체크인" size=xs weight=semibold
+                        text "날짜 추가" size=sm muted
+                      }
+                      col p=3 flex=1 {
+                        text "체크아웃" size=xs weight=semibold
+                        text "날짜 추가" size=sm muted
+                      }
+                    }
+                    row p=3 justify=between align=center {
+                      col gap=0 {
+                        text "인원" size=xs weight=semibold
+                        text "게스트 1명" size=sm
+                      }
+                      icon "chevron-down" size=sm
+                    }
+                  }
+                }
+
+                button "예약 가능 여부 보기" primary w=full
+              }
+            }
+
+            row gap=2 justify=center align=center {
+              icon "flag" size=sm muted
+              text "리스팅 신고하기" size=sm muted
+            }
+          }
+        }
+      }
+    }
+
+    footer h=200 border p=0 {
+      col px=10 py=6 gap=4 {
+        row gap=8 justify=between {
+          col gap=2 {
+            text "에어비앤비 지원" weight=semibold size=sm
+            text "도움말 센터" size=xs muted
+            text "안전 문제 관련 도움받기" size=xs muted
+            text "에어커버" size=xs muted
+            text "차별 반대" size=xs muted
+          }
+          col gap=2 {
+            text "호스팅" weight=semibold size=sm
+            text "당신의 공간을 에어비앤비하세요" size=xs muted
+            text "호스트를 위한 에어커버" size=xs muted
+            text "호스팅 자료" size=xs muted
+            text "커뮤니티 포럼" size=xs muted
+          }
+          col gap=2 {
+            text "에어비앤비" weight=semibold size=sm
+            text "뉴스룸" size=xs muted
+            text "채용정보" size=xs muted
+            text "투자자 정보" size=xs muted
+            text "Airbnb.org 긴급 숙소" size=xs muted
+          }
+        }
+        divider
+        row justify=between align=center {
+          row gap=2 {
+            text "© 2026 Airbnb, Inc." size=xs muted
+            text "·" size=xs muted
+            text "개인정보 처리방침" size=xs muted
+            text "·" size=xs muted
+            text "이용약관" size=xs muted
+            text "·" size=xs muted
+            text "회사 세부정보" size=xs muted
+          }
+          row gap=4 align=center {
+            row gap=2 align=center {
+              icon "globe" size=sm
+              text "한국어 (KR)" size=sm
+            }
+            row gap=2 align=center {
+              text "₩" size=sm
+              text "KRW" size=sm
+            }
+            row gap=2 {
+              icon "facebook" size=sm muted
+              icon "twitter" size=sm muted
+              icon "instagram" size=sm muted
+            }
+          }
+        }
+      }
+    }
+  }
+}

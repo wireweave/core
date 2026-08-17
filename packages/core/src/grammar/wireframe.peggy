@@ -15,6 +15,25 @@
     };
   }
 
+  // Helper: Create a node that only exists inside a specific parent's block —
+  // `nav { item … group { … } }`, `dropdown { divider }`. Identical to
+  // createNode; the separate name is what tells the element extractor that the
+  // enclosing rule's keyword names the *parent*, not this node. Nodes reaching
+  // the AST go through one of these two, so reading their arguments is a
+  // complete inventory of the node types the parser can emit — see
+  // `__tests__/grammar-spec-ssot.test.ts`. A bare `{ type: … }` object literal
+  // would be a node type nothing downstream can discover, so intermediate
+  // values that never reach the AST are keyed on `kind` instead. Rules that
+  // still return a bare object are enumerated with their reason in that same
+  // test and the list may only shrink.
+  function createBlockNode(type, props = {}) {
+    return {
+      type,
+      ...props,
+      loc: location()
+    };
+  }
+
   // Helper: Flatten array of attributes into object
   // attrs entries can be a single { name, value } or an array of them
   // (functional-form attributes like at(x, y) emit multiple).
@@ -76,7 +95,22 @@ Page
       });
     }
 
-// A named page shell. Definitions are top-level structure, not screens.
+// ============================================================
+// Reuse Definitions (layout / component / slot)
+// ============================================================
+//
+// A `layout` or `component` is a *definition*, not a screen: it names a tree
+// once so that pages can reference it instead of restating it. The name is an
+// `Identifier` rather than a `StringLiteral` because it is a reference target,
+// not display prose — `page "Home" uses=app` already spells the reference as a
+// bare identifier, and definition and reference must share one lexical class.
+//
+// `slot` marks the position inside a `layout` where a referencing page's own
+// content belongs. It is a bare positional marker: it carries no name and no
+// block, so a layout body reads `header { … } slot footer { … }`. What a slot
+// *means* at render time (and whether more than one is meaningful) is a
+// renderer concern, not a grammar one.
+
 LayoutDefinition
   = "layout" !IdentifierChar _ name:Identifier _ attrs:Attributes? _ "{" _ children:Children _ "}" {
       return createNode('Layout', {
@@ -155,6 +189,9 @@ Slot
       });
     }
 
+// A named component slot is explicit on the same line as `slot`. Requiring the
+// name to end that line/block keeps a legacy bare layout slot from consuming
+// the next child keyword after `_` has crossed a newline (`slot\nfooter { … }`).
 SlotName
   = [ \t]+ !ChildKeyword name:Identifier &([ \t]*("\r\n" / "\n" / "\r" / "}" / "//" / "/*" / !.)) {
       return name;
@@ -518,15 +555,17 @@ TableContent
       const columns = [];
       const rows = [];
       for (const item of items.map(i => i[0]).filter(i => i !== null)) {
-        if (item.type === 'columns') columns.push(...item.values);
-        else if (item.type === 'row') rows.push(item.values);
+        if (item.kind === 'columns') columns.push(...item.values);
+        else if (item.kind === 'row') rows.push(item.values);
       }
       return { columns, rows };
     }
 
+// A table row is consumed by TableContent and never reaches the AST, so it is
+// tagged with `kind` rather than `type` — `type` is reserved for real nodes.
 TableRow
-  = "columns" _ values:Array { return { type: 'columns', values }; }
-  / "row" _ values:Array { return { type: 'row', values }; }
+  = "columns" _ values:Array { return { kind: 'columns', values }; }
+  / "row" _ values:Array { return { kind: 'row', values }; }
   / Comment { return null; }
 
 List
@@ -544,11 +583,11 @@ ListBlock
 
 ListItem
   = "item" _ label:StringLiteral _ attrs:Attributes? _ nested:ListBlock? {
-      return {
+      return createBlockNode('ListItem', {
         content: label,
         ...attrsToObject(attrs),
         children: nested || []
-      };
+      });
     }
   / Comment { return null; }
 
@@ -610,12 +649,13 @@ Dropdown
       const processedItems = items.map(item => {
         if (typeof item === 'string') {
           if (item === '---' || item === '-' || item === 'divider') {
-            return { type: 'divider' };
+            return createBlockNode('Divider', {});
           }
-          return { label: item };
+          return createBlockNode('DropdownItem', { label: item });
         }
-        // Object item with label, icon, etc.
-        return item;
+        // Object item with label, icon, etc. Array syntax puts every item on
+        // the one `dropdown [...]` construct, so they share its `loc`.
+        return createBlockNode('DropdownItem', item);
       });
       return createNode('Dropdown', {
         ...attrsToObject(attrs),
@@ -637,9 +677,9 @@ DropdownContent
 
 DropdownItem
   = "item" _ label:StringLiteral _ attrs:Attributes? {
-      return { label, ...attrsToObject(attrs) };
+      return createBlockNode('DropdownItem', { label, ...attrsToObject(attrs) });
     }
-  / "divider" { return { type: 'divider' }; }
+  / "divider" { return createBlockNode('Divider', {}); }
   / Comment { return null; }
 
 // Navigation Components
@@ -660,31 +700,29 @@ NavBlock
 NavBlockItem
   = NavGroup
   / NavItem
-  / "divider" _ { return { type: 'divider' }; }
+  / "divider" _ { return createBlockNode('Divider', {}); }
   / Comment { return null; }
 
 NavGroup
   = "group" _ label:StringLiteral _ attrs:Attributes? _ "{" _ items:(NavGroupItem _)* "}" {
-      return {
-        type: 'group',
+      return createBlockNode('NavGroup', {
         label,
         ...attrsToObject(attrs),
         items: items.map(i => i[0]).filter(i => i !== null)
-      };
+      });
     }
 
 NavGroupItem
   = NavItem
-  / "divider" _ { return { type: 'divider' }; }
+  / "divider" _ { return createBlockNode('Divider', {}); }
   / Comment { return null; }
 
 NavItem
   = "item" _ label:StringLiteral _ attrs:Attributes? {
-      return {
-        type: 'item',
+      return createBlockNode('NavItem', {
         label,
         ...attrsToObject(attrs)
-      };
+      });
     }
 
 Tabs

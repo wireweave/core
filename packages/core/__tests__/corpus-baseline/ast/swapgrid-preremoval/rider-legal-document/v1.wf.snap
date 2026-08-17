@@ -1,0 +1,161 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "action": "close",
+                  "aria": "닫기",
+                  "content": "",
+                  "ghost": true,
+                  "icon": "x",
+                  "type": "Button"
+                },
+                {
+                  "children": [
+                    {
+                      "content": "이용약관",
+                      "type": "Text",
+                      "weight": "semibold"
+                    }
+                  ],
+                  "flex": 1,
+                  "type": "Col"
+                }
+              ],
+              "gap": 3,
+              "type": "Row"
+            }
+          ],
+          "p": 4,
+          "type": "Header"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "content": "이용약관",
+                      "level": 2,
+                      "size": "lg",
+                      "type": "Title"
+                    },
+                    {
+                      "content": "시행일 2026-05-01 · v2.1",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    }
+                  ],
+                  "gap": 1,
+                  "type": "Col"
+                },
+                {
+                  "my": 0,
+                  "type": "Divider"
+                },
+                {
+                  "children": [
+                    {
+                      "content": "제1조 (목적)",
+                      "size": "sm",
+                      "type": "Text",
+                      "weight": "semibold"
+                    },
+                    {
+                      "content": "이 약관은 SwapGrid 배터리 교환 서비스의 이용 조건과 절차, 회사와 라이더의 권리·의무를 정함을 목적으로 합니다.",
+                      "size": "sm",
+                      "type": "Text"
+                    },
+                    {
+                      "content": "제2조 (용어의 정의)",
+                      "size": "sm",
+                      "type": "Text",
+                      "weight": "semibold"
+                    },
+                    {
+                      "content": "교환소란 방전 배터리를 반납하고 완충 배터리를 수령하는 설비가 설치된 장소를 말합니다. 예약이란 특정 배터리 한 개를 라이더를 위해 선점해 두는 것을 말합니다.",
+                      "size": "sm",
+                      "type": "Text"
+                    },
+                    {
+                      "content": "제3조 (서비스의 제공)",
+                      "size": "sm",
+                      "type": "Text",
+                      "weight": "semibold"
+                    },
+                    {
+                      "content": "회사는 라이더가 등록한 차량의 배터리 규격에 해당하는 재고만을 표시합니다. 라이더는 규격을 직접 선택하지 않습니다.",
+                      "size": "sm",
+                      "type": "Text"
+                    },
+                    {
+                      "content": "제4조 (예약과 취소)",
+                      "size": "sm",
+                      "type": "Text",
+                      "weight": "semibold"
+                    },
+                    {
+                      "content": "예약은 교환으로 소진되거나, 라이더의 취소 또는 유효 시간 경과로 종료됩니다. 취소 후 동일한 배터리가 남아 있음은 보장되지 않습니다.",
+                      "size": "sm",
+                      "type": "Text"
+                    },
+                    {
+                      "content": "제5조 (개인정보의 처리)",
+                      "size": "sm",
+                      "type": "Text",
+                      "weight": "semibold"
+                    },
+                    {
+                      "content": "개인정보 처리에 관한 사항은 개인정보 처리방침에 따릅니다.",
+                      "size": "sm",
+                      "type": "Text"
+                    },
+                    {
+                      "content": "개인정보 처리방침 열기",
+                      "external": true,
+                      "navigate": "https://swapgrid.example.com/privacy",
+                      "type": "Link"
+                    }
+                  ],
+                  "gap": 3,
+                  "type": "Col"
+                },
+                {
+                  "my": 0,
+                  "type": "Divider"
+                },
+                {
+                  "content": "이전 버전 보기",
+                  "navigate": "https://swapgrid.example.com/terms/versions",
+                  "type": "Link"
+                },
+                {
+                  "content": "설정에서 들어온 읽기 전용 상태입니다. 동의 영역이 없습니다.",
+                  "muted": true,
+                  "size": "xs",
+                  "type": "Text"
+                }
+              ],
+              "gap": 4,
+              "type": "Col"
+            }
+          ],
+          "p": 4,
+          "scroll": true,
+          "type": "Main"
+        }
+      ],
+      "title": "약관과 안내 문서 · 읽기만",
+      "type": "Page",
+      "viewport": "375x812"
+    }
+  ],
+  "type": "Document"
+}

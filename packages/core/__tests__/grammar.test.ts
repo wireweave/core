@@ -317,7 +317,7 @@ describe('wireweave Grammar', () => {
       expect(dropdown.type).toBe('Dropdown')
       expect(dropdown.items).toHaveLength(3)
       expect(dropdown.items[0].label).toBe('Edit')
-      expect(dropdown.items[1].type).toBe('divider')
+      expect(dropdown.items[1].type).toBe('Divider')
       expect(dropdown.items[2].danger).toBe(true)
     })
   })

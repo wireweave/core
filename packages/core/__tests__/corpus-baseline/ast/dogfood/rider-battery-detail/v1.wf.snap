@@ -1,0 +1,266 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "action": "back",
+                  "aria": "뒤로",
+                  "content": "",
+                  "ghost": true,
+                  "icon": "arrow-left",
+                  "size": "sm",
+                  "type": "Button"
+                },
+                {
+                  "content": "내 배터리",
+                  "level": 1,
+                  "size": "lg",
+                  "type": "Title"
+                }
+              ],
+              "gap": 3,
+              "type": "Row"
+            }
+          ],
+          "h": 72,
+          "p": 4,
+          "type": "Header"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "align": "center",
+                          "content": "72%",
+                          "level": 2,
+                          "size": "xl",
+                          "type": "Title"
+                        },
+                        {
+                          "max": 100,
+                          "type": "Progress",
+                          "value": 72,
+                          "w": "full"
+                        },
+                        {
+                          "align": "center",
+                          "content": "14:02 기준 · 12분 전 값",
+                          "muted": true,
+                          "size": "sm",
+                          "type": "Text"
+                        }
+                      ],
+                      "gap": 3,
+                      "type": "Col"
+                    }
+                  ],
+                  "p": 4,
+                  "title": "지금 충전량",
+                  "type": "Card"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "86%",
+                              "level": 3,
+                              "size": "lg",
+                              "type": "Title"
+                            },
+                            {
+                              "content": "양호",
+                              "pill": true,
+                              "type": "Badge",
+                              "variant": "success"
+                            }
+                          ],
+                          "gap": 3,
+                          "justify": "between",
+                          "type": "Row"
+                        },
+                        {
+                          "max": 100,
+                          "type": "Progress",
+                          "value": 86,
+                          "w": "full"
+                        },
+                        {
+                          "content": "새것 대비 담을 수 있는 양입니다.",
+                          "muted": true,
+                          "size": "sm",
+                          "type": "Text"
+                        }
+                      ],
+                      "gap": 3,
+                      "type": "Col"
+                    }
+                  ],
+                  "p": 4,
+                  "title": "건강도 (SoH)",
+                  "type": "Card"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "규격",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "A규격 72V 40Ah",
+                              "size": "sm",
+                              "type": "Text",
+                              "weight": "medium"
+                            }
+                          ],
+                          "gap": 3,
+                          "justify": "between",
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "일련번호",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "SN-8842-0193-KR",
+                              "size": "sm",
+                              "type": "Text",
+                              "weight": "medium"
+                            }
+                          ],
+                          "gap": 3,
+                          "justify": "between",
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "받은 곳",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "성수 1호점 · 08:15",
+                              "size": "sm",
+                              "type": "Text",
+                              "weight": "medium"
+                            }
+                          ],
+                          "gap": 3,
+                          "justify": "between",
+                          "type": "Row"
+                        }
+                      ],
+                      "gap": 3,
+                      "type": "Col"
+                    }
+                  ],
+                  "title": "배터리 정보",
+                  "type": "Section"
+                },
+                {
+                  "children": [
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "content": "이 배터리를 받은 교환 보기",
+                              "size": "sm",
+                              "type": "Text",
+                              "weight": "semibold"
+                            },
+                            {
+                              "content": "이용내역에서 해당 건이 펼쳐집니다",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "flex": 1,
+                          "gap": 1,
+                          "type": "Col"
+                        },
+                        {
+                          "muted": true,
+                          "name": "chevron-right",
+                          "size": "sm",
+                          "type": "Icon"
+                        }
+                      ],
+                      "gap": 3,
+                      "justify": "between",
+                      "type": "Row"
+                    }
+                  ],
+                  "navigate": "이용내역",
+                  "p": 3,
+                  "title": null,
+                  "type": "Card"
+                },
+                {
+                  "content": "주행 가능 거리는 표시하지 않습니다",
+                  "muted": true,
+                  "size": "xs",
+                  "type": "Text"
+                }
+              ],
+              "gap": 4,
+              "type": "Col"
+            }
+          ],
+          "p": 4,
+          "scroll": true,
+          "type": "Main"
+        },
+        {
+          "children": [
+            {
+              "content": "교환소 찾기",
+              "navigate": "교환소 지도",
+              "primary": true,
+              "type": "Button",
+              "w": "full"
+            }
+          ],
+          "h": 96,
+          "p": 4,
+          "type": "Footer"
+        }
+      ],
+      "title": "배터리 상태 상세",
+      "type": "Page",
+      "viewport": "375x812"
+    }
+  ],
+  "type": "Document"
+}

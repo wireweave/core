@@ -14,7 +14,12 @@ export default tseslint.config(
       globals: { ...globals.node },
       parserOptions: {
         projectService: {
-          allowDefaultProject: ['eslint.config.mjs', 'commitlint.config.js', 'tsup.config.ts'],
+          allowDefaultProject: [
+            'eslint.config.mjs',
+            'commitlint.config.js',
+            'tsup.config.ts',
+            'scripts/generate-tmlanguage.mjs',
+          ],
         },
         tsconfigRootDir: import.meta.dirname,
       },

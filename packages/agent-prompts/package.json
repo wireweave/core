@@ -22,8 +22,12 @@
   "files": [
     "dist"
   ],
+  "engines": {
+    "node": ">=22.13.0"
+  },
   "scripts": {
     "build": "tsup",
+    "postbuild": "node ../../scripts/dist-freshness-gate.mjs --write .",
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
@@ -32,7 +36,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "knip": "knip",
-    "publint": "publint",
+    "publint": "publint --strict",
     "packlint": "packlint check",
     "clean": "rm -rf dist",
     "release": "release-it",
@@ -54,6 +58,7 @@
     "@packlint/cli": "^0.0.2",
     "@release-it/conventional-changelog": "^10.0.4",
     "@types/node": "^22.0.0",
+    "@wireweave/core": "workspace:*",
     "eslint": "^10.4.0",
     "husky": "^9.1.7",
     "knip": "^6.14.2",

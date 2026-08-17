@@ -1,0 +1,163 @@
+page device=mobile width=375 height=750 {
+  header h=56 p=0 {
+    row justify=between align=center px=4 {
+      col gap=0 {
+        row gap=1 align=center {
+          icon "map-pin" size=sm
+          text "강남구 역삼동" weight=semibold size=sm
+          icon "chevron-down" size=sm
+        }
+      }
+      row gap=3 {
+        icon "search"
+        icon "bell"
+      }
+    }
+  }
+
+  main p=0 scroll {
+    col gap=4 {
+      col p=4 gap=4 {
+        row gap=3 wrap justify=between {
+          col align=center gap=1 w=70 {
+            badge "" icon="utensils" size=lg
+            text "전체" size=xs
+          }
+          col align=center gap=1 w=70 {
+            badge "" icon="beef" size=lg variant=secondary
+            text "치킨" size=xs
+          }
+          col align=center gap=1 w=70 {
+            badge "" icon="pizza" size=lg variant=secondary
+            text "피자" size=xs
+          }
+          col align=center gap=1 w=70 {
+            badge "" icon="soup" size=lg variant=secondary
+            text "중식" size=xs
+          }
+          col align=center gap=1 w=70 {
+            badge "" icon="sandwich" size=lg variant=secondary
+            text "버거" size=xs
+          }
+          col align=center gap=1 w=70 {
+            badge "" icon="fish" size=lg variant=secondary
+            text "일식" size=xs
+          }
+          col align=center gap=1 w=70 {
+            badge "" icon="salad" size=lg variant=secondary
+            text "샐러드" size=xs
+          }
+          col align=center gap=1 w=70 {
+            badge "" icon="coffee" size=lg variant=secondary
+            text "카페" size=xs
+          }
+        }
+      }
+
+      col px=4 gap=3 {
+        row justify=between align=center {
+          text "우리 동네 인기 맛집" weight=bold
+          text "더보기" size=sm muted
+        }
+
+        card p=0 {
+          col {
+            placeholder "음식 사진" h=150 w=full
+            col p=3 gap=2 {
+              row justify=between align=center {
+                text "맛있는 치킨집" weight=bold
+                row gap=1 align=center {
+                  icon "star" size=sm
+                  text "4.8" weight=semibold size=sm
+                  text "(2,847)" size=sm muted
+                }
+              }
+              row gap=2 {
+                badge "배민1" variant=info size=sm
+                badge "쿠폰" variant=warning size=sm
+              }
+              row gap=2 {
+                text "배달 32~47분" size=sm muted
+                text "·" muted
+                text "배달팁 0~3,000원" size=sm muted
+              }
+            }
+          }
+        }
+
+        card p=0 {
+          col {
+            placeholder "음식 사진" h=150 w=full
+            col p=3 gap=2 {
+              row justify=between align=center {
+                text "김밥천국" weight=bold
+                row gap=1 align=center {
+                  icon "star" size=sm
+                  text "4.5" weight=semibold size=sm
+                  text "(1,234)" size=sm muted
+                }
+              }
+              row gap=2 {
+                badge "배민1" variant=info size=sm
+              }
+              row gap=2 {
+                text "배달 25~35분" size=sm muted
+                text "·" muted
+                text "배달팁 1,000~2,000원" size=sm muted
+              }
+            }
+          }
+        }
+
+        card p=0 {
+          col {
+            placeholder "음식 사진" h=150 w=full
+            col p=3 gap=2 {
+              row justify=between align=center {
+                text "행복한 피자" weight=bold
+                row gap=1 align=center {
+                  icon "star" size=sm
+                  text "4.7" weight=semibold size=sm
+                  text "(892)" size=sm muted
+                }
+              }
+              row gap=2 {
+                badge "쿠폰" variant=warning size=sm
+              }
+              row gap=2 {
+                text "배달 40~55분" size=sm muted
+                text "·" muted
+                text "배달팁 2,000~4,000원" size=sm muted
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  footer border p=2 {
+    row justify=around {
+      col align=center gap=1 {
+        icon "home"
+        text "홈" size=xs
+      }
+      col align=center gap=1 {
+        icon "search"
+        text "검색" size=xs muted
+      }
+      col align=center gap=1 {
+        icon "heart"
+        text "찜" size=xs muted
+      }
+      col align=center gap=1 {
+        icon "receipt"
+        text "주문내역" size=xs muted
+      }
+      col align=center gap=1 {
+        icon "user"
+        text "내 정보" size=xs muted
+      }
+    }
+  }
+}

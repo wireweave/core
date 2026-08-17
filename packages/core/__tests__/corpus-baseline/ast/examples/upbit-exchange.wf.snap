@@ -1,0 +1,1479 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "bold": true,
+                          "content": "UPbit",
+                          "size": "lg",
+                          "type": "Text"
+                        },
+                        {
+                          "children": [
+                            {
+                              "content": "거래소",
+                              "type": "Text",
+                              "weight": "semibold"
+                            },
+                            {
+                              "content": "입출금",
+                              "muted": true,
+                              "type": "Text"
+                            },
+                            {
+                              "content": "투자내역",
+                              "muted": true,
+                              "type": "Text"
+                            },
+                            {
+                              "content": "코인동향",
+                              "muted": true,
+                              "type": "Text"
+                            },
+                            {
+                              "content": "서비스 더보기",
+                              "muted": true,
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 4,
+                          "type": "Row"
+                        },
+                        {
+                          "content": "Upbit Biz",
+                          "size": "sm",
+                          "type": "Badge",
+                          "variant": "outline"
+                        }
+                      ],
+                      "gap": 6,
+                      "type": "Row"
+                    },
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "content": "로그인",
+                          "ghost": true,
+                          "size": "sm",
+                          "type": "Button"
+                        },
+                        {
+                          "content": "회원가입",
+                          "primary": true,
+                          "size": "sm",
+                          "type": "Button"
+                        },
+                        {
+                          "content": "고객센터",
+                          "muted": true,
+                          "size": "sm",
+                          "type": "Text"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "name": "globe",
+                              "size": "sm",
+                              "type": "Icon"
+                            },
+                            {
+                              "content": "KO",
+                              "size": "sm",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 1,
+                          "type": "Row"
+                        }
+                      ],
+                      "gap": 3,
+                      "type": "Row"
+                    }
+                  ],
+                  "justify": "between",
+                  "px": 4,
+                  "type": "Row"
+                }
+              ],
+              "h": 56,
+              "p": 0,
+              "type": "Header"
+            },
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "align": "center",
+                      "border": true,
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "name": "bitcoin",
+                              "size": "lg",
+                              "type": "Icon"
+                            },
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "content": "비트코인",
+                                  "type": "Text",
+                                  "weight": "bold"
+                                },
+                                {
+                                  "content": "BTC/KRW",
+                                  "muted": true,
+                                  "size": "sm",
+                                  "type": "Text"
+                                },
+                                {
+                                  "name": "chevron-down",
+                                  "size": "sm",
+                                  "type": "Icon"
+                                }
+                              ],
+                              "gap": 2,
+                              "type": "Row"
+                            }
+                          ],
+                          "gap": 3,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "시세",
+                              "type": "Text",
+                              "weight": "semibold"
+                            },
+                            {
+                              "content": "정보",
+                              "muted": true,
+                              "type": "Text"
+                            },
+                            {
+                              "content": "마켓 인사이트",
+                              "muted": true,
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 6,
+                          "type": "Row"
+                        },
+                        {
+                          "muted": true,
+                          "name": "settings",
+                          "size": "sm",
+                          "type": "Icon"
+                        }
+                      ],
+                      "h": 48,
+                      "justify": "between",
+                      "px": 4,
+                      "type": "Row"
+                    },
+                    {
+                      "align": "center",
+                      "border": true,
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "bold": true,
+                              "content": "133,557,000",
+                              "size": 2,
+                              "type": "Text",
+                              "xl": true
+                            },
+                            {
+                              "children": [
+                                {
+                                  "content": "+0.29%",
+                                  "size": "sm",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "▲383,000",
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 2,
+                              "type": "Row"
+                            }
+                          ],
+                          "gap": 1,
+                          "type": "Col"
+                        },
+                        {
+                          "children": [],
+                          "h": 60,
+                          "label": "미니차트",
+                          "type": "Placeholder",
+                          "w": 120
+                        },
+                        {
+                          "children": [
+                            {
+                              "align": "end",
+                              "children": [
+                                {
+                                  "content": "고가",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "133,896,000",
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 0,
+                              "type": "Col"
+                            },
+                            {
+                              "align": "end",
+                              "children": [
+                                {
+                                  "content": "저가",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "132,800,000",
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 0,
+                              "type": "Col"
+                            },
+                            {
+                              "align": "end",
+                              "children": [
+                                {
+                                  "content": "거래량(24H)",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "1,154.609 BTC",
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 0,
+                              "type": "Col"
+                            },
+                            {
+                              "align": "end",
+                              "children": [
+                                {
+                                  "content": "거래대금(24H)",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "152,704백만 KRW",
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 0,
+                              "type": "Col"
+                            }
+                          ],
+                          "flex": 1,
+                          "gap": 8,
+                          "justify": "end",
+                          "type": "Row"
+                        }
+                      ],
+                      "gap": 6,
+                      "h": 100,
+                      "px": 4,
+                      "type": "Row"
+                    },
+                    {
+                      "align": "center",
+                      "border": true,
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "content": "Coinbase",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "132,760,029",
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Row"
+                        },
+                        {
+                          "children": [
+                            {
+                              "content": "Bitfinex",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "132,798,388",
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Row"
+                        },
+                        {
+                          "children": [
+                            {
+                              "content": "Kraken",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "132,719,781",
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Row"
+                        }
+                      ],
+                      "gap": 8,
+                      "h": 28,
+                      "px": 4,
+                      "type": "Row"
+                    },
+                    {
+                      "border": true,
+                      "children": [
+                        {
+                          "align": "center",
+                          "border": true,
+                          "children": [
+                            {
+                              "muted": true,
+                              "name": "maximize",
+                              "size": "sm",
+                              "type": "Icon"
+                            },
+                            {
+                              "muted": true,
+                              "name": "edit-2",
+                              "size": "sm",
+                              "type": "Icon"
+                            },
+                            {
+                              "muted": true,
+                              "name": "plus",
+                              "size": "sm",
+                              "type": "Icon"
+                            },
+                            {
+                              "h": 20,
+                              "type": "Divider",
+                              "vertical": true
+                            },
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "content": "30분",
+                                  "size": "sm",
+                                  "type": "Text"
+                                },
+                                {
+                                  "name": "chevron-down",
+                                  "size": "xs",
+                                  "type": "Icon"
+                                }
+                              ],
+                              "gap": 1,
+                              "type": "Row"
+                            },
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "content": "차트설정",
+                                  "muted": true,
+                                  "size": "sm",
+                                  "type": "Text"
+                                },
+                                {
+                                  "name": "chevron-down",
+                                  "size": "xs",
+                                  "type": "Icon"
+                                }
+                              ],
+                              "gap": 1,
+                              "type": "Row"
+                            },
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "content": "지표",
+                                  "muted": true,
+                                  "size": "sm",
+                                  "type": "Text"
+                                },
+                                {
+                                  "name": "chevron-down",
+                                  "size": "xs",
+                                  "type": "Icon"
+                                }
+                              ],
+                              "gap": 1,
+                              "type": "Row"
+                            },
+                            {
+                              "content": "초기화",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "name": "circle",
+                                      "size": "xs",
+                                      "type": "Icon"
+                                    },
+                                    {
+                                      "content": "기본차트",
+                                      "size": "sm",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 1,
+                                  "type": "Row"
+                                },
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "muted": true,
+                                      "name": "circle",
+                                      "size": "xs",
+                                      "type": "Icon"
+                                    },
+                                    {
+                                      "content": "트레이딩뷰",
+                                      "muted": true,
+                                      "size": "sm",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 1,
+                                  "type": "Row"
+                                }
+                              ],
+                              "flex": 1,
+                              "gap": 4,
+                              "justify": "end",
+                              "type": "Row"
+                            }
+                          ],
+                          "gap": 3,
+                          "h": 40,
+                          "px": 3,
+                          "type": "Row"
+                        },
+                        {
+                          "children": [],
+                          "flex": 1,
+                          "label": "캔들스틱 차트",
+                          "type": "Placeholder",
+                          "w": "full"
+                        },
+                        {
+                          "children": [],
+                          "h": 100,
+                          "label": "볼륨 차트",
+                          "type": "Placeholder",
+                          "w": "full"
+                        }
+                      ],
+                      "flex": 1,
+                      "type": "Col"
+                    },
+                    {
+                      "border": true,
+                      "children": [
+                        {
+                          "align": "center",
+                          "border": true,
+                          "children": [
+                            {
+                              "content": "일반호가",
+                              "size": "sm",
+                              "type": "Text",
+                              "weight": "semibold"
+                            },
+                            {
+                              "content": "누적호가",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "호가주문",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            },
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "content": "모아보기",
+                                  "muted": true,
+                                  "size": "sm",
+                                  "type": "Text"
+                                },
+                                {
+                                  "name": "chevron-down",
+                                  "size": "xs",
+                                  "type": "Icon"
+                                }
+                              ],
+                              "gap": 1,
+                              "type": "Row"
+                            }
+                          ],
+                          "flex": 1,
+                          "gap": 6,
+                          "justify": "center",
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "매수",
+                              "size": "sm",
+                              "type": "Text",
+                              "weight": "semibold"
+                            },
+                            {
+                              "content": "매도",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "간편주문",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "거래내역",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            }
+                          ],
+                          "flex": 1,
+                          "gap": 6,
+                          "justify": "center",
+                          "type": "Row"
+                        }
+                      ],
+                      "h": 44,
+                      "type": "Row"
+                    }
+                  ],
+                  "flex": 1,
+                  "type": "Col"
+                },
+                {
+                  "border": true,
+                  "children": [
+                    {
+                      "align": "center",
+                      "border": true,
+                      "children": [
+                        {
+                          "icon": "search",
+                          "label": null,
+                          "placeholder": "코인명/심볼검색",
+                          "size": "sm",
+                          "type": "Input",
+                          "w": "full"
+                        }
+                      ],
+                      "h": 44,
+                      "px": 3,
+                      "type": "Row"
+                    },
+                    {
+                      "border": true,
+                      "children": [
+                        {
+                          "align": "center",
+                          "border": true,
+                          "children": [
+                            {
+                              "content": "원화",
+                              "size": "xs",
+                              "type": "Text",
+                              "weight": "semibold"
+                            }
+                          ],
+                          "flex": 1,
+                          "justify": "center",
+                          "type": "Col"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "BTC",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "flex": 1,
+                          "justify": "center",
+                          "type": "Col"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "USDT",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "flex": 1,
+                          "justify": "center",
+                          "type": "Col"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "보유",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "flex": 1,
+                          "justify": "center",
+                          "type": "Col"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "관심",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "flex": 1,
+                          "justify": "center",
+                          "type": "Col"
+                        }
+                      ],
+                      "h": 36,
+                      "type": "Row"
+                    },
+                    {
+                      "align": "center",
+                      "border": true,
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "한글명",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "muted": true,
+                              "name": "chevron-down",
+                              "size": "xs",
+                              "type": "Icon"
+                            }
+                          ],
+                          "gap": 1,
+                          "type": "Row"
+                        },
+                        {
+                          "content": "현재가",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "전일대비",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "거래대금",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        }
+                      ],
+                      "h": 28,
+                      "justify": "between",
+                      "px": 3,
+                      "type": "Row"
+                    },
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "border": true,
+                          "children": [
+                            {
+                              "muted": true,
+                              "name": "star",
+                              "size": "xs",
+                              "type": "Icon"
+                            },
+                            {
+                              "name": "arrow-up",
+                              "size": "xs",
+                              "type": "Icon"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "content": "에스알피(리플)",
+                                  "size": "xs",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "XRP/KRW",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text"
+                                }
+                              ],
+                              "flex": 1,
+                              "gap": 0,
+                              "type": "Col"
+                            },
+                            {
+                              "align": "end",
+                              "children": [
+                                {
+                                  "content": "3,116",
+                                  "size": "xs",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "+0.35%",
+                                  "size": "xs",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 0,
+                              "type": "Col"
+                            },
+                            {
+                              "content": "465,771백만",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 2,
+                          "h": 48,
+                          "px": 3,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "bg": "muted",
+                          "border": true,
+                          "children": [
+                            {
+                              "name": "star",
+                              "size": "xs",
+                              "type": "Icon"
+                            },
+                            {
+                              "name": "arrow-up",
+                              "size": "xs",
+                              "type": "Icon"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "content": "비트코인",
+                                  "size": "xs",
+                                  "type": "Text",
+                                  "weight": "semibold"
+                                },
+                                {
+                                  "content": "BTC/KRW",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text"
+                                }
+                              ],
+                              "flex": 1,
+                              "gap": 0,
+                              "type": "Col"
+                            },
+                            {
+                              "align": "end",
+                              "children": [
+                                {
+                                  "content": "133,557,000",
+                                  "size": "xs",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "+0.29%",
+                                  "size": "xs",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 0,
+                              "type": "Col"
+                            },
+                            {
+                              "content": "152,705백만",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 2,
+                          "h": 48,
+                          "px": 3,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "border": true,
+                          "children": [
+                            {
+                              "muted": true,
+                              "name": "star",
+                              "size": "xs",
+                              "type": "Icon"
+                            },
+                            {
+                              "name": "arrow-up",
+                              "size": "xs",
+                              "type": "Icon"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "content": "이더리움",
+                                  "size": "xs",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "ETH/KRW",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text"
+                                }
+                              ],
+                              "flex": 1,
+                              "gap": 0,
+                              "type": "Col"
+                            },
+                            {
+                              "align": "end",
+                              "children": [
+                                {
+                                  "content": "4,565,000",
+                                  "size": "xs",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "+0.37%",
+                                  "size": "xs",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 0,
+                              "type": "Col"
+                            },
+                            {
+                              "content": "144,759백만",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 2,
+                          "h": 48,
+                          "px": 3,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "border": true,
+                          "children": [
+                            {
+                              "muted": true,
+                              "name": "star",
+                              "size": "xs",
+                              "type": "Icon"
+                            },
+                            {
+                              "name": "arrow-up",
+                              "size": "xs",
+                              "type": "Icon"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "content": "메디블록",
+                                  "size": "xs",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "MED/KRW",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text"
+                                }
+                              ],
+                              "flex": 1,
+                              "gap": 0,
+                              "type": "Col"
+                            },
+                            {
+                              "align": "end",
+                              "children": [
+                                {
+                                  "content": "5.39",
+                                  "size": "xs",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "+19.51%",
+                                  "size": "xs",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 0,
+                              "type": "Col"
+                            },
+                            {
+                              "content": "136,217백만",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 2,
+                          "h": 48,
+                          "px": 3,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "border": true,
+                          "children": [
+                            {
+                              "muted": true,
+                              "name": "star",
+                              "size": "xs",
+                              "type": "Icon"
+                            },
+                            {
+                              "name": "arrow-down",
+                              "size": "xs",
+                              "type": "Icon"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "content": "엘프",
+                                  "size": "xs",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "ELF/KRW",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text"
+                                }
+                              ],
+                              "flex": 1,
+                              "gap": 0,
+                              "type": "Col"
+                            },
+                            {
+                              "align": "end",
+                              "children": [
+                                {
+                                  "content": "157",
+                                  "size": "xs",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "-4.85%",
+                                  "size": "xs",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 0,
+                              "type": "Col"
+                            },
+                            {
+                              "content": "88,028백만",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 2,
+                          "h": 48,
+                          "px": 3,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "border": true,
+                          "children": [
+                            {
+                              "muted": true,
+                              "name": "star",
+                              "size": "xs",
+                              "type": "Icon"
+                            },
+                            {
+                              "name": "arrow-up",
+                              "size": "xs",
+                              "type": "Icon"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "content": "솔라나",
+                                  "size": "xs",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "SOL/KRW",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text"
+                                }
+                              ],
+                              "flex": 1,
+                              "gap": 0,
+                              "type": "Col"
+                            },
+                            {
+                              "align": "end",
+                              "children": [
+                                {
+                                  "content": "203,800",
+                                  "size": "xs",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "+0.74%",
+                                  "size": "xs",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 0,
+                              "type": "Col"
+                            },
+                            {
+                              "content": "84,385백만",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 2,
+                          "h": 48,
+                          "px": 3,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "border": true,
+                          "children": [
+                            {
+                              "muted": true,
+                              "name": "star",
+                              "size": "xs",
+                              "type": "Icon"
+                            },
+                            {
+                              "name": "arrow-down",
+                              "size": "xs",
+                              "type": "Icon"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "content": "지케이패스",
+                                  "size": "xs",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "ZKP/KRW",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text"
+                                }
+                              ],
+                              "flex": 1,
+                              "gap": 0,
+                              "type": "Col"
+                            },
+                            {
+                              "align": "end",
+                              "children": [
+                                {
+                                  "content": "232",
+                                  "size": "xs",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "-2.11%",
+                                  "size": "xs",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 0,
+                              "type": "Col"
+                            },
+                            {
+                              "content": "81,705백만",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 2,
+                          "h": 48,
+                          "px": 3,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "border": true,
+                          "children": [
+                            {
+                              "muted": true,
+                              "name": "star",
+                              "size": "xs",
+                              "type": "Icon"
+                            },
+                            {
+                              "name": "arrow-down",
+                              "size": "xs",
+                              "type": "Icon"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "content": "테더",
+                                  "size": "xs",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "USDT/KRW",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text"
+                                }
+                              ],
+                              "flex": 1,
+                              "gap": 0,
+                              "type": "Col"
+                            },
+                            {
+                              "align": "end",
+                              "children": [
+                                {
+                                  "content": "1,461",
+                                  "size": "xs",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "-0.14%",
+                                  "size": "xs",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 0,
+                              "type": "Col"
+                            },
+                            {
+                              "content": "76,161백만",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 2,
+                          "h": 48,
+                          "px": 3,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "border": true,
+                          "children": [
+                            {
+                              "muted": true,
+                              "name": "star",
+                              "size": "xs",
+                              "type": "Icon"
+                            },
+                            {
+                              "name": "arrow-up",
+                              "size": "xs",
+                              "type": "Icon"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "content": "체인바운티",
+                                  "size": "xs",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "BOUNTY/KRW",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text"
+                                }
+                              ],
+                              "flex": 1,
+                              "gap": 0,
+                              "type": "Col"
+                            },
+                            {
+                              "align": "end",
+                              "children": [
+                                {
+                                  "content": "61.9",
+                                  "size": "xs",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "+45.65%",
+                                  "size": "xs",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 0,
+                              "type": "Col"
+                            },
+                            {
+                              "content": "55,516백만",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 2,
+                          "h": 48,
+                          "px": 3,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "border": true,
+                          "children": [
+                            {
+                              "muted": true,
+                              "name": "star",
+                              "size": "xs",
+                              "type": "Icon"
+                            },
+                            {
+                              "name": "arrow-down",
+                              "size": "xs",
+                              "type": "Icon"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "content": "브레비스",
+                                  "size": "xs",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "BREV/KRW",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text"
+                                }
+                              ],
+                              "flex": 1,
+                              "gap": 0,
+                              "type": "Col"
+                            },
+                            {
+                              "align": "end",
+                              "children": [
+                                {
+                                  "content": "563",
+                                  "size": "xs",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "-3.60%",
+                                  "size": "xs",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 0,
+                              "type": "Col"
+                            },
+                            {
+                              "content": "49,363백만",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 2,
+                          "h": 48,
+                          "px": 3,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "muted": true,
+                              "name": "star",
+                              "size": "xs",
+                              "type": "Icon"
+                            },
+                            {
+                              "name": "arrow-up",
+                              "size": "xs",
+                              "type": "Icon"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "content": "도지코인",
+                                  "size": "xs",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "DOGE/KRW",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text"
+                                }
+                              ],
+                              "flex": 1,
+                              "gap": 0,
+                              "type": "Col"
+                            },
+                            {
+                              "align": "end",
+                              "children": [
+                                {
+                                  "content": "209",
+                                  "size": "xs",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "+0.97%",
+                                  "size": "xs",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 0,
+                              "type": "Col"
+                            },
+                            {
+                              "content": "49,123백만",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 2,
+                          "h": 48,
+                          "px": 3,
+                          "type": "Row"
+                        }
+                      ],
+                      "flex": 1,
+                      "scroll": true,
+                      "type": "Col"
+                    }
+                  ],
+                  "p": 0,
+                  "type": "Col",
+                  "w": 340
+                }
+              ],
+              "flex": 1,
+              "type": "Row"
+            }
+          ],
+          "type": "Col"
+        }
+      ],
+      "height": 800,
+      "title": null,
+      "type": "Page",
+      "width": 1440
+    }
+  ],
+  "type": "Document"
+}

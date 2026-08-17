@@ -1,0 +1,145 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "information_for_contributors": [
+    "GENERATED FILE — DO NOT EDIT.",
+    "Element keywords are derived from @wireweave/core/spec (itself extracted from wireframe.peggy).",
+    "Attribute and value keywords are derived from @wireweave/language-data.",
+    "Run `pnpm build:syntax` in docs/ after changing the grammar."
+  ],
+  "name": "wireframe",
+  "displayName": "Wireframe",
+  "scopeName": "source.wireframe",
+  "aliases": [
+    "wf"
+  ],
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#booleans"
+    },
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#elements"
+    },
+    {
+      "include": "#modifiers"
+    },
+    {
+      "include": "#attributes"
+    },
+    {
+      "include": "#braces"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.wireframe",
+          "match": "//.*$"
+        },
+        {
+          "name": "comment.block.wireframe",
+          "begin": "/\\*",
+          "end": "\\*/"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.wireframe",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.wireframe",
+              "match": "\\\\."
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.single.wireframe",
+          "begin": "'",
+          "end": "'",
+          "patterns": [
+            {
+              "name": "constant.character.escape.wireframe",
+              "match": "\\\\."
+            }
+          ]
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.wireframe",
+          "match": "\\b\\d+(\\.\\d+)?\\b"
+        }
+      ]
+    },
+    "booleans": {
+      "patterns": [
+        {
+          "name": "constant.language.boolean.wireframe",
+          "match": "\\b(true|false)\\b"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.wireframe",
+          "match": "\\b(columns|tab|group|fill)\\b(?!-)"
+        }
+      ]
+    },
+    "elements": {
+      "patterns": [
+        {
+          "name": "entity.name.tag.wireframe",
+          "match": "\\b(page|layout|component|use|slot|header|main|footer|sidebar|section|row|col|stack|relative|card|modal|drawer|accordion|text|title|link|input|textarea|select|checkbox|radio|switch|slider|button|image|placeholder|avatar|badge|icon|table|list|alert|toast|progress|spinner|tooltip|popover|dropdown|nav|tabs|breadcrumb|divider|marker|annotations|item)\\b(?!-)"
+        }
+      ]
+    },
+    "modifiers": {
+      "patterns": [
+        {
+          "name": "support.type.wireframe",
+          "match": "\\b(2xl|3xl|android|android-lg|around|auto|base|baseline|between|blue|bottom|bottom-center|bottom-left|bottom-right|center|center-left|center-right|column|column-reverse|date|default|desktop|desktop-lg|desktop-sm|desktop-xl|email|end|evenly|fit|full|green|info|ipad|ipad-portrait|ipad-pro|ipad-pro-portrait|iphone-se|iphone14|iphone14-pro|iphone14-pro-max|left|medium|normal|nowrap|number|orange|password|purple|red|right|row-reverse|screen|search|semibold|start|stretch|success|tel|top|top-center|top-left|top-right|url|warning|xs|yellow)\\b(?!-)"
+        }
+      ]
+    },
+    "attributes": {
+      "patterns": [
+        {
+          "name": "entity.other.attribute-name.wireframe",
+          "match": "\\b(action|active|align|alt|anchor|aria|aria-label|at|bg|bold|border|bordered|centered|checked|color|danger|device|direction|disabled|dismissible|enabledWhen|expanded|external|flex|gap|ghost|h|height|hover|href|icon|id|indeterminate|inputType|justify|label|level|lg|loading|m|max|maxH|maxW|mb|md|min|minH|minW|ml|mr|mt|muted|mx|my|name|navigate|none|on|opens|order|ordered|outline|p|pb|pill|pl|placeholder|position|pr|primary|pt|px|py|readonly|required|rounded|rows|scroll|secondary|shadow|size|sm|span|src|states|step|striped|title|toggles|type|uses|value|variant|vertical|viewport|visibleWhen|w|weight|width|wrap|x|xl|y)\\b(?!-)"
+        },
+        {
+          "name": "keyword.operator.wireframe",
+          "match": "="
+        }
+      ]
+    },
+    "braces": {
+      "patterns": [
+        {
+          "name": "punctuation.definition.block.wireframe",
+          "match": "[{}]"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,52 @@
+page "재고 없음" viewport="375x812" {
+  header h=76 p=4 {
+    row align=center gap=2 justify=between {
+      button "" aria="뒤로" ghost icon=arrow-left navigate="교환소 상세"
+      text "강남역 2번출구 교환소" weight=semibold
+      button "" action=none aria="더보기" ghost icon=ellipsis-vertical
+    }
+  }
+  main p=4 scroll {
+    col gap=4 {
+      col gap=2 {
+        placeholder "교환소 상세 (뒤 화면)" h=80 w=full
+        row gap=2 {
+          badge "운영 중" pill variant=success
+          badge "24시간" pill
+        }
+      }
+      divider my=0
+      card p=4 {
+        col gap=3 {
+          row align=center justify=center {
+            placeholder "" h=6 w=40
+          }
+          col gap=1 {
+            title "이 교환소에는 지금 내 배터리가 없습니다" level=3 size=lg
+            text "강남역 2번출구 교환소" muted size=sm
+          }
+          alert "내 규격 배터리 2개가 충전 중입니다." icon=battery-charging variant=info
+          row gap=3 {
+            col flex=1 gap=1 {
+              text "충전 중" muted size=xs
+              text "2개" size=lg weight=bold
+            }
+            col flex=1 gap=1 {
+              text "완충 예상" muted size=xs
+              text "약 40분 후" size=lg weight=bold
+            }
+          }
+          progress label="충전 진행" value=62 w=full
+          button "알림 받기" action=request-stock-alert icon=bell outline w=full
+          text "알림은 배터리를 잡아두지 않습니다." muted size=xs
+        }
+      }
+    }
+  }
+  footer h=136 p=4 {
+    col gap=3 {
+      button "지도로 돌아가기" navigate="교환소 지도" primary size=lg w=full
+      button "닫기" ghost navigate="교환소 상세" w=full
+    }
+  }
+}

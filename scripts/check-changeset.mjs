@@ -1,4 +1,3 @@
-/* eslint-disable no-console -- guard status output goes to stdout/stderr by design */
 // Release-hygiene guard. Fails a pull request that changes publishable
 // package source without an accompanying changeset, so feature work can
 // never merge to main and then silently publish nothing (the gap that
@@ -12,26 +11,14 @@
 // present, otherwise origin/main for local runs. The diff uses the
 // three-dot form so it reflects only the branch's own changes since it
 // diverged from the base.
+//
+// Which packages count as publishable comes from published-packages.mjs, the
+// same derivation the packaging gates and CI's pack step use — see that file
+// for why the set is derived rather than listed.
 
 import { execFileSync } from 'node:child_process'
-import { readdirSync, readFileSync, existsSync } from 'node:fs'
-import { join } from 'node:path'
 
-const PACKAGES_DIR = 'packages'
-
-/** Directories under packages/ whose package.json is not `private: true`. */
-function publishableDirs() {
-  const dirs = new Set()
-  for (const entry of readdirSync(PACKAGES_DIR, { withFileTypes: true })) {
-    if (!entry.isDirectory()) continue
-    const manifest = join(PACKAGES_DIR, entry.name, 'package.json')
-    if (!existsSync(manifest)) continue
-    const pkg = JSON.parse(readFileSync(manifest, 'utf8'))
-    if (pkg.private === true) continue
-    dirs.add(entry.name)
-  }
-  return dirs
-}
+import { publishedPackages } from './published-packages.mjs'
 
 function changedFiles(base) {
   const out = execFileSync('git', ['diff', '--name-only', '--diff-filter=ACMR', `${base}...HEAD`], {
@@ -47,7 +34,7 @@ const isTestOrDoc = (file) =>
   /\.(test|spec)\.[cm]?[jt]sx?$/.test(file) || file.includes('/__tests__/') || file.endsWith('.md')
 
 const base = process.env.BASE_SHA || 'origin/main'
-const publishable = publishableDirs()
+const publishable = new Set(publishedPackages().map((pkg) => pkg.dir))
 const files = changedFiles(base)
 
 const sourceChanges = files.filter((file) => {

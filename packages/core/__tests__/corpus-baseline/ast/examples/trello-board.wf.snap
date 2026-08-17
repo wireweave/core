@@ -1,0 +1,757 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "border": true,
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "name": "trello",
+                      "size": "lg",
+                      "type": "Icon"
+                    },
+                    {
+                      "content": "프로젝트 보드",
+                      "type": "Text",
+                      "weight": "bold"
+                    },
+                    {
+                      "content": "팀 프로젝트",
+                      "size": "sm",
+                      "type": "Badge",
+                      "variant": "secondary"
+                    }
+                  ],
+                  "gap": 4,
+                  "type": "Row"
+                },
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "content": "필터",
+                      "ghost": true,
+                      "icon": "filter",
+                      "size": "sm",
+                      "type": "Button"
+                    },
+                    {
+                      "children": [
+                        {
+                          "name": "A",
+                          "size": "sm",
+                          "type": "Avatar"
+                        },
+                        {
+                          "name": "B",
+                          "size": "sm",
+                          "type": "Avatar"
+                        },
+                        {
+                          "name": "C",
+                          "size": "sm",
+                          "type": "Avatar"
+                        },
+                        {
+                          "content": "+2",
+                          "size": "sm",
+                          "type": "Badge",
+                          "variant": "secondary"
+                        }
+                      ],
+                      "gap": 1,
+                      "type": "Row"
+                    },
+                    {
+                      "content": "공유",
+                      "outline": true,
+                      "size": "sm",
+                      "type": "Button"
+                    }
+                  ],
+                  "gap": 3,
+                  "type": "Row"
+                }
+              ],
+              "justify": "between",
+              "px": 4,
+              "type": "Row"
+            }
+          ],
+          "h": 48,
+          "p": 0,
+          "type": "Header"
+        },
+        {
+          "children": [
+            {
+              "align": "start",
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "📋 할 일",
+                              "type": "Text",
+                              "weight": "bold"
+                            },
+                            {
+                              "muted": true,
+                              "name": "more-horizontal",
+                              "size": "sm",
+                              "type": "Icon"
+                            }
+                          ],
+                          "justify": "between",
+                          "type": "Row"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "content": "홈페이지 디자인 수정",
+                                      "size": "sm",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "content": "디자인",
+                                          "size": "sm",
+                                          "type": "Badge",
+                                          "variant": "info"
+                                        }
+                                      ],
+                                      "gap": 2,
+                                      "type": "Row"
+                                    },
+                                    {
+                                      "align": "center",
+                                      "children": [
+                                        {
+                                          "children": [
+                                            {
+                                              "muted": true,
+                                              "name": "message-square",
+                                              "size": "sm",
+                                              "type": "Icon"
+                                            },
+                                            {
+                                              "content": "3",
+                                              "muted": true,
+                                              "size": "xs",
+                                              "type": "Text"
+                                            }
+                                          ],
+                                          "gap": 1,
+                                          "type": "Row"
+                                        },
+                                        {
+                                          "name": "A",
+                                          "size": "xs",
+                                          "type": "Avatar"
+                                        }
+                                      ],
+                                      "justify": "between",
+                                      "mt": 2,
+                                      "type": "Row"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Col"
+                                }
+                              ],
+                              "p": 3,
+                              "shadow": "sm",
+                              "title": null,
+                              "type": "Card"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "content": "API 문서 작성",
+                                      "size": "sm",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "content": "문서",
+                                          "size": "sm",
+                                          "type": "Badge",
+                                          "variant": "warning"
+                                        }
+                                      ],
+                                      "gap": 2,
+                                      "type": "Row"
+                                    },
+                                    {
+                                      "align": "center",
+                                      "children": [
+                                        {
+                                          "children": [
+                                            {
+                                              "muted": true,
+                                              "name": "paperclip",
+                                              "size": "sm",
+                                              "type": "Icon"
+                                            },
+                                            {
+                                              "content": "2",
+                                              "muted": true,
+                                              "size": "xs",
+                                              "type": "Text"
+                                            }
+                                          ],
+                                          "gap": 1,
+                                          "type": "Row"
+                                        },
+                                        {
+                                          "name": "B",
+                                          "size": "xs",
+                                          "type": "Avatar"
+                                        }
+                                      ],
+                                      "justify": "between",
+                                      "mt": 2,
+                                      "type": "Row"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Col"
+                                }
+                              ],
+                              "p": 3,
+                              "shadow": "sm",
+                              "title": null,
+                              "type": "Card"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "content": "테스트 케이스 작성",
+                                      "size": "sm",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "content": "개발",
+                                          "size": "sm",
+                                          "type": "Badge",
+                                          "variant": "success"
+                                        }
+                                      ],
+                                      "gap": 2,
+                                      "type": "Row"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Col"
+                                }
+                              ],
+                              "p": 3,
+                              "shadow": "sm",
+                              "title": null,
+                              "type": "Card"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Col"
+                        },
+                        {
+                          "content": "카드 추가",
+                          "ghost": true,
+                          "icon": "plus",
+                          "size": "sm",
+                          "type": "Button",
+                          "w": "full"
+                        }
+                      ],
+                      "gap": 3,
+                      "type": "Col"
+                    }
+                  ],
+                  "p": 3,
+                  "title": null,
+                  "type": "Card",
+                  "w": 280
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "🔄 진행 중",
+                              "type": "Text",
+                              "weight": "bold"
+                            },
+                            {
+                              "muted": true,
+                              "name": "more-horizontal",
+                              "size": "sm",
+                              "type": "Icon"
+                            }
+                          ],
+                          "justify": "between",
+                          "type": "Row"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "content": "로그인 기능 구현",
+                                      "size": "sm",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "content": "개발",
+                                          "size": "sm",
+                                          "type": "Badge",
+                                          "variant": "success"
+                                        },
+                                        {
+                                          "content": "긴급",
+                                          "size": "sm",
+                                          "type": "Badge",
+                                          "variant": "danger"
+                                        }
+                                      ],
+                                      "gap": 2,
+                                      "type": "Row"
+                                    },
+                                    {
+                                      "align": "center",
+                                      "children": [
+                                        {
+                                          "children": [
+                                            {
+                                              "muted": true,
+                                              "name": "check-square",
+                                              "size": "sm",
+                                              "type": "Icon"
+                                            },
+                                            {
+                                              "content": "3/5",
+                                              "muted": true,
+                                              "size": "xs",
+                                              "type": "Text"
+                                            }
+                                          ],
+                                          "gap": 1,
+                                          "type": "Row"
+                                        },
+                                        {
+                                          "name": "C",
+                                          "size": "xs",
+                                          "type": "Avatar"
+                                        }
+                                      ],
+                                      "justify": "between",
+                                      "mt": 2,
+                                      "type": "Row"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Col"
+                                }
+                              ],
+                              "p": 3,
+                              "shadow": "sm",
+                              "title": null,
+                              "type": "Card"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "content": "데이터베이스 설계",
+                                      "size": "sm",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "content": "개발",
+                                          "size": "sm",
+                                          "type": "Badge",
+                                          "variant": "success"
+                                        }
+                                      ],
+                                      "gap": 2,
+                                      "type": "Row"
+                                    },
+                                    {
+                                      "align": "center",
+                                      "children": [
+                                        {
+                                          "children": [
+                                            {
+                                              "muted": true,
+                                              "name": "calendar",
+                                              "size": "sm",
+                                              "type": "Icon"
+                                            },
+                                            {
+                                              "content": "1월 15일",
+                                              "muted": true,
+                                              "size": "xs",
+                                              "type": "Text"
+                                            }
+                                          ],
+                                          "gap": 1,
+                                          "type": "Row"
+                                        },
+                                        {
+                                          "name": "A",
+                                          "size": "xs",
+                                          "type": "Avatar"
+                                        }
+                                      ],
+                                      "justify": "between",
+                                      "mt": 2,
+                                      "type": "Row"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Col"
+                                }
+                              ],
+                              "p": 3,
+                              "shadow": "sm",
+                              "title": null,
+                              "type": "Card"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Col"
+                        },
+                        {
+                          "content": "카드 추가",
+                          "ghost": true,
+                          "icon": "plus",
+                          "size": "sm",
+                          "type": "Button",
+                          "w": "full"
+                        }
+                      ],
+                      "gap": 3,
+                      "type": "Col"
+                    }
+                  ],
+                  "p": 3,
+                  "title": null,
+                  "type": "Card",
+                  "w": 280
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "👀 리뷰",
+                              "type": "Text",
+                              "weight": "bold"
+                            },
+                            {
+                              "muted": true,
+                              "name": "more-horizontal",
+                              "size": "sm",
+                              "type": "Icon"
+                            }
+                          ],
+                          "justify": "between",
+                          "type": "Row"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "content": "결제 시스템 연동",
+                                      "size": "sm",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "content": "개발",
+                                          "size": "sm",
+                                          "type": "Badge",
+                                          "variant": "success"
+                                        }
+                                      ],
+                                      "gap": 2,
+                                      "type": "Row"
+                                    },
+                                    {
+                                      "align": "center",
+                                      "children": [
+                                        {
+                                          "children": [
+                                            {
+                                              "muted": true,
+                                              "name": "message-square",
+                                              "size": "sm",
+                                              "type": "Icon"
+                                            },
+                                            {
+                                              "content": "8",
+                                              "muted": true,
+                                              "size": "xs",
+                                              "type": "Text"
+                                            }
+                                          ],
+                                          "gap": 1,
+                                          "type": "Row"
+                                        },
+                                        {
+                                          "children": [
+                                            {
+                                              "name": "B",
+                                              "size": "xs",
+                                              "type": "Avatar"
+                                            },
+                                            {
+                                              "name": "C",
+                                              "size": "xs",
+                                              "type": "Avatar"
+                                            }
+                                          ],
+                                          "gap": 1,
+                                          "type": "Row"
+                                        }
+                                      ],
+                                      "justify": "between",
+                                      "mt": 2,
+                                      "type": "Row"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Col"
+                                }
+                              ],
+                              "p": 3,
+                              "shadow": "sm",
+                              "title": null,
+                              "type": "Card"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Col"
+                        },
+                        {
+                          "content": "카드 추가",
+                          "ghost": true,
+                          "icon": "plus",
+                          "size": "sm",
+                          "type": "Button",
+                          "w": "full"
+                        }
+                      ],
+                      "gap": 3,
+                      "type": "Col"
+                    }
+                  ],
+                  "p": 3,
+                  "title": null,
+                  "type": "Card",
+                  "w": 280
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "✅ 완료",
+                              "type": "Text",
+                              "weight": "bold"
+                            },
+                            {
+                              "muted": true,
+                              "name": "more-horizontal",
+                              "size": "sm",
+                              "type": "Icon"
+                            }
+                          ],
+                          "justify": "between",
+                          "type": "Row"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "content": "프로젝트 셋업",
+                                      "size": "sm",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "content": "설정",
+                                          "size": "sm",
+                                          "type": "Badge",
+                                          "variant": "secondary"
+                                        }
+                                      ],
+                                      "gap": 2,
+                                      "type": "Row"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Col"
+                                }
+                              ],
+                              "p": 3,
+                              "shadow": "sm",
+                              "title": null,
+                              "type": "Card"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "content": "Git 저장소 생성",
+                                      "size": "sm",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "content": "설정",
+                                          "size": "sm",
+                                          "type": "Badge",
+                                          "variant": "secondary"
+                                        }
+                                      ],
+                                      "gap": 2,
+                                      "type": "Row"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Col"
+                                }
+                              ],
+                              "p": 3,
+                              "shadow": "sm",
+                              "title": null,
+                              "type": "Card"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "content": "디자인 시스템 정의",
+                                      "size": "sm",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "content": "디자인",
+                                          "size": "sm",
+                                          "type": "Badge",
+                                          "variant": "info"
+                                        }
+                                      ],
+                                      "gap": 2,
+                                      "type": "Row"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Col"
+                                }
+                              ],
+                              "p": 3,
+                              "shadow": "sm",
+                              "title": null,
+                              "type": "Card"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Col"
+                        },
+                        {
+                          "content": "카드 추가",
+                          "ghost": true,
+                          "icon": "plus",
+                          "size": "sm",
+                          "type": "Button",
+                          "w": "full"
+                        }
+                      ],
+                      "gap": 3,
+                      "type": "Col"
+                    }
+                  ],
+                  "p": 3,
+                  "title": null,
+                  "type": "Card",
+                  "w": 280
+                }
+              ],
+              "gap": 4,
+              "type": "Row"
+            }
+          ],
+          "p": 4,
+          "scroll": true,
+          "type": "Main"
+        }
+      ],
+      "height": 700,
+      "title": null,
+      "type": "Page",
+      "width": 1200
+    }
+  ],
+  "type": "Document"
+}

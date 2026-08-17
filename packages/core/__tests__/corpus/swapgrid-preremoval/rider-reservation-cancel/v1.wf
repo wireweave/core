@@ -1,0 +1,49 @@
+page "예약 취소" device=mobile viewport="375x812" {
+  header h=80 p=4 {
+    row align=center justify=between {
+      row align=center gap=2 {
+        button "" aria="뒤로 가기" ghost icon=arrow-left navigate="내 예약" size=sm
+        title "내 예약" level=1 size=md
+      }
+      badge "유효" pill variant=success
+    }
+  }
+  main p=4 scroll {
+    col gap=4 {
+      card "강남 교환소" navigate="교환소 상세" p=4 shadow=sm {
+        col gap=2 {
+          row align=center justify=between {
+            text "A규격 완충 1개 선점됨" muted size=sm
+            badge "23분 남음" pill variant=warning
+          }
+          divider my=1
+          row align=center gap=2 {
+            icon "map-pin" muted size=sm
+            text "서울 강남구 테헤란로 152" muted size=sm
+          }
+          row align=center gap=2 {
+            icon "battery-charging" muted size=sm
+            text "예약번호 R-20260726-0412" muted size=sm
+          }
+        }
+      }
+      card "이 예약을 취소할까요" p=4 shadow=lg {
+        col gap=4 {
+          col gap=2 {
+            row align=center justify=between {
+              text "강남 교환소" weight=semibold
+              text "23분 남음" muted size=sm
+            }
+            text "취소하면 잡아둔 배터리가 다른 라이더에게 갈 수 있습니다. 취소는 되돌릴 수 없습니다." size=sm
+          }
+          alert "이번 달 취소 2회째입니다. 노쇼 정책은 확정되지 않았습니다." icon=info variant=info
+          col gap=2 {
+            button "그대로 두기" navigate="내 예약" primary w=full
+            button "예약 취소하기" action=cancel-reservation outline w=full
+          }
+        }
+      }
+      text "대화상자 밖을 누르거나 뒤로 가면 예약은 그대로 유지됩니다." align=center muted size=xs
+    }
+  }
+}

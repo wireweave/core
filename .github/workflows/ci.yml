@@ -78,12 +78,110 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # Must run BEFORE Build. `pnpm build` starts with `build:grammar`, which
+      # overwrites packages/core/src/parser/generated-parser.js in the runner
+      # workspace — after that step the committed artifact is gone and every
+      # later check, including the `pretest` copy of this same gate, compares
+      # a freshly generated file against itself and passes unconditionally.
+      # A pull request could therefore ship a grammar change with no
+      # regenerated parser and stay green all the way through CI. Placed here,
+      # the gate sees the tree as committed. The same reasoning applies to
+      # src/spec/grammar-elements.generated.ts, which `build:spec` rewrites in
+      # the same Build step, so both gates run here together.
+      - name: Generated-artifact staleness gates
+        run: |
+          node packages/core/scripts/check-generated-parser.mjs
+          node packages/core/scripts/extract-grammar-elements.mjs --check
+
+      # Must run BEFORE Build, and this step is honest about what that buys
+      # here. Every dist/ in this repository is gitignored and no dist file is
+      # tracked, so a fresh checkout has no build output at all: on CI today
+      # this reports "0 verified, 11 skipped" and catches nothing. That is the
+      # correct reading, not a defect — CI cannot hold a stale dist because it
+      # builds from nothing every run.
+      #
+      # It sits here anyway for two reasons. Placed after Build it would be
+      # green by construction, which is the observe-nothing shape the rest of
+      # this workflow has been removing; and the moment build output is cached
+      # between runs — the obvious next optimisation for a 15-minute job — this
+      # is already in the only position that could catch a cache serving stale
+      # artifacts. The verified/skipped counts are printed so a reader can tell
+      # which regime the run was in rather than inferring it from a green tick.
+      #
+      # The gate's real teeth are local, where dist survives across sessions and
+      # across agents sharing a tree. `pnpm dist:check` runs it by hand.
+      - name: Build output matches sources
+        run: node scripts/dist-freshness-gate.mjs --check
+
       - name: Build
         run: pnpm --filter "./packages/**" build
+
+      # The TextMate grammars are committed artifacts too (the VSCode one ships
+      # inside the .vsix, the docs one is read at VitePress config time), but
+      # their generators import @wireweave/core/spec, so they cannot run before
+      # Build the way the gates above do. After Build an in-repo `--check` would
+      # compare a freshly written file against itself, so the comparison is
+      # against git instead: a stale commit surfaces as a dirty tree.
+      #
+      # `--if-present` over every workspace project, rather than naming docs
+      # explicitly. Build already re-runs the extension's generator (its `build`
+      # script starts with `build:syntax`) but docs sits outside the Build
+      # filter, and singling docs out here is a second list to keep in sync with
+      # reality — the exact defect the pack step below used to have. Every
+      # project that declares `build:syntax` runs; the generators are pure
+      # writers, so re-running one is free.
+      #
+      # Each generator now asserts, before it writes anything, that the dist it
+      # is about to read is not stale (`--require-deps`, scope derived from that
+      # package's own workspace dependencies). Without it this step is blind to
+      # the case that matters: fed a stale core, a generator does not fail, it
+      # faithfully reproduces the stale input, and the artifact then passes the
+      # gate below because that comparison is against itself.
+      #
+      # The judgement then moves from `git diff` to a status-based gate. A diff
+      # cannot see untracked files, so a generator emitting a NEW artifact was
+      # invisible to the old form no matter what it wrote, and that is not a
+      # theoretical gap — right now every matching artifact in this repo is
+      # untracked. scripts/generated-artifacts-gate.mjs distinguishes untracked,
+      # gitignored, stale, and missing, and derives its scope from the
+      # *.generated.* convention so adding a generator needs no edit here.
+      - name: Generated artifacts are up to date
+        run: |
+          pnpm -r --if-present run build:syntax
+          node scripts/generated-artifacts-gate.mjs
 
       - name: Typecheck
         run: pnpm typecheck
 
+      # ORDERING INVARIANT (retired — kept as the record of why, and of what
+      # would bring it back). Typecheck, Lint and Test used to be ordered after
+      # Build by necessity: all seven workspace consumers resolved
+      # @wireweave/core to packages/core/dist/*.d.ts rather than to core's
+      # source, so they read whatever Build had emitted so far.
+      #
+      # The failures that produced were liars, which is why this is written
+      # down rather than deleted. A lint reading a half-written .d.ts types
+      # every imported core symbol as `error` and reports ~20
+      # @typescript-eslint/no-unsafe-* violations inside markdown-plugin's own
+      # source; a typecheck passes with zero declarations on disk; a test run
+      # exits non-zero with no failing test named. All three were observed on
+      # this repo, by three people independently, and all three vanish on
+      # re-run — which teaches the reader that red means nothing here.
+      #
+      # What removed the dependency: packages/core/package.json now serves its
+      # source to the workspace and its dist to npm. The `types` and
+      # `development` conditions point at src/*.ts, so TypeScript,
+      # typescript-eslint and Vite/Vitest all read source and never observe a
+      # partially written dist. `publishConfig` carries the dist-based map, and
+      # pnpm substitutes it at pack time, so what ships is unchanged — the
+      # packaging gate's `publint --strict` run is what holds that.
+      #
+      # Two consumers still resolve dist on purpose: the `build:syntax`
+      # generators run under plain Node, which cannot load core's source
+      # because its relative imports are extensionless. They fall through the
+      # conditions to `import`/`require`, which is why the Generated-artifacts
+      # step above must stay after Build. Reintroducing dist resolution for any
+      # type-aware tool would bring the whole invariant back.
       - name: Lint
         run: pnpm lint
 
@@ -93,23 +191,121 @@ jobs:
       - name: Test
         run: pnpm test
 
-      # Publish-readiness smoke. Every published package is packed here so a
-      # missing `files` entry, broken `exports` map, or unbuilt `dist/`
-      # surfaces in CI rather than at release time. Keep this list in lockstep
-      # with .github/workflows/publish.yml — if a package is added here it must
-      # also be added to the publish job, and vice versa.
+      # Must run AFTER Build, and for the opposite reason to the staleness
+      # gates above: publint reads the emitted dist/, so before Build there is
+      # nothing for it to validate.
       #
-      # vscode-extension and docs are excluded: vscode publishes via vsce/ovsx
-      # and docs deploys to Vercel — neither is a changesets npm pack target.
-      - name: Pack (publish-readiness smoke)
+      # `--check` is the point of this step. Nine packages carried a `publint`
+      # script that no workflow ever ran, and the one package without the
+      # script — core, which everything else depends on — was also the one
+      # publishing `module: dist/index.mjs` against a file tsup never emits.
+      # An opt-in gate reports nothing when the opt-in is what is missing, so
+      # coverage is asserted against the published set instead: a package that
+      # joins the release train without its gate fails here.
+      #
+      # The set comes from scripts/published-packages.mjs (not `private: true`
+      # and not in .changeset/config.json `ignore`), which is also what the
+      # changeset guard and the pack step below use — one derivation, so the
+      # checked set and the run set cannot diverge.
+      #
+      # `--strict` promotes publint's warnings to failures. Default level would
+      # have accepted the four packages whose `exports` served an ESM .d.ts
+      # under the "require" condition — a types-masquerading bug that gives a
+      # CJS consumer types which only resolve via dynamic import. Those four
+      # were fixed to the nested import/require shape the other six already
+      # used, so strict is reachable now, and reaching it is what stops the
+      # next one from being merged.
+      #
+      # Suggestions stay non-fatal even under --strict, so publint structurally
+      # cannot fail on a missing `engines` — the one packaging fact npm acts on
+      # at install time was the one no gate could catch, and eight of the ten
+      # packages declared nothing. `--check` asserts it instead, against the
+      # root manifest's floor and against .nvmrc, so a package cannot advertise
+      # a runtime CI never runs. `sideEffects` stays advisory on purpose:
+      # claiming `false` wrongly makes bundlers drop code, so it needs an
+      # import-time audit rather than a metadata edit.
+      #
+      # knip is deliberately NOT asserted here, and this is the honest reason
+      # rather than an oversight: enabling it today lands a red gate. Two of its
+      # findings cannot be resolved as packaging work — ux-rules reports 73
+      # unused exports, which is a public-API-surface decision, and core reports
+      # an unused type in a renderer file under active edit. Suppressing either
+      # to reach green would recreate exactly the "gate that observes nothing"
+      # defect this step exists to remove. Wiring knip is a follow-up that has
+      # to resolve those two first; until then knip stays out of
+      # REQUIRED_SCRIPTS in scripts/packaging-gate.mjs.
+      - name: Packaging gates (publint)
         run: |
-          mkdir -p .pack-out
-          for pkg in \
-            packages/core \
-            packages/language-data \
-            packages/markdown-plugin \
-            packages/ssot-core \
-            packages/ssot-tools; do
-            (cd "$pkg" && pnpm pack --pack-destination "${GITHUB_WORKSPACE}/.pack-out")
+          node scripts/packaging-gate.mjs --check
+          for pkg in $(node scripts/packaging-gate.mjs --list); do
+            (cd "$pkg" && pnpm run publint)
           done
-          ls -la .pack-out
+
+      # Must run AFTER Build for the same reason as publint — it opens the
+      # packed artifact, which does not exist until dist does.
+      #
+      # Unlike the dist-freshness gate near the top of this job, this one is not
+      # vacuous on CI: it packs real tarballs and inspects their contents on
+      # every run, so it observes something here as well as locally.
+      #
+      # It checks the axes publint structurally cannot. publint resolves `main`
+      # against the working directory, where packages/core/src/index.ts exists,
+      # so it passes; the question "what did the packer put in the tarball" was
+      # asked by nothing. That gap is live — `npm pack` includes
+      # package/src/index.ts (npm ignores publishConfig field overrides and
+      # force-includes whatever `main` names) while `pnpm pack` does not. Since
+      # changesets spawns `pnpm publish`, what ships is the clean tarball, and
+      # the gate asserts that publishing stays on pnpm rather than assuming it.
+      #
+      # It also asserts the resolved files are not empty, which is a second
+      # blind spot rather than a refinement of the first: zeroing
+      # packages/ux-rules/dist/index.d.ts leaves `publint --strict` at exit 0,
+      # because the file it resolves to is right there. Measured, not assumed.
+      # A package shipping no types at all would have reached npm silently.
+      # This step replaces a separate "Pack (publish-readiness smoke)" step that
+      # packed all ten packages and ran `ls`. That step claimed in its own
+      # comment to surface "a missing `files` entry, broken `exports` map, or
+      # unbuilt `dist/`". All three were measured against it here, by injecting
+      # the defect into packages/mcp-server and running both steps on the same
+      # tree:
+      #
+      #   defect                          smoke   this gate
+      #   dist/ absent (unbuilt)          pass    FAIL
+      #   exports -> unpacked file        pass    FAIL
+      #   no `files` field                pass    FAIL
+      #   pnpm pack itself errors         FAIL    FAIL
+      #
+      # The smoke step caught none of the three failures it named. `pnpm pack`
+      # does not verify that anything a manifest points at exists, so it packed
+      # an mcp-server tarball with no dist at all (3,171 B) and exited 0, and
+      # packed one carrying the full src/ tree and test files (29,267 B) and
+      # exited 0. Its only real failure mode is pack erroring outright, and this
+      # gate runs the same `pnpm pack` and reports that too — the last row.
+      # Superset, so the step was removed rather than kept alongside.
+      - name: Tarball contents
+        run: node scripts/packaging-gate.mjs --check-tarballs
+
+      # Also after Build: it evaluates the emitted entries.
+      #
+      # `sideEffects: false` is the one manifest claim in this repo whose reader
+      # is somebody else's bundler. Three packages make it, nothing has ever
+      # checked it, and a broken one does not fail here — it deletes a consumer's
+      # polyfill or registration during their webpack build, several
+      # repositories away from the cause. publint does not check it and cannot:
+      # the claim is about what evaluating the module does, which is only
+      # answerable by evaluating it.
+      #
+      # Each entry is evaluated in its own process, with globals, builtin
+      # prototypes and process.env compared across the import, stdout and stderr
+      # captured from outside, and filesystem/process/worker access enforced by
+      # Node's permission model rather than by patching. That last part is not
+      # decoration: an import-time `writeFileSync` imported as a named binding
+      # passed this gate green until the permission model was added, because the
+      # ESM export of a builtin is bound before any patch can replace it.
+      # Measured with a fixture, not assumed.
+      #
+      # Scope is the set of packages making the claim, so a package is covered
+      # the moment it adds the field. If that set is ever empty the gate fails
+      # rather than reporting a vacuous pass.
+      - name: sideEffects claims
+        run: node scripts/packaging-gate.mjs --check-side-effects

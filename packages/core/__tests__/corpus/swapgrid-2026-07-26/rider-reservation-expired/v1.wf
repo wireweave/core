@@ -1,0 +1,32 @@
+page "예약 만료" centered viewport="375x812" {
+  main p=4 {
+    col align=center gap=4 {
+      card "예약이 만료되었습니다" border p=4 shadow=lg w=327 {
+        col gap=4 {
+          col gap=2 {
+            row align=center justify=between {
+              text "교환소" muted size=sm
+              text "홍대입구 교환소" size=sm weight=medium
+            }
+            row align=center justify=between {
+              text "만료 시각" muted size=sm
+              text "오늘 14:32" size=sm weight=medium
+            }
+            divider my=1
+            row align=center justify=between {
+              text "지금 이 교환소 A규격 완충" muted size=sm
+              badge "2개" pill variant=success
+            }
+            text "서버가 확인한 만료입니다" muted size=xs
+          }
+          col gap=2 {
+            button "다시 예약하기" navigate="예약하기" primary w=full
+            text "같은 배터리가 돌아온다는 보장은 없습니다. 그 순간 남아 있는 배터리 중 하나가 새로 배정됩니다." muted size=xs
+            button "다른 교환소 찾기" navigate="교환소 지도" outline w=full
+            button "닫기" ghost navigate="내 예약" w=full
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,97 @@
+page device=mobile width=375 height=600 {
+  header p=3 border {
+    row justify=between align=center {
+      icon "instagram" size=lg
+      row gap=3 {
+        icon "heart"
+        icon "message-circle"
+      }
+    }
+  }
+
+  main p=0 scroll {
+    col gap=0 {
+      col {
+        row p=3 gap=3 align=center {
+          avatar "User" size=md
+          col gap=0 {
+            text "johndoe" weight=bold
+            text "New York" size=sm muted
+          }
+        }
+        placeholder "Photo" h=250 w=full
+        col p=3 gap=2 {
+          row justify=between {
+            row gap=3 {
+              icon "heart"
+              icon "message-circle"
+              icon "send"
+            }
+            icon "bookmark"
+          }
+          text "1,234 likes" weight=bold size=sm
+          text "johndoe Beautiful sunset!" size=sm
+          text "View all 42 comments" muted size=sm
+        }
+      }
+
+      col {
+        row p=3 gap=3 align=center {
+          avatar "Jane" size=md
+          col gap=0 {
+            text "jane_doe" weight=bold
+            text "Los Angeles" size=sm muted
+          }
+        }
+        placeholder "Photo" h=250 w=full
+        col p=3 gap=2 {
+          row justify=between {
+            row gap=3 {
+              icon "heart"
+              icon "message-circle"
+              icon "send"
+            }
+            icon "bookmark"
+          }
+          text "2,567 likes" weight=bold size=sm
+          text "jane_doe City vibes 🌆" size=sm
+          text "View all 89 comments" muted size=sm
+        }
+      }
+
+      col {
+        row p=3 gap=3 align=center {
+          avatar "Mike" size=md
+          col gap=0 {
+            text "mike_photo" weight=bold
+            text "Tokyo" size=sm muted
+          }
+        }
+        placeholder "Photo" h=250 w=full
+        col p=3 gap=2 {
+          row justify=between {
+            row gap=3 {
+              icon "heart"
+              icon "message-circle"
+              icon "send"
+            }
+            icon "bookmark"
+          }
+          text "892 likes" weight=bold size=sm
+          text "mike_photo Night lights" size=sm
+          text "View all 23 comments" muted size=sm
+        }
+      }
+    }
+  }
+
+  footer p=3 border {
+    row justify=around {
+      icon "home"
+      icon "search"
+      icon "plus-square"
+      icon "film"
+      avatar "Me" size=sm
+    }
+  }
+}

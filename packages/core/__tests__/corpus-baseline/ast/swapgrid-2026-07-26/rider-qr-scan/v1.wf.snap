@@ -1,0 +1,139 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "border": false,
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "aria": "닫기",
+                  "content": "",
+                  "ghost": true,
+                  "icon": "x",
+                  "navigate": "교환소 상세",
+                  "type": "Button"
+                },
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "content": "강남 2호 교환소",
+                      "type": "Text",
+                      "weight": "semibold"
+                    },
+                    {
+                      "content": "코드 인식 대기",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    }
+                  ],
+                  "gap": 0,
+                  "type": "Col"
+                },
+                {
+                  "action": "toggle-torch",
+                  "aria": "손전등 켜기",
+                  "content": "",
+                  "ghost": true,
+                  "icon": "flashlight",
+                  "type": "Button"
+                }
+              ],
+              "justify": "between",
+              "type": "Row"
+            }
+          ],
+          "p": 4,
+          "type": "Header"
+        },
+        {
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "children": [],
+                  "h": 280,
+                  "label": "카메라 미리보기 · 코드를 사각형 안에 맞춰 주세요",
+                  "type": "Placeholder",
+                  "w": "full"
+                },
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "muted": true,
+                      "name": "scan-line",
+                      "size": "sm",
+                      "type": "Icon"
+                    },
+                    {
+                      "align": "center",
+                      "content": "인식되면 자동으로 교환이 시작됩니다",
+                      "muted": true,
+                      "size": "sm",
+                      "type": "Text"
+                    }
+                  ],
+                  "gap": 2,
+                  "justify": "center",
+                  "type": "Row"
+                },
+                {
+                  "content": "화면이 어둡습니다. 손전등을 켜면 인식이 쉬워집니다.",
+                  "icon": "lightbulb",
+                  "type": "Alert",
+                  "variant": "info"
+                },
+                {
+                  "content": "코드를 읽을 수 없나요?",
+                  "navigate": "QR 스캔 · 번호 입력",
+                  "type": "Link"
+                }
+              ],
+              "gap": 4,
+              "type": "Col"
+            }
+          ],
+          "p": 4,
+          "type": "Main"
+        },
+        {
+          "border": false,
+          "children": [
+            {
+              "children": [
+                {
+                  "content": "다른 교환소 찾기",
+                  "navigate": "교환소 지도",
+                  "outline": true,
+                  "type": "Button",
+                  "w": "full"
+                },
+                {
+                  "align": "center",
+                  "content": "예약해 둔 교환소: 강남 2호",
+                  "muted": true,
+                  "size": "xs",
+                  "type": "Text"
+                }
+              ],
+              "gap": 2,
+              "type": "Col"
+            }
+          ],
+          "p": 4,
+          "type": "Footer"
+        }
+      ],
+      "title": "QR 스캔",
+      "type": "Page",
+      "viewport": "375x812"
+    }
+  ],
+  "type": "Document"
+}

@@ -1,0 +1,20 @@
+page "Login" centered width=500 height=600 {
+  card w=400 p=6 shadow=lg {
+    col gap=4 {
+      title "Sign In" level=2 align=center
+      text "Welcome back! Please enter your details." muted align=center
+
+      col gap=2 {
+        input "Email" inputType=email
+        input "Password" inputType=password
+      }
+
+      row justify=between align=center {
+        checkbox "Remember me"
+        link "Forgot password?"
+      }
+
+      button "Sign In" primary w=full
+    }
+  }
+}

@@ -6,7 +6,7 @@
 
 import type {
   AnyNode,
-  InteractiveProps,
+  GuardedOutcomeProps,
   WireframeDocument,
   PageNode,
   HeaderNode,
@@ -69,7 +69,7 @@ import {
   buildAnchorPathMap,
   formatAnchorLoc,
 } from '../../ast/anchor-path'
-import { interactiveAttrs } from './interactive'
+import { guardedOutcomeAttrs } from './interactive'
 
 /**
  * Inject anchor attributes into the outermost opening tag of a rendered node's
@@ -228,7 +228,12 @@ export class HtmlRenderer extends BaseRenderer {
    */
   private readonly pageIndexBase: number
 
-  /** Content supplied by a site renderer for the next layout slot. */
+  /**
+   * HTML the next `slot` renders, or `null` when there is none to place.
+   *
+   * Set for the duration of one `renderFragment` call and consumed by the first
+   * slot reached, so it never leaks into an unrelated render.
+   */
   private slotContent: string | null = null
 
   constructor(options: RenderOptions = {}, pageIndexBase = 0) {
@@ -340,6 +345,7 @@ export class HtmlRenderer extends BaseRenderer {
       Breadcrumb: (node) => this.renderBreadcrumb(node as BreadcrumbNode),
       // Other
       Divider: (node) => this.renderDivider(node as DividerComponentNode),
+      // Reuse nodes
       Slot: () => this.renderSlot(),
       ComponentUse: (node) => this.renderComponentUse(node as ComponentUseNode),
       // Annotation nodes
@@ -444,19 +450,18 @@ export class HtmlRenderer extends BaseRenderer {
   protected renderNode(node: AnyNode): string {
     const renderer = this.nodeRenderers[node.type]
     let html = renderer ? renderer(node) : `<!-- Unknown node type: ${node.type} -->`
-    const rootOpeningTag = /^<[a-zA-Z][a-zA-Z0-9-]*\b[^>]*>/.exec(html)?.[0] ?? ''
 
-    const intentAttrs = Object.fromEntries(
-      Object.entries(interactiveAttrs(node as Partial<InteractiveProps>)).filter(
-        ([name, value]) =>
-          name.startsWith('data-wf-') &&
-          value !== undefined &&
-          !rootOpeningTag.includes(` ${name}=`),
+    // Event-capable renderers already emit these through `interactiveAttrs`.
+    // Add only missing guard markers so every ordinary rendered branch can be
+    // state-controlled without copying the attribute names through 30 renderers.
+    const guardAttrs = Object.fromEntries(
+      Object.entries(guardedOutcomeAttrs(node as Partial<GuardedOutcomeProps>)).filter(
+        ([name, value]) => value !== undefined && !html.includes(` ${name}=`),
       ),
     ) as Record<string, string | undefined>
-    const intentAttrString = this.buildAttrsString(intentAttrs)
-    if (rootOpeningTag.length > 0 && intentAttrString.length > 0) {
-      html = html.replace(/^<([a-zA-Z][a-zA-Z0-9-]*)/, (match) => `${match}${intentAttrString}`)
+    const guardAttrString = this.buildAttrsString(guardAttrs)
+    if (guardAttrString.length > 0) {
+      html = html.replace(/<([a-zA-Z][a-zA-Z0-9-]*)/, (match) => `${match}${guardAttrString}`)
     }
 
     // Pages are rendered directly by renderDocument (bypassing renderNode) and
@@ -472,8 +477,18 @@ export class HtmlRenderer extends BaseRenderer {
     return html
   }
 
-  /** Render the first slot with the supplied page content, if any. */
+  /**
+   * Render the `slot` of a layout — the position a page's content is placed at.
+   *
+   * The element is always emitted, filled or not. A layout is a shell, and a
+   * shell keeps its shape whether or not something is currently inside it;
+   * collapsing the slot away when empty would make the frame reflow between an
+   * isolated render of the layout and a composed one.
+   */
   protected renderSlot(): string {
+    // Consumed on first use, so a layout that declares two slots fills the
+    // first and leaves the rest empty — first-wins, the same tie-break every
+    // other ambiguity in a document resolves by.
     const content = this.slotContent
     this.slotContent = null
     const open = `<div class="${this.prefix}-slot">`
@@ -491,7 +506,18 @@ export class HtmlRenderer extends BaseRenderer {
     return `<div class="${this.prefix}-component-instance" data-wf-component="${component}" data-wf-instance="${instanceId}" style="display: contents">\n${content}\n</div>`
   }
 
-  /** Render nodes without adding a page frame, optionally filling a slot. */
+  /**
+   * Render a list of nodes with no page frame around them.
+   *
+   * The frame — viewport size, background, the CSS reset every component
+   * depends on — belongs to whatever is composing these nodes. `renderSite`
+   * uses this twice per shell: once for the layout's own markup, where
+   * `slotContent` is the screens that live in it, and once per screen for that
+   * page's body.
+   *
+   * @param nodes - Nodes to render, in order
+   * @param slotContent - HTML placed inside the first `slot` encountered
+   */
   renderFragment(nodes: AnyNode[], slotContent: string | null = null): string {
     const previous = this.slotContent
     this.slotContent = slotContent
@@ -553,8 +579,9 @@ export class HtmlRenderer extends BaseRenderer {
     if (props.bg === 'primary') classes.push(`${p}-bg-primary`)
     if (props.bg === 'secondary') classes.push(`${p}-bg-secondary`)
 
-    // Border
-    if ((props as Record<string, unknown>).border === true) classes.push(`${p}-border`)
+    // Decoration
+    if (props.border === true) classes.push(`${p}-border`)
+    if (props.rounded === true) classes.push(`${p}-rounded`)
 
     return classes
   }

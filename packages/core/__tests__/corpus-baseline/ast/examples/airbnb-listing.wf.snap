@@ -1,0 +1,1816 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "border": true,
+              "children": [
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "name": "home",
+                          "size": "lg",
+                          "type": "Icon"
+                        },
+                        {
+                          "bold": true,
+                          "content": "airbnb",
+                          "size": "xl",
+                          "type": "Text"
+                        }
+                      ],
+                      "gap": 2,
+                      "type": "Row"
+                    },
+                    {
+                      "border": true,
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "숙소",
+                              "size": "sm",
+                              "type": "Text",
+                              "weight": "semibold"
+                            },
+                            {
+                              "content": "체험",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "NEW",
+                              "size": "xs",
+                              "type": "Badge"
+                            },
+                            {
+                              "content": "서비스",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "NEW",
+                              "size": "xs",
+                              "type": "Badge"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Row"
+                        },
+                        {
+                          "h": 20,
+                          "type": "Divider",
+                          "vertical": true
+                        },
+                        {
+                          "children": [
+                            {
+                              "content": "어디든지",
+                              "ghost": true,
+                              "size": "sm",
+                              "type": "Button"
+                            },
+                            {
+                              "content": "언제든 일주일",
+                              "ghost": true,
+                              "size": "sm",
+                              "type": "Button"
+                            },
+                            {
+                              "content": "게스트 추가",
+                              "ghost": true,
+                              "size": "sm",
+                              "type": "Button"
+                            }
+                          ],
+                          "gap": 1,
+                          "type": "Row"
+                        },
+                        {
+                          "content": "",
+                          "icon": "search",
+                          "primary": true,
+                          "size": "sm",
+                          "type": "Button"
+                        }
+                      ],
+                      "gap": 1,
+                      "p": 2,
+                      "rounded": true,
+                      "type": "Row"
+                    },
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "content": "호스팅 하기",
+                          "ghost": true,
+                          "size": "sm",
+                          "type": "Button"
+                        },
+                        {
+                          "name": "globe",
+                          "size": "sm",
+                          "type": "Icon"
+                        },
+                        {
+                          "align": "center",
+                          "border": true,
+                          "children": [
+                            {
+                              "name": "menu",
+                              "size": "sm",
+                              "type": "Icon"
+                            },
+                            {
+                              "name": "U",
+                              "size": "sm",
+                              "type": "Avatar"
+                            }
+                          ],
+                          "gap": 2,
+                          "p": 2,
+                          "rounded": true,
+                          "type": "Row"
+                        }
+                      ],
+                      "gap": 3,
+                      "type": "Row"
+                    }
+                  ],
+                  "justify": "between",
+                  "px": 6,
+                  "type": "Row"
+                }
+              ],
+              "h": 80,
+              "p": 0,
+              "type": "Header"
+            },
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "content": "서울 강남의 모던한 아파트",
+                          "level": 1,
+                          "type": "Title"
+                        },
+                        {
+                          "children": [
+                            {
+                              "content": "공유하기",
+                              "ghost": true,
+                              "icon": "share",
+                              "size": "sm",
+                              "type": "Button"
+                            },
+                            {
+                              "content": "저장",
+                              "ghost": true,
+                              "icon": "heart",
+                              "size": "sm",
+                              "type": "Button"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Row"
+                        }
+                      ],
+                      "justify": "between",
+                      "type": "Row"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [],
+                          "flex": 1,
+                          "h": 400,
+                          "label": "메인 이미지",
+                          "type": "Placeholder"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [],
+                                  "flex": 1,
+                                  "h": 196,
+                                  "label": "이미지 2",
+                                  "type": "Placeholder"
+                                },
+                                {
+                                  "children": [],
+                                  "flex": 1,
+                                  "h": 196,
+                                  "label": "이미지 3",
+                                  "type": "Placeholder"
+                                }
+                              ],
+                              "gap": 2,
+                              "type": "Row"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [],
+                                  "flex": 1,
+                                  "h": 196,
+                                  "label": "이미지 4",
+                                  "type": "Placeholder"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "children": [],
+                                      "h": 196,
+                                      "label": "이미지 5",
+                                      "type": "Placeholder",
+                                      "w": "full"
+                                    },
+                                    {
+                                      "content": "사진 모두 보기",
+                                      "outline": true,
+                                      "size": "sm",
+                                      "type": "Button"
+                                    }
+                                  ],
+                                  "flex": 1,
+                                  "type": "Col"
+                                }
+                              ],
+                              "gap": 2,
+                              "type": "Row"
+                            }
+                          ],
+                          "flex": 1,
+                          "gap": 2,
+                          "type": "Col"
+                        }
+                      ],
+                      "gap": 2,
+                      "type": "Row"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "content": "한국의 부티크 호텔의 객실",
+                                  "level": 2,
+                                  "type": "Title"
+                                },
+                                {
+                                  "content": "최대 인원 2명 · 침실 1개 · 침대 1개 · 욕실 1개",
+                                  "muted": true,
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 2,
+                              "type": "Col"
+                            },
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "align": "center",
+                                      "children": [
+                                        {
+                                          "children": [
+                                            {
+                                              "content": "게스트 선호",
+                                              "size": "sm",
+                                              "type": "Badge",
+                                              "variant": "outline"
+                                            },
+                                            {
+                                              "content": "에어비앤비 게스트에게 가장 사랑받는 숙소",
+                                              "muted": true,
+                                              "size": "xs",
+                                              "type": "Text"
+                                            }
+                                          ],
+                                          "gap": 0,
+                                          "type": "Col"
+                                        },
+                                        {
+                                          "align": "center",
+                                          "children": [
+                                            {
+                                              "bold": true,
+                                              "content": "4.93",
+                                              "size": "xl",
+                                              "type": "Text"
+                                            },
+                                            {
+                                              "children": [
+                                                {
+                                                  "name": "star",
+                                                  "size": "xs",
+                                                  "type": "Icon"
+                                                },
+                                                {
+                                                  "name": "star",
+                                                  "size": "xs",
+                                                  "type": "Icon"
+                                                },
+                                                {
+                                                  "name": "star",
+                                                  "size": "xs",
+                                                  "type": "Icon"
+                                                },
+                                                {
+                                                  "name": "star",
+                                                  "size": "xs",
+                                                  "type": "Icon"
+                                                },
+                                                {
+                                                  "name": "star",
+                                                  "size": "xs",
+                                                  "type": "Icon"
+                                                }
+                                              ],
+                                              "gap": 0,
+                                              "type": "Row"
+                                            }
+                                          ],
+                                          "gap": 0,
+                                          "type": "Col"
+                                        },
+                                        {
+                                          "align": "center",
+                                          "children": [
+                                            {
+                                              "bold": true,
+                                              "content": "41개",
+                                              "size": "lg",
+                                              "type": "Text"
+                                            },
+                                            {
+                                              "content": "후기",
+                                              "muted": true,
+                                              "size": "xs",
+                                              "type": "Text"
+                                            }
+                                          ],
+                                          "gap": 0,
+                                          "type": "Col"
+                                        }
+                                      ],
+                                      "gap": 2,
+                                      "type": "Row"
+                                    }
+                                  ],
+                                  "p": 3,
+                                  "title": null,
+                                  "type": "Card"
+                                }
+                              ],
+                              "gap": 4,
+                              "type": "Row"
+                            },
+                            {
+                              "border": true,
+                              "children": [
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "muted": true,
+                                      "name": "train",
+                                      "size": "sm",
+                                      "type": "Icon"
+                                    },
+                                    {
+                                      "content": "지하철역 근처",
+                                      "size": "sm",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Row"
+                                },
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "muted": true,
+                                      "name": "check-circle",
+                                      "size": "sm",
+                                      "type": "Icon"
+                                    },
+                                    {
+                                      "content": "순조로운 체크인",
+                                      "size": "sm",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Row"
+                                },
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "muted": true,
+                                      "name": "wind",
+                                      "size": "sm",
+                                      "type": "Icon"
+                                    },
+                                    {
+                                      "content": "에어컨",
+                                      "size": "sm",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Row"
+                                },
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "muted": true,
+                                      "name": "wifi",
+                                      "size": "sm",
+                                      "type": "Icon"
+                                    },
+                                    {
+                                      "content": "와이파이",
+                                      "size": "sm",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Row"
+                                }
+                              ],
+                              "gap": 4,
+                              "py": 3,
+                              "type": "Row",
+                              "wrap": true
+                            },
+                            {
+                              "align": "center",
+                              "border": true,
+                              "children": [
+                                {
+                                  "name": "호스트",
+                                  "size": "lg",
+                                  "type": "Avatar"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "content": "호스트: 민수님",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "content": "슈퍼호스트",
+                                          "size": "xs",
+                                          "type": "Badge"
+                                        },
+                                        {
+                                          "content": "호스팅 경력 3년",
+                                          "muted": true,
+                                          "size": "sm",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "gap": 2,
+                                      "type": "Row"
+                                    }
+                                  ],
+                                  "flex": 1,
+                                  "gap": 0,
+                                  "type": "Col"
+                                }
+                              ],
+                              "gap": 3,
+                              "py": 4,
+                              "type": "Row"
+                            },
+                            {
+                              "type": "Divider"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "content": "숙소 소개",
+                                  "type": "Text",
+                                  "weight": "semibold"
+                                },
+                                {
+                                  "content": "강남역 도보 5분 거리에 위치한 모던한 아파트입니다. 넓은 거실과 쾌적한 침실, 완비된 주방이 있어 편안한 숙박이 가능합니다. 주변에 맛집과 쇼핑몰이 많아 편리합니다.",
+                                  "size": "sm",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "더 보기",
+                                  "ghost": true,
+                                  "icon": "chevron-down",
+                                  "size": "sm",
+                                  "type": "Button"
+                                }
+                              ],
+                              "gap": 3,
+                              "type": "Col"
+                            },
+                            {
+                              "type": "Divider"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "content": "숙소 편의시설",
+                                  "level": 3,
+                                  "type": "Title"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "align": "center",
+                                      "children": [
+                                        {
+                                          "name": "wifi",
+                                          "size": "sm",
+                                          "type": "Icon"
+                                        },
+                                        {
+                                          "content": "와이파이",
+                                          "size": "sm",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "gap": 2,
+                                      "type": "Row"
+                                    },
+                                    {
+                                      "align": "center",
+                                      "children": [
+                                        {
+                                          "name": "wind",
+                                          "size": "sm",
+                                          "type": "Icon"
+                                        },
+                                        {
+                                          "content": "에어컨",
+                                          "size": "sm",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "gap": 2,
+                                      "type": "Row"
+                                    },
+                                    {
+                                      "align": "center",
+                                      "children": [
+                                        {
+                                          "name": "wind",
+                                          "size": "sm",
+                                          "type": "Icon"
+                                        },
+                                        {
+                                          "content": "헤어드라이어",
+                                          "size": "sm",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "gap": 2,
+                                      "type": "Row"
+                                    },
+                                    {
+                                      "align": "center",
+                                      "children": [
+                                        {
+                                          "muted": true,
+                                          "name": "camera",
+                                          "size": "sm",
+                                          "type": "Icon"
+                                        },
+                                        {
+                                          "content": "실외 보안 카메라",
+                                          "size": "sm",
+                                          "type": "Text"
+                                        }
+                                      ],
+                                      "gap": 2,
+                                      "type": "Row"
+                                    }
+                                  ],
+                                  "gap": 4,
+                                  "type": "Row",
+                                  "wrap": true
+                                },
+                                {
+                                  "content": "편의시설 모두 보기",
+                                  "outline": true,
+                                  "size": "sm",
+                                  "type": "Button"
+                                }
+                              ],
+                              "gap": 3,
+                              "type": "Col"
+                            },
+                            {
+                              "type": "Divider"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "bold": true,
+                                      "content": "4.93",
+                                      "size": 2,
+                                      "type": "Text",
+                                      "xl": true
+                                    },
+                                    {
+                                      "content": "후기 41개",
+                                      "level": 3,
+                                      "type": "Title"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Row"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "children": [
+                                        {
+                                          "children": [
+                                            {
+                                              "content": "청결도",
+                                              "size": "sm",
+                                              "type": "Text"
+                                            },
+                                            {
+                                              "content": "5.0",
+                                              "size": "sm",
+                                              "type": "Text"
+                                            }
+                                          ],
+                                          "justify": "between",
+                                          "type": "Row"
+                                        },
+                                        {
+                                          "h": 1,
+                                          "type": "Progress",
+                                          "value": 100
+                                        }
+                                      ],
+                                      "flex": 1,
+                                      "gap": 1,
+                                      "type": "Col"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "children": [
+                                            {
+                                              "content": "정확도",
+                                              "size": "sm",
+                                              "type": "Text"
+                                            },
+                                            {
+                                              "content": "4.9",
+                                              "size": "sm",
+                                              "type": "Text"
+                                            }
+                                          ],
+                                          "justify": "between",
+                                          "type": "Row"
+                                        },
+                                        {
+                                          "h": 1,
+                                          "type": "Progress",
+                                          "value": 98
+                                        }
+                                      ],
+                                      "flex": 1,
+                                      "gap": 1,
+                                      "type": "Col"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "children": [
+                                            {
+                                              "content": "체크인",
+                                              "size": "sm",
+                                              "type": "Text"
+                                            },
+                                            {
+                                              "content": "5.0",
+                                              "size": "sm",
+                                              "type": "Text"
+                                            }
+                                          ],
+                                          "justify": "between",
+                                          "type": "Row"
+                                        },
+                                        {
+                                          "h": 1,
+                                          "type": "Progress",
+                                          "value": 100
+                                        }
+                                      ],
+                                      "flex": 1,
+                                      "gap": 1,
+                                      "type": "Col"
+                                    }
+                                  ],
+                                  "gap": 6,
+                                  "type": "Row",
+                                  "wrap": true
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "children": [
+                                        {
+                                          "children": [
+                                            {
+                                              "content": "의사소통",
+                                              "size": "sm",
+                                              "type": "Text"
+                                            },
+                                            {
+                                              "content": "5.0",
+                                              "size": "sm",
+                                              "type": "Text"
+                                            }
+                                          ],
+                                          "justify": "between",
+                                          "type": "Row"
+                                        },
+                                        {
+                                          "h": 1,
+                                          "type": "Progress",
+                                          "value": 100
+                                        }
+                                      ],
+                                      "flex": 1,
+                                      "gap": 1,
+                                      "type": "Col"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "children": [
+                                            {
+                                              "content": "위치",
+                                              "size": "sm",
+                                              "type": "Text"
+                                            },
+                                            {
+                                              "content": "4.6",
+                                              "size": "sm",
+                                              "type": "Text"
+                                            }
+                                          ],
+                                          "justify": "between",
+                                          "type": "Row"
+                                        },
+                                        {
+                                          "h": 1,
+                                          "type": "Progress",
+                                          "value": 92
+                                        }
+                                      ],
+                                      "flex": 1,
+                                      "gap": 1,
+                                      "type": "Col"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "children": [
+                                            {
+                                              "content": "가격 대비 만족도",
+                                              "size": "sm",
+                                              "type": "Text"
+                                            },
+                                            {
+                                              "content": "4.9",
+                                              "size": "sm",
+                                              "type": "Text"
+                                            }
+                                          ],
+                                          "justify": "between",
+                                          "type": "Row"
+                                        },
+                                        {
+                                          "h": 1,
+                                          "type": "Progress",
+                                          "value": 98
+                                        }
+                                      ],
+                                      "flex": 1,
+                                      "gap": 1,
+                                      "type": "Col"
+                                    }
+                                  ],
+                                  "gap": 6,
+                                  "type": "Row",
+                                  "wrap": true
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "content": "깨끗한 숙소",
+                                      "size": "sm",
+                                      "type": "Badge",
+                                      "variant": "outline"
+                                    },
+                                    {
+                                      "content": "편안한 침대",
+                                      "size": "sm",
+                                      "type": "Badge",
+                                      "variant": "outline"
+                                    },
+                                    {
+                                      "content": "가성비 좋은 숙소",
+                                      "size": "sm",
+                                      "type": "Badge",
+                                      "variant": "outline"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Row"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "children": [
+                                        {
+                                          "children": [
+                                            {
+                                              "align": "center",
+                                              "children": [
+                                                {
+                                                  "name": "GS",
+                                                  "size": "sm",
+                                                  "type": "Avatar"
+                                                },
+                                                {
+                                                  "children": [
+                                                    {
+                                                      "content": "Guest",
+                                                      "size": "sm",
+                                                      "type": "Text",
+                                                      "weight": "semibold"
+                                                    },
+                                                    {
+                                                      "content": "1주 전",
+                                                      "muted": true,
+                                                      "size": "xs",
+                                                      "type": "Text"
+                                                    }
+                                                  ],
+                                                  "gap": 0,
+                                                  "type": "Col"
+                                                },
+                                                {
+                                                  "children": [
+                                                    {
+                                                      "name": "star",
+                                                      "size": "xs",
+                                                      "type": "Icon"
+                                                    },
+                                                    {
+                                                      "name": "star",
+                                                      "size": "xs",
+                                                      "type": "Icon"
+                                                    },
+                                                    {
+                                                      "name": "star",
+                                                      "size": "xs",
+                                                      "type": "Icon"
+                                                    },
+                                                    {
+                                                      "name": "star",
+                                                      "size": "xs",
+                                                      "type": "Icon"
+                                                    },
+                                                    {
+                                                      "name": "star",
+                                                      "size": "xs",
+                                                      "type": "Icon"
+                                                    }
+                                                  ],
+                                                  "gap": 0,
+                                                  "type": "Row"
+                                                }
+                                              ],
+                                              "gap": 2,
+                                              "type": "Row"
+                                            },
+                                            {
+                                              "content": "너무 깔끔하고 좋았습니다",
+                                              "size": "sm",
+                                              "type": "Text"
+                                            }
+                                          ],
+                                          "gap": 2,
+                                          "type": "Col"
+                                        }
+                                      ],
+                                      "p": 3,
+                                      "title": null,
+                                      "type": "Card"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "children": [
+                                            {
+                                              "align": "center",
+                                              "children": [
+                                                {
+                                                  "name": "HR",
+                                                  "size": "sm",
+                                                  "type": "Avatar"
+                                                },
+                                                {
+                                                  "children": [
+                                                    {
+                                                      "content": "Haram",
+                                                      "size": "sm",
+                                                      "type": "Text",
+                                                      "weight": "semibold"
+                                                    },
+                                                    {
+                                                      "content": "2주 전",
+                                                      "muted": true,
+                                                      "size": "xs",
+                                                      "type": "Text"
+                                                    }
+                                                  ],
+                                                  "gap": 0,
+                                                  "type": "Col"
+                                                },
+                                                {
+                                                  "children": [
+                                                    {
+                                                      "name": "star",
+                                                      "size": "xs",
+                                                      "type": "Icon"
+                                                    },
+                                                    {
+                                                      "name": "star",
+                                                      "size": "xs",
+                                                      "type": "Icon"
+                                                    },
+                                                    {
+                                                      "name": "star",
+                                                      "size": "xs",
+                                                      "type": "Icon"
+                                                    },
+                                                    {
+                                                      "name": "star",
+                                                      "size": "xs",
+                                                      "type": "Icon"
+                                                    },
+                                                    {
+                                                      "name": "star",
+                                                      "size": "xs",
+                                                      "type": "Icon"
+                                                    }
+                                                  ],
+                                                  "gap": 0,
+                                                  "type": "Row"
+                                                }
+                                              ],
+                                              "gap": 2,
+                                              "type": "Row"
+                                            },
+                                            {
+                                              "content": "숙소가 예상보다 깨끗했고 저렴한 가격에 하루 묵기 좋은것같습니다",
+                                              "size": "sm",
+                                              "type": "Text"
+                                            }
+                                          ],
+                                          "gap": 2,
+                                          "type": "Col"
+                                        }
+                                      ],
+                                      "p": 3,
+                                      "title": null,
+                                      "type": "Card"
+                                    }
+                                  ],
+                                  "gap": 3,
+                                  "type": "Col"
+                                },
+                                {
+                                  "content": "후기 41개 모두 보기",
+                                  "outline": true,
+                                  "type": "Button",
+                                  "w": "full"
+                                }
+                              ],
+                              "gap": 4,
+                              "type": "Col"
+                            },
+                            {
+                              "type": "Divider"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "content": "위치",
+                                  "level": 3,
+                                  "type": "Title"
+                                },
+                                {
+                                  "content": "서울, 한국",
+                                  "type": "Text",
+                                  "weight": "semibold"
+                                },
+                                {
+                                  "content": "가산디지털단지역(1호선, 7호선)과 도보 15분거리. 공항에서 직항으로 바로 오는 버스(6004번) 정류장과 도보 5분거리.",
+                                  "muted": true,
+                                  "size": "sm",
+                                  "type": "Text"
+                                },
+                                {
+                                  "children": [],
+                                  "h": 300,
+                                  "label": "지도",
+                                  "type": "Placeholder",
+                                  "w": "full"
+                                },
+                                {
+                                  "content": "더 보기",
+                                  "ghost": true,
+                                  "icon": "chevron-right",
+                                  "size": "sm",
+                                  "type": "Button"
+                                }
+                              ],
+                              "gap": 3,
+                              "type": "Col"
+                            },
+                            {
+                              "type": "Divider"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "content": "호스트 소개",
+                                  "level": 3,
+                                  "type": "Title"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "children": [
+                                        {
+                                          "align": "center",
+                                          "children": [
+                                            {
+                                              "name": "MS",
+                                              "size": "xl",
+                                              "type": "Avatar"
+                                            },
+                                            {
+                                              "content": "민수",
+                                              "size": "lg",
+                                              "type": "Text",
+                                              "weight": "bold"
+                                            },
+                                            {
+                                              "content": "슈퍼호스트",
+                                              "size": "sm",
+                                              "type": "Badge"
+                                            },
+                                            {
+                                              "children": [
+                                                {
+                                                  "align": "center",
+                                                  "children": [
+                                                    {
+                                                      "content": "128",
+                                                      "type": "Text",
+                                                      "weight": "bold"
+                                                    },
+                                                    {
+                                                      "content": "후기",
+                                                      "muted": true,
+                                                      "size": "xs",
+                                                      "type": "Text"
+                                                    }
+                                                  ],
+                                                  "gap": 0,
+                                                  "type": "Col"
+                                                },
+                                                {
+                                                  "align": "center",
+                                                  "children": [
+                                                    {
+                                                      "align": "center",
+                                                      "children": [
+                                                        {
+                                                          "content": "4.92",
+                                                          "type": "Text",
+                                                          "weight": "bold"
+                                                        },
+                                                        {
+                                                          "name": "star",
+                                                          "size": "xs",
+                                                          "type": "Icon"
+                                                        }
+                                                      ],
+                                                      "gap": 1,
+                                                      "type": "Row"
+                                                    },
+                                                    {
+                                                      "content": "평점",
+                                                      "muted": true,
+                                                      "size": "xs",
+                                                      "type": "Text"
+                                                    }
+                                                  ],
+                                                  "gap": 0,
+                                                  "type": "Col"
+                                                },
+                                                {
+                                                  "align": "center",
+                                                  "children": [
+                                                    {
+                                                      "content": "3",
+                                                      "type": "Text",
+                                                      "weight": "bold"
+                                                    },
+                                                    {
+                                                      "content": "년",
+                                                      "muted": true,
+                                                      "size": "xs",
+                                                      "type": "Text"
+                                                    }
+                                                  ],
+                                                  "gap": 0,
+                                                  "type": "Col"
+                                                }
+                                              ],
+                                              "gap": 4,
+                                              "type": "Row"
+                                            }
+                                          ],
+                                          "gap": 3,
+                                          "type": "Col"
+                                        }
+                                      ],
+                                      "flex": 1,
+                                      "p": 4,
+                                      "title": null,
+                                      "type": "Card"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "content": "안녕하세요! 호스트 민수입니다. 게스트분들이 편안하게 머무실 수 있도록 최선을 다하고 있습니다.",
+                                          "size": "sm",
+                                          "type": "Text"
+                                        },
+                                        {
+                                          "children": [
+                                            {
+                                              "muted": true,
+                                              "name": "message-circle",
+                                              "size": "sm",
+                                              "type": "Icon"
+                                            },
+                                            {
+                                              "content": "응답률: 100%",
+                                              "size": "sm",
+                                              "type": "Text"
+                                            }
+                                          ],
+                                          "gap": 2,
+                                          "type": "Row"
+                                        },
+                                        {
+                                          "children": [
+                                            {
+                                              "muted": true,
+                                              "name": "clock",
+                                              "size": "sm",
+                                              "type": "Icon"
+                                            },
+                                            {
+                                              "content": "1시간 이내에 응답",
+                                              "size": "sm",
+                                              "type": "Text"
+                                            }
+                                          ],
+                                          "gap": 2,
+                                          "type": "Row"
+                                        },
+                                        {
+                                          "content": "호스트에게 메시지 보내기",
+                                          "outline": true,
+                                          "type": "Button"
+                                        }
+                                      ],
+                                      "flex": 1,
+                                      "gap": 2,
+                                      "type": "Col"
+                                    }
+                                  ],
+                                  "gap": 4,
+                                  "type": "Row"
+                                }
+                              ],
+                              "gap": 4,
+                              "type": "Col"
+                            },
+                            {
+                              "type": "Divider"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "content": "알아두어야 할 사항",
+                                  "level": 3,
+                                  "type": "Title"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "children": [
+                                        {
+                                          "align": "center",
+                                          "children": [
+                                            {
+                                              "name": "calendar",
+                                              "size": "sm",
+                                              "type": "Icon"
+                                            },
+                                            {
+                                              "content": "환불 정책",
+                                              "size": "sm",
+                                              "type": "Text",
+                                              "weight": "semibold"
+                                            }
+                                          ],
+                                          "gap": 2,
+                                          "type": "Row"
+                                        },
+                                        {
+                                          "content": "여행 날짜를 입력하여 취소 및 환불 정보를 확인하세요.",
+                                          "muted": true,
+                                          "size": "xs",
+                                          "type": "Text"
+                                        },
+                                        {
+                                          "content": "날짜 추가",
+                                          "ghost": true,
+                                          "size": "sm",
+                                          "type": "Button"
+                                        }
+                                      ],
+                                      "flex": 1,
+                                      "gap": 2,
+                                      "type": "Col"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "align": "center",
+                                          "children": [
+                                            {
+                                              "name": "clipboard",
+                                              "size": "sm",
+                                              "type": "Icon"
+                                            },
+                                            {
+                                              "content": "숙소 이용규칙",
+                                              "size": "sm",
+                                              "type": "Text",
+                                              "weight": "semibold"
+                                            }
+                                          ],
+                                          "gap": 2,
+                                          "type": "Row"
+                                        },
+                                        {
+                                          "content": "체크인: 오후 3:00 이후",
+                                          "size": "xs",
+                                          "type": "Text"
+                                        },
+                                        {
+                                          "content": "게스트 정원 2명",
+                                          "size": "xs",
+                                          "type": "Text"
+                                        },
+                                        {
+                                          "content": "자세히 알아보기",
+                                          "ghost": true,
+                                          "size": "sm",
+                                          "type": "Button"
+                                        }
+                                      ],
+                                      "flex": 1,
+                                      "gap": 2,
+                                      "type": "Col"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "align": "center",
+                                          "children": [
+                                            {
+                                              "name": "shield",
+                                              "size": "sm",
+                                              "type": "Icon"
+                                            },
+                                            {
+                                              "content": "안전 및 공간",
+                                              "size": "sm",
+                                              "type": "Text",
+                                              "weight": "semibold"
+                                            }
+                                          ],
+                                          "gap": 2,
+                                          "type": "Row"
+                                        },
+                                        {
+                                          "content": "일산화탄소 경보기 설치 여부 정보 없음",
+                                          "size": "xs",
+                                          "type": "Text"
+                                        },
+                                        {
+                                          "content": "부지 내 실외 보안 카메라",
+                                          "size": "xs",
+                                          "type": "Text"
+                                        },
+                                        {
+                                          "content": "자세히 알아보기",
+                                          "ghost": true,
+                                          "size": "sm",
+                                          "type": "Button"
+                                        }
+                                      ],
+                                      "flex": 1,
+                                      "gap": 2,
+                                      "type": "Col"
+                                    }
+                                  ],
+                                  "gap": 6,
+                                  "type": "Row"
+                                }
+                              ],
+                              "gap": 3,
+                              "type": "Col"
+                            }
+                          ],
+                          "flex": 1,
+                          "gap": 6,
+                          "type": "Col"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "content": "날짜를 선택해 요금 확인",
+                                      "size": "lg",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "border": true,
+                                      "children": [
+                                        {
+                                          "children": [
+                                            {
+                                              "border": true,
+                                              "children": [
+                                                {
+                                                  "border": true,
+                                                  "children": [
+                                                    {
+                                                      "content": "체크인",
+                                                      "size": "xs",
+                                                      "type": "Text",
+                                                      "weight": "semibold"
+                                                    },
+                                                    {
+                                                      "content": "날짜 추가",
+                                                      "muted": true,
+                                                      "size": "sm",
+                                                      "type": "Text"
+                                                    }
+                                                  ],
+                                                  "flex": 1,
+                                                  "p": 3,
+                                                  "type": "Col"
+                                                },
+                                                {
+                                                  "children": [
+                                                    {
+                                                      "content": "체크아웃",
+                                                      "size": "xs",
+                                                      "type": "Text",
+                                                      "weight": "semibold"
+                                                    },
+                                                    {
+                                                      "content": "날짜 추가",
+                                                      "muted": true,
+                                                      "size": "sm",
+                                                      "type": "Text"
+                                                    }
+                                                  ],
+                                                  "flex": 1,
+                                                  "p": 3,
+                                                  "type": "Col"
+                                                }
+                                              ],
+                                              "type": "Row"
+                                            },
+                                            {
+                                              "align": "center",
+                                              "children": [
+                                                {
+                                                  "children": [
+                                                    {
+                                                      "content": "인원",
+                                                      "size": "xs",
+                                                      "type": "Text",
+                                                      "weight": "semibold"
+                                                    },
+                                                    {
+                                                      "content": "게스트 1명",
+                                                      "size": "sm",
+                                                      "type": "Text"
+                                                    }
+                                                  ],
+                                                  "gap": 0,
+                                                  "type": "Col"
+                                                },
+                                                {
+                                                  "name": "chevron-down",
+                                                  "size": "sm",
+                                                  "type": "Icon"
+                                                }
+                                              ],
+                                              "justify": "between",
+                                              "p": 3,
+                                              "type": "Row"
+                                            }
+                                          ],
+                                          "type": "Col"
+                                        }
+                                      ],
+                                      "p": 0,
+                                      "title": null,
+                                      "type": "Card"
+                                    },
+                                    {
+                                      "content": "예약 가능 여부 보기",
+                                      "primary": true,
+                                      "type": "Button",
+                                      "w": "full"
+                                    }
+                                  ],
+                                  "gap": 4,
+                                  "type": "Col"
+                                }
+                              ],
+                              "p": 5,
+                              "title": null,
+                              "type": "Card"
+                            },
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "muted": true,
+                                  "name": "flag",
+                                  "size": "sm",
+                                  "type": "Icon"
+                                },
+                                {
+                                  "content": "리스팅 신고하기",
+                                  "muted": true,
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 2,
+                              "justify": "center",
+                              "type": "Row"
+                            }
+                          ],
+                          "gap": 4,
+                          "type": "Col",
+                          "w": 380
+                        }
+                      ],
+                      "gap": 8,
+                      "type": "Row"
+                    }
+                  ],
+                  "gap": 6,
+                  "px": 10,
+                  "py": 6,
+                  "type": "Col"
+                }
+              ],
+              "p": 0,
+              "scroll": true,
+              "type": "Main"
+            },
+            {
+              "border": true,
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "content": "에어비앤비 지원",
+                              "size": "sm",
+                              "type": "Text",
+                              "weight": "semibold"
+                            },
+                            {
+                              "content": "도움말 센터",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "안전 문제 관련 도움받기",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "에어커버",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "차별 반대",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Col"
+                        },
+                        {
+                          "children": [
+                            {
+                              "content": "호스팅",
+                              "size": "sm",
+                              "type": "Text",
+                              "weight": "semibold"
+                            },
+                            {
+                              "content": "당신의 공간을 에어비앤비하세요",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "호스트를 위한 에어커버",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "호스팅 자료",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "커뮤니티 포럼",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Col"
+                        },
+                        {
+                          "children": [
+                            {
+                              "content": "에어비앤비",
+                              "size": "sm",
+                              "type": "Text",
+                              "weight": "semibold"
+                            },
+                            {
+                              "content": "뉴스룸",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "채용정보",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "투자자 정보",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "Airbnb.org 긴급 숙소",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Col"
+                        }
+                      ],
+                      "gap": 8,
+                      "justify": "between",
+                      "type": "Row"
+                    },
+                    {
+                      "type": "Divider"
+                    },
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "content": "© 2026 Airbnb, Inc.",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "·",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "개인정보 처리방침",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "·",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "이용약관",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "·",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "회사 세부정보",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "name": "globe",
+                                  "size": "sm",
+                                  "type": "Icon"
+                                },
+                                {
+                                  "content": "한국어 (KR)",
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 2,
+                              "type": "Row"
+                            },
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "content": "₩",
+                                  "size": "sm",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "KRW",
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 2,
+                              "type": "Row"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "muted": true,
+                                  "name": "facebook",
+                                  "size": "sm",
+                                  "type": "Icon"
+                                },
+                                {
+                                  "muted": true,
+                                  "name": "twitter",
+                                  "size": "sm",
+                                  "type": "Icon"
+                                },
+                                {
+                                  "muted": true,
+                                  "name": "instagram",
+                                  "size": "sm",
+                                  "type": "Icon"
+                                }
+                              ],
+                              "gap": 2,
+                              "type": "Row"
+                            }
+                          ],
+                          "gap": 4,
+                          "type": "Row"
+                        }
+                      ],
+                      "justify": "between",
+                      "type": "Row"
+                    }
+                  ],
+                  "gap": 4,
+                  "px": 10,
+                  "py": 6,
+                  "type": "Col"
+                }
+              ],
+              "h": 200,
+              "p": 0,
+              "type": "Footer"
+            }
+          ],
+          "type": "Col"
+        }
+      ],
+      "height": 900,
+      "title": null,
+      "type": "Page",
+      "width": 1280
+    }
+  ],
+  "type": "Document"
+}

@@ -1,0 +1,4 @@
+// 첫 초안 — 주석은 보존되어야 한다
+page "Login" {
+  button "Sign in"
+}

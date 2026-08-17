@@ -1,0 +1,342 @@
+page width=1280 height=800 {
+  row {
+    sidebar w=275 p=0 border {
+      col gap=1 p=3 {
+        icon "twitter" size=lg p=2
+        col gap=0 {
+          row gap=4 align=center p=3 rounded hover {
+            icon "home" size=md
+            text "Home" size=md weight=bold
+          }
+          row gap=4 align=center p=3 rounded hover {
+            icon "search" size=md
+            text "Explore" size=md
+          }
+          row gap=4 align=center p=3 rounded hover {
+            row {
+              icon "bell" size=md
+              badge "3" variant=primary size=xs
+            }
+            text "Notifications" size=md
+          }
+          row gap=4 align=center p=3 rounded hover {
+            icon "user-plus" size=md
+            text "Follow" size=md
+          }
+          row gap=4 align=center p=3 rounded hover {
+            icon "mail" size=md
+            text "Chat" size=md
+          }
+          row gap=4 align=center p=3 rounded hover {
+            icon "sparkles" size=md
+            text "Grok" size=md
+          }
+          row gap=4 align=center p=3 rounded hover {
+            icon "bookmark" size=md
+            text "Bookmarks" size=md
+          }
+          row gap=4 align=center p=3 rounded hover {
+            icon "users" size=md
+            text "Communities" size=md
+          }
+          row gap=4 align=center p=3 rounded hover {
+            icon "twitter" size=md
+            text "Premium" size=md
+          }
+          row gap=4 align=center p=3 rounded hover {
+            icon "user" size=md
+            text "Profile" size=md
+          }
+          row gap=4 align=center p=3 rounded hover {
+            icon "more-horizontal" size=md
+            text "More" size=md
+          }
+        }
+        button "Post" primary w=full size=lg
+        row gap=3 align=center p=3 mt=4 {
+          avatar "JK" size=md
+          col flex=1 gap=0 {
+            text "John Kim" size=sm weight=semibold
+            text "@johnkim_dev" size=sm muted
+          }
+          icon "more-horizontal" size=sm muted
+        }
+      }
+    }
+    main p=0 flex=1 border scroll {
+      col gap=0 {
+        row border justify=around p=0 {
+          col align=center p=4 flex=1 {
+            text "For you" size=sm weight=bold
+            divider w=60 mt=2
+          }
+          col align=center p=4 flex=1 {
+            text "Following" size=sm muted
+          }
+        }
+        row p=4 gap=3 border align=start {
+          avatar "JK" size=md
+          col flex=1 gap=3 {
+            text "What's happening?" size=md muted
+            row justify=between align=center {
+              row gap=4 {
+                icon "image" size=sm muted
+                icon "file-video" size=sm muted
+                icon "vote" size=sm muted
+                icon "smile" size=sm muted
+                icon "calendar" size=sm muted
+                icon "map-pin" size=sm muted
+              }
+              button "Post" primary size=sm disabled
+            }
+          }
+        }
+        col border {
+          row p=4 gap=3 align=start {
+            avatar "TK" size=md
+            col flex=1 gap=2 {
+              row justify=between {
+                row gap=1 align=center {
+                  text "TechKorea" weight=bold size=sm
+                  icon "badge-check" size=sm
+                  text "@TechKorea" size=sm muted
+                }
+                row gap=2 align=center {
+                  text "Ad" size=xs muted
+                  icon "more-horizontal" size=sm muted
+                }
+              }
+              col gap=1 {
+                text "신제품 출시 안내" weight=semibold size=sm
+                text "새로운 기능, 새로운 경험" size=sm
+                text "지금 바로 확인하세요!" size=sm
+              }
+              placeholder "광고 이미지" h=300 w=full
+              row justify=between px=4 {
+                row gap=1 align=center {
+                  icon "message-circle" size=sm muted
+                  text "12" size=xs muted
+                }
+                row gap=1 align=center {
+                  icon "repeat" size=sm muted
+                  text "456" size=xs muted
+                }
+                row gap=1 align=center {
+                  icon "heart" size=sm muted
+                  text "2.1K" size=xs muted
+                }
+                row gap=1 align=center {
+                  icon "bar-chart-2" size=sm muted
+                  text "52K" size=xs muted
+                }
+                row gap=2 {
+                  icon "bookmark" size=sm muted
+                  icon "share" size=sm muted
+                }
+              }
+            }
+          }
+        }
+        col border {
+          row p=4 gap=3 align=start {
+            avatar "DL" size=md
+            col flex=1 gap=2 {
+              row justify=between {
+                row gap=1 align=center {
+                  text "DevLee" weight=bold size=sm
+                  icon "badge-check" size=sm
+                  text "@devlee_code" size=sm muted
+                  text "·" size=sm muted
+                  text "2h" size=sm muted
+                }
+                icon "more-horizontal" size=sm muted
+              }
+              text "오늘 새로운 오픈소스 프로젝트를 공개했습니다! 많은 관심 부탁드려요 🚀 React 기반의 UI 컴포넌트 라이브러리입니다." size=sm
+              placeholder "프로젝트 스크린샷" h=280 w=full
+              row justify=between px=4 {
+                row gap=1 align=center {
+                  icon "message-circle" size=sm muted
+                  text "234" size=xs muted
+                }
+                row gap=1 align=center {
+                  icon "repeat" size=sm muted
+                  text "1.2K" size=xs muted
+                }
+                row gap=1 align=center {
+                  icon "heart" size=sm muted
+                  text "8.5K" size=xs muted
+                }
+                row gap=1 align=center {
+                  icon "bar-chart-2" size=sm muted
+                  text "125K" size=xs muted
+                }
+                row gap=2 {
+                  icon "bookmark" size=sm muted
+                  icon "share" size=sm muted
+                }
+              }
+            }
+          }
+        }
+        col border {
+          row p=4 gap=3 align=start {
+            avatar "AP" size=md
+            col flex=1 gap=2 {
+              row justify=between {
+                row gap=1 align=center {
+                  text "AI Pioneer" weight=bold size=sm
+                  icon "badge-check" size=sm
+                  text "@ai_pioneer" size=sm muted
+                  text "·" size=sm muted
+                  text "5h" size=sm muted
+                }
+                icon "more-horizontal" size=sm muted
+              }
+              text "AI 기술의 미래에 대한 인터뷰 영상입니다. 꼭 시청해보세요!" size=sm
+              card p=3 border {
+                row gap=3 align=center {
+                  placeholder "영상 썸네일" h=80 w=120
+                  col gap=1 flex=1 {
+                    text "From TechTalks" size=xs muted
+                    text "AI의 미래: 전문가 인터뷰" size=sm weight=semibold
+                  }
+                }
+              }
+              row justify=between px=4 {
+                row gap=1 align=center {
+                  icon "message-circle" size=sm muted
+                  text "89" size=xs muted
+                }
+                row gap=1 align=center {
+                  icon "repeat" size=sm muted
+                  text "567" size=xs muted
+                }
+                row gap=1 align=center {
+                  icon "heart" size=sm muted
+                  text "3.2K" size=xs muted
+                }
+                row gap=1 align=center {
+                  icon "bar-chart-2" size=sm muted
+                  text "78K" size=xs muted
+                }
+                row gap=2 {
+                  icon "bookmark" size=sm muted
+                  icon "share" size=sm muted
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    sidebar w=350 p=0 border {
+      col gap=4 p=4 {
+        row border rounded p=2 gap=2 align=center {
+          icon "search" size=sm muted
+          text "Search" size=sm muted
+        }
+        card p=4 {
+          col gap=2 {
+            text "Subscribe to Premium" weight=bold size=md
+            text "Subscribe to unlock new features and if eligible, receive a share of revenue." size=sm muted
+            button "Subscribe" primary size=sm w=100
+          }
+        }
+        card p=4 {
+          col gap=3 {
+            row justify=between align=center {
+              text "Today's News" weight=bold size=md
+              icon "x" size=sm muted
+            }
+            col gap=3 {
+              col gap=1 {
+                text "글로벌 테크 기업 신제품 발표 예정" size=sm weight=semibold
+                text "14 hours ago · Technology · 85.2K posts" size=xs muted
+              }
+              col gap=1 {
+                text "국내 스타트업 투자 유치 소식" size=sm weight=semibold
+                text "8 hours ago · Business · 42.1K posts" size=xs muted
+              }
+              col gap=1 {
+                text "오픈소스 컨퍼런스 개최 안내" size=sm weight=semibold
+                text "2 days ago · Tech · 23.5K posts" size=xs muted
+              }
+            }
+          }
+        }
+        card p=4 {
+          col gap=3 {
+            text "What's happening" weight=bold size=md
+            col gap=3 {
+              col gap=0 {
+                text "Trending in South Korea" size=xs muted
+                text "개발자컨퍼런스" size=sm weight=semibold
+              }
+              col gap=0 {
+                text "Trending in South Korea" size=xs muted
+                text "AI트렌드" size=sm weight=semibold
+                text "15,234 posts" size=xs muted
+              }
+              col gap=0 {
+                text "Technology · Trending" size=xs muted
+                text "오픈소스" size=sm weight=semibold
+                text "8,456 posts" size=xs muted
+              }
+            }
+            text "Show more" size=sm muted
+          }
+        }
+        card p=4 {
+          col gap=3 {
+            text "Who to follow" weight=bold size=md
+            col gap=3 {
+              row gap=3 align=center {
+                avatar "MK" size=md
+                col flex=1 gap=0 {
+                  row gap=1 align=center {
+                    text "MinJu Kim" size=sm weight=semibold
+                    icon "badge-check" size=xs
+                  }
+                  text "@minjukim_ai" size=xs muted
+                }
+                button "Follow" outline size=sm
+              }
+              row gap=3 align=center {
+                avatar "TC" size=md
+                col flex=1 gap=0 {
+                  row gap=1 align=center {
+                    text "TechCrunch Korea" size=sm weight=semibold
+                    icon "badge-check" size=xs
+                  }
+                  text "@techcrunch_kr" size=xs muted
+                }
+                button "Follow" outline size=sm
+              }
+              row gap=3 align=center {
+                avatar "OS" size=md
+                col flex=1 gap=0 {
+                  row gap=1 align=center {
+                    text "OpenSource Hub" size=sm weight=semibold
+                    icon "badge-check" size=xs
+                  }
+                  text "@opensource_hub" size=xs muted
+                }
+                button "Follow" outline size=sm
+              }
+            }
+            text "Show more" size=sm muted
+          }
+        }
+        row gap=2 wrap {
+          text "Terms of Service" size=xs muted
+          text "Privacy Policy" size=xs muted
+          text "Cookie Policy" size=xs muted
+          text "Accessibility" size=xs muted
+          text "Ads info" size=xs muted
+          text "More" size=xs muted
+          text "© 2026 X Corp." size=xs muted
+        }
+      }
+    }
+  }
+}

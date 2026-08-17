@@ -1,0 +1,163 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "aria": "닫기",
+                  "content": "",
+                  "ghost": true,
+                  "icon": "x",
+                  "navigate": "설정",
+                  "type": "Button"
+                },
+                {
+                  "children": [
+                    {
+                      "content": "이용약관",
+                      "size": "base",
+                      "type": "Text",
+                      "weight": "semibold"
+                    },
+                    {
+                      "content": "시행일 2026-05-01 · v3.2",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    }
+                  ],
+                  "flex": 1,
+                  "gap": 1,
+                  "type": "Col"
+                }
+              ],
+              "gap": 3,
+              "type": "Row"
+            }
+          ],
+          "h": 80,
+          "p": 4,
+          "type": "Header"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "content": "제1조 (목적)",
+                  "level": 3,
+                  "mb": 0,
+                  "size": "md",
+                  "type": "Title"
+                },
+                {
+                  "content": "이 약관은 SwapGrid 배터리 교환 서비스의 이용 조건과 절차, 라이더와 플랫폼의 권리·의무를 정함을 목적으로 합니다.",
+                  "size": "sm",
+                  "type": "Text"
+                },
+                {
+                  "content": "제2조 (용어의 정의)",
+                  "level": 3,
+                  "mb": 0,
+                  "size": "md",
+                  "type": "Title"
+                },
+                {
+                  "items": [
+                    "교환소 — 완충 배터리를 보관하고 교환을 수행하는 설비.",
+                    "배터리 규격 — 등록 차량에 따라 자동으로 결정되는 배터리 종류.",
+                    "예약 — 특정 배터리 한 개를 선점해 두는 행위."
+                  ],
+                  "type": "List"
+                },
+                {
+                  "content": "제3조 (예약과 취소)",
+                  "level": 3,
+                  "mb": 0,
+                  "size": "md",
+                  "type": "Title"
+                },
+                {
+                  "content": "예약은 라이더가 등록한 차량의 규격으로만 생성됩니다. 라이더는 도착 전 언제든 예약을 취소할 수 있으며, 취소된 배터리는 즉시 교환 가능 상태로 되돌아갑니다.",
+                  "size": "sm",
+                  "type": "Text"
+                },
+                {
+                  "content": "예약 유효 시간 및 동시 예약 가능 건수는 별도 안내에 따릅니다.",
+                  "muted": true,
+                  "size": "sm",
+                  "type": "Text"
+                },
+                {
+                  "content": "제4조 (개인정보의 처리)",
+                  "level": 3,
+                  "mb": 0,
+                  "size": "md",
+                  "type": "Title"
+                },
+                {
+                  "content": "개인정보 처리 방침은 별도 문서로 제공되며, 자세한 내용은 아래 링크에서 확인할 수 있습니다.",
+                  "size": "sm",
+                  "type": "Text"
+                },
+                {
+                  "content": "개인정보 처리방침 전문 보기",
+                  "external": true,
+                  "navigate": "https://swapgrid.example.com/privacy",
+                  "type": "Link"
+                },
+                {
+                  "my": 2,
+                  "type": "Divider"
+                },
+                {
+                  "children": [
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "muted": true,
+                          "name": "history",
+                          "size": "sm",
+                          "type": "Icon"
+                        },
+                        {
+                          "content": "이전 버전 보기",
+                          "navigate": "https://swapgrid.example.com/terms/versions",
+                          "type": "Link"
+                        }
+                      ],
+                      "gap": 2,
+                      "type": "Row"
+                    },
+                    {
+                      "content": "이전에 동의한 버전 v3.1 (2026-01-12)",
+                      "muted": true,
+                      "size": "xs",
+                      "type": "Text"
+                    }
+                  ],
+                  "gap": 1,
+                  "type": "Col"
+                }
+              ],
+              "gap": 4,
+              "type": "Col"
+            }
+          ],
+          "p": 4,
+          "scroll": true,
+          "type": "Main"
+        }
+      ],
+      "title": "약관과 안내 문서",
+      "type": "Page",
+      "viewport": "375x812"
+    }
+  ],
+  "type": "Document"
+}

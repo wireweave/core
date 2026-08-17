@@ -1,0 +1,991 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "border": true,
+              "children": [
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "name": "music",
+                          "size": "lg",
+                          "type": "Icon"
+                        },
+                        {
+                          "content": "",
+                          "ghost": true,
+                          "icon": "home",
+                          "size": "lg",
+                          "type": "Button"
+                        },
+                        {
+                          "align": "center",
+                          "border": true,
+                          "children": [
+                            {
+                              "muted": true,
+                              "name": "search",
+                              "size": "sm",
+                              "type": "Icon"
+                            },
+                            {
+                              "content": "어떤 콘텐츠를 감상하고 싶으세요?",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            }
+                          ],
+                          "flex": 1,
+                          "gap": 2,
+                          "p": 2,
+                          "rounded": true,
+                          "type": "Row",
+                          "w": 400
+                        },
+                        {
+                          "content": "",
+                          "ghost": true,
+                          "icon": "grid",
+                          "type": "Button"
+                        }
+                      ],
+                      "gap": 4,
+                      "type": "Row"
+                    },
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "content": "Premium",
+                          "muted": true,
+                          "size": "sm",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "지원",
+                          "muted": true,
+                          "size": "sm",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "다운로드하기",
+                          "muted": true,
+                          "size": "sm",
+                          "type": "Text"
+                        },
+                        {
+                          "h": 20,
+                          "type": "Divider",
+                          "vertical": true
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "name": "download",
+                              "size": "sm",
+                              "type": "Icon"
+                            },
+                            {
+                              "content": "앱 설치하기",
+                              "size": "sm",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Row"
+                        },
+                        {
+                          "content": "가입하기",
+                          "outline": true,
+                          "size": "sm",
+                          "type": "Button"
+                        },
+                        {
+                          "content": "로그인하기",
+                          "primary": true,
+                          "size": "sm",
+                          "type": "Button"
+                        }
+                      ],
+                      "gap": 3,
+                      "type": "Row"
+                    }
+                  ],
+                  "justify": "between",
+                  "px": 4,
+                  "type": "Row"
+                }
+              ],
+              "h": 64,
+              "p": 0,
+              "type": "Header"
+            },
+            {
+              "children": [
+                {
+                  "border": true,
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "name": "library",
+                                  "size": "sm",
+                                  "type": "Icon"
+                                },
+                                {
+                                  "content": "내 라이브러리",
+                                  "type": "Text",
+                                  "weight": "semibold"
+                                }
+                              ],
+                              "gap": 2,
+                              "type": "Row"
+                            },
+                            {
+                              "name": "plus",
+                              "size": "sm",
+                              "type": "Icon"
+                            }
+                          ],
+                          "justify": "between",
+                          "type": "Row"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "content": "첫 번째 플레이리스트를 만드세요.",
+                                  "size": "sm",
+                                  "type": "Text",
+                                  "weight": "semibold"
+                                },
+                                {
+                                  "content": "어렵지 않아요. 저희가 도와드릴게요.",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "플레이리스트 만들기",
+                                  "outline": true,
+                                  "size": "sm",
+                                  "type": "Button"
+                                }
+                              ],
+                              "gap": 2,
+                              "type": "Col"
+                            }
+                          ],
+                          "p": 4,
+                          "title": null,
+                          "type": "Card"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "content": "팔로우할 팟캐스트를 찾아보세요",
+                                  "size": "sm",
+                                  "type": "Text",
+                                  "weight": "semibold"
+                                },
+                                {
+                                  "content": "새로운 에피소드에 대한 소식을 알려드릴게요.",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "팟캐스트 둘러보기",
+                                  "outline": true,
+                                  "size": "sm",
+                                  "type": "Button"
+                                }
+                              ],
+                              "gap": 2,
+                              "type": "Col"
+                            }
+                          ],
+                          "p": 4,
+                          "title": null,
+                          "type": "Card"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "content": "법률 정보",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "안전 및 개인정보 보호 센터",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "개인정보 처리방침",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 2,
+                              "type": "Row",
+                              "wrap": true
+                            },
+                            {
+                              "children": [
+                                {
+                                  "content": "광고 상세정보",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "접근성",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "쿠키",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 2,
+                              "type": "Row"
+                            }
+                          ],
+                          "gap": 1,
+                          "mt": 8,
+                          "type": "Col"
+                        },
+                        {
+                          "align": "center",
+                          "border": true,
+                          "children": [
+                            {
+                              "name": "globe",
+                              "size": "sm",
+                              "type": "Icon"
+                            },
+                            {
+                              "content": "한국어",
+                              "size": "sm",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 2,
+                          "p": 2,
+                          "rounded": true,
+                          "type": "Row",
+                          "w": 100
+                        }
+                      ],
+                      "gap": 4,
+                      "p": 3,
+                      "type": "Col"
+                    }
+                  ],
+                  "p": 0,
+                  "type": "Sidebar",
+                  "w": 350
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "content": "인기 상승 곡",
+                                  "size": "xl",
+                                  "type": "Text",
+                                  "weight": "bold"
+                                },
+                                {
+                                  "content": "모두 표시",
+                                  "muted": true,
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "justify": "between",
+                              "type": "Row"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "children": [],
+                                      "h": 180,
+                                      "label": "앨범 아트",
+                                      "type": "Placeholder",
+                                      "w": "full"
+                                    },
+                                    {
+                                      "content": "Love Love Love",
+                                      "size": "sm",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "content": "에픽하이",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Col",
+                                  "w": 180
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "children": [],
+                                      "h": 180,
+                                      "label": "앨범 아트",
+                                      "type": "Placeholder",
+                                      "w": "full"
+                                    },
+                                    {
+                                      "content": "Punk Rocky",
+                                      "size": "sm",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "content": "A$AP Rocky",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Col",
+                                  "w": 180
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "children": [],
+                                      "h": 180,
+                                      "label": "앨범 아트",
+                                      "type": "Placeholder",
+                                      "w": "full"
+                                    },
+                                    {
+                                      "content": "0+0",
+                                      "size": "sm",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "content": "HANRORO",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Col",
+                                  "w": 180
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "children": [],
+                                      "h": 180,
+                                      "label": "앨범 아트",
+                                      "type": "Placeholder",
+                                      "w": "full"
+                                    },
+                                    {
+                                      "content": "그대 작은 나의 세상이 되어",
+                                      "size": "sm",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "content": "카더가든",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Col",
+                                  "w": 180
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "children": [],
+                                      "h": 180,
+                                      "label": "앨범 아트",
+                                      "type": "Placeholder",
+                                      "w": "full"
+                                    },
+                                    {
+                                      "content": "Close to you",
+                                      "size": "sm",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "content": "SOLE, THAMA",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Col",
+                                  "w": 180
+                                }
+                              ],
+                              "gap": 4,
+                              "type": "Row"
+                            }
+                          ],
+                          "gap": 4,
+                          "type": "Col"
+                        },
+                        {
+                          "children": [
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "content": "인기 아티스트",
+                                  "size": "xl",
+                                  "type": "Text",
+                                  "weight": "bold"
+                                },
+                                {
+                                  "content": "모두 표시",
+                                  "muted": true,
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "justify": "between",
+                              "type": "Row"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "name": "GD",
+                                      "size": "xl",
+                                      "type": "Avatar"
+                                    },
+                                    {
+                                      "content": "G-DRAGON",
+                                      "size": "sm",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "content": "아티스트",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Col",
+                                  "w": 180
+                                },
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "name": "ae",
+                                      "size": "xl",
+                                      "type": "Avatar"
+                                    },
+                                    {
+                                      "content": "aespa",
+                                      "size": "sm",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "content": "아티스트",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Col",
+                                  "w": 180
+                                },
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "name": "D6",
+                                      "size": "xl",
+                                      "type": "Avatar"
+                                    },
+                                    {
+                                      "content": "DAY6",
+                                      "size": "sm",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "content": "아티스트",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Col",
+                                  "w": 180
+                                },
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "name": "NJ",
+                                      "size": "xl",
+                                      "type": "Avatar"
+                                    },
+                                    {
+                                      "content": "NewJeans",
+                                      "size": "sm",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "content": "아티스트",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Col",
+                                  "w": 180
+                                },
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "name": "LS",
+                                      "size": "xl",
+                                      "type": "Avatar"
+                                    },
+                                    {
+                                      "content": "LE SSERAFIM",
+                                      "size": "sm",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "content": "아티스트",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Col",
+                                  "w": 180
+                                }
+                              ],
+                              "gap": 4,
+                              "type": "Row"
+                            }
+                          ],
+                          "gap": 4,
+                          "type": "Col"
+                        },
+                        {
+                          "children": [
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "content": "인기 앨범 및 싱글",
+                                  "size": "xl",
+                                  "type": "Text",
+                                  "weight": "bold"
+                                },
+                                {
+                                  "content": "모두 표시",
+                                  "muted": true,
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "justify": "between",
+                              "type": "Row"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "children": [],
+                                      "h": 180,
+                                      "label": "앨범",
+                                      "type": "Placeholder",
+                                      "w": "full"
+                                    },
+                                    {
+                                      "content": "Caligo Pt.1",
+                                      "size": "sm",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "content": "PLAVE",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Col",
+                                  "w": 180
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "children": [],
+                                      "h": 180,
+                                      "label": "앨범",
+                                      "type": "Placeholder",
+                                      "w": "full"
+                                    },
+                                    {
+                                      "content": "IM HERO",
+                                      "size": "sm",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "content": "임영웅",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Col",
+                                  "w": 180
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "children": [],
+                                      "h": 180,
+                                      "label": "앨범",
+                                      "type": "Placeholder",
+                                      "w": "full"
+                                    },
+                                    {
+                                      "content": "Echo",
+                                      "size": "sm",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "content": "진",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Col",
+                                  "w": 180
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "children": [],
+                                      "h": 180,
+                                      "label": "앨범",
+                                      "type": "Placeholder",
+                                      "w": "full"
+                                    },
+                                    {
+                                      "content": "MUSE",
+                                      "size": "sm",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "content": "지민",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Col",
+                                  "w": 180
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "children": [],
+                                      "h": 180,
+                                      "label": "앨범",
+                                      "type": "Placeholder",
+                                      "w": "full"
+                                    },
+                                    {
+                                      "content": "GOLDEN",
+                                      "size": "sm",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    },
+                                    {
+                                      "content": "정국",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Col",
+                                  "w": 180
+                                }
+                              ],
+                              "gap": 4,
+                              "type": "Row"
+                            }
+                          ],
+                          "gap": 4,
+                          "type": "Col"
+                        }
+                      ],
+                      "gap": 8,
+                      "type": "Col"
+                    }
+                  ],
+                  "flex": 1,
+                  "p": 6,
+                  "scroll": true,
+                  "type": "Main"
+                }
+              ],
+              "flex": 1,
+              "type": "Row"
+            },
+            {
+              "border": true,
+              "children": [
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "children": [],
+                          "h": 56,
+                          "label": "앨범아트",
+                          "type": "Placeholder",
+                          "w": 56
+                        },
+                        {
+                          "children": [
+                            {
+                              "content": "Supernova",
+                              "size": "sm",
+                              "type": "Text",
+                              "weight": "semibold"
+                            },
+                            {
+                              "content": "aespa",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 0,
+                          "type": "Col"
+                        },
+                        {
+                          "muted": true,
+                          "name": "heart",
+                          "size": "sm",
+                          "type": "Icon"
+                        }
+                      ],
+                      "gap": 3,
+                      "type": "Row",
+                      "w": 250
+                    },
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "muted": true,
+                              "name": "shuffle",
+                              "size": "sm",
+                              "type": "Icon"
+                            },
+                            {
+                              "name": "skip-back",
+                              "size": "sm",
+                              "type": "Icon"
+                            },
+                            {
+                              "content": "",
+                              "icon": "play",
+                              "primary": true,
+                              "size": "lg",
+                              "type": "Button"
+                            },
+                            {
+                              "name": "skip-forward",
+                              "size": "sm",
+                              "type": "Icon"
+                            },
+                            {
+                              "muted": true,
+                              "name": "repeat",
+                              "size": "sm",
+                              "type": "Icon"
+                            }
+                          ],
+                          "gap": 4,
+                          "type": "Row"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "1:23",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "flex": 1,
+                              "type": "Progress",
+                              "value": 35
+                            },
+                            {
+                              "content": "3:42",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Row",
+                          "w": 400
+                        }
+                      ],
+                      "flex": 1,
+                      "gap": 2,
+                      "type": "Col"
+                    },
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "muted": true,
+                          "name": "list-music",
+                          "size": "sm",
+                          "type": "Icon"
+                        },
+                        {
+                          "muted": true,
+                          "name": "monitor",
+                          "size": "sm",
+                          "type": "Icon"
+                        },
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "name": "volume-2",
+                              "size": "sm",
+                              "type": "Icon"
+                            },
+                            {
+                              "type": "Progress",
+                              "value": 70,
+                              "w": 80
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Row"
+                        },
+                        {
+                          "muted": true,
+                          "name": "maximize-2",
+                          "size": "sm",
+                          "type": "Icon"
+                        }
+                      ],
+                      "gap": 3,
+                      "justify": "end",
+                      "type": "Row",
+                      "w": 200
+                    }
+                  ],
+                  "justify": "between",
+                  "px": 4,
+                  "type": "Row"
+                }
+              ],
+              "h": 80,
+              "p": 0,
+              "type": "Footer"
+            }
+          ],
+          "type": "Col"
+        }
+      ],
+      "height": 800,
+      "title": null,
+      "type": "Page",
+      "width": 1280
+    }
+  ],
+  "type": "Document"
+}

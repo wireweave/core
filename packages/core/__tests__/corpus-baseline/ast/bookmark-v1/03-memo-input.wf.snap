@@ -1,0 +1,105 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "border": true,
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "name": "x",
+                  "size": "md",
+                  "type": "Icon"
+                },
+                {
+                  "content": "Add Memo",
+                  "spacer": true,
+                  "type": "Text",
+                  "weight": "semibold"
+                }
+              ],
+              "justify": "between",
+              "type": "Row"
+            }
+          ],
+          "h": 56,
+          "p": 3,
+          "type": "Header"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "inputType": "text",
+                  "label": "Page Number",
+                  "type": "Input",
+                  "w": "full"
+                },
+                {
+                  "label": "What are you thinking?",
+                  "mt": 3,
+                  "placeholder": "What are you thinking?",
+                  "type": "Textarea",
+                  "w": "full"
+                },
+                {
+                  "label": "Feeling",
+                  "mt": 3,
+                  "options": [
+                    "Excited",
+                    "Bored",
+                    "Confused",
+                    "Inspired"
+                  ],
+                  "placeholder": "Select feeling",
+                  "type": "Select",
+                  "w": "full"
+                }
+              ],
+              "p": 4,
+              "title": null,
+              "type": "Card"
+            }
+          ],
+          "gap": 4,
+          "p": 4,
+          "scroll": true,
+          "type": "Main"
+        },
+        {
+          "border": true,
+          "children": [
+            {
+              "children": [
+                {
+                  "content": "Cancel",
+                  "outline": true,
+                  "type": "Button"
+                },
+                {
+                  "content": "Save",
+                  "primary": true,
+                  "type": "Button"
+                }
+              ],
+              "gap": 2,
+              "justify": "end",
+              "type": "Row"
+            }
+          ],
+          "p": 3,
+          "type": "Footer"
+        }
+      ],
+      "device": "mobile",
+      "height": 812,
+      "title": "Bookmark App",
+      "type": "Page",
+      "width": 375
+    }
+  ],
+  "type": "Document"
+}

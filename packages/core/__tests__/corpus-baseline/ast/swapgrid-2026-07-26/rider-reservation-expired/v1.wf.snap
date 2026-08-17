@@ -1,0 +1,148 @@
+{
+  "children": [
+    {
+      "centered": true,
+      "children": [
+        {
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "border": true,
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "content": "교환소",
+                                  "muted": true,
+                                  "size": "sm",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "홍대입구 교환소",
+                                  "size": "sm",
+                                  "type": "Text",
+                                  "weight": "medium"
+                                }
+                              ],
+                              "justify": "between",
+                              "type": "Row"
+                            },
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "content": "만료 시각",
+                                  "muted": true,
+                                  "size": "sm",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "오늘 14:32",
+                                  "size": "sm",
+                                  "type": "Text",
+                                  "weight": "medium"
+                                }
+                              ],
+                              "justify": "between",
+                              "type": "Row"
+                            },
+                            {
+                              "my": 1,
+                              "type": "Divider"
+                            },
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "content": "지금 이 교환소 A규격 완충",
+                                  "muted": true,
+                                  "size": "sm",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "2개",
+                                  "pill": true,
+                                  "type": "Badge",
+                                  "variant": "success"
+                                }
+                              ],
+                              "justify": "between",
+                              "type": "Row"
+                            },
+                            {
+                              "content": "서버가 확인한 만료입니다",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Col"
+                        },
+                        {
+                          "children": [
+                            {
+                              "content": "다시 예약하기",
+                              "navigate": "예약하기",
+                              "primary": true,
+                              "type": "Button",
+                              "w": "full"
+                            },
+                            {
+                              "content": "같은 배터리가 돌아온다는 보장은 없습니다. 그 순간 남아 있는 배터리 중 하나가 새로 배정됩니다.",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "다른 교환소 찾기",
+                              "navigate": "교환소 지도",
+                              "outline": true,
+                              "type": "Button",
+                              "w": "full"
+                            },
+                            {
+                              "content": "닫기",
+                              "ghost": true,
+                              "navigate": "내 예약",
+                              "type": "Button",
+                              "w": "full"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Col"
+                        }
+                      ],
+                      "gap": 4,
+                      "type": "Col"
+                    }
+                  ],
+                  "p": 4,
+                  "shadow": "lg",
+                  "title": "예약이 만료되었습니다",
+                  "type": "Card",
+                  "w": 327
+                }
+              ],
+              "gap": 4,
+              "type": "Col"
+            }
+          ],
+          "p": 4,
+          "type": "Main"
+        }
+      ],
+      "title": "예약 만료",
+      "type": "Page",
+      "viewport": "375x812"
+    }
+  ],
+  "type": "Document"
+}

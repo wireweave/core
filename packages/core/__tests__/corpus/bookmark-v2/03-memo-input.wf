@@ -1,0 +1,19 @@
+page "Add Memo" device="mobile" width=375 height=812 {
+  header h=56 border p=3 {
+    row justify=between align=center {
+      text "Add Memo" weight=semibold
+      icon "x"
+    }
+  }
+  main p=4 scroll gap=4 {
+    input "Page" inputType=number placeholder="Enter page number"
+    textarea "What are you thinking?" placeholder="Start typing your thoughts..."
+    select "Feeling" ["Excited", "Thoughtful", "Confused", "Inspired"] placeholder="Select a feeling"
+  }
+  footer p=3 border {
+    row justify=end gap=2 {
+      button "Cancel" outline
+      button "Save" primary
+    }
+  }
+}

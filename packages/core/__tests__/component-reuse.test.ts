@@ -12,6 +12,7 @@ import {
   type ComponentUseNode,
   type PageNode,
 } from '../src'
+import { firstDifference, stripLoc } from './helpers/ast'
 
 const SOURCE = `component profile(name: string, progress: number, disabled: boolean) {
   card {
@@ -49,16 +50,6 @@ page "Grace" {
 function sourceSpan(sourceId: string, node: { loc?: AppSourceSpan['location'] }): AppSourceSpan {
   if (node.loc === undefined) throw new Error(`Expected ${sourceId} node to have a source location`)
   return { sourceId, location: node.loc }
-}
-
-function stripLocations(value: unknown): unknown {
-  if (Array.isArray(value)) return value.map(stripLocations)
-  if (typeof value !== 'object' || value === null) return value
-  return Object.fromEntries(
-    Object.entries(value)
-      .filter(([key]) => key !== 'loc')
-      .map(([key, child]) => [key, stripLocations(child)]),
-  )
 }
 
 function appInputs(source = SOURCE): { manifest: AppManifest; modules: AppModuleInput[] } {
@@ -109,7 +100,7 @@ describe('explicit reusable components', () => {
     const printed = printWireframe(first)
     const second = parse(printed)
 
-    expect(stripLocations(second)).toEqual(stripLocations(first))
+    expect(firstDifference(stripLoc(second), stripLoc(first))).toBeNull()
     expect(printWireframe(second)).toBe(printed)
 
     const pages = first.children.filter((node): node is PageNode => node.type === 'Page')

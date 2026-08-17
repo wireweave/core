@@ -2,7 +2,10 @@
  * @wireweave/language-data
  *
  * Language definitions and metadata for Wireweave DSL editor integrations.
- * This package is independent of @wireweave/core.
+ *
+ * The element set comes from `@wireweave/core/spec` (which the grammar
+ * generates); this package layers editor metadata on top, so editors recognize
+ * a new grammar element without any hand-maintained name list.
  *
  * Provides:
  * - Component and attribute definitions
@@ -23,7 +26,8 @@ export {
 export {
   ATTRIBUTES,
   ATTRIBUTE_MAP,
-  COMMON_ATTRIBUTES,
+  BOX_ATTRIBUTES,
+  CONTAINER_ATTRIBUTES,
   VALID_ATTRIBUTE_NAMES,
 } from './attributes.js'
 export { CATEGORY_LABELS, VALUE_KEYWORDS, COMMON_NUMBERS, SPACING_SCALE } from './keywords.js'

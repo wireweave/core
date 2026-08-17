@@ -162,6 +162,9 @@ export function extractScreenFields(page: PageNode): ScreenFields {
 
 /**
  * Extract {@link ScreenFields} for every page in a document, in document order.
+ *
+ * Reuse definitions are skipped: a `layout` is not a screen and has no fields
+ * of its own until a page is drawn inside it.
  */
 export function extractAllScreenFields(doc: WireframeDocument): ScreenFields[] {
   return documentPages(doc).map((page) => extractScreenFields(page))

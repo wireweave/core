@@ -1,0 +1,284 @@
+page width=1280 height=800 {
+  header h=56 border p=0 {
+    row justify=between align=center px=4 {
+      row gap=4 align=center {
+        icon "menu" size=lg
+        row gap=1 align=center {
+          icon "youtube" size=lg
+          text "YouTube" bold size=lg
+        }
+      }
+      row flex=1 justify=center {
+        row w=600 gap=0 {
+          input placeholder="검색" w=full
+          button "" icon="search" outline
+          button "" icon="mic" ghost
+        }
+      }
+      row gap=3 align=center {
+        button "" icon="square-plus" ghost
+        button "" icon="bell" ghost
+        avatar "User" size=sm
+      }
+    }
+  }
+  row {
+    sidebar w=220 p=0 border {
+      col gap=0 py=2 px=3 {
+        row gap=3 align=center p=2 rounded bg=muted {
+          icon "home" size=sm
+          text "홈" size=sm
+        }
+        row gap=3 align=center p=2 {
+          icon "zap" size=sm muted
+          text "Shorts" size=sm muted
+        }
+        divider
+        row justify=between align=center py=2 {
+          text "구독" size=sm weight=semibold
+          icon "chevron-right" size=sm muted
+        }
+        col gap=0 {
+          row gap=3 align=center py=1 {
+            avatar "TC" size=xs
+            text "Tech Channel" size=xs
+          }
+          row gap=3 align=center py=1 {
+            avatar "MV" size=xs
+            text "Music Videos" size=xs
+          }
+          row gap=3 align=center py=1 {
+            avatar "GL" size=xs
+            text "Gaming Live" size=xs
+          }
+          row gap=3 align=center py=1 {
+            icon "chevron-down" size=xs muted
+            text "더보기" size=xs muted
+          }
+        }
+        divider
+        row justify=between align=center py=2 {
+          text "내 페이지" size=sm weight=semibold
+          icon "chevron-right" size=sm muted
+        }
+        col gap=0 {
+          row gap=3 align=center py=1 {
+            icon "history" size=sm muted
+            text "기록" size=sm muted
+          }
+          row gap=3 align=center py=1 {
+            icon "list" size=sm muted
+            text "재생목록" size=sm muted
+          }
+          row gap=3 align=center py=1 {
+            icon "clock" size=sm muted
+            text "나중에 볼 동영상" size=sm muted
+          }
+        }
+      }
+    }
+    main p=0 scroll {
+      col gap=0 {
+        row gap=2 px=4 py=3 border align=center {
+          badge "전체" variant=primary
+          badge "팟캐스트" variant=outline
+          badge "라이브" variant=outline
+          badge "음악" variant=outline
+          badge "믹스" variant=outline
+          badge "게임" variant=outline
+          icon "chevron-right" size=sm muted
+        }
+        col gap=6 p=4 {
+          row gap=4 {
+            col flex=1 gap=2 {
+              placeholder "Wireweave Ad" h=200 w=full
+              col gap=2 {
+                text "AI와 함께 와이어프레임을 작성하세요 - Wireweave" size=sm weight=semibold
+                text "스폰서 · Wireweave" size=xs muted
+                row gap=2 {
+                  button "자세히 보기" outline size=sm
+                  button "시작하기" primary size=sm
+                }
+              }
+            }
+            col flex=1 gap=2 {
+              placeholder "Live Thumbnail" h=200 w=full
+              row gap=3 {
+                avatar "TC" size=sm
+                col gap=0 flex=1 {
+                  text "[LIVE] Tech Talk Stream" size=sm weight=semibold
+                  text "Tech Channel" size=xs muted
+                  text "1.2K watching" size=xs muted
+                }
+                icon "more-vertical" size=sm muted
+              }
+            }
+            col flex=1 gap=2 {
+              placeholder "Thumbnail" h=200 w=full
+              row gap=3 {
+                avatar "DC" size=sm
+                col gap=0 flex=1 {
+                  text "10 Tips for Better Productivity" size=sm weight=semibold
+                  text "Daily Content" size=xs muted
+                  text "150K views · 2 weeks ago" size=xs muted
+                }
+                icon "more-vertical" size=sm muted
+              }
+            }
+          }
+          col gap=3 {
+            row justify=between align=center {
+              row gap=2 align=center {
+                icon "flame" size=sm
+                text "Shorts" weight=semibold size=md
+              }
+              icon "more-vertical" size=sm muted
+            }
+            row gap=3 {
+              col flex=1 gap=1 {
+                placeholder "Shorts" h=280 w=full
+                text "Amazing Dance Moves" size=xs weight=semibold
+                text "3.1M views" size=xs muted
+              }
+              col flex=1 gap=1 {
+                placeholder "Shorts" h=280 w=full
+                text "Quick Cooking Tips" size=xs weight=semibold
+                text "250K views" size=xs muted
+              }
+              col flex=1 gap=1 {
+                placeholder "Shorts" h=280 w=full
+                text "Funny Pet Moments" size=xs weight=semibold
+                text "370K views" size=xs muted
+              }
+              col flex=1 gap=1 {
+                placeholder "Shorts" h=280 w=full
+                text "Life Hacks You Need" size=xs weight=semibold
+                text "250K views" size=xs muted
+              }
+              col flex=1 gap=1 {
+                placeholder "Shorts" h=280 w=full
+                text "Travel Highlights" size=xs weight=semibold
+                text "1.01M views" size=xs muted
+              }
+            }
+          }
+
+          row gap=4 {
+            col flex=1 gap=2 {
+              placeholder "Thumbnail" h=200 w=full
+              row gap=3 {
+                avatar "MV" size=sm
+                col gap=0 flex=1 {
+                  text "Top Hits Playlist 2024" size=sm weight=semibold
+                  text "Music Videos" size=xs muted
+                  text "7.3M views · 1 year ago" size=xs muted
+                }
+                icon "more-vertical" size=sm muted
+              }
+            }
+            col flex=1 gap=2 {
+              placeholder "Thumbnail" h=200 w=full
+              row gap=3 {
+                avatar "CC" size=sm
+                col gap=0 flex=1 {
+                  text "Learn Coding in 30 Days" size=sm weight=semibold
+                  text "Code Camp" size=xs muted
+                  text "10K views · 3 weeks ago" size=xs muted
+                }
+                icon "more-vertical" size=sm muted
+              }
+            }
+            col flex=1 gap=2 {
+              placeholder "Thumbnail" h=200 w=full
+              row gap=3 {
+                avatar "FT" size=sm
+                col gap=0 flex=1 {
+                  text "Fitness Routine for Beginners" size=sm weight=semibold
+                  text "Fitness Today" size=xs muted
+                  text "5.1K views · 4 days ago" size=xs muted
+                }
+                icon "more-vertical" size=sm muted
+              }
+            }
+          }
+
+          col gap=3 {
+            row justify=between align=center {
+              row gap=2 align=center {
+                icon "flame" size=sm
+                text "Shorts" weight=semibold size=md
+              }
+              icon "more-vertical" size=sm muted
+            }
+            row gap=3 {
+              col flex=1 gap=1 {
+                placeholder "Shorts" h=280 w=full
+                text "Quick DIY Projects" size=xs weight=semibold
+                text "8.5K views" size=xs muted
+              }
+              col flex=1 gap=1 {
+                placeholder "Shorts" h=280 w=full
+                text "Tech Tips in 60 Sec" size=xs weight=semibold
+                text "14K views" size=xs muted
+              }
+              col flex=1 gap=1 {
+                placeholder "Shorts" h=280 w=full
+                text "Books That Changed Me" size=xs weight=semibold
+                text "33K views" size=xs muted
+              }
+              col flex=1 gap=1 {
+                placeholder "Shorts" h=280 w=full
+                text "Behind the Scenes" size=xs weight=semibold
+                text "450K views" size=xs muted
+              }
+              col flex=1 gap=1 {
+                placeholder "Shorts" h=280 w=full
+                text "Sibling Pranks" size=xs weight=semibold
+                text "4.15M views" size=xs muted
+              }
+            }
+          }
+
+          row gap=4 {
+            col flex=1 gap=2 {
+              placeholder "Thumbnail" h=200 w=full
+              row gap=3 {
+                avatar "VL" size=sm
+                col gap=0 flex=1 {
+                  text "Vlog: A Day in My Life" size=sm weight=semibold
+                  text "Vlogger Life" size=xs muted
+                  text "210K views · 7 days ago" size=xs muted
+                }
+                icon "more-vertical" size=sm muted
+              }
+            }
+            col flex=1 gap=2 {
+              placeholder "Thumbnail" h=200 w=full
+              row gap=3 {
+                avatar "CK" size=sm
+                col gap=0 flex=1 {
+                  text "Easy Recipe: Chocolate Cookies" size=sm weight=semibold
+                  text "Chef Kitchen" size=xs muted
+                  text "4.1M views · 2 weeks ago" size=xs muted
+                }
+                icon "more-vertical" size=sm muted
+              }
+            }
+            col flex=1 gap=2 {
+              placeholder "Thumbnail" h=200 w=full
+              row gap=3 {
+                avatar "TN" size=sm
+                col gap=0 flex=1 {
+                  text "Weekly Tech News Roundup" size=sm weight=semibold
+                  text "Tech News Daily" size=xs muted
+                  text "40K views · 2 weeks ago" size=xs muted
+                }
+                icon "more-vertical" size=sm muted
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

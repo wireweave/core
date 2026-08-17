@@ -1,0 +1,39 @@
+page "로그인" viewport="375x812" {
+  header border=false h=120 p=6 {
+    col align=center gap=2 {
+      icon "battery-charging" size=xl
+      title "SwapGrid" align=center level=1 size=xl
+      text "라이더" align=center muted size=sm
+    }
+  }
+  main p=6 scroll {
+    col gap=6 {
+      col gap=4 {
+        text "인증 방식 미확정 (OPEN)" muted size=xs
+        input "식별자" icon=user placeholder="계정 식별자" required type=text w=full
+        input "인증값" icon=lock placeholder="인증값을 입력하세요" required type=password w=full
+      }
+      col gap=4 {
+        button "로그인" action=submit disabled primary size=lg w=full
+        switch "자동 로그인" checked
+        text "다음 실행 때 이 화면을 건너뜁니다." muted size=xs
+      }
+      divider my=2
+      col align=center gap=3 {
+        row align=center gap=2 justify=center {
+          text "계정이 없으신가요?" muted size=sm
+          link "가입" navigate="가입"
+        }
+        link "로그인에 문제가 있나요?" opens=recovery-sheet
+        text "계정은 소속 운영사가 발급합니다" align=center muted size=xs
+      }
+    }
+  }
+  drawer "계정 복구 안내" id=recovery-sheet position=right w=340 {
+    col gap=4 {
+      alert "복구 경로가 아직 정해지지 않았습니다." icon=info variant=info
+      text "인증 방식이 정해지면 이 안내에 연결할 대상이 확정됩니다." muted size=sm
+      button "닫기" outline toggles=recovery-sheet w=full
+    }
+  }
+}

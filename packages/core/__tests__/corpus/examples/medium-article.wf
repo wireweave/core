@@ -1,0 +1,195 @@
+page width=800 height=900 {
+  header h=56 border p=0 {
+    row justify=between align=center px=6 {
+      text "Medium" bold size=xl
+      row gap=2 align=center {
+        row gap=2 border rounded p=2 align=center {
+          icon "search" size=sm muted
+          text "Search" size=sm muted
+        }
+      }
+      row gap=3 align=center {
+        row gap=2 align=center {
+          icon "edit" size=sm
+          text "Write" size=sm
+        }
+        button "Sign up" ghost size=sm
+        text "Sign in" size=sm muted
+      }
+    }
+  }
+
+  main p=0 scroll {
+    col px=20 py=10 gap=6 {
+      col gap=4 {
+        title "좋은 개발자가 되기 위한 5가지 습관" level=1
+
+        row gap=3 align=center {
+          avatar "김개발" size=md
+          col gap=1 flex=1 {
+            row gap=2 align=center {
+              text "김개발" weight=semibold
+              button "Follow" primary size=sm
+            }
+            row gap=2 {
+              text "10 min read" size=sm muted
+              text "·" muted
+              text "Jan 8, 2025" size=sm muted
+            }
+          }
+        }
+
+        row justify=between align=center py=2 border {
+          row gap=4 {
+            row gap=1 align=center {
+              icon "hand" size=sm muted
+              text "2.4K" size=sm muted
+            }
+            row gap=1 align=center {
+              icon "message-circle" size=sm muted
+              text "89" size=sm muted
+            }
+          }
+          row gap=3 {
+            icon "bookmark" size=sm muted
+            icon "headphones" size=sm muted
+            icon "share" size=sm muted
+          }
+        }
+      }
+
+      placeholder "대표 이미지" h=400 w=full
+
+      col gap=6 {
+        col gap=3 {
+          text "소프트웨어 개발은 단순히 코드를 작성하는 것 이상입니다. 진정한 개발자가 되기 위해서는 기술적 능력뿐만 아니라 올바른 습관과 마인드셋이 필요합니다. 오늘은 제가 10년간의 경험을 통해 배운 5가지 핵심 습관을 공유하고자 합니다."
+        }
+
+        col gap=3 {
+          title "1. 매일 코드 읽기" level=2
+          text "좋은 글을 쓰려면 많이 읽어야 하듯, 좋은 코드를 작성하려면 좋은 코드를 많이 읽어야 합니다. GitHub에서 인기 있는 오픈소스 프로젝트의 코드를 매일 30분씩 읽어보세요. 다른 개발자들이 어떻게 문제를 해결하는지 배울 수 있습니다."
+        }
+
+        card p=4 {
+          col gap=2 {
+            text "💡 Tip" weight=bold
+            text "처음에는 자신이 사용하는 라이브러리의 소스 코드부터 시작해보세요. 익숙한 API의 내부 구현을 이해하면 더 효과적으로 사용할 수 있습니다."
+          }
+        }
+
+        col gap=3 {
+          title "2. 문서화 습관" level=2
+          text "코드만큼 중요한 것이 문서입니다. 미래의 자신과 동료를 위해 항상 명확한 문서를 작성하세요. README, 주석, API 문서 등 모든 형태의 문서화에 익숙해지세요."
+        }
+
+        col gap=3 {
+          title "3. 작은 커밋, 자주 커밋" level=2
+          text "하나의 큰 변경보다 여러 개의 작은 변경이 낫습니다. 각 커밋은 하나의 목적만 가져야 하며, 커밋 메시지는 명확해야 합니다. 이는 코드 리뷰를 쉽게 만들고, 문제 발생 시 롤백을 용이하게 합니다."
+        }
+
+        col gap=3 {
+          title "4. 테스트 코드 작성하기" level=2
+          text "테스트 코드는 단순히 버그를 찾는 것이 아닙니다. 테스트를 작성하면서 코드의 설계를 다시 생각하게 되고, 더 나은 구조를 만들 수 있습니다. TDD(Test-Driven Development)를 시도해보세요."
+          card p=3 border {
+            col gap=1 {
+              text "코드 예시" size=xs muted
+              text "describe('Calculator', () => {\n  it('should add two numbers', () => {\n    expect(add(2, 3)).toBe(5);\n  });\n});" size=sm
+            }
+          }
+        }
+
+        col gap=3 {
+          title "5. 지속적인 학습" level=2
+          text "기술은 빠르게 변화합니다. 매일 30분이라도 새로운 것을 배우는 시간을 확보하세요. 블로그, 유튜브, 컨퍼런스 영상 등 다양한 소스를 활용하세요."
+        }
+
+        divider
+
+        row gap=4 align=center py=4 {
+          row gap=1 align=center {
+            icon "hand" size=lg
+            text "2.4K" weight=semibold
+          }
+          row gap=1 align=center {
+            icon "message-circle" size=lg
+            text "89" weight=semibold
+          }
+          row flex=1 justify=end gap=3 {
+            icon "bookmark" size=md
+            icon "share" size=md
+          }
+        }
+      }
+
+      row gap=2 wrap {
+        badge "Programming" variant=outline
+        badge "Software Development" variant=outline
+        badge "Career" variant=outline
+        badge "Productivity" variant=outline
+        badge "Self Improvement" variant=outline
+      }
+
+      divider
+
+      col gap=4 py=4 {
+        row gap=3 align=start {
+          avatar "김개발" size=lg
+          col gap=2 flex=1 {
+            row justify=between align=center {
+              col gap=0 {
+                text "Written by 김개발" weight=semibold
+                row gap=2 {
+                  text "1.2K followers" size=sm muted
+                  text "·" size=sm muted
+                  text "256 following" size=sm muted
+                }
+              }
+              button "Follow" primary size=sm
+            }
+            text "시니어 소프트웨어 엔지니어 | 오픈소스 컨트리뷰터 | 기술 블로거. 10년간의 개발 경험을 바탕으로 개발자 성장에 관한 이야기를 나눕니다." size=sm
+          }
+        }
+      }
+
+      divider
+
+      col gap=4 py=4 {
+        row justify=between align=center {
+          text "Responses (89)" weight=semibold
+          icon "shield-check" size=sm muted
+        }
+        card p=3 {
+          col gap=2 {
+            text "What are your thoughts?" muted
+            row justify=between {
+              row gap=2 {
+                icon "bold" size=sm muted
+                icon "italic" size=sm muted
+              }
+              row gap=2 {
+                button "Cancel" ghost size=sm
+                button "Respond" primary size=sm disabled
+              }
+            }
+          }
+        }
+        button "See all responses" ghost size=sm
+      }
+    }
+  }
+
+  footer h=48 border p=0 {
+    row justify=center align=center gap=4 px=6 {
+      text "Help" size=xs muted
+      text "Status" size=xs muted
+      text "About" size=xs muted
+      text "Careers" size=xs muted
+      text "Press" size=xs muted
+      text "Blog" size=xs muted
+      text "Privacy" size=xs muted
+      text "Rules" size=xs muted
+      text "Terms" size=xs muted
+      text "Text to speech" size=xs muted
+    }
+  }
+}

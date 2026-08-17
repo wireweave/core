@@ -117,6 +117,11 @@ export interface ScreenFields {
 
 /**
  * A node in the screen-transition graph.
+ *
+ * `id` is the page's declared identifier — a stable slug an author opted into —
+ * and `title` is its display heading. They are separate namespaces: `id` is what
+ * a `navigate` target should key off, `title` is what a reader sees. Either can
+ * be absent.
  */
 export interface TransitionScreen {
   id?: string
@@ -134,6 +139,10 @@ export interface TransitionEdge {
    * The destination page for a resolved `navigate` edge. Always `null` for
    * `opens` / `toggles` / `action`, which are intra-page or opaque and never
    * cross a page boundary.
+   *
+   * `id` / `title` mirror {@link TransitionScreen}: present when the page
+   * declares them, so a consumer can address the destination by its stable slug
+   * rather than by display text.
    */
   to: { pageIndex: number; id?: string; title?: string } | null
   /** The raw target string as written in the DSL. */
@@ -154,18 +163,27 @@ export interface TransitionEdge {
    */
   trigger: { nodeType: NodeType; label?: string; loc?: SourceLocation; item?: { index: number } }
   /**
-   * Whether `target` resolved to a concrete destination for its kind:
-   * - `navigate`: a page whose title matches `target`, or a URL-shaped external
-   *   destination outside this document.
+   * Whether `target` names a concrete destination for its kind:
+   * - `navigate`: a page whose `id` matches `target`, or — failing that — whose
+   *   `title` matches it. Identifiers are consulted before display text; see
+   *   `extract/transitions.ts` for why. Also `true` for an `external` target: a
+   *   URL is a complete destination, it is simply not one of this document's
+   *   pages, which is why `to` is `null` there.
    * - `opens` / `toggles`: a `Modal` / `Drawer` with `id === target` in the
    *   source page.
    * - `action`: always `false` (an opaque handler id has no structural target).
    */
   resolved: boolean
   /**
-   * Present, and always `true`, when a `navigate` target is a URL rather than a
-   * page name. External edges are resolved destinations outside this document,
-   * so `to` remains `null` and they never appear in `dangling`.
+   * Present, and always `true`, when a `navigate` target is a URL rather than
+   * the name of a page (see `interaction/target.ts`). Such an edge leaves the
+   * document: `to` is `null` because there is no page to point at, and it is
+   * never {@link ScreenTransitionGraph.dangling | dangling} — an outbound link
+   * is a destination the author meant, not a reference that failed to resolve.
+   *
+   * This is what separates an external link from an `action`: both have
+   * `to === null`, but an `action` is an opaque handler with `resolved: false`,
+   * while an external link is a real destination the browser can follow.
    */
   external?: true
 }
@@ -177,12 +195,19 @@ export interface ScreenTransitionGraph {
   screens: TransitionScreen[]
   edges: TransitionEdge[]
   /**
-   * The subset of `navigate` edges whose target matched no page title and was
-   * not URL-shaped (`resolved === false`, `to === null`). Intra-page
-   * `opens` / `toggles`, opaque `action` edges, and external URLs never appear
-   * here.
+   * The subset of `navigate` edges whose target matched neither a page `id` nor
+   * a page title and is not a URL (`resolved === false`, `to === null`) — a name
+   * that was meant to be a screen and found none. This is the defect list: a
+   * consumer reporting "broken transitions" counts exactly these. Intra-page
+   * `opens` / `toggles` and opaque `action` edges are not page transitions and
+   * never appear here, and neither do `external` links.
    */
   dangling: TransitionEdge[]
-  /** URL-shaped `navigate` edges that leave the current document. */
+  /**
+   * The subset of `navigate` edges leaving the document — targets that are URLs
+   * rather than page names ({@link TransitionEdge.external}). Kept apart from
+   * `dangling` so a consumer can show outbound links without counting correct
+   * authoring as breakage.
+   */
   external: TransitionEdge[]
 }

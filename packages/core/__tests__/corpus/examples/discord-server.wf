@@ -1,0 +1,212 @@
+page width=1440 height=800 {
+  col {
+    header h=32 p=0 {
+      row justify=between align=center px=4 {
+        row gap=2 align=center {
+          icon "chevron-left" size=sm muted
+          text "개발자 커뮤니티" weight=semibold size=sm
+        }
+        row gap=3 align=center {
+          icon "inbox" size=sm
+          icon "help-circle" size=sm muted
+        }
+      }
+    }
+
+    row flex=1 {
+      col w=72 p=3 gap=2 align=center {
+        avatar "H" size=md
+        divider
+        avatar "S1" size=md
+        avatar "S2" size=md
+        avatar "S3" size=md
+        divider
+        button "" icon="plus" ghost
+        button "" icon="compass" ghost
+      }
+
+      sidebar w=240 p=0 {
+        header h=48 border p=0 {
+          row justify=between align=center px=4 {
+            text "개발자 커뮤니티" weight=bold size=sm
+            icon "chevron-down" size=sm
+          }
+        }
+
+        col p=2 gap=1 scroll {
+          section "텍스트 채널" {
+            nav vertical {
+              item "일반" icon="hash" active
+              item "공지사항" icon="hash"
+              item "질문답변" icon="hash"
+              item "프로젝트-공유" icon="hash"
+              item "취업정보" icon="hash"
+            }
+          }
+          section "음성 채널" {
+            nav vertical {
+              item "일반 음성" icon="volume-2"
+              item "스터디룸 1" icon="volume-2"
+              item "스터디룸 2" icon="volume-2"
+            }
+          }
+        }
+
+        footer border p=2 {
+          row gap=2 align=center {
+            avatar "Me" size=sm
+            col flex=1 gap=0 {
+              text "내 닉네임" size=sm weight=semibold
+              text "온라인" size=xs muted
+            }
+            row gap=1 {
+              icon "mic" size=sm muted
+              icon "headphones" size=sm muted
+              icon "settings" size=sm muted
+            }
+          }
+        }
+      }
+
+      col flex=1 {
+        header h=48 border p=0 {
+          row justify=between align=center px=4 {
+            row gap=2 align=center {
+              icon "hash"
+              text "일반" weight=bold
+              text "개발 관련 자유로운 대화" size=sm muted
+            }
+            row gap=3 {
+              icon "bell" size=sm muted
+              icon "pin" size=sm muted
+              icon "users" size=sm muted
+              input placeholder="검색" w=180
+              icon "inbox" size=sm muted
+              icon "help-circle" size=sm muted
+            }
+          }
+        }
+
+        main p=0 flex=1 scroll {
+          col gap=4 p=4 {
+            row gap=3 align=start {
+              avatar "김개발" size=md
+              col gap=1 {
+                row gap=2 align=baseline {
+                  text "김개발" weight=bold size=sm
+                  text "오늘 오후 2:30" size=xs muted
+                }
+                text "안녕하세요! React 관련해서 질문이 있는데요, useEffect에서 cleanup 함수는 언제 호출되나요?"
+              }
+            }
+
+            row gap=3 align=start {
+              avatar "이풀스택" size=md
+              col gap=1 {
+                row gap=2 align=baseline {
+                  text "이풀스택" weight=bold size=sm
+                  text "오늘 오후 2:32" size=xs muted
+                }
+                text "컴포넌트가 언마운트될 때와 의존성 배열의 값이 변경되어 effect가 다시 실행되기 전에 호출됩니다!"
+              }
+            }
+
+            row gap=3 align=start {
+              avatar "박주니어" size=md
+              col gap=1 {
+                row gap=2 align=baseline {
+                  text "박주니어" weight=bold size=sm
+                  text "오늘 오후 2:35" size=xs muted
+                }
+                text "저도 그거 헷갈렸었는데, 공식 문서에 잘 나와있어요 👍"
+                card p=3 mt=2 w=400 {
+                  col gap=1 {
+                    text "React 공식 문서 - useEffect" weight=bold size=sm
+                    text "react.dev" size=xs muted
+                  }
+                }
+              }
+            }
+
+            row gap=3 align=start {
+              avatar "김개발" size=md
+              col gap=1 {
+                row gap=2 align=baseline {
+                  text "김개발" weight=bold size=sm
+                  text "오늘 오후 2:38" size=xs muted
+                }
+                text "감사합니다! 이해됐어요 😊"
+              }
+            }
+
+            row gap=3 align=start {
+              avatar "최시니어" size=md
+              col gap=1 {
+                row gap=2 align=baseline {
+                  text "최시니어" weight=bold size=sm
+                  badge "Admin" variant=danger size=xs
+                  text "오늘 오후 3:15" size=xs muted
+                }
+                text "추가로 설명드리면, StrictMode에서는 개발 환경에서 cleanup이 두 번 호출될 수 있어요. 이건 의도된 동작입니다."
+              }
+            }
+          }
+        }
+
+        footer border p=3 {
+          row gap=2 align=center {
+            icon "plus-circle"
+            input placeholder="#일반에 메시지 보내기" w=full
+            icon "gift" muted
+            icon "sticker" muted
+            icon "smile" muted
+          }
+        }
+      }
+
+      col w=240 border p=3 {
+        text "온라인 — 12" size=sm muted mb=2
+        col gap=2 {
+          row gap=2 align=center {
+            avatar "이풀스택" size=sm
+            col gap=0 {
+              text "이풀스택" size=sm
+            }
+          }
+          row gap=2 align=center {
+            avatar "박주니어" size=sm
+            col gap=0 {
+              text "박주니어" size=sm
+            }
+          }
+          row gap=2 align=center {
+            avatar "최시니어" size=sm
+            col gap=0 {
+              row gap=1 align=center {
+                text "최시니어" size=sm
+                badge "Admin" variant=danger size=xs
+              }
+            }
+          }
+          row gap=2 align=center {
+            avatar "정백엔드" size=sm
+            col gap=0 {
+              text "정백엔드" size=sm
+            }
+          }
+        }
+        text "오프라인 — 45" size=sm muted mt=4 mb=2
+        col gap=2 {
+          row gap=2 align=center {
+            avatar "강디자인" size=sm
+            text "강디자인" size=sm muted
+          }
+          row gap=2 align=center {
+            avatar "윤기획" size=sm
+            text "윤기획" size=sm muted
+          }
+        }
+      }
+    }
+  }
+}

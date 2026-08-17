@@ -1,8 +1,9 @@
 /**
  * Type definitions for Wireweave language data
  *
- * Editor-specific types for IDE integrations.
- * This package is independent of @wireweave/core.
+ * Editor-specific types for IDE integrations. They extend the DSL spec that
+ * `@wireweave/core/spec` derives from the grammar; this package adds editor
+ * concerns (examples, parent/child hints) rather than redefining the language.
  */
 
 /**
@@ -13,6 +14,8 @@ export type AttributeValueType =
   | 'number'
   | 'string'
   | 'string[]'
+  | 'object'
+  | 'object[]'
   | 'enum'
   /** Functional shorthand like `at(x, y)` — value is parenthesized arguments, not `name=value`. */
   | 'function'
@@ -21,6 +24,7 @@ export type AttributeValueType =
  * Component category
  */
 export type ComponentCategory =
+  | 'structure'
   | 'layout'
   | 'grid'
   | 'container'

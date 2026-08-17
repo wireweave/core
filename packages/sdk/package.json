@@ -3,6 +3,7 @@
   "version": "0.1.1-beta.4",
   "description": "Wireweave SDK - typed HTTP client, auth, and local tools for the Wireweave API. Sole owner of api-server contract for mcp-server, cli, and skill packages.",
   "type": "module",
+  "sideEffects": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
@@ -22,6 +23,7 @@
   },
   "scripts": {
     "build": "tsup",
+    "postbuild": "node ../../scripts/dist-freshness-gate.mjs --write .",
     "dev": "tsup --watch",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -31,7 +33,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "knip": "knip",
-    "publint": "publint",
+    "publint": "publint --strict",
     "release": "release-it",
     "release:beta": "release-it --preRelease=beta"
   },
@@ -76,7 +78,7 @@
   ],
   "license": "MIT",
   "engines": {
-    "node": ">=20"
+    "node": ">=22.13.0"
   },
   "publishConfig": {
     "access": "public"

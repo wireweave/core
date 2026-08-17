@@ -1,0 +1,39 @@
+page "Book Detail" width=375 height=812 {
+  header h=56 border {
+    row justify=between align=center px=4 {
+      icon "arrow_back"
+      spacer
+      text "Book Title" weight=semibold
+      spacer
+    }
+  }
+  main p=4 scroll gap=4 {
+    col align=center gap=3 {
+      placeholder "Cover" w=120 h=160
+      title "Book Title" level=3 align=center
+      text "Author Name" align=center size=md
+      text "145/320" align=center weight=medium
+    }
+    section "Reading Log" {
+      col gap=3 {
+        card p=3 {
+          row justify=between align=center {
+            text "Mar 15, 2023" muted size=sm
+            badge "145" variant=default
+          }
+          text "Finished chapter 4. Great insights on character development."
+        }
+        card p=3 {
+          row justify=between align=center {
+            text "Mar 16, 2023" muted size=sm
+            badge "150" variant=default
+          }
+          text "Started chapter 5. The pacing feels slower than previous chapters."
+        }
+      }
+    }
+  }
+  footer p=4 {
+    button "Add Memo" primary w=full
+  }
+}

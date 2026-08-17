@@ -1,0 +1,50 @@
+page "Product" width=900 height=450 {
+  header p=3 border {
+    row justify=between align=center {
+      title "ShopStyle" level=4
+      row gap=4 {
+        link "Home"
+        link "Products"
+        link "Categories"
+      }
+      row gap=2 {
+        icon "search"
+        icon "heart"
+        icon "shopping-cart"
+      }
+    }
+  }
+
+  main p=4 {
+    row gap=6 {
+      placeholder "Product Image" w=300 h=300
+
+      col gap=3 {
+        badge "New Arrival" variant=info
+        title "Premium Headphones" level=3
+        row gap=1 {
+          icon "star" size=sm
+          icon "star" size=sm
+          icon "star" size=sm
+          icon "star" size=sm
+          icon "star" size=sm
+          text "(128)" muted size=sm
+        }
+
+        title "$299.00" level=2
+        text "Premium noise-cancelling headphones." muted size=sm
+
+        row gap=2 {
+          text "Color:" size=sm
+          badge "Black" pill
+          badge "White" pill
+        }
+
+        row gap=2 {
+          button "Add to Cart" primary
+          button "Wishlist" outline
+        }
+      }
+    }
+  }
+}

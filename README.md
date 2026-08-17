@@ -11,20 +11,18 @@ Wireweave는 와이어프레임을 코드로 작성하는 텍스트 기반 DSL�
 
 ## 패키지
 
-| 패키지                                                   | 역할                                                                                                                       | 배포                   |
-| -------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
-| [`@wireweave/core`](packages/core)                       | DSL 파서/렌더러 (Peggy grammar). parse · render(HTML·SVG) · analyze · diff · export(figma·json)                            | npm                    |
-| [`@wireweave/language-data`](packages/language-data)     | 컴포넌트 어휘/속성 데이터 (에디터 자동완성·검증용). Monaco·CodeMirror 서브패스 제공                                        | npm                    |
-| [`@wireweave/ux-rules`](packages/ux-rules)               | UX 검증 규칙 + 0~100 점수 (`validateUX`)                                                                                   | npm                    |
-| [`@wireweave/agent-prompts`](packages/agent-prompts)     | LLM이 DSL을 생성하도록 돕는 문법 가이드 프롬프트 (`buildGrammarPrompt`)                                                    | npm                    |
-| [`@wireweave/markdown-plugin`](packages/markdown-plugin) | 마크다운 코드블록(`.wf`) 렌더링 (markdown-it · marked · remarkable)                                                        | npm                    |
-| [`wireweave-vscode`](packages/vscode-extension)          | VS Code / Cursor 확장 (구문 강조 · 자동완성 · 프리뷰)                                                                      | Marketplace + Open VSX |
-| [`@wireweave/sdk`](packages/sdk)                         | 플랫폼 클라이언트. `dispatch()`로 로컬 도구(무료·무키)와 원격(API 서버, 키) 라우팅 + auth                                  | npm                    |
-| [`@wireweave/cli`](packages/cli)                         | SDK 위의 터미널 CLI (`wireweave` 바이너리)                                                                                 | npm                    |
-| [`@wireweave/mcp-server`](packages/mcp-server)           | MCP 서버 (SDK 래핑, `WIREWEAVE_API_KEY` 필요)                                                                              | npm                    |
-| [`@wireweave/ssot-core`](packages/ssot-core)             | SSOT 코어 — frontmatter/body 파싱 · 정규화 그래프 · traversal·impact · graph-view 파생 (무런타임 의존, isomorphic)         | npm                    |
-| [`@wireweave/ssot-tools`](packages/ssot-tools)           | SSOT 파일시스템·오케스트레이션 — catalog · scaffold · verify · mirror/lifecycle sync · governance (→ ssot-core, Node 전용) | npm                    |
-| [`@wireweave/docs`](docs)                                | VitePress 문서 사이트                                                                                                      | Vercel (비발행)        |
+| 패키지                                                   | 역할                                                                                            | 배포                   |
+| -------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ---------------------- |
+| [`@wireweave/core`](packages/core)                       | DSL 파서/렌더러 (Peggy grammar). parse · render(HTML·SVG) · analyze · diff · export(figma·json) | npm                    |
+| [`@wireweave/language-data`](packages/language-data)     | 컴포넌트 어휘/속성 데이터 (에디터 자동완성·검증용). Monaco·CodeMirror 서브패스 제공             | npm                    |
+| [`@wireweave/ux-rules`](packages/ux-rules)               | UX 검증 규칙 + 0~100 점수 (`validateUX`)                                                        | npm                    |
+| [`@wireweave/agent-prompts`](packages/agent-prompts)     | LLM이 DSL을 생성하도록 돕는 문법 가이드 프롬프트 (`buildGrammarPrompt`)                         | npm                    |
+| [`@wireweave/markdown-plugin`](packages/markdown-plugin) | 마크다운 코드블록(`.wf`) 렌더링 (markdown-it · marked · remarkable)                             | npm                    |
+| [`wireweave-vscode`](packages/vscode-extension)          | VS Code / Cursor 확장 (구문 강조 · 자동완성 · 프리뷰)                                           | Marketplace + Open VSX |
+| [`@wireweave/sdk`](packages/sdk)                         | 플랫폼 클라이언트. `dispatch()`로 로컬 도구(무료·무키)와 원격(API 서버, 키) 라우팅 + auth       | npm                    |
+| [`@wireweave/cli`](packages/cli)                         | SDK 위의 터미널 CLI (`wireweave` 바이너리)                                                      | npm                    |
+| [`@wireweave/mcp-server`](packages/mcp-server)           | MCP 서버 (SDK 래핑, `WIREWEAVE_API_KEY` 필요)                                                   | npm                    |
+| [`@wireweave/docs`](docs)                                | VitePress 문서 사이트                                                                           | Vercel (비발행)        |
 
 ### 무료/유료 경계
 

@@ -1,0 +1,107 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "border": true,
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "content": "Add Book",
+                  "type": "Text",
+                  "weight": "medium"
+                },
+                {
+                  "name": "x",
+                  "size": "md",
+                  "type": "Icon"
+                }
+              ],
+              "justify": "between",
+              "type": "Row"
+            }
+          ],
+          "h": 56,
+          "p": 4,
+          "type": "Header"
+        },
+        {
+          "children": [
+            {
+              "icon": "search",
+              "label": "Search by title or ISBN",
+              "type": "Input",
+              "w": "full"
+            },
+            {
+              "align": "center",
+              "children": [
+                {
+                  "children": [],
+                  "h": 160,
+                  "label": "Cover",
+                  "type": "Placeholder",
+                  "w": 120
+                },
+                {
+                  "label": "Title",
+                  "type": "Input",
+                  "w": "full"
+                },
+                {
+                  "label": "Author",
+                  "type": "Input",
+                  "w": "full"
+                },
+                {
+                  "inputType": "number",
+                  "label": "Total Pages",
+                  "type": "Input",
+                  "w": "full"
+                },
+                {
+                  "label": "Category",
+                  "options": [
+                    "Fiction",
+                    "Non-fiction",
+                    "Technical",
+                    "Self-help"
+                  ],
+                  "placeholder": "Select category",
+                  "type": "Select",
+                  "w": "full"
+                }
+              ],
+              "gap": 4,
+              "type": "Col"
+            }
+          ],
+          "gap": 4,
+          "p": 4,
+          "scroll": true,
+          "type": "Main"
+        },
+        {
+          "border": true,
+          "children": [
+            {
+              "content": "Add Book",
+              "primary": true,
+              "type": "Button",
+              "w": "full"
+            }
+          ],
+          "p": 4,
+          "type": "Footer"
+        }
+      ],
+      "height": 812,
+      "title": "Add Book",
+      "type": "Page",
+      "width": 375
+    }
+  ],
+  "type": "Document"
+}

@@ -5,8 +5,22 @@
  */
 
 import type * as Monaco from 'monaco-editor'
-import { getComponentNames, getAttributeNames } from '../utils.js'
+import { getComponentNames, getAttributeNames, getComponentsByCategory } from '../utils.js'
 import { VALUE_KEYWORDS } from '../keywords.js'
+import type { ComponentCategory } from '../types.js'
+
+/**
+ * Categories tokenized as keywords: the elements that structure a screen.
+ * Everything else is tokenized as a type. Keyed by category, not by element, so
+ * a new element inherits its token class from the spec with no edit here.
+ */
+const STRUCTURAL_CATEGORIES: readonly ComponentCategory[] = [
+  'layout',
+  'grid',
+  'container',
+  'navigation',
+  'data',
+]
 
 /**
  * Language ID for Monaco
@@ -31,22 +45,10 @@ export function getMonarchTokensProvider(): Monaco.languages.IMonarchLanguage {
   const componentNames = getComponentNames()
   const attributeNames = getAttributeNames()
 
-  // Layout/container components (keywords)
-  const layoutComponents = [
-    'page',
-    'header',
-    'footer',
-    'main',
-    'sidebar',
-    'nav',
-    'row',
-    'col',
-    'card',
-    'modal',
-    'table',
-    'form',
-    'tabs',
-  ]
+  // Structural components (keywords)
+  const layoutComponents = STRUCTURAL_CATEGORIES.flatMap((category) =>
+    getComponentsByCategory(category).map((comp) => comp.name),
+  )
 
   // Other components (types)
   const otherComponents = componentNames.filter((c) => !layoutComponents.includes(c))

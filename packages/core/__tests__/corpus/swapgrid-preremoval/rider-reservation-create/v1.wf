@@ -1,0 +1,59 @@
+page "예약하기" viewport="375x812" {
+  header h=64 p=3 {
+    row align=center gap=2 justify=between {
+      button "" aria="교환소 상세로" ghost icon=chevron-left navigate="교환소 상세"
+      text "강남 교환소" weight=semibold
+      button "" action=none aria="더보기" ghost icon=ellipsis-vertical
+    }
+  }
+  main p=4 scroll {
+    col gap=4 {
+      placeholder "교환소 지도 미리보기" h=120 w=full
+      row gap=4 {
+        col flex=1 {
+          text "완충 재고" muted size=xs
+          text "3개" size=lg weight=bold
+        }
+        col flex=1 {
+          text "적용 규격" muted size=xs
+          text "A규격" size=lg weight=bold
+        }
+        col flex=1 {
+          text "거리" muted size=xs
+          text "1.2km" size=lg weight=bold
+        }
+      }
+      divider my=2
+      card p=4 shadow=lg w=full {
+        col gap=4 {
+          row justify=center {
+            text "———" muted
+          }
+          title "예약하기" level=2 mb=0 mt=0 size=lg
+          col gap=3 {
+            row align=center gap=3 justify=between {
+              text "교환소" muted size=sm
+              text "강남 교환소" size=sm weight=medium
+            }
+            divider
+            row align=center gap=3 justify=between {
+              text "적용 규격" muted size=sm
+              text "A규격 (등록 차량 기준)" size=sm weight=medium
+            }
+            divider
+            row align=center gap=3 justify=between {
+              text "예약 유효 시간" muted size=sm
+              badge "미정 (OPEN)" pill variant=warning
+            }
+          }
+          alert "배터리 한 개를 회원님 몫으로 잡아둡니다. 유효 시간이 지나면 자동으로 풀립니다." icon=info variant=info
+          text "배터리 개체는 시스템이 자동으로 지정합니다. 규격은 등록 차량에서 자동 적용됩니다." muted size=xs
+          col gap=2 {
+            button "예약 확정" navigate="내 예약" primary size=lg w=full
+            button "취소" ghost navigate="교환소 상세" w=full
+          }
+        }
+      }
+    }
+  }
+}

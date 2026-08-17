@@ -1,0 +1,16 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "content": "Save",
+          "primary": true,
+          "type": "Button"
+        }
+      ],
+      "title": "Settings",
+      "type": "Page"
+    }
+  ],
+  "type": "Document"
+}

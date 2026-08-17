@@ -5,6 +5,26 @@
 import type { AlertNode, ToastNode, ProgressNode, SpinnerNode } from '../../../ast/types'
 import type { RenderContext } from './types'
 import { resolveSizeValue } from '../components'
+import { getIconData, renderIconSvg, renderUnknownIconSvg } from '../../../icons/lucide-icons'
+
+/**
+ * Render the alert's leading icon.
+ *
+ * Same contract as the input icon: a known name becomes its lucide glyph, an
+ * unknown one becomes the shared placeholder rather than leaking the raw name
+ * into the wireframe.
+ */
+function renderAlertIcon(name: string, ctx: RenderContext): string {
+  // `wf-icon` is the SIZING contract — `renderIconSvg` drops its size argument
+  // and emits no width/height, so the glyph is sized only by the class it is
+  // given. `wf-alert-icon` carries placement (`flex-shrink`, `margin-top`), not
+  // size; alone it leaves a viewBox-only SVG to fill its flex parent, which with
+  // `flex-shrink: 0` it then refuses to give back.
+  const className = `${ctx.prefix}-icon ${ctx.prefix}-alert-icon`
+  const iconData = getIconData(name)
+  if (iconData) return renderIconSvg(iconData, 16, 2, className)
+  return `<span class="${className}" title="Unknown icon: ${ctx.escapeHtml(name)}">${renderUnknownIconSvg(className, 16)}</span>`
+}
 
 /**
  * Render Alert node
@@ -23,7 +43,9 @@ export function renderAlert(node: AlertNode, ctx: RenderContext): string {
     ? ` <button class="${ctx.prefix}-alert-close" aria-label="Close">&times;</button>`
     : ''
 
-  return `<div class="${classes}"${styleAttr} role="alert">${ctx.escapeHtml(node.content)}${dismissBtn}</div>`
+  const icon = node.icon ? renderAlertIcon(node.icon, ctx) : ''
+
+  return `<div class="${classes}"${styleAttr} role="alert">${icon}${ctx.escapeHtml(node.content)}${dismissBtn}</div>`
 }
 
 /**

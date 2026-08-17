@@ -1,0 +1,271 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "aria": "교환소 상세로",
+                  "content": "",
+                  "ghost": true,
+                  "icon": "chevron-left",
+                  "navigate": "교환소 상세",
+                  "type": "Button"
+                },
+                {
+                  "content": "강남 교환소",
+                  "type": "Text",
+                  "weight": "semibold"
+                },
+                {
+                  "action": "none",
+                  "aria": "더보기",
+                  "content": "",
+                  "ghost": true,
+                  "icon": "ellipsis-vertical",
+                  "type": "Button"
+                }
+              ],
+              "gap": 2,
+              "justify": "between",
+              "type": "Row"
+            }
+          ],
+          "h": 64,
+          "p": 3,
+          "type": "Header"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [],
+                  "h": 120,
+                  "label": "교환소 지도 미리보기",
+                  "type": "Placeholder",
+                  "w": "full"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "content": "완충 재고",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "3개",
+                          "size": "lg",
+                          "type": "Text",
+                          "weight": "bold"
+                        }
+                      ],
+                      "flex": 1,
+                      "type": "Col"
+                    },
+                    {
+                      "children": [
+                        {
+                          "content": "적용 규격",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "A규격",
+                          "size": "lg",
+                          "type": "Text",
+                          "weight": "bold"
+                        }
+                      ],
+                      "flex": 1,
+                      "type": "Col"
+                    },
+                    {
+                      "children": [
+                        {
+                          "content": "거리",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "1.2km",
+                          "size": "lg",
+                          "type": "Text",
+                          "weight": "bold"
+                        }
+                      ],
+                      "flex": 1,
+                      "type": "Col"
+                    }
+                  ],
+                  "gap": 4,
+                  "type": "Row"
+                },
+                {
+                  "my": 2,
+                  "type": "Divider"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "content": "———",
+                              "muted": true,
+                              "type": "Text"
+                            }
+                          ],
+                          "justify": "center",
+                          "type": "Row"
+                        },
+                        {
+                          "content": "예약하기",
+                          "level": 2,
+                          "mb": 0,
+                          "mt": 0,
+                          "size": "lg",
+                          "type": "Title"
+                        },
+                        {
+                          "children": [
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "content": "교환소",
+                                  "muted": true,
+                                  "size": "sm",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "강남 교환소",
+                                  "size": "sm",
+                                  "type": "Text",
+                                  "weight": "medium"
+                                }
+                              ],
+                              "gap": 3,
+                              "justify": "between",
+                              "type": "Row"
+                            },
+                            {
+                              "type": "Divider"
+                            },
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "content": "적용 규격",
+                                  "muted": true,
+                                  "size": "sm",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "A규격 (등록 차량 기준)",
+                                  "size": "sm",
+                                  "type": "Text",
+                                  "weight": "medium"
+                                }
+                              ],
+                              "gap": 3,
+                              "justify": "between",
+                              "type": "Row"
+                            },
+                            {
+                              "type": "Divider"
+                            },
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "content": "예약 유효 시간",
+                                  "muted": true,
+                                  "size": "sm",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "미정 (OPEN)",
+                                  "pill": true,
+                                  "type": "Badge",
+                                  "variant": "warning"
+                                }
+                              ],
+                              "gap": 3,
+                              "justify": "between",
+                              "type": "Row"
+                            }
+                          ],
+                          "gap": 3,
+                          "type": "Col"
+                        },
+                        {
+                          "content": "배터리 한 개를 회원님 몫으로 잡아둡니다. 유효 시간이 지나면 자동으로 풀립니다.",
+                          "icon": "info",
+                          "type": "Alert",
+                          "variant": "info"
+                        },
+                        {
+                          "content": "배터리 개체는 시스템이 자동으로 지정합니다. 규격은 등록 차량에서 자동 적용됩니다.",
+                          "muted": true,
+                          "size": "xs",
+                          "type": "Text"
+                        },
+                        {
+                          "children": [
+                            {
+                              "content": "예약 확정",
+                              "navigate": "내 예약",
+                              "primary": true,
+                              "size": "lg",
+                              "type": "Button",
+                              "w": "full"
+                            },
+                            {
+                              "content": "취소",
+                              "ghost": true,
+                              "navigate": "교환소 상세",
+                              "type": "Button",
+                              "w": "full"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Col"
+                        }
+                      ],
+                      "gap": 4,
+                      "type": "Col"
+                    }
+                  ],
+                  "p": 4,
+                  "shadow": "lg",
+                  "title": null,
+                  "type": "Card",
+                  "w": "full"
+                }
+              ],
+              "gap": 4,
+              "type": "Col"
+            }
+          ],
+          "p": 4,
+          "scroll": true,
+          "type": "Main"
+        }
+      ],
+      "title": "예약하기",
+      "type": "Page",
+      "viewport": "375x812"
+    }
+  ],
+  "type": "Document"
+}

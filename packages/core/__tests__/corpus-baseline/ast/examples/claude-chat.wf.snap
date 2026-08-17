@@ -1,0 +1,970 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "bold": true,
+                          "content": "Claude",
+                          "size": "lg",
+                          "type": "Text"
+                        },
+                        {
+                          "content": "",
+                          "ghost": true,
+                          "icon": "sidebar",
+                          "size": "sm",
+                          "type": "Button"
+                        }
+                      ],
+                      "h": 56,
+                      "justify": "between",
+                      "px": 4,
+                      "type": "Row"
+                    },
+                    {
+                      "children": [
+                        {
+                          "content": "새 채팅",
+                          "ghost": true,
+                          "icon": "plus",
+                          "justify": "start",
+                          "size": "sm",
+                          "type": "Button",
+                          "w": "full"
+                        },
+                        {
+                          "children": [
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "muted": true,
+                                  "name": "message-square",
+                                  "size": "sm",
+                                  "type": "Icon"
+                                },
+                                {
+                                  "content": "채팅",
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 3,
+                              "hover": true,
+                              "px": 2,
+                              "py": 2,
+                              "rounded": true,
+                              "type": "Row"
+                            },
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "muted": true,
+                                  "name": "folder",
+                                  "size": "sm",
+                                  "type": "Icon"
+                                },
+                                {
+                                  "content": "프로젝트",
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 3,
+                              "hover": true,
+                              "px": 2,
+                              "py": 2,
+                              "rounded": true,
+                              "type": "Row"
+                            },
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "muted": true,
+                                  "name": "box",
+                                  "size": "sm",
+                                  "type": "Icon"
+                                },
+                                {
+                                  "content": "아티팩트",
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 3,
+                              "hover": true,
+                              "px": 2,
+                              "py": 2,
+                              "rounded": true,
+                              "type": "Row"
+                            },
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "muted": true,
+                                  "name": "code",
+                                  "size": "sm",
+                                  "type": "Icon"
+                                },
+                                {
+                                  "content": "코드",
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 3,
+                              "hover": true,
+                              "px": 2,
+                              "py": 2,
+                              "rounded": true,
+                              "type": "Row"
+                            }
+                          ],
+                          "gap": 0,
+                          "mt": 2,
+                          "type": "Col"
+                        },
+                        {
+                          "children": [
+                            {
+                              "content": "즐겨찾기",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text",
+                              "weight": "semibold"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "muted": true,
+                                      "name": "folder",
+                                      "size": "xs",
+                                      "type": "Icon"
+                                    },
+                                    {
+                                      "content": "프론트엔드 학습 정리",
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "px": 2,
+                                  "py": 1,
+                                  "type": "Row"
+                                },
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "muted": true,
+                                      "name": "folder",
+                                      "size": "xs",
+                                      "type": "Icon"
+                                    },
+                                    {
+                                      "content": "사이드 프로젝트 기획",
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "px": 2,
+                                  "py": 1,
+                                  "type": "Row"
+                                },
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "muted": true,
+                                      "name": "message-square",
+                                      "size": "xs",
+                                      "type": "Icon"
+                                    },
+                                    {
+                                      "content": "API 설계 논의",
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "px": 2,
+                                  "py": 1,
+                                  "type": "Row"
+                                }
+                              ],
+                              "gap": 0,
+                              "type": "Col"
+                            }
+                          ],
+                          "gap": 1,
+                          "mt": 4,
+                          "type": "Col"
+                        },
+                        {
+                          "children": [
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "content": "최근 항목",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text",
+                                  "weight": "semibold"
+                                },
+                                {
+                                  "content": "숨기기",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text"
+                                }
+                              ],
+                              "justify": "between",
+                              "type": "Row"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "align": "center",
+                                  "bg": "muted",
+                                  "children": [
+                                    {
+                                      "content": "React 상태관리 라이브러리 비교",
+                                      "size": "xs",
+                                      "type": "Text",
+                                      "weight": "semibold"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "px": 2,
+                                  "py": 1,
+                                  "rounded": true,
+                                  "type": "Row"
+                                },
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "content": "TypeScript 제네릭 활용법",
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "px": 2,
+                                  "py": 1,
+                                  "type": "Row"
+                                },
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "content": "Next.js 14 마이그레이션",
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "px": 2,
+                                  "py": 1,
+                                  "type": "Row"
+                                },
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "content": "TailwindCSS v4 변경사항",
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "px": 2,
+                                  "py": 1,
+                                  "type": "Row"
+                                },
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "content": "PostgreSQL 쿼리 최적화",
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "px": 2,
+                                  "py": 1,
+                                  "type": "Row"
+                                },
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "content": "Docker 컨테이너 설정",
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "px": 2,
+                                  "py": 1,
+                                  "type": "Row"
+                                }
+                              ],
+                              "gap": 0,
+                              "type": "Col"
+                            },
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "muted": true,
+                                  "name": "list",
+                                  "size": "xs",
+                                  "type": "Icon"
+                                },
+                                {
+                                  "content": "모든 채팅",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 2,
+                              "mt": 1,
+                              "px": 2,
+                              "py": 1,
+                              "type": "Row"
+                            }
+                          ],
+                          "gap": 1,
+                          "mt": 3,
+                          "type": "Col"
+                        }
+                      ],
+                      "flex": 1,
+                      "gap": 1,
+                      "p": 3,
+                      "scroll": true,
+                      "type": "Col"
+                    },
+                    {
+                      "align": "center",
+                      "border": true,
+                      "children": [
+                        {
+                          "name": "JK",
+                          "size": "sm",
+                          "type": "Avatar"
+                        },
+                        {
+                          "children": [
+                            {
+                              "content": "John Kim",
+                              "size": "sm",
+                              "type": "Text",
+                              "weight": "semibold"
+                            },
+                            {
+                              "content": "Pro 플랜",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "flex": 1,
+                          "gap": 0,
+                          "type": "Col"
+                        },
+                        {
+                          "muted": true,
+                          "name": "chevron-up",
+                          "size": "sm",
+                          "type": "Icon"
+                        }
+                      ],
+                      "gap": 2,
+                      "h": 56,
+                      "px": 3,
+                      "type": "Row"
+                    }
+                  ],
+                  "h": "full",
+                  "type": "Col"
+                }
+              ],
+              "p": 0,
+              "type": "Sidebar",
+              "w": 280
+            },
+            {
+              "children": [
+                {
+                  "border": true,
+                  "children": [
+                    {
+                      "align": "center",
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "React 상태관리 라이브러리 비교",
+                              "type": "Text",
+                              "weight": "semibold"
+                            },
+                            {
+                              "muted": true,
+                              "name": "chevron-down",
+                              "size": "sm",
+                              "type": "Icon"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Row"
+                        },
+                        {
+                          "content": "공유",
+                          "ghost": true,
+                          "size": "sm",
+                          "type": "Button"
+                        }
+                      ],
+                      "justify": "between",
+                      "px": 4,
+                      "type": "Row"
+                    }
+                  ],
+                  "h": 48,
+                  "p": 0,
+                  "type": "Header"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "content": "2025년 1월 8일",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 1,
+                              "type": "Row"
+                            }
+                          ],
+                          "gap": 2,
+                          "type": "Col"
+                        },
+                        {
+                          "children": [
+                            {
+                              "align": "start",
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "content": "React 프로젝트에서 상태 관리 라이브러리를 선택하려고 하는데, Redux와 Zustand 중 어떤 것을 추천하시나요? 저희는 3명 규모의 작은 팀이고 중간 규모의 대시보드 프로젝트입니다.",
+                                      "size": "sm",
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "content": "",
+                                          "ghost": true,
+                                          "icon": "rotate-ccw",
+                                          "size": "sm",
+                                          "type": "Button"
+                                        },
+                                        {
+                                          "content": "",
+                                          "ghost": true,
+                                          "icon": "edit",
+                                          "size": "sm",
+                                          "type": "Button"
+                                        }
+                                      ],
+                                      "gap": 2,
+                                      "mt": 2,
+                                      "type": "Row"
+                                    }
+                                  ],
+                                  "flex": 1,
+                                  "type": "Col"
+                                }
+                              ],
+                              "gap": 3,
+                              "type": "Row"
+                            }
+                          ],
+                          "gap": 3,
+                          "type": "Col"
+                        },
+                        {
+                          "children": [
+                            {
+                              "align": "start",
+                              "children": [
+                                {
+                                  "name": "sparkles",
+                                  "size": "md",
+                                  "type": "Icon"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "children": [
+                                        {
+                                          "align": "center",
+                                          "children": [
+                                            {
+                                              "content": "프로젝트 요구사항을 분석하고 적합한 라이브러리를 선정합니다.",
+                                              "muted": true,
+                                              "size": "xs",
+                                              "type": "Text"
+                                            },
+                                            {
+                                              "muted": true,
+                                              "name": "chevron-down",
+                                              "size": "xs",
+                                              "type": "Icon"
+                                            }
+                                          ],
+                                          "gap": 2,
+                                          "type": "Row"
+                                        }
+                                      ],
+                                      "p": 3,
+                                      "title": null,
+                                      "type": "Card"
+                                    },
+                                    {
+                                      "content": "좋은 질문입니다! 말씀하신 상황(3명 팀, 중간 규모 대시보드)을 고려했을 때 Zustand를 추천드립니다.",
+                                      "size": "sm",
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "content": "Zustand를 추천하는 이유",
+                                          "size": "sm",
+                                          "type": "Text",
+                                          "weight": "semibold"
+                                        },
+                                        {
+                                          "items": [
+                                            "보일러플레이트가 적어 빠른 개발 가능",
+                                            "작은 번들 사이즈 (약 1KB)",
+                                            "TypeScript 지원이 우수함",
+                                            "React 18의 concurrent features와 호환"
+                                          ],
+                                          "type": "List"
+                                        }
+                                      ],
+                                      "gap": 2,
+                                      "type": "Col"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "content": "Redux가 더 적합한 경우",
+                                          "size": "sm",
+                                          "type": "Text",
+                                          "weight": "semibold"
+                                        },
+                                        {
+                                          "items": [
+                                            "대규모 팀에서 일관된 패턴이 필요할 때",
+                                            "복잡한 미들웨어 로직이 필요할 때",
+                                            "Redux DevTools의 time-travel 디버깅이 중요할 때"
+                                          ],
+                                          "type": "List"
+                                        }
+                                      ],
+                                      "gap": 2,
+                                      "type": "Col"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "children": [
+                                            {
+                                              "content": "Zustand 기본 예제",
+                                              "size": "sm",
+                                              "type": "Text",
+                                              "weight": "semibold"
+                                            },
+                                            {
+                                              "content": "import { create } from 'zustand'\n\nconst useStore = create((set) => ({\n  count: 0,\n  increment: () => set((state) => ({ count: state.count + 1 }))\n}))",
+                                              "size": "xs",
+                                              "type": "Text"
+                                            }
+                                          ],
+                                          "gap": 2,
+                                          "type": "Col"
+                                        }
+                                      ],
+                                      "p": 3,
+                                      "title": null,
+                                      "type": "Card"
+                                    },
+                                    {
+                                      "content": "대시보드 프로젝트라면 서버 상태 관리도 중요한데, TanStack Query(React Query)와 함께 사용하시면 더욱 효율적입니다. Zustand는 클라이언트 UI 상태에, React Query는 서버 데이터 캐싱에 사용하시면 됩니다.",
+                                      "size": "sm",
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "content": "",
+                                          "ghost": true,
+                                          "icon": "copy",
+                                          "size": "sm",
+                                          "type": "Button"
+                                        },
+                                        {
+                                          "content": "",
+                                          "ghost": true,
+                                          "icon": "thumbs-up",
+                                          "size": "sm",
+                                          "type": "Button"
+                                        },
+                                        {
+                                          "content": "",
+                                          "ghost": true,
+                                          "icon": "thumbs-down",
+                                          "size": "sm",
+                                          "type": "Button"
+                                        },
+                                        {
+                                          "content": "",
+                                          "ghost": true,
+                                          "icon": "rotate-ccw",
+                                          "size": "sm",
+                                          "type": "Button"
+                                        }
+                                      ],
+                                      "gap": 2,
+                                      "mt": 2,
+                                      "type": "Row"
+                                    }
+                                  ],
+                                  "flex": 1,
+                                  "gap": 3,
+                                  "type": "Col"
+                                }
+                              ],
+                              "gap": 3,
+                              "type": "Row"
+                            }
+                          ],
+                          "gap": 3,
+                          "type": "Col"
+                        },
+                        {
+                          "children": [
+                            {
+                              "align": "start",
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "content": "감사합니다! Zustand와 React Query 조합으로 시작해볼게요. 혹시 초기 설정 예제 코드를 보여주실 수 있나요?",
+                                      "size": "sm",
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "content": "",
+                                          "ghost": true,
+                                          "icon": "rotate-ccw",
+                                          "size": "sm",
+                                          "type": "Button"
+                                        },
+                                        {
+                                          "content": "",
+                                          "ghost": true,
+                                          "icon": "edit",
+                                          "size": "sm",
+                                          "type": "Button"
+                                        }
+                                      ],
+                                      "gap": 2,
+                                      "mt": 2,
+                                      "type": "Row"
+                                    }
+                                  ],
+                                  "flex": 1,
+                                  "type": "Col"
+                                }
+                              ],
+                              "gap": 3,
+                              "type": "Row"
+                            }
+                          ],
+                          "gap": 3,
+                          "type": "Col"
+                        },
+                        {
+                          "children": [
+                            {
+                              "align": "start",
+                              "children": [
+                                {
+                                  "name": "sparkles",
+                                  "size": "md",
+                                  "type": "Icon"
+                                },
+                                {
+                                  "children": [
+                                    {
+                                      "content": "물론이죠! 다음은 Zustand와 React Query를 함께 사용하는 초기 설정 예제입니다.",
+                                      "size": "sm",
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "children": [
+                                            {
+                                              "align": "center",
+                                              "children": [
+                                                {
+                                                  "content": "store.ts",
+                                                  "size": "sm",
+                                                  "type": "Text",
+                                                  "weight": "semibold"
+                                                },
+                                                {
+                                                  "content": "",
+                                                  "ghost": true,
+                                                  "icon": "copy",
+                                                  "size": "sm",
+                                                  "type": "Button"
+                                                }
+                                              ],
+                                              "justify": "between",
+                                              "type": "Row"
+                                            },
+                                            {
+                                              "content": "// Zustand store for UI state\nimport { create } from 'zustand'\n\ninterface UIState {\n  sidebarOpen: boolean\n  toggleSidebar: () => void\n}\n\nexport const useUIStore = create<UIState>((set) => ({\n  sidebarOpen: true,\n  toggleSidebar: () => set((s) => ({ sidebarOpen: !s.sidebarOpen }))\n}))",
+                                              "size": "xs",
+                                              "type": "Text"
+                                            }
+                                          ],
+                                          "gap": 2,
+                                          "type": "Col"
+                                        }
+                                      ],
+                                      "p": 3,
+                                      "title": null,
+                                      "type": "Card"
+                                    },
+                                    {
+                                      "content": "이 구조로 시작하시면 추후 확장하기도 용이합니다. 추가 질문이 있으시면 말씀해 주세요!",
+                                      "size": "sm",
+                                      "type": "Text"
+                                    },
+                                    {
+                                      "children": [
+                                        {
+                                          "content": "",
+                                          "ghost": true,
+                                          "icon": "copy",
+                                          "size": "sm",
+                                          "type": "Button"
+                                        },
+                                        {
+                                          "content": "",
+                                          "ghost": true,
+                                          "icon": "thumbs-up",
+                                          "size": "sm",
+                                          "type": "Button"
+                                        },
+                                        {
+                                          "content": "",
+                                          "ghost": true,
+                                          "icon": "thumbs-down",
+                                          "size": "sm",
+                                          "type": "Button"
+                                        },
+                                        {
+                                          "content": "",
+                                          "ghost": true,
+                                          "icon": "rotate-ccw",
+                                          "size": "sm",
+                                          "type": "Button"
+                                        }
+                                      ],
+                                      "gap": 2,
+                                      "mt": 2,
+                                      "type": "Row"
+                                    }
+                                  ],
+                                  "flex": 1,
+                                  "gap": 3,
+                                  "type": "Col"
+                                }
+                              ],
+                              "gap": 3,
+                              "type": "Row"
+                            }
+                          ],
+                          "gap": 3,
+                          "type": "Col"
+                        }
+                      ],
+                      "gap": 6,
+                      "p": 6,
+                      "type": "Col"
+                    }
+                  ],
+                  "flex": 1,
+                  "p": 0,
+                  "scroll": true,
+                  "type": "Main"
+                },
+                {
+                  "border": true,
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "label": null,
+                                  "placeholder": "답글...",
+                                  "type": "Input",
+                                  "w": "full"
+                                },
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "children": [
+                                        {
+                                          "content": "",
+                                          "ghost": true,
+                                          "icon": "plus",
+                                          "size": "sm",
+                                          "type": "Button"
+                                        },
+                                        {
+                                          "content": "",
+                                          "ghost": true,
+                                          "icon": "clock",
+                                          "size": "sm",
+                                          "type": "Button"
+                                        }
+                                      ],
+                                      "gap": 2,
+                                      "type": "Row"
+                                    },
+                                    {
+                                      "align": "center",
+                                      "children": [
+                                        {
+                                          "align": "center",
+                                          "children": [
+                                            {
+                                              "content": "Opus 4.5",
+                                              "size": "sm",
+                                              "type": "Text"
+                                            },
+                                            {
+                                              "name": "chevron-down",
+                                              "size": "xs",
+                                              "type": "Icon"
+                                            }
+                                          ],
+                                          "gap": 1,
+                                          "type": "Row"
+                                        },
+                                        {
+                                          "content": "",
+                                          "disabled": true,
+                                          "icon": "arrow-up",
+                                          "primary": true,
+                                          "size": "sm",
+                                          "type": "Button"
+                                        }
+                                      ],
+                                      "gap": 2,
+                                      "type": "Row"
+                                    }
+                                  ],
+                                  "justify": "between",
+                                  "type": "Row"
+                                }
+                              ],
+                              "gap": 2,
+                              "type": "Col"
+                            }
+                          ],
+                          "p": 3,
+                          "title": null,
+                          "type": "Card"
+                        },
+                        {
+                          "children": [
+                            {
+                              "content": "Claude는 AI이며 실수할 수 있습니다. 중요한 정보는 확인하세요.",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "justify": "center",
+                          "type": "Row"
+                        }
+                      ],
+                      "gap": 2,
+                      "type": "Col"
+                    }
+                  ],
+                  "p": 4,
+                  "type": "Footer"
+                }
+              ],
+              "flex": 1,
+              "type": "Col"
+            }
+          ],
+          "type": "Row"
+        }
+      ],
+      "height": 800,
+      "title": null,
+      "type": "Page",
+      "width": 1280
+    }
+  ],
+  "type": "Document"
+}

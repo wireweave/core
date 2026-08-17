@@ -11,7 +11,6 @@
 import { describe, it, expect } from 'vitest'
 import {
   parse,
-  documentPages,
   render,
   renderCanvas,
   buildAnchorIndex,
@@ -19,6 +18,7 @@ import {
   getPageSource,
   getNodeSource,
   buildDomTree,
+  documentPages,
 } from '../src'
 
 const SRC = `page "Login" {
@@ -142,12 +142,12 @@ describe('getPageSource / getNodeSource', () => {
     expect(slice?.text).toBe(SRC.slice(slice!.loc.start.offset, slice!.loc.end.offset))
 
     const reparsed = parse(slice!.trimmed)
-    expect(documentPages(reparsed)).toHaveLength(1)
-    expect(documentPages(reparsed)[0]?.type).toBe('Page')
+    expect(reparsed.children).toHaveLength(1)
+    expect(reparsed.children[0]?.type).toBe('Page')
     expect(documentPages(reparsed)[0]?.title).toBe('Dashboard')
     // Structurally equivalent to the original page (child node types match).
-    expect(documentPages(reparsed)[0]?.children.map((c) => c.type)).toEqual(
-      documentPages(doc)[1]?.children.map((c) => c.type),
+    expect(reparsed.children[0]?.children.map((c) => c.type)).toEqual(
+      doc.children[1]?.children.map((c) => c.type),
     )
   })
 

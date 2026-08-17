@@ -1,0 +1,58 @@
+page "배터리 상태 상세" viewport="375x812" {
+  header h=72 p=4 {
+    row align=center gap=3 {
+      button "" action=back aria="뒤로" ghost icon=arrow-left size=sm
+      title "내 배터리" level=1 size=lg
+    }
+  }
+  main p=4 scroll {
+    col gap=4 {
+      card "지금 충전량" p=4 {
+        col align=center gap=3 {
+          title "72%" align=center level=2 size=xl
+          progress max=100 value=72 w=full
+          text "14:02 기준 · 12분 전 값" align=center muted size=sm
+        }
+      }
+      card "건강도 (SoH)" p=4 {
+        col gap=3 {
+          row align=center gap=3 justify=between {
+            title "86%" level=3 size=lg
+            badge "양호" pill variant=success
+          }
+          progress max=100 value=86 w=full
+          text "새것 대비 담을 수 있는 양입니다." muted size=sm
+        }
+      }
+      section "배터리 정보" {
+        col gap=3 {
+          row align=center gap=3 justify=between {
+            text "규격" muted size=sm
+            text "A규격 72V 40Ah" size=sm weight=medium
+          }
+          row align=center gap=3 justify=between {
+            text "일련번호" muted size=sm
+            text "SN-8842-0193-KR" size=sm weight=medium
+          }
+          row align=center gap=3 justify=between {
+            text "받은 곳" muted size=sm
+            text "성수 1호점 · 08:15" size=sm weight=medium
+          }
+        }
+      }
+      card navigate="이용내역" p=3 {
+        row align=center gap=3 justify=between {
+          col flex=1 gap=1 {
+            text "이 배터리를 받은 교환 보기" size=sm weight=semibold
+            text "이용내역에서 해당 건이 펼쳐집니다" muted size=xs
+          }
+          icon "chevron-right" muted size=sm
+        }
+      }
+      text "주행 가능 거리는 표시하지 않습니다" muted size=xs
+    }
+  }
+  footer h=96 p=4 {
+    button "교환소 찾기" navigate="교환소 지도" primary w=full
+  }
+}

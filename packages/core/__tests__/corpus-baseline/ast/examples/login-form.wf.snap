@@ -1,0 +1,78 @@
+{
+  "children": [
+    {
+      "centered": true,
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "align": "center",
+                  "content": "Sign In",
+                  "level": 2,
+                  "type": "Title"
+                },
+                {
+                  "align": "center",
+                  "content": "Welcome back! Please enter your details.",
+                  "muted": true,
+                  "type": "Text"
+                },
+                {
+                  "children": [
+                    {
+                      "inputType": "email",
+                      "label": "Email",
+                      "type": "Input"
+                    },
+                    {
+                      "inputType": "password",
+                      "label": "Password",
+                      "type": "Input"
+                    }
+                  ],
+                  "gap": 2,
+                  "type": "Col"
+                },
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "label": "Remember me",
+                      "type": "Checkbox"
+                    },
+                    {
+                      "content": "Forgot password?",
+                      "type": "Link"
+                    }
+                  ],
+                  "justify": "between",
+                  "type": "Row"
+                },
+                {
+                  "content": "Sign In",
+                  "primary": true,
+                  "type": "Button",
+                  "w": "full"
+                }
+              ],
+              "gap": 4,
+              "type": "Col"
+            }
+          ],
+          "p": 6,
+          "shadow": "lg",
+          "title": null,
+          "type": "Card",
+          "w": 400
+        }
+      ],
+      "height": 600,
+      "title": "Login",
+      "type": "Page",
+      "width": 500
+    }
+  ],
+  "type": "Document"
+}

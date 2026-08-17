@@ -4,9 +4,11 @@ Component and attribute vocabulary for the Wireweave DSL, for editor autocomplet
 
 ## What it does
 
-`@wireweave/language-data` is the single source of the Wireweave DSL vocabulary — every component, its allowed attributes, valid children, categories, and value keywords — exposed as plain data plus lookup helpers. It powers autocomplete, hover docs, and validation hints in editor integrations.
+`@wireweave/language-data` exposes the Wireweave DSL vocabulary — every component, its allowed attributes, valid children, categories, and value keywords — as plain data plus lookup helpers. It powers autocomplete, hover docs, and validation hints in editor integrations.
 
-This package is **independent of `@wireweave/core`** — it ships only the language metadata, with no parser or renderer dependency.
+The vocabulary itself is **derived from `@wireweave/core/spec`**, which derives the element set from the grammar. This package declares no component or attribute of its own; it adds only editor metadata on top — an example snippet, a category label, a completion detail string. A name reaches an editor by being added to the spec, never here, so autocomplete cannot drift from what the parser accepts. The only exceptions are quarantined in `src/core-spec-gaps.ts`, which documents each one and is tested to stay disjoint from the spec.
+
+Runtime output depends on the `./spec` subpath only, so no parser or renderer code reaches a bundle. The tests reach further, into core as a whole: `./spec` is a copy of what the grammar, AST types, and renderer actually do, and checking a copy against itself proves nothing. Runtime dependency and test oracle are separate axes, and the oracle is the wider of the two by design.
 
 Optional subpath entries provide ready-made editor integrations:
 

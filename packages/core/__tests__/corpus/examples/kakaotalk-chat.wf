@@ -1,0 +1,154 @@
+page device=mobile width=375 height=700 {
+  header h=56 border p=0 {
+    row justify=between align=center px=3 {
+      row gap=2 align=center {
+        icon "chevron-left" size=lg
+        avatar "김철수" size=md
+        col gap=0 ml=2 {
+          text "김철수" weight=bold
+          text "응답 중..." size=sm muted
+        }
+      }
+      row gap=2 {
+        icon "search"
+        icon "menu"
+      }
+    }
+  }
+
+  main p=0 flex=1 scroll {
+    col gap=3 p=3 {
+      row justify=center {
+        badge "2024년 1월 8일 월요일" variant=secondary size=sm
+      }
+
+      col gap=1 {
+        row gap=2 align=end {
+          avatar "김" size=sm
+          col gap=1 {
+            card p=2 shadow=none {
+              text "안녕! 오늘 저녁에 시간 있어?" size=sm
+            }
+            text "오후 2:30" size=xs muted
+          }
+        }
+      }
+
+      col gap=1 align=end {
+        row gap=2 align=end justify=end {
+          col gap=1 align=end {
+            text "오후 2:32" size=xs muted
+            card p=2 shadow=none {
+              text "응 있어! 뭐 할까?" size=sm
+            }
+          }
+        }
+      }
+
+      col gap=1 {
+        row gap=2 align=end {
+          avatar "김" size=sm
+          col gap=1 {
+            card p=2 shadow=none {
+              text "저녁 같이 먹을래? 새로 생긴 파스타집 가보자" size=sm
+            }
+            text "오후 2:33" size=xs muted
+          }
+        }
+      }
+
+      col gap=1 align=end {
+        row gap=2 align=end justify=end {
+          col gap=1 align=end {
+            text "오후 2:35" size=xs muted
+            card p=2 shadow=none {
+              text "좋아! 몇 시에 만날까?" size=sm
+            }
+          }
+        }
+      }
+
+      col gap=1 {
+        row gap=2 align=end {
+          avatar "김" size=sm
+          col gap=1 {
+            card p=2 shadow=none {
+              text "6시 어때? 강남역에서 만나자" size=sm
+            }
+            text "오후 2:36" size=xs muted
+          }
+        }
+      }
+
+      col gap=1 align=end {
+        row gap=2 align=end justify=end {
+          col gap=1 align=end {
+            text "오후 2:38" size=xs muted
+            card p=2 shadow=none {
+              text "ㅇㅋ 6시 강남역! 몇 번 출구?" size=sm
+            }
+          }
+        }
+      }
+
+      col gap=1 {
+        row gap=2 align=end {
+          avatar "김" size=sm
+          col gap=1 {
+            card p=2 shadow=none {
+              text "10번 출구로 나와~ 거기서 기다릴게" size=sm
+            }
+            text "오후 2:40" size=xs muted
+          }
+        }
+      }
+
+      col gap=1 align=end {
+        row gap=2 align=end justify=end {
+          col gap=1 align=end {
+            row gap=1 align=center {
+              text "1" size=xs muted
+              text "오후 2:42" size=xs muted
+            }
+            card p=2 shadow=none {
+              text "알겠어! 이따 봐 👋" size=sm
+            }
+          }
+        }
+      }
+
+      col gap=1 {
+        row gap=2 align=start {
+          avatar "김" size=sm
+          col gap=1 {
+            card p=2 shadow=none {
+              placeholder "사진" h=150 w=200
+            }
+            text "오후 2:45" size=xs muted
+          }
+        }
+      }
+
+      col gap=1 {
+        row gap=2 align=end {
+          avatar "김" size=sm
+          col gap=1 {
+            card p=2 shadow=none {
+              text "여기야! 맛있어 보이지? 😋" size=sm
+            }
+            text "오후 2:45" size=xs muted
+          }
+        }
+      }
+    }
+  }
+
+  footer border p=2 {
+    row gap=2 align=center {
+      icon "plus"
+      input placeholder="메시지 입력" w=full
+      icon "smile"
+      icon "hash"
+    }
+  }
+}

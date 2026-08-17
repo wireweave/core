@@ -1,0 +1,482 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "aria": "뒤로",
+                      "content": "",
+                      "ghost": true,
+                      "icon": "arrow-left",
+                      "navigate": "교환소 지도",
+                      "size": "sm",
+                      "type": "Button"
+                    },
+                    {
+                      "content": "알림",
+                      "level": 1,
+                      "size": "lg",
+                      "type": "Title"
+                    }
+                  ],
+                  "gap": 2,
+                  "type": "Row"
+                },
+                {
+                  "action": "mark-all-read",
+                  "content": "모두 읽음",
+                  "ghost": true,
+                  "size": "sm",
+                  "type": "Button"
+                }
+              ],
+              "justify": "between",
+              "type": "Row"
+            }
+          ],
+          "p": 4,
+          "type": "Header"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "content": "기기 알림이 꺼져 있습니다. 앱 설정에서 켜주세요.",
+                  "icon": "bell-off",
+                  "type": "Alert",
+                  "variant": "warning"
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "align": "start",
+                          "children": [
+                            {
+                              "name": "circle-dot",
+                              "size": "sm",
+                              "type": "Icon"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "content": "예약 만료 임박",
+                                      "pill": true,
+                                      "size": "sm",
+                                      "type": "Badge",
+                                      "variant": "warning"
+                                    },
+                                    {
+                                      "content": "5분 전",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Row"
+                                },
+                                {
+                                  "content": "예약한 배터리가 10분 뒤 만료됩니다.",
+                                  "size": "sm",
+                                  "type": "Text",
+                                  "weight": "medium"
+                                }
+                              ],
+                              "flex": 1,
+                              "gap": 1,
+                              "type": "Col"
+                            }
+                          ],
+                          "gap": 3,
+                          "type": "Row"
+                        }
+                      ],
+                      "navigate": "내 예약",
+                      "p": 3,
+                      "title": null,
+                      "type": "Card"
+                    },
+                    {
+                      "children": [
+                        {
+                          "align": "start",
+                          "children": [
+                            {
+                              "name": "circle-dot",
+                              "size": "sm",
+                              "type": "Icon"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "content": "예약 확정",
+                                      "pill": true,
+                                      "size": "sm",
+                                      "type": "Badge",
+                                      "variant": "primary"
+                                    },
+                                    {
+                                      "content": "22분 전",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Row"
+                                },
+                                {
+                                  "content": "강남 3번 교환소 A규격 배터리가 예약되었습니다.",
+                                  "size": "sm",
+                                  "type": "Text",
+                                  "weight": "medium"
+                                }
+                              ],
+                              "flex": 1,
+                              "gap": 1,
+                              "type": "Col"
+                            }
+                          ],
+                          "gap": 3,
+                          "type": "Row"
+                        }
+                      ],
+                      "navigate": "내 예약",
+                      "p": 3,
+                      "title": null,
+                      "type": "Card"
+                    },
+                    {
+                      "children": [
+                        {
+                          "align": "start",
+                          "children": [
+                            {
+                              "name": "circle-dot",
+                              "size": "sm",
+                              "type": "Icon"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "content": "교환소 장애",
+                                      "pill": true,
+                                      "size": "sm",
+                                      "type": "Badge",
+                                      "variant": "danger"
+                                    },
+                                    {
+                                      "content": "1시간 전",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Row"
+                                },
+                                {
+                                  "content": "예약한 역삼 1번 교환소가 이용 불가 상태입니다.",
+                                  "size": "sm",
+                                  "type": "Text",
+                                  "weight": "medium"
+                                }
+                              ],
+                              "flex": 1,
+                              "gap": 1,
+                              "type": "Col"
+                            }
+                          ],
+                          "gap": 3,
+                          "type": "Row"
+                        }
+                      ],
+                      "navigate": "교환소 상세",
+                      "p": 3,
+                      "title": null,
+                      "type": "Card"
+                    },
+                    {
+                      "my": 1,
+                      "type": "Divider"
+                    },
+                    {
+                      "children": [
+                        {
+                          "align": "start",
+                          "children": [
+                            {
+                              "muted": true,
+                              "name": "circle",
+                              "size": "sm",
+                              "type": "Icon"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "content": "교환 완료",
+                                      "pill": true,
+                                      "size": "sm",
+                                      "type": "Badge",
+                                      "variant": "success"
+                                    },
+                                    {
+                                      "content": "어제 18:40",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Row"
+                                },
+                                {
+                                  "content": "선릉 2번 교환소에서 교환이 완료되었습니다.",
+                                  "muted": true,
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "flex": 1,
+                              "gap": 1,
+                              "type": "Col"
+                            }
+                          ],
+                          "gap": 3,
+                          "type": "Row"
+                        }
+                      ],
+                      "navigate": "이용내역",
+                      "p": 3,
+                      "title": null,
+                      "type": "Card"
+                    },
+                    {
+                      "children": [
+                        {
+                          "align": "start",
+                          "children": [
+                            {
+                              "muted": true,
+                              "name": "circle",
+                              "size": "sm",
+                              "type": "Icon"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "content": "교환 중단",
+                                      "pill": true,
+                                      "size": "sm",
+                                      "type": "Badge",
+                                      "variant": "danger"
+                                    },
+                                    {
+                                      "content": "어제 09:12",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Row"
+                                },
+                                {
+                                  "content": "반납 후 배출이 완료되지 않았습니다.",
+                                  "muted": true,
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "flex": 1,
+                              "gap": 1,
+                              "type": "Col"
+                            }
+                          ],
+                          "gap": 3,
+                          "type": "Row"
+                        }
+                      ],
+                      "navigate": "교환 중단",
+                      "p": 3,
+                      "title": null,
+                      "type": "Card"
+                    },
+                    {
+                      "children": [
+                        {
+                          "align": "start",
+                          "children": [
+                            {
+                              "muted": true,
+                              "name": "circle",
+                              "size": "sm",
+                              "type": "Icon"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "content": "공지",
+                                      "pill": true,
+                                      "size": "sm",
+                                      "type": "Badge",
+                                      "variant": "default"
+                                    },
+                                    {
+                                      "content": "3일 전",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Row"
+                                },
+                                {
+                                  "content": "서비스 이용약관이 개정되었습니다.",
+                                  "muted": true,
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "flex": 1,
+                              "gap": 1,
+                              "type": "Col"
+                            }
+                          ],
+                          "gap": 3,
+                          "type": "Row"
+                        }
+                      ],
+                      "navigate": "약관과 안내 문서",
+                      "p": 3,
+                      "title": null,
+                      "type": "Card"
+                    },
+                    {
+                      "action": "none",
+                      "children": [
+                        {
+                          "align": "start",
+                          "children": [
+                            {
+                              "muted": true,
+                              "name": "circle",
+                              "size": "sm",
+                              "type": "Icon"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "align": "center",
+                                  "children": [
+                                    {
+                                      "content": "예약 만료됨",
+                                      "pill": true,
+                                      "size": "sm",
+                                      "type": "Badge",
+                                      "variant": "default"
+                                    },
+                                    {
+                                      "content": "5일 전",
+                                      "muted": true,
+                                      "size": "xs",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "gap": 2,
+                                  "type": "Row"
+                                },
+                                {
+                                  "content": "예약이 만료되었습니다.",
+                                  "muted": true,
+                                  "size": "sm",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "이미 지난 알림입니다",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text"
+                                }
+                              ],
+                              "flex": 1,
+                              "gap": 1,
+                              "type": "Col"
+                            }
+                          ],
+                          "gap": 3,
+                          "type": "Row"
+                        }
+                      ],
+                      "p": 3,
+                      "title": null,
+                      "type": "Card"
+                    }
+                  ],
+                  "gap": 2,
+                  "type": "Col"
+                },
+                {
+                  "action": "load-more",
+                  "content": "더 불러오기",
+                  "outline": true,
+                  "type": "Button",
+                  "w": "full"
+                },
+                {
+                  "children": [
+                    {
+                      "content": "알림 설정",
+                      "navigate": "설정",
+                      "type": "Link"
+                    }
+                  ],
+                  "justify": "center",
+                  "type": "Row"
+                }
+              ],
+              "gap": 4,
+              "type": "Col"
+            }
+          ],
+          "p": 4,
+          "scroll": true,
+          "type": "Main"
+        }
+      ],
+      "title": "알림 목록",
+      "type": "Page",
+      "viewport": "375x812"
+    }
+  ],
+  "type": "Document"
+}

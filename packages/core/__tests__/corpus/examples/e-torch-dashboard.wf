@@ -1,0 +1,170 @@
+page width=1200 height=700 {
+  row {
+    sidebar w=255px p=0 {
+      header h=57px border p=0 {
+        row justify=between align=center px=4 {
+          row gap=2 align=center {
+            icon "flame"
+            row gap=1 align=baseline {
+              text "E-Torch" bold
+              text "Admin" muted size=sm
+            }
+          }
+          button "" icon="chevrons-left" ghost
+        }
+      }
+      col p=4 {
+        section "개요" {
+          nav ["대시보드"] vertical active=0
+        }
+        section "시스템 관리" {
+          nav ["지표 관리", "사용자 관리", "데이터 소스", "플랜 설정", "템플릿 관리", "카테고리 관리", "수동 데이터"] vertical
+        }
+        section "콘텐츠 검열" {
+          nav ["신고 관리", "위반자 관리"] vertical
+        }
+        section "시스템" {
+          nav ["활동 로그"] vertical
+        }
+      }
+    }
+
+    col flex=1 {
+      header h=57px p=0 {
+        row justify=end align=center px=4 gap=4 {
+          button "" icon="moon" ghost
+          row gap=2 align=center {
+            col align=end {
+              text "홍길동" size=sm
+              text "관리자" muted size=sm
+            }
+            avatar "User"
+          }
+          button "로그아웃" outline icon="log-out"
+        }
+      }
+
+      main p=6 gap=6 {
+        col gap=0 {
+          title "관리자 대시보드" level=3 mb=0
+          text "E-Torch 시스템 현황을 확인하세요" muted
+        }
+
+        row gap=6 {
+            card flex=1 p=4 {
+              row justify=between align=center {
+                col gap=1 {
+                  text "전체 사용자" muted size=sm
+                  title "2" level=2
+                }
+                badge "" icon="users" size=lg
+              }
+            }
+            card flex=1 p=4 {
+              row justify=between align=center {
+                col gap=1 {
+                  text "등록된 지표" muted size=sm
+                  title "26" level=2
+                }
+                badge "" icon="chart-bar" size=lg
+              }
+            }
+            card flex=1 p=4 {
+              row justify=between align=center {
+                col gap=1 {
+                  text "대기 중인 신고" muted size=sm
+                  title "0" level=2
+                }
+                badge "" icon="triangle-alert" size=lg
+              }
+            }
+            card flex=1 p=4 {
+              row justify=between align=center {
+                col gap=1 {
+                  text "데이터 소스" muted size=sm
+                  title "7" level=2
+                }
+                badge "" icon="database" size=lg
+              }
+            }
+          }
+
+          row gap=6 {
+            card "빠른 작업" flex=1 p=4 {
+              col gap=2 {
+                button "새 지표 등록" ghost w=full justify=start
+                button "신고 검토" ghost w=full justify=start
+                button "사용자 관리" ghost w=full justify=start
+              }
+            }
+
+            card "최근 활동" flex=1 p=4 {
+              col gap=3 {
+                row gap=2 align=start {
+                  icon "plus" size=sm
+                  col flex=1 gap=0 {
+                    row justify=between {
+                      text "지표 등록" size=sm
+                      text "4일 전" muted size=sm
+                    }
+                    text "홍길동(관리자) · indicator" muted size=sm
+                  }
+                }
+                row gap=2 align=start {
+                  icon "plus" size=sm
+                  col flex=1 gap=0 {
+                    row justify=between {
+                      text "지표 등록" size=sm
+                      text "4일 전" muted size=sm
+                    }
+                    text "홍길동(관리자) · indicator" muted size=sm
+                  }
+                }
+              }
+            }
+
+            card flex=1 p=4 {
+              col gap=4 {
+                row justify=between align=center {
+                  text "시스템 상태" bold
+                  button "새로고침" ghost size=sm icon="refresh-cw"
+                }
+                col gap=2 {
+                  row justify=between {
+                    row gap=2 align=center {
+                      badge "" variant=success size=sm
+                      text "KOSIS"
+                    }
+                    row gap=2 {
+                      badge "정상" variant=success size=sm
+                      text "300ms" muted size=sm
+                    }
+                  }
+                  row justify=between {
+                    row gap=2 align=center {
+                      badge "" variant=success size=sm
+                      text "ECOS"
+                    }
+                    row gap=2 {
+                      badge "정상" variant=success size=sm
+                      text "89ms" muted size=sm
+                    }
+                  }
+                  row justify=between {
+                    row gap=2 align=center {
+                      badge "" variant=warning size=sm
+                      text "OECD"
+                    }
+                    row gap=2 {
+                      badge "지연" variant=warning size=sm
+                      text "1.1s" muted size=sm
+                    }
+                  }
+                }
+              }
+            }
+          }
+      }
+    }
+  }
+}

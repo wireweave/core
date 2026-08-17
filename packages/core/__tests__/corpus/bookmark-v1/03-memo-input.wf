@@ -1,0 +1,22 @@
+page "Bookmark App" device="mobile" width=375 height=812 {
+  header h=56 border p=3 {
+    row justify=between align=center {
+      icon "x" size=md
+      text "Add Memo" weight=semibold
+      spacer
+    }
+  }
+  main p=4 scroll gap=4 {
+    card p=4 {
+      input "Page Number" inputType=text w=full
+      textarea "What are you thinking?" placeholder="What are you thinking?" mt=3 w=full
+      select "Feeling" ["Excited", "Bored", "Confused", "Inspired"] placeholder="Select feeling" mt=3 w=full
+    }
+  }
+  footer p=3 border {
+    row justify=end gap=2 {
+      button "Cancel" outline
+      button "Save" primary
+    }
+  }
+}

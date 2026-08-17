@@ -1,0 +1,575 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "border": true,
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "align": "center",
+                  "children": [
+                    {
+                      "name": "chevron-left",
+                      "size": "lg",
+                      "type": "Icon"
+                    },
+                    {
+                      "name": "김철수",
+                      "size": "md",
+                      "type": "Avatar"
+                    },
+                    {
+                      "children": [
+                        {
+                          "content": "김철수",
+                          "type": "Text",
+                          "weight": "bold"
+                        },
+                        {
+                          "content": "응답 중...",
+                          "muted": true,
+                          "size": "sm",
+                          "type": "Text"
+                        }
+                      ],
+                      "gap": 0,
+                      "ml": 2,
+                      "type": "Col"
+                    }
+                  ],
+                  "gap": 2,
+                  "type": "Row"
+                },
+                {
+                  "children": [
+                    {
+                      "name": "search",
+                      "type": "Icon"
+                    },
+                    {
+                      "name": "menu",
+                      "type": "Icon"
+                    }
+                  ],
+                  "gap": 2,
+                  "type": "Row"
+                }
+              ],
+              "justify": "between",
+              "px": 3,
+              "type": "Row"
+            }
+          ],
+          "h": 56,
+          "p": 0,
+          "type": "Header"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "content": "2024년 1월 8일 월요일",
+                      "size": "sm",
+                      "type": "Badge",
+                      "variant": "secondary"
+                    }
+                  ],
+                  "justify": "center",
+                  "type": "Row"
+                },
+                {
+                  "children": [
+                    {
+                      "align": "end",
+                      "children": [
+                        {
+                          "name": "김",
+                          "size": "sm",
+                          "type": "Avatar"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "content": "안녕! 오늘 저녁에 시간 있어?",
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "p": 2,
+                              "shadow": "none",
+                              "title": null,
+                              "type": "Card"
+                            },
+                            {
+                              "content": "오후 2:30",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 1,
+                          "type": "Col"
+                        }
+                      ],
+                      "gap": 2,
+                      "type": "Row"
+                    }
+                  ],
+                  "gap": 1,
+                  "type": "Col"
+                },
+                {
+                  "align": "end",
+                  "children": [
+                    {
+                      "align": "end",
+                      "children": [
+                        {
+                          "align": "end",
+                          "children": [
+                            {
+                              "content": "오후 2:32",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "content": "응 있어! 뭐 할까?",
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "p": 2,
+                              "shadow": "none",
+                              "title": null,
+                              "type": "Card"
+                            }
+                          ],
+                          "gap": 1,
+                          "type": "Col"
+                        }
+                      ],
+                      "gap": 2,
+                      "justify": "end",
+                      "type": "Row"
+                    }
+                  ],
+                  "gap": 1,
+                  "type": "Col"
+                },
+                {
+                  "children": [
+                    {
+                      "align": "end",
+                      "children": [
+                        {
+                          "name": "김",
+                          "size": "sm",
+                          "type": "Avatar"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "content": "저녁 같이 먹을래? 새로 생긴 파스타집 가보자",
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "p": 2,
+                              "shadow": "none",
+                              "title": null,
+                              "type": "Card"
+                            },
+                            {
+                              "content": "오후 2:33",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 1,
+                          "type": "Col"
+                        }
+                      ],
+                      "gap": 2,
+                      "type": "Row"
+                    }
+                  ],
+                  "gap": 1,
+                  "type": "Col"
+                },
+                {
+                  "align": "end",
+                  "children": [
+                    {
+                      "align": "end",
+                      "children": [
+                        {
+                          "align": "end",
+                          "children": [
+                            {
+                              "content": "오후 2:35",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "content": "좋아! 몇 시에 만날까?",
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "p": 2,
+                              "shadow": "none",
+                              "title": null,
+                              "type": "Card"
+                            }
+                          ],
+                          "gap": 1,
+                          "type": "Col"
+                        }
+                      ],
+                      "gap": 2,
+                      "justify": "end",
+                      "type": "Row"
+                    }
+                  ],
+                  "gap": 1,
+                  "type": "Col"
+                },
+                {
+                  "children": [
+                    {
+                      "align": "end",
+                      "children": [
+                        {
+                          "name": "김",
+                          "size": "sm",
+                          "type": "Avatar"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "content": "6시 어때? 강남역에서 만나자",
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "p": 2,
+                              "shadow": "none",
+                              "title": null,
+                              "type": "Card"
+                            },
+                            {
+                              "content": "오후 2:36",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 1,
+                          "type": "Col"
+                        }
+                      ],
+                      "gap": 2,
+                      "type": "Row"
+                    }
+                  ],
+                  "gap": 1,
+                  "type": "Col"
+                },
+                {
+                  "align": "end",
+                  "children": [
+                    {
+                      "align": "end",
+                      "children": [
+                        {
+                          "align": "end",
+                          "children": [
+                            {
+                              "content": "오후 2:38",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "content": "ㅇㅋ 6시 강남역! 몇 번 출구?",
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "p": 2,
+                              "shadow": "none",
+                              "title": null,
+                              "type": "Card"
+                            }
+                          ],
+                          "gap": 1,
+                          "type": "Col"
+                        }
+                      ],
+                      "gap": 2,
+                      "justify": "end",
+                      "type": "Row"
+                    }
+                  ],
+                  "gap": 1,
+                  "type": "Col"
+                },
+                {
+                  "children": [
+                    {
+                      "align": "end",
+                      "children": [
+                        {
+                          "name": "김",
+                          "size": "sm",
+                          "type": "Avatar"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "content": "10번 출구로 나와~ 거기서 기다릴게",
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "p": 2,
+                              "shadow": "none",
+                              "title": null,
+                              "type": "Card"
+                            },
+                            {
+                              "content": "오후 2:40",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 1,
+                          "type": "Col"
+                        }
+                      ],
+                      "gap": 2,
+                      "type": "Row"
+                    }
+                  ],
+                  "gap": 1,
+                  "type": "Col"
+                },
+                {
+                  "align": "end",
+                  "children": [
+                    {
+                      "align": "end",
+                      "children": [
+                        {
+                          "align": "end",
+                          "children": [
+                            {
+                              "align": "center",
+                              "children": [
+                                {
+                                  "content": "1",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text"
+                                },
+                                {
+                                  "content": "오후 2:42",
+                                  "muted": true,
+                                  "size": "xs",
+                                  "type": "Text"
+                                }
+                              ],
+                              "gap": 1,
+                              "type": "Row"
+                            },
+                            {
+                              "children": [
+                                {
+                                  "content": "알겠어! 이따 봐 👋",
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "p": 2,
+                              "shadow": "none",
+                              "title": null,
+                              "type": "Card"
+                            }
+                          ],
+                          "gap": 1,
+                          "type": "Col"
+                        }
+                      ],
+                      "gap": 2,
+                      "justify": "end",
+                      "type": "Row"
+                    }
+                  ],
+                  "gap": 1,
+                  "type": "Col"
+                },
+                {
+                  "children": [
+                    {
+                      "align": "start",
+                      "children": [
+                        {
+                          "name": "김",
+                          "size": "sm",
+                          "type": "Avatar"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [],
+                                  "h": 150,
+                                  "label": "사진",
+                                  "type": "Placeholder",
+                                  "w": 200
+                                }
+                              ],
+                              "p": 2,
+                              "shadow": "none",
+                              "title": null,
+                              "type": "Card"
+                            },
+                            {
+                              "content": "오후 2:45",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 1,
+                          "type": "Col"
+                        }
+                      ],
+                      "gap": 2,
+                      "type": "Row"
+                    }
+                  ],
+                  "gap": 1,
+                  "type": "Col"
+                },
+                {
+                  "children": [
+                    {
+                      "align": "end",
+                      "children": [
+                        {
+                          "name": "김",
+                          "size": "sm",
+                          "type": "Avatar"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "content": "여기야! 맛있어 보이지? 😋",
+                                  "size": "sm",
+                                  "type": "Text"
+                                }
+                              ],
+                              "p": 2,
+                              "shadow": "none",
+                              "title": null,
+                              "type": "Card"
+                            },
+                            {
+                              "content": "오후 2:45",
+                              "muted": true,
+                              "size": "xs",
+                              "type": "Text"
+                            }
+                          ],
+                          "gap": 1,
+                          "type": "Col"
+                        }
+                      ],
+                      "gap": 2,
+                      "type": "Row"
+                    }
+                  ],
+                  "gap": 1,
+                  "type": "Col"
+                }
+              ],
+              "gap": 3,
+              "p": 3,
+              "type": "Col"
+            }
+          ],
+          "flex": 1,
+          "p": 0,
+          "scroll": true,
+          "type": "Main"
+        },
+        {
+          "border": true,
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "name": "plus",
+                  "type": "Icon"
+                },
+                {
+                  "label": null,
+                  "placeholder": "메시지 입력",
+                  "type": "Input",
+                  "w": "full"
+                },
+                {
+                  "name": "smile",
+                  "type": "Icon"
+                },
+                {
+                  "name": "hash",
+                  "type": "Icon"
+                }
+              ],
+              "gap": 2,
+              "type": "Row"
+            }
+          ],
+          "p": 2,
+          "type": "Footer"
+        }
+      ],
+      "device": "mobile",
+      "height": 700,
+      "title": null,
+      "type": "Page",
+      "width": 375
+    }
+  ],
+  "type": "Document"
+}

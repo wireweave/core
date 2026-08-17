@@ -3,37 +3,62 @@
   "version": "1.2.12-beta.4",
   "description": "Markdown plugins for wireweave",
   "type": "module",
+  "sideEffects": false,
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
     },
     "./markdown-it": {
-      "types": "./dist/markdown-it.d.ts",
-      "import": "./dist/markdown-it.js",
-      "require": "./dist/markdown-it.cjs"
+      "import": {
+        "types": "./dist/markdown-it.d.ts",
+        "default": "./dist/markdown-it.js"
+      },
+      "require": {
+        "types": "./dist/markdown-it.d.cts",
+        "default": "./dist/markdown-it.cjs"
+      }
     },
     "./marked": {
-      "types": "./dist/marked.d.ts",
-      "import": "./dist/marked.js",
-      "require": "./dist/marked.cjs"
+      "import": {
+        "types": "./dist/marked.d.ts",
+        "default": "./dist/marked.js"
+      },
+      "require": {
+        "types": "./dist/marked.d.cts",
+        "default": "./dist/marked.cjs"
+      }
     },
     "./remarkable": {
-      "types": "./dist/remarkable.d.ts",
-      "import": "./dist/remarkable.js",
-      "require": "./dist/remarkable.cjs"
+      "import": {
+        "types": "./dist/remarkable.d.ts",
+        "default": "./dist/remarkable.js"
+      },
+      "require": {
+        "types": "./dist/remarkable.d.cts",
+        "default": "./dist/remarkable.cjs"
+      }
     }
   },
   "files": [
     "dist",
     "README.md"
   ],
+  "engines": {
+    "node": ">=22.13.0"
+  },
   "scripts": {
     "build": "tsup",
+    "postbuild": "node ../../scripts/dist-freshness-gate.mjs --write .",
     "test": "vitest run",
     "test:watch": "vitest",
     "clean": "rm -rf dist",
@@ -44,7 +69,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "knip": "knip",
-    "publint": "publint"
+    "publint": "publint --strict"
   },
   "peerDependencies": {
     "markdown-it": ">=12.0.0",

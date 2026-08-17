@@ -15,6 +15,18 @@ import type { RenderContext } from './types'
 import { getIconData, renderIconSvg, renderUnknownIconSvg } from '../../../icons/lucide-icons'
 
 /**
+ * Pair a label with its control inside a field wrapper.
+ *
+ * A label and its control are one unit. Emitted as siblings they become two
+ * independent flex items of whatever row contains them, so the label drifts
+ * beside the control instead of sitting above it. The wrapper makes the pair a
+ * single flex item that stacks internally.
+ */
+function renderField(label: string, control: string, ctx: RenderContext): string {
+  return `<div class="${ctx.prefix}-field"><label class="${ctx.prefix}-input-label">${ctx.escapeHtml(label)}</label>\n${control}</div>`
+}
+
+/**
  * Render Input node
  */
 export function renderInput(node: InputNode, ctx: RenderContext): string {
@@ -44,7 +56,11 @@ export function renderInput(node: InputNode, ctx: RenderContext): string {
     const iconData = getIconData(node.icon)
     let iconHtml: string
     if (iconData) {
-      iconHtml = renderIconSvg(iconData, 16, 2, `${ctx.prefix}-input-icon`)
+      // `wf-icon` is the SIZING contract — `renderIconSvg` drops its size
+      // argument and emits no width/height, so the glyph is sized only by the
+      // class it is given. `wf-input-icon` carries placement, not size; alone it
+      // leaves a viewBox-only SVG to fill its flex parent.
+      iconHtml = renderIconSvg(iconData, 16, 2, `${ctx.prefix}-icon ${ctx.prefix}-input-icon`)
     } else {
       // Unknown icon: render the shared placeholder (never leak the raw name)
       iconHtml = `<span class="${ctx.prefix}-input-icon" title="Unknown icon: ${ctx.escapeHtml(node.icon)}">${renderUnknownIconSvg(`${ctx.prefix}-input-icon`, 16)}</span>`
@@ -56,7 +72,7 @@ export function renderInput(node: InputNode, ctx: RenderContext): string {
     // Don't show label if it's the default "Label" and input has a placeholder
     const shouldShowLabel = node.label && !(node.label === 'Label' && node.placeholder)
     if (shouldShowLabel) {
-      return `<label class="${ctx.prefix}-input-label">${ctx.escapeHtml(node.label!)}</label>\n${wrapper}`
+      return renderField(node.label!, wrapper, ctx)
     }
     return wrapper
   }
@@ -66,7 +82,7 @@ export function renderInput(node: InputNode, ctx: RenderContext): string {
   // Don't show label if it's the default "Label" and input has a placeholder
   const shouldShowLabel2 = node.label && !(node.label === 'Label' && node.placeholder)
   if (shouldShowLabel2) {
-    return `<label class="${ctx.prefix}-input-label">${ctx.escapeHtml(node.label!)}</label>\n${input}`
+    return renderField(node.label!, input, ctx)
   }
 
   return input
@@ -76,7 +92,9 @@ export function renderInput(node: InputNode, ctx: RenderContext): string {
  * Render Textarea node
  */
 export function renderTextarea(node: TextareaNode, ctx: RenderContext): string {
-  const classes = ctx.buildClassString([`${ctx.prefix}-input`, ...ctx.getCommonClasses(node)])
+  // Same element contract as select: `wf-textarea` owns min-height/resize,
+  // which `.wf-textarea` in the stylesheet defines and nothing else can carry.
+  const classes = ctx.buildClassString([`${ctx.prefix}-textarea`, ...ctx.getCommonClasses(node)])
 
   const styles = ctx.buildCommonStyles(node)
   const styleAttr = styles ? ` style="${styles}"` : ''
@@ -92,7 +110,7 @@ export function renderTextarea(node: TextareaNode, ctx: RenderContext): string {
   const textarea = `<textarea${ctx.buildAttrsString(attrs)}${styleAttr}>${ctx.escapeHtml(node.value || '')}</textarea>`
 
   if (node.label) {
-    return `<label class="${ctx.prefix}-input-label">${ctx.escapeHtml(node.label)}</label>\n${textarea}`
+    return renderField(node.label, textarea, ctx)
   }
 
   return textarea
@@ -102,7 +120,10 @@ export function renderTextarea(node: TextareaNode, ctx: RenderContext): string {
  * Render Select node
  */
 export function renderSelect(node: SelectNode, ctx: RenderContext): string {
-  const classes = ctx.buildClassString([`${ctx.prefix}-input`, ...ctx.getCommonClasses(node)])
+  // `wf-select` is the element contract — the base field look is shared with
+  // `wf-input` via a grouped selector in the stylesheet, while `wf-select`
+  // carries what only a <select> needs (chevron, intrinsic width in a row).
+  const classes = ctx.buildClassString([`${ctx.prefix}-select`, ...ctx.getCommonClasses(node)])
 
   const styles = ctx.buildCommonStyles(node)
   const styleAttr = styles ? ` style="${styles}"` : ''
@@ -136,7 +157,7 @@ export function renderSelect(node: SelectNode, ctx: RenderContext): string {
   const select = `<select${ctx.buildAttrsString(attrs)}${styleAttr}>\n${placeholder}${options}\n</select>`
 
   if (node.label) {
-    return `<label class="${ctx.prefix}-input-label">${ctx.escapeHtml(node.label)}</label>\n${select}`
+    return renderField(node.label, select, ctx)
   }
 
   return select
@@ -235,7 +256,7 @@ export function renderSlider(node: SliderNode, ctx: RenderContext): string {
   const slider = `<input${ctx.buildAttrsString(attrs)}${styleAttr} />`
 
   if (node.label) {
-    return `<label class="${ctx.prefix}-input-label">${ctx.escapeHtml(node.label)}</label>\n${slider}`
+    return renderField(node.label, slider, ctx)
   }
 
   return slider

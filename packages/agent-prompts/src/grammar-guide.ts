@@ -64,17 +64,14 @@ Renderer modes (the host picks one; you only need to emit valid pages):
 - renderCanvas(doc) — composes all pages into one bounded canvas.
 - renderPage(page) — single-page export primitive (1 page = 1 file).
 
-# SHARED PAGE LAYOUTS
-When several pages share a shell, define it once as a top-level layout and put
-the varying page content at its slot. Layout definitions and pages are siblings;
-a layout is not a screen by itself.
+# REUSE — DEFINE THE SHELL ONCE
+Screens in one .wf file share a shell (header, sidebar, footer). Restating it on every page is the single biggest source of bloat, so declare it once and reference it.
 
-- layout NAME { ... slot ... } — a named page shell. NAME is a bare identifier.
-- slot — a bare positional marker inside a layout. It takes no name and no braces.
-- page "Title" uses=NAME { ... } — draw the page inside layout NAME; the page body
-  contains only the content unique to that screen.
-
-Example:
+- layout NAME { … slot … } — a named page shell. The name is a bare identifier, NOT a quoted string.
+- slot — a bare positional marker inside a layout, marking where a referencing page's own content goes. It takes no name and no braces.
+- component NAME { … } — a named fragment defined once and referenced by name instead of restated.
+- use NAME(arg="value") { … } — draw a component defined above. Arguments are parenthesized name=value pairs; the optional braces fill the component's slots.
+- page "Title" uses=NAME { … } — draw this page inside layout NAME. The page body holds only what is unique to that screen.
 
 \`\`\`
 layout app {
@@ -85,7 +82,14 @@ layout app {
 
 page "Home" uses=app { text "Welcome back" }
 page "Docs" uses=app { text "Getting started" }
+page "About" uses=app { text "Who we are" }
 \`\`\`
+
+Rules:
+- layout and component are TOP-LEVEL only — siblings of page, never nested inside one.
+- Define a layout as soon as two or more pages share a shell. Three pages that each repeat a header is a defect, not a style.
+- A page with uses= must NOT restate the shell; put only its own content in the body.
+- A layout has exactly the structure a page would have, with slot standing in for the varying part.
 
 # LAYOUT COMPONENTS
 page: Root container. Attrs: title (string arg), uses (layout name), at(x, y), viewport, width, height (pixels), device (mobile/tablet/desktop preset), centered (boolean).
@@ -276,15 +280,17 @@ export function buildCompactGrammarPrompt(): string {
 - Use viewport="WxH" per page; omit at() to auto-flow, use at(x, y) to pin.
 - Multi-view apps default to separate top-level pages (not sidebar collapse).
 
-# SHARED PAGE LAYOUTS: layout NAME { … slot … } defines a top-level shell; slot is a bare marker with no name or braces; page "Title" uses=NAME { … } places that page inside the shell. Layouts and pages are top-level siblings.
+# REUSE: layout NAME { … } defines a shared shell (name is a bare identifier, not a quoted string); slot marks where a referencing page's own content goes inside that shell (bare keyword, no name, no braces); component NAME { … } defines a reusable fragment; use NAME(arg="value") { … } draws that fragment, passing parenthesized arguments and optionally filling its slots; page "Title" uses=NAME draws that page inside the layout and states only its own content. layout/component are top-level siblings of page. Two or more pages sharing a shell → define a layout instead of repeating it.
 # LAYOUT: page(at, viewport, width, height, device, centered, uses), header(h, border), main(p, scroll), footer(h, border), sidebar(w, border, position), section, row(gap, justify, align, wrap), col(gap, flex, span), stack, relative
 # CONTAINERS: card(p, shadow), modal(w, id), drawer(w, position, id), accordion
 # TEXT: text(size, weight, muted), title(level), link(href)
 # VISUAL: icon(Lucide name), avatar(size), badge(variant), image, placeholder(h, w)
 # FORM: button(primary/danger/outline/ghost, icon, size), input(inputType, placeholder), select, checkbox, radio, switch, slider, textarea
-# NAV: nav(vertical, active) with array ["Item1","Item2"], tabs(active), breadcrumb, dropdown
+# NAV: nav(vertical, active) with array ["Item1","Item2"], item(icon, active, disabled, href) inside a nav/dropdown block, tabs(active) with tab children, breadcrumb, dropdown
 # DATA: table with 2D array, list with array
 # FEEDBACK: alert(variant), toast, progress(value), spinner
+# OVERLAY: tooltip(position), popover(title)
+# ANNOTATION: marker(number arg, anchor, color), annotations(title) { item N "Title" { text "…" } }
 # UTILITY: divider
 
 # INTERACTIONS

@@ -1,0 +1,161 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "border": true,
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "name": "arrow_back",
+                  "spacer": true,
+                  "type": "Icon"
+                },
+                {
+                  "content": "Book Title",
+                  "spacer": true,
+                  "type": "Text",
+                  "weight": "semibold"
+                }
+              ],
+              "justify": "between",
+              "px": 4,
+              "type": "Row"
+            }
+          ],
+          "h": 56,
+          "type": "Header"
+        },
+        {
+          "children": [
+            {
+              "align": "center",
+              "children": [
+                {
+                  "children": [],
+                  "h": 160,
+                  "label": "Cover",
+                  "type": "Placeholder",
+                  "w": 120
+                },
+                {
+                  "align": "center",
+                  "content": "Book Title",
+                  "level": 3,
+                  "type": "Title"
+                },
+                {
+                  "align": "center",
+                  "content": "Author Name",
+                  "size": "md",
+                  "type": "Text"
+                },
+                {
+                  "align": "center",
+                  "content": "145/320",
+                  "type": "Text",
+                  "weight": "medium"
+                }
+              ],
+              "gap": 3,
+              "type": "Col"
+            },
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "Mar 15, 2023",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "145",
+                              "type": "Badge",
+                              "variant": "default"
+                            }
+                          ],
+                          "justify": "between",
+                          "type": "Row"
+                        },
+                        {
+                          "content": "Finished chapter 4. Great insights on character development.",
+                          "type": "Text"
+                        }
+                      ],
+                      "p": 3,
+                      "title": null,
+                      "type": "Card"
+                    },
+                    {
+                      "children": [
+                        {
+                          "align": "center",
+                          "children": [
+                            {
+                              "content": "Mar 16, 2023",
+                              "muted": true,
+                              "size": "sm",
+                              "type": "Text"
+                            },
+                            {
+                              "content": "150",
+                              "type": "Badge",
+                              "variant": "default"
+                            }
+                          ],
+                          "justify": "between",
+                          "type": "Row"
+                        },
+                        {
+                          "content": "Started chapter 5. The pacing feels slower than previous chapters.",
+                          "type": "Text"
+                        }
+                      ],
+                      "p": 3,
+                      "title": null,
+                      "type": "Card"
+                    }
+                  ],
+                  "gap": 3,
+                  "type": "Col"
+                }
+              ],
+              "title": "Reading Log",
+              "type": "Section"
+            }
+          ],
+          "gap": 4,
+          "p": 4,
+          "scroll": true,
+          "type": "Main"
+        },
+        {
+          "children": [
+            {
+              "content": "Add Memo",
+              "primary": true,
+              "type": "Button",
+              "w": "full"
+            }
+          ],
+          "p": 4,
+          "type": "Footer"
+        }
+      ],
+      "height": 812,
+      "title": "Book Detail",
+      "type": "Page",
+      "width": 375
+    }
+  ],
+  "type": "Document"
+}
