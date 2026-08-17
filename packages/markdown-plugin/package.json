@@ -1,6 +1,6 @@
 {
   "name": "@wireweave/markdown-plugin",
-  "version": "1.2.12-beta.4",
+  "version": "1.2.12-beta.5",
   "description": "Markdown plugins for wireweave",
   "type": "module",
   "sideEffects": false,

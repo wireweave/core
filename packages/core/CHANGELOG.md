@@ -1,5 +1,128 @@
 # Changelog
 
+## 3.1.0-beta.5
+
+### Minor Changes
+
+- [#40](https://github.com/wireweave/wireweave/pull/40) [`83c2329`](https://github.com/wireweave/wireweave/commit/83c2329840e027c92e86d9f523c8e782a944160c) Thanks [@Seungwoo321](https://github.com/Seungwoo321)! - feat: expose the shared anchor navigation intent and classify URL-shaped `navigate` targets as external transitions.
+
+  fix: align the legacy `module` entrypoint with the published ESM file declared by `exports.import`.
+
+- [#41](https://github.com/wireweave/wireweave/pull/41) [`8d7c014`](https://github.com/wireweave/wireweave/commit/8d7c014915c76aa299c42bf75935ddba9a992e66) Thanks [@Seungwoo321](https://github.com/Seungwoo321)! - Add reusable application components, deterministic multi-screen compilation, and typed prototype interactions.
+
+- [`2f7cc70`](https://github.com/wireweave/wireweave/commit/2f7cc7042da1170bef2f103f7ac25c7d0db3f4c9) Thanks [@Seungwoo321](https://github.com/Seungwoo321)! - feat: publish the DSL specification as a `./spec` export subpath
+
+  `ATTRIBUTE_SPECS`, `COMPONENT_SPECS`, `GRAMMAR_ELEMENTS`, `BOX_ATTRIBUTES`,
+  `INTERACTIVE_ATTRIBUTES` and the lookup helpers around them were already the
+  single source the grammar derives from, but they were only reachable through
+  the package root — a consumer that wanted the specification had to pull in the
+  parser and renderer to get it.
+
+  `@wireweave/core/spec` now serves that surface on its own, built as a separate
+  entry so an editor-integration package pays for the spec and nothing else.
+  `@wireweave/language-data` is the first consumer: it derives its element and
+  attribute vocabulary from this subpath rather than restating it, which is what
+  lets a new grammar element fail that package's build until its editor metadata
+  exists.
+
+  Additive — the same names remain exported from the root, and no existing entry
+  point changed.
+
+- [#39](https://github.com/wireweave/wireweave/pull/39) [`f4a7b36`](https://github.com/wireweave/wireweave/commit/f4a7b36061f8310ffcb9a933dd457c6d3b0d89cc) Thanks [@Seungwoo321](https://github.com/Seungwoo321)! - feat: publish the verified named layout, slot, page-uses, and site-render contract for Wireweave beta.
+
+  Component definition/invocation reuse remains out of scope until the full end-to-end contract is implemented and verified.
+
+### Patch Changes
+
+- [`2f7cc70`](https://github.com/wireweave/wireweave/commit/2f7cc7042da1170bef2f103f7ac25c7d0db3f4c9) Thanks [@Seungwoo321](https://github.com/Seungwoo321)! - fix: stop accepting `visibleWhen` / `enabledWhen` on `page`
+
+  Both attributes reached `page` through the shared box-attribute list, so
+  `validate()` accepted them — while no renderer emitted anything for them and no
+  runtime toggled anything, making the rendered output byte-identical with and
+  without the guard. An author could write one, see no diagnostic, and get
+  nothing.
+
+  A guarded outcome is emitted by the component render path and read by the site
+  runtime. A page is the board that path renders _into_, so there is no element
+  for the guard to land on. The declaration is removed rather than the render path
+  added: hiding a whole board on state has no meaning in the site shell, where the
+  screen a viewer sees is chosen by navigation.
+
+  Every other element that spreads the box list keeps both attributes; only
+  `page`'s own surface narrows.
+
+- [`2f7cc70`](https://github.com/wireweave/wireweave/commit/2f7cc7042da1170bef2f103f7ac25c7d0db3f4c9) Thanks [@Seungwoo321](https://github.com/Seungwoo321)! - chore: declare the supported Node version on every published package
+
+  Six of the eight packages declared no `engines` at all, so npm installed them
+  onto any Node version without a word. The two that did — `@wireweave/cli`
+  (`>=18`) and `@wireweave/sdk` (`>=20`) — claimed support for runtimes nothing
+  in this repository has ever built or tested against, and were unsatisfiable
+  besides: both depend transitively on `@wireweave/core`, so their real floor was
+  whatever core's is.
+
+  All eight now declare `node: >=22.13.0`, the version `.nvmrc` pins and the only
+  one CI runs. This narrows the advertised range for `cli` and `sdk`; it does not
+  narrow what actually worked, it stops advertising support that was never there.
+
+- [`2f7cc70`](https://github.com/wireweave/wireweave/commit/2f7cc7042da1170bef2f103f7ac25c7d0db3f4c9) Thanks [@Seungwoo321](https://github.com/Seungwoo321)! - fix: correct the legacy entry fields both packages publish
+
+  `main` is the CommonJS fallback for resolvers that do not read `exports`, and
+  `module` is the bundler convention for the ESM build. Both packages pointed
+  `main` at the ESM `dist/index.js` while shipping a perfectly good
+  `dist/index.cjs`, so a consumer old enough to fall back to `main` got ESM
+  syntax it could not parse. `@wireweave/core` additionally set
+  `module: dist/index.mjs`, a file tsup has never emitted — webpack, rollup, and
+  any vite config that honours `module` resolved core to nothing.
+
+  Both now match the rest of the workspace: `main: dist/index.cjs`,
+  `module: dist/index.js`. Modern resolution is unaffected — the `exports` maps
+  were already correct and take precedence.
+
+- [`2f7cc70`](https://github.com/wireweave/wireweave/commit/2f7cc7042da1170bef2f103f7ac25c7d0db3f4c9) Thanks [@Seungwoo321](https://github.com/Seungwoo321)! - fix: serve CommonJS consumers CommonJS type declarations
+
+  Each of these packages ships both an ESM and a CJS build but declared a single
+  `exports` `"types"` entry pointing at the ESM `.d.ts`. TypeScript resolves types
+  through the same condition it resolves code, so a consumer doing
+  `require('@wireweave/core')` under `moduleResolution: node16`/`bundler` was
+  handed declarations that only typecheck when the package is dynamically
+  imported — the types said "ESM" while the code said "CJS".
+
+  The maps now split `import` and `require`, each with its own `types`, matching
+  the shape `@wireweave/agent-prompts` already used. Every subpath is covered, and
+  the `.d.cts` files they point at were already being emitted. No entry point was added or
+  removed and every path resolves to the same code as before.
+
+- [`2f7cc70`](https://github.com/wireweave/wireweave/commit/2f7cc7042da1170bef2f103f7ac25c7d0db3f4c9) Thanks [@Seungwoo321](https://github.com/Seungwoo321)! - chore: declare `sideEffects: false` on the packages that have none
+
+  Bundlers use this field to decide whether a module may be dropped entirely when
+  none of its exports are used. Five packages qualified and none said so, which
+  cost consumers dead code in every build that imported one of them for a single
+  symbol.
+
+  The claim is verified rather than asserted. `pnpm sideeffects:check` imports
+  every `exports` entry of every package making the claim, each in its own
+  process, and compares globals, builtin prototypes and `process.env` across the
+  import while capturing stdout/stderr from outside and enforcing filesystem,
+  process and worker access through Node's permission model. A package is covered
+  the moment it adds the field, and the gate fails rather than passing vacuously
+  if the set making the claim is ever empty.
+
+- [`2f7cc70`](https://github.com/wireweave/wireweave/commit/2f7cc7042da1170bef2f103f7ac25c7d0db3f4c9) Thanks [@Seungwoo321](https://github.com/Seungwoo321)! - chore: serve core's source to the workspace and its dist to npm
+
+  `packages/core` now points `main` / `module` at `src/index.ts` and adds a
+  `development` condition to every `exports` entry, so TypeScript,
+  typescript-eslint and Vite/Vitest read core's source instead of its build
+  output. This removes the ordering dependency that made `lint`, `typecheck` and
+  `test` observe a half-written `dist/` when run alongside `build` — a race that
+  produced failures naming files the author never touched, and that vanished on
+  re-run, which taught readers that red meant nothing.
+
+  What npm receives is unchanged. A `publishConfig` block carries the dist-based
+  `main` / `module` / `types` / `exports` map, and pnpm substitutes it at pack
+  time; the packaging gate's `publint --strict` run asserts every substituted
+  field resolves, and the tarball gate asserts the published archive contains
+  exactly what those fields point at and nothing from `src/`.
+
 ## 3.1.0-beta.4
 
 ### Minor Changes

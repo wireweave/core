@@ -16,10 +16,22 @@
   "changesets": [
     "agent-prompts-interaction-wiring",
     "core-a11y-icons",
+    "core-anchor-navigation",
+    "core-app-runtime",
     "core-canvas-fixes",
     "core-dom-anchors",
     "core-extract-apis",
+    "core-page-guard-narrowing",
+    "core-spec-subpath",
     "core-wf-printer",
-    "ux-rules-content-authoring"
+    "engines-node-floor",
+    "language-data-core-dependency",
+    "layout-site-beta",
+    "markdown-plugin-layout-compat",
+    "packaging-entry-fields",
+    "packaging-types-conditions",
+    "side-effects-declarations",
+    "ux-rules-content-authoring",
+    "workspace-source-resolution"
   ]
 }

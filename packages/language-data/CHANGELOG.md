@@ -1,5 +1,89 @@
 # Changelog
 
+## 1.6.0-beta.0
+
+### Minor Changes
+
+- [`2f7cc70`](https://github.com/wireweave/wireweave/commit/2f7cc7042da1170bef2f103f7ac25c7d0db3f4c9) Thanks [@Seungwoo321](https://github.com/Seungwoo321)! - feat: derive the editor vocabulary from `@wireweave/core/spec`
+
+  The element set, attribute names, value domains and descriptions this package
+  offers to Monaco and CodeMirror were maintained as a parallel transcription of
+  the DSL specification. A parallel copy drifts silently: an attribute added to
+  the grammar simply never reached autocomplete, and nothing failed.
+
+  They are now read from `@wireweave/core/spec`, which derives them from the
+  grammar itself. Only genuinely editor-side concerns remain declared here —
+  example snippets, parent/child hints, and the two documented gap categories in
+  `core-spec-gaps.ts` (source spellings the grammar desugars, which correctly
+  have no attribute spec, and a shrinking list of attributes core has yet to
+  declare). Sync tests assert those lists stay disjoint from core, so the moment
+  core adopts an entry the build fails until it is deleted here.
+
+  This adds `@wireweave/core` as a runtime dependency of
+  `@wireweave/language-data`; it was previously a peer of the editor integrations
+  only. Consumers already installing both are unaffected.
+
+### Patch Changes
+
+- [`2f7cc70`](https://github.com/wireweave/wireweave/commit/2f7cc7042da1170bef2f103f7ac25c7d0db3f4c9) Thanks [@Seungwoo321](https://github.com/Seungwoo321)! - chore: declare the supported Node version on every published package
+
+  Six of the eight packages declared no `engines` at all, so npm installed them
+  onto any Node version without a word. The two that did — `@wireweave/cli`
+  (`>=18`) and `@wireweave/sdk` (`>=20`) — claimed support for runtimes nothing
+  in this repository has ever built or tested against, and were unsatisfiable
+  besides: both depend transitively on `@wireweave/core`, so their real floor was
+  whatever core's is.
+
+  All eight now declare `node: >=22.13.0`, the version `.nvmrc` pins and the only
+  one CI runs. This narrows the advertised range for `cli` and `sdk`; it does not
+  narrow what actually worked, it stops advertising support that was never there.
+
+- [`2f7cc70`](https://github.com/wireweave/wireweave/commit/2f7cc7042da1170bef2f103f7ac25c7d0db3f4c9) Thanks [@Seungwoo321](https://github.com/Seungwoo321)! - fix: correct the legacy entry fields both packages publish
+
+  `main` is the CommonJS fallback for resolvers that do not read `exports`, and
+  `module` is the bundler convention for the ESM build. Both packages pointed
+  `main` at the ESM `dist/index.js` while shipping a perfectly good
+  `dist/index.cjs`, so a consumer old enough to fall back to `main` got ESM
+  syntax it could not parse. `@wireweave/core` additionally set
+  `module: dist/index.mjs`, a file tsup has never emitted — webpack, rollup, and
+  any vite config that honours `module` resolved core to nothing.
+
+  Both now match the rest of the workspace: `main: dist/index.cjs`,
+  `module: dist/index.js`. Modern resolution is unaffected — the `exports` maps
+  were already correct and take precedence.
+
+- [`2f7cc70`](https://github.com/wireweave/wireweave/commit/2f7cc7042da1170bef2f103f7ac25c7d0db3f4c9) Thanks [@Seungwoo321](https://github.com/Seungwoo321)! - fix: serve CommonJS consumers CommonJS type declarations
+
+  Each of these packages ships both an ESM and a CJS build but declared a single
+  `exports` `"types"` entry pointing at the ESM `.d.ts`. TypeScript resolves types
+  through the same condition it resolves code, so a consumer doing
+  `require('@wireweave/core')` under `moduleResolution: node16`/`bundler` was
+  handed declarations that only typecheck when the package is dynamically
+  imported — the types said "ESM" while the code said "CJS".
+
+  The maps now split `import` and `require`, each with its own `types`, matching
+  the shape `@wireweave/agent-prompts` already used. Every subpath is covered, and
+  the `.d.cts` files they point at were already being emitted. No entry point was added or
+  removed and every path resolves to the same code as before.
+
+- [`2f7cc70`](https://github.com/wireweave/wireweave/commit/2f7cc7042da1170bef2f103f7ac25c7d0db3f4c9) Thanks [@Seungwoo321](https://github.com/Seungwoo321)! - chore: declare `sideEffects: false` on the packages that have none
+
+  Bundlers use this field to decide whether a module may be dropped entirely when
+  none of its exports are used. Five packages qualified and none said so, which
+  cost consumers dead code in every build that imported one of them for a single
+  symbol.
+
+  The claim is verified rather than asserted. `pnpm sideeffects:check` imports
+  every `exports` entry of every package making the claim, each in its own
+  process, and compares globals, builtin prototypes and `process.env` across the
+  import while capturing stdout/stderr from outside and enforcing filesystem,
+  process and worker access through Node's permission model. A package is covered
+  the moment it adds the field, and the gate fails rather than passing vacuously
+  if the set making the claim is ever empty.
+
+- Updated dependencies [[`83c2329`](https://github.com/wireweave/wireweave/commit/83c2329840e027c92e86d9f523c8e782a944160c), [`8d7c014`](https://github.com/wireweave/wireweave/commit/8d7c014915c76aa299c42bf75935ddba9a992e66), [`2f7cc70`](https://github.com/wireweave/wireweave/commit/2f7cc7042da1170bef2f103f7ac25c7d0db3f4c9), [`2f7cc70`](https://github.com/wireweave/wireweave/commit/2f7cc7042da1170bef2f103f7ac25c7d0db3f4c9), [`2f7cc70`](https://github.com/wireweave/wireweave/commit/2f7cc7042da1170bef2f103f7ac25c7d0db3f4c9), [`f4a7b36`](https://github.com/wireweave/wireweave/commit/f4a7b36061f8310ffcb9a933dd457c6d3b0d89cc), [`2f7cc70`](https://github.com/wireweave/wireweave/commit/2f7cc7042da1170bef2f103f7ac25c7d0db3f4c9), [`2f7cc70`](https://github.com/wireweave/wireweave/commit/2f7cc7042da1170bef2f103f7ac25c7d0db3f4c9), [`2f7cc70`](https://github.com/wireweave/wireweave/commit/2f7cc7042da1170bef2f103f7ac25c7d0db3f4c9), [`2f7cc70`](https://github.com/wireweave/wireweave/commit/2f7cc7042da1170bef2f103f7ac25c7d0db3f4c9)]:
+  - @wireweave/core@3.1.0-beta.5
+
 ## [1.5.2](https://github.com/wireweave/language-data/compare/v1.5.2-beta.0...v1.5.2) (2026-03-15)
 
 ## [1.5.2-beta.0](https://github.com/wireweave/language-data/compare/v1.5.1...v1.5.2-beta.0) (2026-03-15)
