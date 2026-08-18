@@ -30,6 +30,7 @@ examples/twitter-feed.wf
 examples/upbit-exchange.wf
 examples/ux-rule_airbnb-listing.wf
 examples/youtube-home.wf
+repeat/v1.wf
 studio-fixtures/canonical-project/home/v1.wf
 studio-fixtures/canonical-project/login/v1.wf
 studio-fixtures/canonical-project/login/v2.wf

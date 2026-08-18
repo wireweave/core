@@ -409,6 +409,25 @@ export interface SectionNode extends BaseNode, CommonProps {
   children: AnyNode[]
 }
 
+/**
+ * `repeat N { … }` — the same body drawn `count` times.
+ *
+ * A folding device, not an expressive one: it carries a count and nothing else,
+ * so every copy is identical by construction. There is deliberately no index
+ * variable — an index is what lets copies differ, and copies that differ are
+ * data binding rather than a wireframe.
+ *
+ * The node survives into the AST unexpanded so the printer can write
+ * `repeat 6` back out. Expansion happens on the way to a rendered tree
+ * (`expandRepeats`), never in the parser.
+ */
+export interface RepeatNode extends BaseNode {
+  type: 'Repeat'
+  /** How many times to draw `children`. A non-negative integer; `0` draws nothing. */
+  count: number
+  children: AnyNode[]
+}
+
 // ===========================================
 // Grid Nodes
 // ===========================================
@@ -1036,6 +1055,7 @@ export type ContainerNode =
   | AnnotationsNode
   | AnnotationItemNode
   | ComponentUseNode
+  | RepeatNode
 
 export type LeafNode =
   | TextContentNode
@@ -1059,6 +1079,7 @@ export type NodeType =
   | 'Component'
   | 'ComponentUse'
   | 'Slot'
+  | 'Repeat'
   | 'Header'
   | 'Main'
   | 'Footer'

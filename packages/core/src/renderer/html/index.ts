@@ -69,6 +69,7 @@ import {
   buildAnchorPathMap,
   formatAnchorLoc,
 } from '../../ast/anchor-path'
+import { expandRepeats } from '../../ast/expand-repeats'
 import { guardedOutcomeAttrs } from './interactive'
 
 /**
@@ -247,6 +248,10 @@ export class HtmlRenderer extends BaseRenderer {
    * enabled so `renderNode` / `renderPage` can inject each node's path.
    */
   render(document: WireframeDocument): RenderResult {
+    // Fold `repeat N { … }` out before the anchor index is built: the map is
+    // keyed by node identity, so copies created after it would carry no path.
+    // Idempotent, so composers that already expanded (renderSite) pay nothing.
+    document = expandRepeats(document)
     if (this.context.options.sourceAnchors) {
       this.pathMap = buildAnchorPathMap(document, this.pageIndexBase)
     }

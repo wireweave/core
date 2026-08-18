@@ -429,6 +429,17 @@ function printNodeLines(node: AnyNode, depth: number): string[] {
     case 'ComponentUse':
       return componentUseLines(node, depth)
 
+    // `repeat 6 { … }` — the count prints bare, as the grammar's positional
+    // `Integer`, which is why this cannot go through `containerLines` (that
+    // helper's only pre-attribute segment is an optional *quoted* label).
+    case 'Repeat':
+      return blockLines(
+        depth,
+        ['repeat', integerSegment(node, 'count'), ...attrSegments(node, ['count'], node.type)],
+        childrenLines(node, depth),
+        'required',
+      )
+
     // -- containers without a label ----------------------------------------
     case 'Header':
     case 'Main':

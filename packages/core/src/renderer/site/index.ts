@@ -40,6 +40,7 @@
  */
 
 import type { PageNode, WireframeDocument } from '../../ast/types'
+import { expandRepeats } from '../../ast/expand-repeats'
 import { collectInteractions } from '../../interaction/model'
 import { HtmlRenderer } from '../html'
 import { generateStyles } from '../styles'
@@ -294,6 +295,10 @@ function compactRuntimeInteractions(
  */
 export function renderSite(document: WireframeDocument, options: SiteOptions = {}): string {
   const prefix = options.classPrefix ?? DEFAULT_PREFIX
+  // Site composition renders through `renderFragment`, which bypasses
+  // `HtmlRenderer.render` and its expansion — so fold `repeat` here, once, and
+  // let the screen model and the interaction model see the same expanded tree.
+  document = expandRepeats(document)
   const model = buildSiteModel(document)
   const interactionModel = collectInteractions(document)
   const make: MakeRenderer = (idScope) =>

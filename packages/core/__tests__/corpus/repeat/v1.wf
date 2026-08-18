@@ -1,0 +1,62 @@
+// Corpus fixture for the `repeat N { … }` folding syntax.
+//
+// Written for the grammar change that introduced `repeat`, so the baseline
+// captured here is the first record of what the parser and printer do with it.
+// Covers the shapes that are easy to break separately: a plain fold, the two
+// degenerate counts, nesting, a fold whose body is several nodes, and a fold
+// around a component invocation (the case the syntax was added for).
+
+component skeletonCard() {
+  card p=4 {
+    stack gap=2 {
+      text "████████" muted
+      text "██████" muted
+    }
+  }
+}
+
+page "Feed" viewport="1280x800" {
+  header h=56 border {
+    title "Feed" level=1
+  }
+
+  main p=6 scroll {
+    // the case the syntax exists for: six identical placeholders
+    section "Loading" {
+      row gap=4 {
+        repeat 6 { use skeletonCard() }
+      }
+    }
+
+    // a body of several nodes repeats as a unit
+    section "Rows" {
+      col gap=2 {
+        repeat 3 {
+          text "Item"
+          divider
+        }
+      }
+    }
+
+    // nesting multiplies
+    section "Grid" {
+      col gap=4 {
+        repeat 2 {
+          row gap=4 {
+            repeat 3 {
+              card p=2 { text "cell" }
+            }
+          }
+        }
+      }
+    }
+
+    // the degenerate counts both parse
+    section "Edges" {
+      stack gap=2 {
+        repeat 0 { text "never drawn" }
+        repeat 1 { text "drawn once" }
+      }
+    }
+  }
+}

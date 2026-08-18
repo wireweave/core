@@ -1,0 +1,183 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "content": "████████",
+                  "muted": true,
+                  "type": "Text"
+                },
+                {
+                  "content": "██████",
+                  "muted": true,
+                  "type": "Text"
+                }
+              ],
+              "gap": 2,
+              "type": "Stack"
+            }
+          ],
+          "p": 4,
+          "title": null,
+          "type": "Card"
+        }
+      ],
+      "name": "skeletonCard",
+      "parameters": [],
+      "type": "Component"
+    },
+    {
+      "children": [
+        {
+          "border": true,
+          "children": [
+            {
+              "content": "Feed",
+              "level": 1,
+              "type": "Title"
+            }
+          ],
+          "h": 56,
+          "type": "Header"
+        },
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "fills": [],
+                          "inputs": {},
+                          "name": "skeletonCard",
+                          "type": "ComponentUse"
+                        }
+                      ],
+                      "count": 6,
+                      "type": "Repeat"
+                    }
+                  ],
+                  "gap": 4,
+                  "type": "Row"
+                }
+              ],
+              "title": "Loading",
+              "type": "Section"
+            },
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "content": "Item",
+                          "type": "Text"
+                        },
+                        {
+                          "type": "Divider"
+                        }
+                      ],
+                      "count": 3,
+                      "type": "Repeat"
+                    }
+                  ],
+                  "gap": 2,
+                  "type": "Col"
+                }
+              ],
+              "title": "Rows",
+              "type": "Section"
+            },
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "content": "cell",
+                                      "type": "Text"
+                                    }
+                                  ],
+                                  "p": 2,
+                                  "title": null,
+                                  "type": "Card"
+                                }
+                              ],
+                              "count": 3,
+                              "type": "Repeat"
+                            }
+                          ],
+                          "gap": 4,
+                          "type": "Row"
+                        }
+                      ],
+                      "count": 2,
+                      "type": "Repeat"
+                    }
+                  ],
+                  "gap": 4,
+                  "type": "Col"
+                }
+              ],
+              "title": "Grid",
+              "type": "Section"
+            },
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "content": "never drawn",
+                          "type": "Text"
+                        }
+                      ],
+                      "count": 0,
+                      "type": "Repeat"
+                    },
+                    {
+                      "children": [
+                        {
+                          "content": "drawn once",
+                          "type": "Text"
+                        }
+                      ],
+                      "count": 1,
+                      "type": "Repeat"
+                    }
+                  ],
+                  "gap": 2,
+                  "type": "Stack"
+                }
+              ],
+              "title": "Edges",
+              "type": "Section"
+            }
+          ],
+          "p": 6,
+          "scroll": true,
+          "type": "Main"
+        }
+      ],
+      "title": "Feed",
+      "type": "Page",
+      "viewport": "1280x800"
+    }
+  ],
+  "type": "Document"
+}

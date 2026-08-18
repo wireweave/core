@@ -64,6 +64,11 @@ const EDITOR_METADATA: Readonly<Record<GrammarElementName, EditorComponentMeta>>
   use: {
     example: 'use userbadge(name="Ada") { ... }',
   },
+  repeat: {
+    // No `validParents`: `repeat` is a fold, so it belongs wherever its body
+    // would have been written out by hand — which is anywhere children go.
+    example: 'row gap=4 { repeat 6 { use skeletonCard() } }',
+  },
 
   // Grid
   row: { example: 'row flex gap=4 justify=between { ... }' },

@@ -1,6 +1,6 @@
 # `.wf` regression corpus
 
-70 wireframe source files written against the grammar as it stands today. They
+71 wireframe source files written against the grammar as it stands today. They
 exist to answer one question after the grammar is extended: **does source that
 parsed before still parse to the same thing?**
 
@@ -45,6 +45,7 @@ collisions cannot happen (nine files are named `v1.wf`).
 | `bookmark-v2`         | 4     | `wireweave/docs/aidlc-docs_wireweave-agent/products/01-bookmark/wireframes/v2/`                |
 | `dogfood`             | 2     | `wireweave-studio/.local/dogfood-artifacts/shadow-bundle-run1/screens/` — **gitignored**       |
 | `e2-demo`             | 1     | `wireweave/.local/e2-demo/` — **gitignored**                                                   |
+| `repeat`              | 1     | Written for the `repeat N { … }` grammar addition — not imported from anywhere                 |
 
 Directory layout under each source root is preserved, except that
 `studio-fixtures` drops the `wireweave/screens/` middle segments

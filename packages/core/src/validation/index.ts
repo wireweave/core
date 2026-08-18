@@ -99,6 +99,7 @@ const POSITIONAL_PROPS: Readonly<Record<string, readonly string[]>> = {
   Component: ['name'],
   ComponentUse: ['name', 'namespace'],
   Slot: ['name'],
+  Repeat: ['count'],
 }
 
 /**

@@ -208,11 +208,31 @@ Children
 
 Child
   = ComponentUse
+  / Repeat
   / LayoutElement
   / ContainerElement
   / UIElement
   / Slot
   / Comment { return null; }
+
+// ============================================================
+// Repeat
+// ============================================================
+
+// `repeat N { … }` folds authored duplication: six identical skeleton cards are
+// one body written once, not six copies to keep in sync. It is deliberately a
+// *count* and nothing else — no index variable, because an index is what turns
+// "six of the same card" into "the i-th card differs", and that is data binding.
+// Wireweave draws wireframes, where six identical placeholders are the honest
+// picture. Keeping the count in the AST (rather than expanding at parse time)
+// is what lets the printer write `repeat 6` back out instead of six bodies.
+Repeat
+  = "repeat" _ count:Integer _ "{" _ children:Children _ "}" {
+      return createNode('Repeat', {
+        count,
+        children
+      });
+    }
 
 // ============================================================
 // Layout Elements
@@ -861,6 +881,7 @@ ChildKeyword
     / "tooltip" / "popover" / "dropdown" / "divider"
     / "nav" / "tabs" / "tab" / "breadcrumb" / "group"
     / "marker" / "annotations"
+    / "repeat"
     / "layout" / "component" / "use" / "fill" / "slot") !IdentifierChar
 
 IdentifierChar

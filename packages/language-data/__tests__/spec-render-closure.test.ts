@@ -61,6 +61,10 @@ const SAMPLES: Readonly<Record<string, string>> = {
   component: `component frag ${SLOT} {\n  text "c"\n}\npage "P" {\n  use frag\n}${PAGE_CONTEXT}`,
   use: `component frag2 {\n  text "c"\n}\npage "P" {\n  use frag2 ${SLOT}\n}${PAGE_CONTEXT}`,
   slot: `layout sh2 {\n  header { text "h" }\n  slot ${SLOT}\n}\npage "P" uses=sh2 {\n  text "x"\n}${PAGE_CONTEXT}`,
+  // `repeat` declares no attributes, so no pair is probed from this sample;
+  // it exists because the gate requires every element to have one, and the
+  // count is positional rather than an attribute, so the slot sits after it.
+  repeat: inPage(`repeat 2 ${SLOT} { text "x" }`),
   header: inPage(`header ${SLOT} { text "x" }`),
   main: inPage(`main ${SLOT} { text "x" }`),
   footer: inPage(`footer ${SLOT} { text "x" }`),

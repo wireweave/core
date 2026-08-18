@@ -123,6 +123,10 @@ export const ELEMENT_SURFACE: Readonly<Record<string, SurfaceEntry>> = {
   component: { shared: [], own: [] },
   use: { shared: [], own: [] },
   slot: { shared: [], own: [] },
+  // GREW: new element. `repeat` folds duplication and takes no attributes at
+  // all — its count is positional syntax, not a `name=value` pair — so it adds
+  // no authorable attribute surface, only a new keyword.
+  repeat: { shared: [], own: [] },
   header: { shared: ['BOX', 'CONTAINER'], own: [] },
   main: { shared: ['BOX', 'CONTAINER'], own: ['scroll'] },
   footer: { shared: ['BOX', 'CONTAINER'], own: [] },

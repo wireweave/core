@@ -73,6 +73,7 @@ Screens in one .wf file share a shell (header, sidebar, footer). Restating it on
 - component NAME(param: string, other: number) { … } — declare typed parameters so one fragment serves several call sites. Types are string, number, boolean.
 - use NAME(arg="value") { … } — draw a component defined above. Arguments are parenthesized name=value pairs; the optional braces fill the component's slots.
 - page "Title" uses=NAME { … } — draw this page inside layout NAME. The page body holds only what is unique to that screen.
+- repeat N { … } — draw the body N times. N is a bare non-negative integer, NOT quoted and NOT an attribute. Use it instead of pasting the same child N times.
 
 \`\`\`
 layout app {
@@ -108,6 +109,20 @@ page "Home" {
 - NEVER write target=$to — bare. An identifier cannot begin with $, so the file FAILS TO PARSE with a syntax error.
 - "$to" substitutes only as an entire value. "go to $to" is literal text, not a reference.
 - Every "$name" must match a declared parameter. An undeclared name is a validation error, so check the spelling against the component's parameter list.
+
+Repeated siblings — WRITE THE BODY ONCE:
+Six identical skeleton cards are one body repeated, not six pasted copies.
+
+\`\`\`
+row gap=4 {
+  repeat 6 { use skeletonCard() }
+}
+\`\`\`
+
+- There is NO index variable. \`repeat 6 as i\` does NOT exist and FAILS TO PARSE. Every copy is identical — that is what a wireframe shows.
+- If the items genuinely differ (different labels, different icons), do NOT use repeat. Write them out, or pass the difference as a component parameter.
+- The count is positional: write \`repeat 6\`, never \`repeat count=6\`.
+- \`repeat 0\` draws nothing; \`repeat 1\` draws the body once. Nesting multiplies, so keep nested counts small.
 
 Rules:
 - layout and component are TOP-LEVEL only — siblings of page, never nested inside one.
@@ -305,6 +320,7 @@ export function buildCompactGrammarPrompt(): string {
 - Multi-view apps default to separate top-level pages (not sidebar collapse).
 
 # REUSE: layout NAME { … } defines a shared shell (name is a bare identifier, not a quoted string); slot marks where a referencing page's own content goes inside that shell (bare keyword, no name, no braces); component NAME { … } defines a reusable fragment; use NAME(arg="value") { … } draws that fragment, passing parenthesized arguments and optionally filling its slots; page "Title" uses=NAME draws that page inside the layout and states only its own content. layout/component are top-level siblings of page. Two or more pages sharing a shell → define a layout instead of repeating it.
+repeat N { … } draws its body N times — write repeat 6 { use skeletonCard() } instead of pasting six copies. N is a bare integer. There is NO index variable (repeat 6 as i fails to parse) and every copy is identical, so write items out individually when they differ.
 # PARAMETERS: component NAME(label: string, to: string) { … } declares typed parameters (string/number/boolean); inside the body "$label" stands for the passed value. ALWAYS quote the reference — navigate="$to" and target="$to" work anywhere, including nested effect targets. NEVER write it bare (navigate=$to): an identifier cannot start with $, so the file fails to parse. A reference must be the whole value ("go to $to" is literal text), and every "$name" must match a declared parameter or validation fails.
 # LAYOUT: page(at, viewport, width, height, device, centered, uses), header(h, border), main(p, scroll), footer(h, border), sidebar(w, border, position), section, row(gap, justify, align, wrap), col(gap, flex, span), stack, relative
 # CONTAINERS: card(p, shadow), modal(w, id), drawer(w, position, id), accordion

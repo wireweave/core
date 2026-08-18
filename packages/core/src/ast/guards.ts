@@ -76,6 +76,7 @@ const CONTAINER_TYPES: NodeType[] = [
   'Layout',
   'Component',
   'ComponentUse',
+  'Repeat',
   'Header',
   'Main',
   'Footer',

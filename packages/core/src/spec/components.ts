@@ -101,6 +101,13 @@ const COMPONENT_METADATA: Readonly<Record<GrammarElementName, ComponentMetadata>
     description:
       'Mark content insertion: bare inside a layout, or named inside a reusable component.',
   },
+  repeat: {
+    category: 'structure',
+    attributes: [],
+    hasChildren: true,
+    description:
+      'Draw the same body a fixed number of times: `repeat 6 { use skeletonCard() }`. The count is positional, and there is deliberately no index variable — every copy is identical, because copies that differ are data binding rather than a wireframe.',
+  },
   header: {
     category: 'layout',
     attributes: [...BOX_ATTRIBUTES, ...CONTAINER_ATTRIBUTES],
