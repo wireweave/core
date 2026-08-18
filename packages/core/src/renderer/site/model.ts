@@ -35,6 +35,15 @@ export interface SiteScreen {
   /** Position in `documentPages(doc)`. This is the screen's DOM key. */
   index: number
   page: PageNode
+  /**
+   * The variant this screen draws, when its page came from a `variants=` list.
+   *
+   * Read off the page rather than derived here: `expandVariants` has already
+   * turned one variant-bearing page into one page per variant by the time a
+   * model is built, so each of those pages is a screen like any other and this
+   * only records which one it is.
+   */
+  variant?: string
   /** Name of the shell this screen is composed into, when it has one. */
   shell?: string
   /** Set when `uses=` was declared and could not be honoured. */
@@ -98,6 +107,23 @@ function pageTitle(page: PageNode): string | undefined {
   const title = page.title?.trim()
   return title !== undefined && title.length > 0 ? title : undefined
 }
+
+/**
+ * The separator between a screen's name and the variant of it — `home#loading`.
+ *
+ * `#` rather than `.` or `-` because a variant address is already a URL
+ * fragment: `location.hash` is how the site runtime addresses screens, so a
+ * variant name written into a link is spelled the same way there as here. It
+ * also cannot appear in a bare `Identifier`, so `navigate=home#loading` does
+ * not parse and the quoted form is the only way to write one — which keeps a
+ * variant address visibly deliberate rather than something a `navigate=home`
+ * turns into by accident.
+ */
+export const VARIANT_SEPARATOR = '#'
+
+/** The public address of one variant of a named screen. */
+export const variantName = (name: string, variant: string): string =>
+  `${name}${VARIANT_SEPARATOR}${variant}`
 
 /** Does this layout contain a `slot` anywhere in its body? */
 function hasSlot(layout: LayoutDefinitionNode): boolean {
@@ -164,7 +190,15 @@ export function buildSiteModel(doc: WireframeDocument): SiteModel {
   const pages = documentPages(doc)
   const layouts = layoutsByName(doc)
 
-  const screens: SiteScreen[] = pages.map((page, index) => ({ index, page }))
+  // One screen per page, still — a page declaring `variants=` has already been
+  // expanded into one page per variant by `expandVariants` before the model is
+  // built, so what arrives here is the board list and this stays a 1:1 map.
+  // The variant is read off the page rather than derived, which is what keeps
+  // this model and the canvas counting the same boards.
+  const screens: SiteScreen[] = pages.map((page, index) => {
+    const variant = page.variant?.trim()
+    return variant !== undefined && variant.length > 0 ? { index, page, variant } : { index, page }
+  })
 
   const shells: SiteShell[] = []
   const shellByName = new Map<string, SiteShell>()
@@ -206,10 +240,58 @@ export function buildSiteModel(doc: WireframeDocument): SiteModel {
     }
   }
 
+  // Variant addresses, layered on top of the two namespaces rather than mixed
+  // into them. A page's bare name is claimed above by the *first* of its
+  // variant screens, because that loop runs in screen order and is first-wins —
+  // so `navigate=dashboards` lands on the first variant with no rule of its own,
+  // which is the intended default: a variant is a state of one screen, not a
+  // separate destination, and the first one declared is the one the author put
+  // first. `dashboards#loading` is what addresses the rest.
+  //
+  // Set only when the qualified name is free, and only for a name whose bare
+  // form this screen's own group won. A page whose bare name was taken by an
+  // earlier page's duplicate id would otherwise publish `taken#loading` and
+  // hand out an address pointing into a page that never declared that variant.
+  //
+  // Ownership is tested by comparing the *name* the winning screen declares,
+  // not by object identity: `expandVariants` gives every variant a distinct
+  // clone of the page (it must — the anchor map is keyed by identity), so the
+  // siblings of the first variant are different objects that declare the same
+  // id and title, and an identity test would publish an address for the first
+  // variant only and leave the rest unaddressable.
+  for (const screen of screens) {
+    if (screen.variant === undefined) continue
+    for (const declared of [pageId(screen.page), pageTitle(screen.page)]) {
+      if (declared === undefined) continue
+      const owner = names.get(declared)
+      if (owner === undefined) continue
+      const winner = screens[owner].page
+      if (pageId(winner) !== pageId(screen.page) || pageTitle(winner) !== pageTitle(screen.page)) {
+        continue
+      }
+      const qualified = variantName(declared, screen.variant)
+      if (!names.has(qualified)) names.set(qualified, screen.index)
+    }
+  }
+
   // A screen's own name is the first of its declared names that resolves back
   // to it. Anything else would hand out a name that navigates elsewhere.
+  //
+  // A variant screen prefers its qualified name over the bare one, because the
+  // qualified name addresses exactly it while the bare name addresses whichever
+  // variant came first. Only the first variant of a page can own the bare name,
+  // and the `names.get(name) === screen.index` test is what enforces that — the
+  // later variants fail it and fall through to their own qualified name.
   for (const screen of screens) {
-    const declared = [pageId(screen.page), pageTitle(screen.page)]
+    const bare = [pageId(screen.page), pageTitle(screen.page)]
+    const variant = screen.variant
+    const declared =
+      variant === undefined
+        ? bare
+        : [
+            ...bare.map((name) => (name === undefined ? undefined : variantName(name, variant))),
+            ...bare,
+          ]
     screen.name = declared.find(
       (name): name is string => name !== undefined && names.get(name) === screen.index,
     )

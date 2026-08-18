@@ -64,6 +64,7 @@ const COMPONENT_METADATA: Readonly<Record<GrammarElementName, ComponentMetadata>
       'centered',
       'uses',
       'states',
+      'variants',
     ],
     hasChildren: true,
     description:

@@ -153,7 +153,7 @@
       "patterns": [
         {
           "name": "variable.parameter.wireframe",
-          "match": "\\b(action|active|align|alt|anchor|aria|aria-label|at|bg|bold|border|bordered|centered|checked|color|danger|device|direction|disabled|dismissible|enabledWhen|expanded|external|flex|gap|ghost|h|height|hover|href|icon|id|indeterminate|inputType|justify|label|level|lg|loading|m|max|maxH|maxW|mb|md|min|minH|minW|ml|mr|mt|muted|mx|my|name|navigate|none|on|opens|order|ordered|outline|p|pb|pill|pl|placeholder|position|pr|primary|pt|px|py|readonly|required|rounded|rows|scroll|secondary|shadow|size|sm|span|src|states|step|striped|title|toggles|type|uses|value|variant|vertical|viewport|visibleWhen|w|weight|width|wrap|x|xl|y)\\b(?!-)"
+          "match": "\\b(action|active|align|alt|anchor|aria|aria-label|at|bg|bold|border|bordered|centered|checked|color|danger|device|direction|disabled|dismissible|enabledWhen|expanded|external|flex|gap|ghost|h|height|hover|href|icon|id|indeterminate|inputType|justify|label|level|lg|loading|m|max|maxH|maxW|mb|md|min|minH|minW|ml|mr|mt|muted|mx|my|name|navigate|none|on|opens|order|ordered|outline|p|pb|pill|pl|placeholder|position|pr|primary|pt|px|py|readonly|required|rounded|rows|scroll|secondary|shadow|size|sm|span|src|states|step|striped|title|toggles|type|uses|value|variant|variants|vertical|viewport|visibleWhen|w|weight|width|wrap|x|xl|y)\\b(?!-)"
         }
       ]
     },

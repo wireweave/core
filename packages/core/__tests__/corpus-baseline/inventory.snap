@@ -69,3 +69,4 @@ swapgrid-preremoval/rider-reservation-create/v1.wf
 swapgrid-preremoval/rider-reservation-detail/v1.wf
 swapgrid-preremoval/rider-reservation-expired/v1.wf
 swapgrid-preremoval/rider-reservation-failed/v1.wf
+variants/v1.wf

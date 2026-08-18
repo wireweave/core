@@ -334,6 +334,12 @@ export const ATTRIBUTE_SPECS: readonly AttributeSpec[] = [
     description: 'Typed application state declarations owned by a page or shared layout',
   },
   {
+    name: 'variants',
+    type: 'string[]',
+    description:
+      'Named state variants of this page — each one renders the page again as a screen of its own',
+  },
+  {
     name: 'id',
     type: 'string',
     description: 'Stable identifier this page or overlay is addressed by, as distinct from title',

@@ -277,6 +277,37 @@ export interface PageNode extends BaseNode, CommonProps {
   uses?: string
   /** Application state declarations contributed by this screen module. */
   states?: StateDeclaration[]
+  /**
+   * Named state variants of this screen — `variants=[loading, empty, ready]`.
+   *
+   * Each name draws the page again as a screen of its own, so a document
+   * declaring three variants renders three independent boards rather than one
+   * board with a toggle in it. That is the whole difference from {@link states}:
+   * a state is a runtime value the site runtime flips and guards read, so the
+   * transitions between states have to exist as UI somewhere; a variant is an
+   * axis of the *artifact*, so the states appear side by side and nothing in
+   * the wireframe has to offer a way to switch between them. A reviewer of a
+   * variant sheet never mistakes a state-switching control for a product
+   * feature, because there is none to mistake.
+   *
+   * Deliberately page-local, where `states` is collected document-wide: a
+   * variant only means anything relative to the page it varies, and a document
+   * scope would make one page's variant list multiply every other page's
+   * screens. Names are free-form identifiers — the language fixes no vocabulary
+   * of states, because which states a screen has is a property of that screen.
+   */
+  variants?: string[]
+  /**
+   * Which variant this page *is* — set by `expandVariants`, never by an author.
+   *
+   * The authored `variants` list and this are the two ends of the same
+   * expansion: a page carries the list before it, and each page it expands into
+   * carries one name from that list and no list. The printer therefore only
+   * writes `variants`, and a document that has been expanded prints back as the
+   * boards it became rather than as the fold it came from — the same asymmetry
+   * `repeat` has between its node and its copies.
+   */
+  variant?: string
   children: AnyNode[]
 }
 

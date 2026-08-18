@@ -117,6 +117,7 @@ export const ELEMENT_SURFACE: Readonly<Record<string, SurfaceEntry>> = {
       'centered',
       'uses',
       'states',
+      'variants',
     ],
   },
   layout: { shared: [], own: ['states'] },

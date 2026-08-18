@@ -74,6 +74,13 @@ Screens in one .wf file share a shell (header, sidebar, footer). Restating it on
 - use NAME(arg="value") { … } — draw a component defined above. Arguments are parenthesized name=value pairs; the optional braces fill the component's slots.
 - page "Title" uses=NAME { … } — draw this page inside layout NAME. The page body holds only what is unique to that screen.
 - repeat N { … } — draw the body N times. N is a bare non-negative integer, NOT quoted and NOT an attribute. Use it instead of pasting the same child N times.
+- page "Title" variants=[loading, empty, ready] { … } — draw this page once per named state, as that many separate screens. The names are bare identifiers in brackets. Use this for a screen's loading / empty / populated / error conditions INSTEAD of states= + visibleWhen + a toggle button: a variant needs no switching control, so the wireframe shows no UI the product does not have, and every condition is visible at once instead of one at a time. Each screen is addressed as "id#variant" (quoted, e.g. navigate="orders#empty"); plain navigate=orders reaches the first variant.
+
+\`\`\`
+page "Orders" id=orders variants=[loading, empty, ready] {
+  main { table [["Order", "Status"], ["1001", "Shipped"]] }
+}
+\`\`\`
 
 \`\`\`
 layout app {
@@ -319,6 +326,7 @@ export function buildCompactGrammarPrompt(): string {
 - Use viewport="WxH" per page; omit at() to auto-flow, use at(x, y) to pin.
 - Multi-view apps default to separate top-level pages (not sidebar collapse).
 
+# VARIANTS: page "T" variants=[loading, empty, ready] { … } draws that page once per named state as that many separate screens (names are bare identifiers in brackets). Prefer it over states=+visibleWhen+a toggle for a screen's loading/empty/populated/error conditions — no switching control has to exist in the wireframe, and all conditions are visible at once. Address one as navigate="id#variant"; plain navigate=id reaches the first.
 # REUSE: layout NAME { … } defines a shared shell (name is a bare identifier, not a quoted string); slot marks where a referencing page's own content goes inside that shell (bare keyword, no name, no braces); component NAME { … } defines a reusable fragment; use NAME(arg="value") { … } draws that fragment, passing parenthesized arguments and optionally filling its slots; page "Title" uses=NAME draws that page inside the layout and states only its own content. layout/component are top-level siblings of page. Two or more pages sharing a shell → define a layout instead of repeating it.
 repeat N { … } draws its body N times — write repeat 6 { use skeletonCard() } instead of pasting six copies. N is a bare integer. There is NO index variable (repeat 6 as i fails to parse) and every copy is identical, so write items out individually when they differ.
 # PARAMETERS: component NAME(label: string, to: string) { … } declares typed parameters (string/number/boolean); inside the body "$label" stands for the passed value. ALWAYS quote the reference — navigate="$to" and target="$to" work anywhere, including nested effect targets. NEVER write it bare (navigate=$to): an identifier cannot start with $, so the file fails to parse. A reference must be the whole value ("go to $to" is literal text), and every "$name" must match a declared parameter or validation fails.

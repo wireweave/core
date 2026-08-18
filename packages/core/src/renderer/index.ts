@@ -6,6 +6,7 @@
 
 import type { WireframeDocument } from '../ast/types'
 import { documentPages } from '../ast/utils'
+import { expandVariants } from '../ast/expand-variants'
 import { createHtmlRenderer } from './html'
 import type {
   RenderOptions,
@@ -96,6 +97,12 @@ export function render(
   document: WireframeDocument,
   options: RenderOptions | CanvasOptions = {},
 ): RenderResult {
+  // Variant boards are pages, so they have to exist before the page count picks
+  // a mode: a single page with three variants is a three-board canvas, and
+  // counting before expansion would draw it as one legacy page and silently
+  // drop two thirds of what the document declares. Idempotent and identity-
+  // preserving, so a document without variants is untouched.
+  document = expandVariants(document)
   const isMultiPage = documentPages(document).length > 1
 
   if (isMultiPage) {
@@ -115,6 +122,7 @@ export function render(
  * @returns Complete HTML document string
  */
 export function renderToHtml(document: WireframeDocument, options: RenderOptions = {}): string {
+  document = expandVariants(document)
   const { html, css } = render(document, options)
   const prefix = options.classPrefix ?? 'wf'
 
@@ -185,6 +193,7 @@ export function renderToSvg(
   document: WireframeDocument,
   options: SvgRenderOptions = {},
 ): SvgRenderResult {
+  document = expandVariants(document)
   const isMultiPage = documentPages(document).length > 1
   let width = options.width ?? 800
   let height = options.height ?? 600

@@ -41,6 +41,7 @@
 
 import type { PageNode, WireframeDocument } from '../../ast/types'
 import { expandRepeats } from '../../ast/expand-repeats'
+import { expandVariants } from '../../ast/expand-variants'
 import { collectInteractions } from '../../interaction/model'
 import { HtmlRenderer } from '../html'
 import { generateStyles } from '../styles'
@@ -159,6 +160,7 @@ function renderHostedScreen(
   const marks = attrs([
     ['data-screen', String(screen.index)],
     ['data-screen-name', screen.name],
+    ['data-wf-variant', screen.variant],
     [ID_SCOPE_ATTR, scope],
     ['data-wf-viewport-conflict', conflict],
   ])
@@ -180,6 +182,7 @@ function renderStandaloneScreen(screen: SiteScreen, make: MakeRenderer, prefix: 
   const marks = attrs([
     ['data-screen', String(screen.index)],
     ['data-screen-name', screen.name],
+    ['data-wf-variant', screen.variant],
     [ID_SCOPE_ATTR, scope],
     ['data-wf-uses-unresolved', screen.miss?.uses],
     ['data-wf-uses-reason', screen.miss?.reason],
@@ -298,7 +301,13 @@ export function renderSite(document: WireframeDocument, options: SiteOptions = {
   // Site composition renders through `renderFragment`, which bypasses
   // `HtmlRenderer.render` and its expansion — so fold `repeat` here, once, and
   // let the screen model and the interaction model see the same expanded tree.
-  document = expandRepeats(document)
+  //
+  // Variants expand first, because they multiply *pages* while `repeat`
+  // multiplies nodes within one: expanding them the other way round would fold
+  // each `repeat` once and then clone the result per variant, which is the same
+  // tree by more work. Both are idempotent, so the order is about cost, not
+  // correctness.
+  document = expandRepeats(expandVariants(document))
   const model = buildSiteModel(document)
   const interactionModel = collectInteractions(document)
   const make: MakeRenderer = (idScope) =>

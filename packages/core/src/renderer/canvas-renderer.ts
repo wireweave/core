@@ -134,7 +134,11 @@ function wrapBoard(pageHtml: string, placed: PlacedPage, prefix: string): string
   const { x, y, w, h, page } = placed
   const positionStyle = `position: absolute; left: ${x}px; top: ${y}px; width: ${w}px; height: ${h}px;`
   const titleAttr = page.title ? ` data-page-title="${escapeAttr(page.title)}"` : ''
-  const dataAttrs = ` data-page-x="${x}" data-page-y="${y}" data-page-w="${w}" data-page-h="${h}"${titleAttr}`
+  // Which variant this board draws. Two boards expanded from one page are
+  // identical markup otherwise, so without this the sheet shows the same screen
+  // three times with nothing saying which state each one is.
+  const variantAttr = page.variant ? ` data-wf-variant="${escapeAttr(page.variant)}"` : ''
+  const dataAttrs = ` data-page-x="${x}" data-page-y="${y}" data-page-w="${w}" data-page-h="${h}"${titleAttr}${variantAttr}`
 
   return `<div class="${prefix}-canvas-board" style="${positionStyle}"${dataAttrs}>\n${pageHtml}\n</div>`
 }

@@ -109,7 +109,7 @@
       "patterns": [
         {
           "name": "entity.name.tag.wireframe",
-          "match": "\\b(page|layout|component|use|slot|header|main|footer|sidebar|section|row|col|stack|relative|card|modal|drawer|accordion|text|title|link|input|textarea|select|checkbox|radio|switch|slider|button|image|placeholder|avatar|badge|icon|table|list|alert|toast|progress|spinner|tooltip|popover|dropdown|nav|tabs|breadcrumb|divider|marker|annotations|item)\\b(?!-)"
+          "match": "\\b(page|layout|component|use|slot|repeat|header|main|footer|sidebar|section|row|col|stack|relative|card|modal|drawer|accordion|text|title|link|input|textarea|select|checkbox|radio|switch|slider|button|image|placeholder|avatar|badge|icon|table|list|alert|toast|progress|spinner|tooltip|popover|dropdown|nav|tabs|breadcrumb|divider|marker|annotations|item)\\b(?!-)"
         }
       ]
     },
@@ -125,7 +125,7 @@
       "patterns": [
         {
           "name": "entity.other.attribute-name.wireframe",
-          "match": "\\b(action|active|align|alt|anchor|aria|aria-label|at|bg|bold|border|bordered|centered|checked|color|danger|device|direction|disabled|dismissible|enabledWhen|expanded|external|flex|gap|ghost|h|height|hover|href|icon|id|indeterminate|inputType|justify|label|level|lg|loading|m|max|maxH|maxW|mb|md|min|minH|minW|ml|mr|mt|muted|mx|my|name|navigate|none|on|opens|order|ordered|outline|p|pb|pill|pl|placeholder|position|pr|primary|pt|px|py|readonly|required|rounded|rows|scroll|secondary|shadow|size|sm|span|src|states|step|striped|title|toggles|type|uses|value|variant|vertical|viewport|visibleWhen|w|weight|width|wrap|x|xl|y)\\b(?!-)"
+          "match": "\\b(action|active|align|alt|anchor|aria|aria-label|at|bg|bold|border|bordered|centered|checked|color|danger|device|direction|disabled|dismissible|enabledWhen|expanded|external|flex|gap|ghost|h|height|hover|href|icon|id|indeterminate|inputType|justify|label|level|lg|loading|m|max|maxH|maxW|mb|md|min|minH|minW|ml|mr|mt|muted|mx|my|name|navigate|none|on|opens|order|ordered|outline|p|pb|pill|pl|placeholder|position|pr|primary|pt|px|py|readonly|required|rounded|rows|scroll|secondary|shadow|size|sm|span|src|states|step|striped|title|toggles|type|uses|value|variant|variants|vertical|viewport|visibleWhen|w|weight|width|wrap|x|xl|y)\\b(?!-)"
         },
         {
           "name": "keyword.operator.wireframe",

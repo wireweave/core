@@ -166,6 +166,12 @@ const UNDECLARED_DOMAIN: Readonly<Record<string, readonly string[]>> = {
   enabledWhen: ['enabledWhen={ state=allowed, equals=true }'],
   on: ['on={ event=click, effects=[{ kind=toggle, state=allowed }] }'],
   states: ['states=[{ name=allowed, valueType=boolean, initial=false }]'],
+
+  // `string[]` written as a bracketed list of bare identifiers. The fallback
+  // probe emits `variants="probe"` — a bare string where an array is meant,
+  // which `expandVariants` correctly ignores, so probed with that value alone
+  // the attribute would read as dead while it renders.
+  variants: ['variants=[loading, empty]'],
 }
 
 /** Every value the registry says the attribute accepts, plus type-shaped probes. */

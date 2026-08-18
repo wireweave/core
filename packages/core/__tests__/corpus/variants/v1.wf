@@ -1,0 +1,50 @@
+// Corpus fixture for `page … variants=[…]`, the state-variant axis.
+//
+// Written for the grammar change that introduced `variants`, so the baseline
+// captured here is the first record of what the parser and printer do with it.
+// Covers the shapes that are easy to break separately: a plain list, a list on
+// a page that also uses a shared shell, a page carrying both `states` and
+// `variants` (the two mechanisms have to stay independent), a single-name list,
+// and a page with no variants at all sharing the document — the backwards
+// compatibility case, which must keep parsing exactly as it always did.
+
+layout app {
+  header h=56 border {
+    title "Acme" level=1
+  }
+  slot
+}
+
+// the case the syntax exists for: one screen, four conditions, no toggle UI
+page "Orders" id=orders uses=app viewport="1280x800" variants=[loading, empty, ready, error] {
+  main p=6 {
+    section "Orders" {
+      table [["Order", "Status"], ["1001", "Shipped"]]
+    }
+  }
+}
+
+// a single-name list is still a list, and still expands to one board
+page "Settings" id=settings uses=app variants=[ready] {
+  main p=6 {
+    switch "Email alerts"
+  }
+}
+
+// `states` and `variants` on one page: a runtime state the guards read, and an
+// artifact axis that draws the page twice. They do not interact.
+page "Inbox" id=inbox states=[{ name=composing, valueType=boolean, initial=false }] variants=[empty, full] {
+  main p=6 {
+    button "Compose" on={ event=click, effects=[{ kind=toggle, state=composing }] }
+    card "Draft" visibleWhen={ state=composing, equals=true } {
+      textarea "Message"
+    }
+  }
+}
+
+// no variants at all — the page every existing document is made of
+page "About" id=about uses=app {
+  main p=6 {
+    text "Who we are"
+  }
+}

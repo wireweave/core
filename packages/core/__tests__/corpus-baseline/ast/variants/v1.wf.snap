@@ -1,0 +1,156 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "border": true,
+          "children": [
+            {
+              "content": "Acme",
+              "level": 1,
+              "type": "Title"
+            }
+          ],
+          "h": 56,
+          "type": "Header"
+        },
+        {
+          "type": "Slot"
+        }
+      ],
+      "name": "app",
+      "type": "Layout"
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "columns": [
+                    "Order",
+                    "Status"
+                  ],
+                  "rows": [
+                    [
+                      "1001",
+                      "Shipped"
+                    ]
+                  ],
+                  "type": "Table"
+                }
+              ],
+              "title": "Orders",
+              "type": "Section"
+            }
+          ],
+          "p": 6,
+          "type": "Main"
+        }
+      ],
+      "id": "orders",
+      "title": "Orders",
+      "type": "Page",
+      "uses": "app",
+      "variants": [
+        "loading",
+        "empty",
+        "ready",
+        "error"
+      ],
+      "viewport": "1280x800"
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "label": "Email alerts",
+              "type": "Switch"
+            }
+          ],
+          "p": 6,
+          "type": "Main"
+        }
+      ],
+      "id": "settings",
+      "title": "Settings",
+      "type": "Page",
+      "uses": "app",
+      "variants": [
+        "ready"
+      ]
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "content": "Compose",
+              "on": {
+                "effects": [
+                  {
+                    "kind": "toggle",
+                    "state": "composing"
+                  }
+                ],
+                "event": "click"
+              },
+              "type": "Button"
+            },
+            {
+              "children": [
+                {
+                  "label": "Message",
+                  "type": "Textarea"
+                }
+              ],
+              "title": "Draft",
+              "type": "Card",
+              "visibleWhen": {
+                "equals": true,
+                "state": "composing"
+              }
+            }
+          ],
+          "p": 6,
+          "type": "Main"
+        }
+      ],
+      "id": "inbox",
+      "states": [
+        {
+          "initial": false,
+          "name": "composing",
+          "valueType": "boolean"
+        }
+      ],
+      "title": "Inbox",
+      "type": "Page",
+      "variants": [
+        "empty",
+        "full"
+      ]
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "content": "Who we are",
+              "type": "Text"
+            }
+          ],
+          "p": 6,
+          "type": "Main"
+        }
+      ],
+      "id": "about",
+      "title": "About",
+      "type": "Page",
+      "uses": "app"
+    }
+  ],
+  "type": "Document"
+}
