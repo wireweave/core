@@ -14,6 +14,7 @@
     "wireweave-vscode": "2.0.0"
   },
   "changesets": [
+    "agent-prompts-component-parameters",
     "agent-prompts-interaction-wiring",
     "core-a11y-icons",
     "core-anchor-navigation",
@@ -21,6 +22,7 @@
     "core-canvas-fixes",
     "core-dom-anchors",
     "core-extract-apis",
+    "core-nested-parameter-references",
     "core-page-guard-narrowing",
     "core-spec-subpath",
     "core-wf-printer",

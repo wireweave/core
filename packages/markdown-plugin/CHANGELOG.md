@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.12-beta.6
+
+### Patch Changes
+
+- Updated dependencies [[`8853f3a`](https://github.com/wireweave/wireweave/commit/8853f3ae77cc348c8527c2ccff032a7997cc1ce7)]:
+  - @wireweave/core@3.1.0-beta.6
+
 ## 1.2.12-beta.5
 
 ### Patch Changes
