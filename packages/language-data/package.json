@@ -1,6 +1,6 @@
 {
   "name": "@wireweave/language-data",
-  "version": "1.6.0-beta.2",
+  "version": "1.6.0-beta.3",
   "description": "Shared language definitions for Wireweave DSL editors",
   "type": "module",
   "sideEffects": false,
