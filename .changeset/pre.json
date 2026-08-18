@@ -24,6 +24,7 @@
     "core-extract-apis",
     "core-nested-parameter-references",
     "core-page-guard-narrowing",
+    "core-repeat-syntax",
     "core-spec-subpath",
     "core-wf-printer",
     "engines-node-floor",
