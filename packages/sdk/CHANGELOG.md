@@ -1,5 +1,14 @@
 # @wireweave/sdk
 
+## 0.1.1-beta.9
+
+### Patch Changes
+
+- Updated dependencies [[`af53020`](https://github.com/wireweave/wireweave/commit/af5302012ce5654f9d5b225adaeaefa57af3854c)]:
+  - @wireweave/core@3.1.0-beta.9
+  - @wireweave/language-data@1.6.0-beta.4
+  - @wireweave/ux-rules@1.5.0-beta.9
+
 ## 0.1.1-beta.8
 
 ### Patch Changes

@@ -27,6 +27,7 @@
     "core-page-variants",
     "core-repeat-syntax",
     "core-spec-subpath",
+    "core-variant-scope",
     "core-wf-printer",
     "engines-node-floor",
     "language-data-core-dependency",
