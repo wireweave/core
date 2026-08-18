@@ -7,3 +7,4 @@
 export * from './types'
 export * from './guards'
 export * from './utils'
+export * from './component-parameters'

@@ -5,6 +5,7 @@ import type {
   ComponentUseNode,
   SlotNode,
 } from '../ast'
+import { collectParameterReferences, parameterReferenceName } from '../ast'
 import type {
   AppComponentInstanceId,
   AppComponentInput,
@@ -305,21 +306,22 @@ function validateComponentDefinitions(
           slotNames.add(name)
         }
       }
-      for (const [key, value] of Object.entries(node)) {
-        if (key === 'loc' || key === 'children' || typeof value !== 'string') continue
-        const name = /^\$([a-zA-Z_][a-zA-Z0-9_-]*)$/.exec(value)?.[1]
-        if (name !== undefined && !parameterNames.has(name)) {
-          diagnostics.push({
-            code: 'invalid-component-definition',
-            message: `Unknown parameter reference "$${name}" in component "${pending.namespace}:${pending.input.id}"`,
-            source: pending.input.source,
-          })
-          invalid.add(pending.nodeId)
-        }
-      }
       for (const child of childNodes(node)) inspect(child)
     }
     for (const child of definition.children) inspect(child)
+
+    // Substitution descends into arrays and nested objects, so validation must
+    // too — otherwise a reference inside an effect is replaced but never
+    // checked, and an undeclared name renders as the literal string.
+    for (const reference of collectParameterReferences(definition.children)) {
+      if (parameterNames.has(reference.name)) continue
+      diagnostics.push({
+        code: 'invalid-component-definition',
+        message: `Unknown parameter reference "$${reference.name}" in component "${pending.namespace}:${pending.input.id}"`,
+        source: pending.input.source,
+      })
+      invalid.add(pending.nodeId)
+    }
   }
   return invalid
 }
@@ -329,7 +331,7 @@ function substituteTemplate(
   inputs: Readonly<Record<string, ComponentInputValue>>,
 ): unknown {
   if (typeof value === 'string') {
-    const name = /^\$([a-zA-Z_][a-zA-Z0-9_-]*)$/.exec(value)?.[1]
+    const name = parameterReferenceName(value)
     return name !== undefined && name in inputs ? inputs[name] : value
   }
   if (Array.isArray(value)) return value.map((item) => substituteTemplate(item, inputs))

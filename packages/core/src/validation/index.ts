@@ -11,6 +11,7 @@ import type {
   ComponentDefinitionNode,
   ComponentUseNode,
 } from '../ast/types'
+import { collectParameterReferences } from '../ast/component-parameters'
 import { NODE_TYPE_MAP } from '../spec/components'
 import { VALID_ATTRIBUTE_NAMES } from '../spec/attributes'
 
@@ -365,22 +366,6 @@ function checkComponentContracts(
         }
         slots.add(name)
       }
-      for (const [key, value] of Object.entries(node)) {
-        if (key === 'loc' || key === 'children' || typeof value !== 'string') continue
-        const name = /^\$([a-zA-Z_][a-zA-Z0-9_-]*)$/.exec(value)?.[1]
-        if (
-          name !== undefined &&
-          !parameters.has(name) &&
-          !report(
-            node,
-            path,
-            `Unknown component parameter reference "$${name}" in component "${definition.name}"`,
-            key,
-          )
-        ) {
-          return false
-        }
-      }
       for (let childIndex = 0; childIndex < childrenOf(node).length; childIndex++) {
         const child = childrenOf(node)[childIndex]
         if (child && !inspect(child, `${path}.children[${childIndex}]`)) return false
@@ -390,6 +375,23 @@ function checkComponentContracts(
     for (let childIndex = 0; childIndex < definition.children.length; childIndex++) {
       const child = definition.children[childIndex]
       if (child && !inspect(child, `pages[${index}].children[${childIndex}]`)) return false
+    }
+
+    // Link-time substitution descends into arrays and nested objects, so the
+    // reference check must cover the same shape — a reference inside an effect
+    // is substituted, and an undeclared name would otherwise render literally.
+    for (const reference of collectParameterReferences(definition.children)) {
+      if (parameters.has(reference.name)) continue
+      if (
+        !report(
+          reference.node,
+          `pages[${index}]`,
+          `Unknown component parameter reference "$${reference.name}" in component "${definition.name}"`,
+          reference.key,
+        )
+      ) {
+        return false
+      }
     }
   }
 
