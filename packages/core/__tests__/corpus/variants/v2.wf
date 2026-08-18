@@ -1,0 +1,83 @@
+// Corpus fixture for `when=`, the build-time variant scope.
+//
+// Sibling of `v1.wf`, which pins the `variants=` axis itself. This one pins the
+// other half: which boards along that axis draw a given element. Covers the
+// shapes that break separately — the scalar spelling, the list spelling whose
+// disjunction is the reason the attribute exists, an unscoped element that must
+// appear on every board, and `when` sharing an element with `visibleWhen`,
+// which is the pair most at risk of being collapsed into one mechanism.
+//
+// The last page is the backwards-compatibility case: no scope anywhere, which
+// must keep parsing and printing exactly as it always did.
+
+layout app {
+  header h=56 border {
+    title "Acme" level=1
+  }
+  slot
+}
+
+// The case the syntax exists for. The header block is authored once and drawn on
+// all three boards; before `when` it had to be copied per state, and the copies
+// drifted. `when=[empty, ready]` is the disjunction a `visibleWhen` guard cannot
+// express, since a guard compares one state to one value.
+page "Dashboard" id=dashboard uses=app viewport="1280x800" variants=[loading, empty, ready] {
+  main p=6 {
+    section "Header" when=[loading, empty, ready] {
+      title "My dashboards" level=2
+      button "Create dashboard" primary when=[empty, ready]
+    }
+
+    section "Skeleton" when=loading {
+      repeat 3 {
+        card "" h=120 bg=muted {
+          text "loading"
+        }
+      }
+    }
+
+    section "Empty" when=empty {
+      placeholder "No dashboards yet"
+      text "Create one to get started" muted
+    }
+
+    section "Cards" when=ready {
+      row gap=4 {
+        card "Revenue" { text "$12,400" }
+        card "Signups" { text "1,204" }
+      }
+    }
+  }
+}
+
+// `when` and `visibleWhen` on one element, the orthogonality case. The section is
+// absent from the loading board entirely — no runtime toggle can bring back an
+// element that is not in the markup — and on the ready board it is present and
+// guarded, so the site runtime shows it only while `expanded` is true.
+page "Report" id=report uses=app states=[{ name=expanded, valueType=boolean, initial=false }] variants=[loading, ready] {
+  main p=6 {
+    button "Toggle details" on={ event=click, effects=[{ kind=toggle, state=expanded }] }
+    section "Details" when=ready visibleWhen={ state=expanded, equals=true } {
+      table [["Metric", "Value"], ["Revenue", "$12,400"]]
+    }
+  }
+}
+
+// A single-variant page still filters: `when=ready` matches the one board it has,
+// and `when` on nothing else means everything else is drawn there too.
+page "Settings" id=settings uses=app variants=[ready] {
+  main p=6 {
+    switch "Email alerts"
+    section "Danger zone" when=ready {
+      button "Delete account"
+    }
+  }
+}
+
+// No scope anywhere — the page every document written before `when` is made of.
+// It must expand to itself, unchanged.
+page "About" id=about uses=app {
+  main p=6 {
+    text "Who we are"
+  }
+}

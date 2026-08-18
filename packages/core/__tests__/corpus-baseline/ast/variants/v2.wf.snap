@@ -1,0 +1,258 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "border": true,
+          "children": [
+            {
+              "content": "Acme",
+              "level": 1,
+              "type": "Title"
+            }
+          ],
+          "h": 56,
+          "type": "Header"
+        },
+        {
+          "type": "Slot"
+        }
+      ],
+      "name": "app",
+      "type": "Layout"
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "content": "My dashboards",
+                  "level": 2,
+                  "type": "Title"
+                },
+                {
+                  "content": "Create dashboard",
+                  "primary": true,
+                  "type": "Button",
+                  "when": [
+                    "empty",
+                    "ready"
+                  ]
+                }
+              ],
+              "title": "Header",
+              "type": "Section",
+              "when": [
+                "loading",
+                "empty",
+                "ready"
+              ]
+            },
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "bg": "muted",
+                      "children": [
+                        {
+                          "content": "loading",
+                          "type": "Text"
+                        }
+                      ],
+                      "h": 120,
+                      "title": null,
+                      "type": "Card"
+                    }
+                  ],
+                  "count": 3,
+                  "type": "Repeat"
+                }
+              ],
+              "title": "Skeleton",
+              "type": "Section",
+              "when": "loading"
+            },
+            {
+              "children": [
+                {
+                  "children": [],
+                  "label": "No dashboards yet",
+                  "type": "Placeholder"
+                },
+                {
+                  "content": "Create one to get started",
+                  "muted": true,
+                  "type": "Text"
+                }
+              ],
+              "title": "Empty",
+              "type": "Section",
+              "when": "empty"
+            },
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "content": "$12,400",
+                          "type": "Text"
+                        }
+                      ],
+                      "title": "Revenue",
+                      "type": "Card"
+                    },
+                    {
+                      "children": [
+                        {
+                          "content": "1,204",
+                          "type": "Text"
+                        }
+                      ],
+                      "title": "Signups",
+                      "type": "Card"
+                    }
+                  ],
+                  "gap": 4,
+                  "type": "Row"
+                }
+              ],
+              "title": "Cards",
+              "type": "Section",
+              "when": "ready"
+            }
+          ],
+          "p": 6,
+          "type": "Main"
+        }
+      ],
+      "id": "dashboard",
+      "title": "Dashboard",
+      "type": "Page",
+      "uses": "app",
+      "variants": [
+        "loading",
+        "empty",
+        "ready"
+      ],
+      "viewport": "1280x800"
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "content": "Toggle details",
+              "on": {
+                "effects": [
+                  {
+                    "kind": "toggle",
+                    "state": "expanded"
+                  }
+                ],
+                "event": "click"
+              },
+              "type": "Button"
+            },
+            {
+              "children": [
+                {
+                  "columns": [
+                    "Metric",
+                    "Value"
+                  ],
+                  "rows": [
+                    [
+                      "Revenue",
+                      "$12,400"
+                    ]
+                  ],
+                  "type": "Table"
+                }
+              ],
+              "title": "Details",
+              "type": "Section",
+              "visibleWhen": {
+                "equals": true,
+                "state": "expanded"
+              },
+              "when": "ready"
+            }
+          ],
+          "p": 6,
+          "type": "Main"
+        }
+      ],
+      "id": "report",
+      "states": [
+        {
+          "initial": false,
+          "name": "expanded",
+          "valueType": "boolean"
+        }
+      ],
+      "title": "Report",
+      "type": "Page",
+      "uses": "app",
+      "variants": [
+        "loading",
+        "ready"
+      ]
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "label": "Email alerts",
+              "type": "Switch"
+            },
+            {
+              "children": [
+                {
+                  "content": "Delete account",
+                  "type": "Button"
+                }
+              ],
+              "title": "Danger zone",
+              "type": "Section",
+              "when": "ready"
+            }
+          ],
+          "p": 6,
+          "type": "Main"
+        }
+      ],
+      "id": "settings",
+      "title": "Settings",
+      "type": "Page",
+      "uses": "app",
+      "variants": [
+        "ready"
+      ]
+    },
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "content": "Who we are",
+              "type": "Text"
+            }
+          ],
+          "p": 6,
+          "type": "Main"
+        }
+      ],
+      "id": "about",
+      "title": "About",
+      "type": "Page",
+      "uses": "app"
+    }
+  ],
+  "type": "Document"
+}

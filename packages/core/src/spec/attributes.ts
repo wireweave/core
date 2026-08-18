@@ -340,6 +340,12 @@ export const ATTRIBUTE_SPECS: readonly AttributeSpec[] = [
       'Named state variants of this page — each one renders the page again as a screen of its own',
   },
   {
+    name: 'when',
+    type: 'string[]',
+    description:
+      'Variant boards this element is drawn on — when=loading, or when=[loading, empty] for both',
+  },
+  {
     name: 'id',
     type: 'string',
     description: 'Stable identifier this page or overlay is addressed by, as distinct from title',
@@ -414,6 +420,13 @@ export const BOX_ATTRIBUTES: readonly string[] = [
   // Guarded runtime outcomes
   'visibleWhen',
   'enabledWhen',
+  // Build-time variant scope. Listed beside the guards because it reads like
+  // them and is deliberately not one of them: a guard leaves the element in the
+  // markup for the runtime to toggle, `when` decides whether the element is in
+  // that board's markup at all. Every element takes it for the same reason
+  // every element takes a guard — which boards a piece of a screen belongs to
+  // is a property of the piece, not of what kind of piece it is.
+  'when',
   // Spacing
   'p',
   'px',

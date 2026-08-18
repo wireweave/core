@@ -37,6 +37,11 @@ export const SHARED_ATTRIBUTE_LISTS = {
   BOX: [
     'visibleWhen',
     'enabledWhen',
+    // GREW: new build-time attribute. `when` scopes an element to the variant
+    // boards it is drawn on, and every element takes it — a screen is made of
+    // pieces, and which states a piece belongs to is a property of the piece.
+    // No document stops validating: absent `when` still means every board.
+    'when',
     'p',
     'px',
     'py',

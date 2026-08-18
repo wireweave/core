@@ -53,7 +53,15 @@ const COMPONENT_METADATA: Readonly<Record<GrammarElementName, ComponentMetadata>
       // board that path renders *into* — nothing emits the attribute for it and
       // nothing would toggle it, so declaring it would let an author write a
       // guard on a page, pass `validate()`, and have the value silently dropped.
-      ...BOX_ATTRIBUTES.filter((name) => name !== 'visibleWhen' && name !== 'enabledWhen'),
+      // `when` is filtered out alongside the guards, for a reason of its own: a
+      // page *is* a board, so scoping one to a variant would be a board saying
+      // which board it is drawn on. The axis a page declares is `variants`, and
+      // `when` names positions along it — the two sit at different levels and a
+      // page carrying both would be asking `expandVariants` to filter a page
+      // against a name it is itself the source of.
+      ...BOX_ATTRIBUTES.filter(
+        (name) => name !== 'visibleWhen' && name !== 'enabledWhen' && name !== 'when',
+      ),
       ...CONTAINER_ATTRIBUTES,
       'id',
       'title',

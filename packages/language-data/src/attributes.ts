@@ -169,6 +169,7 @@ const ATTRIBUTE_EXAMPLES: Readonly<Record<string, string>> = {
   // Reuse
   uses: 'uses="app-shell"',
   variants: 'variants=[loading, empty, ready]',
+  when: 'when=[loading, empty]',
 
   // Interaction
   navigate: 'navigate="Dashboard"',

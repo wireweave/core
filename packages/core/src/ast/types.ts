@@ -129,7 +129,8 @@ export interface CommonProps
     GridProps,
     PositionProps,
     AppearanceProps,
-    GuardedOutcomeProps {}
+    GuardedOutcomeProps,
+    VariantScopedProps {}
 
 // ===========================================
 // Interactive Props
@@ -162,6 +163,39 @@ export interface StateGuard {
 export interface GuardedOutcomeProps {
   visibleWhen?: StateGuard
   enabledWhen?: StateGuard
+}
+
+/**
+ * Which variant boards an element is drawn on — `when=loading`, `when=[a, b]`.
+ *
+ * Deliberately **not** a member of {@link GuardedOutcomeProps}, though the two
+ * read alike. A guarded outcome is a runtime fact: the element exists on every
+ * board, the renderer emits `data-wf-visible-when`, and the site runtime turns
+ * it on and off as state changes. `when` is a build-time fact: the element is
+ * *absent* from the markup of every board it does not name, so nothing can
+ * toggle it back and no state change reaches it.
+ *
+ * They are therefore orthogonal rather than alternatives, and one element may
+ * carry both — `section when=ready visibleWhen={ state=open, equals=true }`
+ * means "only on the ready board, and there only while `open`". Folding `when`
+ * into the guarded-outcome interface would say the two are one concept, and the
+ * first author to write both would find the pair collapsing into whichever the
+ * renderer read last.
+ */
+export interface VariantScopedProps {
+  /**
+   * The variant name, or names, this element belongs to.
+   *
+   * A list is a disjunction: `when=[loading, empty]` draws the element on the
+   * loading board and on the empty board. That is the whole reason the list
+   * form exists — a `visibleWhen` guard has only `equals`, so a block two
+   * conditions share had to be written once per condition, and a header common
+   * to three states was three copies that could drift apart.
+   *
+   * Absent means "every board", which is what keeps documents that declare no
+   * variants rendering exactly as they did.
+   */
+  when?: string | string[]
 }
 
 export type InteractionEffect =

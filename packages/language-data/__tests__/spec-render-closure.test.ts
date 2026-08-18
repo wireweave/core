@@ -172,6 +172,18 @@ const UNDECLARED_DOMAIN: Readonly<Record<string, readonly string[]>> = {
   // which `expandVariants` correctly ignores, so probed with that value alone
   // the attribute would read as dead while it renders.
   variants: ['variants=[loading, empty]'],
+
+  // `when` scopes an element to variant boards, in either spelling. The
+  // samples draw a page that declares no `variants=`, so its board is unnamed
+  // and no scope contains it — every probe here removes the element, which is
+  // exactly the difference the gate is asking about. Both spellings are probed
+  // because they are two grammar productions (`Identifier` and `Array`) that
+  // reach the same filter, and a regression could take out one and leave the
+  // other. The fallback probe alone would emit `when="probe"` — a quoted
+  // string, which is a scope naming one board, so it would in fact discriminate
+  // here; it is written out anyway so the pair does not silently start
+  // depending on the fallback's shape.
+  when: ['when=loading', 'when=[loading, empty]'],
 }
 
 /** Every value the registry says the attribute accepts, plus type-shaped probes. */

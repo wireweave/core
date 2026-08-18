@@ -41,6 +41,8 @@
  * harness pins.
  */
 
+import { filterUnscopedPages, filterVariantScope } from './filter-variant-scope'
+
 import type { PageNode, WireframeDocument } from './types'
 
 /**
@@ -104,14 +106,28 @@ function hasVariants(document: WireframeDocument): boolean {
  * `const drawable = expandVariants(parse(source))`
  */
 export function expandVariants(document: WireframeDocument): WireframeDocument {
-  if (!hasVariants(document)) return document
+  // A document with no `variants=` still has boards — unnamed ones — and an
+  // element scoped to a name none of them declares is not drawn on them. That
+  // filtering happens here rather than in a pass of its own so that `when` has
+  // exactly one implementation and one place it can be reasoned about, whether
+  // or not the page it sits on declares variants. Identity-preserving when
+  // nothing is scoped, so the untouched-document property still holds.
+  if (!hasVariants(document)) return filterUnscopedPages(document)
   type TopLevel = WireframeDocument['children'][number]
   return {
     ...document,
     children: document.children.flatMap((child): TopLevel[] => {
       if (child.type !== 'Page') return [child]
       const names = variantNames(child)
-      if (names.length === 0) return [child]
+      // A page declaring no variants is an unnamed board, and shares the
+      // document with pages that do. It is filtered on the same rule as the
+      // rest rather than skipped — otherwise `when` would mean one thing in a
+      // document that happens to contain a variant page and another in a
+      // document that does not.
+      if (names.length === 0) {
+        const filtered = filterVariantScope(child.children, undefined)
+        return [filtered === child.children ? child : { ...child, children: filtered }]
+      }
       return names.map((variant, position) => {
         const clone = cloneNode(child) as PageNode
         delete clone.variants
@@ -125,6 +141,10 @@ export function expandVariants(document: WireframeDocument): WireframeDocument {
         // exactly one contribution, and the state stays shared because its
         // scope was never the page to begin with.
         if (position > 0) delete clone.states
+        // Filtered here, where the board's name is in hand and the tree is
+        // already a private clone — so dropping a node costs nothing shared and
+        // no later pass has to rediscover which board it is looking at.
+        clone.children = filterVariantScope(clone.children, variant)
         return clone
       })
     }),

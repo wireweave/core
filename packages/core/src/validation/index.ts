@@ -12,6 +12,7 @@ import type {
   ComponentUseNode,
 } from '../ast/types'
 import { collectParameterReferences } from '../ast/component-parameters'
+import { variantScope } from '../ast/filter-variant-scope'
 import { NODE_TYPE_MAP } from '../spec/components'
 import { VALID_ATTRIBUTE_NAMES } from '../spec/attributes'
 
@@ -232,6 +233,143 @@ function checkDuplicateDeclarations(
  * @param addError - collector; returns false when validation should stop
  * @returns false when the caller should stop validating
  */
+/**
+ * Every `when=` names a variant its page declares, and no two nested scopes
+ * contradict each other.
+ *
+ * Both defects are the same failure in the end — an element the author wrote
+ * that no board draws — and neither is a parse error, so without a diagnostic
+ * the only symptom is a board missing a section, which reads as a renderer bug
+ * rather than as a typo. That is precisely the silently-dropped-value class the
+ * spec gates exist to prevent, and `when` is the attribute most exposed to it:
+ * it deletes rather than styles, so a misspelling costs the whole subtree.
+ *
+ * Two rules, both derived from "an element is drawn iff its scope contains the
+ * board's variant":
+ *
+ * - **Undeclared name.** `when=redy` on a page declaring `[loading, ready]`
+ *   matches no board, so the element is nowhere. Reported against the page's
+ *   own list rather than a global vocabulary, because variants are page-local:
+ *   the same word may be a real variant of a different screen, and a document
+ *   scope would accept every typo that happens to be spelled like some other
+ *   page's state.
+ * - **Contradiction with an ancestor.** A child scoped to a name disjoint from
+ *   its parent's scope cannot be drawn on any board — the parent is absent from
+ *   exactly the boards the child names. Checked against the *intersection*
+ *   accumulated down the tree rather than the immediate parent alone, so a
+ *   three-deep narrowing is caught at the level where it empties out.
+ *
+ * A page that declares no `variants=` is not exempted: an element scoped there
+ * names a board the page never declares, which is the first rule with an empty
+ * list. Reported with its own wording, because the repair is different — the
+ * author either meant to declare the axis or meant not to scope the element.
+ *
+ * @param ast - the document to scan
+ * @param addError - collector; returns false when validation should stop
+ * @returns false when the caller should stop validating
+ */
+function checkVariantScopes(
+  ast: WireframeDocument,
+  addError: (error: ValidationError) => boolean,
+): boolean {
+  const children = ast.children ?? []
+  for (let index = 0; index < children.length; index++) {
+    const page = children[index]
+    // Pages only. A `layout` or `component` body has no variant axis of its
+    // own — it is drawn by whichever page pulls it in, and the same definition
+    // may reach pages declaring different variants, so a name undeclared here
+    // may be perfectly declared at the call site. Checking definitions against
+    // an axis they do not own would report the reuse, not the defect.
+    if (page?.type !== 'Page') continue
+    const declared = new Set(
+      (Array.isArray(page.variants) ? page.variants : [])
+        .filter((name): name is string => typeof name === 'string')
+        .map((name) => name.trim())
+        .filter((name) => name.length > 0),
+    )
+
+    /**
+     * @param node - element to check
+     * @param path - diagnostic path
+     * @param inherited - boards still reachable here, or `undefined` for all
+     */
+    const visit = (
+      node: AnyNode,
+      path: string,
+      inherited: ReadonlySet<string> | undefined,
+    ): boolean => {
+      const scope = variantScope(node)
+      let reachable = inherited
+      if (scope !== undefined) {
+        const unknown = scope.filter((name) => !declared.has(name))
+        if (unknown.length > 0) {
+          const message =
+            declared.size === 0
+              ? `Unknown variant ${unknown.map((n) => `"${n}"`).join(', ')} in when= — ` +
+                `this page declares no variants=, so the element is drawn on no board`
+              : `Unknown variant ${unknown.map((n) => `"${n}"`).join(', ')} in when= — ` +
+                `this page declares [${[...declared].join(', ')}]`
+          if (
+            !addError({
+              message,
+              path,
+              nodeType: node.type,
+              attribute: 'when',
+              location: node.loc
+                ? { line: node.loc.start.line, column: node.loc.start.column }
+                : undefined,
+            })
+          ) {
+            return false
+          }
+        }
+
+        const named = new Set(scope.filter((name) => declared.has(name)))
+        reachable =
+          inherited === undefined ? named : new Set([...named].filter((n) => inherited.has(n)))
+
+        // Only meaningful once the names themselves are known-good: an
+        // unreachable scope built out of typos would report the typo twice.
+        if (unknown.length === 0 && inherited !== undefined && reachable.size === 0) {
+          if (
+            !addError({
+              message:
+                `Contradictory when= [${scope.join(', ')}] — an enclosing element is scoped to ` +
+                `[${[...inherited].join(', ')}], so no board draws both and this element is never rendered`,
+              path,
+              nodeType: node.type,
+              attribute: 'when',
+              location: node.loc
+                ? { line: node.loc.start.line, column: node.loc.start.column }
+                : undefined,
+            })
+          ) {
+            return false
+          }
+        }
+      }
+
+      const kids =
+        'children' in node && Array.isArray(node.children) ? (node.children as AnyNode[]) : []
+      for (let i = 0; i < kids.length; i++) {
+        const child = kids[i]
+        if (child && typeof child === 'object' && 'type' in child) {
+          if (!visit(child, `${path}.children[${i}]`, reachable)) return false
+        }
+      }
+      return true
+    }
+
+    for (let i = 0; i < page.children.length; i++) {
+      const child = page.children[i]
+      if (child && typeof child === 'object' && 'type' in child) {
+        if (!visit(child, `pages[${index}].children[${i}]`, undefined)) return false
+      }
+    }
+  }
+  return true
+}
+
 function checkDuplicateElementIds(
   ast: WireframeDocument,
   addError: (error: ValidationError) => boolean,
@@ -616,6 +754,7 @@ export function validate(
   // second page's elements are unreachable, so it reads first.
   if (shouldContinue) shouldContinue = checkComponentContracts(ast, addError)
   if (shouldContinue) shouldContinue = checkDuplicateDeclarations(ast, addError)
+  if (shouldContinue) shouldContinue = checkVariantScopes(ast, addError)
   if (shouldContinue) checkDuplicateElementIds(ast, addError)
 
   const valid = errors.length === 0
