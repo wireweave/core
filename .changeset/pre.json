@@ -26,6 +26,7 @@
     "core-page-guard-narrowing",
     "core-page-variants",
     "core-repeat-syntax",
+    "core-site-gutter-and-instance-marker",
     "core-spec-subpath",
     "core-variant-scope",
     "core-wf-printer",
