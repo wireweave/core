@@ -500,15 +500,30 @@ export class HtmlRenderer extends BaseRenderer {
     return content === null ? `${open}</div>` : `${open}\n${content}\n</div>`
   }
 
-  /** Render one linked component invocation with its stable instance marker. */
+  /**
+   * Render one linked component invocation with its stable instance marker.
+   *
+   * The wrapper is identified by `data-` attributes and carries no class. It
+   * declares `display: contents`, so by construction it has no box of its own
+   * and its children lay out as though it were not there — which is the whole
+   * point: an invocation must not disturb the layout of what it expands to.
+   * A class is the hook a stylesheet paints a box through, and any rule that
+   * gave this one a box would defeat `display: contents`; there is therefore
+   * no style it could ever legitimately carry. It emitted
+   * `${this.prefix}-component-instance` regardless, which no rule in the
+   * generated CSS defined and nothing read — a class the markup advertises as
+   * styleable while the stylesheet leaves it undefined. Identity that exists
+   * to be *queried* rather than *painted* belongs in `data-`, alongside the
+   * `data-wf-component` / `data-wf-instance` pair already carrying it.
+   */
   protected renderComponentUse(node: ComponentUseNode): string {
     const component = this.escapeHtml(node.name)
     if (node.children === undefined || node.instanceId === undefined) {
-      return `<div class="${this.prefix}-component-instance" data-wf-component="${component}" data-wf-component-unresolved style="display: contents"></div>`
+      return `<div data-wf-component="${component}" data-wf-component-unresolved style="display: contents"></div>`
     }
     const instanceId = this.escapeHtml(node.instanceId)
     const content = this.renderChildren(node.children)
-    return `<div class="${this.prefix}-component-instance" data-wf-component="${component}" data-wf-instance="${instanceId}" style="display: contents">\n${content}\n</div>`
+    return `<div data-wf-component="${component}" data-wf-instance="${instanceId}" style="display: contents">\n${content}\n</div>`
   }
 
   /**

@@ -380,3 +380,46 @@ page "홈" viewport="1280x800" { text "home" }`)
     expect(render(doc).html).not.toContain('wf-canvas')
   })
 })
+
+/**
+ * The gutter around the boards may not come out of the board's own width.
+ *
+ * `body` is a block box, so its `width: auto` resolves to the viewport minus
+ * its own horizontal padding. `padding: 24px` therefore made the containing
+ * block 1440 - 24*2 = 1392px wide, while a board authored for the 1440px
+ * desktop viewport is a 1440px `.wf-page` that must not shrink (`flex-shrink:
+ * 0`, the fixed-layout invariant in no-responsive.md). The board overhung its
+ * parent by 24px on each side and every desktop document scrolled sideways —
+ * measured in a real browser as `.wf-site` 1392px against a 1440px shell,
+ * `scrollWidth - clientWidth === 24`.
+ *
+ * `box-sizing` cannot fix it: it reinterprets an *explicit* width, and `auto`
+ * is not one. The gutter therefore stays only on the vertical axis, where a
+ * document scrolls by nature and the leading is free, and comes off the
+ * horizontal one, where every pixel it takes is a pixel the board gives back.
+ */
+describe('the horizontal gutter never narrows the board', () => {
+  it('leaves the body content box the full viewport width', () => {
+    const html = renderSite(parse('page "Wide" id=wide viewport="1440x900" { text "hi" }'))
+
+    // The board's own rule, anchored to the line start so the `html, body`
+    // reset above it (whose padding is 0) is not what gets read.
+    const body = /^body \{([^}]*)\}/m.exec(html.slice(0, html.indexOf('/* wireweave')))?.[1] ?? ''
+    expect(body).not.toBe('')
+
+    // Vertical leading is kept; horizontal padding is what stole the width.
+    expect(body).toMatch(/padding:\s*24px 0\s*;?/)
+    // The defect, exactly: a uniform padding (or any non-zero horizontal one)
+    // subtracts from the width the fixed-size board is laid out in.
+    expect(body).not.toMatch(/padding:\s*24px\s*;/)
+  })
+
+  it('lays the board out at exactly its authored viewport width', () => {
+    const html = renderSite(parse('page "Wide" id=wide viewport="1440x900" { text "hi" }'))
+
+    // The board keeps the authored width — the fix must not have shrunk it to
+    // fit, which would trade a scrollbar for a violated fixed-layout invariant.
+    expect(html).toContain('width: 1440px')
+    expect(html).toMatch(/data-viewport-width="1440"/)
+  })
+})

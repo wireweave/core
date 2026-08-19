@@ -257,6 +257,26 @@ function sourcesIn(nodes: readonly AnyNode[]): TriggerSource[] {
  * The canonical interaction/state source for graph extraction and renderSite.
  * Layout intent is expanded once per screen using that layout, so shared chrome
  * has the same reachable routes in both consumers.
+ *
+ * ## Components are read through the linker, never from here
+ *
+ * Screens and layouts are walked; `component` definitions are not. That is the
+ * boundary, not an omission. A handler inside a definition is written against
+ * the component's *parameters* — `target="$to"` — so before an invocation binds
+ * its inputs there is no destination to record, only the name of one. Walking
+ * definitions here would register `"$to"` as a route and invent a graph edge to
+ * a screen that does not exist, and a component used twice with different
+ * inputs is two different routes that a single walk of the definition cannot
+ * tell apart.
+ *
+ * Binding those inputs is `linkApp`'s job: `expandComponentUse` substitutes the
+ * invocation's inputs, fills its slots, and hands back a tree whose handlers
+ * name real targets. So `linkAndCompileApp` — link, then compile — sees every
+ * component interaction, while `renderSite(parse(src))` on a document that
+ * never went through the linker leaves each invocation
+ * `data-wf-component-unresolved` and contributes no interactions. Handlers
+ * written directly on a screen or a layout work in both paths; only handlers
+ * *inside a component definition* require the linked path.
  */
 export function collectInteractions(doc: WireframeDocument): InteractionModel {
   const diagnostics: InteractionDiagnostic[] = []

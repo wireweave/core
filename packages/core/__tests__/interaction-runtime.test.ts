@@ -8,6 +8,7 @@ import {
   linkAndCompileApp,
   parse,
   printWireframe,
+  renderSite,
   validate,
   type AppManifest,
   type AppModuleInput,
@@ -260,5 +261,50 @@ describe('CORE-INTERACTION-RUNTIME', () => {
     expect(runtime.diagnostics.map((diagnostic) => diagnostic.code)).toContain(
       'unknown-legacy-action',
     )
+  })
+})
+
+/**
+ * A handler inside a `component` definition needs the linker, by design.
+ *
+ * `collectInteractions` walks screens and layouts, never component
+ * definitions. That is the boundary, not an oversight: a handler in a
+ * definition is written against the component's parameters —
+ * `target="$to"` — so before an invocation binds its inputs there is no
+ * destination to record, only the name of one. Collecting from the definition
+ * would register `"$to"` as a route to a screen that does not exist, and a
+ * component used twice with different inputs is two routes that one walk of
+ * the definition cannot tell apart.
+ *
+ * `linkApp` is what binds them: `expandComponentUse` substitutes the inputs and
+ * returns a tree whose handlers name real screens. So the linked path sees
+ * every component interaction and the unlinked one sees none — pinned here so
+ * the difference stays a documented contract rather than a surprise.
+ */
+describe('component interactions require the linked path', () => {
+  const SOURCE = `component navCard(to: string) {
+  card on={ event=click, effects=[{ kind=navigate, target="$to" }] } { text "go" }
+}
+page "A" id=a { use navCard(to="b") }
+page "B" id=b { text "b" }`
+
+  it('leaves the handler target an unbound parameter before linking', () => {
+    const document = parse(SOURCE)
+    const component = document.children.find((node) => node.type === 'Component')
+    expect(component).toBeDefined()
+
+    // The reason the walk cannot collect it: the target is the parameter's
+    // name, not a screen's.
+    const card = (component as { children: { on?: unknown }[] }).children[0]
+    expect(JSON.stringify(card?.on)).toContain('$to')
+
+    expect(collectInteractions(document).interactions).toEqual([])
+  })
+
+  it('marks the invocation unresolved when renderSite runs on an unlinked document', () => {
+    const html = renderSite(parse(SOURCE))
+
+    expect(html).toContain('data-wf-component-unresolved')
+    expect(html).toContain('data-wf-component="navCard"')
   })
 })

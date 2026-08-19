@@ -367,9 +367,26 @@ html, body {
   min-height: 100vh;
   background: #f4f4f5;
 }
+/* The gutter is breathing room *around* a board, so it may never come out of
+   the width the board is laid out in.
+
+   \`body\` is a block box: its \`width: auto\` resolves to the space available in
+   the viewport minus its own horizontal padding, so \`padding: 24px\` made the
+   containing block 1440 - 24*2 = 1392px. \`box-sizing\` does not undo that —
+   it only reinterprets an *explicit* width, and there is none here. A board
+   authored at the 1440px desktop viewport is 1440px of \`.wf-page\` that must
+   not shrink (\`flex-shrink: 0\`, the fixed-layout invariant), so it overhung
+   its 1392px parent by 24px on each side and the document scrolled sideways.
+
+   The gutter therefore moves off the horizontal axis, where it competes with
+   the board for the viewport, and stays only on the vertical one, where it
+   costs nothing: a document scrolls down by nature, so leading above and
+   below a board is free, while every horizontal pixel it takes is a pixel the
+   board must give back. A board authored at exactly the viewport width now
+   fills it edge to edge, as authored, and anything wider scrolls by its own
+   overflow rather than by the gutter's. */
 body {
-  padding: 24px;
-  box-sizing: border-box;
+  padding: 24px 0;
 }
 ${css}
 </style>

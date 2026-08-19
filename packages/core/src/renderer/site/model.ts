@@ -179,14 +179,13 @@ function resolveShell(
  */
 export function buildSiteModel(doc: WireframeDocument): SiteModel {
   // Screens come from pages only. A `layout` reaches the output through the
-  // pages that say `uses=`, and a `component` reaches it through nothing at
-  // all — the grammar parses the definition but has no reference form to
-  // expand it at, so there is no call site for a screen to be built from.
-  // Drawing one anyway would put a screen on the canvas the author never wrote
-  // a page for. When expansion lands, this is where a component-bearing page
-  // starts being different from any other page: it does not, because expansion
-  // happens below, in the node renderer, and the screen model still counts
-  // pages.
+  // pages that say `uses=`, and a `component` reaches it through `use` inside
+  // one of those pages — never as a screen of its own. Drawing one anyway
+  // would put a screen on the canvas the author never wrote a page for. So a
+  // component-bearing page is not different from any other page here:
+  // expansion happens below this model (in the linker, which binds the
+  // invocation's inputs, and then in the node renderer), and the screen model
+  // still counts pages.
   const pages = documentPages(doc)
   const layouts = layoutsByName(doc)
 

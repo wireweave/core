@@ -209,3 +209,69 @@ describe('badge holds its size inside a flex row', () => {
     expect(rule).toMatch(/align-self:\s*center/)
   })
 })
+
+/**
+ * The other direction: every class the MARKUP carries must be one the CSS
+ * defines.
+ *
+ * The checks above run markup-ward — a class the stylesheet styles has to
+ * reach an element. That misses the mirror-image defect, and the mirror image
+ * is what shipped: `renderComponentUse` put `wf-component-instance` on every
+ * component invocation and no rule anywhere defined it. A class is the hook a
+ * stylesheet paints through, so markup that carries one is advertising a style
+ * that does not exist — the wrapper is `display: contents` and must have no box
+ * at all, which is exactly what `data-` attributes, not a class, are for.
+ *
+ * Both directions are now covered, so neither kind of drift is silent: a rule
+ * nothing wears fails above, a class nothing styles fails here.
+ */
+describe('markup classes are defined by the stylesheet', () => {
+  /** Classes the markup carries that no rule in the CSS mentions. */
+  const undefinedClasses = (html: string, css: string): string[] => {
+    const styled = styledClasses(css)
+    // Every class named ANYWHERE in the CSS, not only as a rule's subject: a
+    // class used purely as an ancestor (`.wf-site .wf-page`) is still defined.
+    const mentioned = new Set(styled)
+    for (const [, name] of css.matchAll(/\.([A-Za-z0-9_-]+)/g)) mentioned.add(name)
+    return [...markupClasses(html)]
+      .filter((name) => name.startsWith('wf-'))
+      .filter((name) => !mentioned.has(name))
+      .sort()
+  }
+
+  it('no wf- class in a rendered page is left undefined by the CSS', () => {
+    const { html, css } = render(parse(SOURCE))
+
+    // Control: the check can fail. Re-introducing the class the defect emitted
+    // must be reported, or the assertion below proves nothing.
+    const withDeadClass = html.replace(
+      '<div class="wf-field"',
+      '<div class="wf-component-instance"',
+    )
+    expect(withDeadClass).not.toBe(html)
+    expect(undefinedClasses(withDeadClass, css)).toContain('wf-component-instance')
+
+    expect(undefinedClasses(html, css)).toEqual([])
+  })
+
+  /**
+   * A component invocation is marked by `data-`, not by a class.
+   *
+   * `display: contents` means the wrapper has no box; any rule that gave it one
+   * would defeat the declaration, so there is no style the class could ever
+   * carry — the identity exists to be queried, never painted.
+   */
+  it('marks component invocations with data- attributes and no class', () => {
+    const source = `component Card(label: string) {
+  card { text "$label" }
+}
+page "Home" id=home { use Card(label="hi") }`
+    const { html, css } = render(parse(source))
+
+    expect(html).toContain('data-wf-component="Card"')
+    expect(html).toContain('style="display: contents"')
+    expect(html).not.toContain('wf-component-instance')
+    expect(css).not.toContain('wf-component-instance')
+    expect(undefinedClasses(html, css)).toEqual([])
+  })
+})
