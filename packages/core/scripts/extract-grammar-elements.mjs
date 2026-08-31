@@ -15,6 +15,8 @@ import { readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
+import { formatGeneratedSource } from './format-generated.mjs'
+
 const PACKAGE_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 
 export const GRAMMAR_PATH = join(PACKAGE_ROOT, 'src/grammar/wireframe.peggy')
@@ -325,9 +327,12 @@ ${childKeywords.map((keyword) => `  '${keyword}',`).join('\n')}
 `
 }
 
-function main() {
+async function main() {
   const check = process.argv.includes('--check')
-  const generated = renderModule(extractGrammarElements(readFileSync(GRAMMAR_PATH, 'utf8')))
+  const generated = await formatGeneratedSource(
+    renderModule(extractGrammarElements(readFileSync(GRAMMAR_PATH, 'utf8'))),
+    OUTPUT_PATH,
+  )
 
   if (check) {
     const committed = readFileSync(OUTPUT_PATH, 'utf8')
@@ -343,4 +348,11 @@ function main() {
   writeFileSync(OUTPUT_PATH, generated)
 }
 
-if (process.argv[1] === fileURLToPath(import.meta.url)) main()
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  main().catch((error) => {
+    console.error(
+      `[extract-grammar-elements] ${error instanceof Error ? error.message : String(error)}`,
+    )
+    process.exitCode = 1
+  })
+}

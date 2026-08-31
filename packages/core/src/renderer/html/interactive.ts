@@ -64,6 +64,8 @@ export const EXTERNAL_NAVIGATE_ATTR = 'data-navigate-external'
 export const TYPED_INTERACTION_ATTR = 'data-wf-on'
 export const VISIBLE_GUARD_ATTR = 'data-wf-visible-when'
 export const ENABLED_GUARD_ATTR = 'data-wf-enabled-when'
+/** Layout nodes scoped by `.wf` `when=`; the site runtime applies the active screen's variant. */
+export const VARIANT_SCOPE_ATTR = 'data-wf-variant-scope'
 
 /**
  * The `href` an anchor gets when it has no destination of its own.

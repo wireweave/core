@@ -173,6 +173,78 @@ describe('CORE-INTERACTION-RUNTIME', () => {
     expect(dom.window.history.length).toBe(initialHistory + 1)
   })
 
+  it('projects shared-layout when scopes from the active screen variant', () => {
+    const html = renderSite(
+      parse(`layout shell {
+  header {
+    nav { item "Ready" navigate="dash#ready" }
+    section "Loading shell" when=loading { text "loading" }
+    section "Ready shell" when=ready { text "ready" }
+  }
+  slot
+}
+page "Dash" id=dash uses=shell variants=[loading, ready] { text "body" }`),
+    )
+    const dom = mount(html)
+    const scoped = [...dom.window.document.querySelectorAll('[data-wf-variant-scope]')]
+    const loading = scoped.find(
+      (element) => element.getAttribute('data-wf-variant-scope') === '["loading"]',
+    )
+    const ready = scoped.find(
+      (element) => element.getAttribute('data-wf-variant-scope') === '["ready"]',
+    )
+    if (loading === undefined || ready === undefined)
+      throw new Error('variant scope markers missing')
+
+    expect(loading.hasAttribute('hidden')).toBe(false)
+    expect(ready.hasAttribute('hidden')).toBe(true)
+
+    click(dom, elementWithText(dom, 'a', 'Ready'))
+
+    expect(dom.window.document.querySelector('.wf-site')?.getAttribute('data-current-screen')).toBe(
+      '1',
+    )
+    expect(dom.window.location.hash).toBe('#dash#ready')
+    expect(loading.hasAttribute('hidden')).toBe(true)
+    expect(ready.hasAttribute('hidden')).toBe(false)
+  })
+
+  it('keeps nested shared-layout scope markers independent across variants', () => {
+    const html = renderSite(
+      parse(`layout shell {
+  section "Outer loading shell" when=loading {
+    section "Inner ready shell" when=ready { text "inner" }
+  }
+  nav { item "Ready" navigate="dash#ready" }
+  slot
+}
+page "Dash" id=dash uses=shell variants=[loading, ready] { text "body" }`),
+    )
+    const dom = mount(html)
+    const markers = [...dom.window.document.querySelectorAll('[data-wf-variant-scope]')]
+
+    expect(markers).toHaveLength(2)
+    expect(
+      new Set(markers.map((element) => element.getAttribute('data-wf-variant-scope'))),
+    ).toEqual(new Set(['["loading"]', '["ready"]']))
+
+    // Assert ownership by the nesting relationship, not by serialized marker
+    // order: the parent contains the child marker, while the child contains no
+    // descendant scope marker of its own.
+    const outer = markers.find((element) => element.querySelector('[data-wf-variant-scope]'))
+    const inner = markers.find((element) => !element.querySelector('[data-wf-variant-scope]'))
+    if (outer === undefined || inner === undefined) throw new Error('nested scope markers missing')
+    expect(outer.getAttribute('data-wf-variant-scope')).toBe('["loading"]')
+    expect(inner.getAttribute('data-wf-variant-scope')).toBe('["ready"]')
+    expect(outer.hasAttribute('hidden')).toBe(false)
+    expect(inner.hasAttribute('hidden')).toBe(true)
+
+    click(dom, elementWithText(dom, 'a', 'Ready'))
+
+    expect(outer.hasAttribute('hidden')).toBe(true)
+    expect(inner.hasAttribute('hidden')).toBe(false)
+  })
+
   it('applies guarded set/reset/toggle/open/close effects and leaves unknown actions inert', () => {
     const dom = mount(compile().html)
     const { document } = dom.window

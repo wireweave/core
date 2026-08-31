@@ -70,7 +70,8 @@ import {
   formatAnchorLoc,
 } from '../../ast/anchor-path'
 import { expandRepeats } from '../../ast/expand-repeats'
-import { guardedOutcomeAttrs } from './interactive'
+import { variantScope } from '../../ast/filter-variant-scope'
+import { guardedOutcomeAttrs, VARIANT_SCOPE_ATTR } from './interactive'
 
 /**
  * Inject anchor attributes into the outermost opening tag of a rendered node's
@@ -83,6 +84,44 @@ function injectAnchorAttrs(html: string, path: string, loc?: AnyNode['loc']): st
   // Replace only the first opening tag (no /g). Attribute values are
   // HTML-escaped, so the first `<` is always the outermost opening tag.
   return html.replace(/<([a-zA-Z][a-zA-Z0-9-]*)/, (match) => `${match}${attrs}`)
+}
+
+/**
+ * These renderers already place guard attributes on the node's own root via
+ * `interactiveAttrs`. Every other node receives its guards from renderNode.
+ * Keeping this ownership contract in the AST layer avoids inspecting rendered
+ * descendants to decide whether the current node has already been marked.
+ */
+const GUARD_ATTR_RENDERERS = new Set<AnyNode['type']>([
+  'Card',
+  'Button',
+  'Image',
+  'Avatar',
+  'Badge',
+  'Icon',
+  'Link',
+])
+
+/**
+ * Collect markers owned by one AST node. The map is deliberately node-local:
+ * nested renderNode calls collect separate maps, so a child marker can never
+ * deduplicate a parent's marker in the child's serialized subtree.
+ */
+function collectNodeMarkerAttrs(node: AnyNode): Record<string, string | boolean> {
+  const markers = new Map<string, string | boolean>()
+
+  if (!GUARD_ATTR_RENDERERS.has(node.type)) {
+    for (const [name, value] of Object.entries(
+      guardedOutcomeAttrs(node as Partial<GuardedOutcomeProps>),
+    )) {
+      if (value !== undefined) markers.set(name, value)
+    }
+  }
+
+  const scope = variantScope(node)
+  if (scope !== undefined) markers.set(VARIANT_SCOPE_ATTR, JSON.stringify(scope))
+
+  return Object.fromEntries(markers)
 }
 
 // Re-export component utilities
@@ -456,17 +495,12 @@ export class HtmlRenderer extends BaseRenderer {
     const renderer = this.nodeRenderers[node.type]
     let html = renderer ? renderer(node) : `<!-- Unknown node type: ${node.type} -->`
 
-    // Event-capable renderers already emit these through `interactiveAttrs`.
-    // Add only missing guard markers so every ordinary rendered branch can be
-    // state-controlled without copying the attribute names through 30 renderers.
-    const guardAttrs = Object.fromEntries(
-      Object.entries(guardedOutcomeAttrs(node as Partial<GuardedOutcomeProps>)).filter(
-        ([name, value]) => value !== undefined && !html.includes(` ${name}=`),
-      ),
-    ) as Record<string, string | undefined>
-    const guardAttrString = this.buildAttrsString(guardAttrs)
-    if (guardAttrString.length > 0) {
-      html = html.replace(/<([a-zA-Z][a-zA-Z0-9-]*)/, (match) => `${match}${guardAttrString}`)
+    // Apply only this node's markers to its own root. Child nodes have already
+    // applied their own markers during the recursive renderer call; searching
+    // `html` would conflate those two ownership boundaries.
+    const markerAttrString = this.buildAttrsString(collectNodeMarkerAttrs(node))
+    if (markerAttrString.length > 0) {
+      html = html.replace(/<([a-zA-Z][a-zA-Z0-9-]*)/, (match) => `${match}${markerAttrString}`)
     }
 
     // Pages are rendered directly by renderDocument (bypassing renderNode) and

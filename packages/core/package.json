@@ -88,6 +88,7 @@
   },
   "scripts": {
     "build:grammar": "peggy --format es -o src/parser/generated-parser.js src/grammar/wireframe.peggy",
+    "postbuild:grammar": "node scripts/format-generated.mjs src/parser/generated-parser.js",
     "build:spec": "node scripts/extract-grammar-elements.mjs",
     "build:icons": "node scripts/generate-icons.mjs",
     "build:icon-names": "node scripts/extract-icon-names.mjs",

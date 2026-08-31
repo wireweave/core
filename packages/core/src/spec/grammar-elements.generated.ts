@@ -77,12 +77,7 @@ export type GrammarNodeType = (typeof GRAMMAR_ELEMENTS)[GrammarElementName]
  * way {@link GRAMMAR_ELEMENTS} entries do. They are addressed by node type
  * instead, and the spec registry gives them their metadata that way.
  */
-export const GRAMMAR_BLOCK_NODE_TYPES = [
-  'ListItem',
-  'DropdownItem',
-  'NavGroup',
-  'NavItem',
-] as const
+export const GRAMMAR_BLOCK_NODE_TYPES = ['ListItem', 'DropdownItem', 'NavGroup', 'NavItem'] as const
 
 /** Union of every block-scoped node type. */
 export type GrammarBlockNodeType = (typeof GRAMMAR_BLOCK_NODE_TYPES)[number]

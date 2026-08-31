@@ -33,9 +33,12 @@
 
 import { execFileSync } from 'node:child_process'
 import { existsSync, readFileSync } from 'node:fs'
+import { Buffer } from 'node:buffer'
 import { createRequire } from 'node:module'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+
+import { formatGeneratedSource } from './format-generated.mjs'
 
 const PACKAGE_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const MANIFEST_PATH = join(PACKAGE_ROOT, 'package.json')
@@ -204,20 +207,24 @@ function resolvePeggyBin() {
 }
 
 /**
- * Generate the parser to stdout and return its exact bytes. Touches no files.
+ * Generate the parser to stdout, normalize it through Core's generated-source
+ * formatter, and return the exact committed bytes. Touches no files.
  *
  * @param {string} peggyBin
  * @param {string[]} generatorArgs
- * @returns {Buffer}
+ * @param {string} artifactPath
+ * @returns {Promise<Buffer>}
  */
-function generate(peggyBin, generatorArgs) {
+async function generate(peggyBin, generatorArgs, artifactPath) {
   try {
-    return execFileSync(process.execPath, [peggyBin, ...generatorArgs, '-o', '-'], {
+    const raw = execFileSync(process.execPath, [peggyBin, ...generatorArgs, '-o', '-'], {
       cwd: PACKAGE_ROOT,
       encoding: 'buffer',
       maxBuffer: 256 * 1024 * 1024,
       stdio: ['ignore', 'pipe', 'inherit'],
     })
+    const formatted = await formatGeneratedSource(raw.toString('utf8'), artifactPath)
+    return Buffer.from(formatted)
   } catch (error) {
     const status =
       error && typeof error === 'object' && 'status' in error ? String(error.status) : 'unknown'
@@ -267,12 +274,12 @@ function describeDivergence(committed, fresh) {
   return lines.join('\n')
 }
 
-function main() {
+async function main() {
   const { command, generatorArgs, artifact, packageName } = readBuildContract()
   const artifactPath = join(PACKAGE_ROOT, artifact)
   const fixCommand = `pnpm --filter ${packageName} ${BUILD_SCRIPT}`
 
-  const fresh = generate(resolvePeggyBin(), generatorArgs)
+  const fresh = await generate(resolvePeggyBin(), generatorArgs, artifactPath)
 
   if (!existsSync(artifactPath)) {
     console.error(
@@ -305,4 +312,9 @@ function main() {
   process.exit(1)
 }
 
-main()
+main().catch((error) => {
+  abort(
+    'Prettier could not normalize the generated parser output',
+    error instanceof Error ? error.message : String(error),
+  )
+})

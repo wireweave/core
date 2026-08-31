@@ -47,6 +47,7 @@ import {
   INERT_HREF,
   INTERACTIVE_ATTR_NAMES,
   TYPED_INTERACTION_ATTR,
+  VARIANT_SCOPE_ATTR,
   VISIBLE_GUARD_ATTR,
 } from '../html/interactive'
 
@@ -342,6 +343,18 @@ export function siteRuntime(registry: SiteRuntimeRegistry, prefix: string): stri
     }
   }
 
+  function applyVariantScopes() {
+    var screen = current === null ? null : screens[current];
+    var variant = screen ? screen.getAttribute('data-wf-variant') : null;
+    var scoped = site.querySelectorAll('[' + ${embedJson(VARIANT_SCOPE_ATTR)} + ']');
+    for (var i = 0; i < scoped.length; i++) {
+      var names = parseJson(scoped[i].getAttribute(${embedJson(VARIANT_SCOPE_ATTR)}), []);
+      var visible = variant !== null && names.indexOf(variant) >= 0;
+      if (visible) scoped[i].removeAttribute('hidden');
+      else scoped[i].setAttribute('hidden', 'hidden');
+    }
+  }
+
   function applyEffects(handler) {
     for (var i = 0; i < handler.effects.length; i++) {
       var effect = handler.effects[i];
@@ -425,6 +438,7 @@ export function siteRuntime(registry: SiteRuntimeRegistry, prefix: string): stri
     current = key;
     closeOverlays(key);
     markActive(key);
+    applyVariantScopes();
     applyOutcomes();
 
     if (writeFragment) {
