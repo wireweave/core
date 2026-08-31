@@ -22,6 +22,7 @@
     "core-canvas-fixes",
     "core-dom-anchors",
     "core-extract-apis",
+    "core-layout-state",
     "core-nested-parameter-references",
     "core-page-guard-narrowing",
     "core-page-variants",

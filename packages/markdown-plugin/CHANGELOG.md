@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.12-beta.11
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @wireweave/core@3.1.0-beta.11
+
 ## 1.2.12-beta.10
 
 ### Patch Changes

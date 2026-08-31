@@ -1,6 +1,6 @@
 {
   "name": "@wireweave/cli",
-  "version": "0.1.1-beta.10",
+  "version": "0.1.1-beta.11",
   "description": "Wireweave CLI — auth, render, and AI agent for the Wireweave wireframe DSL",
   "type": "module",
   "main": "dist/index.js",
